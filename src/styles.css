@@ -2630,6 +2630,19 @@ a.navcard:hover .navcard__icon {
   flex-direction: column;
 }
 
+/* The illustration that stands where the drawn delivery path did: held to a
+   width that keeps it in scale with the KPI row beneath, and carrying the same
+   gap the path had. */
+.proof__fig {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto clamp(28px, 3vw, 44px);
+}
+
+.proof__fig .pig__img {
+  width: 100%;
+}
+
 .proof__flow {
   display: flex;
   flex-wrap: wrap;

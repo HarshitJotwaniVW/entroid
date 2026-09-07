@@ -400,9 +400,15 @@ const DeployPath = ({ steps = [] }) => (
   </Reveal>
 )
 
-const Proof = ({ flow, kpis, disclaimer }) => (
+/* The figure above the KPIs is either the section's illustration or, without
+   one, the drawn delivery path. */
+const Proof = ({ flow, kpis, disclaimer, infographic, infographicAlt = '' }) => (
   <div className="proof">
-    {flow && <DeployPath steps={flow} />}
+    {infographic ? (
+      <Reveal className="proof__fig" variant="fade">
+        <InfographicFigure img={infographic} alt={infographicAlt} />
+      </Reveal>
+    ) : flow && <DeployPath steps={flow} />}
     <Reveal as="div" variant="fade" className="proof__kpis stagger">
       {kpis.map((k) => (
         <div key={k.label} className="kpi">
@@ -871,7 +877,7 @@ const Section = ({ s, index }) => {
         {!isOrbit && head}
 
         {isProof ? (
-          <Proof flow={s.flow} kpis={s.kpis} disclaimer={s.disclaimer} />
+          <Proof flow={s.flow} kpis={s.kpis} disclaimer={s.disclaimer} infographic={s.infographic} infographicAlt={s.heading} />
         ) : isChain ? (
           <ChainFlow items={s.cards} />
         ) : isTabs ? (

@@ -290,7 +290,9 @@ export const sections = [
     heading: 'Built for production from day one.',
     paragraph:
       'Entroid transforms enterprise delivery into a continuous, automated process. From business idea to production, built-in automation, reusable enterprise capabilities and AI-assisted delivery reduce implementation time, lower operational costs and accelerate business innovation, while maintaining enterprise-grade governance, security and operational readiness.',
-    // Deployment path, kept as a compact proof of production readiness.
+    // The illustration stands in for the drawn deployment path below; `flow`
+    // is the fallback the section renders if the artwork is ever removed.
+    infographic: '/illustration/enterprise-deployment.png',
     flow: ['Design', 'Build', 'Validate', 'Deploy', 'Operate'],
     kpis: [
       { prefix: 'Up to', value: '40%', label: 'Faster Time to Production', text: 'Reusable enterprise capabilities, automation and AI-assisted delivery accelerate the journey from business requirements to production.' },
