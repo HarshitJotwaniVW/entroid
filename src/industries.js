@@ -21,6 +21,7 @@ export const industryHref = (name) => `/industries/${slugify(name)}`
 export const industries = {
   'oil-and-gas': {
     slug: 'oil-and-gas',
+    heroImage: '/bg/industries/oil-%26-gas.jpg',
     category: 'Oil & Gas',
     eyebrow: 'Industries',
     headline: 'The whole oil and gas estate, on one command center.',
@@ -86,6 +87,7 @@ export const industries = {
 
   wind: {
     slug: 'wind',
+    heroImage: '/bg/industries/renewable.jpg',
     category: 'Wind',
     eyebrow: 'Industries',
     headline: 'Every wind farm, from planning to on-grid, on one platform.',
@@ -151,6 +153,7 @@ export const industries = {
 
   telecom: {
     slug: 'telecom',
+    heroImage: '/bg/industries/telecom.jpg',
     category: 'Telecom',
     eyebrow: 'Industries',
     headline: 'Every network site, from plan to on-air, on one command center.',
@@ -212,6 +215,7 @@ export const industries = {
   },
   renewable: {
     slug: 'renewable',
+    heroImage: '/bg/industries/renewable.jpg',
     category: 'Renewable',
     eyebrow: 'Industries',
     headline: 'Every renewable plant, from planning to on-grid, on one platform.',
@@ -241,6 +245,7 @@ export const industries = {
 
   solar: {
     slug: 'solar',
+    heroImage: '/bg/industries/renewable.jpg',
     category: 'Solar',
     eyebrow: 'Industries',
     headline: 'Every solar park, from planning to on-grid, on one platform.',
@@ -269,6 +274,7 @@ export const industries = {
 
   iot: {
     slug: 'iot',
+    heroImage: '/bg/industries/iot%3Aatm.jpg',
     category: 'IoT',
     eyebrow: 'Industries',
     headline: 'Every connected device and use case, on one platform.',
@@ -297,6 +303,7 @@ export const industries = {
 
   ev: {
     slug: 'ev',
+    heroImage: '/bg/industries/ev.jpg',
     category: 'EV',
     eyebrow: 'Industries',
     headline: 'The EV charging network, planned, energized and operating, on one platform.',
@@ -325,6 +332,7 @@ export const industries = {
 
   'atm-rollout': {
     slug: 'atm-rollout',
+    heroImage: '/bg/industries/iot%3Aatm.jpg',
     category: 'ATM Rollout',
     eyebrow: 'Industries',
     headline: 'Every ATM site, from survey to commissioning, tracked against plan.',
@@ -353,6 +361,7 @@ export const industries = {
 
   wealth: {
     slug: 'wealth',
+    heroImage: '/bg/industries/wealth.jpg',
     category: 'Wealth',
     eyebrow: 'Industries',
     headline: 'The whole wealth business on one cockpit: AUM, flows, fees and clients.',
@@ -381,6 +390,7 @@ export const industries = {
 
   construction: {
     slug: 'construction',
+    heroImage: '/bg/industries/construction.jpg',
     category: 'Construction',
     eyebrow: 'Industries',
     headline: 'The whole capital portfolio, on one command center.',
@@ -409,6 +419,7 @@ export const industries = {
 
   manufacturing: {
     slug: 'manufacturing',
+    heroImage: '/bg/industries/manufacturing.jpg',
     category: 'Manufacturing',
     eyebrow: 'Industries',
     headline: 'The whole plant, planning through logistics, on one command dashboard.',
@@ -437,6 +448,7 @@ export const industries = {
 
   'data-center': {
     slug: 'data-center',
+    heroImage: '/bg/industries/data-center.jpg',
     category: 'Data Center',
     eyebrow: 'Industries',
     headline: 'Plan, deliver and operate the data center estate, on one command center.',

@@ -141,12 +141,12 @@ export const sections = [
     // Per-tab artwork. A tab without an `image` falls back to the section
     // visual below, so these can be filled in a card at a time.
     cards: [
-      { title: 'Concept to Production', text: 'Turn business requirements into production-ready enterprise solutions through a single, continuous delivery process.', image: '/illustration/concept-to-production.png' },
-      { title: 'Continuous Delivery', text: 'Design, build, test and deploy through one integrated workflow, eliminating delays and unnecessary handoffs.', image: '/illustration/continuous-delivery.png' },
-      { title: 'Modernise Legacy Applications', text: 'Transform legacy applications onto a modern technology stack while preserving business rules, processes and enterprise knowledge.', image: '/illustration/modernise-legacy-applications.png' },
-      { title: 'Accelerated Enterprise Delivery', text: 'Accelerate implementation using reusable enterprise capabilities, configurable modules and AI-assisted development.', image: '/illustration/accelerated-enterprise-delivery.png' },
-      { title: 'Full Enterprise Ownership', text: 'Own, maintain and extend your solutions independently without vendor lock-in or proprietary dependencies.', image: '/illustration/full-enterprise-ownership.png' },
-      { title: 'Go Live in Days', text: 'Deliver new business capabilities and modernised applications in days instead of months.', image: '/illustration/go-live-in-days.png' },
+      { title: 'Concept to Production', text: 'Turn business requirements into production-ready enterprise solutions through a single, continuous delivery process.', image: '/illustration/concept-to-production.webp' },
+      { title: 'Continuous Delivery', text: 'Design, build, test and deploy through one integrated workflow, eliminating delays and unnecessary handoffs.', image: '/illustration/continuous-delivery.webp' },
+      { title: 'Modernise Legacy Applications', text: 'Transform legacy applications onto a modern technology stack while preserving business rules, processes and enterprise knowledge.', image: '/illustration/modernise-legacy-applications.webp' },
+      { title: 'Accelerated Enterprise Delivery', text: 'Accelerate implementation using reusable enterprise capabilities, configurable modules and AI-assisted development.', image: '/illustration/accelerated-enterprise-delivery.webp' },
+      { title: 'Full Enterprise Ownership', text: 'Own, maintain and extend your solutions independently without vendor lock-in or proprietary dependencies.', image: '/illustration/full-enterprise-ownership.webp' },
+      { title: 'Go Live in Days', text: 'Deliver new business capabilities and modernised applications in days instead of months.', image: '/illustration/go-live-in-days.webp' },
     ],
     // Left tab rail; the panel on the right rotates through the cards.
     layout: 'tabs',
@@ -204,7 +204,7 @@ export const sections = [
     heading: 'Enterprise AI that understands your business.',
     paragraph:
       'Entroid embeds AI into every business function through a governed enterprise AI platform. Built on enterprise context, knowledge and data, AI agents understand your organisation, collaborate across workflows, automate complex work and continuously improve decisions while remaining secure, explainable and under enterprise control.',
-    infographic: '/illustration/enterprise-ai.png',
+    infographic: '/illustration/enterprise-ai.webp',
     cards: [
       { title: 'Intelligent Agents', text: 'Purpose-built AI agents understand enterprise context, reason across business processes and execute work with human oversight.' },
       { title: 'Conversational Enterprise', text: 'Interact with enterprise knowledge, applications and workflows using natural language across every business function.' },
@@ -226,7 +226,7 @@ export const sections = [
     id: 'governance',
     number: '05',
     layout: 'stack',
-    infographic: '/illustration/governance-security-%26-scale.png',
+    infographic: '/illustration/governance-security-%26-scale.webp',
     label: 'Governance, Security & Scale',
     heading: 'Governed by design. Trusted at enterprise scale.',
     paragraph:
@@ -248,7 +248,7 @@ export const sections = [
     heading: 'Own your platform. Control your future.',
     paragraph:
       'Entroid gives organisations complete ownership of their enterprise solutions, intellectual property and future roadmap. Build, extend and evolve applications on an open, enterprise-grade platform without vendor lock-in, while retaining the freedom to innovate, customise and grow on your own terms.',
-    infographic: '/illustration/ownership-%26-independence.png',
+    infographic: '/illustration/ownership-%26-independence.webp',
     cards: [
       { title: 'Enterprise Ownership', text: 'Own your applications, configurations, data models and enterprise solutions without dependency on proprietary platforms.' },
       { title: 'Freedom from Vendor Lock-in', text: 'Open standards and portable architecture give your organisation the flexibility to evolve independently.' },
@@ -271,7 +271,7 @@ export const sections = [
     paragraph:
       'Every enterprise is different. Entroid adapts to your operating model, business processes and technology landscape instead of forcing standardisation. Configure, extend and evolve the platform at your own pace while preserving the ways of working that make your organisation unique.',
     layout: 'stack',
-    infographic: '/enterprise-flexibility.png',
+    infographic: '/illustration/enterprise-flexibility.webp',
     cards: [
       { title: 'Configurable by Design', text: 'Adapt applications, workflows and business rules without custom development or platform limitations.' },
       { title: 'Built to Extend', text: 'Add new capabilities, AI agents and business services as your organisation evolves without disrupting existing operations.' },
@@ -292,7 +292,7 @@ export const sections = [
       'Entroid transforms enterprise delivery into a continuous, automated process. From business idea to production, built-in automation, reusable enterprise capabilities and AI-assisted delivery reduce implementation time, lower operational costs and accelerate business innovation, while maintaining enterprise-grade governance, security and operational readiness.',
     // The illustration stands in for the drawn deployment path below; `flow`
     // is the fallback the section renders if the artwork is ever removed.
-    infographic: '/illustration/enterprise-deployment.png',
+    infographic: '/illustration/enterprise-deployment.webp',
     flow: ['Design', 'Build', 'Validate', 'Deploy', 'Operate'],
     kpis: [
       { prefix: 'Up to', value: '40%', label: 'Faster Time to Production', text: 'Reusable enterprise capabilities, automation and AI-assisted delivery accelerate the journey from business requirements to production.' },
@@ -309,6 +309,9 @@ export const finalSection = {
   heading: 'A foundation for autonomous enterprises.',
   paragraph:
     'One continuous journey of enterprise evolution, governed end to end.',
+  // The journey renders as one illustration; `journey` is the fallback the
+  // section falls back to (nine boxes and arrows) if the artwork is removed.
+  illustration: '/illustration/the-enterprise-journey.webp',
   journey: [
     'Innovation',
     'Modernisation',

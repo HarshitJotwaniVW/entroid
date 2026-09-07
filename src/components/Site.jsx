@@ -939,24 +939,31 @@ const Final = () => (
       <Reveal as="p" className="final__label">{finalSection.label}</Reveal>
       <Reveal as="h2" className="final__heading" delay={120}>{finalSection.heading}</Reveal>
       <Reveal as="p" className="final__para" delay={210}>{finalSection.paragraph}</Reveal>
-      <Reveal as="div" variant="fade" className="journey stagger">
-        {chunk(finalSection.journey, JOURNEY_PER_ROW).map((row, r) => (
-          <div className="journey__row" key={row[0]}>
-            {row.map((j, i) => (
-              <Fragment key={j}>
-                <span className="journey__step">
-                  <span className="journey__num">{String(r * JOURNEY_PER_ROW + i + 1).padStart(2, '0')}</span>
-                  <span className="journey__label">{j}</span>
-                </span>
-                {/* Arrows sit between boxes only, never trailing a row. */}
-                {i < row.length - 1 && (
-                  <span className="journey__arrow" aria-hidden="true"><ArrowRight weight="bold" /></span>
-                )}
-              </Fragment>
-            ))}
-          </div>
-        ))}
-      </Reveal>
+      {/* One illustration, or the drawn boxes if the artwork is removed. */}
+      {finalSection.illustration ? (
+        <Reveal variant="fade" className="journeyFig">
+          <img src={finalSection.illustration} alt={finalSection.journey.join(' → ')} loading="lazy" />
+        </Reveal>
+      ) : (
+        <Reveal as="div" variant="fade" className="journey stagger">
+          {chunk(finalSection.journey, JOURNEY_PER_ROW).map((row, r) => (
+            <div className="journey__row" key={row[0]}>
+              {row.map((j, i) => (
+                <Fragment key={j}>
+                  <span className="journey__step">
+                    <span className="journey__num">{String(r * JOURNEY_PER_ROW + i + 1).padStart(2, '0')}</span>
+                    <span className="journey__label">{j}</span>
+                  </span>
+                  {/* Arrows sit between boxes only, never trailing a row. */}
+                  {i < row.length - 1 && (
+                    <span className="journey__arrow" aria-hidden="true"><ArrowRight weight="bold" /></span>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          ))}
+        </Reveal>
+      )}
       <Reveal>
         <p className="final__cta">{finalSection.cta}</p>
         <div className="final__actions">
@@ -1165,7 +1172,13 @@ const ModuleScreen = ({ name, screen = {}, viz, caps = [] }) => {
 const SolutionPage = ({ p, journey, relatedItems }) => (
     <div className="solpage">
       <header
-        className={`phero ${p.heroImage ? 'phero--image' : 'phero--gradient'}`}
+        className={[
+          'phero',
+          p.heroImage ? 'phero--image' : 'phero--gradient',
+          // A page with hero artwork runs two columns, copy left; without one
+          // the copy is a single centred column.
+          p.heroFigure && 'phero--split',
+        ].filter(Boolean).join(' ')}
         style={p.heroImage ? { backgroundImage: `url('${p.heroImage}')` } : undefined}
       >
         <div className="container phero__inner">
@@ -1178,6 +1191,12 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
               <button className="btn btn--ghost" type="button">{p.secondaryCta}</button>
             </Reveal>
           </div>
+
+          {p.heroFigure && (
+            <Reveal className="phero__figure" variant="zoom" delay={210}>
+              <img src={p.heroFigure} alt={p.heroFigureAlt || ''} />
+            </Reveal>
+          )}
 
           {/* The value cards close the hero, in a row beneath the lead. */}
           {p.metrics && (
@@ -1411,7 +1430,7 @@ const UseCaseChain = ({ chain, flow }) => (
 
 export const UseCases = () => (
   <>
-    <header className="phero">
+    <header className="phero phero--gradient">
       <div className="container phero__inner">
         <Reveal as="p" className="phero__eyebrow">{useCasesHero.eyebrow}</Reveal>
         <Reveal as="h1" className="phero__headline" delay={120}>{useCasesHero.headline}</Reveal>
@@ -1567,7 +1586,7 @@ export const UseCaseDetail = ({ slug }) => {
   const related = [1, 2, 3].map((k) => all[(idx + k) % all.length])
   return (
     <>
-      <header className="phero">
+      <header className="phero phero--gradient">
         <div className="container phero__inner">
           <Reveal as="p" className="phero__eyebrow"><Link href="/use-cases">Use Cases</Link> · {u.theme}</Reveal>
           <Reveal as="h1" className="phero__headline" delay={120}>{u.title}</Reveal>

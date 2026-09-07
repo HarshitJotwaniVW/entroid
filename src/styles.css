@@ -2870,6 +2870,22 @@ a.navcard:hover .navcard__icon {
 
 /* Three rows of three: proper boxes with arrows between them, rather than a
    pill row that wrapped wherever it ran out of space. */
+/* The journey as one illustration. The artwork is drawn on white, so on the
+   ink section it takes a card's radius and sits as a panel rather than a
+   floating rectangle. */
+.journeyFig {
+  max-width: 1000px;
+  margin: 0 auto 44px;
+}
+
+.journeyFig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+}
+
 .journey {
   display: flex;
   flex-direction: column;
@@ -3196,6 +3212,60 @@ a.navcard:hover .navcard__icon {
   justify-content: center;
 }
 
+/* ── Split hero (pages with their own artwork) ───────────────
+   Copy on the left, the illustration on the right. Everything the centred
+   hero pulled to the middle is put back to the start of the line. */
+.solpage .phero--split .phero__inner {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+  align-items: center;
+  justify-items: stretch;
+  text-align: left;
+}
+
+.solpage .phero--split .phero__eyebrow,
+.solpage .phero--split .phero__headline,
+.solpage .phero--split .phero__intro {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.solpage .phero--split .phero__ctas {
+  justify-content: flex-start;
+}
+
+.phero__figure {
+  min-width: 0;
+}
+
+.phero__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+/* Below the split the figure drops under the copy, and the copy re-centres so
+   the stacked hero still reads as one column. */
+@media (max-width: 900px) {
+  .solpage .phero--split .phero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+  }
+
+  .solpage .phero--split .phero__eyebrow,
+  .solpage .phero--split .phero__headline,
+  .solpage .phero--split .phero__intro {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .solpage .phero--split .phero__ctas {
+    justify-content: center;
+  }
+}
+
 /* ── Hero grounds ────────────────────────────────────────────
    Two of them: a photograph (industry pages, via `heroImage`) or the brand
    gradient (everything else, product pages included). Both are pulled up under
@@ -3216,6 +3286,31 @@ a.navcard:hover .navcard__icon {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* One flat scrim over the whole picture: the photographs run light in places
+   and white copy needs the ground taken down a stop. It is a wash over the
+   image, not a panel behind the words. */
+.phero--image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 15, 31, .58) 0%, rgba(10, 15, 31, .42) 45%, rgba(10, 15, 31, .55) 100%);
+  pointer-events: none;
+}
+
+/* The copy sits straight on the photograph — no panel behind it — so it is
+   set in white, with a soft shadow doing the work of holding it against a
+   busy or light patch of picture. */
+.phero--image .phero__eyebrow,
+.phero--image .phero__headline {
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(10, 15, 31, .45);
+}
+
+.phero--image .phero__intro {
+  color: rgba(255, 255, 255, .88);
+  text-shadow: 0 2px 18px rgba(10, 15, 31, .45);
 }
 
 /* White at the top, settling into the brand at the foot. Kept faint: this is a

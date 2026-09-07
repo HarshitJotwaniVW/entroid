@@ -42,6 +42,9 @@ export const productHref = (groupTitle, itemName) =>
 export const products = {
   'intelligence-hub': {
     slug: 'intelligence-hub',
+    heroFigure: '/illustration/intelligence-hub.webp',
+    heroFigureAlt:
+      'The Intelligence Hub as the semantic core: finance, supply chain, operations and service around a centre that predicts, explains, decides and acts.',
     category: 'Intelligence Hub',
     eyebrow: 'Product',
     headline: 'One connected truth, and the intelligence to act on it.',
@@ -94,9 +97,12 @@ export const products = {
     flowText:
       'Enterprise objects, relationships and lifecycle are modelled once in the Semantic Ontology, intelligence reasons on that trusted context, and the loop closes from prediction to action across every domain.',
     visual: {
-      type: 'image',
-      src: '/illustration/intelligence-hub.png',
-      alt: 'The Intelligence Hub: enterprise objects, relationships and lifecycle modelled once, with intelligence reasoning on that context and closing the loop from prediction to action.',
+      type: 'foundry',
+      input: 'Enterprise objects · relationships · lifecycle',
+      core: 'Semantic Ontology',
+      modules: ['Command Center', 'Predictive AI', 'Conversational AI', 'Sherlock', 'Sentinel', 'Marketplace'],
+      output: 'Grounded intelligence that acts',
+      outputSub: 'Predict, explain, decide, act, in a closed loop',
     },
 
     closing: {
@@ -108,6 +114,9 @@ export const products = {
 
   'corporate-drivers': {
     slug: 'corporate-drivers',
+    heroFigure: '/illustration/corporate-drivers.webp',
+    heroFigureAlt:
+      'Strategy cascading into business plans, portfolios and aligned objectives, through governed execution to a delivered solution, with performance and insights looping back.',
     category: 'Corporate Drivers',
     eyebrow: 'Product',
     headline: 'Strategy, cascaded from the boardroom to the team.',
@@ -185,6 +194,9 @@ export const products = {
 
   'trust-governance-assurance': {
     slug: 'trust-governance-assurance',
+    heroFigure: '/illustration/trust-governance-%26-assurance.webp',
+    heroFigureAlt:
+      'Governance and Assurance built in: structure, risk, audit, data and decisions around one governed centre.',
     category: 'Trust, Governance & Assurance',
     eyebrow: 'Product',
     headline: 'Governed by design. Evidenced on demand.',
@@ -243,9 +255,8 @@ export const products = {
     flowText:
       'Structure and frameworks define what is governed, risk and compliance are scored and evidenced, audit assures the controls, data is catalogued and traced, and every decision is recorded and explainable.',
     visual: {
-      type: 'image',
-      src: '/illustration/trust-governance-%26-assurance.png',
-      alt: 'Trust, Governance and Assurance: governance, risk, compliance, audit, data and explainability evidenced end to end.',
+      type: 'shield',
+      items: ['Governance', 'Risk', 'Compliance', 'Audit', 'Data', 'Explainability'],
     },
 
     closing: {
