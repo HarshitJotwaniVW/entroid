@@ -1,0 +1,125 @@
+<div class="hook fade-in"><p>Every legacy-modernization pitch ends on the same reassuring line: <strong>every business rule is preserved</strong>. The COBOL becomes cloud-native code; the .NET monolith becomes tidy services; nothing is lost. It is true — and it is the wrong finish line. A rule preserved <em>as code</em> lands in a silo exactly as ungoverned and unauditable as the mainframe you spent eighteen months escaping. You modernized the language. You did not modernize the liability.</p></div>
+
+<div class="section-label fade-in">THE PART THEY GET RIGHT</div>
+<div class="fade-in">
+<p>Start with the concession, because it is real. The autonomous-coding-agent vendors genuinely do migrate a mainframe or a .NET estate in a fraction of the time a hand-rewrite would take — directionally, weeks where the traditional program budgeted quarters. The lifecycle-modernization vendors run a disciplined assess-transform-containerize path that gets a decades-old system off hardware nobody wants to insure anymore. And the best of these tools export to <strong>standard, non-proprietary code</strong> — no lock-in, an artifact your own engineers can read and own. Some scan that output for vulnerabilities automatically, which beats opt-in security policy every time.</p>
+<p>None of that is marketing fluff. Getting a business off a dying runtime <em>fast</em>, with the logic intact and no vendor handcuffs, is a hard problem solved well. If your only question is "can we get off the mainframe," these tools answer it. But that is a smaller question than the one the person signing the audit attestation is actually asking.</p>
+</div>
+
+<div class="section-label fade-in">WHAT "PRESERVED" QUIETLY OMITS</div>
+<div class="fade-in">
+<p>Consider what "preserved" means at the level of a single rule — say, the logic that authorizes a credit-limit override, calculates a loss reserve, or releases a shipment. On the mainframe, that rule lived inside a procedure almost nobody could read, was changed through a ticket almost nobody could trace, and produced actions almost nobody could reconstruct after the fact. Those three properties — <strong>unreadable, untraceable, unauditable</strong> — were the actual problem.</p>
+<p>Migrate the rule one-to-one and you fix exactly one of them. The code becomes readable. That is worth something. But the change path is still a code push traced only in commit history, and the <em>action the rule takes at runtime</em> — against your ledger, your policy system, your inventory — is still governed by nothing. "Production-ready" is a statement about the code compiling and deploying cleanly. It says nothing about whether the business action the running rule executes is permissioned, constrained, or recorded. You have translated the rule into a language you can read while leaving it exactly as ungovernable as it was in the original.</p>
+</div>
+
+<div class="section-label fade-in">THE BILL ARRIVES ON DAY ONE</div>
+<div class="fade-in">
+<p>Here is the uncomfortable part for anyone framing modernization as an ROI story. A migrated silo <strong>re-incurs the full integration, security, and audit bill the moment it goes live</strong> — and that bill is rarely on the migration business case.</p>
+<ul>
+<li><strong>Integration:</strong> the new artifact has to be re-wired into the estate through fresh connections it does not yet have.</li>
+<li><strong>Runtime security:</strong> a clean build-time scan is not runtime governance; the actions the app takes still need constraining while it runs, not just while it compiles.</li>
+<li><strong>Monitoring &amp; maintenance:</strong> a new codebase is a new thing to observe, patch, and own.</li>
+<li><strong>Auditability:</strong> the part the migration ticket never scopes — making every action the rule takes reconstructable for the regulator, the internal auditor, the risk committee.</li>
+</ul>
+<p>The sharper builders in this category have a genuinely smart answer to <em>part</em> of this: govern the software lifecycle through architecture, so the unsafe change simply is not available — editing, approving, and publishing as separate, server-side permissions. Concede it plainly; structural constraints beat written policy. But be precise about what they constrain. They govern the <strong>build / edit / publish lifecycle of the artifact</strong> — who is allowed to change the code and ship it. They do not govern what the running rule <em>does</em> when it moves the money, denies the claim, or releases the goods. That is a separate, unfunded liability, and it is owned by the person who signs the attestation — not the person who closed the migration ticket.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legacy code migrated one-to-one into a new repo you must then govern yourself, versus legacy modernized into a governed process on the fabric">
+  <g fill="none" stroke="currentColor">
+    <!-- LEFT: 1:1 migration into a new silo -->
+    <text x="30" y="40" font-size="12" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1">1:1 CODE MIGRATION</text>
+
+    <rect x="30" y="132" width="94" height="46" rx="9" stroke-opacity="0.55"/>
+    <text x="77" y="152" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">LEGACY</text>
+    <text x="77" y="167" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.55">.NET · COBOL</text>
+
+    <path d="M128 155 L162 155" stroke-opacity="0.5" stroke-width="1.5"/>
+    <path d="M156 150 L162 155 L156 160" stroke-opacity="0.5" stroke-width="1.5"/>
+
+    <!-- dashed "now govern it yourself" boundary -->
+    <rect x="150" y="86" width="212" height="164" rx="14" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="6 5"/>
+    <text x="256" y="78" font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.75" letter-spacing="0.5">NOW GOVERN IT YOURSELF</text>
+
+    <rect x="196" y="120" width="120" height="60" rx="9" stroke-opacity="0.6"/>
+    <text x="256" y="145" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">MIGRATED</text>
+    <text x="256" y="161" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">APP / REPO</text>
+    <text x="256" y="176" font-size="8.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.5">a new artifact</text>
+
+    <text x="256" y="212" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">Integrate · Secure · Monitor</text>
+    <text x="256" y="228" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">Audit · Maintain — yourself</text>
+
+    <!-- divider -->
+    <line x1="400" y1="30" x2="400" y2="290" stroke-opacity="0.18" stroke-width="1"/>
+    <text x="400" y="300" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.45">vs</text>
+
+    <!-- RIGHT: modernize into a governed process -->
+    <text x="438" y="40" font-size="12" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1">MODERNIZE INTO A PROCESS</text>
+
+    <rect x="438" y="132" width="94" height="46" rx="9" stroke-opacity="0.55"/>
+    <text x="485" y="152" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">LEGACY</text>
+    <text x="485" y="167" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.55">.NET · COBOL</text>
+
+    <path d="M536 155 L568 155" stroke-opacity="0.5" stroke-width="1.5"/>
+    <path d="M562 150 L568 155 L562 160" stroke-opacity="0.5" stroke-width="1.5"/>
+
+    <!-- governed process container (solid, no separate silo) -->
+    <rect x="576" y="86" width="198" height="164" rx="14" stroke-opacity="0.9" stroke-width="1.6"/>
+    <text x="675" y="78" font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.9" letter-spacing="0.5">GOVERNED PROCESS · ON THE FABRIC</text>
+
+    <!-- five primitive nodes as preserved rule-steps -->
+    <g stroke-opacity="0.75">
+      <circle cx="605" cy="128" r="9"/>
+      <circle cx="640" cy="128" r="9"/>
+      <circle cx="675" cy="128" r="9"/>
+      <circle cx="710" cy="128" r="9"/>
+      <circle cx="745" cy="128" r="9"/>
+    </g>
+    <g fill="currentColor" stroke="none" font-size="9" text-anchor="middle" opacity="0.8">
+      <text x="605" y="131">W</text>
+      <text x="640" y="131">I</text>
+      <text x="675" y="131">A</text>
+      <text x="710" y="131">F</text>
+      <text x="745" y="131">C</text>
+    </g>
+    <!-- stems onto the fabric bar -->
+    <g stroke-opacity="0.4" stroke-width="1">
+      <line x1="605" y1="137" x2="605" y2="176"/>
+      <line x1="640" y1="137" x2="640" y2="176"/>
+      <line x1="675" y1="137" x2="675" y2="176"/>
+      <line x1="710" y1="137" x2="710" y2="176"/>
+      <line x1="745" y1="137" x2="745" y2="176"/>
+    </g>
+    <!-- the fabric / runtime bar -->
+    <rect x="592" y="176" width="166" height="15" rx="7.5" stroke-opacity="0.85"/>
+    <text x="675" y="187" font-size="8" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">ONE RUNTIME · SEMANTIC ONTOLOGY</text>
+
+    <text x="675" y="214" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">inline governance · Connectors</text>
+    <text x="675" y="230" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">immutable audit — by construction</text>
+  </g>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE REAL DELIVERABLE IS A RULE YOU CAN PROVE, CHANGE, AND AUDIT</div>
+<div class="fade-in">
+<p>Step back and ask what the rule owner — the CRO, the controller, the CISO who inherits this thing — actually needs from modernization. It was never "fewer lines of legacy." Count the three things a governed rule must let you do:</p>
+<ul>
+<li><strong>Prove:</strong> for any decision the system made, show which rule fired, on what inputs, under whose authority — on demand, not after a two-week evidence hunt.</li>
+<li><strong>Change:</strong> alter the rule through a governed path where the change itself is recorded and enforceable — not a code push whose only trace is a commit message.</li>
+<li><strong>Audit:</strong> reconstruct every action the rule ever took, as a byproduct of it running, without commissioning a project to go collect the evidence.</li>
+</ul>
+<p>One-to-one code migration delivers none of these. It faithfully relocates the audit gap into a shinier stack. The rule is now written in a modern language and is precisely as opaque to the auditor as the day it ran on the mainframe. You have paid to run the same ungoverned logic on faster hardware.</p>
+</div>
+
+<div class="section-label fade-in">MODERNIZE INTO A GOVERNED PROCESS, NOT A REPO</div>
+<div class="fade-in">
+<p>This is the architectural difference, and it is a property of where the output lands — not a claim about speed. Entroid's <strong>Modernize</strong> toolkit turns legacy code into a modern system with every business rule preserved, like the others. But the output is not a repo you then have to integrate, secure, govern, and maintain as another silo. Each preserved rule becomes a <strong>step in a Deterministic Workflow on the fabric</strong>, mapped to a shared Semantic Ontology so it speaks the same language as every other process in the enterprise.</p>
+<p>Because that step runs on the fabric, its properties are structural, not add-ons. Governance is <em>inline</em> in the workflow rather than a wrapper bolted on afterward. The only thing that touches your systems of record is a governed <strong>Connector</strong> — the single primitive licensed to reach outside — so the rule's runtime action is permissioned by construction, not by convention. Every action it takes writes an <strong>immutable, per-action audit entry</strong> automatically, which is what makes "prove" and "audit" free instead of a project. Where a rule needs judgment, an Atomic Agent can be composed in with human-in-the-loop as a first-class step, so the pause-before-commit is part of the process, not a hope. These are architectural characteristics of the design; any specific rule or scenario here is illustrative, not a delivered result.</p>
+<p>Be honest about what this is not. It is not zero integration. The modernized process still runs <em>over</em> your existing estate — reached through governed Connectors, not conjured onto a blank field. What changes is <strong>where governance lives</strong>: inside the output, as part of what modernization produces, rather than as a security-and-audit bill you discover on go-live day. The migration vendors ship you code and hand you the governance homework. Modernizing into a process means the governance is the deliverable.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A rule you can't prove, change, or audit hasn't been modernized. It's just been relocated — to a newer stack, with the same blind spot.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

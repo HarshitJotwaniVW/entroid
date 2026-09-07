@@ -1,0 +1,96 @@
+<div class="hook fade-in"><p>Every process-mining vendor has arrived at the same revelation this year: AI cannot improve a process it does not understand, so feed it the process. They are right. They are also, every one of them, stopping exactly one step short of the step that decides whether any of this is safe. <strong>Context can make an agent better-informed. It cannot make an agent able to act, and it cannot make it safe to let act.</strong></p></div>
+
+<div class="section-label fade-in">THE NEW CONSENSUS</div>
+<div class="fade-in">
+<p>Give the market credit for converging on something true. One market leader has built its entire agentic pitch on the claim that there is no enterprise AI without process intelligence, and shipped a context server whose only job is to pipe process context into whatever agent wants to reason over it. Another vendor positions process intelligence as the foundation on which agentic AI has to stand. A third argues that in a world where the models themselves are commoditizing, <em>"what surrounds the model wins"</em> — and is building an enterprise context layer to do the surrounding.</p>
+<p>Strip away the branding and all three are describing the same architecture: a system of record for how work <em>actually</em> flows, mined from your systems and exposed as high-fidelity context to an AI agent that reasons over it. This is a genuine advance over prompt-and-pray. Hand a model the real topology of your order-to-cash — the rework loops, the maverick approvals, the places where reality diverges from the diagram — and it stops hallucinating your business. The consensus is correct as far as it goes. Context is <strong>necessary</strong>.</p>
+</div>
+
+<div class="section-label fade-in">THE HALF-STEP EVERYONE TAKES</div>
+<div class="fade-in">
+<p>Necessary is not sufficient — and the gap between the two is where enterprise risk lives. There are two things context can never do, no matter how rich it gets: it cannot <strong>act</strong>, and it cannot <strong>enforce</strong>.</p>
+<p>Follow the sequence to its end. The agent, well-briefed, decides to release the payment, raise the credit limit, adjust the vendor master, issue the refund. That decision has to <em>execute</em> somewhere. In every one of these architectures, it executes <em>outside</em> the intelligence layer — through whatever integration the agent can reach, against whatever system of record will accept the call. The process-intelligence platform observed the world, described it beautifully, recommended a move, and handed off. What happens after the handoff is out of its hands. And it learns what happened the same way it learned everything else: later, from the next batch of extracted event logs.</p>
+<p>That delay is the structural tell. <strong>If your platform finds out what the agent did by re-reading logs after the fact, it did not govern the action — it witnessed the aftermath.</strong> A control that reports a segregation-of-duties breach after the payment has cleared is a smoke detector wired to ring once the house is already ash.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">OBSERVATION IS NOT ACTION</div>
+<div class="fade-in">
+<p>The distinction is not marketing; it is architecture. Process mining reconstructs the process from batch-extracted event logs — a photograph of the past, developed on a delay. It is an extraordinary photograph. But governance built on a photograph is, by construction, retrospective. You are always reacting to a picture of a moment that has already passed.</p>
+<p>The alternative is not a better photograph. It is to make the runtime that <em>executes</em> the process the same runtime that <em>governs</em> it — operating on live, authoritative state, at the moment of action, so the policy is a hard gate in the path rather than a line item in tomorrow's report.</p>
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Contrast between observe-recommend-handoff and observe-decide-act-govern">
+<defs>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8 Z" fill="currentColor"/></marker>
+<marker id="ahd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8 Z" fill="currentColor" opacity="0.45"/></marker>
+</defs>
+<g fill="currentColor" font-family="ui-sans-serif, system-ui, sans-serif">
+<text x="40" y="34" font-size="15" font-weight="700" letter-spacing="1.5">SYSTEM OF OBSERVATION</text>
+<text x="40" y="54" font-size="12" opacity="0.6">reconstructed from batch event logs · audited after the fact</text>
+</g>
+<g stroke="currentColor" fill="none">
+<rect x="40" y="86" width="130" height="46" rx="8" opacity="0.75"/>
+<rect x="235" y="86" width="130" height="46" rx="8" opacity="0.75"/>
+<rect x="430" y="86" width="130" height="46" rx="8" opacity="0.75"/>
+<line x1="170" y1="109" x2="228" y2="109" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="365" y1="109" x2="423" y2="109" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="560" y1="109" x2="632" y2="109" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.55" marker-end="url(#ahd)"/>
+<rect x="638" y="86" width="122" height="46" rx="8" stroke-dasharray="5 5" opacity="0.5"/>
+</g>
+<g fill="currentColor" font-family="ui-sans-serif, system-ui, sans-serif" text-anchor="middle" font-size="13" font-weight="600">
+<text x="105" y="114">OBSERVE</text>
+<text x="300" y="114">RECOMMEND</text>
+<text x="495" y="114">HAND OFF</text>
+<text x="699" y="110" font-size="12" opacity="0.65">3rd-party</text>
+<text x="699" y="125" font-size="12" opacity="0.65">agent acts</text>
+</g>
+<text x="638" y="152" fill="currentColor" font-size="11" opacity="0.55" font-family="ui-sans-serif, system-ui, sans-serif">…outcome audited later</text>
+
+<g fill="currentColor" font-family="ui-sans-serif, system-ui, sans-serif">
+<text x="40" y="212" font-size="15" font-weight="700" letter-spacing="1.5">SYSTEM OF ACTION</text>
+<text x="40" y="232" font-size="12" opacity="0.6">one runtime · live authoritative state · governed at the moment of action</text>
+</g>
+<rect x="40" y="252" width="600" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<g font-family="ui-sans-serif, system-ui, sans-serif" text-anchor="middle" font-size="13" font-weight="600">
+<text x="110" y="283" fill="currentColor">OBSERVE</text>
+<text x="245" y="283" fill="currentColor">DECIDE</text>
+<text x="375" y="283" fill="currentColor">ACT</text>
+<text x="540" y="283" fill="#14b8a6" font-weight="700">GOVERN</text>
+</g>
+<g stroke="currentColor" fill="none" stroke-width="1.6">
+<line x1="165" y1="278" x2="205" y2="278" marker-end="url(#ah)"/>
+<line x1="290" y1="278" x2="338" y2="278" marker-end="url(#ah)"/>
+<line x1="405" y1="278" x2="483" y2="278" marker-end="url(#ah)"/>
+</g>
+<line x1="483" y1="258" x2="483" y2="298" stroke="#14b8a6" stroke-width="1.4" opacity="0.6"/>
+<text x="668" y="283" fill="#14b8a6" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif" opacity="0.9">inline gate</text>
+</svg>
+</div>
+</div>
+
+<div class="section-label fade-in">WHERE GOVERNANCE ACTUALLY LIVES</div>
+<div class="fade-in">
+<p>Entroid is built as a composable process fabric: every process is modelled, executed and governed as a composition of five primitives on a shared Semantic Ontology, in one runtime. The distinction that matters for this argument is that the ontology here is an <strong>execution substrate</strong>, not a context feed — the same model the agent reasons over is the model the work runs on. That single fact moves the control from the report into the path:</p>
+<ul>
+<li><strong>Deterministic Workflows</strong> — the path is known at design time, and this is where governance is enforced inline: approval gates, segregation of duties, entitlement and authority limits, thresholds, human-in-the-loop checkpoints. A non-compliant action is not flagged; it is impossible to emit.</li>
+<li><strong>Intelligence Orchestration</strong> — applies runtime judgment to choose the path and owns agent authority and permissioning. It decides and orchestrates; it does not do the work itself.</li>
+<li><strong>Atomic Agents</strong> — execute a bounded unit of work at the leaf, with human-in-the-loop as a first-class property: pause, surface reasoning, incorporate feedback, resume — autonomously or conversationally.</li>
+<li><strong>Functions</strong> — algorithms, business rules and calculations exposed as callable APIs.</li>
+<li><strong>Connectors</strong> — the <em>only</em> primitive permitted to touch an external system, and every touch is authenticated, authorized, rate-limited and audited.</li>
+</ul>
+<p>Underneath sits durable long-running state, versioning of in-flight instances, compensation and rollback, configurable exception handling, and an immutable per-action audit trail that binds every agent decision to what it did.</p>
+<p>Make it concrete. Consider — illustratively — a payment-posting agent. In an observe-and-advise architecture, it reads context, decides to release a $2M payment, and calls out to the ERP; the authority check, if it exists at all, lives in the ERP's configuration or in nobody's. On a composable fabric, that same agent is an Atomic Agent at the leaf of a Deterministic Workflow whose authority limit and approval gate sit <em>inline in the path</em>. Above threshold, orchestration routes to a human checkpoint before any Connector can write. The over-limit release is not caught after the fact — it is unrepresentable, because no path exists from that agent to that external system without passing the gate first.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE QUESTION FOR THE BOARD</div>
+<div class="fade-in">
+<p>Here is the uncomfortable framing for anyone evaluating this category. Much of the market is selling you a materially better system of <em>observation</em> and calling it agentic AI. It is a real improvement, and it is not the thing you actually need to sleep at night. So ask every vendor one question, and refuse to accept a demo in place of an answer: <strong>at the moment your agent acts, what stops a non-compliant action from executing — a control that lives in the path, or a report you read afterward?</strong></p>
+<p>If the honest answer is a report, you have bought a smarter dashboard whispering advice to a third party's agent and auditing the wreckage after. The autonomous enterprise is not a smarter observer. It is a governed executor — one runtime that closes observe, decide, act and govern on live state, so policy is a hard gate at the instant of action rather than a footnote on what already went wrong. Context is the input. Control is the product.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Context tells an agent what is true. Only a runtime can decide what is allowed — at the one moment it matters, before the action ever leaves the building.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,95 @@
+<div class="hook fade-in">The auditor sits down and asks one question: <strong>show me the audit trail.</strong> You open the tool your AI built the app in and hand over what it has — a commit history, a deploy log, a data-access log, maybe a session replay. Every one of those is a faithful record of how the software was written or which row was read. Not one is a record of what the running process actually did to your business, under what policy, with whose authority.</div>
+
+<div class="section-label fade-in">THREE ALTITUDES OF EVIDENCE</div>
+<div class="fade-in">
+<p>An audit trail is not one thing. In AI-generated software there are three distinct altitudes of evidence, and they get quietly treated as interchangeable.</p>
+<ul>
+<li><strong>Altitude one — code-provenance.</strong> Commit history, the diff, who authored which line, which model generated it, what the review said. A record of how the instrument was built.</li>
+<li><strong>Altitude two — data-access.</strong> Query logs, the record of who read or wrote which row, the button-click stream, the session replay. A record of what was touched and by whom.</li>
+<li><strong>Altitude three — business-action.</strong> An immutable account of every business action the process took — this invoice approved, this refund issued, this entitlement granted, this ledger posted — the policy that permitted it, the authority it ran under, and the reason it was allowed at that moment.</li>
+</ul>
+<p>Only the third reconstructs a decision. And it is precisely the one the tools do not produce — not because they logged too little, but because of where their output lands.</p>
+</div>
+
+<div class="section-label fade-in">WHY THE FIRST TWO DON'T ANSWER THE QUESTION</div>
+<div class="fade-in">
+<p>Both lower altitudes are genuinely valuable, and I want to be fair about that. Provenance is real engineering hygiene — attribution, reproducibility, the ability to roll back a bad change. Access logs and session replay are real security telemetry. If a vendor gives you always-on scanning and a clean record of who edited and shipped the code, that is better than opt-in policy nobody remembers to turn on. None of that is in dispute.</p>
+<p>The dispute is what those records can be <em>used to prove</em>. The autonomous-coding-agent and repo-agent vendors tend to equate a commit history with auditability — but commit history tells you how a control was built, not that it held on a given Tuesday. Even perfect provenance describes the construction of the instrument, never the actions it took in production. The app-gen platforms whose audit "records every button clicked" or "who queried which record" sit one altitude up and still short of the target: a read event is not the decision that reading fed, nor proof the decision was authorized, nor an account of what the process then did with it.</p>
+<p>A regulator testing a control is not asking <em>who wrote this?</em> or <em>who looked at the record?</em> They are asking: reconstruct this specific decision — show me it was permitted, by whom, under which rule, and that the rule was in force at that instant. "Here's the diff" and "here's who queried the row" are answers to different questions.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE ARTIFACT IS WHY THE ALTITUDE ISN'T THERE</div>
+<div class="fade-in">
+<p>This is not a logging-feature gap that a better dashboard closes. It is structural, and the most sophisticated version of the category proves the point by accident.</p>
+<p>The strongest players have stopped talking about logs and started talking about architecture: make governance <em>structural</em>, not procedural — build the system so the unsafe action simply isn't available, and split who may edit, who may approve, and who may publish into separate permissions enforced on the server rather than left to a policy document. That is genuinely smart, and it is real. A constraint that can't be violated beats a rule someone has to remember.</p>
+<p>But be precise about what those constraints govern. They govern the <strong>build, edit, and publish lifecycle of the generated app</strong> — who is allowed to change the code and ship it. They are controls over authorship and release. The business actions the running app then takes against your systems of record — the payment it moves, the entitlement it grants, the record it amends — happen at runtime, inside an artifact that, however well its build was governed, now runs as a separate system. Governing who was allowed to write and deploy the code is not the same as governing what the code does once it is live. The audit that falls out of build-time governance is an audit of the build.</p>
+<p>That through-line holds across the whole category, whatever the surface — prompt-to-app, design-to-app, autonomous SWE agent, legacy-modernization engine. The genuine achievement is real: idea to working software in hours instead of weeks, legacy rules carried into a clean cloud-native rewrite, scanning that never sleeps, and exported code with no proprietary lock-in. But every one of those is an achievement about <em>producing an artifact</em>. "Production-ready" is a claim about the code — it compiles, it passes scans, it deploys. It is not a claim that the actions the deployed process takes are permitted, attributed, and reconstructable. The artifact lands outside any governed runtime, and then someone has to integrate it, secure it at runtime, monitor it, and stand up its audit — one more silo. The commit log ships with the code. The business-action audit does not exist, because there was never a runtime recording at altitude three.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+<text x="30" y="30" font-size="12" fill="currentColor" stroke="none" opacity="0.55" font-weight="700" letter-spacing="1.5">THE GENERATED ARTIFACT</text>
+<text x="470" y="30" font-size="12" fill="currentColor" stroke="none" opacity="0.55" font-weight="700" letter-spacing="1.5">THE GOVERNED PROCESS</text>
+
+<!-- LEFT: prompt node -->
+<rect x="24" y="120" width="78" height="52" rx="9" stroke-width="1.5" opacity="0.55"/>
+<text x="63" y="143" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">prompt</text>
+<text x="63" y="159" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.5">design · legacy</text>
+<path d="M108 146 L146 146" stroke-width="1.5" opacity="0.6"/>
+<path d="M140 141 L146 146 L140 151" stroke-width="1.5" opacity="0.6"/>
+
+<!-- LEFT: the artifact + dashed 'now govern it yourself' boundary -->
+<rect x="126" y="84" width="252" height="150" rx="10" stroke-width="1.3" stroke-dasharray="6 5" opacity="0.5"/>
+<rect x="168" y="116" width="118" height="60" rx="8" stroke-width="1.6" opacity="0.85"/>
+<text x="227" y="150" font-size="13" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.9" font-weight="600">APP / REPO</text>
+<text x="252" y="204" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">now integrate · secure · monitor · maintain — yourself</text>
+<text x="252" y="221" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.45">audit = commit history + access log</text>
+
+<!-- DIVIDER -->
+<line x1="410" y1="60" x2="410" y2="270" stroke-width="1" stroke-dasharray="2 6" opacity="0.35"/>
+
+<!-- RIGHT: prompt node -->
+<rect x="444" y="120" width="78" height="52" rx="9" stroke-width="1.5" opacity="0.55"/>
+<text x="483" y="143" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">prompt</text>
+<text x="483" y="159" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.5">doc · idea</text>
+<path d="M528 146 L566 146" stroke-width="1.5" opacity="0.6"/>
+<path d="M560 141 L566 146 L560 151" stroke-width="1.5" opacity="0.6"/>
+
+<!-- RIGHT: the fabric — governed by construction, no separate silo -->
+<rect x="572" y="84" width="204" height="150" rx="10" stroke-width="1.7" opacity="0.9"/>
+<circle cx="612" cy="122" r="6" stroke-width="1.4" opacity="0.75"/>
+<circle cx="646" cy="122" r="6" stroke-width="1.4" opacity="0.75"/>
+<circle cx="680" cy="122" r="6" stroke-width="1.4" opacity="0.75"/>
+<circle cx="714" cy="122" r="6" stroke-width="1.4" opacity="0.75"/>
+<circle cx="748" cy="122" r="6" stroke-width="1.4" opacity="0.75"/>
+<line x1="618" y1="122" x2="640" y2="122" stroke-width="1.2" opacity="0.45"/>
+<line x1="652" y1="122" x2="674" y2="122" stroke-width="1.2" opacity="0.45"/>
+<line x1="686" y1="122" x2="708" y2="122" stroke-width="1.2" opacity="0.45"/>
+<line x1="720" y1="122" x2="742" y2="122" stroke-width="1.2" opacity="0.45"/>
+<text x="674" y="163" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.9" font-weight="600">ONE GOVERNED RUNTIME</text>
+<text x="674" y="188" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">governance inline · connectors</text>
+<text x="674" y="204" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">immutable per-action audit</text>
+<text x="674" y="220" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.45">operable &amp; governed by construction</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">AUDIT AT ALTITUDE THREE, BY CONSTRUCTION</div>
+<div class="fade-in">
+<p>Entroid inverts the artifact. Its generation toolkits — the one that turns ideas, conversations, and documents into applications, and the one that turns legacy code into cloud-native systems with every business rule preserved — do not emit an app or a repo. They compose a <strong>process</strong> from five primitives on one runtime: deterministic workflows that carry governance inline, intelligence orchestration, atomic agents with human-in-the-loop as a first-class step, functions, and connectors — the only primitive that touches an external system — all resolved against a shared semantic ontology.</p>
+<p>Because every step the process takes is one of those governed primitives executing on a single runtime, the runtime writes an immutable, per-action record <em>as the action happens</em>: which action, against which system, under which policy, with what authority, and — by design — why it was allowed. Explainability is not a feature bolted onto a log; it is a property of running every step as a governed primitive. This is an architectural claim about how the fabric is built, not a report on any particular deployment.</p>
+<p>The distinction from the artifact model is not "better logging." There is no separate app whose runtime sits outside the governance to be reconstructed later from telemetry it happened to emit. The governed runtime <strong>is</strong> the output. The audit is the byproduct of execution, native and per-action, at exactly the altitude a regulator's question lives at.</p>
+<p>None of this pretends ES escapes integration — that would be the same over-claim I'm criticizing. It runs over your existing estate through governed connectors; the systems of record stay yours. What changes is that the actions taken across them execute <em>inside</em> the governed process, so the account of those actions is native — not stitched together from four separate log stores after the fact.</p>
+</div>
+
+<div class="section-label fade-in">WHAT SURVIVES THE AUDIT</div>
+<div class="fade-in">
+<p>Picture the test any regulated enterprise eventually faces — illustrative, not a delivered result. An auditor picks one action out of millions: a specific credit memo issued eight months ago. Reconstruct it.</p>
+<p>At altitude one, you can show the code that issues credit memos and who committed it. At altitude two, you can show that some record was read and some button clicked in some session. Neither reconstructs the decision. At altitude three, the runtime hands back the single governed action: the memo, the workflow step that authorized it, the policy in force at that timestamp, the human who approved the exception if one was required, and the reason the action was permitted — as one immutable entry, not a correlation exercise across four systems that were never designed to agree.</p>
+<p>That is the gap between evidence that the software was <em>built</em> carefully and evidence that a business decision was <em>governed</em>. For SOX, for regulated work, for anything an auditor will sample down to a single line — only the second one is an answer. The first is a very good story about how the code got written.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A commit log tells you how the code was written. It will never tell you what the process decided — and that is the only thing the auditor came to see.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,109 @@
+<div class="hook fade-in"><p>Before a new employee can touch a payment run, someone signs off on the access. There is a role, a scope, a start date, and a way to walk it all back the day they leave. Now ask the agentic-automation market the same question about the digital worker it wants to put on that payment run, and you get a different kind of answer: evaluation scores, simulation runs, a <em>trust gradient</em>, and a promise of weekly iteration. <strong>Those are answers about quality and runtime posture. None of them is change management — and change management is the thing a regulated enterprise actually cannot ship without.</strong></p></div>
+
+<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<div class="fade-in">
+<p>Start by conceding what is genuinely good, because an expert reader runs these platforms every day and will close the tab the moment you strawman them. The tooling here is real. Offline evaluation suites that replay a battery of cases against a candidate agent and flag regressions are a legitimate engineering discipline — that is how you catch a prompt change that quietly breaks a whole class of behavior. Simulation environments that let an agent rehearse against synthetic or shadowed traffic before it sees a customer are a real safety practice. Observability and tracing that reconstruct what an agent did, step by step, are indispensable for debugging. And a staged rollout of autonomy — human-approves-everything, then human-spot-checks, then supervised, then delegated — is prudent operational management. No serious operator flips a fleet of agents to fully autonomous on a Tuesday, and no one should.</p>
+<p>So this is not an argument that evaluation, simulation, observability, or graduated autonomy are wrong. They are necessary. The argument is narrower and harder to wriggle out of: <strong>all of them govern the agent's quality and its behavior at runtime — and none of them governs the agent as a released artifact.</strong> They answer <em>"is this version good?"</em> and <em>"what is it doing right now?"</em> They do not answer <em>"who approved this exact version to act on production, with these exact permissions, and how do we take it back?"</em></p>
+</div>
+
+<div class="section-label fade-in">EVALUATION IS QA. IT IS NOT A SIGNATURE.</div>
+<div class="fade-in">
+<p>Watch how often the category collapses these two things into one. <em>"Evaluations let you compare versions and spot regressions,"</em> the pitch goes — therefore you can trust the change. But comparing versions is testing. It tells you version B scored better than version A on a suite of cases. Testing has never been the same act as authorizing a release, and no regulated function has ever accepted <em>"it passed the tests"</em> as a substitute for <em>"a named owner approved this build for production."</em> A green test run is evidence you present <em>to</em> an approval. It is not the approval.</p>
+<p>Change management is a different control with a different shape. It has four parts that QA structurally does not provide:</p>
+<ul>
+<li><strong>A named approver bound to a specific version.</strong> Not "the team ships continuously" — <em>this</em> build, approved by <em>this</em> accountable owner, on <em>this</em> date, for <em>this</em> scope of work.</li>
+<li><strong>A declared, enforced permission scope.</strong> The exact systems the worker may touch and the exact operations it may perform — fixed at approval time, not discovered at runtime.</li>
+<li><strong>An immutable diff.</strong> A tamper-evident record of what changed between the approved version and the one before it — behavior, permissions, and reach — so the change itself is auditable, not just the outputs.</li>
+<li><strong>A one-click revert.</strong> The ability to put the previous approved version back in force <em>as a whole</em>, instantly, without a hotfix scramble across half a dozen systems.</li>
+</ul>
+<p>Evaluation gives you the first bullet's <em>input</em> and nothing else. Simulation is a rehearsal, which is staging. Observability is a camera, which is runtime babysitting. Put all three together and you still have a worker acting on money and records with no signature on the version, no fixed scope, no diff, and no undo. That is not a small gap. In a regulated shop it is the gap that keeps the agent out of production.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">"SHIP TO LEARN" IS UNCONTROLLED CHANGE, REBRANDED</div>
+<div class="fade-in">
+<p>The category's most seductive move is to take the absence of change control and sell it as momentum. <em>Ship to learn. Iterate weekly. Ride the trust gradient from assisted to autonomous.</em> The framing is that continuous, rapid change is a virtue — that a digital worker getting better every week is obviously good, and that anything slower is legacy thinking.</p>
+<p>Half of that is true. Continuous improvement of capability is good. But "iterate weekly against production" quietly means the worker acting on your ledger this week is not the worker your risk committee reviewed last quarter, and the delta was never gated. When the thing being iterated is a spreadsheet macro, fine. When the thing being iterated has a stored credential and a path to your general ledger, "ship to learn" is a description of <strong>uncontrolled change against live consequences</strong> — the exact failure mode every change-management regime was invented to prevent. The trust gradient is doing subtle work too: it relocates safety from the architecture into your nerve. The platform's guarantees do not strengthen as you climb; only your willingness to delegate does. If safety were a property of the runtime, you would not need three quarters of supervised babysitting to reach it — you would configure the scope once and let it hold.</p>
+<p>And then there is the claim that should stop a CISO cold: agents that assemble their own controls, tools, or governance logic <em>on the fly</em>, mid-run. Marketed as adaptability, it is an actor drafting its own rulebook during its own shift — and then grading its own exam. A control the agent can author at runtime is not a control; it is behavior. The entire point of a control is that the actor it constrains cannot rewrite it. An agent that can widen its own scope in flight has, by definition, no scope.</p>
+</div>
+
+<div class="section-label fade-in">WHAT A REGULATED BUYER MUST BE ABLE TO ANSWER</div>
+<div class="fade-in">
+<p>Strip away the framing and a risk, audit, or security owner is trying to answer three questions about any worker — human or digital — that acts on money, records, or PHI. The questions are boring, which is the point; boring is what survives an examination.</p>
+<ul>
+<li><strong>Who approved <em>this</em> version?</strong> Point to the accountable owner, the approval, and the exact build that is live right now — not "the model behind it" and not "the team's latest."</li>
+<li><strong>What can it touch?</strong> Enumerate the systems and operations this version is permitted to reach, with the guarantee that it cannot exceed them — enforced, not documented.</li>
+<li><strong>Can we take it back?</strong> Produce the immutable diff from the prior approved version and revert to that version, cleanly and completely, as a single act.</li>
+</ul>
+<p>Notice that evaluation, simulation, trust gradients, and observability answer <em>none</em> of these directly. They are adjacent, useful, and orthogonal. A platform can have the best eval harness in the category and still be unable to tell an examiner who authorized the agent that moved the money, or to guarantee that agent could not have touched a system it was never approved for. That is the wedge — not that the incumbents lack tooling, but that their tooling governs <em>around</em> the worker while the worker itself remains an unversioned, ungated, un-revertable actor at the top of the stack.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="On the left, ship-to-learn: an autonomous agent sits at the top level and a stream of versions is pushed continuously and directly into production against live systems holding money, records and PHI, with no approval gate, no immutable diff and no revert, while a drift arrow shows the running worker diverging from the version that was reviewed. On the right, Entroid treats the digital worker as a change-controlled artifact: an Atomic Agent version with its permissions and Connectors declared passes through an approval gate bound to a named owner, is promoted inside a Deterministic Workflow on one runtime, reaches live systems only through a single governed Connector, and carries an immutable diff, a one-click revert to the prior approved version, and a per-action audit.">
+  <line x1="400" y1="14" x2="400" y2="306" stroke-opacity="0.14" stroke-dasharray="3 7"/>
+
+  <text x="24" y="28" fill="currentColor" stroke="none" font-size="11.5" font-weight="700" letter-spacing="0.03em" opacity="0.85">SHIP-TO-LEARN &#183; UNGOVERNED CHANGE</text>
+
+  <rect x="24" y="46" width="168" height="40" rx="9" stroke-opacity="0.75"/>
+  <text x="108" y="64" fill="currentColor" stroke="none" font-size="10.5" text-anchor="middle">autonomous agent</text>
+  <text x="108" y="78" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" opacity="0.7">top-level actor</text>
+
+  <text x="24" y="118" fill="currentColor" stroke="none" font-size="9" opacity="0.7">weekly iteration &#183; builds controls on the fly</text>
+  <rect x="24" y="128" width="40" height="26" rx="6" stroke-opacity="0.55"/>
+  <text x="44" y="145" fill="currentColor" stroke="none" font-size="9" text-anchor="middle">v13</text>
+  <rect x="86" y="128" width="40" height="26" rx="6" stroke-opacity="0.7"/>
+  <text x="106" y="145" fill="currentColor" stroke="none" font-size="9" text-anchor="middle">v14</text>
+  <rect x="148" y="128" width="40" height="26" rx="6" stroke-opacity="0.85"/>
+  <text x="168" y="145" fill="currentColor" stroke="none" font-size="9" text-anchor="middle">v15</text>
+  <line x1="64" y1="141" x2="82" y2="141" stroke-opacity="0.6"/><path d="M86 141 l-8 -4 v8 z" fill="currentColor" stroke="none"/>
+  <line x1="126" y1="141" x2="144" y2="141" stroke-opacity="0.6"/><path d="M148 141 l-8 -4 v8 z" fill="currentColor" stroke="none"/>
+
+  <line x1="168" y1="154" x2="168" y2="214" stroke-opacity="0.85"/><path d="M168 218 l-4 -8 h8 z" fill="currentColor" stroke="none"/>
+  <text x="182" y="190" fill="currentColor" stroke="none" font-size="9" opacity="0.7">no gate &#183; no diff &#183; no revert</text>
+
+  <rect x="24" y="222" width="328" height="58" rx="10" stroke-opacity="0.6" stroke-dasharray="5 4"/>
+  <text x="188" y="247" fill="currentColor" stroke="none" font-size="10.5" text-anchor="middle" font-weight="600">LIVE SYSTEMS</text>
+  <text x="188" y="264" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle" opacity="0.75">money &#183; records &#183; PHI</text>
+
+  <text x="424" y="28" fill="currentColor" stroke="none" font-size="11.5" font-weight="700" letter-spacing="0.03em" opacity="0.85">CHANGE-CONTROLLED DIGITAL WORKER</text>
+
+  <rect x="424" y="46" width="184" height="52" rx="9" stroke-opacity="0.85"/>
+  <text x="516" y="66" fill="currentColor" stroke="none" font-size="10.5" text-anchor="middle" font-weight="600">Atomic Agent &#183; v7</text>
+  <text x="516" y="81" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" opacity="0.72">permissions + Connectors declared</text>
+
+  <line x1="516" y1="98" x2="516" y2="120" stroke-opacity="0.85"/><path d="M516 124 l-4 -8 h8 z" fill="currentColor" stroke="none"/>
+  <path d="M516 128 l30 20 l-30 20 l-30 -20 z" stroke-opacity="0.9"/>
+  <text x="516" y="152" fill="currentColor" stroke="none" font-size="9" text-anchor="middle">approve</text>
+  <text x="588" y="150" fill="currentColor" stroke="none" font-size="8.5" opacity="0.7">named owner</text>
+
+  <line x1="516" y1="168" x2="516" y2="188" stroke-opacity="0.85"/><path d="M516 192 l-4 -8 h8 z" fill="currentColor" stroke="none"/>
+
+  <rect x="428" y="196" width="344" height="84" rx="10" stroke-opacity="0.5"/>
+  <text x="444" y="214" fill="currentColor" stroke="none" font-size="9" opacity="0.72">Deterministic Workflow &#183; one runtime</text>
+  <rect x="444" y="224" width="150" height="42" rx="8" stroke-opacity="0.8"/>
+  <text x="519" y="242" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle">promoted agent</text>
+  <text x="519" y="256" fill="currentColor" stroke="none" font-size="8.5" text-anchor="middle" opacity="0.7">immutable diff &#183; 1-click revert</text>
+  <line x1="594" y1="245" x2="618" y2="245" stroke-opacity="0.7"/><path d="M622 245 l-8 -4 v8 z" fill="currentColor" stroke="none"/>
+  <rect x="624" y="224" width="132" height="42" rx="8" stroke-opacity="0.8"/>
+  <text x="690" y="242" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle">governed Connector</text>
+  <text x="690" y="256" fill="currentColor" stroke="none" font-size="8.5" text-anchor="middle" opacity="0.7">the only egress</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE DIGITAL WORKER AS A VERSIONED, REVERSIBLE ARTIFACT</div>
+<div class="fade-in">
+<p>Entroid's answer is architectural, and it starts by refusing the premise that an autonomous agent is a top-level actor you then wrap in controls. In this fabric an autonomous agent <em>is</em> an <strong>Atomic Agent</strong>: a permissioned, change-controlled primitive that executes a bounded unit of work <em>inside</em> a <strong>Deterministic Workflow</strong>, on one runtime, with governance enforced inline at the moment of action. That framing is not a slogan; it is what makes the three regulator questions answerable by construction rather than by after-the-fact reconstruction.</p>
+<p>Because the agent is a primitive, its <strong>behavior and its permission scope are defined and approved before it ever runs.</strong> Which Connectors it holds, which operations it may invoke, which data it may reach — that scope is part of the artifact, not an emergent property of a prompt. An agent cannot assemble a new control or widen its own reach mid-run, because the reach is declared at design time and enforced by the runtime, not proposed by the agent. Connectors are the only primitive permitted to touch external systems, so <em>"what can it touch"</em> is not a documentation exercise — it is the single governed egress the runtime allows, and the agent has no path around it.</p>
+<p>Because behavior and scope are bundled into a versioned artifact, <strong>promotion becomes a governed change like any other.</strong> A new version is not shipped continuously into production against live money; it is promoted through an approval bound to an accountable owner, producing an immutable diff of exactly what changed — logic, permissions, and reach. And because the whole thing lives on <em>one</em> runtime rather than being federated across a driven UI here and a stored credential there, <strong>rollback is a real one-click act:</strong> revert to the prior approved version as a whole, not a frantic patch chased across half a dozen disconnected systems. Every action the worker takes is written to the immutable per-action audit and bound to the version that took it — so the record answers not just <em>what happened</em> but <em>which approved build did it, under whose authority.</em></p>
+<p>Be precise about what this does and does not claim. It does not claim zero integration — the fabric runs over your existing estate, and it reaches those systems through governed Connectors, which is work. It does not claim the incumbents' evaluation and observability tooling is worthless; you would still evaluate a candidate version before approving it. What it claims is narrower and load-bearing: <strong>the promotion, the scope, and the revert are properties of the execution primitive itself,</strong> not a management layer bolted on beside a worker that could always act outside it. Evaluation feeds the approval. It never replaces it.</p>
+</div>
+
+<div class="section-label fade-in">THE VERDICT AT THE PRODUCTION LINE</div>
+<div class="fade-in">
+<p>The reason so many agent pilots stall on the last mile is not that the demos are unconvincing. It is that a demo answers <em>"is it capable?"</em> and the production gate asks <em>"is it controlled?"</em> — and a QA answer to a change-management question does not clear the gate. You can keep raising eval scores and tightening the trust gradient forever; the risk owner is still waiting to hear who approved this version, what it is permitted to touch, and how it gets pulled back. Make the digital worker a versioned, approval-gated, reversible artifact and those become one-sentence answers. Leave it a continuously-mutating actor with governance in the wrapper, and they never do.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>You would never let a new hire rewrite their own access on their first shift. Do not let a digital worker do it either — make it a build someone approved, scoped, and can revert.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

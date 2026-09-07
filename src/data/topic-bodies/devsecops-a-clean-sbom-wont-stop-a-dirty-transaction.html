@@ -1,0 +1,120 @@
+<div class="hook fade-in">
+<p>Your software supply chain may now be the best-governed thing your enterprise builds. Every artifact signed, every build's provenance attested, every dependency inventoried in an SBOM, every package curated before it enters the building. And yet the incidents that end up in front of a regulator are rarely a forged binary. <strong>They are legitimate software doing an illegitimate thing</strong> — and nothing in that chain of custody was ever designed to notice.</p>
+</div>
+
+<div class="section-label fade-in">THE RIGHT REVOLUTION</div>
+<div class="fade-in">
+<p>Be clear about what the supply-chain security movement got right, because it got a great deal right. The attacks are real: compromised build systems, poisoned open-source dependencies, tampered artifacts riding trusted update channels into thousands of environments at once. The response has been genuinely good engineering. Finding the vulnerable dependency in the pull request instead of in production is cheaper, faster, and real. Context-aware scanning across source, dependencies, containers, and infrastructure-as-code genuinely cuts the noise that drowns security teams. Signed artifacts, attested provenance, and SBOMs genuinely harden the path from commit to deploy against classes of attack that used to be invisible. Policy-as-code gates in the pipeline genuinely stop bad builds from shipping.</p>
+<p>None of what follows argues you should do less of this. The argument is about what this work can see — and about the one question it was never built to answer.</p>
+</div>
+
+<div class="section-label fade-in">ONE QUESTION, ANSWERED WELL</div>
+<div class="fade-in">
+<p>Strip away the tooling and the entire supply-chain stack answers a single question with increasing rigor: <strong>is this software what it claims to be, built from what we approved?</strong> That is a question about the <em>identity and integrity of the artifact</em>. The signature proves who produced it. The provenance attestation proves how, and from what, it was built. The SBOM proves what is inside it. The curated registry proves its ingredients passed inspection at the door. Each control strengthens the same chain of custody, and the chain is genuinely strong.</p>
+<p>Follow that chain to its last link, though, and notice where it ends. The artifact-centric platforms — the ones that treat the release itself as the authoritative record, gate it immutably, and curate everything that feeds it — govern the <em>delivery</em> of software. The pipeline-policy platforms govern the same span from the other end: security policy expressed as code, enforced at the merge, the build, the deploy. Within that span the governance is real, and it deserves the credit it gets. But the span has a boundary, and the boundary is structural, not a roadmap gap: <strong>the moment the artifact is deployed, the writ ends.</strong> The running application's business actions — the payment it releases, the record it changes, the data it exports — answer to the application's own code paths and whatever standing entitlements it holds. Not to the pipeline that shipped it.</p>
+</div>
+
+<div class="section-label fade-in">IDENTITY IS NOT AUTHORIZATION</div>
+<div class="fade-in">
+<p>Provenance answers a who-question: who made this actor, through whose hands did it pass, was it altered on the way. That makes it an identity document — a passport with an unusually good tamper seal. And a passport, however rigorous, is not a permission slip. Border control that verifies every passport flawlessly still says nothing about what the visitor does once inside the country. The supply-chain stack has built world-class border control for software. What happens inside is outside its jurisdiction — by design, and often by explicit delegation to someone else's runtime tooling.</p>
+<p>Consider an illustrative case — hypothetical by construction, because the point is architectural. A payments service is built through an exemplary pipeline: every dependency inventoried, no known-critical vulnerabilities, image signed, provenance attested and verified at deploy. It then releases a payment to a vendor bank account that changed yesterday, above the limit of the person who nominally approved it — because a code path permitted it, a service entitlement was broader than anyone remembered, and no policy stood between the intent and the act. Now run the incident review. What failed? Nothing in the supply chain. Every control functioned exactly as designed, because every control was pointed at a different question. The software was precisely what it claimed to be. The act was still unauthorized.</p>
+<p>This is the shape of the incidents that actually reach regulators: not forged binaries, but legitimate software — steered sometimes by fraud, sometimes by misconfiguration, sometimes by an over-permissioned integration or an AI-generated instruction — executing business actions no policy ever sanctioned. Provenance tells you who made the actor. It cannot tell you whether the act was allowed.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE RUNTIME OBJECTION</div>
+<div class="fade-in">
+<p>The strongest objection comes from the most runtime-oriented corner of the category, and it deserves a straight answer. Admission control that refuses a workload failing policy is enforcement, not posture. Immutability enforcement that pins a running workload to the exact image you built — and blocks anything that deviates — is enforcement at execution time, full stop. If your estate has neither, that is a genuine gap these platforms genuinely close.</p>
+<p>But be precise about the object of that enforcement. Admission control governs <em>which software is allowed to run</em>. Immutability enforcement governs <em>that it stays unmodified while running</em>. Both are statements about <strong>workload integrity</strong> — the actor's identity, extended into runtime. Neither is a statement about the actor's actions. A perfectly attested, drift-free, CVE-free workload remains fully capable of releasing the wrong payment, updating the wrong record, exporting the wrong dataset — through its own legitimate, unmodified code. Integrity of the actor is not governance of the action. Runtime enforcement of this kind extends the passport check to the moment of execution. It still never reads the transaction.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Supply-side controls govern the artifact and end at deploy, leaving business actions ungoverned; Entroid gates each business action inline with a per-action audit">
+  <defs>
+    <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" fill-opacity="0.5"/></marker>
+  </defs>
+  <text x="24" y="34" font-size="11" letter-spacing="1.5" fill="currentColor" opacity="0.55">SUPPLY-SIDE CONTROLS — GOVERN THE ARTIFACT</text>
+  <g fill="none" stroke="currentColor" stroke-opacity="0.45">
+    <rect x="24" y="48" width="112" height="46" rx="6"/>
+    <rect x="152" y="48" width="112" height="46" rx="6"/>
+    <rect x="280" y="48" width="126" height="46" rx="6"/>
+    <rect x="422" y="48" width="112" height="46" rx="6"/>
+    <rect x="580" y="48" width="96" height="46" rx="6"/>
+  </g>
+  <text x="80" y="68" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Scan</text>
+  <text x="80" y="84" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">SAST · SCA · IaC</text>
+  <text x="208" y="68" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Policy gate</text>
+  <text x="208" y="84" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">policy-as-code</text>
+  <text x="343" y="68" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Sign + attest</text>
+  <text x="343" y="84" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">SBOM · provenance</text>
+  <text x="478" y="68" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Admission</text>
+  <text x="478" y="84" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">drift-pinned</text>
+  <text x="628" y="68" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Running app</text>
+  <text x="628" y="84" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">attested · clean</text>
+  <g stroke="currentColor" stroke-opacity="0.5">
+    <line x1="136" y1="71" x2="150" y2="71" marker-end="url(#ah)"/>
+    <line x1="264" y1="71" x2="278" y2="71" marker-end="url(#ah)"/>
+    <line x1="406" y1="71" x2="420" y2="71" marker-end="url(#ah)"/>
+    <line x1="534" y1="71" x2="578" y2="71" marker-end="url(#ah)"/>
+    <line x1="676" y1="71" x2="692" y2="54"/>
+    <line x1="676" y1="71" x2="692" y2="71"/>
+    <line x1="676" y1="71" x2="692" y2="88"/>
+  </g>
+  <line x1="558" y1="40" x2="558" y2="146" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 5"/>
+  <text x="558" y="160" font-size="10" font-style="italic" fill="currentColor" opacity="0.6" text-anchor="middle">governance ends at deploy</text>
+  <text x="698" y="58" font-size="11" fill="currentColor" opacity="0.8">release payment</text>
+  <text x="698" y="75" font-size="11" fill="currentColor" opacity="0.8">change record</text>
+  <text x="698" y="92" font-size="11" fill="currentColor" opacity="0.8">export data</text>
+  <text x="698" y="112" font-size="10" font-style="italic" fill="currentColor" opacity="0.55">ungoverned at runtime</text>
+  <line x1="24" y1="172" x2="776" y2="172" stroke="currentColor" stroke-opacity="0.12"/>
+  <text x="24" y="196" font-size="11" letter-spacing="1.5" fill="currentColor" opacity="0.55">ENTROID — GOVERN THE ACTION</text>
+  <g fill="none" stroke="currentColor">
+    <rect x="24" y="210" width="132" height="46" rx="6" stroke-opacity="0.45"/>
+    <rect x="180" y="210" width="176" height="46" rx="6" stroke-opacity="0.8" stroke-width="1.5"/>
+    <rect x="380" y="210" width="150" height="46" rx="6" stroke-opacity="0.45"/>
+    <rect x="554" y="210" width="120" height="46" rx="6" stroke-opacity="0.45"/>
+  </g>
+  <text x="90" y="230" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Business action</text>
+  <text x="90" y="246" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">e.g. release payment</text>
+  <text x="268" y="230" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Deterministic Workflow</text>
+  <text x="268" y="246" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">inline policy + permission gate</text>
+  <text x="455" y="230" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Governed Connector</text>
+  <text x="455" y="246" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">the only door out</text>
+  <text x="614" y="230" font-size="12" fill="currentColor" opacity="0.85" text-anchor="middle">Target system</text>
+  <text x="614" y="246" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle">bank · ERP · data</text>
+  <g stroke="currentColor" stroke-opacity="0.5">
+    <line x1="156" y1="233" x2="178" y2="233" marker-end="url(#ah)"/>
+    <line x1="356" y1="233" x2="378" y2="233" marker-end="url(#ah)"/>
+    <line x1="530" y1="233" x2="552" y2="233" marker-end="url(#ah)"/>
+    <line x1="268" y1="256" x2="268" y2="272"/>
+    <line x1="455" y1="256" x2="455" y2="272"/>
+  </g>
+  <text x="268" y="286" font-size="10" fill="currentColor" opacity="0.6" text-anchor="middle">unauthorized → refused inline</text>
+  <text x="455" y="286" font-size="10" fill="currentColor" opacity="0.6" text-anchor="middle">immutable per-action audit</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">GOVERNING THE ACT ITSELF</div>
+<div class="fade-in">
+<p>This is where Entroid's architecture aims at a different object — not a better pipeline, but governance of the act itself. ES is a Composable Process Fabric: business processes are composed from five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — over a shared Semantic Ontology, on one runtime, with an immutable per-action audit trail. The security consequence is architectural, not aspirational: <strong>a process built this way is governed by construction, because the control lives on the executing action.</strong></p>
+<ul>
+<li><strong>Authorization is inline, not upstream.</strong> A Deterministic Workflow gate sits in the execution path of the action itself. A payment release is permission-checked and policy-evaluated at the moment it runs — and an unauthorized action is refused right there, regardless of how clean the binary that requested it was.</li>
+<li><strong>Connectors are the only door out.</strong> By design, Connectors are the sole primitive that touches external systems. Every action that reaches a bank, an ERP, or a data store passes through a governed, permissioned interface — a choke point that exists in the architecture, not just in a diagram.</li>
+<li><strong>Every action writes its own evidence.</strong> The audit record is emitted per action, immutably, as a property of the runtime: who or what acted, under which policy, with what approval.</li>
+<li><strong>Humans are first-class, not bolted on.</strong> Atomic Agents make human-in-the-loop a native construct, so a high-stakes action can pause for a person before it commits — inside the same governed path, on the same audit trail.</li>
+</ul>
+<p>None of this replaces the supply-chain stack, and ES does not pretend it does. ES's own DevSecOps module delivers scanned, signed, gated software to Kubernetes with AI guardrails — artifact discipline still matters — and ES runs over your existing estate through governed Connectors rather than assuming a green field. The claim is complementarity: the SBOM proves what the software <em>is</em>; the per-action audit proves what it was <em>allowed to do</em>, action by action.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">TWO LEDGERS</div>
+<div class="fade-in">
+<p>Here is the question worth carrying into your next architecture review. For each materially risky business action your software can take — release a payment, change a customer record, export a regulated dataset — where does its authorization live at the moment of execution? If the honest answer is <em>"in the application code, we hope,"</em> then your supply-chain investment, however excellent, is guarding a different door than the one the next incident will walk through.</p>
+<p>An enterprise ultimately keeps two ledgers. One records what shipped: signatures, SBOMs, attestations — the identity of every actor. The other records what acted: every consequential business action and the authority under which it ran. The supply-chain stack has made the first ledger nearly unimpeachable. When the incident comes, the regulator reads the second — and in most enterprises today, the second ledger is whatever the application happened to log. That is the gap. Not a missing scanner. A missing object of governance.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A clean SBOM tells you everything about what your software is — and nothing about what it was allowed to do.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

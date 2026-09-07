@@ -1,0 +1,96 @@
+<div class="hook fade-in"><p>Your dashboard says half the incidents were deflected. It does not say a single one was fixed. <strong>Deflection rate, satisfaction score, and analyst rank measure containment and preference — how many people you kept out of the queue and how much they liked being kept out — not work that actually got done.</strong> For a platform whose entire job is to resolve, that is the wrong scoreboard. And the reason it is the wrong scoreboard is not a marketing choice. It is an architectural one.</p></div>
+
+<div class="section-label fade-in">THE THREE NUMBERS EVERYONE SHOWS</div>
+<div class="fade-in"><p>Walk into any service-management renewal and the same three proof points are on the slide. A <em>deflection rate</em>: the share of tickets an assistant or portal answered before a human touched them. A <em>satisfaction score</em>: how employees or customers rated the interaction. And a <em>ranking</em>: the leader's placement in some analyst's grid, "top-rated in nine categories," "a Leader for the sixth year." These are the numbers the category has trained buyers to ask for, so these are the numbers the category optimizes.</p>
+<p>Look closely at what each one actually counts. Deflection counts <strong>questions answered and queues avoided</strong>. Satisfaction counts <strong>how the interaction felt</strong>. Ranking counts <strong>how the vendor compares to other vendors</strong>. Notice what is absent from all three: any claim that the underlying problem is gone. A password reset that a bot walked someone through, an access request the portal explained the policy for, a "have you tried restarting" that closed the chat — every one of those counts as a win on this board, and not one of them is evidence that the state of your estate changed.</p></div>
+
+<div class="section-label fade-in">WHAT'S REAL BEFORE WHAT'S WRONG</div>
+<div class="fade-in"><p>Be fair about what these tools earned. A single unified service-management platform genuinely beats a drawer full of siloed point tools — one data model, one place to look, one workflow spine instead of five integrations that drift. ITIL-aligned incident, problem, and change discipline is real operational maturity, not ceremony; the org that separates a change from an incident and gates it is more governable than the one that does not. GenAI that summarizes a noisy thread, drafts a first response, and deflects the genuinely trivial tickets does save agent minutes and does clear the easy volume. A well-curated configuration database really does make impact analysis faster. None of that is vanity. It is worth paying for.</p>
+<p>The problem is narrower and sharper. Every one of those wins lives in the same layer: <strong>recording, routing, summarizing, recommending</strong>. The tool captures the request, decides who should own it, explains what to do, and tracks the status while someone — or something — else does the doing. Deflection is simply the most flattering way to measure a system that is very good at that layer and structurally absent from the next one.</p></div>
+
+<div class="section-label fade-in">WHY CONTAINMENT IS THE ONLY HONEST METRIC</div>
+<div class="fade-in"><p>Here is the structural fact underneath the scoreboard. A service-management platform is a <strong>system of record for tickets</strong>. It sits beside the systems where fulfillment actually happens — the directory, the cloud console, the HR system, the network, the endpoint — and it orchestrates <em>across</em> them. Even the strongest single-platform design, the one that co-locates a real workflow and automation engine right next to the ticket and now ships "agentic" AI, does not change where the work lands. A workflow that <em>routes</em> a ticket is moving a record. Last-mile automation that drives another system's UI to flip a setting is a script reaching into a system the platform does not own. Useful, yes. But it is orchestration across a boundary, not the process being the place the fix occurs.</p>
+<p>That boundary is why containment is the only outcome the tool can truthfully report. It can count what it owns end to end — the ticket's lifecycle, the interaction's rating, its own feature comparison — because those all happen inside its four walls. It cannot honestly report resolution, because resolution happens on the far side of the fulfillment boundary, in systems it observes but does not execute in. So the industry measures the thing it can see. Deflection is not a lie. It is an <strong>honest metric for the wrong unit of work</strong> — the answer, not the fix.</p>
+<p>Read the KPI back as an admission and it gets uncomfortable. "We deflected half the tickets" says <em>half the demand never reached the place where nothing gets resolved anyway.</em> A high deflection rate can even mask a resolution problem: the more you deflect, the fewer cases enter the queue where you would have discovered how little the queue actually closes.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" font-family="Inter, system-ui, sans-serif">
+  <text x="24" y="32" font-size="13" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">THE DEFLECTION DASHBOARD</text>
+  <text x="24" y="50" font-size="11" fill="currentColor" opacity="0.55" stroke="none">system of record for tickets</text>
+  <g stroke-width="1.4">
+    <rect x="24"  y="76" width="78" height="40" rx="7" opacity="0.9"/>
+    <rect x="118" y="76" width="78" height="40" rx="7" opacity="0.9"/>
+    <rect x="212" y="76" width="78" height="40" rx="7" opacity="0.9"/>
+    <rect x="306" y="76" width="78" height="40" rx="7" opacity="0.9"/>
+  </g>
+  <g font-size="11" fill="currentColor" stroke="none" text-anchor="middle" font-weight="600">
+    <text x="63"  y="100">CAPTURE</text>
+    <text x="157" y="100">ROUTE</text>
+    <text x="251" y="100">ASSIGN</text>
+    <text x="345" y="100">STATUS</text>
+  </g>
+  <g stroke-width="1.4" opacity="0.6">
+    <path d="M102 96 L118 96" marker-end="url(#ar)"/>
+    <path d="M196 96 L212 96" marker-end="url(#ar)"/>
+    <path d="M290 96 L306 96" marker-end="url(#ar)"/>
+  </g>
+  <path d="M430 56 L430 250" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.7"/>
+  <text x="430" y="272" font-size="10.5" fill="currentColor" opacity="0.65" stroke="none" text-anchor="middle" font-style="italic">fulfillment happens elsewhere</text>
+  <path d="M384 96 L468 96" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.6" marker-end="url(#ar)"/>
+  <rect x="470" y="74" width="122" height="44" rx="7" stroke-width="1.4" opacity="0.55"/>
+  <text x="531" y="94" font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">another system</text>
+  <text x="531" y="109" font-size="9.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.55">human · bolted-on script</text>
+  <g font-size="10" fill="currentColor" stroke="none">
+    <rect x="24" y="146" width="96" height="26" rx="13" stroke="currentColor" fill="none" stroke-width="1.2" opacity="0.55"/>
+    <text x="72" y="163" text-anchor="middle" opacity="0.85">% deflected</text>
+    <rect x="132" y="146" width="70" height="26" rx="13" stroke="currentColor" fill="none" stroke-width="1.2" opacity="0.55"/>
+    <text x="167" y="163" text-anchor="middle" opacity="0.85">CSAT</text>
+    <rect x="214" y="146" width="94" height="26" rx="13" stroke="currentColor" fill="none" stroke-width="1.2" opacity="0.55"/>
+    <text x="261" y="163" text-anchor="middle" opacity="0.85">analyst rank</text>
+  </g>
+  <text x="24" y="196" font-size="10.5" fill="currentColor" stroke="none" opacity="0.6">measures containment &amp; preference</text>
+  <text x="470" y="176" font-size="13" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">THE RESOLUTION LEDGER</text>
+  <text x="470" y="194" font-size="11" fill="currentColor" opacity="0.55" stroke="none">the request is the executing process</text>
+  <rect x="470" y="210" width="306" height="88" rx="10" stroke-width="1.6"/>
+  <g font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" font-weight="600">
+    <text x="516" y="245">request</text>
+    <text x="600" y="230">change-control</text>
+    <text x="690" y="245">Connector</text>
+  </g>
+  <path d="M600 250 l14 12 l-14 12 l-14 -12 z" stroke-width="1.3" opacity="0.9"/>
+  <g stroke-width="1.4">
+    <path d="M542 258 L582 258" marker-end="url(#ar)"/>
+    <path d="M618 262 L660 262" marker-end="url(#ar)"/>
+  </g>
+  <circle cx="690" cy="262" r="4" fill="currentColor" stroke="none"/>
+  <path d="M690 272 C 690 300, 516 300, 516 272" stroke-width="1.4" marker-end="url(#ar)"/>
+  <text x="600" y="296" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">remediation performed · recorded per action</text>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE METRIC A RESOLVING SYSTEM CAN REPORT</div>
+<div class="fade-in"><p>Change the architecture and you change what is measurable. On a composable process fabric, an incident or a service request is not a record a human works and closes beside the real systems. <strong>The request is the running process.</strong> It executes as a deterministic workflow with atomic agents that perform the fulfillment themselves — through governed connectors into the directory, the cloud tenant, the HR system, the network — with the approval gate, the segregation-of-duties check, and the change-control step enforced <em>inline, at the moment of action</em>, not stapled on as an after-the-fact log. The configuration database is not a periodically reconciled inventory that drifts between scans; it is the live semantic ontology the process reads and writes as state changes. There is no fulfillment boundary to hand off across, because the fix happens inside the workflow.</p>
+<p>Be precise about the claim, because over-claiming is how you lose the reader who knows this domain. This is not magic and it is not integration-free. The fabric runs <em>over</em> your existing estate through governed connectors — those connectors are still the only thing touching external systems, and standing them up is real work. What is different is architectural, not promotional: when the action is taken by the process rather than orchestrated across a boundary, the action is <strong>authorized where it happens and recorded as it happens</strong>. Every step lands in an immutable, per-action audit as a byproduct of execution.</p>
+<p>That audit is the new scoreboard. Because the platform did the work, it can attribute the outcome — and it can report signals that a system of record structurally cannot:</p>
+<ul>
+<li><strong>Fulfilled end-to-end</strong> — the request reached its intended state and the workflow proved it, not merely "marked resolved" by whoever wanted to close the ticket.</li>
+<li><strong>Auto-remediated</strong> — the fraction of incidents the process closed with no human hop, as a governed action rather than a best-effort script reaching into a foreign UI.</li>
+<li><strong>Cycle time to executed outcome</strong> — measured from request to the action landing in the target system, not from open to a status flag.</li>
+<li><strong>First-time-right</strong> — resolved without reopen or rollback, because the change-control gate ran before the action, not the incident review after it.</li>
+</ul>
+<p>Deflection and satisfaction do not disappear; a good process still deflects the trivial and still feels good to use. They are simply demoted from headline to hygiene. The headline becomes the thing you actually bought the system to do.</p></div>
+
+<div class="section-label fade-in">THE QUESTION TO PUT TO YOUR SCOREBOARD</div>
+<div class="fade-in"><p>For a CIO, this is a one-line reframe with a long tail. Stop asking your service-management report <em>"how much did we contain, and how much do people like it?"</em> Start asking it <em>"what fraction of requests were fulfilled end-to-end, provably, and how fast did the action land?"</em> The first question any containment-layer tool can answer with a confident number. The second question separates a system that records work from a system that <strong>does</strong> work — and most incumbents cannot answer it, not because their teams are lazy, but because their architecture puts the answer on the far side of a boundary they were never designed to cross.</p>
+<p>When your board slide leads with a deflection percentage, read it as what it is: a measure of how well you kept demand away from a queue. A worthwhile number. Just not the one that tells you whether your enterprise is getting fixed.</p></div>
+
+<div class="closing fade-in"><blockquote>A deflected ticket is a question you answered. A resolved request is a problem you no longer have. Only one of them belongs at the top of the board.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

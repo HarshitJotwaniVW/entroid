@@ -1,0 +1,106 @@
+<div class="hook fade-in">You negotiated the rate. Sourcing ran a clean event and found a supplier several points cheaper. The dashboard even caught the duplicate invoice before month-end. Every one of those is a win someone can point to on a slide. And the maverick, off-contract purchase order that ignored all three still executed anyway — because <strong>identifying a saving and enforcing it are two different acts, and most of the stack only does the first.</strong></div>
+
+<div class="section-label fade-in">Two Numbers, And The Gap Between Them</div>
+<div class="fade-in"><p>Start by giving the category its full due, because it earns it. Strategic sourcing and negotiation genuinely find value — a competitive event, a consolidated volume, a better-priced tier really do move the unit cost before anyone signs. Spend analytics and benchmarking really do surface consolidation and off-contract leakage you could not see across fragmented systems. A single intake front door really does reduce maverick requests and steer buyers toward the right catalog and the right paper. A contract repository really does put the negotiated terms in one place. None of that is theater. It is the work of finding money, and the good platforms do it well.</p>
+<p>But a procurement organization lives and dies by <strong>two numbers, not one</strong>. There is the <em>negotiated</em> saving — the value identified at the table, on the sourcing award, in the consolidation analysis. And there is the <em>realized</em> saving — the value that actually reaches the P&amp;L after every requisition, PO, and invoice has committed for the year. The category's own literature concedes, directionally, that a meaningful share of negotiated savings never survives the trip to the second number. That gap has a name on your side of the house: <strong>leakage</strong>. And leakage is not a discovery problem. You already discovered the saving. It is an <em>enforcement</em> problem.</p></div>
+
+<div class="section-label fade-in">On-Contract Spend Is A Scoreboard, Not A Control</div>
+<div class="fade-in"><p>Watch the verbs the spend-management and sourcing platforms actually use. They <em>identify</em> the opportunity. They <em>negotiate</em> the term. They <em>recommend</em> the preferred supplier. They <em>route</em> the requisition for approval. They <em>flag</em> the off-contract line and <em>report</em> the on-contract-spend percentage on a dashboard. Every one of those verbs happens <strong>around</strong> the transaction — before it as advice, after it as measurement — and the one moment that decides whether the saving is realized, the moment the PO or the invoice is authoritatively posted, happens in a system of record the analytics layer is reading <em>from</em>, not writing <em>through</em>.</p>
+<p>This is why "on-contract spend" as a KPI is such a revealing metric. It is a <strong>scoreboard read after the game is over</strong>. A number that tells you what fraction of spend honored the contract is, by construction, a measurement of how much already did not. When it dips, you convene a meeting, trace the off-contract POs, and coach the buyers — all detective work, all after the money moved. The control that would have stopped the off-contract PO from committing lives somewhere else entirely: in an ERP configuration, a buyer's discipline, a policy in a PDF. The analytics narrate the leak with beautiful precision. They have no hand on the valve.</p>
+<p>Concede the strongest version of the counter-argument, because it is real. The procurement-orchestration and intake-to-pay layer improves on the bolt-on dashboard: it puts a single front door in front of the mess, and it coordinates routing across the ERP and the source-to-pay suites so a request moves through the right sequence of systems. That genuinely cuts maverick requests and shortens cycles. But orchestrating and reporting <em>across</em> systems the layer does not own is not the same as the transaction <strong>executing on a fabric where the control is enforced at the moment of action</strong>. A conductor who can route the request to the ERP, and read back what the ERP decided, is still not the hand that posts — or refuses to post — the PO. The authoritative act, and therefore the enforcement, happens in a runtime the orchestration layer sits on top of.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Savings identified beside the ERP and flagged after posting, versus savings enforced as an inline gate on one governed fabric" style="width:100%;height:auto;display:block;color:var(--t2)">
+  <style>
+    .lbl{font:600 12px Inter,sans-serif;fill:currentColor;opacity:.75}
+    .cap{font:500 10px Inter,sans-serif;fill:currentColor;opacity:.55;letter-spacing:.03em}
+    .hd{font:700 11px Inter,sans-serif;fill:currentColor;opacity:.9;letter-spacing:.11em}
+    .ln{stroke:currentColor;fill:none}
+    .ac{stroke:var(--accent);fill:none}
+  </style>
+  <line x1="400" y1="28" x2="400" y2="294" class="ln" stroke-width="1" stroke-dasharray="3 5" opacity=".3"/>
+
+  <!-- LEFT: identify beside -->
+  <text x="34" y="42" class="hd">IDENTIFY &#183; BESIDE THE ERP</text>
+  <!-- intake -->
+  <rect x="34" y="60" width="150" height="44" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="50" y="80" class="lbl">INTAKE / CATALOG</text>
+  <text x="50" y="96" class="cap">off-contract PO raised</text>
+  <!-- routing arrow -->
+  <path d="M109 104 L109 132" class="ln" stroke-width="1.2" opacity=".5"/>
+  <path d="M109 132 l-4 -8 l8 0 z" fill="currentColor" opacity=".5" transform="rotate(180 109 128)"/>
+  <!-- routing -->
+  <rect x="34" y="132" width="150" height="40" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="50" y="157" class="lbl">APPROVAL ROUTING</text>
+  <!-- down into ERP -->
+  <path d="M109 172 L109 194" class="ln" stroke-width="1.2" opacity=".5"/>
+  <!-- ERP lane -->
+  <rect x="34" y="196" width="322" height="52" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="50" y="227" class="lbl">ERP LEDGER</text>
+  <circle cx="300" cy="222" r="5" fill="currentColor" opacity=".7"/>
+  <!-- posted check -->
+  <path d="M312 218 l4 5 l7 -10" class="ac" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="250" y="272" class="cap">PO POSTS &#183; spend commits</text>
+  <!-- analytics box -->
+  <rect x="206" y="60" width="150" height="52" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="222" y="82" class="lbl">SPEND ANALYTICS</text>
+  <text x="222" y="99" class="cap">realized &#60; negotiated</text>
+  <!-- flag-after arrow up from posted txn -->
+  <path d="M304 208 C330 150 320 120 300 114" class="ln" stroke-width="1.4" opacity=".6"/>
+  <path d="M300 114 l9 -1 l-5 7 z" fill="currentColor" opacity=".6"/>
+  <text x="316" y="150" class="cap">flags AFTER</text>
+  <!-- leak window band -->
+  <rect x="292" y="190" width="64" height="66" rx="6" fill="var(--accent)" opacity=".08"/>
+  <text x="292" y="186" class="cap">leakage</text>
+
+  <!-- RIGHT: enforce -->
+  <text x="430" y="42" class="hd">ENFORCE &#183; ONE GOVERNED WORKFLOW</text>
+  <!-- intake -->
+  <rect x="430" y="60" width="150" height="44" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="446" y="80" class="lbl">INTAKE</text>
+  <text x="446" y="96" class="cap">same off-contract PO</text>
+  <!-- arrow to gate -->
+  <path d="M580 82 L620 82" class="ln" stroke-width="1.4" opacity=".55"/>
+  <!-- gate diamond -->
+  <path d="M660 82 l26 -26 l26 26 l-26 26 z" class="ac" stroke-width="1.8" fill="var(--accent)" fill-opacity=".07"/>
+  <text x="600" y="42" class="cap" transform="translate(52 0)">contract price &#183; budget &#183; authority</text>
+  <!-- X refused -->
+  <path d="M672 74 l14 12 M686 74 l-14 12" class="ac" stroke-width="2" stroke-linecap="round"/>
+  <text x="628" y="126" class="cap">cannot pass &#183; non-executable</text>
+  <!-- compliant path down to connector/ledger -->
+  <path d="M505 104 L505 150" class="ln" stroke-width="1.2" opacity=".5"/>
+  <text x="446" y="140" class="cap">compliant action</text>
+  <rect x="430" y="152" width="150" height="40" rx="10" class="ac" stroke-width="1.4" fill="var(--accent)" fill-opacity=".05"/>
+  <text x="446" y="177" class="lbl">GOVERNED CONNECTOR</text>
+  <path d="M505 192 L505 214" class="ln" stroke-width="1.2" opacity=".5"/>
+  <!-- ledger lane -->
+  <rect x="430" y="216" width="336" height="52" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="446" y="247" class="lbl">LEDGER</text>
+  <text x="560" y="247" class="cap">posts at negotiated price</text>
+  <!-- per-action record -->
+  <path d="M505 268 L505 290" class="ln" stroke-width="1.2" opacity=".5"/>
+  <rect x="452" y="290" width="110" height="22" rx="6" class="ac" stroke-width="1.3" fill="var(--accent)" fill-opacity=".05"/>
+  <text x="466" y="305" class="cap">per-action record</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">Savings As A Property Of Execution</div>
+<div class="fade-in"><p>Entroid moves the control from beside the runtime into the runtime. On the Composable Process Fabric, procurement is not a suite of intake forms, approval routing, and spend dashboards parked next to the ERP. It is modelled, <strong>executed</strong>, and <strong>governed</strong> as one workflow — intake to sourcing to requisition to PO to receipt to invoice to pay — composed from five primitives on a shared ontology, in a single runtime. The negotiated contract price, the budget envelope, the segregation-of-duties rule, and the authority threshold are not advice printed on a screen. They are carried <strong>inline</strong> by a Deterministic Workflow: the fixed, rule-governed step every action must clear to proceed. And a Connector is the only primitive that can write to the ledger, under authentication, authorization, and audit.</p>
+<p>So the enforcement point moves to where it was always supposed to be — the moment of action. An off-contract line does not route to a dashboard for later scrutiny; it has <strong>no path to the posting step at all</strong>, because the workflow evaluates the requested price and supplier against the governing contract in the ontology before a Connector is ever asked to write. An over-threshold PO does not commit and then trip an alert; the authority gate refuses to route it. The requisition that would breach the budget envelope is not reconciled at month-end; it is non-executable until the envelope or the authority changes. The realized saving stops being a number you measure after the fact and becomes <strong>a property of what the fabric allowed to happen.</strong></p>
+<ul>
+<li><strong>Contract price &amp; terms</strong> — the workflow checks the requested price and supplier against the live contract inline; an off-contract or off-price line has no route to the posting Connector.</li>
+<li><strong>Budget envelope</strong> — the threshold is evaluated at the moment of commit, so the requisition that would breach it is refused, not reconciled later.</li>
+<li><strong>Authority limits &amp; SoD</strong> — the over-threshold PO cannot route past the authority gate, and raise-and-release cannot resolve to one identity.</li>
+<li><strong>Evidence as byproduct</strong> — because the control <em>is</em> the executing step, every refusal and every passing action drops an immutable, per-action record; the audit trail is the exhaust of running, not a quarterly collection project.</li>
+</ul>
+<p>Be exact about what this claim is. Consider — illustratively — a buyer who raises a PO to a supplier at a price above the negotiated tier, or outside contract entirely. The workflow resolves the line against the governing agreement in the ontology and finds the mismatch <em>before</em> any write is attempted; the payment instruction is simply never emitted at the non-compliant price. There is no leaked transaction to flag next month, because there is no posted transaction to find. That is an <strong>architectural property of the design</strong> — the fabric is built so a non-compliant action has no execution path — not a measured outcome from a named deployment, and not a claim that nothing else in the market can block anything. Narrow pre-execution stops exist elsewhere. The distinction is that here, inline deterministic enforcement is a <strong>native property of the fabric across the whole procurement process</strong>, carrying a provable per-action record with it, rather than a check bolted onto one runtime for one class of spend.</p></div>
+
+<div class="section-label fade-in">What Negotiation Still Wins</div>
+<div class="fade-in"><p>Do not let the argument tip into over-claiming, because that is the fastest way to lose a CPO who has actually run sourcing. Enforcement does not <em>find</em> the saving. Negotiation finds it. A competitive event finds it. Consolidation analysis finds it. The fabric cannot invent a better price; it can only refuse to let anyone spend past the price someone already fought for. The identification work — sourcing strategy, benchmarking, category management — remains indispensable, and the fabric is worth nothing without it. What changes is that the value discovered upstream is no longer left to survive on discipline and dashboards. It is held in place by the runtime that executes the buy.</p>
+<p>And this is not a fantasy of zero integration. The fabric runs <em>over</em> your existing estate through governed Connectors; it does not demand you rip out the ERP or the rails you already run. Plenty of spend will keep flowing through systems the fabric does not yet govern — a legacy portal, a one-off payment pushed through a spreadsheet and a phone call. On that surface, detective spend analytics remains exactly the right layer, and the honest posture is to keep investing in it there. The point is not to retire detection on day one. It is to <strong>shrink the surface that needs it</strong> — process by process, Connector by Connector — until "we identified the saving" and "we realized the saving" stop being two different numbers with a gap between them.</p></div>
+
+<div class="closing fade-in"><blockquote>A negotiated saving is a promise. A realized saving is a promise the architecture would not let anyone break.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,110 @@
+<div class="hook fade-in"><p>Ask any agentic-automation vendor one concrete question — <strong>how does your agent actually touch my system of record?</strong> — and the demo narrative goes quiet. You will get one of three answers. A bot driving the application's screens from the outside. A "computer-use" agent signed in with a stored human credential. Or a raw tool, API, or MCP call the platform issues but never inspects. All three describe the agent reaching your most consequential systems through a door with no lock — and every governance layer you were shown standing <em>beside</em> that door, watching it swing.</p></div>
+
+<div class="section-label fade-in">THE QUESTION THAT ENDS THE DEMO</div>
+<div class="fade-in">
+<p>Give the category its due first. Pairing robotic process automation with agentic orchestration genuinely automates real end-to-end work across legacy applications that were never built to integrate — the kind of brittle, cross-system busywork that has resisted automation for two decades. Policy wrappers, PII masking, guardrail classifiers, agent-identity registries, and end-to-end tracing are real, useful operational controls. None of that is marketing vapor. The problem is not that these platforms do nothing. It is <strong>where</strong> they do it.</p>
+<p>Because when you follow the agent all the way to the moment it changes something that matters — posts the journal entry, updates the opportunity, releases the payment — you find it leaves the platform's governed interior and reaches into the system of record through one of three ungoverned doors:</p>
+<ul>
+<li><strong>The driven UI.</strong> A bot pilots the application's screens the way a person would — clicks, keystrokes, tab-throughs — against an interface built for humans, not for programmatic control.</li>
+<li><strong>The stored-credential session.</strong> A computer-use agent logs in with a human's saved credential and acts <em>as</em> that signed-in user, inheriting whatever that person is allowed to do.</li>
+<li><strong>The unmediated call.</strong> A raw tool, API, or MCP call the platform emits but never inspects — connector implementation unspecified — or, in framework land, arbitrary developer code holding a raw API key.</li>
+</ul>
+</div>
+
+<div class="section-label fade-in">WHAT EACH DOOR COSTS YOU</div>
+<div class="fade-in">
+<p>These are not cosmetic differences. Each door imposes a structural tax the surrounding governance layers cannot refund.</p>
+<p><strong>Blast radius by inheritance.</strong> An agent that authenticates as a human is scoped to that human. If the credential can approve a large invoice, so can the agent — and least privilege becomes impossible, because there is no identity sitting between "this person" and "this one bounded task" for the permission model to bind to. You did not grant the agent authority; you lent it a person's, in full.</p>
+<p><strong>Fragility by construction.</strong> A door made of screen coordinates breaks when the screen changes. A renamed field, a re-ordered form, an A/B test, a quiet interface refresh — any of these can turn a working automation into a silent misfire, because the agent never understood the <em>operation</em>, only the pixels it was told to click.</p>
+<p><strong>An audit boundary at the platform's edge.</strong> This is the one that should worry a CISO or a controller most. The trace is rich right up to the platform's perimeter — you can watch the agent reason, plan, and decide to click. But the record ends where the action begins. You can prove the agent <em>intended</em> to write; you cannot prove, at the system of record, that the write was <em>permitted</em>. The evidence lives on the outside of the wall the action crossed.</p>
+</div>
+
+<div class="section-label fade-in">THE LAYERS WATCH THE DOOR — THEY DON'T GATE IT</div>
+<div class="fade-in">
+<p>The most structured answer in the category deserves a fair hearing. These platforms wrap probabilistic agents in a deterministic flow backbone and call it governed orchestration — an orchestration layer that decides which agent, bot, or reviewer runs next in an author-defined sequence, escalating to a person when confidence is low. That is real structure, and it is genuinely more debuggable and more accountable than a raw agent loop improvising its own next step. Human-in-the-loop escalation genuinely reduces risk. Concede all of it.</p>
+<p>Then be precise about what that structure governs. The backbone is author-editable code, and its scope is whatever a developer widens it to be. Its orchestration coordinates <strong>who runs when</strong> — the sequence of actors and steps — not <strong>what each action is permitted to do or prove</strong> at the point of contact. And its reach into the system of record is still a driven UI or a raw call that the control plane sits <em>beside</em>, not <em>inside</em>. Every one of these controls — the policy wrapper, the guardrail model, the identity registry, the observability trace, the flow backbone — governs <strong>around</strong> the agent. It observes, filters, scores, and escalates. It can catch a bad action, but it catches it after the action has already committed on the other side of the door.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ONE DOOR OUT</div>
+<div class="fade-in">
+<p>Entroid inverts the arrangement. On the fabric, exactly one of five primitives is permitted to touch an external system: the <strong>Connector</strong>. Not the agent. Not developer code. Not a screen-driving bot. The Connector — governed, permissioned, and typed — is the single egress the runtime allows, and there is no other way out.</p>
+<p>So an autonomous agent here is not a top-level actor with governance bolted around it. It is an <strong>Atomic Agent</strong>: a permissioned, change-controlled primitive that executes a bounded unit of work <em>inside</em> a Deterministic Workflow, reaching the outside world only through governed Connectors, with a human-in-the-loop pause available as a first-class step rather than a bolt-on. The permission check is not a layer wrapped around the agent — it is on the execution path itself. Every external action passes an <strong>inline permission gate</strong> at the moment of action, and the only route through that gate is the governed Connector.</p>
+<p>Be clear about what this is <em>not</em>: it is not a claim that ES needs no integration. The fabric runs over your existing estate <em>through</em> those Connectors — the work of connecting to legacy systems is real and still has to be done. The difference is that the connection is a <em>governed primitive</em>, not an ungoverned door the platform reaches through from outside. Because the permission check <em>is</em> the execution path, the out-of-policy or hijacked action is not something the platform detects after the fact. It is <strong>structurally unreachable</strong> — by design there is no code path to the system of record that skips the gate.</p>
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Left: an autonomous agent as the top-level actor with trust layer, guardrail model, identity registry and observability trace bolted around it inside a dashed boundary, reaching external systems through a driven UI, a stored credential, and a raw tool or API call outside the boundary. Right: an Atomic Agent inside a Deterministic Workflow, every action passing an inline permission gate to a single governed Connector, the only egress, reaching the system of record with an immutable per-action audit.">
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.7"/></marker></defs>
+<line x1="400" y1="40" x2="400" y2="300" stroke="currentColor" stroke-width="1" opacity="0.15"/>
+
+<text x="205" y="26" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.55" letter-spacing="1">GOVERNANCE AROUND THE AGENT</text>
+<rect x="45" y="44" width="320" height="172" rx="10" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.5"/>
+<rect x="138" y="60" width="134" height="34" rx="6" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+<text x="205" y="81" text-anchor="middle" font-size="12.5" fill="currentColor">Autonomous Agent</text>
+<rect x="58" y="112" width="92" height="22" rx="11" stroke="currentColor" opacity="0.5"/>
+<text x="104" y="127" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">trust layer</text>
+<rect x="160" y="112" width="112" height="22" rx="11" stroke="currentColor" opacity="0.5"/>
+<text x="216" y="127" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">guardrail model</text>
+<rect x="58" y="142" width="118" height="22" rx="11" stroke="currentColor" opacity="0.5"/>
+<text x="117" y="157" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">identity registry</text>
+<rect x="186" y="142" width="130" height="22" rx="11" stroke="currentColor" opacity="0.5"/>
+<text x="251" y="157" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">observability trace</text>
+<line x1="100" y1="180" x2="100" y2="256" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<line x1="205" y1="180" x2="205" y2="256" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<line x1="312" y1="180" x2="312" y2="256" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<rect x="55" y="258" width="90" height="34" rx="6" stroke="currentColor" stroke-width="1.4"/>
+<text x="100" y="279" text-anchor="middle" font-size="11" fill="currentColor">Driven UI</text>
+<rect x="158" y="258" width="94" height="34" rx="6" stroke="currentColor" stroke-width="1.4"/>
+<text x="205" y="279" text-anchor="middle" font-size="11" fill="currentColor">Stored credential</text>
+<rect x="264" y="258" width="100" height="34" rx="6" stroke="currentColor" stroke-width="1.4"/>
+<text x="314" y="273" text-anchor="middle" font-size="11" fill="currentColor">Raw tool /</text>
+<text x="314" y="286" text-anchor="middle" font-size="11" fill="currentColor">API call</text>
+<text x="205" y="308" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">system of record — touched from outside the boundary</text>
+
+<text x="595" y="26" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.55" letter-spacing="1">GOVERNANCE INSIDE THE PRIMITIVE</text>
+<rect x="440" y="44" width="230" height="150" rx="10" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+<text x="555" y="62" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.65" letter-spacing="0.5">Deterministic Workflow</text>
+<rect x="480" y="72" width="150" height="30" rx="6" stroke="currentColor" stroke-width="1.4"/>
+<text x="555" y="91" text-anchor="middle" font-size="12" fill="currentColor">Atomic Agent</text>
+<line x1="555" y1="102" x2="555" y2="118" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<rect x="470" y="120" width="170" height="30" rx="6" stroke="currentColor" stroke-width="1.8"/>
+<rect x="480" y="132" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="1" opacity="0.75"/>
+<path d="M481.5 132 v-1.5 a3 3 0 0 1 6 0 v1.5" stroke="currentColor" stroke-width="1" opacity="0.75"/>
+<text x="558" y="139" text-anchor="middle" font-size="11" fill="currentColor">inline permission gate</text>
+<line x1="555" y1="150" x2="555" y2="196" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<rect x="470" y="200" width="170" height="40" rx="6" stroke="currentColor" stroke-width="2"/>
+<text x="555" y="217" text-anchor="middle" font-size="12" fill="currentColor">Governed Connector</text>
+<text x="555" y="231" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">the only egress</text>
+<line x1="640" y1="220" x2="690" y2="220" stroke="currentColor" stroke-dasharray="3 3" opacity="0.5"/>
+<rect x="690" y="201" width="96" height="38" rx="6" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<text x="738" y="218" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">immutable</text>
+<text x="738" y="230" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">per-action audit</text>
+<line x1="555" y1="240" x2="555" y2="260" stroke="currentColor" opacity="0.6" marker-end="url(#ah)"/>
+<rect x="485" y="262" width="140" height="32" rx="6" stroke="currentColor" stroke-width="1.4"/>
+<text x="555" y="282" text-anchor="middle" font-size="11.5" fill="currentColor">System of record</text>
+<text x="555" y="308" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">every action gated inline — no path skips the door</text>
+</svg>
+</div>
+</div>
+
+<div class="section-label fade-in">WHY TYPED BEATS CLICKED</div>
+<div class="fade-in">
+<p>Making the Connector the only door does more than lock it. Because a Connector operation is <strong>typed and bounded</strong> — a declared operation with declared inputs and declared effects, not a sequence of screen clicks — it becomes the substrate for two properties the other three doors structurally cannot offer:</p>
+<ul>
+<li><strong>Compensation and rollback.</strong> When the runtime knows the operation it performed, it can define and execute an inverse — a compensating action when a multi-step process fails halfway. Screen clicks and unmediated calls leave no structured record of <em>what</em> changed, so there is nothing to systematically undo; you are left reconstructing the damage by hand.</li>
+<li><strong>Semantic audit.</strong> The immutable per-action record captures the operation and its business meaning — what changed, under whose authority, whether it was permitted — not a screenshot or a raw network log you have to reverse-engineer after an incident. Audit stops being a forensic reconstruction and becomes a byproduct of how the action was executed.</li>
+</ul>
+<p>A UI-driving bot can give you neither, because it never held a typed operation to begin with — only pixels and timing. That is the quiet cost of governing from the outside: you inherit the human's fragility and the human's blast radius, and you forfeit the two properties that make autonomous action safe to run at scale.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE QUESTION TO PUT TO EVERY VENDOR</div>
+<div class="fade-in">
+<p>You do not need to referee competing architecture decks. You need one question, asked of every agentic demo that impresses you: <strong>through what, exactly, does the final write land in the system of record?</strong> If the answer is a bot driving a UI, a stored credential acting as a person, or a tool call the platform never inspects, then the governance you were shown — however sophisticated — lives beside that door, not inside it. It can watch the action. It cannot refuse it.</p>
+<p>For a CIO standardizing an agent estate, a CISO who has to attest to what autonomous software is allowed to do, and a controller who has to prove every change was authorized, the location of the permission check is not an implementation detail. It is the whole question. Governance that a developer can widen, that coordinates timing rather than authority, and that meets the system of record from the outside is governance you will be reconstructing after an incident — not enforcing before one. The alternative is not a better watcher on the wall. It is one door out, with the lock on the inside.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>You cannot govern an action at the system of record from outside the system of record. Give the agent one door out — and put the lock inside it.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,115 @@
+<div class="hook fade-in">
+  <p>Your AIOps platform can tell you, inside of two minutes, that last night's deploy spiked p99 latency on the checkout service, which node is implicated, and which of the last four commits is to blame. Then it opens a ticket. <strong>The diagnosis lives in one system and the fix executes in another — and the seam between them is where your MTTR actually goes to die.</strong></p>
+</div>
+
+<div class="section-label fade-in">WHAT THE CATEGORY GETS GENUINELY RIGHT</div>
+<div class="fade-in">
+  <p>Start with the concession, because an expert reader will stop trusting you the moment you pretend the incumbents are bad at their jobs. They are not. The detection-to-diagnosis half of the incident loop is, for practical purposes, a solved problem — and solving it was hard.</p>
+  <ul>
+    <li><strong>ML anomaly detection and seasonality-aware baselines</strong> genuinely catch what static thresholds miss. A metric that is "normal" at 9am and alarming at 3am is exactly the class of failure hand-tuned thresholds are worst at, and the models handle it.</li>
+    <li><strong>Event correlation really does collapse alert storms.</strong> Turning four hundred symptom alerts into one probable incident is not a cosmetic trick; it is the difference between an on-call engineer who can think and one who is drowning.</li>
+    <li><strong>Automated causal RCA compresses investigation</strong> from tens of minutes of dashboard-hopping to a few. The best of the causal-AI observability tools will hand you a ranked, evidence-linked hypothesis before a human has finished reading the page.</li>
+    <li><strong>Autonomous investigation agents</strong> — the newer agentic-SRE class — will run the investigation unattended and produce an audit-ready, cited root-cause writeup. That is real, and it is fast.</li>
+    <li><strong>Pre-authored runbooks automate known fixes.</strong> For a failure you have seen before and scripted against, the response can be genuinely hands-off.</li>
+  </ul>
+  <p>None of this is the argument. The argument is about the other half of the loop — the half that every vendor deck quietly skips past on its way to the word "closed."</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE SEAM NOBODY PUTS ON THE SLIDE</div>
+<div class="fade-in">
+  <p>Here is the structural fact underneath every "closed-loop" and "agentic" claim on the market: <strong>detection and RCA happen inside the observability platform, and the corrective action executes somewhere else.</strong> The evidence is gathered in one runtime; the change lands in a separate runbook, an automation engine, a cloud control-plane API, or a ticket that a human eventually works. What is marketed as a closed loop is, architecturally, an <em>orchestration hand-off across a tool boundary</em>.</p>
+  <p>Look at the two most advanced positions in the category, because they are the ones worth taking seriously. The causal-AI observability vendor that brands itself as a "control plane for autonomous operations" does compute a rigorous root cause — and then its automation "executes" by dispatching to an <em>external</em> ticketing, repository, or cloud API. The event-correlation AIOps layer that sits on top of your monitoring and ITSM stack claims to "close the loop end-to-end" by "executing actions directly in connected systems" — connected being the operative word, because the system where the action runs is not the system that did the diagnosis. And the agentic-SRE that investigates autonomously is the most honest of the three: it <em>proposes</em> a fix for a human to merge and run. That is an explicit hand-off, plainly labeled.</p>
+  <p>All three are genuinely capable. And all three locate execution outside the diagnosing platform. That is not a criticism of any one product's roadmap — it is a description of the pattern. Dispatching a corrective action to a system the platform does not own, or proposing a fix a human runs elsewhere, is a hand-off across a tool boundary. It is not remediation executed under inline change-control and rollback, in the runtime that holds the evidence.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+  <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" font-family="Inter, system-ui, sans-serif">
+    <text x="24" y="24" font-size="12" stroke="none" fill="currentColor" opacity="0.55" letter-spacing="1.5">AIOPS / OBSERVABILITY&#160;&#160;·&#160;&#160;DIAGNOSE HERE, ACT THERE</text>
+
+    <rect x="24" y="40" width="330" height="92" rx="10" stroke-width="1.4" opacity="0.85"/>
+    <rect x="40" y="66" width="88" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="84" y="90" font-size="12" stroke="none" fill="currentColor" text-anchor="middle">DETECT</text>
+    <rect x="146" y="66" width="88" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="190" y="90" font-size="12" stroke="none" fill="currentColor" text-anchor="middle">CORRELATE</text>
+    <rect x="252" y="66" width="88" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="296" y="90" font-size="12" stroke="none" fill="currentColor" text-anchor="middle">AUTO-RCA</text>
+    <path d="M128 86 h18" stroke-width="1.2" opacity="0.7"/>
+    <path d="M234 86 h18" stroke-width="1.2" opacity="0.7"/>
+
+    <line x1="400" y1="34" x2="400" y2="150" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.6"/>
+    <text x="400" y="168" font-size="10.5" stroke="none" fill="currentColor" opacity="0.6" text-anchor="middle" letter-spacing="1">TOOL BOUNDARY</text>
+
+    <path d="M354 86 h84" stroke-width="1.4" opacity="0.7"/>
+    <path d="M432 80 l8 6 l-8 6" stroke-width="1.4" opacity="0.7"/>
+
+    <rect x="452" y="44" width="150" height="26" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="527" y="61" font-size="11" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">RUNBOOK / AUTOMATION</text>
+    <rect x="452" y="76" width="150" height="26" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="527" y="93" font-size="11" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">CLOUD CONTROL-PLANE API</text>
+    <rect x="452" y="108" width="150" height="26" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="527" y="125" font-size="11" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">TICKET / HUMAN</text>
+    <text x="620" y="90" font-size="10.5" stroke="none" fill="currentColor" opacity="0.55">no inline change-control</text>
+    <text x="620" y="106" font-size="10.5" stroke="none" fill="currentColor" opacity="0.55">no rollback · evidence left behind</text>
+
+    <text x="24" y="212" font-size="12" stroke="none" fill="currentColor" opacity="0.55" letter-spacing="1.5">ENTROID&#160;&#160;·&#160;&#160;ONE RUNTIME, NO SEAM</text>
+    <rect x="24" y="226" width="752" height="76" rx="10" stroke-width="1.6"/>
+
+    <g stroke-width="1.2" opacity="0.9">
+      <rect x="40" y="248" width="78" height="32" rx="6"/>
+      <rect x="140" y="248" width="86" height="32" rx="6"/>
+      <rect x="248" y="248" width="150" height="32" rx="6"/>
+      <rect x="420" y="248" width="96" height="32" rx="6"/>
+      <rect x="538" y="248" width="80" height="32" rx="6"/>
+      <rect x="640" y="248" width="120" height="32" rx="6"/>
+    </g>
+    <g font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle">
+      <text x="79" y="268">DETECT</text>
+      <text x="183" y="268">AUTO-RCA</text>
+      <text x="323" y="264">GOVERNED WORKFLOW</text>
+      <text x="323" y="276" opacity="0.6" font-size="9">change-control gate</text>
+      <text x="468" y="268">CONNECTOR</text>
+      <text x="578" y="268">VERIFY</text>
+      <text x="700" y="264">ROLLBACK</text>
+      <text x="700" y="276" opacity="0.6" font-size="9">health-check gated</text>
+    </g>
+    <g stroke-width="1.2" opacity="0.8">
+      <path d="M118 264 h20"/><path d="M226 264 h20"/><path d="M398 264 h20"/><path d="M516 264 h20"/><path d="M618 264 h20"/>
+    </g>
+    <text x="400" y="316" font-size="10" stroke="none" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.5">immutable per-action record&#160;&#160;·&#160;&#160;same runtime that holds the evidence</text>
+  </svg>
+</div>
+
+<div class="section-label fade-in">WHY A HAND-OFF COSTS MORE THAN IT LOOKS</div>
+<div class="fade-in">
+  <p>Every time the loop crosses a tool boundary, three things have to be re-stitched into the receiving system — and each stitch is a place the loop can silently come apart.</p>
+  <ul>
+    <li><strong>Evidence.</strong> The diagnosing platform knows precisely why it acted. The receiving system knows only what the dispatch payload carried. The chain of reasoning that justified the change is left behind on the other side of the seam, so the record of <em>why</em> and the record of <em>what happened</em> now live in two places that no one reconciles under pressure.</li>
+    <li><strong>Context.</strong> A corrective action is only safe in the state that motivated it. Between "RCA complete" and "action executed in the connected system," live state moves. The dispatching platform cannot re-check the precondition at the moment of execution, because it does not own the moment of execution.</li>
+    <li><strong>Credentials.</strong> To act in a system you do not own, you hand it standing permission to make production changes. The blast radius of the automation is now defined by a credential that lives outside the platform's governance, exercised by a script the platform cannot gate.</li>
+  </ul>
+  <p>Here is the load-bearing consequence: the change runs where no change-control gate, no rollback, and no audit live. A dispatched API call is fire-and-forget. The diagnosing platform cannot pause it behind an approval that actually understands this incident; it cannot watch the health signal and reverse itself when the fix makes things worse; and it cannot write the action into the same immutable record as the evidence — because all of that machinery would have to exist <em>inside the runtime where the change lands</em>, and that runtime belongs to someone else. <strong>Orchestrating an external runbook is not owning the change.</strong> The distinction is the whole ballgame.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ONE INCIDENT, TWO ARCHITECTURES</div>
+<div class="fade-in">
+  <p>Take the incident every SRE knows: a deploy ships, p99 latency on checkout climbs past the error budget, the anomaly fires. Both architectures diagnose it well. Watch where they diverge.</p>
+  <p><strong>Across the seam.</strong> Detect, correlate, RCA — clean and fast, commit identified. Then the loop hands off: open a change record, or invoke a rollback runbook in the deployment tool, or call the cloud API to shift traffic, or page a human to do it. Whoever or whatever now runs the change does so without the incident's evidence attached, without a gate that understands the error budget, and without an owner watching whether the rollback itself behaves. If the rollback misfires, that is another hand-off. Verification is a human refreshing a dashboard. The loop was "closed" the way a relay race is closed — by throwing the baton.</p>
+  <p><strong>In one runtime.</strong> The same detection and the same auto-RCA — this is Sherlock's job on the fabric — feed directly into a governed Deterministic Workflow that executes the corrective procedure. Rolling back the deploy happens through a governed Connector, the only primitive that touches the external estate. An inline change-control gate decides the action: auto-approve because it is inside policy, or pause for a named human — human-in-the-loop is a first-class state, not a bolted-on pause. The workflow is health-check-gated: if the error budget does not recover within the window, it rolls back its own rollback automatically. Every step — the RCA, the gate decision, the Connector call, the health check, the reversal — is written to one immutable per-action record. The loop closed on live state, in the same runtime that holds the evidence.</p>
+  <p>Change the failure and the shape holds. <strong>Disk at max:</strong> the workflow reclaims space or grows the volume via a Connector, verifies headroom returned, and reverses if the mount misbehaves. <strong>Failing instance:</strong> cordon, drain, replace, confirm healthy — each step under the same change-control gate, on the same live state, in the same runtime. Not "detected here, fixed there." Detected, fixed, and verified in one place.</p>
+</div>
+
+<div class="section-label fade-in">OWNING THE CHANGE IS AN ARCHITECTURE, NOT A FEATURE</div>
+<div class="fade-in">
+  <p>You cannot bolt this on. The reason the loop closes is that remediation is <em>composed on the same fabric as the diagnosis</em> — Entroid is a Composable Process Fabric with five primitives on a shared Semantic Ontology: Deterministic Workflows that carry governance and rollback inline, Intelligence Orchestration, Atomic Agents with HITL as a first-class construct, Functions, and Connectors as the <em>only</em> primitive that reaches into external systems. Sentinel investigates and remediates; Sherlock does auto-RCA and executes the corrective procedure; Command Center closes the loop with governed automation.</p>
+  <p>Be precise about what that does and does not claim. It does <strong>not</strong> claim zero integration — ES runs <em>over</em> your existing estate, reaching every system through governed Connectors, so this is neither a rip-and-replace nor a fantasy of a greenfield world. What it claims is architectural: because detect, RCA, remediate, verify, and roll back are composed as one thing in one runtime, the change-control gate and the rollback live <em>inline, where the evidence is</em> — not downstream in a tool the diagnosing system merely dispatches to. That is a property of the design, not a milestone on a roadmap. The seam is not narrowed. It is not there to narrow.</p>
+</div>
+
+<div class="closing fade-in">
+  <blockquote>A diagnosis you have to carry to another system to act on isn't a closed loop — it's a well-documented open one.</blockquote>
+</div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

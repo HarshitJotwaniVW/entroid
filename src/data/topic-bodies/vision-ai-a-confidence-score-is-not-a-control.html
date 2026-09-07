@@ -1,0 +1,87 @@
+<div class="hook fade-in"><p>Every vision vendor will sell you accuracy. Ask them where the <strong>threshold</strong> lives — the number that decides whether a detection auto-acts or stops for a human — and the answer is almost always the same: <em>"Set that in your application."</em> In one sentence, the most consequential control in the entire pipeline gets pushed off the model, out of governance, and into a constant somewhere in downstream code. Unversioned. Unapproved. Unaudited.</p></div>
+
+<div class="section-label fade-in">WHERE THE REAL CONTROL LIVES</div>
+<div class="fade-in"><p>A confidence score is a probability, not a decision. The model tells you it is 0.83 sure the weld is cracked, 0.91 sure the field reads "$48,200," 0.74 sure the figure on the platform edge is inside the exclusion zone. Nothing has happened yet. The <strong>decision</strong> happens at the threshold — the line where "likely enough" becomes "act on it." Above the line, the system moves on its own. Below it, a human should look.</p>
+<p>That line is the single most sensitive control surface in any detection pipeline, because it encodes your entire risk appetite: the cost of a false accept weighed against the cost of a false reject, the regulatory posture of the process, how much being wrong actually costs. Move it two points and you change how much of your quality operation runs without a human in it. And in the prevailing architecture, that line is a number in someone else's code.</p></div>
+
+<div class="section-label fade-in">WHAT THE CATEGORY GETS RIGHT</div>
+<div class="fade-in"><p>Give the computer-vision platforms their due, because the wedge here is not that they are unserious — it is that they are seriously good at a narrower problem than the enterprise actually has. Several strengths are real:</p>
+<ul>
+<li><strong>Expert-guided labeling and rapid training</strong> genuinely put computer vision within reach — a domain team can stand up a defect or document model without a research lab.</li>
+<li><strong>Pixel-level grounding and source citations</strong> genuinely make a read verifiable; when the extraction points back to the exact pixels, hallucination drops and a reviewer can actually check the machine.</li>
+<li><strong>Confidence plus human-in-the-loop review</strong> is a pragmatic, honest middle path — the vendor is right that not everything should auto-act.</li>
+<li><strong>Edge deployment with SOC 2, HIPAA, and zero-data-retention</strong> is real assurance for the perimeter and the pixel.</li>
+</ul>
+<p>All of it is real. And all of it governs the <em>model</em> and the <em>read</em> — accuracy, drift, provenance-of-the-pixel. None of it governs the <em>action</em> your enterprise takes on the read. The confidence score is the seam where those two worlds are supposed to meet, and it is handed to you as configuration.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE MAGIC NUMBER PROBLEM</div>
+<div class="fade-in"><p>Return a score and delegate the cutoff, and you have quietly relocated your most important control to the worst possible place. The threshold ends up as a literal in an app, a value in a YAML file, a field in a bot's configuration screen. It has no version history. It has no named approver. It has no audit trail that ties a specific decision to the specific cutoff that was in force when the machine made it. When an auditor asks <em>who authorized the system to auto-approve at 0.80, when it moved to 0.72, and on whose sign-off</em>, there is no answer inside the system that actually took the action — at best there is a <code>git blame</code> in a downstream repo and a memory of a Slack thread.</p>
+<p>To be fair, some platforms go further than a bare detector. They "close the loop" — writing the detection into a PLC tag, or piping the extracted fields into an MES, an ERP, or an RPA bot that posts the record. Concede the point honestly: that is genuinely more end-to-end than returning a JSON payload and walking away. But be precise about what closed. The decision-and-action logic was authored <strong>separately</strong> — in a different tool, by a different team, on a different release cadence. No policy travels across that wire; only a value does. And you inherit a <strong>split-brain audit</strong>: one record of what the camera saw, a second record of what the downstream system did, and a human somewhere reconciling the two by hand when something goes wrong.</p></div>
+
+<div class="section-label fade-in">WHEN THE CONTROL MOVES ITSELF</div>
+<div class="fade-in"><p>Now the sharper version. Part of the market advertises models that <strong>adjust their thresholds dynamically</strong> — the accept/reject boundary drifts on its own as the data shifts, sold as "self-tuning quality." Read that as a controls engineer would: a control is silently changing its own set point, with no approval step and no rollback. Under an audited quality regime — regulated manufacturing, validated systems, anything where you must prove the control was in a known state — this is not a feature, it is a finding waiting to happen. You cannot demonstrate the control was validated <em>at the moment of the decision</em> if the control is free to move between decisions without a trace.</p>
+<p>Illustratively — and this is hypothetical, not a claim about any deployment — picture a regulated line where the reject threshold drifts down overnight to chase a yield target. The next morning, borderline units that should have quarantined shipped instead, and there is no versioned record of what the boundary was when each one passed. The math was defensible. The <em>governance</em> was absent. That gap is structural, and it survives any vendor roadmap, because the threshold was never modeled as a governed object in the first place.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+<text x="16" y="26" font-size="12" fill="currentColor" stroke="none" opacity="0.55" letter-spacing="1.5">THE ENDPOINT PATTERN</text>
+<rect x="16" y="44" width="230" height="74" rx="8" stroke-opacity="0.55"/>
+<text x="32" y="72" font-size="13" fill="currentColor" stroke="none">Vision model — endpoint</text>
+<text x="32" y="92" font-size="11" fill="currentColor" stroke="none" opacity="0.6">label · train · deploy</text>
+<text x="32" y="108" font-size="11" fill="currentColor" stroke="none" opacity="0.6">grounding proves the read</text>
+<line x1="246" y1="81" x2="330" y2="81" stroke-opacity="0.55"/>
+<path d="M322 76 l10 5 l-10 5" stroke-opacity="0.55"/>
+<text x="250" y="72" font-size="10" fill="currentColor" stroke="none" opacity="0.55">score →</text>
+<line x1="356" y1="34" x2="356" y2="128" stroke-opacity="0.5" stroke-dasharray="5 5"/>
+<text x="362" y="30" font-size="10" fill="currentColor" stroke="none" opacity="0.5">thrown over the wall</text>
+<rect x="392" y="44" width="230" height="74" rx="8" stroke-opacity="0.55"/>
+<text x="408" y="72" font-size="13" fill="currentColor" stroke="none">PLC / MES / ERP / RPA</text>
+<text x="408" y="92" font-size="11" fill="currentColor" stroke="none" opacity="0.6">takes the physical or</text>
+<text x="408" y="108" font-size="11" fill="currentColor" stroke="none" opacity="0.6">document action — ungoverned</text>
+<text x="648" y="76" font-size="11" fill="currentColor" stroke="none" opacity="0.55">threshold =</text>
+<text x="648" y="92" font-size="11" fill="currentColor" stroke="none" opacity="0.55">a number in</text>
+<text x="648" y="108" font-size="11" fill="currentColor" stroke="none" opacity="0.55">app config</text>
+
+<line x1="16" y1="168" x2="784" y2="168" stroke-opacity="0.18"/>
+
+<text x="16" y="196" font-size="12" fill="currentColor" stroke="none" opacity="0.55" letter-spacing="1.5">ON THE FABRIC — ONE RUNTIME</text>
+<rect x="16" y="214" width="606" height="86" rx="8" stroke-opacity="0.7"/>
+<text x="30" y="236" font-size="11" fill="currentColor" stroke="none" opacity="0.6">Deterministic Workflow — governance enforced inline</text>
+<rect x="30" y="248" width="118" height="40" rx="6" stroke-opacity="0.55"/>
+<text x="42" y="272" font-size="11" fill="currentColor" stroke="none">Vision Function</text>
+<line x1="148" y1="268" x2="176" y2="268" stroke-opacity="0.55"/><path d="M168 263 l10 5 l-10 5" stroke-opacity="0.55"/>
+<rect x="178" y="248" width="150" height="40" rx="6" stroke-opacity="0.55"/>
+<text x="190" y="266" font-size="11" fill="currentColor" stroke="none">confidence-gated</text>
+<text x="190" y="281" font-size="11" fill="currentColor" stroke="none" opacity="0.75">policy · HITL</text>
+<line x1="328" y1="268" x2="356" y2="268" stroke-opacity="0.55"/><path d="M348 263 l10 5 l-10 5" stroke-opacity="0.55"/>
+<rect x="358" y="248" width="150" height="40" rx="6" stroke-opacity="0.55"/>
+<text x="370" y="266" font-size="11" fill="currentColor" stroke="none">governed Connector</text>
+<text x="370" y="281" font-size="11" fill="currentColor" stroke="none" opacity="0.75">acts on the estate</text>
+<line x1="508" y1="268" x2="536" y2="268" stroke-opacity="0.55"/><path d="M528 263 l10 5 l-10 5" stroke-opacity="0.55"/>
+<rect x="538" y="248" width="72" height="40" rx="6" stroke-opacity="0.55"/>
+<text x="550" y="272" font-size="11" fill="currentColor" stroke="none">audit</text>
+<rect x="642" y="214" width="142" height="86" rx="8" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<text x="656" y="250" font-size="11" fill="currentColor" stroke="none" opacity="0.7">immutable</text>
+<text x="656" y="267" font-size="11" fill="currentColor" stroke="none" opacity="0.7">per-action audit —</text>
+<text x="656" y="284" font-size="11" fill="currentColor" stroke="none" opacity="0.7">action + threshold</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">A THRESHOLD IS A POLICY OBJECT</div>
+<div class="fade-in"><p>The fix is not a better number. It is treating the number as what it has always been — a control — and governing it like one. On a composable process fabric, the threshold is not a literal in downstream code. It is a <strong>versioned policy object bound to the Semantic Ontology</strong>, expressed against a business concept the enterprise already agrees on ("invoice-approval confidence," "reject-and-quarantine confidence"), and enforced inline by the Deterministic Workflow that actually takes the action. Three architectural properties follow directly from that design:</p>
+<ul>
+<li><strong>Versioned and approver-gated.</strong> Changing the cutoff is not editing a config value — it is a change to a governed object that runs through approval with segregation of duties. The person tuning the model is not the person who unilaterally lowers the bar for auto-action.</li>
+<li><strong>Confidence-gated human-in-the-loop.</strong> Human review is a first-class primitive, not an afterthought. Above threshold, the workflow proceeds under permissioned automation; below it, the item routes to an Atomic Agent for review or into a quarantine step — deterministically, every time, because the routing is part of the process, not a branch in someone's script.</li>
+<li><strong>Audited in both directions.</strong> The immutable, per-action audit captures not only what the system did on each detection, but every change to the threshold itself, as its own recorded event. You can answer the auditor's question — what the boundary was, who approved it, and when — from inside the system that made the decision.</li>
+</ul>
+<p>A self-adjusting threshold, in this frame, isn't forbidden — it's <em>governed</em>. An adjustment becomes a proposed, approved, versioned event with a rollback point, not a silent drift. The intelligence can still recommend; the control still changes only under authority.</p></div>
+
+<div class="section-label fade-in">DETECTION TO GOVERNED ACTION</div>
+<div class="fade-in"><p>Step back to the shape of the whole thing. The computer-vision platforms label, train, deploy, and serve a model that <strong>returns a detection</strong>, then hand that detection to a separate system that acts on it without inline oversight. Entroid runs the vision model as a governed <strong>Function inside the executing process</strong>. The detection is consumed by a Deterministic Workflow that acts on it under inline controls, and the action reaches your real systems through a governed Connector — the one primitive that touches the outside world, running over your existing estate. This is emphatically <em>not</em> a claim of zero integration; it is a claim about <em>where the governance sits</em> relative to the wire.</p>
+<p>So the loop closes on one runtime, as one accountable transaction: <strong>detect → decide → act → audit</strong>. Illustratively and hypothetically — a high-confidence defect triggers a governed quarantine-and-rework workflow rather than a signal into a PLC that reworks blind; a high-confidence invoice field feeds a governed posting with segregation of duties rather than an extraction dropped into a bot that books it unchecked. In both, the confidence gate, the human fallback, the action, and the record are the same governed transaction — not a signal thrown over a wall into a system that acts without oversight.</p></div>
+
+<div class="closing fade-in"><blockquote>The model tells you how sure it is. Governance is the discipline of deciding, on the record, what "sure enough" is allowed to do.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

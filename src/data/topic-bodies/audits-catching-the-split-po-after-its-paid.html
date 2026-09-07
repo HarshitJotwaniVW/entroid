@@ -1,0 +1,90 @@
+<div class="hook fade-in">The story always ends the same way. The analytics flagged it: a purchase order quietly split into two amounts that each slipped under the approval threshold. A duplicate payment. A vendor that should never have been paid. The team caught it, and everyone exhales. <strong>But "caught it" is a confession — the money already moved.</strong> The celebrated detective win is a post-mortem with better lighting.</div>
+
+<div class="section-label fade-in">The Win That Admits Defeat</div>
+<div class="fade-in"><p>Give the category its full due first, because it earns it. Pointing analytics at the whole population instead of a hand-picked sample is a genuine advance — sampling misses the one transaction that matters, and full-population testing does not. Continuous monitoring really does shorten the gap between a bad transaction and its discovery. Detection recovers real money, and the knowledge that someone is watching genuinely deters. None of that is marketing; it is value.</p>
+<p>Now read the language the fraud-analytics and continuous-monitoring vendors actually use, and watch the verbs. <em>Connect</em> the data. <em>Detect</em> the anomaly. <em>Flag</em> the exception. <em>Alert</em> the owner. <em>Recover</em> the funds. "Always-on audit readiness" describes always-on <em>watching</em>. Every one of those mechanisms — every single one — fires <strong>after the transaction has already posted</strong>. The split PO cleared. The duplicate paid. The ineligible beneficiary received the wire. The analytics did their job perfectly and the loss still happened, because the tool's earliest possible moment to act is the moment after the action it was meant to stop.</p></div>
+
+<div class="section-label fade-in">Observing Is Not Controlling</div>
+<div class="fade-in"><p>This is not a tuning problem you can solve with a faster refresh or a smarter model. It is architectural. The analytics sit <strong>beside</strong> the ERP, reading an extract of what already happened. They can compute, correlate, and score — but they cannot <strong>refuse</strong>. The control that would have actually stopped the split PO lives somewhere else entirely: in the ERP's own configuration, or in a human following a policy. The detection layer has no hand on the lever. It narrates the transaction; it does not gate it.</p>
+<p>Concede the strongest version of the counter-argument honestly, because it deserves it. Some designs shrink this gap by putting the governance application on the <em>same shared data model</em> as the operational one — risk and controls living on the platform where the work runs, rather than in a bolt-on suite off to the side. That is a real, respectable improvement over siloed GRC: the evidence is closer to the work, and the seams are fewer. But co-location is not enforcement. A data model that <strong>observes</strong> the transaction commit is still not the control that <strong>performs</strong> it. Watching the split PO post on the same platform is architecturally different from the split PO being unable to post at all.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Detection beside the runtime versus control as the executing gate" style="width:100%;height:auto;display:block;color:var(--t2)">
+  <style>
+    .lbl{font:600 12px Inter,sans-serif;fill:currentColor;opacity:.75}
+    .cap{font:500 10px Inter,sans-serif;fill:currentColor;opacity:.55;letter-spacing:.04em}
+    .hd{font:700 11px Inter,sans-serif;fill:currentColor;opacity:.9;letter-spacing:.12em}
+    .ln{stroke:currentColor;fill:none}
+    .ac{stroke:var(--accent);fill:none}
+  </style>
+  <!-- divider -->
+  <line x1="400" y1="30" x2="400" y2="292" class="ln" stroke-width="1" stroke-dasharray="3 5" opacity=".3"/>
+
+  <!-- LEFT: detect beside -->
+  <text x="34" y="42" class="hd">DETECT &#183; BESIDE THE RUNTIME</text>
+  <!-- runtime lane -->
+  <rect x="34" y="196" width="322" height="52" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="50" y="227" class="lbl">ERP / PAYMENT RAIL</text>
+  <!-- flow dots -->
+  <circle cx="300" cy="222" r="5" fill="currentColor" opacity=".7"/>
+  <circle cx="326" cy="222" r="5" class="ln" stroke-width="1.3" opacity=".5"/>
+  <!-- posted checkmark -->
+  <path d="M347 218 l4 5 l7 -10" class="ac" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="300" y="272" class="cap">transaction POSTS &#183; money moves</text>
+  <!-- monitoring box -->
+  <rect x="34" y="66" width="200" height="56" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <text x="50" y="90" class="lbl">ANALYTICS / MONITORING</text>
+  <text x="50" y="108" class="cap">pulls sample &#183; logs &#183; extract</text>
+  <!-- pull arrow up -->
+  <path d="M150 196 L150 124" class="ln" stroke-width="1.2" stroke-dasharray="4 4" opacity=".5"/>
+  <path d="M150 124 l-4 8 l8 0 z" fill="currentColor" opacity=".5"/>
+  <!-- flag-after arrow back down to posted txn -->
+  <path d="M234 100 C320 100 316 150 306 190" class="ln" stroke-width="1.4" opacity=".6"/>
+  <path d="M306 190 l-5 -7 l9 1 z" fill="currentColor" opacity=".6"/>
+  <text x="250" y="150" class="cap">flags AFTER</text>
+  <!-- loss window band -->
+  <rect x="300" y="188" width="60" height="68" rx="6" fill="var(--accent)" opacity=".08"/>
+  <text x="300" y="184" class="cap">loss window</text>
+
+  <!-- RIGHT: control is the step -->
+  <text x="430" y="42" class="hd">PREVENT &#183; THE CONTROL IS THE STEP</text>
+  <!-- lane -->
+  <rect x="430" y="196" width="336" height="52" rx="10" class="ln" stroke-width="1.3" opacity=".55"/>
+  <!-- incoming txn -->
+  <circle cx="470" cy="222" r="5" fill="currentColor" opacity=".7"/>
+  <path d="M482 222 L540 222" class="ln" stroke-width="1.4" opacity=".55"/>
+  <!-- gate (diamond) -->
+  <path d="M572 222 l22 -22 l22 22 l-22 22 z" class="ac" stroke-width="1.8" fill="var(--accent)" fill-opacity=".07"/>
+  <text x="560" y="188" class="cap">threshold &#183; SoD &#183; authority gate</text>
+  <!-- refused: X + turn back -->
+  <path d="M586 216 l16 12 M602 216 l-16 12" class="ac" stroke-width="2" stroke-linecap="round"/>
+  <path d="M616 210 C700 200 700 205 700 222" class="ln" stroke-width="1.4" opacity=".5" stroke-dasharray="4 4"/>
+  <text x="628" y="238" class="cap">cannot post</text>
+  <!-- immutable record byproduct -->
+  <path d="M594 244 L594 276" class="ln" stroke-width="1.2" opacity=".5"/>
+  <rect x="548" y="276" width="96" height="24" rx="6" class="ac" stroke-width="1.3" fill="var(--accent)" fill-opacity=".05"/>
+  <text x="560" y="291" class="cap">per-action record</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">The Split PO That Never Posts</div>
+<div class="fade-in"><p>Entroid moves the control from beside the runtime into the runtime. On the Composable Process Fabric, procurement and payment are modelled, <strong>executed</strong>, and <strong>governed</strong> as one composition of five primitives on a shared ontology. The threshold, the segregation-of-duties rule, and the entitlement and authority limits are carried inline by a <strong>Deterministic Workflow</strong> — the fixed, rule-governed routing every action must pass through. And a <strong>Connector</strong> is the only primitive that can write to the ledger or the payment rail, under authentication, authorization, and audit. So the approval gate is not a report <em>about</em> the PO. It is the step the PO must clear to reach the payment rail at all.</p>
+<p>Consider — illustratively — a purchase order split into two lines of $9,500 each to duck a $10,000 gate. The workflow evaluates authority against the ontology, so it sees what a downstream extract has to reconstruct: the same requester, the same vendor, the same period, one economic transaction. The second line never routes to payment. There is no anomaly to detect because there is no posted transaction to find. The same holds structurally for the others: the identity that raised the PO cannot also release the payment, because the SoD gate refuses to route both to one actor; the ineligible beneficiary is never paid, because the Connector's write is conditioned on entitlement and the payment instruction is simply never emitted.</p>
+<p>And because the control <em>is</em> the executing step, the record is a byproduct of running rather than a separate collection exercise. Every refusal and every passing action drops an immutable, per-action entry — <strong>continuous, population-complete, bound to the action itself, not sampled or reconstructed at quarter-end.</strong> One control, enforced once in the workflow and expressed against the ontology, can be projected to whatever framework the assurance team needs to speak in — SOX, ISO, SOC 2 — without being re-enforced anywhere.</p>
+<ul>
+<li><strong>Threshold gate</strong> — the aggregate is evaluated inline; the sub-threshold split never reaches the payment step.</li>
+<li><strong>Segregation of duties</strong> — raise and release cannot resolve to the same identity, so the collusive path is unroutable, not merely reported.</li>
+<li><strong>Entitlement &amp; authority limits</strong> — the Connector will not write a payment instruction to an ineligible or unauthorized beneficiary.</li>
+<li><strong>Evidence as byproduct</strong> — the immutable per-action record is emitted by execution, so the audit trail is the exhaust of running, not a project.</li>
+</ul>
+<p>Be precise about what this claim is and is not. These are <strong>architectural properties of the design</strong>, not measured outcomes from a deployment — the fabric is built so a non-compliant transaction has no path to execute, and that is a statement about structure. Nor is it a claim that nothing else in the market can ever block anything; narrow pre-execution stops do exist. The distinction is that here, inline deterministic enforcement is a <strong>native property of the fabric across every process</strong> — not a sensor bolted onto one runtime for one class of action — carrying a provable, per-action record with it.</p></div>
+
+<div class="section-label fade-in">What Detection Still Earns</div>
+<div class="fade-in"><p>Do not let the argument tip into a fantasy of zero. Prevention removes the loss only where the process actually runs on the fabric. Plenty of spend will still flow through systems the fabric does not govern yet — legacy rails, third-party portals, a payment someone pushes through a spreadsheet and a phone call. On that surface, detective analytics remains exactly the right and necessary layer, and the honest posture is to keep investing in it there.</p>
+<p>The point is not to retire detection on day one. It is to <strong>shrink the surface that needs it</strong> — process by process, Connector by Connector — until "we caught it after it paid" is the exception you handle for the un-migrated edges, not the operating model you celebrate as a win. Recovery is what you do when prevention was never in the architecture. The better system spends less of its life recovering because fewer bad transactions ever happen.</p></div>
+
+<div class="closing fade-in"><blockquote>The best fraud analytics in the world is still a faster autopsy. The real win is the transaction that could never post.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

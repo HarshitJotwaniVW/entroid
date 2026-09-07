@@ -1,0 +1,103 @@
+<div class="hook fade-in"><p>Every document-AI demo ends on the same triumphant frozen frame: the extracted invoice, each field lit with a colored box that traces the number back to the exact pixel it came from, a confidence score beside every value. It is genuinely impressive work — and it stops one step short of the only step your auditor asks about. Grounding proves <em>where the number came from</em>. It says nothing about <em>who let it post</em>. <strong>The liability in regulated finance was never in the read. It is in the act.</strong></p></div>
+
+<div class="section-label fade-in">THE PART THE DEMO NEVER SHOWS</div>
+<div class="fade-in">
+<p>Let me give the category its due first, because it has earned real credit and any honest argument has to start there. The move to expert-guided labeling and rapid model training genuinely put computer vision within reach — teams that could never have stood up a bespoke extraction model now train one on their own document set in an afternoon. Pixel-level grounding and source citations are a genuine advance: an extracted field that points back to the precise region of the page it was read from is a verifiable read, and that verifiability is a real answer to hallucination. Confidence scores paired with human-in-the-loop review are a pragmatic, honest middle path — the model tells you where it is unsure and a person adjudicates the rest. And edge deployment behind enterprise certifications — SOC 2, HIPAA, zero-data-retention — is real assurance for documents you cannot send to somebody else's cloud.</p>
+<p>All of that is true. All of it governs the same thing: <strong>the model and the read.</strong> Accuracy, drift, labeling quality, provenance of the pixel. It is a rigorous, well-instrumented answer to the question <em>"is this the right number?"</em> Then the demo ends — and the extracted JSON leaves the frame. Somewhere off-screen, an RPA bot picks it up and keys it into accounts payable, or an ERP interface table ingests it and a posting job commits it, or a workflow engine routes it to a payment run. The invoice gets <em>paid</em>. And not one of the controls that made the read trustworthy travels with the number into the system that acts on it.</p>
+</div>
+
+<div class="section-label fade-in">'AGENTIC' STOPS AT THE PAGE EDGE</div>
+<div class="fade-in">
+<p>Watch how the newest positioning describes its own reach and you can see exactly where the ambition ends. The document-AI platforms call themselves agentic — and the agency, precisely scoped, is <em>reading</em>: the agent plans the extraction, verifies its own fields, retries the low-confidence ones, cites its sources. That is a better reader. It is still a reader. The managed OCR and IDP endpoints are even plainer about it — they emit clean structured fields and hand them to "your downstream system." In both cases the consequential act, the posting, is quietly reclassified as the customer's integration problem. It is drawn as an arrow leaving the diagram.</p>
+<p>The most advanced vendors do close that arrow, and I will not pretend otherwise — piping structured fields straight into an ERP, an MES, or an RPA bot is genuinely more end-to-end than handing back a JSON blob and wishing you luck. Concede it plainly. Then look at what actually got built. The extraction lives in one tool, governed as a model. The decision-and-action logic — the approval limits, the segregation of duties, the "who is allowed to release this payment" — lives in a <em>different</em> tool, authored by <em>different</em> people, on a <em>different</em> schedule. No policy crosses the wire; only data does. What you are left with is a <strong>split-brain audit</strong>: one system can tell you, in beautiful detail, what it read off the page, and a second system can tell you what it did — and nothing owns the sentence that joins them. The read is provable. The act is orphaned.</p>
+<ul>
+<li><strong>The read is governed; the posting is not.</strong> Confidence and grounding gate whether a field is <em>correct</em>. They never gate whether the resulting entry is <em>authorized</em> — that check, if it exists, happens later, in another system, under another owner.</li>
+<li><strong>A confidence score is not an approval.</strong> "98% sure this is $4,812,000" is a statement about the pixels. It is not a statement that this vendor is on file, that this amount sits under the approver's limit, or that the person releasing it is not the person who entered it.</li>
+<li><strong>The wall has no memory.</strong> Once the JSON is thrown over it, the extractor cannot know whether the bot posted once, twice, or to the wrong period — and the bot cannot know how sure the extractor was. Reconciling the two is a quarter-end project.</li>
+</ul>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Left: a document-AI endpoint labels, trains, and deploys a model, grounding proves the read, and the extracted JSON is thrown over a dashed wall into a separate RPA bot or ERP that posts the invoice ungoverned. Right: Entroid runs the extraction as a Function inside a Deterministic Workflow — a confidence gate with human-in-the-loop, then segregation of duties and a threshold-approval check, then a governed ERP Connector that posts only on pass, with one immutable per-action audit from read to posting.">
+  <line x1="400" y1="18" x2="400" y2="304" stroke-width="1" stroke-dasharray="4 6" opacity="0.35"/>
+  <text x="200" y="24" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor" stroke="none">DOCUMENT-AI ENDPOINT</text>
+  <text x="600" y="24" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor" stroke="none">ENTROID</text>
+
+  <!-- LEFT: extract endpoint -->
+  <rect x="112" y="40" width="176" height="42" rx="6" stroke-width="1.4" opacity="0.85"/>
+  <text x="200" y="58" text-anchor="middle" font-size="11.5" fill="currentColor" stroke="none">Label &#183; train &#183; deploy</text>
+  <text x="200" y="73" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" opacity="0.75">grounding proves the read</text>
+  <line x1="200" y1="82" x2="200" y2="98" stroke-width="1.4"/><path d="M196 94 L200 100 L204 94" stroke-width="1.4"/>
+  <rect x="112" y="100" width="176" height="30" rx="6" stroke-width="1.4" opacity="0.85"/>
+  <text x="200" y="119" text-anchor="middle" font-size="11.5" fill="currentColor" stroke="none">Extracted JSON + confidence</text>
+  <!-- the wall -->
+  <line x1="200" y1="130" x2="200" y2="150" stroke-width="1.4"/><path d="M196 146 L200 152 L204 146" stroke-width="1.4"/>
+  <line x1="120" y1="158" x2="280" y2="158" stroke-width="2" stroke-dasharray="5 5" opacity="0.9"/>
+  <text x="200" y="150" text-anchor="middle" font-size="9.5" font-style="italic" fill="currentColor" stroke="none" opacity="0.7">thrown over the wall</text>
+  <rect x="104" y="170" width="192" height="60" rx="8" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.85"/>
+  <text x="200" y="192" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">RPA BOT / ERP POSTS</text>
+  <text x="200" y="210" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" opacity="0.8">separate tool &#183; other owners</text>
+  <text x="200" y="223" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" opacity="0.8">no policy crosses the wire</text>
+  <text x="200" y="256" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" stroke="none" opacity="0.7">split-brain audit:</text>
+  <text x="200" y="272" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" stroke="none" opacity="0.7">what it read &#8800; what it did</text>
+
+  <!-- RIGHT: function inside workflow -->
+  <rect x="512" y="40" width="176" height="30" rx="6" stroke-width="1.4" opacity="0.85"/>
+  <text x="600" y="55" text-anchor="middle" font-size="11" fill="currentColor" stroke="none">Vision model = Function</text>
+  <text x="600" y="66" text-anchor="middle" font-size="9" fill="currentColor" stroke="none" opacity="0.7">governed extraction, in-process</text>
+  <line x1="600" y1="70" x2="600" y2="84" stroke-width="1.4"/><path d="M596 80 L600 86 L604 80" stroke-width="1.4"/>
+  <rect x="505" y="86" width="190" height="40" rx="6" stroke-width="2" fill="currentColor" fill-opacity="0.06"/>
+  <text x="600" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">CONFIDENCE GATE &#183; HITL</text>
+  <text x="600" y="118" text-anchor="middle" font-size="9.5" fill="currentColor" stroke="none" opacity="0.85">low confidence &#8594; human adjudicates</text>
+  <line x1="600" y1="126" x2="600" y2="140" stroke-width="1.4"/><path d="M596 136 L600 142 L604 136" stroke-width="1.4"/>
+  <rect x="505" y="142" width="190" height="40" rx="6" stroke-width="2" fill="currentColor" fill-opacity="0.06"/>
+  <text x="600" y="159" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">SoD &#183; THRESHOLD APPROVAL</text>
+  <text x="600" y="174" text-anchor="middle" font-size="9.5" fill="currentColor" stroke="none" opacity="0.85">inline policy on the posting</text>
+  <!-- fail path -->
+  <line x1="695" y1="162" x2="742" y2="162" stroke-width="1.4"/><path d="M738 158 L744 162 L738 166" stroke-width="1.4"/>
+  <rect x="700" y="180" width="92" height="32" rx="6" stroke-width="1.3" stroke-dasharray="4 4" opacity="0.75"/>
+  <text x="746" y="200" text-anchor="middle" font-size="9.5" fill="currentColor" stroke="none">held / routed</text>
+  <!-- pass -->
+  <line x1="600" y1="182" x2="600" y2="196" stroke-width="1.4"/><path d="M596 192 L600 198 L604 192" stroke-width="1.4"/>
+  <rect x="512" y="198" width="176" height="30" rx="6" stroke-width="1.4" opacity="0.85"/>
+  <text x="600" y="217" text-anchor="middle" font-size="11" fill="currentColor" stroke="none">ERP Connector posts (on pass)</text>
+  <line x1="600" y1="228" x2="600" y2="242" stroke-width="1.4"/><path d="M596 238 L600 244 L604 238" stroke-width="1.4"/>
+  <rect x="512" y="244" width="176" height="46" rx="6" stroke-width="1.6" fill="currentColor" fill-opacity="0.04"/>
+  <text x="600" y="264" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor" stroke="none">ONE IMMUTABLE AUDIT</text>
+  <text x="600" y="280" text-anchor="middle" font-size="10" font-style="italic" fill="currentColor" stroke="none" opacity="0.75">read &#8594; posting, one transaction</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE LIABILITY IS IN THE ACT, NOT THE READ</div>
+<div class="fade-in">
+<p>If you run accounts payable, or you sign the SOX certification, you already know this in your bones: no regulator has ever fined a company for a low-confidence bounding box. They fine you for the <em>payment</em>. The liability lives entirely in the act — who let this invoice post, under what policy, above which approval limit, and whether the person or agent that read it is the same one that released it. Those are not questions about pixels. They are questions about authorization, segregation of duties, and threshold control, and they attach to the moment money moves — not the moment a field was extracted.</p>
+<p>This is why "extraction accuracy" is table stakes and quietly the wrong scoreboard. A perfectly extracted invoice for a vendor that is not on file, or for an amount above the approver's limit, or keyed by the same identity that approves it, is a <em>flawless read of a transaction that should never have posted</em>. The document-AI stack graded the read and passed. The posting — the part that carries the fine — was handled by a bot running under a shared service account, with the control logic, if any, sitting in yet another system. When the auditor asks "who approved this, under what policy," the honest answer is assembled after the fact from two logs that were never designed to be one sentence.</p>
+</div>
+
+<div class="section-label fade-in">ONE INVOICE, ONE GOVERNED TRANSACTION</div>
+<div class="fade-in">
+<p>Entroid is built so the read and the act are the same accountable transaction, on one runtime, rather than a signal thrown over a wall. This is an architectural property of how the primitives compose — state it at that altitude, not as a promised result. The vision model that reads the invoice runs as a <strong>Function</strong> — governed extraction executing <em>inside</em> the process rather than at an endpoint outside it. Its output is consumed immediately by a <strong>Deterministic Workflow</strong> that carries the governance <em>inline</em>, as preconditions of the posting itself.</p>
+<p>Consider how an AP posting would run on the fabric — illustrative, not a claimed deployment or metric:</p>
+<ul>
+<li><strong>Read, as a governed Function.</strong> The invoice is extracted with the same grounding and confidence you already value — provenance of every field preserved, because verifiable reads are worth keeping.</li>
+<li><strong>Adjudicate the uncertainty, inline.</strong> Where a field falls below the confidence the policy requires, the workflow pauses and an <strong>Atomic Agent</strong> routes it to a human — human-in-the-loop as a first-class step before commit, not a courtesy screen bolted on afterward.</li>
+<li><strong>Enforce the authorization, inline.</strong> The <strong>Deterministic Workflow</strong> checks segregation of duties — the identity that read or entered the invoice cannot be the identity that releases it — and evaluates threshold approvals against the amount: under a limit it proceeds, above it, it routes to the controller, above a higher one, it requires dual approval. This is policy on the posting, not a confidence score on the pixel.</li>
+<li><strong>Act, through a governed Connector.</strong> Only the <strong>Connector</strong> primitive touches the ERP, and it commits the entry <em>only after</em> the controls have passed. A posting that fails SoD or exceeds an unapproved limit never reaches the ledger — there is no non-compliant entry to detect later, because it was never allowed to commit.</li>
+<li><strong>Audit, as a byproduct.</strong> The <strong>immutable per-action audit</strong> records read through posting as one chain — what was extracted, how confident, who adjudicated, which policy fired, who approved, what posted. Not two logs stitched together at quarter-end. One transaction, one record, one owner.</li>
+</ul>
+<p>Detect the field, decide under policy, act through the Connector, audit inline — one accountable transaction, not a detection thrown into a system that posts without oversight.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE HONEST ALTITUDE</div>
+<div class="fade-in">
+<p>Be precise about what this claim is and is not. It is not that ES reads a document better than a purpose-built, expert-guided extraction model — that lineage is genuinely strong, and grounding plus confidence plus HITL is a real, verifiable answer to the read. It is not that ES floats above your estate and needs no integration; it runs <em>over</em> your existing ERP, AP system, and document stores through governed <strong>Connectors</strong>. The integration does not vanish — it becomes a governed step instead of an ungoverned handoff.</p>
+<p>The wedge is narrower and sharper than "we extract better," and it survives any competitor's roadmap because it is structural. When the control that makes a read trustworthy lives in the model, and the control that makes an act <em>authorized</em> lives in a separate system reached across a wall, you can have a perfect read and an unaccountable posting at the same time — and in regulated finance, the posting is the part with your name on it. ES closes that gap by making the corrective, consequential action a governed step in the same workflow as the read, on the same runtime, under the same audit. The extraction proves the number. The workflow owns the consequence.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Grounding proves where the number came from. It never proves who was allowed to pay it — and that is the only line your auditor reads.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

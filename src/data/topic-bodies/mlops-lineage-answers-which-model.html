@@ -1,0 +1,98 @@
+<div class="hook fade-in">
+<p>Your model registry can tell you, to the version and the feature vector, exactly which model produced a given score. It cannot tell you what your enterprise <strong>did</strong> with that score — and that is the only thing the regulator, the incident reviewer, and the customer's adverse-action complaint actually want to know.</p>
+</div>
+
+<div class="section-label fade-in">THE HALF OF THE STORY LINEAGE TELLS</div>
+<div class="fade-in">
+<p>Give the ML platforms their due. Feature stores, model registries, and end-to-end lineage genuinely make a model reproducible: you can pin the training data, the feature transformations, the hyperparameters, and the exact version alias that served a request. Inference tables capture inputs and outputs at scale. Drift and quality monitoring catch a model degrading in production, and the newer agent-evaluation harnesses — judge models scoring factuality, accuracy, and cost — put real numbers on model behavior. The most advanced AI gateways go further still: they govern the model <em>call</em> itself, applying rate limits, guardrails, credential management, and inference logging even to agents running off the platform.</p>
+<p>This is not a strawman, and none of it is going away. It makes the <strong>model</strong> reproducible and the <strong>call</strong> observable. But read the artifact it produces closely and you find it answers one family of questions — <em>which model, which version, which features, which score, called how often, within which guardrails</em> — with real rigor. It is a complete account of the model, and of the request made to it. It is silent on the sentence that follows.</p>
+</div>
+
+<div class="section-label fade-in">THE QUESTION AFTER THE SCORE</div>
+<div class="fade-in">
+<p>A model returns a prediction. Nothing has happened yet. The event that carries legal and financial weight is the <strong>action your enterprise takes on that prediction</strong>: the loan declined, the payment released, the transaction posted, the claim routed to fast-track, the customer's plan downgraded. That action is what a regulator examines, what an incident review reconstructs, and what an adverse-action complaint disputes.</p>
+<p>And the question they ask has a specific shape. Not "which model version scored this applicant," but: <strong>what action was taken on that score, under which policy in force at that moment, by which identity — human or agent — and can it be reversed?</strong> A declined applicant is owed specific reasons for the <em>decision</em>, not a model card. An incident review needs to know which automated actions fired and on whose authority. Model lineage, however faithful, is the wrong shape for this question. It documents the input to the decision, not the decision.</p>
+</div>
+
+<div class="section-label fade-in">TWO DIFFERENT RECORDS</div>
+<div class="fade-in">
+<p>The gap is a schema gap, and naming it makes it concrete. Per-model lineage is keyed on the model: version, training set, feature vector, score, drift over time. It is organized around the artifact. What an auditor needs is <strong>per-action provenance</strong>, keyed on the act: input, prediction, policy evaluated, action taken, actor, outcome, reversibility. One is a biography of the model; the other is a record of a thing that was done to a customer or to a ledger.</p>
+<p>You cannot derive the second from the first, because most of its columns — the policy that was in force, the identity that committed the act, the downstream state that changed — never enter the model's world at all. They live in whatever system actually took the action.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A served model endpoint whose prediction is acted on by a separate system across a dashed boundary, versus ES where the model is a governed Function inside one workflow that emits a single per-action record.">
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" stroke-width="1.2"/></marker>
+</defs>
+<style>
+.ttl{font-family:inherit;font-size:13px;font-weight:600;fill:currentColor;}
+.lbl{font-family:inherit;font-size:11px;fill:currentColor;}
+.sm{font-family:inherit;font-size:9.5px;fill:currentColor;opacity:.6;}
+.bx{fill:none;stroke:currentColor;stroke-width:1.3;opacity:.7;}
+.soft{fill:currentColor;opacity:.05;}
+.dash{fill:none;stroke:currentColor;stroke-width:1.3;stroke-dasharray:5 4;opacity:.55;}
+.flow{stroke:currentColor;stroke-width:1.3;fill:none;opacity:.6;}
+</style>
+
+<text x="30" y="24" class="ttl">MLOps &#8212; the model, governed as an artifact</text>
+<rect x="30" y="40" width="300" height="40" rx="5" class="soft"/><rect x="30" y="40" width="300" height="40" rx="5" class="bx"/>
+<text x="45" y="60" class="lbl">train &#8594; register &#8594; serve &#8594; monitor</text>
+<text x="45" y="73" class="sm">reproducible model &#183; lineage &#183; drift</text>
+<rect x="30" y="94" width="300" height="34" rx="5" class="bx"/>
+<text x="45" y="115" class="lbl">AI gateway &#8212; governs + logs the CALL</text>
+<line x1="180" y1="128" x2="180" y2="166" class="flow" marker-end="url(#ah)"/>
+<text x="188" y="150" class="sm">prediction</text>
+<rect x="30" y="168" width="300" height="66" rx="5" class="dash"/>
+<text x="45" y="190" class="lbl">Separate system of record</text>
+<text x="45" y="207" class="lbl">&#8212; takes &amp; commits the ACTION</text>
+<text x="45" y="224" class="sm">the action never enters model lineage</text>
+
+<text x="440" y="24" class="ttl">Entroid &#8212; model as a Function in the process</text>
+<rect x="440" y="40" width="320" height="194" rx="9" class="soft"/><rect x="440" y="40" width="320" height="194" rx="9" class="bx"/>
+<text x="456" y="60" class="lbl">Deterministic Workflow &#183; one runtime</text>
+<rect x="460" y="72" width="280" height="30" rx="5" class="bx"/>
+<text x="472" y="91" class="lbl">Function: model &#8594; prediction</text>
+<line x1="600" y1="102" x2="600" y2="116" class="flow" marker-end="url(#ah)"/>
+<rect x="460" y="118" width="280" height="30" rx="5" class="bx"/>
+<text x="472" y="137" class="lbl">Inline gate: approval &#183; SoD &#183; threshold</text>
+<line x1="600" y1="148" x2="600" y2="162" class="flow" marker-end="url(#ah)"/>
+<rect x="460" y="164" width="280" height="30" rx="5" class="bx"/>
+<text x="472" y="183" class="lbl">Connector &#8594; commits the action</text>
+<rect x="460" y="202" width="280" height="24" rx="4" class="soft"/><rect x="460" y="202" width="280" height="24" rx="4" class="bx"/>
+<text x="470" y="218" class="sm">immutable per-action record: input &#8594; prediction &#8594; policy &#8594; action &#8594; actor &#8594; outcome</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE RECONSTRUCTION PROBLEM</div>
+<div class="fade-in">
+<p>The category's answer to this is reconstruction. The agent-governance vendors promise to rebuild the decision path from telemetry — every inference and tool call streamed into a central analytical store as queryable SQL tables, ready to be joined after the fact. It is genuinely useful engineering, and for the calls it observes, it is a real audit trail <em>of the call</em>. But three structural problems keep it from being a record of the action.</p>
+<ul>
+<li><strong>It is a join, not a record.</strong> The provenance is assembled after the fact by correlating inference logs with downstream tool-call logs kept in separate systems, across trust boundaries. Its integrity depends on every intermediate system having logged faithfully, on clocks agreeing, and on the correlation keys lining up. A reconstruction is an inference about what happened; it carries the evidentiary weight of a reconstruction, not of the act.</li>
+<li><strong>The gateway governs the call, not the commit.</strong> Even the most advanced gateway is a governed proxy sitting in front of model-serving. It governs the inference request and the tool invocation and captures them — but the business action the prediction drives commits in a system of record the gateway sits <em>beside</em>, not inside. It sees the API call go out; it does not hold the transaction that posts.</li>
+<li><strong>It cannot capture what it never saw.</strong> An action taken through a path the platform never brokered — a shadow execution path — leaves no row to join. The join is only as complete as the instrumentation, and the one action most worth auditing is often the one that ran around it.</li>
+</ul>
+<p>Each problem is survivable on its own. Together they mean the reconstructed decision path is at best a high-quality estimate of what happened, produced by a system that governed the model's <em>call</em> and inferred the rest. That is a fine debugging tool. It is a shaky footing for the sentence "here is the complete, tamper-evident record of every action this model drove, and who was accountable for each."</p>
+</div>
+
+<div class="section-label fade-in">WHAT THE FRAMEWORKS ACTUALLY ASK FOR</div>
+<div class="fade-in">
+<p>This is not a hypothetical bar. Model-risk guidance in the mold of SR 11-7 has never been only about model development; it treats model <em>use</em> and implementation controls as first-class — the controls around how a model's output is consumed and acted upon, and the outcomes analysis that follows. Decision-level accountability regimes go further: the newer AI regulation attaches record-keeping, human-oversight, and traceability obligations to the high-risk <em>decision the system makes</em>, not merely to the model that informed it.</p>
+<p>Consider the most concrete version. An applicant is declined; the law entitles them to the specific principal reasons for that decision. What discharges the obligation is not the model's feature-importance chart but the record of the <em>action</em> — the reasons in force at the moment of denial, tied to the policy applied and the identity that committed it. Per-model lineage supplies the raw ingredient and stops there; the accountable fact lives one system over.</p>
+<p>Against that bar, a per-model lineage graph plus a post-hoc telemetry join is structurally short. It documents the model rigorously, reconstructs the action approximately, and goes dark exactly where an action took a path the platform never observed. For an examiner asking "show me every automated adverse action this quarter, the policy each ran under, and who authorized it," a reassembled trace is an argument you make about the evidence. It is not the ledger.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">MODEL-TO-ACTION ON ONE RUNTIME</div>
+<div class="fade-in">
+<p>Entroid closes the gap by changing where the model sits. Architecturally, it is not an endpoint the process calls out to; it runs as a governed <strong>Function</strong> inside a <strong>Deterministic Workflow</strong> on a single runtime. The prediction is consumed, in the same executing process, by the workflow step that acts on it — and that step is where the inline controls live: the approval gate, the threshold, the separation-of-duties check, the human-in-the-loop pause that is a first-class primitive rather than a bolt-on. The only primitive that touches an external system is a governed <strong>Connector</strong>, so the act of committing — posting the entry, releasing the payment — happens under the same governance as the prediction that triggered it.</p>
+<p>Because prediction and action share one transaction boundary, the provenance record is not assembled later; by design it is emitted <strong>as a byproduct of execution</strong> — input, prediction, policy evaluated, action taken, actor, outcome — in one immutable per-action record, explainable by construction. There is no shadow path to miss, because the action does not commit except <em>through</em> the governed step. This is a property of the design, not a dashboard bolted over it: the audit and the execution are the same event.</p>
+<p>Be clear about what this is and is not. ES does not levitate above your estate — it runs over your existing systems through those governed Connectors, so the integration work is real and the fabric earns its place one connected system at a time. What changes is architectural: the model and the action it drives stop living in two systems stitched together after the fact, and start living in one governed process whose audit <em>is</em> its execution. The MLOps stack is built to answer "which model." ES is built to answer "what did you do."</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Lineage proves which model spoke. Only the runtime that took the action can prove what you did about it.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

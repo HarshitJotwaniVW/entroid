@@ -1,0 +1,88 @@
+<div class="hook fade-in"><p>You ran the RFP. You bought the platform that topped the analyst grid for model governance. Your models are versioned, monitored, lineage-traced, and validated end to end. And you still cannot produce, on demand, a defensible answer to the one question a regulator, a customer, or a court will actually put to you: <strong>was this specific decision authorized?</strong> Because the thing you governed was the model. The thing they are challenging is the action it drove.</p></div>
+
+<div class="section-label fade-in">THE CERTIFICATE AND THE EVENT</div>
+<div class="fade-in">
+<p>The certificate you paid for attests to the model. The event under scrutiny is the action. A regulator does not sanction a model card. A customer does not appeal a drift chart. A court does not adjudicate a feature store. The loan is denied. The claim is rejected. The account is frozen. The credit line is cut the week before a mortgage closes. That action — automated, consequential, taken <em>on</em> a prediction — is the highest-liability surface in your enterprise, and lifecycle model governance stops one step short of it.</p>
+<p>This is not a knock on the discipline. It is a boundary in the architecture. The platforms that win the governance category govern the <strong>model</strong> and the <strong>call</strong> to it. The exposure your office is accountable for lives in the <strong>decision</strong> — and the decision executes somewhere the model platform does not run.</p>
+</div>
+
+<div class="section-label fade-in">WHAT THE #1 RANKING ACTUALLY CERTIFIES</div>
+<div class="fade-in">
+<p>Give the category its due, because over-claiming here is how you lose the expert in the room. The model-risk and AutoML vendors, and the universal AI platforms that say they "close the governance loop," earned those rankings on real capability. Feature stores, model registries, and end-to-end lineage genuinely make a model reproducible and auditable <em>as an artifact</em>. One-click serving really does compress deployment from months to hours. Drift and quality monitoring, and the newer agent-evaluation layers — judges that score accuracy, factuality, and cost — are real and valuable. And the most advanced AI gateways genuinely govern the model call itself: rate limits, guardrails, credential management, inference logging, applied even to agents running off-platform. That is sophisticated, and it is not vaporware.</p>
+<p>Here is the wedge. Everything in that paragraph governs the model and the call to it. The prediction is served, evaluated, and logged. But a served prediction is not a committed decision — and the platform's governance ends where the artifact ends.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE PREDICTION BOUNDARY</div>
+<div class="fade-in">
+<p>There is a line inside every ML architecture that audit programs rarely draw explicitly. Call it the <strong>prediction boundary</strong>. On one side, the model is trained, registered, deployed, served, and monitored — and, in the best designs, the inference request and any tool invocation are proxied through a gateway that rate-limits, guardrails, and captures the call. All of that is on the governed side. All of it is real.</p>
+<p>But that gateway, however advanced, is a governed <em>proxy in front of model-serving</em>. It governs the call and captures it. The business action the prediction drives — post the transaction, release the payment, freeze the account, deny the application — commits in a system of record the gateway sits <strong>beside, not inside</strong>. Between the served prediction and the committed action sits a seam: application code, a message queue, an RPA bot, a human clicking through a console. The model platform observes that seam at best; it does not govern it. And that seam is exactly where liability concentrates and where the decision-level audit trail goes quiet.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Left: a model served as an endpoint and logged by a gateway, whose prediction crosses a dashed boundary to an app that takes the business action outside the governed perimeter. Right: a model as a governed function inside a deterministic workflow, where the prediction passes through an inline gate to a governed connector that commits, with an immutable per-action audit — all on one runtime.">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="currentColor" stroke="none" opacity="0.45"/></marker>
+  </defs>
+  <line x1="400" y1="30" x2="400" y2="300" stroke="currentColor" opacity="0.18" stroke-dasharray="2 6"/>
+
+  <!-- LEFT: model as endpoint -->
+  <text x="30" y="26" font-size="12" fill="currentColor" stroke="none" opacity="0.55" letter-spacing="1.5">MODEL AS ENDPOINT · governed as an artifact</text>
+  <rect x="52" y="44" width="296" height="32" rx="6" stroke="currentColor" opacity="0.4"/>
+  <text x="200" y="64" font-size="12.5" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">Train → Register → Deploy</text>
+  <line x1="200" y1="76" x2="200" y2="88" stroke="currentColor" opacity="0.4" marker-end="url(#ah)"/>
+  <rect x="52" y="90" width="296" height="46" rx="6" stroke="currentColor" opacity="0.4"/>
+  <text x="200" y="110" font-size="12.5" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">Serve · Monitor</text>
+  <text x="200" y="126" font-size="11" fill="currentColor" stroke="none" opacity="0.55" text-anchor="middle">gateway logs the CALL</text>
+  <line x1="200" y1="136" x2="200" y2="152" stroke="currentColor" opacity="0.4" marker-end="url(#ah)"/>
+  <text x="200" y="150" font-size="11" fill="currentColor" stroke="none" opacity="0.7" text-anchor="middle"></text>
+  <line x1="40" y1="166" x2="360" y2="166" stroke="currentColor" opacity="0.4" stroke-dasharray="5 5"/>
+  <text x="200" y="181" font-size="10.5" fill="currentColor" stroke="none" opacity="0.5" text-anchor="middle">— governed perimeter ends · prediction crosses out —</text>
+  <rect x="52" y="192" width="296" height="46" rx="6" stroke="currentColor" opacity="0.4" stroke-dasharray="6 4"/>
+  <text x="200" y="212" font-size="12.5" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">App · bot · console</text>
+  <text x="200" y="228" font-size="11.5" fill="currentColor" stroke="none" opacity="0.7" text-anchor="middle">takes the business ACTION</text>
+  <text x="200" y="266" font-size="11" fill="currentColor" stroke="none" opacity="0.55" text-anchor="middle">The action commits outside the platform.</text>
+
+  <!-- RIGHT: model as function -->
+  <text x="452" y="26" font-size="12" fill="currentColor" stroke="none" opacity="0.55" letter-spacing="1.5">MODEL AS FUNCTION · governed inline</text>
+  <rect x="430" y="40" width="340" height="206" rx="10" stroke="currentColor" opacity="0.55"/>
+  <text x="600" y="60" font-size="11" fill="currentColor" stroke="none" opacity="0.6" text-anchor="middle">Deterministic Workflow · one runtime</text>
+  <rect x="452" y="72" width="296" height="34" rx="6" stroke="currentColor" opacity="0.4"/>
+  <text x="600" y="93" font-size="12.5" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">Model = Function → prediction</text>
+  <line x1="600" y1="106" x2="600" y2="120" stroke="currentColor" opacity="0.4" marker-end="url(#ah)"/>
+  <rect x="452" y="122" width="296" height="38" rx="6" stroke="currentColor" opacity="0.4"/>
+  <text x="600" y="145" font-size="12" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">Inline gate: approval · threshold · SoD · HITL</text>
+  <line x1="600" y1="160" x2="600" y2="174" stroke="currentColor" opacity="0.4" marker-end="url(#ah)"/>
+  <rect x="452" y="176" width="296" height="38" rx="6" stroke="currentColor" opacity="0.4"/>
+  <text x="600" y="199" font-size="12" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">Governed Connector → commits to record</text>
+  <line x1="600" y1="246" x2="600" y2="260" stroke="currentColor" opacity="0.4" marker-end="url(#ah)"/>
+  <rect x="452" y="262" width="296" height="30" rx="6" stroke="currentColor" opacity="0.5"/>
+  <text x="600" y="281" font-size="12" fill="currentColor" stroke="none" opacity="0.8" text-anchor="middle">Immutable per-action audit</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHAT THE REGULATOR IS ACTUALLY ASKING</div>
+<div class="fade-in">
+<p>Reframe the word <em>governance</em>. In the model-platform vocabulary it means build-time and access-time control: who trained it, on what data, with what performance, served through which gate. In the vocabulary of the frameworks you answer to, governance means <strong>decision-time</strong> control. Read them closely and the pattern is unmistakable — every obligation attaches to the action, not the artifact.</p>
+<ul>
+<li><strong>ECOA / FCRA adverse action.</strong> When credit is denied, the duty attaches to the adverse-action event itself: specific principal reasons, delivered, on the record, to a named consumer. The statute governs the <em>act of denial</em>, not the discrimination performance of the scorecard behind it.</li>
+<li><strong>EU AI Act, high-risk systems.</strong> The obligations bind the deployed system in use — human oversight of the decision, event-level logging, and traceability of the outcome for the person affected. A validated model with an ungoverned decision path does not satisfy oversight of the decision.</li>
+<li><strong>SR 11-7 implementation controls.</strong> Model validation is necessary but explicitly insufficient; supervisory expectation runs to the controls around <em>how the output is used</em> in a business decision. "The model is sound" is not the same finding as "the decision was controlled."</li>
+</ul>
+<p>In each case the unit the law contemplates is the action. Artifact governance answers <em>"is the model sound?"</em> It does not, by construction, answer <em>"was this specific decision permitted, within policy, segregated by duty, and reversible?"</em> Those are properties of the action — and the action lives on the far side of the prediction boundary, in the seam the platform does not run.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">MAKE THE ACTION THE UNIT OF GOVERNANCE</div>
+<div class="fade-in">
+<p>This is an architectural difference, not a feature you can bolt on. On a <strong>Composable Process Fabric</strong>, the model does not sit at the end of a pipeline as an endpoint the rest of the enterprise calls out to. It runs as a governed <strong>Function inside a Deterministic Workflow</strong>. The prediction is consumed, on the same runtime, by the very workflow step that acts on it — under inline controls: an approval gate, a threshold, a segregation-of-duties check, a human-in-the-loop hold that is first-class rather than bolted on. The action that commits — deny, release, freeze — passes through a governed <strong>Connector</strong>, the only primitive that touches an external system of record, and the whole event is written to an <strong>immutable per-action audit</strong> over a shared Semantic Ontology.</p>
+<p>That is why the difference is structural rather than incremental. The gateway pattern governs the call and captures it beautifully; the action still commits in a system the gateway sits beside. Here, model-to-action closes on <strong>one runtime</strong>. <em>"Was this decision permitted, controlled, and reversible?"</em> has a per-action answer — because the permission check and the action are the <em>same governed step</em>, not two systems you reconcile with a data pull after a complaint lands.</p>
+<p>Be honest about what that does and does not require. This is not zero-integration, and no serious buyer should believe a vendor who implies it is. The fabric runs <em>over</em> your existing estate through governed Connectors; your systems of record stay where they are. What changes is not the map of your infrastructure — it is <strong>where the decision executes</strong>: inside a governed process, rather than in the ungoverned space between a served prediction and the app that acts on it.</p>
+<p>Consider an adverse-action decision, purely as an illustration of the architecture — not a delivered result. On the endpoint pattern, the scorecard is validated and the score is logged; whether the denial that followed carried the required reason codes, respected a policy override, and remained reversible on appeal is something you reconstruct across systems, after the fact, under time pressure. As a governed Function inside a workflow, the denial <em>is</em> the audited event: the reasons, the duty gate, the human hold, and the commit are one record on one runtime. That is an architectural property of putting the model inside the process — it is what the design makes true, stated as such.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Certify the model to the top of the grid if you like — the event on trial is the decision, and the decision was never inside the perimeter you bought.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

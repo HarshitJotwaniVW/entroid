@@ -1,0 +1,133 @@
+<div class="hook fade-in"><p>Your integration platform can lift a purchase order out of your commerce system, enrich it, land it in your ERP, route an exception to a human, and fire a webhook the instant it settles. What it cannot tell you is the one thing your operators actually need: <strong>what is the state of this order — as a single thing — right now</strong>, and can you pause it, survive a server crash, and replay it end to end. The flow is first-class. The process is nobody's.</p></div>
+
+<div class="section-label fade-in">THE FLOW IS FIRST-CLASS</div>
+<div class="fade-in">
+<p>Give the category its due, because the strengths are real and a serious reader stops trusting you the moment you pretend otherwise. The integration and API-management platforms have spent a decade making movement between systems fast, governed, and reusable:</p>
+<ul>
+<li><strong>Prebuilt connector breadth and API-led connectivity</strong> genuinely accelerate integration and turn point-to-point spaghetti into reusable, governed APIs.</li>
+<li><strong>Design-time and runtime API governance</strong> is real — rulesets, versioning, and one control plane over the entire API estate.</li>
+<li><strong>Low-code recipes and event triggers</strong> genuinely let business teams automate a workflow in an afternoon, without waiting on a release train.</li>
+<li><strong>The newest layer — an agent control plane, or "agent fabric"</strong> — genuinely discovers, secures, and applies identity and policy to agent and tool calls, and turns your existing APIs into agent-ready tools.</li>
+</ul>
+<p>None of that is marketing vapor. But look at what each layer makes first-class: the connection, the API, the recipe, the agent call. Not one of them makes the <em>process</em> first-class. The order-to-cash run, the claim, the onboarding — the thing a COO actually manages — is an emergent byproduct of triggers firing between endpoints. It is choreography, not an object.</p>
+</div>
+
+<div class="section-label fade-in">WHERE THE TRUTH LIVES</div>
+<div class="fade-in">
+<p>So ask the operator's question. An order stalls at "awaiting fulfilment" and someone senior wants to know why. Where does the answer live? Partly in the commerce system, partly in the ERP, partly in the payment gateway, partly in the iPaaS run history — and once the run completes, the orchestrator's own memory of that instance is effectively gone. To reconstruct "where is order #48213 and what happened to it," an engineer joins N endpoint logs against job history and rebuilds a timeline the platform never actually held.</p>
+<p>This is not a maturity gap that the next release closes. It is structural. If a platform's defining job is to move data <em>between</em> systems, then the systems own the state and the platform owns the movement. The authoritative state of the process is smeared across every endpoint it touched — or it evaporates when the run ends. The process was never a thing you could point at. It was exhaust from the flow.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="On the left, an integration or agent fabric choreographs calls between endpoints and governs them at a gateway while process state is smeared across the systems and run history with no durable process object. On the right, Entroid holds the process instance as one durable governed object with Connectors as its only audited edge and one immutable per-action audit.">
+<style>
+.d-lbl{font:600 13px system-ui,-apple-system,sans-serif;fill:currentColor;}
+.d-sub{font:400 10px system-ui,-apple-system,sans-serif;fill:currentColor;opacity:.62;}
+.d-tag{font:600 10px system-ui,-apple-system,sans-serif;fill:currentColor;opacity:.8;}
+.d-box{stroke:currentColor;stroke-width:1.4;opacity:.5;fill:none;}
+.d-flow{stroke:currentColor;stroke-width:1.4;opacity:.32;stroke-dasharray:4 4;fill:none;}
+.d-edge{stroke:currentColor;stroke-width:1.5;opacity:.7;fill:none;}
+.d-core{stroke:currentColor;stroke-width:2;opacity:.92;fill:none;}
+.d-node{stroke:currentColor;stroke-width:1.4;opacity:.85;fill:none;}
+.d-frag{fill:currentColor;opacity:.4;}
+.d-div{stroke:currentColor;stroke-width:1;opacity:.28;stroke-dasharray:3 5;}
+</style>
+
+<text x="20" y="24" class="d-lbl">iPaaS / AGENT FABRIC</text>
+<text x="20" y="40" class="d-sub">choreographs calls · governs the call at the gateway</text>
+
+<rect x="20" y="58" width="100" height="38" rx="4" class="d-box"/>
+<text x="70" y="82" text-anchor="middle" class="d-sub">SoR</text>
+<rect x="140" y="58" width="100" height="38" rx="4" class="d-box"/>
+<text x="190" y="82" text-anchor="middle" class="d-sub">SoR</text>
+<rect x="260" y="58" width="100" height="38" rx="4" class="d-box"/>
+<text x="310" y="82" text-anchor="middle" class="d-sub">SoR</text>
+
+<path class="d-flow" d="M70 96 L120 150"/>
+<path class="d-flow" d="M190 96 L190 150"/>
+<path class="d-flow" d="M310 96 L260 150"/>
+
+<rect x="20" y="150" width="340" height="30" rx="4" class="d-box"/>
+<text x="190" y="169" text-anchor="middle" class="d-tag">GATEWAY / CONTROL PLANE</text>
+<text x="190" y="200" text-anchor="middle" class="d-sub">which API / agent may be called</text>
+
+<circle cx="55" cy="238" r="6" class="d-frag"/>
+<circle cx="120" cy="248" r="6" class="d-frag"/>
+<circle cx="190" cy="236" r="6" class="d-frag"/>
+<circle cx="255" cy="250" r="6" class="d-frag"/>
+<circle cx="320" cy="240" r="6" class="d-frag"/>
+<text x="190" y="278" text-anchor="middle" class="d-sub">state smeared across endpoints + run history</text>
+<text x="190" y="294" text-anchor="middle" class="d-sub">no durable process object · no per-action audit</text>
+
+<line x1="400" y1="18" x2="400" y2="302" class="d-div"/>
+
+<text x="428" y="24" class="d-lbl">ENTROID</text>
+<text x="428" y="40" class="d-sub">runs the process · governs the action at execution</text>
+
+<rect x="558" y="74" width="150" height="104" rx="12" class="d-core"/>
+<text x="633" y="112" text-anchor="middle" class="d-tag">PROCESS INSTANCE</text>
+<text x="633" y="134" text-anchor="middle" class="d-sub">durable governed state</text>
+<text x="633" y="150" text-anchor="middle" class="d-sub">one runtime</text>
+
+<rect x="551" y="102" width="14" height="14" rx="2" class="d-node"/>
+<rect x="551" y="140" width="14" height="14" rx="2" class="d-node"/>
+<rect x="701" y="102" width="14" height="14" rx="2" class="d-node"/>
+<rect x="701" y="140" width="14" height="14" rx="2" class="d-node"/>
+
+<rect x="436" y="88" width="70" height="32" rx="4" class="d-box"/>
+<text x="471" y="108" text-anchor="middle" class="d-sub">SoR</text>
+<rect x="436" y="132" width="70" height="32" rx="4" class="d-box"/>
+<text x="471" y="152" text-anchor="middle" class="d-sub">SoR</text>
+<rect x="726" y="88" width="54" height="32" rx="4" class="d-box"/>
+<text x="753" y="108" text-anchor="middle" class="d-sub">SoR</text>
+<rect x="726" y="132" width="54" height="32" rx="4" class="d-box"/>
+<text x="753" y="152" text-anchor="middle" class="d-sub">SoR</text>
+
+<path class="d-edge" d="M551 109 L506 104"/>
+<path class="d-edge" d="M551 147 L506 148"/>
+<path class="d-edge" d="M715 109 L726 104"/>
+<path class="d-edge" d="M715 147 L726 148"/>
+
+<text x="633" y="200" text-anchor="middle" class="d-sub">Connectors = governed, typed, audited I/O edge</text>
+
+<line x1="560" y1="224" x2="706" y2="224" class="d-edge"/>
+<line x1="580" y1="219" x2="580" y2="229" class="d-edge"/>
+<line x1="612" y1="219" x2="612" y2="229" class="d-edge"/>
+<line x1="644" y1="219" x2="644" y2="229" class="d-edge"/>
+<line x1="676" y1="219" x2="676" y2="229" class="d-edge"/>
+<text x="633" y="248" text-anchor="middle" class="d-sub">one immutable per-action audit</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE QUESTION NO GATEWAY ANSWERS</div>
+<div class="fade-in">
+<p>Put four questions to an integration platform or an agent fabric and watch where they land. <strong>What is the state of this instance right now? Can I pause it on a human step? Can I resume it after a crash from exactly where it stopped? Can I replay the whole thing end to end as one object?</strong> The gateway can tell you which call was made, by which identity, under which policy. It cannot tell you the state of the business process, because the process is not in the gateway.</p>
+<p>And to be precise about the most advanced version of this — the agent control plane is genuinely sophisticated. It governs the API estate and the agent interaction: which API or agent may be invoked, with what delegated identity, under what guardrails, logged at the edge. That is real governance and it matters. But it governs the <em>call</em>, not the <em>run</em>. It does not hold the process's durable state, it does not enforce the business action's authorization at the moment of execution, and it does not produce a per-action business audit — because the work still executes inside the endpoints the fabric connects, not inside the fabric.</p>
+<p>The category is quietly candid about this once you read closely. One leading API-management platform concedes that its agentic model is built for tool invocation, not state persistence. A data-activation platform frames the agentic workflow as something that <em>emerges at runtime</em> as the agent gathers context. Strip the framing and both admit the same structural fact: the process has no durable home. It is assembled on the fly and discarded.</p>
+</div>
+
+<div class="section-label fade-in">INVERTING THE STACK</div>
+<div class="fade-in">
+<p>Entroid inverts the figure and the ground. On a Composable Process Fabric, the <strong>process instance itself is the first-class runtime object</strong> — with durable, governed state, on one runtime. It is built from five primitives: Deterministic Workflows that carry the durable state and enforce governance inline at each step; Intelligence Orchestration; Atomic Agents with human-in-the-loop as a first-class state rather than a bolted-on escape hatch; Functions; and Connectors — the only primitive that touches an external system.</p>
+<p>That last point is where honesty earns the argument: ES does not pretend the estate disappears. It runs over the same systems of record, through governed, typed, audited Connectors. The difference is architectural direction. The Connector is the <em>edge</em> of the process — its governed I/O boundary — not the place the business runs. The run happens in the process object, on the fabric, where state actually lives.</p>
+<p>So the governance lands somewhere different. The agent fabric asks whether this identity may call this API. ES asks whether <em>this actor is authorized to take this business action, on this instance, at this step</em> — is this person allowed to release this claim, for this amount, right now — and it records the answer in one immutable, per-action audit. Because the entire run is one governed object, it can also carry a transactional or compensation boundary across systems that a set of independent triggers structurally cannot: when step seven fails, the fabric knows steps one through six happened, on this instance, and can unwind them as part of the same object. The process instance is the system of record for itself — not a timeline reconstructed from endpoint logs after the fact.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">A LIVE INSTANCE</div>
+<div class="fade-in">
+<p>Make it concrete — and read this as an architectural illustration of how the fabric is designed to behave, not a claim about a delivered deployment. Picture an order-to-cash or a claims instance running as one object on the fabric. You query it and it answers directly: current step, amount held, which human it is waiting on, how long it has waited. It reaches an approval and <strong>pauses as a first-class human-in-the-loop state</strong> — not a stalled webhook praying someone retries it. A node crashes; the instance <strong>resumes from its own durable state</strong>, from exactly where it stopped, because that state was never scattered. You <strong>replay the full timeline as one object</strong>, because it always was one object.</p>
+<p>Now set that beside the alternative every integration-choreography architecture leaves you with: answering the same questions by reassembling state from N endpoint logs plus job history, after the fact, hoping the logs still agree with one another. Same business question. One architecture answers it by querying a live object; the other answers it with a forensic investigation.</p>
+</div>
+
+<div class="section-label fade-in">THE PROCUREMENT TEST</div>
+<div class="fade-in">
+<p>If you take one thing into your next evaluation, take those four questions and make them a scoring criterion — because their answers partition the market along an architectural line that no feature grid will surface. Can the platform name the current state of a single named process instance without a cross-system query? Can it pause that instance, resume it after a crash, and replay it as one object? Can it authorize and audit each <em>business action</em> inline, not merely each API call at the gateway? A platform built to move data between systems will answer by pointing at the systems. A platform built to run the process will answer by pointing at the process. That difference is the whole decision.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Ask where your most important process lives right now. If the honest answer is "in the logs of whatever systems it happened to touch," you don't have a process — you have its exhaust.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

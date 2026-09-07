@@ -1,0 +1,116 @@
+<div class="hook fade-in">
+  <p>Ask any treasury vendor to name their control story and they'll point you to a pillar on the slide: <strong>"Control &amp; Comply."</strong> It's a dashboard. It shows you limits consumed, exceptions flagged, policy breaches surfaced — in beautiful, real-time detail, moments after the payment has already left the building. That is not control. That is a very fast rear-view mirror. Real control is a gate at the payment, and a gate only counts when it can stop the money.</p>
+</div>
+
+<div class="section-label fade-in">GIVE THE PAYMENT FACTORY ITS DUE</div>
+<div class="fade-in">
+  <p>Start with what the modern treasury suites genuinely got right, because it's a lot. The centralized <strong>payment factory</strong> is one of the more consequential pieces of enterprise plumbing built in the last two decades. Collapsing dozens of subsidiaries, bank portals, and file formats into a single corporate-to-bank channel eliminated a sprawl of manual host-to-host connections and idiosyncratic bank tokens. Standardized payment formats and one connectivity layer to a wide set of banking partners took real operational risk off the table.</p>
+  <p>The cash dashboards are equally real. In-memory position keeping beats overnight batch aggregates — a treasurer who can see a same-day global cash position, drill from group to bank account to individual flow, and layer predictive analytics over it is doing something their predecessor with a spreadsheet and a fax machine simply could not. Machine-assisted cash application that clears open receivables against incoming bank statements, and matching engines that pair intercompany flows, cut genuine hours of manual reconciliation. And the newest finance agents draft payment timing, propose netting, and route approvals competently. <em>None of this is marketing vapor.</em> Concede it fully, because the wedge isn't that these tools are weak. The wedge is <strong>where in the sequence they sit.</strong></p>
+</div>
+
+<div class="section-label fade-in">"CONTROL AND COMPLY" IS A TENSE, NOT A CONTROL</div>
+<div class="fade-in">
+  <p>Look closely at how "control and comply" is actually architected in a payment-factory-plus-dashboard model, and a structural pattern emerges that no roadmap changes: <strong>the control is a report, and the report describes the past.</strong></p>
+  <p>The payment is assembled, approved through a workflow, and released to the bank. The transaction posts to the ledger. <em>Then</em> the limit consumption updates. <em>Then</em> the policy engine evaluates whether that release breached a counterparty cap or a signatory threshold. <em>Then</em> the exception lights up on someone's screen. The bank statement returns the next cycle, and a periodic reconciliation confirms — after the fact — that what left matches what was authorized. Every one of those checks is real work, competently done. But it is <strong>detective</strong>, not <strong>preventive</strong>. It tells you a rule was broken; it does not stop the rule from being broken.</p>
+  <p>This is the structural line worth drawing carefully. Limits enforced as visibility are limits you can exceed and then see. Dual authorization enforced as a workflow status is an approval that gates the <em>release step</em> but sits inside the same system that treats posting as the primary event and control as commentary on it. Continuous cash visibility is visibility into positions — a live picture of what already happened — not authority over what happens next. Even the sharpest predictive analytics forecast the risk; they do not hold the door. When the pitch is "see the risk faster," read the quiet admission inside it: the risk has already materialized. You are being sold a shorter delay between the mistake and the knowledge of the mistake.</p>
+</div>
+
+<div class="section-label fade-in">AND THE AGENT INHERITS THE ARCHITECTURE</div>
+<div class="fade-in">
+  <p>The agent layer is where this gets subtly more dangerous, not less. A payments agent that "optimizes timing and enforces approval workflows" sounds like control moving upstream. But an agent enforcing an approval workflow is still routing a request through a status machine that lives beside the ledger. It can <em>recommend</em>, <em>route</em>, and <em>flag</em> — and when it's wrong, the failure mode is the same as the human one: the payment posts, and the control catches up. Bolting an intelligent actor onto an after-the-fact control model gives you a faster after-the-fact control model. The intelligence is real. The <strong>position of the intelligence in the execution path</strong> is the problem. It advises the gate; it is not the gate.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+  <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Diagram contrasting an ERP payment that posts first with controls reported after, versus a governed workflow where the control gate fires inline before the money moves.">
+    <style>
+      .lbl { fill: currentColor; font-family: inherit; font-size: 13px; font-weight: 600; }
+      .sm { fill: currentColor; font-family: inherit; font-size: 11px; opacity: .72; }
+      .tiny { fill: currentColor; font-family: inherit; font-size: 10px; opacity: .6; letter-spacing: .04em; }
+      .bx { stroke: currentColor; stroke-width: 1.4; }
+      .muted { opacity: .5; }
+      .flow { stroke: currentColor; stroke-width: 1.4; }
+      .dash { stroke: currentColor; stroke-width: 1.2; stroke-dasharray: 4 4; opacity: .55; }
+    </style>
+    <defs>
+      <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M1,1 L8,4.5 L1,8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      </marker>
+    </defs>
+
+    <text x="24" y="26" class="tiny">ERP LEDGER OF RECORD &mdash; POST FIRST, CONTROL AFTER</text>
+    <rect class="bx" x="24" y="40" width="126" height="42" rx="6"/>
+    <text x="87" y="65" text-anchor="middle" class="lbl">Payment posts</text>
+    <line class="flow" x1="150" y1="61" x2="196" y2="61" marker-end="url(#ah)"/>
+    <rect class="bx" x="198" y="40" width="90" height="42" rx="6"/>
+    <text x="243" y="65" text-anchor="middle" class="lbl">Bank</text>
+    <path class="dash" d="M288,61 C340,61 360,61 404,61" marker-end="url(#ah)"/>
+    <rect class="bx muted" x="406" y="30" width="370" height="62" rx="6"/>
+    <text x="591" y="52" text-anchor="middle" class="sm">Period-end: &ldquo;Control &amp; Comply&rdquo; dashboard</text>
+    <text x="591" y="70" text-anchor="middle" class="sm">limits &amp; policy = visibility &middot; bank recon = batch</text>
+    <text x="591" y="86" text-anchor="middle" class="tiny">AFTER THE FACT</text>
+
+    <line x1="24" y1="120" x2="776" y2="120" stroke="currentColor" stroke-width="1" opacity=".25"/>
+
+    <text x="24" y="152" class="tiny">ENTROID FABRIC &mdash; GOVERN FIRST, LEDGER AS BYPRODUCT</text>
+    <rect class="bx" x="24" y="168" width="120" height="44" rx="6"/>
+    <text x="84" y="194" text-anchor="middle" class="lbl">Payment</text>
+    <text x="84" y="205" text-anchor="middle" class="sm">request</text>
+    <line class="flow" x1="144" y1="190" x2="180" y2="190" marker-end="url(#ah)"/>
+    <rect class="bx" x="182" y="164" width="164" height="52" rx="6"/>
+    <text x="264" y="186" text-anchor="middle" class="lbl">INLINE CONTROL GATE</text>
+    <text x="264" y="204" text-anchor="middle" class="sm">limit &middot; SoD &middot; dual-auth &middot; FX policy</text>
+    <line class="flow" x1="346" y1="190" x2="392" y2="190" marker-end="url(#ah)"/>
+    <text x="369" y="181" text-anchor="middle" class="tiny">PASS</text>
+    <rect class="bx" x="394" y="168" width="150" height="44" rx="6"/>
+    <text x="469" y="188" text-anchor="middle" class="lbl">Connector</text>
+    <text x="469" y="203" text-anchor="middle" class="sm">writes to bank</text>
+    <line class="flow" x1="544" y1="190" x2="586" y2="190" marker-end="url(#ah)"/>
+    <rect class="bx" x="588" y="168" width="90" height="44" rx="6"/>
+    <text x="633" y="194" text-anchor="middle" class="lbl">Bank</text>
+
+    <path class="flow" d="M264,216 L264,250" marker-end="url(#ah)"/>
+    <rect class="bx muted" x="182" y="252" width="164" height="30" rx="6"/>
+    <text x="264" y="271" text-anchor="middle" class="sm">BLOCKED &mdash; never leaves</text>
+    <text x="300" y="240" class="tiny">FAIL</text>
+
+    <path class="dash" d="M469,212 L469,258"/>
+    <text x="394" y="278" class="sm">Ledger + cash position update as byproduct</text>
+    <text x="394" y="294" class="tiny">CLOSE / POSITION = CONTINUOUS READOUT OF LIVE STATE</text>
+  </svg>
+</div>
+
+<div class="section-label fade-in">CONTROL IS A GATE, NOT A PILLAR</div>
+<div class="fade-in">
+  <p>Entroid inverts the sequence, and the inversion is architectural, not aspirational. In ES, a treasury process — a payment run, an FX deal, an intercompany settlement, a bank reconciliation — is not a transaction that posts and then gets reported on. It is a single governed <strong>Deterministic Workflow</strong> executing on one runtime, and the controls are steps <em>inside</em> that workflow, not a dashboard beside it.</p>
+  <p>Concretely, the five primitives do specific jobs here:</p>
+  <ul>
+    <li><strong>Deterministic Workflows</strong> carry the control logic inline — counterparty and daily limits, segregation of duties, dual and multi-signatory authorization, threshold approvals, sanctions and policy checks, three-way match on the invoice behind the payment. These are not workflow <em>statuses</em> that a release step happens to pass through; they are <em>gates the process cannot proceed past</em> unless they evaluate true.</li>
+    <li><strong>Connectors</strong> are the only primitive that touches an external system — the bank included. This is the load-bearing detail. Money can only move by a Connector writing the instruction, and the Connector only fires <em>after</em> the workflow's control gate has passed. There is no path where the instruction reaches the bank and the control catches up later, because reaching the bank <em>is</em> the Connector step, and the Connector sits downstream of the gate.</li>
+    <li><strong>Atomic Agents</strong> — with human-in-the-loop as a first-class construct, not a bolt-on — can draft the payment run, propose netting, or optimize value dating. But their output re-enters the same governed workflow and hits the same gate. An agent proposing a payment that breaches a limit produces a <em>blocked proposal</em>, not a fast mistake.</li>
+    <li><strong>Intelligence Orchestration</strong> and <strong>Functions</strong> compute the enrichment, forecasting, and calculations around the flow, all resolving against one <strong>Semantic Ontology</strong> so a "counterparty," a "limit," and a "cash position" mean one thing across every process that touches them.</li>
+  </ul>
+  <p>Every step writes an <strong>immutable, per-action audit</strong> record as a property of execution — not a log assembled afterward to reconstruct what the dashboard already showed.</p>
+</div>
+
+<div class="section-label fade-in">THE PAYMENT RUN, RE-ARCHITECTED</div>
+<div class="fade-in">
+  <p>Make it concrete — and note this is <em>illustrative of how the architecture behaves,</em> not a claim about a delivered result. A treasury analyst kicks off a cross-border payment run: two hundred vendor payments, several currencies, one of them a large settlement to a counterparty whose remaining daily limit is thin and whose FX exposure sits near a policy ceiling.</p>
+  <p>In the payment-factory-plus-dashboard world, the run assembles, the approvals route, the file releases to the bank, and the money moves. The limit breach on that one large payment surfaces on the compliance dashboard afterward; the FX policy exception is flagged for review; the bank statement confirms the settlement on the next reconciliation cycle. Everyone sees the problem quickly. Everyone sees it <em>after the wire is gone.</em></p>
+  <p>On the ES fabric, the run is the workflow. As it executes, each payment passes its gate. Two hundred of them clear and their Connectors write to the bank. <strong>The one that breaches the counterparty limit and trips the FX policy ceiling never reaches a Connector.</strong> The gate evaluates false, the workflow holds that payment, routes it to the authorized human for a documented decision, and the ledger simply never records an outbound instruction that didn't happen — because in this architecture the ledger entry is a <em>byproduct</em> of the executed step, not a prior event the controls chase. The cash and liquidity position updates continuously from the live state of the running process, so the treasurer isn't reading yesterday's picture faster; they're reading the actual current one. <strong>"See the risk faster" has become "the non-compliant payment never left."</strong></p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT THIS CHANGES FOR THE FUNCTION</div>
+<div class="fade-in">
+  <p>The consequence for a treasurer or CFO isn't a prettier cockpit. It's that the two questions that keep treasury leaders awake — <em>can a payment leave that shouldn't?</em> and <em>do I actually know my position right now?</em> — stop being answered by monitoring and start being answered by construction. Bank reconciliation stops being a periodic batch that certifies the past and becomes a continuous property of a process where the outbound instruction and its authorization were the same governed step. Segregation of duties stops being an access-control matrix audited quarterly and becomes an enforced condition of execution that produces its own evidence.</p>
+  <p>Be honest about the boundary, because over-claiming here is how you lose a treasury audience that has integrated more systems than anyone. ES does not pretend the bank connectivity vanishes or that integration is free — it runs over your existing banking and ERP estate <em>through governed Connectors,</em> which is work. What changes is not the existence of integration but its <strong>governance posture</strong>: the connection point to the outside world is the one place control is enforced, and it is enforced before the money moves rather than reported after it did.</p>
+</div>
+
+<div class="closing fade-in">
+  <blockquote>A dashboard tells you the payment breached the limit. A gate makes sure it never did.</blockquote>
+</div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

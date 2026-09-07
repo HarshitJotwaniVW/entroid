@@ -1,0 +1,106 @@
+<div class="hook fade-in"><p>The single pane of glass is one of the best usability ideas the security industry has had in a decade. Pulling detection, investigation, behavioral analytics and orchestration into one analyst workspace genuinely ends the swivel-chair between six consoles. But there is a quieter question the demo never asks: <strong>when the workspace decides to contain the threat, where does the containment actually run?</strong> One console over many tools is not the same thing as one runtime — and the gap between them is where your process state, your change-control, and your audit still scatter.</p></div>
+
+<div class="section-label fade-in">GIVE THE UNIFIED WORKSPACE ITS DUE</div>
+<div class="fade-in">
+<p>Start with what is real, because the unified-TDIR story earns most of its applause honestly. Modern correlation and risk-based alerting are not marketing — they materially cut alert volume and pull analysts out of the fatigue spiral by scoring and grouping signals instead of paging on every one. Folding SIEM, SOAR and UEBA into a single pane removes a real tax: the context-switching, the copy-paste of indicators between tools, the lost minutes reassembling a picture that five products each held a fragment of. Verified, framework-mapped detection content is valuable and hard-won. Prebuilt playbooks spanning hundreds of third-party tools genuinely compress response time. And the discipline of keeping a human in the loop before a consequential action fires is the responsible default, not a weakness.</p>
+<p>The most advanced version of this — the <em>agentic-SOC maturity arc</em>, moving from human-driven to AI-assisted to agent-led-but-human-governed, with native orchestration whose playbooks run inside the console itself — is a genuinely sophisticated architecture. The instinct to keep governance human is correct. None of that is the thing to argue with. The thing to argue with is a category error hiding inside the word <strong>unified</strong>.</p>
+</div>
+
+<div class="section-label fade-in">TWO DIFFERENT CLAIMS WEARING ONE WORD</div>
+<div class="fade-in">
+<p>"Unified" is doing two jobs at once, and they are not the same job. One is a claim about <strong>experience</strong>: the analyst sees, triages and decides in a single interface. The other is an implied claim about <strong>execution</strong>: the response happens in that unified system. The first is true and delivered. The second is where the architecture quietly hands off.</p>
+<p>Watch the mechanics of a containment. The correlation engine fires, the workspace assembles the case, the analyst — or the agent, in the agentic model — reaches a decision: isolate this host, revoke this token, block this indicator, disable this account. Then the playbook <strong>dispatches that action out</strong>. The isolation executes in the EDR. The block executes in the firewall. The revocation executes in the identity provider. The record executes in the ticketing system. The console orchestrated; four separate tools it does not own performed the work. The playbook may run <em>inside</em> the SIEM, but the action it triggers runs <em>outside</em> it, across systems reached through integrations.</p>
+<ul><li><strong>The console was unified; the runtime was not.</strong> The decision converged into one pane, but the execution fanned back out to the estate — and with it, the state of the response and the evidence of what was actually done.</li></ul>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE SWIVEL-CHAIR WAS AUTOMATED, NOT ELIMINATED</div>
+<div class="fade-in">
+<p>This is the precise correction, and it matters because the pitch invites the wrong conclusion. Orchestration did not remove the swivel-chair — it <strong>automated</strong> it. Instead of an analyst manually clicking through five tools, a playbook makes those five cross-tool calls programmatically. That is a real improvement in speed and consistency. It is not the same as the response executing in one place.</p>
+<p>The consequence is architectural, not cosmetic. When containment is a coordinated sequence of remote calls, the <strong>process state lives in the gaps between systems</strong>. Did the firewall block land before the EDR isolation? Did the identity revocation actually take, or did it silently fail while the ticket marked the incident "contained"? The workspace shows you what it dispatched; it depends on each downstream tool to report back what it did. The authoritative record of the response is not one execution log — it is a reconciliation across the EDR's log, the firewall's log, the IAM's log and the ticket. You unified the <em>view</em> and left the <em>truth</em> distributed.</p>
+<p>The agentic-SOC framing sharpens rather than closes this gap. Concede the design fully: the agent triages, correlates, drafts the response, and a human approves before anything fires — that governance instinct is right. But look at what is being governed. The agent recommends and the human approves an <strong>instruction to a separate tool</strong>. Governance sits over the alert and over the playbook. It does not sit over the executed action with a per-action record, because the action executes somewhere the platform integrates with rather than somewhere it runs. Approving the dispatch is not the same as governing the execution.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A unified SIEM/SOAR console dispatching response actions across separate EDR, firewall, IAM and ticketing tools versus a single Entroid runtime that executes containment inline through a governed connector with change-control and one per-action audit" fill="none" stroke="currentColor">
+<style>
+.lbl{font-family:Inter,system-ui,sans-serif;font-size:12px;fill:currentColor;stroke:none}
+.lbl-sm{font-family:Inter,system-ui,sans-serif;font-size:10px;fill:currentColor;stroke:none;opacity:.62}
+.ttl{font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;fill:currentColor;stroke:none}
+.bx{stroke:currentColor;stroke-width:1.4;opacity:.85}
+.mut{opacity:.45}
+.ar{stroke:currentColor;stroke-width:1.4;opacity:.7}
+</style>
+<defs>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" stroke-width="1.3"/></marker>
+</defs>
+
+<!-- LEFT: one console, many tools -->
+<text x="24" y="26" class="ttl">One console, many tools</text>
+<rect x="24" y="42" width="150" height="30" rx="6" class="bx"/>
+<text x="38" y="61" class="lbl">Detect · Correlate</text>
+<line x1="99" y1="72" x2="99" y2="92" class="ar" marker-end="url(#ah)"/>
+<rect x="24" y="92" width="150" height="30" rx="6" class="bx"/>
+<text x="52" y="111" class="lbl">Alert · Triage</text>
+<line x1="99" y1="122" x2="99" y2="142" class="ar" marker-end="url(#ah)"/>
+<rect x="24" y="142" width="150" height="34" rx="6" class="bx"/>
+<text x="46" y="164" class="lbl">Playbook + approve</text>
+
+<!-- dashed boundary -->
+<rect x="12" y="14" width="188" height="176" rx="10" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 5" class="mut"/>
+<text x="18" y="205" class="lbl-sm">boundary of what the console owns</text>
+
+<!-- dispatched-out tools -->
+<line x1="174" y1="159" x2="250" y2="70" class="ar" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<line x1="174" y1="159" x2="250" y2="118" class="ar" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<line x1="174" y1="159" x2="250" y2="166" class="ar" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<line x1="174" y1="159" x2="250" y2="214" class="ar" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<rect x="252" y="56" width="96" height="28" rx="6" class="bx mut"/><text x="266" y="74" class="lbl">EDR isolate</text>
+<rect x="252" y="104" width="96" height="28" rx="6" class="bx mut"/><text x="264" y="122" class="lbl">Firewall block</text>
+<rect x="252" y="152" width="96" height="28" rx="6" class="bx mut"/><text x="270" y="170" class="lbl">IAM revoke</text>
+<rect x="252" y="200" width="96" height="28" rx="6" class="bx mut"/><text x="266" y="218" class="lbl">Ticketing</text>
+<text x="252" y="250" class="lbl-sm">execution + audit scatter across tools</text>
+
+<!-- divider -->
+<line x1="410" y1="20" x2="410" y2="290" stroke="currentColor" stroke-width="1" class="mut"/>
+
+<!-- RIGHT: one runtime -->
+<text x="446" y="26" class="ttl">One runtime</text>
+<rect x="446" y="42" width="150" height="30" rx="6" class="bx"/>
+<text x="472" y="61" class="lbl">Detection</text>
+<line x1="521" y1="72" x2="521" y2="92" class="ar" marker-end="url(#ah)"/>
+<rect x="446" y="92" width="300" height="40" rx="6" class="bx"/>
+<text x="460" y="110" class="lbl">Deterministic Workflow (governed)</text>
+<text x="460" y="125" class="lbl-sm">change-control gate · HITL · inline</text>
+<line x1="596" y1="132" x2="596" y2="152" class="ar" marker-end="url(#ah)"/>
+<rect x="446" y="152" width="300" height="40" rx="6" class="bx"/>
+<text x="460" y="170" class="lbl">Execute via governed Connector</text>
+<text x="460" y="185" class="lbl-sm">isolate · revoke · block · disable</text>
+<line x1="596" y1="192" x2="596" y2="212" class="ar" marker-end="url(#ah)"/>
+<rect x="446" y="212" width="300" height="30" rx="6" class="bx"/>
+<text x="460" y="231" class="lbl">One immutable per-action audit</text>
+<!-- closed loop -->
+<path d="M446,227 C410,227 410,57 446,57" class="ar" marker-end="url(#ah)"/>
+<text x="452" y="266" class="lbl-sm">closed-loop · one execution · one record</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">ONE RUNTIME MEANS THE RESPONSE IS THE PROCESS</div>
+<div class="fade-in">
+<p>Entroid draws the line at execution, not at the interface. It is a composable process fabric built on five primitives — <strong>Deterministic Workflows</strong> that carry governance and change-control inline, <strong>Intelligence Orchestration</strong>, <strong>Atomic Agents</strong> with human-in-the-loop as a first-class construct, <strong>Functions</strong>, and <strong>Connectors</strong>, which are the <em>only</em> primitive that touches an external system — all sitting on a semantic ontology and running on one runtime with an immutable, per-action audit. SIEM &amp; SOAR, Cybersecurity, DevSecOps, and the Sentinel investigation-and-remediation module are not bolted onto that fabric; they are expressed <em>as</em> it.</p>
+<p>So in this architecture a security response is not a playbook that fans calls out to tools. It is a governed Deterministic Workflow that <strong>executes the containment itself</strong>. Isolating the host, revoking the token, blocking the indicator, disabling the account — these run as governed actions on one runtime, reached through governed Connectors, gated by change-control at the moment of execution, and written to a single per-action record. This is an architectural property of the design, not a benchmarked outcome: because execution and governance and audit are the same primitive, there is no gap for the state to fall into. The workflow does not dispatch-and-hope and then reconcile four logs. It executes and records as one act.</p>
+<p>That is what "one runtime" buys that "one console" cannot. The console can only ever unify the <em>decision</em>; the estate still performs the <em>work</em>. The fabric makes the response, the change-control gate, and the audit a single execution — so what happened, who approved it, and whether it took are one answer, not a correlation exercise.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE HONEST BOUNDARY — THIS IS NOT ZERO INTEGRATION</div>
+<div class="fade-in">
+<p>Now the part that keeps the argument honest, because over-claiming here would forfeit the expert reader. One runtime does <strong>not</strong> mean no integration. Your endpoints, your firewalls, your identity systems and your ticketing already exist, and the fabric reaches them the same way anything reaches an external system — through governed Connectors. The estate does not disappear. The difference is not that ES avoids the outside world; it is <em>where the governed execution and the record live</em>. In the orchestration model, the Connector is a channel to a tool that then acts on its own terms, and governance stops at the dispatch. On the fabric, the action is <strong>composed inside a governed workflow</strong> and the Connector is the controlled reach at the edge of an execution the runtime owns end to end — so the change-control decision and the per-action audit belong to the response, not to the four systems it happened to touch.</p>
+<p>That distinction is subtle on a slide and decisive in an incident. When a regulator or a post-incident review asks what was contained, when, under whose authority, and whether it actually took effect, "one console over many tools" answers by reconciling evidence from the tools it integrated with. "One runtime" answers from a single execution record. Same estate; different architecture of assurance.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Unify the analyst's view all you like — until the containment executes where the governance and the audit live, you have automated the swivel-chair, not removed it.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

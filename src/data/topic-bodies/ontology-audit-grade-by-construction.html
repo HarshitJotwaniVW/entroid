@@ -1,0 +1,68 @@
+<div class="hook fade-in"><p>Your regulator will not ask what your model knew. They will ask what your business <em>did</em> — which control stood between the decision and the money, under whose authority it fired, and whether the record could have read any other way. <strong>"Explainable retrieval" answers a different question entirely.</strong> A grounded answer a human blessed, a lineage graph crawled out of your pipelines, a decision trail that goes dark at the write-back boundary — none of them is the thing an examiner came to see.</p></div>
+
+<div class="section-label fade-in">THE QUESTION AN AUDITOR ACTUALLY ASKS</div>
+<div class="fade-in"><p>Picture a controller signing off on a credit release, or an adjudicator approving a claims payout. When an examiner reconstructs that single event a year later, they are not interested in how articulate the assisting model was. They want three things, in order: <strong>the control that fired at the moment of action</strong>, <strong>the authority under which it fired</strong>, and <strong>the lineage of the action that followed</strong> — all the way into the system of record where the balance actually changed.</p><p>That is the distinction the whole compliance conversation keeps sliding past. <em>Provenance of an answer is not provenance of an action.</em> Knowing which passage a model cited tells you something about what it <em>said</em>. It tells you nothing about whether a segregation-of-duties gate was honored, whether the approval sat inside an entitlement limit, or whether the write that hit your ledger was the write the policy permitted. Regulators probe exactly this seam — and it is the seam most "explainability" is built on the wrong side of.</p></div>
+
+<div class="section-label fade-in">THREE KINDS OF "EXPLAINABLE" THAT STOP SHORT</div>
+<div class="fade-in"><p>Give each of these approaches its due first, because each is genuinely good at something — and each fails the auditor for a structural reason, not a lack of effort.</p>
+<ul>
+<li><strong>The metadata-catalog and data-governance incumbents.</strong> Indispensable for discovery and stewardship; nobody serious argues otherwise. But their lineage is <em>reconstructed after the fact</em> from pipeline crawls, and it stops at the data or metric boundary. It can tell you how a number moved between tables. It cannot tell you which control authorized the business action that number set in motion.</li>
+<li><strong>The knowledge-graph and grounding category.</strong> Grounding really does reduce retrieval hallucination, and citing the fact or definition behind an answer genuinely improves what an agent <em>says</em>. Credit where it is due. But source attribution is the provenance of a retrieved passage — not the provenance of a decision executed against your books.</li>
+<li><strong>The operational-ontology pattern.</strong> This one actually executes, and its "decision lineage" does capture the staging data and the decision reached. That is real. But it executes by ingesting a full-fidelity <em>copy</em> of the enterprise into a proprietary twin and writing results back out. The downstream effects inside your systems of record fall outside its graph, and control is surrendered the instant it crosses the write-back edge.</li>
+</ul></div>
+
+<div class="section-label fade-in">THE FLAW IS STRUCTURAL, NOT A ROADMAP GAP</div>
+<div class="fade-in"><p>Notice the common thread. In any architecture where the model lives <em>beside</em> the runtime, enforcement stops at the write-back edge. Governance becomes metadata a downstream system is free to honor or ignore. Lineage becomes an archaeology project — assembled after the event from whatever traces the plumbing happened to leave.</p><p>This is worth stating carefully, because it is not a swipe at any one vendor's current release. It is a property of <strong>where the model sits</strong>. When definition happens in one plane and action happens in another, a boundary exists — and every boundary is a place where the control that was designed and the action that was taken can quietly diverge. No roadmap ships that boundary away; you can only move the model to where the work runs.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+  <text x="40" y="30" font-size="13" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">MODEL BESIDE THE RUNTIME</text>
+  <rect x="48" y="56" width="160" height="50" rx="6" stroke-width="1.5" opacity="0.9"/>
+  <text x="128" y="86" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">Define the model</text>
+  <line x1="128" y1="106" x2="128" y2="146" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 4"/>
+  <text x="146" y="130" font-size="10" fill="currentColor" stroke="none" opacity="0.7">hand off</text>
+  <polygon points="128,152 122,142 134,142" fill="currentColor" stroke="none" opacity="0.5"/>
+  <rect x="48" y="154" width="300" height="52" rx="6" stroke-width="1.5" opacity="0.9"/>
+  <text x="198" y="184" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">Act &amp; govern elsewhere</text>
+  <text x="250" y="128" font-size="10" fill="currentColor" stroke="none" opacity="0.7">drift</text>
+  <path d="M228 146 q22 -16 44 0" stroke-width="1.2" opacity="0.4" stroke-dasharray="3 3"/>
+  <line x1="48" y1="236" x2="150" y2="236" stroke-width="1.5" opacity="0.55"/>
+  <line x1="188" y1="236" x2="348" y2="236" stroke-width="1.5" opacity="0.55"/>
+  <text x="169" y="241" font-size="16" fill="currentColor" stroke="none" opacity="0.85" text-anchor="middle">✕</text>
+  <text x="48" y="262" font-size="10" fill="currentColor" stroke="none" opacity="0.7">write-back edge — control lost, lineage reconstructed</text>
+
+  <line x1="400" y1="36" x2="400" y2="284" stroke-width="1" opacity="0.25" stroke-dasharray="2 6"/>
+
+  <text x="452" y="30" font-size="13" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">MODEL IS THE RUNTIME</text>
+  <rect x="458" y="66" width="296" height="158" rx="8" stroke-width="1.8"/>
+  <text x="606" y="100" font-size="12" fill="currentColor" stroke="none" text-anchor="middle" font-weight="600">One governed substrate</text>
+  <line x1="488" y1="116" x2="724" y2="116" stroke-width="1" opacity="0.3"/>
+  <text x="606" y="144" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">Define  =  Execute  =  Govern</text>
+  <text x="606" y="172" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">control fires at the moment of action</text>
+  <text x="606" y="196" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">lineage by construction — one record</text>
+  <text x="606" y="258" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">the control that fired and the action that followed are the same entry</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">AUDIT-GRADE BY CONSTRUCTION</div>
+<div class="fade-in"><p>Entroid starts from the other side of that boundary — because there is no boundary. The Semantic Ontology is not a model <em>of</em> the enterprise that some other system acts on. It is the <strong>live operational substrate</strong> the same platform executes and governs processes on. An object's lifecycle-state transitions <em>are</em> the process; they are not a description of it kept in a neighboring store.</p><p>That single architectural choice is what makes the audit record fall out of execution rather than get reassembled afterward. Across the five primitives:</p>
+<ul>
+<li><strong>Deterministic Workflows</strong> compose directly against ontology objects, and this is where governance is enforced <em>inline</em> — approval gates, segregation of duties, entitlement and authority limits, thresholds, human-in-the-loop checkpoints. A non-compliant action is made <em>impossible</em>, not merely flagged after it clears.</li>
+<li><strong>Intelligence Orchestration</strong> owns which path is taken and what an agent is permissioned to do — it decides and routes, it does not do the work unsupervised.</li>
+<li><strong>Atomic Agents</strong> execute the bounded unit of work at the leaf, routed and <em>constrained by</em> the ontology, with pause-surface-reason-resume as a first-class property.</li>
+<li><strong>Connectors</strong> are the only primitive that touches an external system — governed, bidirectional read/write with authentication, authorization, rate limits and audit. This is how ES executes over your <em>existing</em> systems of record without ingesting a proprietary copy of the enterprise.</li>
+<li><strong>The platform</strong> binds every agent decision to an <em>immutable, per-action audit trail</em>, with durable process state, versioning of in-flight instances, and compensation on failure.</li>
+</ul>
+<p>Because definition, execution and governance sit on one substrate, the control that fired and the action that followed are not two records you later try to correlate. They are <strong>the same record</strong>. Lineage and explainability are a byproduct of running the process — audit-grade by construction, not by reconstruction.</p></div>
+
+<div class="section-label fade-in">WALK ONE CONTROLLED FLOW</div>
+<div class="fade-in"><p>This is illustrative, not a delivered outcome — but it shows where the difference lands. Consider a credit-release step inside a receivables process. The customer account is an ontology object; releasing it means a lifecycle-state transition from <em>held</em> to <em>released</em>, and that transition is governed by a Deterministic Workflow. The workflow checks the requesting authority against the entitlement limit, enforces separation between the party that raised the exposure and the party that clears it, and — above a threshold — routes to a human checkpoint that must approve before the state can move at all.</p><p>An Atomic Agent may assemble the exposure picture and recommend, but it is constrained by the ontology and cannot itself move the state past a gate it is not permissioned to cross. When the release is finally authorized, a governed Connector performs the write into the ledger of record, with its own authorization and audit. Every one of those steps — the check, the authority, the human sign-off, the write — lands in the immutable per-action trail as it happens.</p><p>Now the examiner arrives. <strong>BCBS 239-style end-to-end traceability</strong> is not a report you generate; it is the execution path itself, object to write. <strong>SOX-style control evidence</strong> is not a screenshot of a policy; it is the record of the gate that actually fired, bound to the action it permitted. There is no gap between "the control we designed" and "the action we took," because they were never in separate planes to begin with. (We claim no certification here — only that the traceability these regimes demand emerges from how the process runs.)</p></div>
+
+<div class="section-label fade-in">WHAT THE CRO ACTUALLY GAINS</div>
+<div class="fade-in"><p>Be clear about what this is not. ES does not pretend integration disappears — it executes over your existing systems of record <em>through</em> governed Connectors, and standing up those Connectors is real work. Anyone selling you a control plane with zero integration is selling you the same beside-the-runtime problem in nicer packaging.</p><p>What changes is where your evidence comes from. Today, audit is a data-archaeology project: pull the logs, crawl the pipelines, stitch the graph, hope the trail survived the boundary. On a fabric where the model <em>is</em> the runtime, the evidence is emitted by the act. The control that fired and the lineage of what followed are one attributable, defensible entry — for every action, every approval, every agent step. Your controller stops reconstructing what happened and starts <em>reading</em> it.</p></div>
+
+<div class="closing fade-in"><blockquote>Reconstructed lineage tells a regulator where your data went. A record written by the act itself tells them what your enterprise did — and only one of those survives cross-examination.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

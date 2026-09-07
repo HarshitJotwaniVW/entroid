@@ -1,0 +1,54 @@
+
+  <div class="stat-row fade-in">
+  <div class="stat-box"><div class="stat-num">200+</div><div class="stat-lbl">Point-to-point integrations</div></div>
+  <div class="stat-box"><div class="stat-num">112</div><div class="stat-lbl">Failures by end of day 1</div></div>
+  <div class="stat-box"><div class="stat-num">6wk</div><div class="stat-lbl">Stabilization (not go-live)</div></div>
+</div>
+
+<div class="hook fade-in">The go-live was planned for 18 months. By Monday morning, 47 downstream systems were receiving malformed data. Finance couldn't close. ITSM tickets spiked 400%. <mark class="hl"><strong>The "go-live" became a six-week stabilization project.</strong></mark></div>
+
+  <div class="section-label fade-in">The Scene</div>
+  <div class="fade-in"><p>Saturday, 6:00 AM. After 18 months of planning, the ERP cutover begins. The migration runs smoothly. Data is transferred. The new system comes online at 2:00 PM. The project team celebrates.</p>
+<p>Monday, 8:15 AM. The first ticket comes in: the payroll system is receiving employee records with malformed department codes. Then another: the CRM can't match customer IDs because the new ERP uses a different format. Then another: the BI dashboards show $0 revenue because the data warehouse connector is pulling from tables that no longer exist.</p>
+<p>By noon, 47 integration failures have been logged. By end of day, the count is 112. Finance can't close the week. Customer service can't look up order history. The supply chain team is running on spreadsheets.</p>
+<p><mark class="hl"><strong>The ERP works perfectly. Everything connected to it does not.</strong></mark></p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <img src="/blog-assets/1558494949-ef010cbdcc31.jpg" alt="IT team working on servers" loading="lazy">
+  </div>
+
+  <div class="section-label fade-in">The Cascade</div>
+  <div class="fade-in"><ul>
+<li><strong>200+ point-to-point integrations</strong> were built over a decade. Nobody had a complete map of what was connected to what.</li>
+<li><strong>Each integration assumed specific data formats, table names, and field mappings,</strong> all of which changed in the upgrade.</li>
+<li><strong>Testing covered the ERP migration.</strong> It did not cover the full integration landscape, because the landscape was undocumented.</li>
+<li><strong>The "go-live" didn't just upgrade one system.</strong> It broke the silent contracts between dozens of systems that had been working together for years.</li>
+</ul></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Shift</div>
+  <div class="fade-in"><p>What if integrations weren't built on brittle, point-to-point connections, but on <strong>a semantic layer that abstracts the underlying system</strong>?</p>
+<p>An Integration Builder where every connection goes through a shared data model. When the ERP upgrades and table names change, the semantic layer absorbs the difference. Downstream systems don't notice, because they don't talk to the ERP directly; they talk to the intelligence layer.</p>
+<p>Every data flow is mapped, visible, and governed. <strong>An ERP upgrade becomes a configuration change instead of a six-week crisis.</strong></p></div>
+
+  <div class="section-label fade-in">The Result</div>
+  <div class="fade-in"><p>The 200 broken integrations weren't a migration failure. They were the accumulated cost of a decade of point-to-point connections that nobody could see, manage, or update safely. Replace the architecture, and the next upgrade happens without the enterprise feeling it.</p></div>
+
+  <div class="insight fade-in">
+    <span class="insight-label">Key Insight</span>
+    When one system change breaks fifty others, the enterprise doesn't have an integration strategy. It has an integration accident waiting for a trigger. A unified integration layer turns that risk into a managed dependency graph, where every data flow is visible, versioned, and governed instead of buried inside a decade of undocumented connections.
+  </div>
+
+  <div class="closing fade-in">
+    <blockquote>If upgrading one system breaks fifty others, you don't have an integration strategy. You have an integration accident waiting for a trigger.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h3>See what this looks like in practice.</h3>
+    <p>A strategic conversation about how the enterprise could operate<br>when every system shares one intelligence. No demo required.</p>
+    <a href="https://enterprisesingularity.com/#cta" class="cta-btn">
+      Start the Conversation
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+    </a>
+  </div>

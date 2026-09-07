@@ -1,0 +1,631 @@
+/* ══════════════════════════════════════════════════════════════════
+   Blog post styles — scoped under `.blog-article`.
+   Adapted from the original static blog HTML so visual output stays
+   byte-identical while rendering inside the React app.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Scope variables to .blog-article so they don't leak into the rest
+   of the site. The variable names (--t1, --accent, etc.) differ from
+   the main Tailwind app's names (--text-1, --a-indigo) on purpose —
+   we preserve them so the inlined article HTML works verbatim. */
+/* Re-themed to the website-v3 brand palette (indigo #3b40d6 / violet #6a5cf0).
+   Only the variable values change; every scoped rule below inherits the new
+   theme through them. */
+.blog-article {
+  --t1: #0a0f1f;
+  --t2: #2a3142;
+  --t3: #5b6576;
+  --t4: #8a93a6;
+  --t5: #aab2c0;
+  --bg: #ffffff;
+  --bg2: #f6f7f9;
+  --bg3: #eef0f5;
+  --border: #e7e9f0;
+  --border-subtle: rgba(10, 15, 31, 0.05);
+  --accent: #3b40d6;
+  --accent-r: 59, 64, 214;
+  --gradient-from: #3b40d6;
+  --gradient-via: #6a5cf0;
+  --gradient-to: #6a5cf0;
+  --glass: #ffffff;
+  --glass-border: #e7e9f0;
+  --hero-overlay: linear-gradient(0deg, var(--bg) 0%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.15) 60%, rgba(255, 255, 255, 0.25) 100%);
+  --card-shadow: 0 1px 2px rgba(10, 15, 31, 0.04), 0 8px 30px rgba(10, 15, 31, 0.05);
+}
+
+html.dark .blog-article {
+  --t1: #ffffff;
+  --t2: rgba(255, 255, 255, 0.65);
+  --t3: rgba(255, 255, 255, 0.45);
+  --t4: rgba(255, 255, 255, 0.30);
+  --t5: rgba(255, 255, 255, 0.20);
+  --bg: #05081a;
+  --bg2: #07091f;
+  --bg3: #0c1030;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --accent: rgb(129, 140, 248);
+  --accent-r: 129, 140, 248;
+  --gradient-from: #818cf8;
+  --gradient-via: #a78bfa;
+  --gradient-to: #f472b6;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --hero-overlay: linear-gradient(0deg, var(--bg) 0%, rgba(5, 8, 26, 0.5) 25%, transparent 50%, rgba(5, 8, 26, 0.4) 100%);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Hero ── */
+.blog-article .hero {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.blog-article .hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s;
+}
+html:not(.dark) .blog-article .hero-img {
+  opacity: 0.72;
+  filter: brightness(1.02) saturate(0.75);
+}
+html.dark .blog-article .hero-img {
+  opacity: 0.5;
+  filter: brightness(0.6) saturate(1.2);
+}
+.blog-article .hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+  transition: background 0.4s;
+  pointer-events: none;
+}
+.blog-article .hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 max(2rem, 6vw) 4rem;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+/* Breadcrumb — matches the pattern used on use case detail pages */
+.blog-article .hero-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+}
+.blog-article .hero-breadcrumb a {
+  color: var(--t4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.blog-article .hero-breadcrumb a:hover {
+  color: var(--t1);
+}
+.blog-article .hero-breadcrumb span[aria-hidden] {
+  color: var(--t4);
+  opacity: 0.4;
+}
+.blog-article .hero-breadcrumb-current {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.blog-article .hero-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(var(--accent-r), 0.08);
+  border: 1px solid rgba(var(--accent-r), 0.2);
+  border-radius: 100px;
+}
+.blog-article .hero-cat::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blog-pulse 2s infinite;
+}
+@keyframes blog-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.blog-article .hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-Weight: 500;
+  color: var(--t1);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+}
+.blog-article .hero-sub {
+  font-size: 1.05rem;
+  color: var(--t2);
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 580px;
+}
+.blog-article .hero-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: var(--t4);
+  letter-spacing: 0.05em;
+}
+
+/* ── Article body ── */
+.blog-article article {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem max(1.25rem, 3vw) 5rem;
+  position: relative;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--t2);
+  font-family: var(--font);
+}
+
+/* Section headings */
+.blog-article .section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 3.5rem 0 1.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.blog-article .section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Paragraphs */
+.blog-article article p {
+  margin-bottom: 1.4rem;
+  font-size: 0.95rem;
+  color: var(--t2);
+  font-weight: 400;
+}
+.blog-article article p strong { color: var(--t1); font-weight: 600; }
+.blog-article article p em { color: var(--t3); font-style: italic; }
+
+/* Hook */
+.blog-article .hook {
+  font-size: 1.1rem;
+  color: var(--t1);
+  font-weight: 400;
+  line-height: 1.8;
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.blog-article .hook strong { color: var(--accent); }
+
+/* Lists */
+.blog-article article ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+}
+.blog-article article ul li {
+  position: relative;
+  padding: 1rem 0 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--t2);
+}
+.blog-article article ul li:last-child { border-bottom: none; }
+.blog-article article ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.4rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+.blog-article article ul li strong { color: var(--t1); font-weight: 600; }
+
+/* Scene image */
+.blog-article .scene-img-wrap {
+  margin: 2.5rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+}
+.blog-article .scene-img-wrap img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: opacity 0.4s;
+  display: block;
+}
+html:not(.dark) .blog-article .scene-img-wrap img { opacity: 0.85; }
+html.dark .blog-article .scene-img-wrap img { opacity: 0.65; filter: saturate(0.8); }
+.blog-article .scene-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--bg) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Closing quote */
+.blog-article .closing {
+  margin: 4rem 0 2rem;
+  padding: 2.5rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+}
+.blog-article .closing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-from), var(--gradient-via), var(--gradient-to));
+}
+.blog-article .closing blockquote {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  padding-left: 2rem;
+  position: relative;
+}
+.blog-article .closing blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: 0.3;
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* CTA */
+.blog-article .cta-section {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: var(--bg2);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+.blog-article .cta-section h3 {
+  font-size: 1.3rem;
+  color: var(--t1);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+.blog-article .cta-section p {
+  font-size: 0.85rem;
+  color: var(--t3);
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+.blog-article .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-via));
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 24px rgba(var(--accent-r), 0.25);
+}
+.blog-article .cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 36px rgba(var(--accent-r), 0.4);
+}
+.blog-article .cta-btn svg { width: 16px; height: 16px; }
+
+/* Divider */
+.blog-article .divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0;
+}
+.blog-article .divider::before,
+.blog-article .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.blog-article .divider-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Insight callout */
+.blog-article .insight {
+  background: rgba(var(--accent-r), 0.06);
+  border: 1px solid rgba(var(--accent-r), 0.15);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  color: var(--t1);
+  font-weight: 500;
+  line-height: 1.7;
+}
+.blog-article .insight-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+  opacity: 0.8;
+}
+
+/* Stat row */
+.blog-article .stat-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+.blog-article .stat-box {
+  flex: 1;
+  min-width: 130px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+}
+.blog-article .stat-num {
+  font-size: 1.7rem;
+  font-Weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-via));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.blog-article .stat-lbl {
+  font-size: 0.6rem;
+  color: var(--t4);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+/* Inline highlight */
+.blog-article mark.hl {
+  background: rgba(var(--accent-r), 0.12);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0.08em 0.3em;
+  font-style: normal;
+  -webkit-text-fill-color: var(--t1);
+}
+
+/* Fade-in — default to visible (no JS observer).
+   A useEffect in BlogPostPage adds `.visible` progressively if desired,
+   but leaving them visible by default prevents flash-of-hidden-content
+   when navigating between blogs. */
+.blog-article .fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Confidential footer line (rendered by React, not article HTML) */
+.blog-footer {
+  padding: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.blog-footer p {
+  font-size: 0.65rem;
+  color: var(--t4);
+  letter-spacing: 0.1em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-article article {
+    padding: 3rem 1.5rem 4rem;
+    font-size: 16px;
+  }
+  .blog-article .hero { min-height: 70vh; }
+  .blog-article .hero h1 { font-size: 1.8rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   website-v3 blog list + post hero (top-level classes, brand palette).
+   ══════════════════════════════════════════════════════════════════ */
+.bloglist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.bloglist--two { grid-template-columns: repeat(2, 1fr); margin-top: 22px; }
+@media (max-width: 960px){ .bloglist { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px){ .bloglist, .bloglist--two { grid-template-columns: 1fr; } }
+
+.blogcard { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .2s, border-color .2s; }
+.blogcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: #d7dbe8; }
+.blogcard__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-alt); }
+.blogcard__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.blogcard:hover .blogcard__media img { transform: scale(1.04); }
+.blogcard__body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.blogcard__cat { align-self: flex-start; font-size: 10.5px; font-Weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--brand); background: var(--brand-soft); padding: 4px 11px; border-radius: 999px; }
+.blogcard__title { font-size: 17px; font-weight: 750; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
+.blogcard__excerpt { font-size: 13.5px; line-height: 1.55; color: var(--muted); flex: 1; }
+.blogcard__meta { font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+
+/* Post hero */
+.bpost__hero { position: relative; min-height: 460px; display: flex; align-items: flex-end; overflow: hidden; background: var(--bg-ink); }
+.bpost__heroImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
+.bpost__heroScrim { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,9,15,.92) 0%, rgba(6,9,15,.6) 38%, rgba(6,9,15,.28) 70%, rgba(6,9,15,.18) 100%); }
+.bpost__heroInner { position: relative; padding: 120px 0 clamp(40px, 5vw, 64px); max-width: 1080px; }
+.bpost__crumb { font-size: 12.5px; font-weight: 650; color: rgba(255,255,255,.66); letter-spacing: .02em; margin-bottom: 18px; }
+.bpost__crumb a { color: #fff; text-decoration: none; }
+.bpost__crumb span { margin: 0 8px; opacity: .5; }
+.bpost__title { font-size: clamp(30px, 4vw, 50px); line-height: 1.08; font-Weight: 500; letter-spacing: -.025em; color: #fff; margin-bottom: 16px; }
+.bpost__sub { font-size: clamp(16px, 1.5vw, 20px); line-height: 1.5; color: rgba(255,255,255,.8); font-weight: 350; max-width: 720px; }
+.bpost__meta { display: flex; align-items: center; gap: 12px; margin-top: 24px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
+.bpost__meta span:nth-child(2){ opacity: .5; }
+
+.bpost__more { padding: clamp(48px, 6vw, 80px) 0; border-top: 1px solid var(--line); background: var(--bg-alt); }
+
+/* ── Fixes: readability + un-faded images ──────────────────────────
+   The ported article CSS was authored for an 18px root. website-v3 keeps a
+   16px root, so scope 18px to blog pages only (class toggled by the Blog
+   components) — this restores every rem-based size as designed, and leaves
+   the homepage/product pages untouched. */
+html.blog-mode { font-size: 18px; }
+
+/* Images should read at full strength — no fade, no white wash-out. */
+html:not(.dark) .blog-article .scene-img-wrap img,
+.blog-article .scene-img-wrap img { opacity: 1; filter: none; }
+.blog-article .scene-img-wrap::after { display: none; }
+
+/* ── Blog list: category filter + image fallbacks ─────────────────── */
+/* Topic filter: a clean toolbar (count + dropdown) instead of a wall of chips. */
+/* Blog index header: title left, topic filter + count right (fills the hero,
+   no bare right side); the article grid follows with tight spacing. */
+.bloghero__inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; padding-top: clamp(46px, 6vw, 80px); padding-bottom: clamp(30px, 3.4vw, 46px); }
+.bloghero__lead { min-width: 0; }
+.bloghero__inner .phero__headline { max-width: 720px; }
+.bloghero__aside { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; min-width: 226px; }
+.bloghero__count { font-size: 13px; font-weight: 600; color: var(--muted); }
+.bloglistwrap { padding: clamp(26px, 3vw, 44px) 0 clamp(64px, 7vw, 96px); }
+@media (max-width: 760px){ .bloghero__inner { grid-template-columns: 1fr; gap: 24px; align-items: start; } }
+
+/* Featured post: large horizontal card above the grid (media + text). */
+.blogcard--featured { flex-direction: row; margin-bottom: 34px; }
+.blogcard--featured .blogcard__media { flex: 0 0 55%; aspect-ratio: auto; min-height: 360px; }
+.blogcard--featured .blogcard__body { padding: clamp(28px, 3vw, 44px); justify-content: center; gap: 14px; }
+.blogcard--featured .blogcard__title { font-size: clamp(22px, 2.1vw, 32px); line-height: 1.2; }
+.blogcard--featured .blogcard__excerpt { font-size: 15px; line-height: 1.6; flex: 0 1 auto; }
+.blogcard--featured .blogcard__meta { margin-top: 8px; }
+@media (max-width: 760px){ .blogcard--featured { flex-direction: column; } .blogcard--featured .blogcard__media { flex: auto; aspect-ratio: 16 / 9; min-height: 0; } }
+
+.blogbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.blogbar__count { font-size: 14px; font-weight: 600; color: var(--muted); }
+.blogselect { display: flex; flex-direction: column; gap: 7px; }
+.blogselect__label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--brand); }
+.blogselect__field { position: relative; }
+.blogselect__field select {
+  appearance: none; -webkit-appearance: none;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 11px 42px 11px 16px; font-size: 14.5px; font-weight: 600; color: var(--ink);
+  min-width: 240px; cursor: pointer; box-shadow: var(--shadow);
+  transition: border-color .15s, box-shadow .15s;
+}
+.blogselect__field select:hover { border-color: #cfd4e4; }
+.blogselect__field select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(59,64,214,.14); }
+.blogselect__chev { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+
+/* Gradient placeholder when a post has no hero image. */
+.blogcard__ph { display: block; width: 100%; height: 100%; background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%); }
+.blogcard__ph::after { content: ''; position: absolute; inset: 0; background: radial-gradient(120% 100% at 0% 0%, rgba(255,255,255,.18), transparent 55%); }
+.blogcard__media { position: relative; }
+.bpost__heroImg--ph { background: linear-gradient(135deg, #12163a 0%, #2a2f8f 55%, #3b40d6 100%); }
+
+.blog-loading { min-height: 40vh; display: grid; place-items: center; }
+.blog-loading p { color: var(--muted); font-size: 15px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Glossary page (categorized terms + sticky section nav + search).
+   ══════════════════════════════════════════════════════════════════ */
+.gloss__layout { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: start; }
+.gloss__nav { position: sticky; top: 88px; align-self: start; }
+.gloss__search { width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; font-size: 14px; color: var(--ink); background: #fff; margin-bottom: 18px; box-shadow: var(--shadow); }
+.gloss__search:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(59,64,214,.14); }
+.gloss__navlist { display: flex; flex-direction: column; gap: 1px; }
+.gloss__navlist a { font-size: 13.5px; font-weight: 550; color: var(--muted); text-decoration: none; padding: 6px 11px; border-radius: 8px; transition: color .15s, background .15s; }
+.gloss__navlist a:hover { color: var(--ink); background: var(--bg-alt); }
+
+.gloss__section { margin-bottom: 46px; scroll-margin-top: 88px; }
+.gloss__h { font-size: clamp(20px, 2.3vw, 26px); font-Weight: 500; letter-spacing: -.01em; color: var(--ink); margin-bottom: 4px; padding-bottom: 12px; border-bottom: 2px solid var(--brand); display: inline-block; }
+.gloss__list { margin-top: 6px; }
+.gloss__entry { display: grid; grid-template-columns: 230px 1fr; gap: 28px; padding: 15px 0; border-top: 1px solid var(--line); }
+.gloss__entry:first-child { border-top: none; }
+.gloss__term { font-weight: 700; color: var(--ink); font-size: 15px; letter-spacing: -.005em; }
+.gloss__def { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+.gloss__empty { color: var(--muted); font-size: 15px; }
+@media (max-width: 860px){
+  .gloss__layout { grid-template-columns: 1fr; gap: 24px; }
+  .gloss__nav { position: static; }
+  .gloss__navlist { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .gloss__navlist a { border: 1px solid var(--line); }
+  .gloss__entry { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ============================================================================
+   Justified body copy on blog pages, matching the rest of the site.
+   Headings, breadcrumbs, meta lines and card labels are left alone.
+   ========================================================================== */
+.blog-article article p,
+.blog-article article ul li,
+.blog-article .hook,
+.blog-article .closing p,
+.blog-article .closing blockquote,
+.blog-article .hero-sub,
+.bpost__sub {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  /* Only break genuinely long words, and never leave a stub on either
+     side — keeps the narrow columns tidy without littering hyphens. */
+  hyphenate-limit-chars: 10 5 4;
+}

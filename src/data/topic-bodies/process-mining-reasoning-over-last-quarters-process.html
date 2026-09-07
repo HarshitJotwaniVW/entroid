@@ -1,0 +1,95 @@
+<div class="hook fade-in"><p>Your process-intelligence agent has never actually seen your process. It has seen a <strong>reconstruction</strong> of it — event logs pulled in a batch window, stitched into a model, reconciled against systems that have already moved on. By the time the agent reasons, it is reasoning over last quarter's process, not this morning's. The distance between those two is precisely where governance fails and money leaks.</p></div>
+
+<div class="section-label fade-in">CONTEXT IS A COPY</div>
+<div class="fade-in">
+<p>Every process-mining and process-intelligence platform begins with the same architectural move, and it is worth naming plainly: <strong>it does not run your process. It reconstructs one.</strong> Events are extracted from your ERP, CRM, ITSM stack and a dozen ledgers; mapped to case IDs and activities; joined, modeled, and rendered as a graph you can query. The output is a mirror of what your systems of record already did.</p>
+<p>A mirror is useful. It is also, structurally, three things a live system is not:</p>
+<ul>
+<li><strong>Latent.</strong> The model is only ever as fresh as the last extraction. Batch or streaming, there is a window — and inside that window your agent is looking at a photograph, not a feed.</li>
+<li><strong>Reconciled.</strong> Events pulled from systems that disagree have to be stitched and corrected. Fidelity is a maintenance cost you pay forever, not a property you own.</li>
+<li><strong>Coverage-bound.</strong> The mirror reflects only the systems you built connectors to extract from. Everything else is a structural blind spot the model cannot know it has.</li>
+</ul>
+</div>
+
+<div class="section-label fade-in">"ZERO-COPY" IS STILL A COPY</div>
+<div class="fade-in">
+<p>The category leader markets its context model as process data extracted from every underlying system, and touts zero-copy access with roughly ten-times-faster extraction. Give the engineering its due — faster, cheaper extraction is real work, and pushing computation to where the data lives is smart. But look at what the claim actually addresses. Zero-copy describes <em>where the bytes physically sit</em>. It does not change what the representation <em>is</em>.</p>
+<p>The architecture underneath is unchanged: extract, then model, then reason. A faster copy is still a copy. A cheaper mirror is still a mirror. The freshness ceiling is set by the pull, not by the query — and no amount of extraction speed collapses the gap between "the process as last mined" and "the process as it is executing right now."</p>
+</div>
+
+<div class="section-label fade-in">A PROBABILISTIC AGENT ON A STALE MEMORY</div>
+<div class="fade-in">
+<p>Now put an agent on top of the mirror. One leading vendor is refreshingly candid here: it describes its own agents as probabilistic and warns they can carry <strong>"major operational blindspots."</strong> Read that with an architect’s eye. You are stacking two independent sources of error — the <em>model</em> may be stale, and the <em>reasoner</em> may be wrong — and then asking the result to inform decisions about live operations.</p>
+<p>Worse, the agent acts <em>elsewhere</em>. In this pattern the intelligence observes and recommends, then hands the decision to some other system to execute. Even when the recommendation is correct, there is a seam between deciding and acting — and in that seam, state changes, policy is not enforced, and no one is holding the gate at the moment it matters.</p>
+<p>This is not one vendor’s problem; it is the category’s premise. One builds discovery from "millions of events." Another maintains a process twin that, like any twin, begins drifting from its subject the instant it is cast. "Is the memory stale?" is not an edge case in this architecture. It is the standing condition.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">RUN THE PROCESS, DON'T MIRROR IT</div>
+<div class="scene-img-wrap fade-in"><svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+  <defs>
+    <marker id="es-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="40" y="30" font-size="11" letter-spacing="1.5" fill="currentColor" opacity="0.6">PROCESS INTELLIGENCE — ACTS ON A SNAPSHOT</text>
+  <g opacity="0.42" fill="none" stroke="currentColor">
+    <rect x="40" y="52" width="118" height="38" rx="8"/>
+    <rect x="182" y="52" width="132" height="38" rx="8"/>
+    <rect x="338" y="52" width="120" height="38" rx="8"/>
+    <rect x="500" y="52" width="150" height="38" rx="8"/>
+    <line x1="158" y1="71" x2="178" y2="71" marker-end="url(#es-ah)"/>
+    <line x1="314" y1="71" x2="334" y2="71" marker-end="url(#es-ah)"/>
+    <line x1="458" y1="71" x2="496" y2="71" stroke-dasharray="4 4" marker-end="url(#es-ah)"/>
+    <text x="99" y="76" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">observe</text>
+    <text x="248" y="76" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">reconstruct</text>
+    <text x="398" y="76" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">recommend</text>
+    <text x="575" y="76" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">hand off</text>
+  </g>
+  <text x="40" y="112" font-size="10.5" fill="currentColor" opacity="0.5">extracted · modeled · reconciled — only as fresh as the last pull</text>
+  <line x1="40" y1="150" x2="760" y2="150" stroke="currentColor" opacity="0.12"/>
+  <text x="40" y="180" font-size="11" letter-spacing="1.5" fill="currentColor" opacity="0.75">SYSTEM OF ACTION — ACTS ON GROUND TRUTH · ONE RUNTIME</text>
+  <g fill="none" stroke="currentColor">
+    <rect x="60" y="200" width="115" height="38" rx="8"/>
+    <rect x="200" y="200" width="115" height="38" rx="8"/>
+    <rect x="340" y="200" width="105" height="38" rx="8"/>
+    <rect x="470" y="200" width="130" height="38" rx="8"/>
+    <line x1="175" y1="219" x2="198" y2="219" marker-end="url(#es-ah)"/>
+    <line x1="315" y1="219" x2="338" y2="219" marker-end="url(#es-ah)"/>
+    <line x1="445" y1="219" x2="468" y2="219" marker-end="url(#es-ah)"/>
+    <path d="M535 238 L535 280 Q535 288 527 288 L126 288 Q117.5 288 117.5 280 L117.5 240" marker-end="url(#es-ah)"/>
+    <text x="117.5" y="224" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">observe</text>
+    <text x="257.5" y="224" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">decide</text>
+    <text x="392.5" y="224" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">act</text>
+    <text x="535" y="224" font-size="12" text-anchor="middle" stroke="none" fill="currentColor">govern</text>
+  </g>
+  <text x="326" y="306" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.6">live state · nothing to reconcile · policy enforced inline</text>
+</svg></div>
+<div class="fade-in">
+<p>Entroid does not mine a model of your process and feed it to an agent. <strong>The running process is the model.</strong> Every process is composed from five primitives on a Semantic Ontology, and that ontology is not a reporting layer downstream of extraction — it is the live execution substrate. The objects the agent reasons over are the same objects the runtime is executing. There is no second representation to keep in sync, because there is no second representation.</p>
+<p>Connectors are the only primitive that touch external systems, and they are governed, bidirectional read/write against your systems of record — not a one-way extraction pipe. So context is not something ES collects on a schedule. It is native, by construction. There is no mine-model-reconcile pipeline because there is nothing to reconcile: you are never comparing a mirror to reality, you are operating on the authoritative state itself.</p>
+</div>
+
+<div class="section-label fade-in">POLICY AS A GATE, NOT A REPORT</div>
+<div class="fade-in">
+<p>Because ES <em>is</em> the system of action, governance stops being an after-the-fact finding and becomes a hard constraint at the point of execution. It lives inside deterministic workflows — approval gates, segregation of duties, authority and entitlement limits, thresholds, human-in-the-loop checkpoints — enforced inline. A non-compliant action is not flagged after it clears. It is <strong>impossible to take</strong>, because the runtime will not route past the gate. Intelligence Orchestration chooses the path and owns agent authority; Atomic Agents do the bounded work with human-in-the-loop as a first-class property; every decision is bound to an immutable, per-action audit trail.</p>
+<p>Make it concrete. Consider a payment-posting agent — illustrative, not a delivered result. In a mining stack, it reasons over a reconstructed view of yesterday's ledger, recommends a release, and the release executes in another system where the balance may already have changed. On a system of action, that same agent reads live ledger state through a governed connector, the deterministic workflow holds the authority-limit gate, and the payment either clears policy at the instant it posts or it never posts at all. Same intent; a categorically different guarantee.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE ARCHITECT'S TEST</div>
+<div class="fade-in">
+<p>Strip the marketing and put three questions to any vendor selling you an "agentic" process capability:</p>
+<ul>
+<li><strong>Freshness.</strong> What is the maximum staleness between an event in my system of record and the state your agent reasons over? If the honest answer is a pull interval, you are buying a snapshot.</li>
+<li><strong>Enforcement.</strong> When your agent decides, does the action execute inside your runtime under an inline policy gate — or does it hand off to another system? A handoff is a seam, and seams are where controls quietly fail.</li>
+<li><strong>Reconciliation.</strong> How much of the model's fidelity depends on connector coverage and joins I must maintain in perpetuity, and what happens the day that coverage lags reality?</li>
+</ul>
+<p>These are not features to compare on a grid. They are the difference between a system that <em>watches</em> your enterprise and one that <em>runs</em> it.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A faster mirror is still a mirror. The only process context that can't go stale is the one you're actually running.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

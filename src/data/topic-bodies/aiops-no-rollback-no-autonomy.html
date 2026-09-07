@@ -1,0 +1,108 @@
+<div class="hook fade-in"><p>A self-healing workflow fires. A manifest is autonomously edited. An agent, "with approval," runs the fix. Then the blast radius widens — and nothing pulls it back. <strong>Across the field, remediation is fire-and-forget: there is no health-check-gated auto-revert for the case where the corrective action is the thing that breaks you.</strong> That one missing control is the real reason autonomous operations still ships with a human on the keyboard.</p></div>
+
+<div class="section-label fade-in">THE HALF-LOOP EVERYONE SHIPS</div>
+<div class="fade-in">
+<p>Give the category its due. Machine-learning anomaly detection with seasonality-aware baselines genuinely catches degradations that static thresholds sail straight past. Event correlation genuinely collapses an alert storm into a handful of incidents worth a human's attention. Automated causal RCA genuinely compresses an investigation from tens of minutes of dashboard-hopping into a few. And the newest autonomous investigation agents genuinely produce cited, audit-ready root-cause narratives at a speed no on-call engineer can match. None of that is marketing vapor — it is real, hard-won capability, and pretending otherwise loses the argument with any serious reader.</p>
+<p>Then the loop stops. Detection, correlation, and diagnosis all happen <em>inside</em> the observability platform — the system that holds the evidence. The <strong>fix</strong> happens somewhere else: a runbook engine, a separate automation tool, a cloud provider's API, a change ticket routed to a human. The platform that knows exactly what went wrong is, architecturally, not the platform that changes the running system. It reaches across a tool boundary and asks another system to act.</p>
+<p>Dispatching a corrective action to a system you do not own, or drafting a fix for a human to merge and run elsewhere, is a hand-off — not remediation executed under change-control in the runtime that holds the evidence. Both approaches are genuinely advanced. But a hand-off has a property nobody puts on the datasheet: <strong>once it lands, the platform that ordered it can no longer take it back.</strong></p>
+</div>
+
+<div class="section-label fade-in">WHY THE HUMAN NEVER LEAVES THE KEYBOARD</div>
+<div class="fade-in">
+<p>Look closely at how the most capable offerings frame autonomous remediation, and the same structural gap surfaces three different ways:</p>
+<ul>
+<li><strong>The agentic-SRE that acts "with approval."</strong> It investigates autonomously and, once a human approves, executes the corrective step. But verification that service was actually restored is positioned as a forthcoming capability — and no reversal path is described at all. Approval gates the <em>start</em> of the action; nothing gates the <em>outcome</em>.</li>
+<li><strong>The smart-workflow layer that autonomously edits the manifest.</strong> It rewrites desired-state configuration to resolve the issue, with no undo. If the edit is wrong, the "self-healing" system has simply authored a new, confidently-applied defect.</li>
+<li><strong>The event-correlation AIOps layer that triggers self-healing workflows.</strong> It fires a pre-authored remediation on a matched signature — fire-and-forget, with no path to reverse the workflow when the signature matched the symptom but not the cause.</li>
+</ul>
+<p>These are not implementation oversights to be patched next quarter. They are the honest consequence of an architecture. If your remediation is a dispatch across a boundary, you cannot revert what you dispatched, because you never held the transaction — the other system did. And here is the uncomfortable logic that follows: <strong>an action you cannot reverse is either reckless or it must be gated by a human.</strong> There is no third option. So every serious vendor, correctly, keeps a person on the keyboard. The human is not there because the AI is not smart enough. The human is there <em>as</em> the rollback mechanism the architecture forgot to include.</p>
+<p>Which reframes the entire race. Autonomy is not gated by better detection or better RCA — those are largely solved and, credibly, getting better. Autonomy is gated by <strong>reversibility</strong>. Until the fix can safely un-happen, "with approval" is mostly a liability transfer to whoever clicked yes.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ACROSS THE BOUNDARY, OR AROUND THE LOOP</div>
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An observability platform detects, correlates and does RCA, then hands the fix across a dashed tool boundary to a separate runbook with no rollback, versus Entroid closing the loop in one runtime with a health-check-gated auto-revert">
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" stroke-width="1.2"/></marker>
+</defs>
+<line x1="400" y1="40" x2="400" y2="290" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+
+<text x="28" y="34" font-size="13" font-weight="700" fill="currentColor">OBSERVABILITY / AIOps</text>
+<text x="28" y="52" font-size="10.5" fill="currentColor" opacity="0.6">detect · correlate · RCA — then hand off</text>
+
+<rect x="28" y="96" width="150" height="72" rx="9" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.85"/>
+<text x="103" y="122" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">DETECT</text>
+<text x="103" y="139" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">CORRELATE</text>
+<text x="103" y="156" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">RCA</text>
+
+<line x1="180" y1="132" x2="246" y2="132" stroke="currentColor" stroke-width="1.4" opacity="0.7" marker-end="url(#ah)"/>
+<line x1="214" y1="86" x2="214" y2="200" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 4" opacity="0.4"/>
+<text x="214" y="214" font-size="9.5" fill="currentColor" opacity="0.5" text-anchor="middle">tool boundary</text>
+
+<rect x="250" y="100" width="126" height="64" rx="9" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+<text x="313" y="126" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">RUNBOOK · API</text>
+<text x="313" y="142" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">TICKET · SCRIPT</text>
+<text x="313" y="158" font-size="9.5" fill="currentColor" opacity="0.6" text-anchor="middle">executes elsewhere</text>
+<text x="313" y="192" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle">no change-control</text>
+<text x="313" y="207" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle">no rollback</text>
+
+<text x="430" y="34" font-size="13" font-weight="700" fill="currentColor">ENTROID</text>
+<text x="430" y="52" font-size="10.5" fill="currentColor" opacity="0.6">one runtime — loop closes on live state</text>
+
+<rect x="432" y="84" width="128" height="46" rx="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="496" y="105" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">DETECT ·</text>
+<text x="496" y="120" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">AUTO-RCA</text>
+
+<rect x="632" y="84" width="128" height="46" rx="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="696" y="105" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">GOVERNED</text>
+<text x="696" y="120" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">WORKFLOW</text>
+
+<rect x="632" y="198" width="128" height="46" rx="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="696" y="219" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">CONNECTOR ·</text>
+<text x="696" y="234" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">LIVE STATE</text>
+
+<rect x="432" y="198" width="128" height="46" rx="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="496" y="219" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">HEALTH</text>
+<text x="496" y="234" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">CHECK</text>
+
+<line x1="560" y1="107" x2="630" y2="107" stroke="currentColor" stroke-width="1.4" opacity="0.75" marker-end="url(#ah)"/>
+<line x1="696" y1="130" x2="696" y2="196" stroke="currentColor" stroke-width="1.4" opacity="0.75" marker-end="url(#ah)"/>
+<text x="704" y="167" font-size="9" fill="currentColor" opacity="0.6">change-control</text>
+<line x1="632" y1="221" x2="562" y2="221" stroke="currentColor" stroke-width="1.4" opacity="0.75" marker-end="url(#ah)"/>
+<line x1="496" y1="196" x2="496" y2="132" stroke="currentColor" stroke-width="1.4" opacity="0.75" marker-end="url(#ah)"/>
+<text x="488" y="167" font-size="9" fill="currentColor" opacity="0.6" text-anchor="end">revert on</text>
+<text x="488" y="178" font-size="9" fill="currentColor" opacity="0.6" text-anchor="end">regression</text>
+
+<text x="596" y="285" font-size="9.5" fill="currentColor" opacity="0.55" text-anchor="middle">immutable per-action record · no boundary</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">REMEDIATION AS A REVERSIBLE TRANSACTION</div>
+<div class="fade-in">
+<p>Entroid is built the other way around. It is a Composable Process Fabric — five primitives running on one runtime over a Semantic Ontology — and remediation is not a message fired at an external actuator. A corrective action <em>is</em> a <strong>Deterministic Workflow</strong>: the primitive whose defining property is that governance and rollback are inline, not bolted on afterward. Everything that touches your estate goes through <strong>Connectors</strong>, the only primitive that reaches external systems — so ES runs over your existing infrastructure through governed, recorded calls rather than replacing it. This is architecture, not aspiration.</p>
+<p>That changes what the word "remediate" means. When Sentinel investigates an incident and Sherlock produces the root-cause analysis, the corrective procedure they carry out is not a ticket handed to another tool — it is a governed workflow executing in the same runtime that holds the evidence. Architecturally, that workflow:</p>
+<ul>
+<li><strong>Executes under an inline change-control gate.</strong> The action is admitted by policy at the moment of execution — not approved in a foreign ticketing system and hoped-for downstream.</li>
+<li><strong>Acts on live state through a Connector.</strong> Every write to the estate is a governed, recorded call against the system as it actually is right now, not against a stale snapshot.</li>
+<li><strong>Watches the signals the RCA implicated.</strong> The workflow carries a health check bound to the specific metrics, error rates, or saturation the diagnosis named as the failure mode.</li>
+<li><strong>Auto-reverts on regression.</strong> If those signals degrade after the change, the rollback path executes as part of the same transaction, in the same runtime, returning the system to its prior state — no human relay, no second tool, no boundary to cross.</li>
+<li><strong>Records every step immutably.</strong> Execution, health verdict, and any reversal land in a per-action audit trail by construction, because the action and the evidence live in one place.</li>
+</ul>
+<p>That is the distance between "we triggered the runbook" and "the corrective action completed, verified against the failure mode, and would have reverted itself if it hadn't." The loop closes on live state, in one runtime, with the evidence attached. The number that collapses is MTTR-to-<em>verified</em>-resolution — not MTTR-to-dispatch, which is the only clock a hand-off can actually stop.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHY REVERSIBILITY BEATS PRE-APPROVAL</div>
+<div class="fade-in">
+<p>Here is the strategic payoff, and it is larger than faster recovery. Pre-authored runbooks really do automate known fixes — but only known ones. The moment an incident fails to match a signature, the pre-approved path is useless and you are back to a human. That is the ceiling on every "automate the runbook" strategy: it can only act on failures someone already anticipated and scripted. Novelty breaks it by definition.</p>
+<p>Reversibility raises that ceiling. When a corrective action is a reversible transaction — execute, verify against the implicated signals, auto-revert on regression — the cost of being wrong drops from "prolonged outage" to "a brief, recorded, automatically-undone attempt." That is precisely the safety margin that lets a system act on a scenario it has <strong>never seen before</strong>, not merely replay a canned one. You stop betting that the fix is correct and start bounding the downside if it isn't. Bounded downside is what makes autonomy a governance decision instead of a gamble.</p>
+<p>This is why "no rollback" is not a feature to add in a later release. It is the load-bearing wall. Verify-then-revert is what turns an approval-gated suggestion into governed autonomy — and it has to be inline, in the runtime that owns the change, or it isn't a control at all. A rollback that lives in a different system than the action is just another hand-off waiting to fail at the worst possible moment.</p>
+<p><em>An illustration, hypothetical by design:</em> a workflow raises a connection-pool limit to relieve saturation, watches tail latency and error rate for the service the RCA implicated, sees latency worsen rather than recover, and reverts the change on its own — the entire episode a single audited transaction instead of a 2 a.m. page. That is an architectural property of running remediation as a Deterministic Workflow with rollback inline. It is not a claim about a specific delivered result; it is what the design makes possible.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>If the fix can't un-happen, you don't have autonomy — you have a faster way to make the outage worse, and a human paid to stand between you and it.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,123 @@
+<div class="hook fade-in"><p>Your OEE trend is healthy. First-pass yield is up. And somewhere in your plant, a lot is sitting in a quarantine cage — not because anyone is machining it, inspecting it, or moving it, but because its disposition is being argued across three systems and an email thread. <strong>The most expensive interval in manufacturing is the one no scoreboard shows: the time between a decision being needed and a decision being executed.</strong></p></div>
+
+<div class="section-label fade-in">THE SCOREBOARD EVERYONE AGREED ON</div>
+<div class="fade-in">
+<p>Credit where it is due: the manufacturing-operations stack earned its scoreboard. OEE gave plants a common language for equipment productivity that survived translation across shifts, sites, and continents. The MES/MOM platforms brought genuine order to production — routing, work-in-process tracking, electronic batch records where there had been clipboards and tribal memory. The no-code frontline platforms beat paper decisively: dynamic work instructions, digital logbooks, apps built in days by the engineers closest to the work. The cloud MES suites put plant events into enterprise context. The maintenance platforms turned work orders into governed, auditable objects. None of that was hype. All of it moved the industry forward.</p>
+<p>But look closely at what every number on that scoreboard actually measures. Defect counts. Inspection time. Investigation documentation time. Training time. Time to build an app. Each one is a <strong>tracking outcome</strong> — a measure of how completely and how quickly production gets <em>recorded</em>. Not one of them is a <strong>decision outcome</strong>. Nowhere on the standard dashboard will you find deviation-to-disposition, hold-to-release, or changeover-request-to-approved — the intervals during which material stops moving and value stops flowing because a consequential decision is in transit between systems.</p>
+</div>
+
+<div class="section-label fade-in">THE CATEGORY'S OWN ADMISSION</div>
+<div class="fade-in">
+<p>Here is the uncomfortable part: the industry's own thought leadership concedes the premise. Parts of the category — the regulated-vertical MES vendors especially — argue publicly that in complex production, actual processing time is a small fraction of a lot's elapsed life. The rest is waiting. Compress weeks of waiting out of a lot's journey, the argument runs, and the value shows up not in efficiency points but in working capital and revenue timing — real money, at enterprise scale.</p>
+<p>Directionally, that argument is correct. So follow it one step further than its authors do. What, precisely, is the lot waiting <em>for</em>? Rarely a machine — OEE would have caught that decades ago. The longest waits in a modern plant are <strong>decision waits</strong>: the deviation awaiting its disposition, the hold awaiting its release, the changeover awaiting the one signer with the authority to approve it. And notice what the category publishes as proof: inspection time reduced, investigations documented faster, apps deployed sooner. All tracking outcomes. Faster documentation of a deviation is genuinely useful — and it does not release a single lot. A disposition does. The category measures everything <em>around</em> the decision and nothing <em>about</em> it.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE INTERVAL NOBODY OWNS</div>
+<div class="fade-in">
+<p>Why does no vendor publish decision latency? Not concealment — architecture. Walk through the anatomy of a hold. A deviation surfaces on the line. The MES flags the WIP. Quality opens an NCR in the QMS. The ERP blocks the inventory. Three systems, three status flags, all perfectly accurate. And at that exact moment, the actual decision <em>leaves software entirely</em>: a cross-functional review gets scheduled, an email chain forms, someone hunts down the signer whose authority covers this defect class and this customer's quality clauses. When the disposition is finally made, a human ferries it back into all three systems, one at a time — and the genealogy and audit trail get joined from logs after the fact.</p>
+<p>Each product's clock runs only inside its own walls. The MES can tell you time-in-step. The QMS can tell you the age of the NCR. The ERP can tell you days-on-hold. Three partial clocks, and no end-to-end number — because the interval spans the seams, and no vendor owns the seams. <strong>You cannot put an SLA on an interval nobody owns.</strong> So it goes unpublished, unmanaged, and untaxed on any dashboard, while it quietly taxes every lot.</p>
+<p>The fairest modern answer to this — composable, incrementally adopted frontline apps instead of a monolith — deserves its due. Rigidity really is the disease, and app-by-app adoption really is a cure; Entroid agrees so completely that its own architecture is composable primitives. But look at what that composability governs: the <em>authoring</em> layer — who builds apps, how they version, which templates propagate. Each new app connected to the ERP is one more surface where a hold, a disposition, or a revision change must be kept consistent with systems the platform does not govern. The category's own guidance tells adopters to stand up governance frameworks to keep app sprawl in check — governance assigned as homework. Composing more apps composes more seams, and the decision interval gets more places to hide.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: a stitched stack where MES, QMS, and ERP each flag a hold and the disposition crosses dashed seams by human handoff, unmeasured. Right: one governed workflow on the Composable Process Fabric where the hold-to-release interval is measured by construction.">
+  <g font-family="inherit" fill="currentColor">
+    <text x="200" y="32" font-size="12" text-anchor="middle" opacity="0.55" letter-spacing="2">THE STITCHED STACK</text>
+    <text x="600" y="32" font-size="12" text-anchor="middle" opacity="0.55" letter-spacing="2">ONE GOVERNED FABRIC</text>
+    <line x1="400" y1="44" x2="400" y2="296" stroke="currentColor" stroke-width="1" stroke-dasharray="2 5" opacity="0.18"/>
+
+    <!-- Left: three systems, three flags -->
+    <g stroke="currentColor" fill="none" stroke-width="1.2" opacity="0.45">
+      <rect x="42" y="58" width="96" height="58" rx="8"/>
+      <rect x="162" y="58" width="96" height="58" rx="8"/>
+      <rect x="282" y="58" width="96" height="58" rx="8"/>
+    </g>
+    <text x="90" y="82" font-size="12" text-anchor="middle" opacity="0.8">MES</text>
+    <text x="90" y="100" font-size="10" text-anchor="middle" opacity="0.55">WIP flagged</text>
+    <text x="210" y="82" font-size="12" text-anchor="middle" opacity="0.8">QMS</text>
+    <text x="210" y="100" font-size="10" text-anchor="middle" opacity="0.55">NCR open</text>
+    <text x="330" y="82" font-size="12" text-anchor="middle" opacity="0.8">ERP</text>
+    <text x="330" y="100" font-size="10" text-anchor="middle" opacity="0.55">stock blocked</text>
+    <line x1="140" y1="87" x2="160" y2="87" stroke="currentColor" stroke-dasharray="3 4" opacity="0.4"/>
+    <line x1="260" y1="87" x2="280" y2="87" stroke="currentColor" stroke-dasharray="3 4" opacity="0.4"/>
+    <path d="M 90 118 C 90 160, 210 130, 210 168 C 210 200, 330 160, 330 118" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.5"/>
+    <circle cx="210" cy="168" r="9" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+    <circle cx="210" cy="164.5" r="2.6" opacity="0.6"/>
+    <path d="M 204 173 a 6 6 0 0 1 12 0" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+    <text x="210" y="200" font-size="11" text-anchor="middle" opacity="0.7">the disposition crosses by human handoff</text>
+    <text x="210" y="218" font-size="10" text-anchor="middle" opacity="0.5">meetings &#183; email &#183; re-entry into each system</text>
+    <text x="210" y="236" font-size="10" text-anchor="middle" opacity="0.5">audit joined from logs, after the fact</text>
+    <g stroke="currentColor" stroke-width="1" opacity="0.45">
+      <line x1="42" y1="266" x2="378" y2="266"/>
+      <line x1="42" y1="260" x2="42" y2="272"/>
+      <line x1="378" y1="260" x2="378" y2="272"/>
+    </g>
+    <text x="210" y="290" font-size="11" text-anchor="middle" opacity="0.7">deviation &#8594; disposition: unmeasured, unowned</text>
+
+    <!-- Right: one governed workflow -->
+    <rect x="428" y="52" width="344" height="182" rx="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+    <text x="600" y="76" font-size="11" text-anchor="middle" opacity="0.7">Composable Process Fabric &#8212; one runtime</text>
+    <g stroke="currentColor" stroke-width="1.4" opacity="0.6">
+      <line x1="470" y1="130" x2="524" y2="130"/>
+      <line x1="548" y1="130" x2="602" y2="130"/>
+      <line x1="626" y1="130" x2="680" y2="130"/>
+      <line x1="704" y1="130" x2="726" y2="130"/>
+      <path d="M 726 130 l -7 -4 m 7 4 l -7 4" fill="none"/>
+    </g>
+    <g fill="currentColor" opacity="0.75">
+      <circle cx="464" cy="130" r="5.5"/>
+      <circle cx="620" cy="130" r="5.5"/>
+      <circle cx="698" cy="130" r="5.5"/>
+    </g>
+    <g stroke="currentColor" stroke-width="1.3" fill="none" opacity="0.8">
+      <rect x="529" y="123" width="14" height="14" transform="rotate(45 536 130)"/>
+    </g>
+    <circle cx="542" cy="130" r="0" opacity="0"/>
+    <text x="464" y="152" font-size="10" text-anchor="middle" opacity="0.6">planning</text>
+    <text x="536" y="110" font-size="10" text-anchor="middle" opacity="0.7">inline gate</text>
+    <text x="536" y="152" font-size="10" text-anchor="middle" opacity="0.6">production</text>
+    <text x="620" y="152" font-size="10" text-anchor="middle" opacity="0.6">quality</text>
+    <text x="698" y="152" font-size="10" text-anchor="middle" opacity="0.6">logistics</text>
+    <text x="600" y="184" font-size="11" text-anchor="middle" opacity="0.75">the hold / release is one governed, permissioned action</text>
+    <text x="600" y="202" font-size="10" text-anchor="middle" opacity="0.55">genealogy + per-action audit emitted by construction</text>
+    <text x="600" y="220" font-size="10" text-anchor="middle" opacity="0.55">governed Connectors keep MES &#183; QMS &#183; ERP consistent</text>
+    <g stroke="currentColor" stroke-width="1" opacity="0.45">
+      <line x1="428" y1="266" x2="772" y2="266"/>
+      <line x1="428" y1="260" x2="428" y2="272"/>
+      <line x1="772" y1="260" x2="772" y2="272"/>
+    </g>
+    <text x="600" y="290" font-size="11" text-anchor="middle" opacity="0.7">hold-to-release: a measured, improvable SLA</text>
+  </g>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE QUESTION THAT BELONGS IN YOUR RFP</div>
+<div class="fade-in">
+<p>Every manufacturing-software evaluation asks some version of <em>where does the data land</em> — the data model, the integration list, the dashboard suite, the KPI library. The question that actually predicts your operating economics is different: <strong>where does the action live?</strong> The cloud MES suites are explicit about the purpose of their analytics layer — dashboards exist to inform decisions and to predict problems before they occur. Take that at face value; it is accurate. It is also an admission. Informing and predicting are the two things you do to a decision <em>from the outside</em>. The doing happens somewhere else — and today, that somewhere is a meeting.</p>
+<p>This is a working-capital argument, not an IT argument. WIP sitting on hold is cash sitting in a cage. Expiry-dated material ages in quarantine while its disposition circulates for signatures. Expedite premiums get paid downstream to recover schedule lost upstream to a slow approval. Line capacity is consumed by lots that are waiting not for spindles but for signers. A plant can post excellent OEE while its cash conversion quietly degrades — the machines are fine; the decisions are slow. The CFO sees the symptom in inventory. The COO sees it in schedule adherence. Nobody sees it as one number, because nobody's system spans the interval.</p>
+</div>
+
+<div class="section-label fade-in">WHEN THE INTERVAL BECOMES A WORKFLOW</div>
+<div class="fade-in">
+<p>Entroid is built on the opposite premise: the production process is not a record to be kept but a governed workflow to be <em>executed</em>. Its Manufacturing use case — integrated execution across planning, production, quality, and logistics — runs on a Composable Process Fabric of five primitives on one runtime: Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class construct, Functions, and Connectors — the only primitive that touches external systems.</p>
+<p>On that architecture, the deviation-to-disposition chain is a single workflow, not a relay race. The deviation, the containment step, the review, the disposition, and the release are steps on one executing path. The gate that requires the quality signature is not a paragraph in an SOP — it is a step the workflow cannot pass without the permissioned signer acting. An Atomic Agent can assemble the genealogy, pull the customer quality clauses, and draft the disposition rationale — but the release executes only through the inline gate, by the human with authority. Connectors then carry the outcome into the MES, QMS, and ERP so the existing estate stays consistent — no one ferries anything, and nothing here implies rip-and-replace or zero integration. ES runs <em>over</em> the estate, through governed Connectors.</p>
+<p>Here is the payoff for the scoreboard, and it is an architectural property, not a benchmark claim: <strong>because every step is an action on one runtime, every timestamp is emitted by construction.</strong> Decision latency stops being invisible. You can see which step waits longest, which approver queue is the bottleneck, which product family dispositions slowest — because the interval is inside one instrumented workflow instead of scattered across three logs and an inbox. An unowned interval becomes an ownable SLA. Visibility falls out of execution, rather than being the product you buy.</p>
+<p><em>Purely as an illustration:</em> imagine a lot placed on hold at final inspection. In a stitched stack, its release date is a function of meeting calendars. On a governed fabric, the hold opens as a workflow with a clock already running — routed, gated, escalated if it ages, closed by one permissioned action that lands consistently everywhere. Nothing about that example is a delivered result; everything about it follows from where the action lives.</p>
+</div>
+
+<div class="section-label fade-in">THE NEW SCOREBOARD</div>
+<div class="fade-in">
+<p>Keep OEE. It is not wrong — it is partial. It tells you how well your machines run and nothing about how well your enterprise decides. Add the intervals that move working capital:</p>
+<ul>
+<li><strong>Deviation-to-disposition</strong> — from the moment a deviation is raised to the moment its disposition executes, across every function it touches.</li>
+<li><strong>Hold-to-release</strong> — the full life of a hold, including the part that currently lives in email.</li>
+<li><strong>Changeover-request-to-approved</strong> — how long a line waits for a signature, as distinct from how long it waits for a setup.</li>
+</ul>
+<p>And put one question to every vendor in your evaluation: <em>show me where the disposition executes, and show me the clock that runs on it.</em> If the answer is a dashboard — however beautiful — the interval remains unowned, and you will keep paying a tax you cannot see.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>OEE measures how well your machines run. Hold-to-release measures how well your enterprise decides — and only one of them is on your scoreboard.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

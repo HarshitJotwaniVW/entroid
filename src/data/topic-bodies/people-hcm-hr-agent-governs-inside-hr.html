@@ -1,0 +1,122 @@
+<div class="hook fade-in"><p>Your HCM vendor has shipped real governance: an agent that acts on people data, a system of record for what that agent did, guardrails that stop it from crossing a policy line. It is genuine, and it is bounded. <strong>The boundary is the HR domain — and no real people process stays inside the HR domain.</strong> The moment onboarding reaches for a system login, a first paycheck, or a building badge, the agent that was governing a second ago has no authority at all.</p></div>
+
+<div class="section-label fade-in">THE GOVERNANCE IS REAL</div>
+<div class="fade-in"><p>Start by conceding what deserves conceding, because an expert reader will stop listening otherwise. The leading HR platforms have moved past copilots that only answer questions. They now pair agents with entitlements over people data, approval routing on org changes, human-in-the-loop checkpoints on sensitive edits, and a record of what the agent touched — an "agent system of record," in the category's own language. That is not marketing veneer. An agent that can adjust compensation, alter a reporting line, or reclassify a worker is exactly the kind of actor that <em>should</em> be permissioned, gated, and logged.</p>
+<p>For a CISO evaluating agentic AI inside a suite of record, this is the right instinct. If software is going to take autonomous action on employee data, it needs to carry an identity, respect segregation of duties, and leave evidence. The HCM leaders built that. The question is not whether the governance is real. The question is <strong>how far it reaches</strong>.</p></div>
+
+<div class="section-label fade-in">WHERE THE BOUNDARY IS DRAWN</div>
+<div class="fade-in"><p>Every one of those controls is scoped to the HR data domain. The agent's entitlements are HR entitlements. Its approvals are HR approvals. Its audit is an HR audit. Everything it governs is an action on the records, workflows, and org structure that the suite itself owns and executes. That is internally coherent — you can only govern what you can execute, and a system of record executes writes to its own tables.</p>
+<p>The unstated assumption underneath the whole design is that <em>the people process lives where the people data lives.</em> It doesn't. A hire-to-onboard spans IT provisioning, payroll, and facilities. A transfer spans access changes, comp, and reporting lines across systems. An offboarding is almost entirely a de-provisioning problem in domains the HR suite never touches. The data is unified and the view is unified — but the <strong>work</strong> is federated across systems that answer to different authorities. Governance drawn around the HR domain governs the paperwork of the process, not the process.</p></div>
+
+<div class="section-label fade-in">TRACE ONE ACTION ACROSS THE SEAM</div>
+<div class="fade-in"><p>Make it concrete. An agent runs an onboarding. It creates the worker, assigns the position, routes the approvals — all inside the suite, all genuinely governed. Then comes step N: <em>provision access to the engineering systems.</em> Watch what happens to the governance at that exact step.</p>
+<ul>
+<li><strong>Authority mismatch.</strong> The agent's entitlements are scoped to HR objects. Granting an entitlement in an identity or access system is a privileged act in a <em>different</em> authority domain. The HR agent cannot hold that privilege — so it does not perform the action. It emits a request. Something on the far side performs the grant, under a different identity, a different approval model, and a different set of guardrails, or none.</li>
+<li><strong>The guardrail moves upstream of the act.</strong> What crosses the boundary is a message — a ticket, an event, an API call, a nightly sync. The guardrail that was inline a moment ago now sits <em>before</em> an integration. It governed the decision to <strong>request</strong> access. It does not govern the <strong>grant</strong>.</li>
+<li><strong>Audit discontinuity.</strong> The HR system of record logs "access requested." The access system logs "access granted" — if it logs at all, in its own store, keyed its own way. No single record says <em>this access was granted, by this authority, for this onboarding, under this approval.</em> Reconstructing that after an incident is a cross-system correlation project — which is precisely the evidence gap that segregation of duties exists to close.</li>
+</ul>
+<p>The seam is not a bug in anyone's implementation. It is structural. A system of record governs its records; the instant the process leaves those records, the control plane ends and a handoff begins.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Left: an HR system of record and agent govern inside the HR domain, then assign onboarding as checklist tasks handed off across IT, finance, and facilities systems past a dashed boundary where the audit stops. Right: the people process runs as one governed workflow across HR, IT, finance, and facilities on a single fabric, with one inline governance gate, Connectors doing the provisioning, and one continuous per-action audit.">
+  <!-- PANEL A -->
+  <text x="24" y="28" font-size="13" font-weight="700" fill="currentColor" stroke="none">HR SYSTEM OF RECORD + AGENT</text>
+  <rect x="24" y="42" width="150" height="70" rx="8" stroke-opacity="0.9"/>
+  <text x="99" y="72" font-size="11" text-anchor="middle" fill="currentColor" stroke="none">HR record</text>
+  <text x="99" y="90" font-size="11" text-anchor="middle" fill="currentColor" stroke="none">agent · guardrail</text>
+  <!-- audit stub that stops at the boundary -->
+  <line x1="24" y1="126" x2="174" y2="126" stroke-opacity="0.5"/>
+  <text x="24" y="142" font-size="9" fill="currentColor" stroke="none" stroke-opacity="1" opacity="0.7">audit ends here ▸</text>
+  <!-- dashed 'work executes elsewhere' boundary -->
+  <rect x="14" y="160" width="352" height="132" rx="10" stroke-dasharray="5 5" stroke-opacity="0.55"/>
+  <text x="190" y="182" font-size="10" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">work executes elsewhere — handoffs</text>
+  <!-- checklist tasks in other systems -->
+  <g stroke-opacity="0.8">
+    <rect x="30" y="198" width="100" height="34" rx="6"/>
+    <path d="M40 215 l5 5 l9 -11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="62" y="219" font-size="9.5" fill="currentColor" stroke="none">IT access</text>
+    <rect x="140" y="198" width="100" height="34" rx="6"/>
+    <path d="M150 215 l5 5 l9 -11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="172" y="219" font-size="9.5" fill="currentColor" stroke="none">Payroll</text>
+    <rect x="250" y="198" width="100" height="34" rx="6"/>
+    <path d="M260 215 l5 5 l9 -11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="282" y="219" font-size="9.5" fill="currentColor" stroke="none">Facilities</text>
+  </g>
+  <!-- dashed handoff arrows from HR box into the boundary -->
+  <path d="M99 112 L80 196" stroke-dasharray="4 4" stroke-opacity="0.5"/>
+  <path d="M99 112 L190 196" stroke-dasharray="4 4" stroke-opacity="0.5"/>
+  <path d="M99 112 L300 196" stroke-dasharray="4 4" stroke-opacity="0.5"/>
+  <text x="30" y="262" font-size="9" fill="currentColor" stroke="none" opacity="0.65">each grant: different authority · separate log</text>
+
+  <!-- divider -->
+  <line x1="400" y1="20" x2="400" y2="300" stroke-opacity="0.25" stroke-dasharray="2 6"/>
+
+  <!-- PANEL B -->
+  <text x="432" y="28" font-size="13" font-weight="700" fill="currentColor" stroke="none">ONE GOVERNED WORKFLOW · ONE FABRIC</text>
+  <!-- single inline governance gate -->
+  <rect x="432" y="46" width="120" height="30" rx="6" stroke-opacity="0.9"/>
+  <text x="492" y="65" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">inline governance gate</text>
+  <text x="560" y="65" font-size="9" fill="currentColor" stroke="none" opacity="0.7">entitlements · approvals · SoD</text>
+  <!-- the four domains as one continuous band -->
+  <g stroke-opacity="0.9">
+    <rect x="432" y="100" width="84" height="52" rx="7"/>
+    <text x="474" y="130" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">HR</text>
+    <rect x="524" y="100" width="84" height="52" rx="7"/>
+    <text x="566" y="130" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">IT</text>
+    <rect x="616" y="100" width="84" height="52" rx="7"/>
+    <text x="658" y="130" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">Finance</text>
+    <rect x="708" y="100" width="76" height="52" rx="7"/>
+    <text x="746" y="130" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">Facilities</text>
+  </g>
+  <!-- flow arrows through the band -->
+  <path d="M516 126 h8" stroke-width="1.5" marker-end="url(#ah)"/>
+  <path d="M608 126 h8" stroke-width="1.5" marker-end="url(#ah)"/>
+  <path d="M700 126 h8" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- gate feeds every domain -->
+  <path d="M492 76 L474 100 M492 76 L566 100 M492 76 L658 100 M492 76 L746 100" stroke-opacity="0.45"/>
+  <!-- Connectors: plugs at the far systems -->
+  <g stroke-opacity="0.75">
+    <circle cx="566" cy="170" r="4"/><line x1="566" y1="152" x2="566" y2="166"/>
+    <circle cx="658" cy="170" r="4"/><line x1="658" y1="152" x2="658" y2="166"/>
+    <circle cx="746" cy="170" r="4"/><line x1="746" y1="152" x2="746" y2="166"/>
+  </g>
+  <text x="656" y="190" font-size="9" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">Connectors provision the real systems</text>
+  <!-- one continuous per-action audit -->
+  <rect x="432" y="222" width="352" height="30" rx="6" stroke-opacity="0.9"/>
+  <text x="608" y="241" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">one immutable per-action audit — spans every step</text>
+  <path d="M474 152 v70 M566 152 v70 M658 152 v70 M746 152 v70" stroke-opacity="0.35" stroke-dasharray="3 4"/>
+  <defs>
+    <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="currentColor" fill="none" stroke-width="1.2"/></marker>
+  </defs>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE CLOSEST COUNTEREXAMPLE</div>
+<div class="fade-in"><p>Be fair about the hardest case. One class of platform natively spans HR and IT: it provisions applications and devices during onboarding <em>inside its own suite</em>. That is genuinely more execution than a pure system of record. The laptop, the login, the app access are not checklist items waiting for a downstream team — they actually happen, automatically, as onboarding runs. Credit where it is due: this really does close more of the onboarding seam than a records-plus-portal architecture, and any honest comparison has to say so.</p>
+<p>Now look at the <em>shape</em> of that win. The provisioning is automated because the vendor owns both domains — HR and IT are both inside one catalog. Push the same process one step past that catalog and the seam reopens exactly as before: the payroll instruction into a treasury system it doesn't own, the desk in a facilities system outside its scope, the entitlement in a line-of-business application that isn't in its app store. <strong>Unifying the record and bundling point automations inside a suite's own domains produces a bigger domain — not a domainless process.</strong> The seam didn't vanish. It moved to the edge of the suite, wherever that edge happens to fall.</p></div>
+
+<div class="section-label fade-in">GOVERNANCE THAT FOLLOWS THE PROCESS</div>
+<div class="fade-in"><p>Entroid attacks this at the layer where it is actually a problem: the runtime. It does not offer a better system of record with a better agent bolted on. It models the people process as one <strong>Deterministic Workflow</strong> on a single runtime, where every step — the HR write, the access grant, the payroll setup, the device order — is a primitive on the <em>same</em> fabric that runs finance, facilities, and every other enterprise process. Concretely:</p>
+<ul>
+<li><strong>The agent is a governed primitive, not a suite feature.</strong> It is an Atomic Agent, first-class in the fabric, with human-in-the-loop as a native control. When it executes a step, the Deterministic Workflow enforces entitlements, approvals, segregation of duties, and thresholds <em>inline, at the moment of action</em> — and it does so identically whether the step lands in HR, IT, finance, or facilities. Governance is a property of the runtime, not of a domain.</li>
+<li><strong>Connectors do the real provisioning.</strong> ES does not claim to replace the identity system or the payroll engine; it runs over the existing estate through governed Connectors — the only primitive that touches external systems. The access grant still lands in the identity system. The difference is that the grant is a governed action <em>inside the workflow</em>, passing through the same gate under the same authority — not a request thrown over a wall to a second authority domain.</li>
+<li><strong>One audit, not four logs.</strong> "Access granted, by this workflow, for this onboarding, under this approval" is a single immutable record in the same store as the HR write and the payroll setup — because they all executed on one runtime. There is nothing to correlate after the fact, because there was never a handoff to correlate across.</li>
+</ul>
+<p>That is the whole argument in one sentence: the HCM suite governs actions inside HR because that is all it executes; ES governs the people process end to end because it <em>executes</em> the people process end to end. This is an architectural property of the design, not a demo and not a delivered outcome — but it is the kind of property you can reason about, which is more than "trust our guardrails" offers once the process leaves the room.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT A CIO SHOULD ACTUALLY ASK</div>
+<div class="fade-in"><p>Change the buying question. "Does the HR agent have guardrails?" gets a yes, and it is an honest yes — so it tells you nothing. The question that separates a system of record from a process fabric is: <strong>when a people-process step crosses out of the HR domain, who holds the authority, and where is the audit?</strong> Three concrete probes:</p>
+<ul>
+<li><strong>Does the same governance gate apply to the access grant as to the org-chart edit</strong> — or only to the HR-side decision to request it?</li>
+<li><strong>Is there one per-action record spanning HR, IT, finance, and facilities for a single onboarding</strong> — or four logs in four systems that a human correlates after an incident?</li>
+<li><strong>When the process changes</strong> — a new step, a new approval, a new segregation rule — do you reconfigure one workflow, or renegotiate an integration between two systems of record that each think they own the truth?</li>
+</ul>
+<p>The suite's answers to these are structural, not roadmap gaps you can wait out. A system of record will always govern its records; a process fabric governs the process. Your employee doesn't live inside HR — and neither does the work of onboarding, moving, or offboarding them.</p></div>
+
+<div class="closing fade-in"><blockquote>The HR agent guards the record it owns. Your people process runs across four systems it doesn't — and that seam is exactly where governance goes dark.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

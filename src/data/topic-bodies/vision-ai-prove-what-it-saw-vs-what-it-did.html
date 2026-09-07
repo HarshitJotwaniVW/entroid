@@ -1,0 +1,111 @@
+<div class="hook fade-in"><p>Your visual-inspection model can now show you exactly which pixels it read. It can box the defect, highlight the extracted field on the invoice, cite the frame in the video feed. <strong>That is provenance of the read — and it is genuinely valuable.</strong> But when the auditor, the regulator, or the post-incident review arrives, the question is never only what the model <em>saw</em>. It is what your enterprise <em>did</em> about it — and this is precisely where most vision stacks fall silent.</p></div>
+
+<div class="section-label fade-in">THE READ HAS GENUINELY GOTTEN GOOD</div>
+<div class="fade-in"><p>Let's concede the real progress first, because pretending otherwise is the fastest way to lose a technical reader. The modern computer-vision platforms have democratized a discipline that used to require a research team. <strong>Expert-guided labeling and rapid model training</strong> put a working detector in the hands of a domain expert who has never written a training loop. That is a legitimate shift, and it is not marketing.</p>
+<p>The read has become more trustworthy too. <strong>Pixel-level grounding and source citations</strong> — a bounding box tying an extracted value to its exact coordinates on the page, a highlighted region proving where a classification came from — make the model's output <em>verifiable</em> rather than asking you to trust a number in isolation. Done well, this measurably cuts the hallucinated field, the confidently-wrong extraction. Pair it with <strong>confidence scores and human-in-the-loop review</strong>, and you have a pragmatic middle path: route the low-confidence read to a person, auto-accept the rest. Add <strong>edge deployment and enterprise security posture</strong> — SOC 2, HIPAA, zero-data-retention — and you have real assurance that the pixels never left the building and the model behaved.</p>
+<p>All of this is real. And all of it governs the same two things: the <strong>model</strong> (its accuracy, its drift, the quality of its labels) and the <strong>read</strong> (the provenance of the pixel). It is a complete story about perception. It is not a story about consequence.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE AUDIT THAT STOPS AT THE PIXEL</div>
+<div class="fade-in"><p>Here is the uncomfortable part. Two of the loudest claims in this category are both true and both incomplete — in the same way.</p>
+<p>The <strong>document-AI platforms</strong> market field-level citations and pixel-level grounding as, in their framing, an "auditable trail for compliance." And it is a trail — of the read. It proves that the total on line 14 was extracted from these exact coordinates on this exact page. Separately, the <strong>managed cloud detection and extraction endpoints</strong> offer their own "audit": an API-call log. It proves that a request went in and a JSON response came back with a bounding box and a confidence score.</p>
+<p>Notice what neither one records. The citation proves where the value <em>sat</em>. The API log proves the model was <em>called</em>. Neither says a word about what happened next — whether a payment posted, a batch was quarantined, a badge was flagged, a claim was approved. <strong>Both prove the read with real rigor and are structurally silent on the act.</strong> An audit that ends at the pixel is an audit of perception dressed up as an audit of decisions. When your controls, your regulator, and your liability all live downstream of the detection, that is the wrong ledger.</p></div>
+
+<div class="section-label fade-in">WHERE THE LIABILITY ACTUALLY LIVES</div>
+<div class="fade-in"><p>The compliance question is not "was the detection correct?" It is a chain: <strong>which action fired, under what policy, approved by whom, and with what result?</strong> That chain is the thing an auditor reconstructs, the thing a plaintiff subpoenas, the thing an incident review dissects. And in the standard architecture, that chain is authored somewhere the vision system cannot see.</p>
+<p>The detection is returned — as an endpoint response or an edge event — and thrown over a wall into a <em>separate</em> system that takes the consequential action: a PLC that stops a line, an MES that dispositions a lot, an ERP that posts an entry, an RPA bot that files a claim. To be fair, the more sophisticated vendors do close this loop on paper: they write the detection into a PLC tag, or pipe the structured fields straight into an MES, ERP, or RPA workflow. That is genuinely more end-to-end than a bare detector that just emits a number, and it deserves credit.</p>
+<p>But be precise about what "closing the loop" actually is here. The decision-and-action logic — the confidence threshold that gates the stop, the segregation-of-duties rule on the posting, the approval that must precede the disposition — is authored <strong>in a different tool, by different people, in a different governance regime.</strong> No policy travels across the wire; only a value does. And the record splits in two: the vision system logs what the camera <em>saw</em>, the second system logs what it <em>did</em>, and nothing binds them into one accountable transaction. That <strong>split-brain audit</strong> — two half-records that have to be reconciled after the fact, if anyone can — is not a tooling gap you patch. It is the shape of the architecture. Detection is governed as a model on one side of the wall; the action executes ungoverned on the other.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Diagram contrasting a detection endpoint that hands off across a wall to an ungoverned acting system, versus Entroid running the vision model as a Function inside a governed workflow with one per-action audit">
+  <style>
+    .lbl { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; fill: currentColor; stroke: none; }
+    .lblsm { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: currentColor; stroke: none; opacity: .68; }
+    .ttl { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 700; fill: currentColor; stroke: none; }
+    .box { stroke-width: 1.4; opacity: .85; }
+    .muted { opacity: .5; }
+    .flow { stroke-width: 1.4; opacity: .6; }
+  </style>
+
+  <!-- TOP: endpoint over a wall -->
+  <text x="24" y="26" class="ttl">Detection endpoint → over the wall</text>
+  <rect x="24" y="42" width="150" height="52" rx="8" class="box"/>
+  <text x="40" y="66" class="lbl">Vision model</text>
+  <text x="40" y="82" class="lblsm">label · train · deploy</text>
+  <text x="40" y="112" class="lblsm">grounding proves the READ</text>
+
+  <path d="M174 68 H262" class="flow" marker-end="url(#arr)"/>
+  <text x="182" y="60" class="lblsm">detection</text>
+
+  <!-- the wall -->
+  <line x1="300" y1="30" x2="300" y2="132" stroke-width="1.6" stroke-dasharray="6 6" class="muted"/>
+  <text x="292" y="146" class="lblsm" text-anchor="middle">wall</text>
+
+  <rect x="330" y="42" width="180" height="52" rx="8" class="box muted"/>
+  <text x="346" y="66" class="lbl">PLC / MES / ERP / RPA</text>
+  <text x="346" y="82" class="lblsm">takes the action — ungoverned</text>
+
+  <rect x="548" y="42" width="118" height="24" rx="6" class="box muted"/>
+  <text x="560" y="58" class="lblsm">read log</text>
+  <rect x="548" y="70" width="118" height="24" rx="6" class="box muted"/>
+  <text x="560" y="86" class="lblsm">system-2 log</text>
+  <text x="672" y="66" class="lblsm">split-</text>
+  <text x="672" y="80" class="lblsm">brain</text>
+
+  <!-- divider -->
+  <line x1="24" y1="168" x2="776" y2="168" stroke-width="1" stroke-dasharray="2 5" class="muted"/>
+
+  <!-- BOTTOM: ES one runtime -->
+  <text x="24" y="196" class="ttl">Entroid → one governed transaction</text>
+  <rect x="24" y="212" width="728" height="80" rx="10" class="box"/>
+  <text x="40" y="232" class="lblsm">Deterministic Workflow · one runtime</text>
+
+  <rect x="44" y="242" width="118" height="38" rx="7" class="box"/>
+  <text x="58" y="264" class="lbl">Vision Fn</text>
+  <text x="58" y="277" class="lblsm">detection</text>
+
+  <path d="M162 261 H196" class="flow" marker-end="url(#arr)"/>
+
+  <rect x="196" y="242" width="132" height="38" rx="7" class="box"/>
+  <text x="210" y="261" class="lbl">Confidence gate</text>
+  <text x="210" y="275" class="lblsm">inline policy · HITL</text>
+
+  <path d="M328 261 H362" class="flow" marker-end="url(#arr)"/>
+
+  <rect x="362" y="242" width="128" height="38" rx="7" class="box"/>
+  <text x="376" y="261" class="lbl">Connector</text>
+  <text x="376" y="275" class="lblsm">governed action</text>
+
+  <path d="M490 261 H524" class="flow" marker-end="url(#arr)"/>
+
+  <rect x="524" y="242" width="208" height="38" rx="7" class="box"/>
+  <text x="538" y="261" class="lbl">Immutable per-action audit</text>
+  <text x="538" y="275" class="lblsm">detection→policy→action→actor→result</text>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6" stroke="currentColor" stroke-width="1.2" fill="none" opacity=".7"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE RECORD THAT BINDS SAW TO DID</div>
+<div class="fade-in"><p>Entroid's wedge here is not a better detector. Assume the read is excellent — grounding, citations, confidence, and all. The difference is <em>where the model runs</em>. On the ES Composable Process Fabric, a vision model runs as a governed <strong>Function inside a Deterministic Workflow</strong>, on one runtime, over a Semantic Ontology. The detection is not returned to a caller and abandoned; it is <em>consumed</em> by the next step of the same executing process — a step that carries the policy inline.</p>
+<p>Concretely, the confidence-gated logic, the human-in-the-loop pause (a first-class primitive, not a bolt-on), the permission on the actor, and the action itself — reaching an external PLC, MES, or ERP through a governed <strong>Connector</strong>, the only primitive allowed to touch an outside system — all execute as one accountable transaction. And that transaction emits a single immutable record binding the whole chain:</p>
+<ul><li><strong>Detection → confidence → policy → action → actor → result.</strong> What the model saw, how sure it was, which rule evaluated, what action that rule authorized, who (or which agent, under whose authority) it ran as, and what actually happened downstream — one row, one runtime, one audit, by construction rather than by later reconciliation.</li></ul>
+<p>This is what reframes "auditability" from provenance-of-the-read to <strong>accountability-of-the-act</strong>. Grounding and citations, however good, prove the first link and stop. The per-action record is the whole chain. That is explainability by design: not "the model was 0.94 confident," but "at 0.94 confidence the quarantine policy fired, no human override was required, the Connector dispositioned lot 8817, and here is the actor and the result" — one query, not a forensic reconstruction across two systems.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHY THIS IS THE UNIVERSAL WEDGE</div>
+<div class="fade-in"><p>This is not a manufacturing point or a document point. It is the same point everywhere a detection triggers a consequence:</p>
+<ul><li><strong>Manufacturing:</strong> a defect detection triggers a governed quarantine-or-rework workflow, HITL-gated below a confidence floor, instead of a signal firing a PLC that stops a line with no policy attached and no record of why.</li>
+<li><strong>Document / IDP:</strong> an extracted invoice field feeds a governed posting <em>with segregation of duties enforced inline</em> — the read and the financial control live in the same transaction, not in a citation on one side and an ERP entry on the other.</li>
+<li><strong>Safety and security:</strong> a monitoring detection escalates through a permissioned, HITL-first workflow with the escalation and its outcome captured — not an alert thrown at an external system that acts, or doesn't, off-ledger.</li></ul>
+<p>One honest caveat, because over-claiming would make this whole argument suspect: ES is <em>not</em> a rip-and-replace. It does not pretend your PLCs, MES, and ERP vanish. It runs <strong>over the existing estate through governed Connectors</strong> — the integration is real, and the fabric's value is precisely that the governance travels <em>with</em> the action across that Connector, rather than stopping at the wall. The detect-decide-act-audit loop is one transaction on one runtime; the estate it reaches into stays exactly where it is.</p></div>
+
+<div class="closing fade-in"><blockquote>Proving what the model saw is provenance. Proving what your enterprise did about it is governance — and only one of them shows up in the audit.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

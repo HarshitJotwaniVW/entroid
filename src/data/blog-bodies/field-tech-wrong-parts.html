@@ -1,0 +1,53 @@
+
+  <div class="stat-row fade-in">
+  <div class="stat-box"><div class="stat-num">90m</div><div class="stat-lbl">Drive with wrong parts</div></div>
+  <div class="stat-box"><div class="stat-num">7h</div><div class="stat-lbl">Technician time wasted</div></div>
+  <div class="stat-box"><div class="stat-num">36h</div><div class="stat-lbl">Customer downtime — $40 filter</div></div>
+</div>
+
+<div class="hook fade-in">90 minutes of driving. The right technician, the wrong parts. The work order was correct on paper. <strong>The systems just didn't know each other.</strong></div>
+
+  <div class="section-label fade-in">The Scene</div>
+  <div class="fade-in"><p>Monday, 7:15 AM. A maintenance work order is dispatched: "Replace filter assembly, Unit 7, Building C." The technician loads the parts listed on the work order, drives 90 minutes to the customer site, and opens the unit.</p>
+<p>Wrong filter. The unit was upgraded six months ago, and the new model uses a completely different filter assembly. The asset record in the CMDB still shows the old configuration. The parts catalog carries both SKUs. The work order system pulled the one linked to the outdated asset record, because that's all it had.</p>
+<p>The technician calls dispatch. Dispatch calls the warehouse. The warehouse ships the correct part. It arrives the next day. The technician drives 90 minutes back. The customer has been without the unit for 36 hours.</p>
+<p><mark class="hl"><strong>Total cost: two site visits, one overnight shipment, one unhappy customer, and 7 hours of technician time, all for a $40 filter.</strong></mark></p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <img src="/blog-assets/1581092918056-0c4c3acd3789.jpg" alt="Technician at industrial site" loading="lazy">
+  </div>
+
+  <div class="section-label fade-in">The Cascade</div>
+  <div class="fade-in"><ul>
+<li><strong>The asset configuration and the parts catalog aren't linked.</strong> When the unit was upgraded, the CMDB wasn't updated to reflect the new part requirements.</li>
+<li><strong>The work order system can't verify parts against actual asset state.</strong> It trusts whatever the CMDB says, even when the CMDB is wrong.</li>
+<li><strong>The warehouse shows "in stock" for the correct part,</strong> but the work order never asked for it, because the systems don't cross-reference.</li>
+<li><strong>Field technicians become the error detection layer.</strong> They discover problems on-site that should have been caught before dispatch ever happened.</li>
+</ul></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Shift</div>
+  <div class="fade-in"><p>What if the work order, the asset configuration, the parts catalog, and the warehouse inventory all lived on <strong>one connected data model</strong>?</p>
+<p>When a work order is created, the system cross-references the asset's current configuration, not the one from three years ago. It verifies part availability against the correct SKU. If the part isn't in stock, the work order holds until it is. The technician never leaves the warehouse with the wrong filter, because <strong>the system won't let the work order dispatch with a mismatch in the first place</strong>.</p></div>
+
+  <div class="section-label fade-in">The Result</div>
+  <div class="fade-in"><p>The 90-minute drive wasn't the failure. The failure happened days earlier, when a work order got created against an asset record that no longer reflected reality. One connected model eliminates the gap, and the wasted trip along with it.</p></div>
+
+  <div class="insight fade-in">
+    <span class="insight-label">Key Insight</span>
+    Field technicians shouldn't be the error detection layer for disconnected systems. When assets, parts, and work orders all live on one connected data model, the mismatch gets caught before dispatch instead of discovered at a customer site 90 minutes away. That's the difference between a functional architecture and a wasted day.
+  </div>
+
+  <div class="closing fade-in">
+    <blockquote>Your field technicians shouldn't be the ones discovering that your systems are out of sync. That's not their job. It's your architecture's job.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h3>See what this looks like in practice.</h3>
+    <p>A strategic conversation about how the enterprise could operate<br>when every system shares one intelligence. No demo required.</p>
+    <a href="https://enterprisesingularity.com/#cta" class="cta-btn">
+      Start the Conversation
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+    </a>
+  </div>

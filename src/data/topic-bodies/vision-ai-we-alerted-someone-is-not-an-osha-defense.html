@@ -1,0 +1,130 @@
+<div class="hook fade-in">
+<p>A camera on your plant floor sees a worker cross under a suspended load with no hard hat. Two hundred milliseconds later the model is certain, and a notification is already on its way to someone's phone. What happens in the next ninety seconds is the only thing an inspector or a plaintiff's counsel will care about — and it is the exact thing an edge safety-vision platform hands off to a second system it does not govern. <strong>The detection was never the safeguard. The enforced response is.</strong> <em>'We alerted someone'</em> describes a notification. It does not describe a control.</p>
+</div>
+
+<div class="section-label fade-in">CONCEDE WHAT THE CAMERAS GET RIGHT</div>
+<div class="fade-in">
+<p>Start by giving the cameras their due, because they earn it. Real-time detection of PPE gaps, falls, and restricted-zone entry, running on-device at the edge, means a hazard is seen the instant it appears — across far more of the floor than any human watch-stander could cover, and often without a single frame leaving the plant. That last point is an honest answer to the privacy objection, and it is backed by real security posture: on-edge inference, zero-retention options, recognized certifications. Confidence scores paired with human review are a pragmatic middle path, not a gimmick — they keep a person in the decision precisely where the model is unsure. This is a genuine democratization of a capability that used to demand a dedicated safety officer per line. None of what follows disputes any of it.</p>
+<p>But notice exactly what all of that governs. It governs the <em>read</em> — did the model see the hazard, how sure was it, where in the frame, has its accuracy drifted since deployment. Every certification, every confidence threshold, every grounded bounding box is an assurance about <strong>perception</strong>. And perception is where these platforms stop.</p>
+</div>
+
+<div class="section-label fade-in">THE LOOP ENDS AT THE ALERT</div>
+<div class="fade-in">
+<p>What comes after the detection is, architecturally, a signal thrown over a wall. The strongest version in the category is a <em>'pre-programmed response'</em> — fire a relay, sound a horn, flash a strobe, POST a webhook — and the more common version is a notification to an operator, a dashboard, or a supervisor's phone. Both share a defining property: they are <strong>open-loop</strong>. The signal leaves the vision system, and nothing downstream is obliged to confirm that the hazard was abated, that the right person received it, or that anyone acted at all.</p>
+<p>That leaves you with three failure modes — and they are the very ones 'proactive safety' was sold to eliminate:</p>
+<ul>
+<li><strong>Missed.</strong> The alert lands in a queue, at a shift change, in a noisy control room where it competes with fifty others.</li>
+<li><strong>Muted.</strong> After enough marginal positives, the horn gets silenced, the channel muted, the relay bypassed — the classic alarm-fatigue endgame.</li>
+<li><strong>Ignored.</strong> The notification is acknowledged and nothing else happens, because acknowledgment is not abatement.</li>
+</ul>
+<p>Here is the part that should worry counsel most. The 'visual audit trail' these platforms tout — the clip, the timestamp, the bounding box — records what the camera <em>saw</em>. It does not record what was <em>done about it</em>. You end up with immaculate evidence that a hazard was detected and no evidence that it was corrected. In an enforcement context that is the worst of both worlds: proof of awareness, silence on the response.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: an edge safety-vision model detects a hazard and fires an alert thrown over a dashed wall to an operator phone, a horn or relay, and a PLC or MES that may act or may not — the visual audit trail records the detection, not the response, and the alert is missable, mutable, and ignorable. Right: on one runtime the vision model runs as a Function into a confidence-gated inline policy gate, with a HITL checkpoint for high-stakes or low-confidence cases, a governed remediation workflow that locks out and escalates on non-acknowledgment through a Connector to line control and EHS, and an immutable per-action audit of the enforced response binding detection to policy to action to actor to outcome.">
+  <defs>
+    <marker id="shHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <line x1="400" y1="20" x2="400" y2="300" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity="0.25"/>
+
+  <!-- LEFT: DETECT & NOTIFY -->
+  <text x="24" y="34" font-size="12" font-weight="700" fill="currentColor" letter-spacing="0.8">DETECT &amp; NOTIFY · response ungoverned</text>
+
+  <rect x="28" y="60" width="118" height="48" rx="7" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.5"/>
+  <text x="87" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">safety vision</text>
+  <text x="87" y="96" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">edge detection</text>
+
+  <line x1="146" y1="84" x2="196" y2="84" stroke="currentColor" stroke-width="1.5" marker-end="url(#shHead)"/>
+  <text x="171" y="76" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">alert</text>
+
+  <line x1="206" y1="52" x2="206" y2="205" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.45"/>
+  <text x="206" y="46" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">the wall</text>
+
+  <line x1="206" y1="76" x2="222" y2="76" stroke="currentColor" stroke-width="1.2" marker-end="url(#shHead)"/>
+  <rect x="224" y="58" width="164" height="36" rx="6" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.34" stroke-dasharray="3 3"/>
+  <text x="306" y="73" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor" opacity="0.9">operator phone / dashboard</text>
+  <text x="306" y="87" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">— may be muted</text>
+
+  <line x1="206" y1="122" x2="222" y2="122" stroke="currentColor" stroke-width="1.2" marker-end="url(#shHead)"/>
+  <rect x="224" y="104" width="164" height="36" rx="6" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.34" stroke-dasharray="3 3"/>
+  <text x="306" y="119" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor" opacity="0.9">horn · strobe · relay</text>
+  <text x="306" y="133" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">— open-loop, no confirm</text>
+
+  <line x1="206" y1="168" x2="222" y2="168" stroke="currentColor" stroke-width="1.2" marker-end="url(#shHead)"/>
+  <rect x="224" y="150" width="164" height="36" rx="6" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.34" stroke-dasharray="3 3"/>
+  <text x="306" y="165" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor" opacity="0.9">PLC / MES signal</text>
+  <text x="306" y="179" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">— second system acts, or doesn't</text>
+
+  <rect x="28" y="224" width="360" height="44" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.4"/>
+  <text x="208" y="243" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">visual audit trail</text>
+  <text x="208" y="259" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.72">records the DETECTION — not the response</text>
+  <text x="208" y="286" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">an alert is missable · mutable · ignorable</text>
+
+  <!-- RIGHT: DETECT to REMEDIATE -->
+  <text x="416" y="34" font-size="12" font-weight="700" fill="currentColor" letter-spacing="0.8">DETECT → REMEDIATE · one runtime</text>
+
+  <rect x="416" y="60" width="92" height="46" rx="7" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.5"/>
+  <text x="462" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">vision</text>
+  <text x="462" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Function</text>
+
+  <line x1="508" y1="83" x2="534" y2="83" stroke="currentColor" stroke-width="1.5" marker-end="url(#shHead)"/>
+
+  <rect x="536" y="56" width="118" height="54" rx="7" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.55"/>
+  <text x="595" y="74" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">inline policy gate</text>
+  <text x="595" y="88" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.72">confidence-gated</text>
+  <text x="595" y="101" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.72">versioned · approver-set</text>
+
+  <line x1="654" y1="83" x2="680" y2="83" stroke="currentColor" stroke-width="1.5" marker-end="url(#shHead)"/>
+
+  <rect x="682" y="56" width="98" height="54" rx="7" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.55"/>
+  <text x="731" y="73" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">governed</text>
+  <text x="731" y="86" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">remediation</text>
+  <text x="731" y="100" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.72">lockout · escalate SLA</text>
+
+  <path d="M595 110 L595 150" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6" marker-end="url(#shHead)"/>
+  <text x="600" y="128" text-anchor="start" font-size="8" fill="currentColor" opacity="0.62">below threshold</text>
+  <rect x="536" y="150" width="118" height="40" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="595" y="167" text-anchor="middle" font-size="9" font-weight="600" fill="currentColor">HITL — high-stakes</text>
+  <text x="595" y="180" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.68">pause before commit</text>
+
+  <line x1="731" y1="110" x2="731" y2="150" stroke="currentColor" stroke-width="1.4" marker-end="url(#shHead)"/>
+  <rect x="682" y="150" width="98" height="40" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="731" y="167" text-anchor="middle" font-size="9" font-weight="600" fill="currentColor">Connector →</text>
+  <text x="731" y="180" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.68">line control / EHS</text>
+
+  <path d="M595 190 L595 222" stroke="currentColor" stroke-width="1.2" marker-end="url(#shHead)"/>
+  <path d="M731 190 L731 222" stroke="currentColor" stroke-width="1.2" marker-end="url(#shHead)"/>
+  <rect x="498" y="224" width="282" height="46" rx="7" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.55"/>
+  <text x="639" y="243" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">immutable per-action audit</text>
+  <text x="639" y="259" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.72">detection → policy → action → actor → outcome</text>
+  <text x="639" y="286" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">the ENFORCED response — proven, not surfaced</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHAT THE INQUIRY ACTUALLY ASKS</div>
+<div class="fade-in">
+<p>Walk it forward to the day it matters. After an incident, an inspector or a plaintiff's counsel does not ask whether your cameras were good. They ask a chain of questions about the <em>response</em>: was the hazard identified, what specific corrective action followed, on what timeline, who was accountable for it, and can you prove that action was <strong>enforced</strong> rather than merely suggested. A muted alert with a beautiful clip answers the first question and indicts you on the rest.</p>
+<p>That is the uncomfortable inversion at the center of detect-and-notify. Detection without a provable, enforced response does not just fail to help — it can <em>raise</em> your exposure, because you now hold a durable record establishing that the condition was known. The liability was never in the seeing. It lives entirely in the doing — on a timeline, under accountability — and the doing is exactly the part the vision platform leaves in a system it neither governs nor records.</p>
+</div>
+
+<div class="section-label fade-in">GOVERN THE RESPONSE, NOT JUST THE READ</div>
+<div class="fade-in">
+<p>The architectural fix is to stop treating the detection as the end of the loop and make it the first step of one. On a composable process fabric, the vision model runs as a governed <strong>Function</strong> inside a <strong>Deterministic Workflow</strong>. The detection is not thrown anywhere; it is consumed, on the same runtime, by a remediation process whose controls are enforced <em>inline</em>. That single move reframes every weak point of detect-and-notify:</p>
+<ul>
+<li><strong>The response is a governed workflow, not a signal.</strong> A restricted-zone entry doesn't merely trip a relay; it triggers a defined remediation with the corrective action as an enforced step — a governed lockout or line-stop issued through a <strong>Connector</strong>, the only primitive that touches your external estate.</li>
+<li><strong>Non-acknowledgment escalates by construction.</strong> If the accountable person doesn't acknowledge within the SLA window, the workflow escalates — to the shift manager, then higher — because the timeline is a property of the process, not a hope pinned on a busy human. An alert has no such spine.</li>
+<li><strong>High-stakes actions are HITL by design.</strong> Halting a line or dispatching a responder is a pause-before-commit checkpoint the workflow enforces, not a courtesy the operator may skip. And where the model is unsure, confidence-gated policy routes the case to a person before anything physical happens — the confidence score becomes a <em>versioned, approver-set control</em>, not a magic number buried in downstream code.</li>
+<li><strong>The audit records the enforced response.</strong> Every action emits an immutable per-action record binding detection → confidence → policy → action → actor → outcome. That is not a clip of what the camera saw. It is the receipt of what was <em>done</em> — by whom, under which policy, and whether it was verified.</li>
+</ul>
+<p>Make it concrete, and keep it explicitly hypothetical. Picture a worker stepping into an energized-equipment exclusion zone. On this design the detection routes into a remediation workflow that issues a governed stop to that zone's control system through a Connector, opens an acknowledgment task to the area supervisor with an SLA, escalates to the shift manager if it goes unacknowledged, and writes each step to the per-action audit as it happens. If the model's confidence sits below the policy threshold, nothing physical fires — the case goes to a human reviewer first. This is an architectural property of <em>where the control sits</em>, not a demonstrated result or a live demo: the enforced response is reachable, and provable, because it executes as governed steps on one runtime.</p>
+<p>Be precise about two things, because expert readers will test both. First, this is <em>not</em> a claim that the fabric needs no integration — it runs over the estate you already operate (line controllers, access control, the EHS system of record) through governed Connectors; what changes is where the decision about the response lives. Second, the strongest version of the category does more than alert: it writes the detection into a PLC tag or pipes it to an MES, and that is genuinely more end-to-end than a bare detector — concede it plainly. But the decision-and-action logic there is authored separately, in a different tool, by different people; no policy travels across the wire with the signal; and the audit is <strong>split-brain</strong> — what the camera saw lives in one system, what the PLC did in another, with nothing binding them into a single provable record that the required response was enforced on time. On the fabric, detect → decide → act → audit is one accountable transaction, not a signal lobbed over a wall into a system that acts without oversight.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>In the inquiry that follows an incident, no one asks what your cameras saw. They ask what you did about it — and whether you can prove it was enforced.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,146 @@
+<div class="hook fade-in"><p>Every tool in this category opens with the same confession: <strong>the estate must be discovered.</strong> Agents crawl the network, scanners sweep subnets, connectors poll cloud and SaaS APIs — because assets are created, moved, and retired in a dozen consoles the inventory does not control. Discovery is the admission that record and reality are two different systems. Everything that follows — normalization, deduplication, reconciliation — is the apparatus for re-synchronizing them, forever.</p></div>
+
+<div class="section-label fade-in">THE FOUNDING CONFESSION</div>
+<div class="fade-in">
+<p>The category's founding creed is that you cannot manage what you cannot see. Take it seriously — it is true, and it is doing more work than it appears to. Ask <em>why</em> the estate cannot be seen without a discovery apparatus, and the answer turns out to be the architecture of the entire market: assets are born, modified, and retired somewhere else. An engineer provisions a cloud instance from a console the asset tool has never met. A department head adds twenty seats to a SaaS product on a corporate card. Procurement signs an agreement whose entitlements live in a PDF. A laptop ships, is imaged, is handed to a contractor, and comes back carrying software nobody requested. None of these events consulted the inventory first. The inventory finds out later — by crawling, sweeping, and polling.</p>
+<p>This is not an implementation gap the next release will close. It is the design premise. These platforms were built for a world in which the record could never be present at the moment of change, and so they became superb at the only thing left: catching up. The category's own language gives it away. Continuous scanning as the foundation. Normalization against vast catalogs. A single, continuously refreshed source of asset truth — where <em>continuously refreshed</em> is the quiet concession that the truth keeps moving and the record keeps chasing it, with freshness measured in scan cycles.</p>
+</div>
+
+<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<div class="fade-in">
+<p>Be fair about what this engineering has achieved, because it is substantial and it is hard.</p>
+<ul>
+<li><strong>Discovery at estate scale is genuinely difficult,</strong> and the leading discovery and inventory tools do it well — agent and agentless scanning that reaches datacenter, endpoint, cloud, and SaaS; normalization against product catalogs spanning enormous publisher and version sprawl; deduplication that turns overlapping signals into one coherent inventory.</li>
+<li><strong>License reconciliation is real expertise.</strong> Computing an effective license position against byzantine vendor licensing models — core factors, named-user tiers, indirect access — is knowledge that took decades to accumulate, and it has saved enterprises from genuine audit exposure.</li>
+<li><strong>The real-time endpoint platform is not a strawman.</strong> The strongest of the endpoint-management platforms genuinely sees and remediates devices in near-real time, closed-loop, at scale. For device state, that is real speed and real action.</li>
+<li><strong>The workflow-of-record platform has the right ambition.</strong> Unifying the asset record with asset workflows on one platform — provisioning, license assignment, a lifecycle that runs from procurement to retirement — is exactly the correct goal, and for the asset classes and integrations it directly controls, the automation is real.</li>
+</ul>
+<p>If your estate must be reconstructed from the outside, these are the teams you want reconstructing it. The open question is whether reconstruction is the right architecture at all.</p>
+</div>
+
+<div class="section-label fade-in">FASTER RECONCILIATION IS STILL RECONCILIATION</div>
+<div class="fade-in">
+<p>Look at the shape of the loop rather than its speed. Change happens outside; a scan detects it; normalization cleans it; reconciliation computes a position; a report describes it; a recommendation proposes a fix; a human executes the fix in some other console — and change happens outside again. Shrink the scan cycle from weeks to hours to near-real-time and you have made the loop faster. You have not changed its shape. <strong>Faster reconciliation is still reconciliation.</strong></p>
+<p>Every artifact the category produces carries the same signature. The inventory is a snapshot kept honest by re-scanning. The license position is a report computed after the installs already happened. The reclamation is a recommendation an admin implements somewhere the tool does not govern. Between the change and the record there is always an interval, and in that interval the estate runs ungoverned — unlicensed software installed, an orphaned entitlement still billing, a cloud resource nobody owns. That interval is not process waste to be optimized away. It is what the architecture produces.</p>
+<p>The most ambitious platform in the category claims exactly the right headline — the record and the action unified on one platform, full lifecycle from procurement to retirement, automated provisioning and license assignment. Concede it: that is the correct ambition, and within the slices it directly controls, it delivers. But be precise about the mechanism, because the mechanism is what survives every roadmap. Its record is a configuration database kept accurate by discovery, normalization, and reconciliation — a structural admission that the estate changes outside the record and must be perpetually re-synced. Its actions reach the cloud, SaaS, and procurement estates as integration calls into consoles it does not govern. And nothing in the pattern prevents an asset state change that bypasses the workflow; the scan just catches it later. That is governance by reconciliation, executed superbly. It is still reconciliation.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ACCURACY BY CONSTRUCTION</div>
+<div class="fade-in">
+<p>There is a structurally different answer, and it begins by relocating the record. On a composable process fabric, an IT asset — a license, a device, a cloud resource, a SaaS entitlement — is a <strong>governed object on a semantic ontology</strong>, and its lifecycle actions are not tickets about the asset or scans of the asset. Request, provision, assign, patch, reclaim, renew, retire execute as deterministic workflows on the same fabric that holds the record: governance enforced inline before the action commits, permissions evaluated per action, human approval a first-class step wherever policy demands one, and every touch of an external system made through a governed Connector — the only primitive that reaches outside.</p>
+<p>The consequence is architectural, not aspirational: <strong>the record updates because the action executed.</strong> There is no scan-and-reconcile loop for governed actions, because nothing changed outside the record — the state change and the record's update are the same event. Record and reality cannot diverge on those paths; not because a scanner is fast, but because there is no gap for divergence to enter. Accuracy stops being a scan cadence and becomes a property of the architecture. And because every lifecycle transition writes an immutable per-action audit entry — who requested, which gate evaluated, who approved, what the Connector did — the license position for governed entitlements is not a reconstruction of the past. It is the current state of the actions that produced it.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram contrasting governance by reconciliation, where scanners feed an inventory, reports, and recommendations while the estate drifts, with governance by construction, where lifecycle actions execute as governed workflows and the record equals reality.">
+  <defs>
+    <marker id="itam-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="currentColor" opacity="0.55"/>
+    </marker>
+  </defs>
+  <line x1="400" y1="18" x2="400" y2="302" stroke="currentColor" stroke-opacity="0.12"/>
+
+  <text x="24" y="26" font-size="11" letter-spacing="2" fill="currentColor" opacity="0.55">GOVERNANCE BY RECONCILIATION</text>
+  <g stroke="currentColor" stroke-opacity="0.35" fill="none">
+    <rect x="24" y="42" width="70" height="24" rx="4"/>
+    <rect x="102" y="42" width="62" height="24" rx="4"/>
+    <rect x="172" y="42" width="76" height="24" rx="4"/>
+    <rect x="256" y="42" width="108" height="24" rx="4"/>
+    <rect x="24" y="100" width="150" height="32" rx="4"/>
+    <rect x="196" y="100" width="168" height="32" rx="4"/>
+    <rect x="196" y="160" width="168" height="32" rx="4"/>
+    <rect x="24" y="160" width="150" height="32" rx="4"/>
+    <rect x="24" y="220" width="210" height="32" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle">
+    <text x="59" y="58" font-size="9.5">CLOUD</text>
+    <text x="133" y="58" font-size="9.5">SAAS</text>
+    <text x="210" y="58" font-size="9.5">DEVICES</text>
+    <text x="310" y="58" font-size="9.5">PROCUREMENT</text>
+    <text x="99" y="114" font-size="10">INVENTORY</text>
+    <text x="99" y="126" font-size="8.5" opacity="0.6">(a snapshot)</text>
+    <text x="280" y="114" font-size="9">NORMALIZE · DEDUPE</text>
+    <text x="280" y="126" font-size="8.5" opacity="0.7">RECONCILE</text>
+    <text x="280" y="174" font-size="9.5">LICENSE POSITION</text>
+    <text x="280" y="186" font-size="8" opacity="0.6">(a report, after the fact)</text>
+    <text x="99" y="174" font-size="9.5">RECLAMATION</text>
+    <text x="99" y="186" font-size="8" opacity="0.6">(a recommendation)</text>
+    <text x="129" y="240" font-size="9">ADMIN ACTS IN ANOTHER CONSOLE</text>
+  </g>
+  <g stroke="currentColor" stroke-opacity="0.45" fill="none" marker-end="url(#itam-arrow)">
+    <line x1="59" y1="66" x2="75" y2="98" stroke-dasharray="3 3"/>
+    <line x1="133" y1="66" x2="95" y2="98" stroke-dasharray="3 3"/>
+    <line x1="210" y1="66" x2="120" y2="98" stroke-dasharray="3 3"/>
+    <line x1="310" y1="66" x2="150" y2="98" stroke-dasharray="3 3"/>
+    <line x1="174" y1="116" x2="192" y2="116"/>
+    <line x1="280" y1="132" x2="280" y2="156"/>
+    <line x1="194" y1="176" x2="178" y2="176"/>
+    <line x1="99" y1="192" x2="99" y2="216"/>
+    <path d="M 236 236 C 350 236, 384 160, 356 70" stroke-dasharray="4 4"/>
+  </g>
+  <text x="225" y="95" font-size="9" font-style="italic" fill="currentColor" opacity="0.6">scan · sweep · poll</text>
+  <text x="24" y="290" font-size="9.5" font-style="italic" fill="currentColor" opacity="0.65">drift: the estate changes outside the record — rescan, repeat</text>
+
+  <text x="430" y="26" font-size="11" letter-spacing="2" fill="currentColor" opacity="0.55">GOVERNANCE BY CONSTRUCTION</text>
+  <g stroke="currentColor" fill="none">
+    <rect x="430" y="42" width="340" height="32" rx="4" stroke-opacity="0.5" stroke-width="1.3"/>
+    <rect x="430" y="98" width="340" height="30" rx="4" stroke-opacity="0.45"/>
+    <line x1="498" y1="98" x2="498" y2="128" stroke-opacity="0.25"/>
+    <line x1="566" y1="98" x2="566" y2="128" stroke-opacity="0.25"/>
+    <line x1="634" y1="98" x2="634" y2="128" stroke-opacity="0.25"/>
+    <line x1="702" y1="98" x2="702" y2="128" stroke-opacity="0.25"/>
+    <rect x="490" y="166" width="220" height="30" rx="4" stroke-opacity="0.45"/>
+    <rect x="450" y="230" width="300" height="30" rx="4" stroke-opacity="0.35"/>
+  </g>
+  <g fill="currentColor" opacity="0.55">
+    <path d="M 498 93 L 503 98 L 498 103 L 493 98 Z"/>
+    <path d="M 566 93 L 571 98 L 566 103 L 561 98 Z"/>
+    <path d="M 634 93 L 639 98 L 634 103 L 629 98 Z"/>
+    <path d="M 702 93 L 707 98 L 702 103 L 697 98 Z"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle">
+    <text x="600" y="62" font-size="10">ASSET — A GOVERNED OBJECT ON THE FABRIC</text>
+    <text x="464" y="117" font-size="8.5">REQUEST</text>
+    <text x="532" y="117" font-size="8.5">PROVISION</text>
+    <text x="600" y="117" font-size="8.5">ASSIGN</text>
+    <text x="668" y="117" font-size="8.5">RECLAIM</text>
+    <text x="736" y="117" font-size="8.5">RETIRE</text>
+    <text x="600" y="144" font-size="9" font-style="italic" opacity="0.65">inline gates: permissioned · HITL approval · audited before commit</text>
+    <text x="600" y="185" font-size="10">GOVERNED CONNECTORS</text>
+    <text x="600" y="210" font-size="8.5" opacity="0.6">the only primitive that touches external systems</text>
+    <text x="600" y="249" font-size="8.5">EXISTING ESTATE — CLOUD · SAAS · DEVICES · CONTRACTS</text>
+    <text x="600" y="286" font-size="11" font-weight="600" letter-spacing="1">RECORD = REALITY, BY CONSTRUCTION</text>
+    <text x="600" y="302" font-size="9" opacity="0.65">every action writes an immutable audit entry</text>
+  </g>
+  <g stroke="currentColor" stroke-opacity="0.45" fill="none" marker-end="url(#itam-arrow)">
+    <line x1="600" y1="74" x2="600" y2="94"/>
+    <line x1="600" y1="150" x2="600" y2="162"/>
+    <line x1="600" y1="214" x2="600" y2="226"/>
+  </g>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE HONEST SCOPE</div>
+<div class="fade-in">
+<p>Now the honest boundary, because over-claiming here is how vendors lose expert readers. This does not mean integration disappears — Connectors are precisely the integration surface, governed and audited rather than ad hoc. And by-construction accuracy applies to the lifecycle actions that run on the fabric. On day one, in any real enterprise, that is a subset of the estate.</p>
+<p>So the strategic argument is not that scanning dies tomorrow. It is: <strong>narrow the ungoverned paths.</strong> Route the highest-drift, highest-cost lifecycle actions through governed workflows first — SaaS entitlement grants and reclamations, cloud provisioning, license assignment, joiner-mover-leaver flows. Every action migrated is a path on which drift can no longer originate. Discovery does not die; it demotes. It stops being the architecture of truth and becomes an exception detector on a shrinking perimeter — and on that perimeter, a scan that finds a change no governed action produced is no longer routine noise to reconcile. It is a signal: shadow IT, a bypassed path, an incident. That is a far better use of a scanner than feeding a treadmill.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ONE QUESTION SORTS THE CATEGORY</div>
+<div class="fade-in">
+<p>Strip away the dashboards and the catalogs, and one question sorts every platform in this market: <strong>does the record update because the action executed, or because a scan noticed?</strong> Everything else follows from the answer.</p>
+<ul>
+<li><strong>If the license position is computed,</strong> it is a report about the past, and its accuracy starts decaying the moment it is produced.</li>
+<li><strong>If reclamation is a recommendation,</strong> the saving is hypothetical until an admin acts in another console — and unaudited when they do.</li>
+<li><strong>If an asset can change state without the governed action,</strong> the workflow is optional. Optional governance is not governance; it is drift with an approval form available on request.</li>
+</ul>
+<p>A discovery-first architecture can answer only one way, no matter how fast its scanners become. Its inventory can approach reality asymptotically. By design, it cannot arrive.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A record kept accurate by perpetual re-scanning is not a source of truth. It is a well-maintained echo.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

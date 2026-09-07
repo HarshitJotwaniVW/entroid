@@ -1,0 +1,83 @@
+<div class="hook fade-in">To understand how work actually happens inside your company, some vendors will ask you to install software on your employees' machines that records their clicks, their keystrokes, and their screens. They call it task mining. <strong>It is the clearest possible admission that they don't own the work — only the ability to watch the people doing it.</strong></div>
+
+  <div class="section-label fade-in">The Tell</div>
+  <div class="fade-in"><p>Listen to how these products are sold, and the architecture gives itself away. One vendor pairs process mining with desktop task mining it describes as <em>"full-spectrum"</em> visibility, and frames its mission around connecting people to processes. Another offers desktop task and click discovery alongside its process graph. The rest of the category carries versions of the same capability.</p>
+<p>Now notice what always travels with it: a heavy wrapper of reassurance. Privacy-first. Anonymization. PII masking. You control what's collected. Configurable consent. Works-council-friendly deployment.</p>
+<p><strong>That reassurance is the tell.</strong> A product that measures machine-to-machine transactions doesn't need a privacy manifesto. A product that records what a named employee typed at 2:47pm does. The compliance scaffolding isn't a feature bolted on for trust — it's a confession about what the tool fundamentally <em>is</em>.</p></div>
+
+  <div class="section-label fade-in">Why They Have to Watch</div>
+  <div class="fade-in"><p>The surveillance isn't a design choice. It's forced by where these tools sit. Process mining reconstructs a process <em>after the fact</em> from event logs batch-extracted out of your ERP, CRM and ticketing systems. Those logs contain only the transactions the systems of record chose to write down.</p>
+<p>They do not contain the work <em>between</em> the systems: the spreadsheet someone maintains on the side, the email that authorizes an exception, the copy-paste from one screen into another, the swivel-chair reconciliation that never touches a database. That un-logged work is exactly where cost, risk and delay accumulate — and it leaves no trace in the logs.</p>
+<p>So to see it, task mining instruments the only sensor left: the human. It records the desktop because the desktop is where the invisible work happens. This is <strong>reconstruction by surveillance</strong> — inferring the shape of a process you don't run by watching the people who run it by hand.</p>
+<p>Give it its due. In a legacy estate, this is genuinely useful. If a process is smeared across a dozen disconnected tools with no shared backbone, desktop capture may be the only honest way to map the end-to-end path before you redesign it. As a diagnostic for the mess, task mining earns its keep. The problem starts when a diagnostic gets sold as a destination.</p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Observe-only task mining versus a governed runtime that observes, decides, acts and governs in one place">
+      <defs>
+        <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--t3)"/></marker>
+        <marker id="aa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)"/></marker>
+      </defs>
+
+      <text x="30" y="40" font-size="12" letter-spacing="0.12em" fill="var(--t3)">OBSERVE-ONLY  ·  TASK / PROCESS MINING</text>
+      <rect x="30" y="54" width="120" height="46" rx="9" fill="none" stroke="var(--border)"/>
+      <text x="90" y="82" text-anchor="middle" font-size="14" fill="var(--t1)">Observe</text>
+      <rect x="200" y="54" width="130" height="46" rx="9" fill="none" stroke="var(--border)"/>
+      <text x="265" y="82" text-anchor="middle" font-size="14" fill="var(--t1)">Recommend</text>
+      <rect x="380" y="54" width="120" height="46" rx="9" fill="none" stroke="var(--border)"/>
+      <text x="440" y="82" text-anchor="middle" font-size="14" fill="var(--t1)">Handoff</text>
+      <rect x="560" y="54" width="210" height="46" rx="9" fill="none" stroke="var(--t3)" stroke-dasharray="4 3"/>
+      <text x="665" y="82" text-anchor="middle" font-size="13" fill="var(--t3)">Agent runs elsewhere</text>
+      <line x1="150" y1="77" x2="196" y2="77" stroke="var(--t3)" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="330" y1="77" x2="376" y2="77" stroke="var(--t3)" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="500" y1="77" x2="556" y2="77" stroke="var(--t3)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <text x="30" y="132" font-size="12" fill="var(--t3)">Reconstructed from batch event logs + desktop screen / keystroke capture.</text>
+
+      <rect x="20" y="168" width="760" height="112" rx="14" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="40" y="192" font-size="12" letter-spacing="0.12em" fill="var(--accent)">GOVERNED FABRIC  ·  ONE RUNTIME  ·  LIVE AUTHORITATIVE STATE</text>
+      <rect x="40" y="206" width="120" height="46" rx="9" fill="none" stroke="var(--accent)"/>
+      <text x="100" y="234" text-anchor="middle" font-size="14" fill="var(--t1)">Observe</text>
+      <rect x="210" y="206" width="120" height="46" rx="9" fill="none" stroke="var(--accent)"/>
+      <text x="270" y="234" text-anchor="middle" font-size="14" fill="var(--t1)">Decide</text>
+      <rect x="380" y="206" width="120" height="46" rx="9" fill="none" stroke="var(--accent)"/>
+      <text x="440" y="234" text-anchor="middle" font-size="14" fill="var(--t1)">Act</text>
+      <rect x="550" y="206" width="190" height="46" rx="9" fill="none" stroke="var(--accent)"/>
+      <rect x="600" y="226" width="13" height="10" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+      <path d="M602 226 v-3 a4.5 4.5 0 0 1 9 0 v3" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+      <text x="668" y="234" text-anchor="middle" font-size="14" fill="var(--t1)">Govern</text>
+      <line x1="160" y1="229" x2="206" y2="229" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#aa)"/>
+      <line x1="330" y1="229" x2="376" y2="229" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#aa)"/>
+      <line x1="500" y1="229" x2="546" y2="229" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#aa)"/>
+    </svg>
+  </div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">Auditable by Construction</div>
+  <div class="fade-in"><p>There is a different answer to <em>"how does work actually happen here"</em> — and it requires a camera on no one. Run the work on governed rails.</p>
+<p>In Entroid a process isn't observed from the outside; it <strong>executes inside the fabric</strong> as a composition of five primitives. Deterministic Workflows sequence the steps and enforce the rules. Atomic Agents perform the bounded unit of work at each leaf. Functions expose the calculations and business logic. Connectors are the only primitive that touches an external system, and they do it under authentication, authorization, rate limits and audit. Intelligence Orchestration chooses the path at runtime and owns which agent is permitted to do what.</p>
+<p>Because the work runs <em>here</em>, structure isn't reconstructed after the fact — it is the native exhaust of execution. Every step is captured as authoritative execution data at the moment it happens and bound into an immutable, per-action audit trail. You don't infer who approved an exception from a screen recording; the approval was a governed gate in the workflow, and it either cleared inside its authority limit or it could not happen at all.</p>
+<p><em>Consider a payment-posting agent that clears an incoming remittance.</em> In the observe-only model, you'd learn how the work is done by recording the clerk's screen. In a governed runtime, the agent posts inside a Deterministic Workflow: the segregation-of-duties check, the threshold that forces a human approval above a limit, the Connector write to the ledger — each is a discrete step, each is timestamped, each is bound to the decision that authorized it. The record isn't <em>captured from</em> the employee. It <strong>is</strong> the work.</p></div>
+
+  <div class="section-label fade-in">Watching the Work, Not the Worker</div>
+  <div class="fade-in"><p>For a COO, CHRO or data-protection officer, this is the distinction that matters: auditable-by-construction is not surveillance under a nicer name — and the difference is the entire point.</p>
+<p>Task mining collects <strong>behavioral data about a person on a machine</strong>: keystrokes, mouse paths, application dwell time, screen content. That is employee personal data. It's why the tools ship with consent flows, and why works councils fight over them.</p>
+<p>A governed workflow captures the <strong>process, not the person</strong>: which step ran, which rule fired, which approval cleared, what an agent decided and why. Human-in-the-loop is a first-class property of the runtime — the agent pauses, surfaces its reasoning, takes the human's feedback, and resumes — and that exchange becomes part of the process record, not a recording of someone's desktop.</p>
+<ul>
+<li><strong>No desktop agents.</strong> Nothing to install on anyone's laptop, nothing capturing screens or keystrokes.</li>
+<li><strong>No consent theater.</strong> There is no employee behavioral data to disclose, anonymize or defend, because none is collected.</li>
+<li><strong>No works-council standoff.</strong> You're auditing the work product and its governance, not monitoring the workforce.</li>
+<li><strong>Policy is a gate, not a report.</strong> A non-compliant action is prevented at the moment of action — never flagged in a dashboard after it already went wrong.</li>
+</ul></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Question Under the Question</div>
+  <div class="fade-in"><p>"What are my people doing?" is the question task mining answers. It's the wrong question. The right one is: <strong>why is my process not owned by a system that can execute and govern it?</strong></p>
+<p>Task mining is a flashlight for a building with no wiring. It's indispensable while you're feeling along the walls in the dark — and it becomes pointless the moment the lights come on. Once work runs on a governed fabric, you already hold the blueprint <em>and</em> the live telemetry. There is nothing left to reconstruct, because nothing was ever un-owned.</p>
+<p>So the executive choice isn't "which task-mining tool has the best privacy controls." It's more fundamental: are you buying a sharper instrument for observing the chaos, or a runtime that removes the reason the chaos was invisible in the first place?</p></div>
+
+  <div class="closing fade-in">
+    <blockquote>If understanding your own process requires watching your own people, you don't own the process. You're renting a view of it.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

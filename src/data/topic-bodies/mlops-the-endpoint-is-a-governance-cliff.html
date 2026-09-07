@@ -1,0 +1,71 @@
+<div class="hook fade-in"><p>Your ML platform can tell you exactly how a model was trained, which features fed it, and what score it returned at 14:32:07. What it cannot tell you is whether the payment that score released should have gone out the door. <strong>The governance perimeter ends at the serving endpoint — and the business action begins on the other side of it.</strong> Between those two facts sits a cliff, and most enterprises have never measured the drop.</p></div>
+
+<div class="section-label fade-in">THE PERIMETER EVERYONE DRAWS</div>
+<div class="fade-in"><p>Start with the credit due, because the category has earned real ground. Feature stores, model registries, and end-to-end lineage genuinely make a model reproducible and auditable <em>as an artifact</em> — you can reconstruct exactly what was trained on what and why it predicted what it did. One-click serving really does compress weeks of deployment into an afternoon. Drift and quality monitoring catch a model quietly rotting in production. Agent-evaluation harnesses — the LLM-as-judge patterns that score outputs for accuracy, factuality, and cost — are a legitimate advance. And the newest AI gateways govern the model <em>call</em> itself: rate limits, guardrails, credential management, and inference logging, deployable even to agents running off the platform entirely.</p>
+<p>None of that is marketing vapor. It is real engineering that solves real problems. But stand back and notice what every one of these capabilities has in common. The object being governed is <strong>the model, and the call to it</strong>. The training run, the artifact, the endpoint, the inference request, the tool invocation. All of it converges on one boundary — the moment the model returns a prediction — and then stops.</p></div>
+
+<div class="section-label fade-in">THE SEAM NO REGISTRY CROSSES</div>
+<div class="fade-in"><p>Here is the load-bearing admission the unified-governance camp makes about its own design, in almost these words: governance travels with the <em>resources</em>, not with the code that calls them. Read that again as an architect, not a buyer. It means the permission, the lineage, and the policy attach to the data and the model — the nouns — while the verb, the code that consumes the prediction and does something with it, runs somewhere the governance layer does not reach.</p>
+<p>The turnkey-serving pattern says the same thing more plainly: a prediction is <em>returned as an endpoint response</em>, dispatched through a load balancer to whoever called. What the caller does next is, architecturally, none of the endpoint's business. This is not a flaw in one product; it is the shape of the pattern. It produces a two-system topology that looks like this:</p>
+<ul><li><strong>System one</strong> — the model endpoint. Trains, registers, serves, monitors, logs the call. Governed to the millisecond.</li>
+<li><strong>System two</strong> — a separate orchestrator or application that reads the response and issues the write: post the transaction, release the payment, deny the claim, freeze the account.</li></ul>
+<p>The prediction is served, evaluated, and logged — and then it <em>leaves</em>. It crosses an API into a consuming application the platform neither sees nor controls, and the business action executes in a system of record the platform sits <em>beside</em>, not inside. The model's audit trail is immaculate right up to the edge of the cliff, and silent for the fall.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">BUT THE GATEWAY GOVERNS THE CALL</div>
+<div class="fade-in"><p>The obvious objection is that the most advanced AI gateways have already moved past the artifact. They govern the <em>act</em> of inference and tool use — how an agent calls a model, how it invokes an API — with rate limits, guardrails, and logging, and they do it even for agents running anywhere on the estate. That is genuinely advanced, and it is real. Concede it fully; a rebuttal that pretends otherwise loses the expert reader in one paragraph.</p>
+<p>Then be precise about what it is. That gateway is a governed <strong>proxy in front of model-serving</strong>. It governs the <em>call</em> — the inference request, the tool invocation — and it captures that call in a log. But the business action the prediction drives — release the payment, post the entry, change the plan — still commits in a system of record the gateway sits beside, not inside. It governs <em>how the agent asks the model and invokes the tool</em>. It does not become the step that writes to the ledger. The gateway can rate-limit the request, sanitize the prompt, and record that a tool was called with certain arguments — and the money can still move under a policy no one placed on the money itself. Governing the call is not the same as governing the commit, and no amount of instrumentation on the request closes a gap that lives one system downstream.</p></div>
+
+<div class="section-label fade-in">MODEL-TO-ACTION ON ONE RUNTIME</div>
+<div class="fade-in"><p>The seam exists because the model is an <em>endpoint the process calls out to</em>. Remove the call-out and the seam has nowhere to form. In Entroid, a model does not sit behind an API the business logic reaches across; it runs as a governed <strong>Function inside a Deterministic Workflow</strong>, on the same runtime that executes the process. The prediction is consumed in-process. The action the workflow takes on that prediction passes an <strong>inline policy gate</strong> — an approval, a threshold, a segregation-of-duties check — <em>before</em> it commits. The only primitive permitted to touch an external system is a Connector, and every action it commits is permissioned and written to an <strong>immutable per-action audit</strong>. There is no hand-off, no second orchestrator, and no ungoverned last mile — as an architectural property of where the model runs, not a feature bolted onto how it is served.</p></div>
+
+<div class="scene-img-wrap fade-in"><svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top: a served endpoint governs train-register-serve-monitor and a gateway logs the inference call, but the prediction crosses a dashed boundary into a separate app that takes the business action outside the perimeter. Bottom: Entroid runs the model as a Function inside a Deterministic Workflow, where the prediction passes an inline policy gate and commits through a governed Connector with an immutable per-action audit." fill="none" stroke="currentColor">
+<text x="20" y="28" font-size="12" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif" letter-spacing="1">THE SERVED ENDPOINT — MODEL GOVERNED AS AN ARTIFACT</text>
+<rect x="20" y="44" width="300" height="72" rx="8" stroke-width="1.5" opacity="0.85"/>
+<text x="34" y="70" font-size="11" fill="currentColor" stroke="none" font-family="Inter, sans-serif">train → register → serve → monitor</text>
+<text x="34" y="92" font-size="10" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif">gateway logs the inference call</text>
+<line x1="320" y1="80" x2="412" y2="80" stroke-width="1.5"/>
+<polygon points="412,80 403,75.5 403,84.5" fill="currentColor" stroke="none"/>
+<text x="330" y="72" font-size="10" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif">prediction</text>
+<line x1="366" y1="26" x2="366" y2="132" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+<rect x="420" y="44" width="300" height="72" rx="8" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.7"/>
+<text x="434" y="70" font-size="11" fill="currentColor" stroke="none" font-family="Inter, sans-serif">a separate app takes the business action</text>
+<text x="434" y="92" font-size="10" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif">release payment · post entry · freeze account</text>
+<text x="612" y="28" font-size="10" fill="currentColor" stroke="none" opacity="0.55" font-family="Inter, sans-serif">outside the perimeter</text>
+<line x1="20" y1="158" x2="720" y2="158" stroke-width="1" opacity="0.2"/>
+<text x="20" y="186" font-size="12" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif" letter-spacing="1">ENTROID — MODEL AS A FUNCTION INSIDE THE PROCESS</text>
+<rect x="20" y="198" width="700" height="102" rx="10" stroke-width="1.5"/>
+<text x="34" y="218" font-size="10" fill="currentColor" stroke="none" opacity="0.6" font-family="Inter, sans-serif">Deterministic Workflow · one runtime</text>
+<rect x="40" y="230" width="120" height="48" rx="6" stroke-width="1.3"/>
+<text x="100" y="251" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" font-family="Inter, sans-serif">Function</text>
+<text x="100" y="267" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6" font-family="Inter, sans-serif">model runs here</text>
+<line x1="160" y1="254" x2="196" y2="254" stroke-width="1.5"/>
+<polygon points="196,254 187,249.5 187,258.5" fill="currentColor" stroke="none"/>
+<rect x="200" y="230" width="150" height="48" rx="6" stroke-width="1.3"/>
+<text x="275" y="251" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" font-family="Inter, sans-serif">inline policy gate</text>
+<text x="275" y="267" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6" font-family="Inter, sans-serif">approval · threshold · SoD</text>
+<line x1="350" y1="254" x2="386" y2="254" stroke-width="1.5"/>
+<polygon points="386,254 377,249.5 377,258.5" fill="currentColor" stroke="none"/>
+<rect x="390" y="230" width="150" height="48" rx="6" stroke-width="1.3"/>
+<text x="465" y="251" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" font-family="Inter, sans-serif">Connector commits</text>
+<text x="465" y="267" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6" font-family="Inter, sans-serif">only primitive touching systems</text>
+<line x1="540" y1="254" x2="576" y2="254" stroke-width="1.5"/>
+<polygon points="576,254 567,249.5 567,258.5" fill="currentColor" stroke="none"/>
+<rect x="580" y="230" width="120" height="48" rx="6" stroke-width="1.3" opacity="0.85"/>
+<text x="640" y="251" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" font-family="Inter, sans-serif">per-action audit</text>
+<text x="640" y="267" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6" font-family="Inter, sans-serif">immutable</text>
+</svg></div>
+
+<div class="section-label fade-in">A FRAUD SCORE, TWO ARCHITECTURES</div>
+<div class="fade-in"><p>Make it concrete. The example is illustrative — a way to see the topology, not a delivered result.</p>
+<p>A transaction arrives and a model scores its fraud risk at 0.92. In the two-system world, the endpoint returns 0.92 through the load balancer; the gateway dutifully logs the inference call; and a downstream payments application reads the number and does whatever <em>its own</em> code says to do. Maybe it holds the payment. Maybe a config flag flipped last quarter and it releases anything under a dollar threshold the risk team never saw. The model's audit is pristine and ends at the score. What happened to the money is a question for a different system, a different team, and — after the fact — a different forensic reconstruction.</p>
+<p>In Entroid, the anomaly-detection model runs as a Function, and the Deterministic Workflow consumes the 0.92 in the same process. An inline gate holds any release above the risk threshold. Segregation-of-duties is enforced so the approver cannot be the initiator. Human-in-the-loop is a first-class primitive, not an afterthought, so a reviewer is paused into the flow to release or reject — and only on a clean pass does a governed Connector commit the payment to the system of record. Score, gate, human decision, commit: one chain, one runtime, one immutable per-action record. The action the enterprise took on the prediction is itself governed and captured — not the call to the model, the <strong>act</strong>.</p></div>
+
+<div class="section-label fade-in">WHAT THIS IS NOT</div>
+<div class="fade-in"><p>Resist the temptation to over-read the claim, because over-claiming here would be the same sin the pattern above commits. Entroid is not zero-integration and does not pretend the estate disappears. It runs <em>over</em> your existing systems through governed Connectors; the ledgers, the core banking, the ERP stay exactly where they are. The registries, feature stores, and monitors that make a model reproducible remain genuinely useful, and nothing here says otherwise.</p>
+<p>The difference is narrower and sharper than "a better platform." It is architectural. When the model and the action it drives live on the same governed runtime, there is no seam for the action to slip through — no API boundary between the prediction and the commit, no second system holding the verb while the first system holds the noun. That is a property of <em>where the work executes</em>, not a benchmark, not a demo, not a number. Govern the model perfectly and you have governed an artifact. Govern the action and you have governed the enterprise.</p></div>
+
+<div class="closing fade-in"><blockquote>A model you can audit perfectly and an action you cannot govern at all is not governance. It is a very well-documented blind spot.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,114 @@
+<div class="hook fade-in"><p>It's 2:14 a.m. An order fails on <strong>step 3 of 7</strong>. The order-management system already captured the payment. The ERP already decremented inventory. The shipping platform never received the handoff. Three systems now hold three different versions of the truth — and not one of them holds the whole of it. The on-call engineer's first question isn't <em>how do we retry?</em> It's <em>which system do we believe?</em></p></div>
+
+<div class="section-label fade-in">WHERE THE BUSINESS PROCESS ACTUALLY LIVES</div>
+<div class="fade-in">
+<p>Start with the concession, because the platforms that connect these systems are genuinely good at what they do. Prebuilt connector breadth and API-led connectivity collapse months of point-to-point plumbing into reusable, governed APIs. Low-code recipes let a revenue-ops team automate a fulfillment flow without a platform team in the loop. And the newer agent control planes genuinely discover, secure, and govern which APIs and agents may be invoked — identity on the call, policy at the gateway, the whole API estate under one set of rulesets. That is real engineering and real value. None of it is the problem.</p>
+<p>The problem is subtler, and it's structural. In every one of these architectures, the platform sits <strong>between</strong> your systems and choreographs <strong>calls</strong> between them. The order flow you drew on a whiteboard — capture payment, reserve inventory, schedule shipment — is not an object that exists anywhere. It is an implied sequence. Its state is smeared across the endpoints it touches: the payment status lives in the OMS, the reservation lives in the ERP, the shipment lives (or doesn't) in the carrier system. The connection is governed. The recipe is governed. The agent call is governed. The <em>business transaction</em> is governed by nobody — because it doesn't exist as a durable thing you can point at.</p>
+<p>That's the sentence to sit with: <strong>when step 3 fails, there is no process to roll back — only three endpoints in disagreement.</strong></p>
+</div>
+
+<div class="section-label fade-in">"RETRY FROM THE LAST CHECKPOINT" IS NOT A ROLLBACK</div>
+<div class="fade-in">
+<p>Watch what the platforms actually offer you at the moment of failure. One well-known recovery model is <em>restart from the last good point</em> — replay the flow from the last checkpoint. Another is <em>fall back to a backup agent</em> — if the primary path errors, route to a secondary. Both are legitimate reliability features. Both are also forward-only continuation, and continuation is not the same as rollback.</p>
+<p>Retrying step 3 does nothing about the payment captured in step 1 or the inventory reserved in step 2. If the retry finally succeeds, you may double-charge or double-reserve unless every downstream call happened to be idempotent — which, across a heterogeneous SaaS estate, is a property you hope for, not one the platform guarantees. If the retry keeps failing, you're left with a half-committed transaction and a manual reconciliation ticket. The platform did its job: it faithfully re-drove the flow. What it cannot do is <em>undo</em> the effects that already landed in systems it doesn't own — because it never owned the transaction in the first place, only the calls.</p>
+<p>Compensation is the thing that's missing. A real business rollback isn't "run the flow again." It is: <em>the shipment failed, so release the inventory reservation and void or refund the capture — in the right order, exactly once, with a record of each reversal.</em> That is a semantic operation on a process. You cannot checkpoint your way to it.</p>
+</div>
+
+<div class="section-label fade-in">YOU CANNOT TWO-PHASE-COMMIT A SAAS ESTATE</div>
+<div class="fade-in">
+<p>Some enterprise-automation vendors go further and market <em>transactional integrity across CRM, ERP, and HR.</em> It's worth being precise about what that phrase can and cannot mean, because the words evoke database ACID guarantees the architecture cannot deliver.</p>
+<p>True transactional integrity across systems requires a distributed commit protocol — two-phase commit — where every participant can <em>prepare</em>, hold a lock, and then <em>commit or abort</em> on a coordinator's command. Independent SaaS APIs do not expose that. There is no prepare phase on a payment API, no distributed lock you can hold across a carrier's REST endpoint, no coordinator the CRM will obey. You physically cannot two-phase-commit across systems you reach only through their public interfaces.</p>
+<p>So what does the claim deliver in practice? Almost always <strong>eventual reconciliation</strong>: a background process that periodically detects drift between systems and repairs it — a sweep that notices the ERP and the OMS disagree and nudges them back into alignment minutes or hours later. That's genuinely useful, and for many flows it's enough. But it is not compensation, and it is not integrity. It is after-the-fact repair, with a window of inconsistency in the middle and no per-action business audit of <em>what was reversed, when, by whose authority, and why.</em> Calling that "transactional" sets an expectation the endpoints can't honor.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+  <line x1="400" y1="20" x2="400" y2="300" stroke="currentColor" stroke-opacity="0.18" stroke-dasharray="4 6"/>
+
+  <!-- LEFT: choreography -->
+  <text x="30" y="30" font-size="12.5" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">CHOREOGRAPHY · CALLS BETWEEN SYSTEMS</text>
+
+  <rect x="40" y="52" width="315" height="30" rx="6" stroke="currentColor" stroke-opacity="0.55"/>
+  <text x="197" y="72" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">gateway · governs the call</text>
+
+  <!-- call arrows -->
+  <line x1="87" y1="82" x2="87" y2="210" stroke="currentColor" stroke-opacity="0.45"/>
+  <path d="M83 202 L87 210 L91 202" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="197" y1="82" x2="197" y2="210" stroke="currentColor" stroke-opacity="0.45"/>
+  <path d="M193 202 L197 210 L201 202" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="307" y1="82" x2="307" y2="210" stroke="currentColor" stroke-opacity="0.45"/>
+  <path d="M303 202 L307 210 L311 202" stroke="currentColor" stroke-opacity="0.45"/>
+
+  <!-- ghost: no durable process object -->
+  <rect x="70" y="118" width="255" height="40" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="5 5"/>
+  <text x="197" y="143" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">process state: nowhere durable</text>
+
+  <!-- endpoints -->
+  <rect x="42" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="87" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">OMS</text>
+  <rect x="152" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="197" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">ERP</text>
+  <rect x="262" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="307" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">SHIP</text>
+  <text x="197" y="284" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.55">state smeared across endpoints · no rollback boundary</text>
+
+  <!-- RIGHT: process fabric -->
+  <text x="440" y="30" font-size="12.5" font-weight="700" fill="currentColor" stroke="none" letter-spacing="1.2">PROCESS FABRIC · THE PROCESS IS THE OBJECT</text>
+
+  <rect x="470" y="50" width="262" height="50" rx="10" stroke="currentColor" stroke-opacity="0.8"/>
+  <text x="601" y="72" font-size="11.5" font-weight="600" fill="currentColor" stroke="none" text-anchor="middle">PROCESS</text>
+  <text x="601" y="88" font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">one runtime · durable governed state</text>
+
+  <rect x="470" y="110" width="262" height="24" rx="5" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
+  <text x="601" y="126" font-size="10.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.8">immutable per-action audit</text>
+
+  <!-- connector edges -->
+  <line x1="512" y1="134" x2="512" y2="210" stroke="currentColor" stroke-opacity="0.5"/>
+  <line x1="601" y1="134" x2="601" y2="210" stroke="currentColor" stroke-opacity="0.5"/>
+  <line x1="690" y1="134" x2="690" y2="210" stroke="currentColor" stroke-opacity="0.5"/>
+  <rect x="505" y="168" width="14" height="14" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.6"/>
+  <rect x="594" y="168" width="14" height="14" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.6"/>
+  <rect x="683" y="168" width="14" height="14" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="601" y="163" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.6">Connectors · the only governed I/O edge</text>
+
+  <!-- endpoints -->
+  <rect x="467" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="512" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">OMS</text>
+  <rect x="556" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="601" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">ERP</text>
+  <rect x="645" y="210" width="90" height="44" rx="6" stroke="currentColor" stroke-opacity="0.6"/>
+  <text x="690" y="237" font-size="11.5" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">SHIP</text>
+
+  <!-- compensation arc -->
+  <path d="M690 268 C 640 292, 560 292, 512 268" stroke="currentColor" stroke-opacity="0.55" stroke-dasharray="5 4"/>
+  <path d="M518 272 L512 268 L516 262" stroke="currentColor" stroke-opacity="0.55"/>
+  <text x="601" y="298" font-size="11" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">compensation (saga) · exactly-once · replay</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHEN THE PROCESS IS THE RUNTIME OBJECT</div>
+<div class="fade-in">
+<p>Entroid starts from the opposite end. Instead of choreographing calls between systems and hoping their states converge, it makes the <strong>process itself the first-class runtime object</strong> — with durable, governed state that lives on one runtime, not scattered across the endpoints. In the five-primitive fabric, a Deterministic Workflow carries that state and its governance <em>inline</em>; Connectors are the only primitive that touches an external system, so every external effect is a typed, audited edge of a process the runtime already knows about.</p>
+<p>That single architectural choice is what turns compensation, idempotency, exactly-once, and replay from things you hand-wire per recipe into <strong>properties of the runtime.</strong> Walk the same failure again:</p>
+<ul>
+<li><strong>Step 1 — capture payment</strong> through a Connector. The runtime records the effect and registers its compensating action (<em>void / refund</em>) against the process's durable state.</li>
+<li><strong>Step 2 — reserve inventory</strong> through a Connector. Same discipline: the effect is logged, its inverse (<em>release reservation</em>) registered against the process.</li>
+<li><strong>Step 3 — schedule shipment</strong> through a Connector. It fails.</li>
+</ul>
+<p>Now the runtime does what a checkpoint can't. It runs the <strong>saga in reverse</strong> — release the reservation, then void the capture — each compensation executed through its Connector as a governed, reversible edge; each carried out exactly once because the runtime holds the idempotency keys and dedup state; each written into <strong>one immutable per-action audit</strong>. When the endpoint recovers, an operator can <strong>deterministically replay the process from step 2</strong> against durable history rather than guessing which of three systems to trust. There is a truth now — because there is a process that holds it.</p>
+</div>
+
+<div class="section-label fade-in">THE HONEST VERSION</div>
+<div class="fade-in">
+<p>Here is the concession that keeps this credible: ES does not repeal distributed systems. It cannot two-phase-commit a payment API any more than anyone else can — no one holds a lock inside a system reached only through its public interface. It also does not remove integration; it runs <em>over</em> your existing estate through governed Connectors, and the ES Engineering Toolkits still do the real work of ingesting, transforming, and connecting.</p>
+<p>What changes is <em>where the guarantees live.</em> The distributed pattern ES implements is the saga — local effects paired with compensations — which is the architecturally correct answer for a business transaction spanning independent endpoints. The difference is that the saga, its durable state, its idempotency, and its audit are owned by the runtime as structural properties, not reconstructed by hand in every recipe and swept up after the fact by a nightly reconciliation job. The connector stays the thin, audited edge. The business runs in the fabric.</p>
+<p>That is the whole distinction, and it's worth stating plainly. An integration platform can tell you, with excellent fidelity, <em>which calls it made.</em> A process fabric can tell you <em>what the business did, what it undid, and why</em> — because the process, not the wiring between systems, was the thing it governed.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="closing fade-in"><blockquote>An integration platform can replay the calls it made. Only a process fabric can undo what the business did — because it owned the process, not just the connection.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

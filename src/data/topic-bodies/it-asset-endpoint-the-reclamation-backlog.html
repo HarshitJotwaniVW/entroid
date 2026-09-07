@@ -1,0 +1,99 @@
+<div class="hook fade-in">Ask your software-asset team for their proudest number and they will show you a dashboard: dormant seats surfaced, unused licenses flagged, shelfware itemized down to the individual user. Now ask the question that number invites: <strong>how much of last quarter's identified savings did we actually collect?</strong> Watch how quickly the conversation turns to tickets, admins, and competing priorities. The gap between identified and realized is not a discipline problem — it is what an architecture without an executor necessarily produces.</div>
+
+<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<div class="fade-in">
+<p>The identification machinery deserves respect. Discovering a modern software estate — agent and agentless scanning across devices, data centers, cloud accounts, and hundreds of SaaS tenants; normalization against vast product catalogs; deduplication into one coherent inventory — is difficult engineering, and the mature tools in this category do it well. Metering usage down to the individual user is real capability: who last opened the design suite, which seats have not authenticated in ninety days, which premium tier is quietly doing the work of a standard one. And reconciling entitlements against byzantine vendor licensing models is genuine expertise — expertise that has saved enterprises from real audit exposure and armed real renewal negotiations.</p>
+<p>So take the dashboard at its word. When it tells you, say, that four hundred seats of a collaboration platform are dormant, it is probably right. The finding is not the problem. <strong>Everything after the finding is the problem.</strong></p>
+</div>
+
+<div class="section-label fade-in">THE LIFE OF A RECLAMATION</div>
+<div class="fade-in">
+<p>Follow one flagged seat through the pipeline. The usage-metering layer flags it as dormant. The flag becomes a recommendation — perhaps a ranked optimization scenario with a currency figure attached. The recommendation becomes a ticket. The ticket routes to an administrator, because the tool that identified the seat does not administer the console that holds it: the actual reclaim happens in the SaaS vendor's own admin panel, or the identity provider, or a procurement portal. And that administrator has a day job. Incidents page. Onboarding deadlines arrive. Renewals escalate. A dormant seat does none of those things — <em>no one has ever been paged because a license stayed assigned</em> — so the reclamation ticket ages politely at the bottom of the queue.</p>
+<p>Some tickets do get worked. But the quarter ends, the scan runs again, and the same seats reappear — joined by new ones, because provisioning never paused while the backlog aged. The category has a name for the output of all this: identified savings. Some tools even offer a realized-savings view — which, examined closely, depends on a human executing the change somewhere else and a later scan observing that it happened. The identify-recommend-hope loop measures everything except the one step that collects the money.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">A BACKLOG THAT REGENERATES IS A DIAGNOSIS</div>
+<div class="fade-in">
+<p>If this were a discipline problem, it would have been solved by now. Enterprises have run the discipline plays for a decade: tighter SLAs on reclamation tickets, quarterly cleanup sprints, chargeback to make business units feel the waste, a bigger dashboard with a bolder number. The backlog regenerates anyway. That regeneration is not a failure of effort. It is the signature of an architecture that separates three things that have to be one:</p>
+<ul>
+<li><strong>The system that knows</strong> — the metering and reconciliation engine that computes the license position and flags the waste — is a reporting layer over an estate it does not control.</li>
+<li><strong>The person who decides</strong> — a license manager triaging recommendations into tickets — works in a workflow that can request the change but cannot make it.</li>
+<li><strong>The console that acts</strong> — the SaaS admin panel, the identity provider, the vendor portal — executes the change but knows nothing of the recommendation, the justification, or the savings target it was meant to serve.</li>
+</ul>
+<p>Every handoff between the three loses momentum, and nothing at the end of the chain closes the loop. Meanwhile — the deeper issue — the estate keeps changing outside all of it. New seats are granted in the same ungoverned consoles while reclamation tickets queue. The scan will find those too, next quarter, and the dashboard will report another triumph of identification.</p>
+<p>The financial consequence is worth stating plainly, because the identified number does not stay on the dashboard. It migrates into business cases, into the tooling's own return-on-investment story, into renewal planning — treated, each time, as if identification were collection. By the category's own telling, a substantial share of enterprise software spend goes unused; what that telling rarely includes is the fraction of identified waste that was ever actually clawed back, verified, and kept back. <strong>A savings number that must be re-identified every quarter is not a pipeline. It is a standing measurement of the distance between insight and execution.</strong></p>
+</div>
+
+<div class="section-label fade-in">GIVE THE LOOP AN EXECUTOR</div>
+<div class="fade-in">
+<p>Now change the architecture instead of the dashboard. On a composable process fabric, a license or SaaS entitlement is not a row in an inventory that a scan keeps honest — it is a governed object, and its lifecycle actions (request, assign, reclaim, renew, retire) execute as governed workflows on the same runtime that holds the record. This is an architectural property, not a feature claim: when the only way an entitlement's state changes is through a governed action, record and reality cannot diverge, because the state change <em>is</em> the governed action. There is nothing to reconcile, because nothing changed outside the record.</p>
+<p>What does reclamation look like on that substrate? Illustratively — and honestly, because a heartless auto-kill would be worse than the backlog:</p>
+<ul>
+<li><strong>The trigger is the entitlement itself.</strong> A seat crosses a dormancy threshold and a Deterministic Workflow starts — not a ticket about a reclaim, a workflow whose end state is the reclaim.</li>
+<li><strong>Notice and grace come first.</strong> The user is notified; a grace period runs; a sign-in or a stated need stops the clock.</li>
+<li><strong>Contested seats go to a human.</strong> Human-in-the-loop is a first-class step, not an escape hatch: the manager who says "she is on leave — keep it" makes that call inside the workflow, and the decision is recorded with the same rigor as the reclaim would have been.</li>
+<li><strong>The reclaim executes.</strong> If the grace period expires uncontested, the governed Connector performs the deprovisioning against the same SaaS admin API a human administrator would have used. The fabric runs over your existing estate; it does not ask you to rip anything out.</li>
+<li><strong>The audit writes itself.</strong> Trigger, notice, grace, contest, decision, execution — every step lands in the immutable per-action audit as a byproduct of running, not as an after-the-fact reconstruction.</li>
+</ul>
+<p>Notice what is absent: no export, no ticket, no admin with a day job, no waiting for the next scan to confirm the change landed. And because assignment is also a governed action on the same fabric, a reclaimed seat cannot silently drift back. If it returns, it returns through a governed request with a requester, an approver, and a reason attached. The backlog does not regenerate, because the loop that produced it no longer exists.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram contrasting reclamation by recommendation with reclamation as a governed action">
+<defs><marker id="rb-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="currentColor" opacity="0.45"/></marker></defs>
+<line x1="400" y1="26" x2="400" y2="300" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="180" y="30" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.85">GOVERNANCE BY RECONCILIATION</text>
+<text x="180" y="46" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">identify &#8594; recommend &#8594; hope</text>
+<rect x="60" y="58" width="240" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+<text x="180" y="79" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">The estate &#8212; changes outside the tool</text>
+<line x1="180" y1="92" x2="180" y2="110" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="60" y="112" width="240" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="180" y="133" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Scan + metering &#8594; position report</text>
+<line x1="180" y1="146" x2="180" y2="164" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="60" y="166" width="240" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="180" y="187" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Recommendation becomes a ticket</text>
+<line x1="180" y1="200" x2="180" y2="218" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="60" y="220" width="240" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="180" y="241" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Admin executes in another console</text>
+<path d="M300,237 C356,228 356,84 300,75" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="4 3" marker-end="url(#rb-ar)"/>
+<text x="352" y="153" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.55">drift</text>
+<text x="352" y="165" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.55">returns</text>
+<text x="180" y="284" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.65">next quarter: the same seats are back &#8212; plus new ones</text>
+<text x="600" y="30" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="1" fill="currentColor" opacity="0.85">GOVERNANCE BY CONSTRUCTION</text>
+<text x="600" y="46" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">the loop has an executor</text>
+<rect x="460" y="58" width="280" height="34" rx="6" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.5"/>
+<text x="600" y="79" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">Entitlement &#8212; governed object on the fabric</text>
+<line x1="600" y1="92" x2="600" y2="110" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="460" y="112" width="280" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="600" y="133" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Workflow: notify &#8594; grace period</text>
+<line x1="600" y1="146" x2="600" y2="164" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="460" y="166" width="280" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="600" y="187" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">HITL &#8212; contested seats go to a human</text>
+<line x1="600" y1="200" x2="600" y2="218" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="460" y="220" width="280" height="34" rx="6" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="600" y="241" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Reclaim executes via governed Connector</text>
+<line x1="600" y1="254" x2="600" y2="268" stroke="currentColor" stroke-opacity="0.45" marker-end="url(#rb-ar)"/>
+<rect x="460" y="270" width="280" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+<text x="600" y="289" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">Immutable per-action audit &#8212; record = reality</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT THE OWNER OF THE NUMBER SHOULD ASK</div>
+<div class="fade-in">
+<p>If you are the CIO or CFO who ultimately owns the savings figure, four questions cut through any optimization dashboard:</p>
+<ul>
+<li><strong>Of the savings identified in the last four quarters, what fraction was collected</strong> — executed, verified, and still true today — and who attests to that number?</li>
+<li><strong>Who executes a reclamation, in which console, and what governs that action?</strong> If the answer is an admin, elsewhere, best effort — you have found your backlog's birthplace.</li>
+<li><strong>What prevents a reclaimed seat from coming back ungoverned?</strong> A scan that catches it later is not prevention; it is the treadmill restarting.</li>
+<li><strong>At renewal, is your entitlement position live state or a reconciled snapshot?</strong> Negotiating from a report that was true as of the last scan means negotiating with a margin of error the vendor does not share.</li>
+</ul>
+<p>None of this is hostile to the identification tools. The metering is good; the reconciliation expertise is real; keep both. The point is narrower and harder: identification was never the bottleneck. Execution was. And execution is not a feature you bolt onto a reporting architecture — it is a different architecture, one where the record of the estate and the actions on the estate are the same governed system, so that identified and collected stop being different numbers.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Savings that must be re-identified every quarter were never collected — they were only observed.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

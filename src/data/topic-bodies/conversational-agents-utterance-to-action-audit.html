@@ -1,0 +1,112 @@
+<div class="hook fade-in"><p>Bring your best conversational-AI vendor into a control review and pick a single action it took last quarter — a refund released, a credit posted, an account reopened. Then ask three plain questions: which spoken sentence triggered it, under whose authority it ran, and which control decided to let it through. What comes back is a transcript, a reasoning trace, a per-agent policy log, or a quality score on a sampled call. <strong>Every one of those describes what was said or what the model thought. None of them records what was done — or why it was allowed to happen.</strong></p></div>
+
+<div class="section-label fade-in">THE QUESTION IN THE ROOM</div>
+<div class="fade-in">
+<p>An examiner — internal audit, a regulator, a disputing customer's counsel — does not reconstruct a conversation. They reconstruct a <em>chain</em>. For one action, five links have to hold: the <strong>trigger</strong> (which input initiated it), the <strong>authority</strong> (whose identity and entitlements it ran under), the <strong>control</strong> (which gate evaluated it and what it decided), the <strong>effect</strong> (what actually changed in the system of record), and <strong>integrity</strong> (that the record is complete and has not been edited after the fact). Provenance is that chain, intact and replayable. Everything else is a story <em>about</em> the chain.</p>
+<p>Here is the uncomfortable part. Most conversational-AI platforms were never built to produce that chain. They were built to converse, contain, and resolve — and to be measured on exactly that. So when the question turns from "did it resolve?" to "can you prove what it did?", the artifacts they hand you were engineered to answer a different question entirely. They are not lying to you. They are showing you the only evidence their architecture knows how to keep.</p>
+</div>
+
+<div class="section-label fade-in">FOUR ARTIFACTS, ONE BROKEN CHAIN</div>
+<div class="fade-in">
+<p>Walk the artifacts one at a time, and give each its due before naming where it breaks the chain — because each is genuinely good at something, just not at this.</p>
+<ul>
+<li><strong>The reasoning trace.</strong> It is the best tool the field has for understanding <em>why</em> a model took a path, and it makes debugging and model improvement dramatically better. But a reasoning trace is a narrative the model generates about its own thinking; it is probabilistic, reconstructive, and can be fluent and wrong in the same breath. It offers an account of an intent — it does not evidence an authority or a control decision. It breaks at the authority and control links.</li>
+<li><strong>The per-agent policy and config log.</strong> Compiled, versioned configuration is real progress over a raw prompt, and the governance-first camp is right to insist on it. But consider it structurally: governance authored into the agent at design or compile time is authored by the builder who can loosen it, and the log the agent keeps is the agent's account of itself, per agent — not an external gate the action had to pass through at the moment it fired. It records what the agent was configured to do and what it reports having done. It does not bind <em>this</em> utterance to <em>this</em> authorized effect across the whole system.</li>
+<li><strong>The sampled QA score.</strong> Reviewing a large share of conversations genuinely raises quality, and the sampling camp deserves credit for taking speech seriously. But it is, by construction, silence about everything you did not sample, and it scores what was <em>said</em>, not the legitimacy of what was <em>done</em>. For the specific action under review, the honest answer is too often "that call was not in the sample."</li>
+<li><strong>The observability dashboard.</strong> Latency, error rates, throughput — operationally essential, and the platform camp is right to instrument them. But that is telemetry about system health, not provenance of a business action. It tells you the call succeeded; it cannot tell you the call was <em>allowed</em>.</li>
+</ul>
+<p>Notice the common thread. Each artifact is an account of what was said or thought, captured <em>around</em> the action rather than <em>binding</em> it. A probabilistic supervisor watching the conversation is watching, not gating — it can flag, escalate, and catch a great deal of genuine harm, and that is worth having. But the action can still fire, and "probably caught" is not a control an examiner accepts.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">EXPLAINABILITY OF THE MODEL VS. PROVENANCE OF THE ACTION</div>
+<div class="fade-in">
+<p>This is the distinction the category blurs, and it is worth making sharp. <strong>Explainability is a claim about the model:</strong> here is a plausible account of why the system produced this output. It is model-centric, probabilistic, and reconstructed after the fact. <strong>Provenance is a claim about the action:</strong> here is the input that triggered it, the identity that authorized it, the control that permitted it, and the effect it produced — recorded as it happened, immutable, replayable.</p>
+<p>Explainability helps you improve the model. Provenance lets you stand behind the action when someone with subpoena power asks you to. Regulated action needs provenance, not explainability. The strongest audit story in this market today is, on inspection, an explainability story wearing an audit vest — traceable reasoning steps and traceable config, made visible per agent. Impressive engineering. Just not a record of which utterance became which authorized effect.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="On the left, a conversational agent calls an external system directly while a probabilistic supervisor only watches around the action, which still fires. On the right, an Atomic Agent proposes an action that must pass a deterministic workflow gate — approval, segregation of duties, threshold, human-in-the-loop — before a governed connector executes it against the system, with an immutable per-action audit binding every step.">
+  <line x1="400" y1="24" x2="400" y2="296" stroke-opacity="0.14" stroke-dasharray="3 7"/>
+
+  <text x="30" y="36" fill="currentColor" stroke="none" font-size="13" font-weight="700" letter-spacing="0.06em" opacity="0.85">WATCHED, NOT GATED</text>
+
+  <rect x="118" y="60" width="164" height="38" rx="9" stroke-opacity="0.4"/>
+  <text x="200" y="84" fill="currentColor" stroke="none" font-size="11" text-anchor="middle" opacity="0.7">probabilistic supervisor</text>
+
+  <rect x="34" y="150" width="120" height="52" rx="9" stroke-opacity="0.75"/>
+  <text x="94" y="181" fill="currentColor" stroke="none" font-size="11.5" text-anchor="middle">conversational agent</text>
+
+  <rect x="246" y="150" width="120" height="52" rx="9" stroke-opacity="0.75"/>
+  <text x="306" y="174" fill="currentColor" stroke="none" font-size="11.5" text-anchor="middle">external</text>
+  <text x="306" y="190" fill="currentColor" stroke="none" font-size="11.5" text-anchor="middle">system / API</text>
+
+  <line x1="154" y1="176" x2="238" y2="176" stroke-opacity="0.9"/>
+  <path d="M246 176 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
+  <text x="197" y="167" fill="currentColor" stroke="none" font-size="10" text-anchor="middle" opacity="0.8">action fires</text>
+
+  <path d="M150 98 C122 118 108 134 100 148" stroke-opacity="0.32" stroke-dasharray="2 5"/>
+  <path d="M250 98 C282 118 296 134 304 148" stroke-opacity="0.32" stroke-dasharray="2 5"/>
+  <text x="200" y="240" fill="currentColor" stroke="none" font-size="10.5" text-anchor="middle" opacity="0.6">watches around the action — can flag, cannot stop</text>
+
+  <text x="430" y="36" fill="currentColor" stroke="none" font-size="13" font-weight="700" letter-spacing="0.06em" opacity="0.85">PROPOSED, THEN GATED</text>
+
+  <rect x="426" y="120" width="86" height="48" rx="9" stroke-opacity="0.75"/>
+  <text x="469" y="148" fill="currentColor" stroke="none" font-size="11" text-anchor="middle">Atomic Agent</text>
+
+  <path d="M566 118 l26 26 l-26 26 l-26 -26 z" stroke-opacity="0.9"/>
+  <text x="566" y="148" fill="currentColor" stroke="none" font-size="10" text-anchor="middle" opacity="0.85">gate</text>
+
+  <rect x="628" y="120" width="66" height="48" rx="9" stroke-opacity="0.75"/>
+  <text x="661" y="141" fill="currentColor" stroke="none" font-size="10" text-anchor="middle">governed</text>
+  <text x="661" y="154" fill="currentColor" stroke="none" font-size="10" text-anchor="middle">connector</text>
+
+  <rect x="712" y="120" width="62" height="48" rx="9" stroke-opacity="0.75"/>
+  <text x="743" y="148" fill="currentColor" stroke="none" font-size="10" text-anchor="middle">system</text>
+
+  <line x1="512" y1="144" x2="536" y2="144" stroke-opacity="0.9"/>
+  <text x="524" y="136" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" opacity="0.7">proposes</text>
+  <line x1="592" y1="144" x2="624" y2="144" stroke-opacity="0.9"/>
+  <line x1="694" y1="144" x2="708" y2="144" stroke-opacity="0.9"/>
+
+  <text x="566" y="188" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle" opacity="0.65">approval · SoD · threshold · HITL</text>
+  <text x="566" y="201" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle" opacity="0.65">non-compliant action cannot execute</text>
+
+  <rect x="426" y="238" width="348" height="34" rx="7" stroke-opacity="0.45" stroke-dasharray="4 4"/>
+  <text x="600" y="259" fill="currentColor" stroke="none" font-size="9.5" text-anchor="middle" opacity="0.72">immutable per-action audit: utterance → intent → gate → connector → effect</text>
+  <line x1="469" y1="168" x2="469" y2="238" stroke-opacity="0.2" stroke-dasharray="2 4"/>
+  <line x1="566" y1="170" x2="566" y2="238" stroke-opacity="0.2" stroke-dasharray="2 4"/>
+  <line x1="661" y1="168" x2="661" y2="238" stroke-opacity="0.2" stroke-dasharray="2 4"/>
+  <line x1="743" y1="168" x2="743" y2="238" stroke-opacity="0.2" stroke-dasharray="2 4"/>
+</svg>
+</div>
+
+<div class="section-label fade-in">VOICE: WHERE THE EVIDENCE EVAPORATES</div>
+<div class="fade-in">
+<p>Voice is where the gap stops being an inconvenience and becomes unrecoverable, because the trigger itself is ephemeral. The utterance is a pressure wave that exists for a second and is gone. If it is not bound to the action <em>at the instant the action is proposed</em>, there is nothing to reconstruct from later. The audio may be transcribed lossily, retained in part, or not retained at all — and the action fired through an external API the platform could not gate as it happened.</p>
+<p>Forensics on a partial recording is not provenance; it is guesswork with a waveform attached. And the actions voice agents are increasingly trusted with — moving money, changing entitlements, releasing goods — are precisely the irreversible ones where "we will reconstruct it later" is not a plan. You cannot un-wire a transfer with a good reasoning trace.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT A BOUND TRAIL ACTUALLY IS</div>
+<div class="fade-in">
+<p>The architectural difference is not a better logger. In Entroid a conversational agent is not a standalone product sitting on top of your systems; it is an <strong>Atomic Agent</strong> — a first-class primitive — executing inside one governed runtime. The audit is a byproduct of how execution works, not a report assembled afterward. Walk the same five links:</p>
+<ul>
+<li><strong>Utterance → intent.</strong> Intelligence Orchestration routes the request and binds the proposed action to the <em>invoking identity's</em> real entitlements — not the agent's ambient permissions, the caller's. The authority link is established before anything executes.</li>
+<li><strong>Intent → gate.</strong> The proposed action enters a Deterministic Workflow where the control lives inline: approval, segregation of duties, authority and threshold limits, human-in-the-loop checkpoints placed <em>before</em> the irreversible step. A non-compliant action is not detected after it fires; it cannot execute. Human-in-the-loop here is a routed pause that surfaces the agent's reasoning and resumes with the decision recorded — not an escalation reached after the agent gives up, and not a rubber stamp on something already done.</li>
+<li><strong>Gate → effect.</strong> Only a governed Connector touches the external system, with its own authentication, authorization, rate limits, and logging. Be precise about the claim: deterministic <em>access</em> to a system of record is an access-control property — real, but ordinary. What matters here is deterministic <em>gating of the action</em>: the workflow decides whether the proposed action may execute at all, and the Connector is simply the only hand allowed to reach the system.</li>
+<li><strong>The whole path, bound.</strong> Utterance → intent → orchestration route → workflow gate → connector call → system effect, captured as one chain per action: replayable and tamper-evident. It is not the agent's account of itself; it is the execution path, recorded because that is the path the action was forced to travel.</li>
+</ul>
+<p>None of this pretends ES avoids integration. It executes over your existing systems, through governed Connectors. The difference is that those touchpoints sit <em>inside</em> the governed path rather than hanging off the side of it — which is exactly why the trail can bind an utterance to an authorized effect instead of narrating one.</p>
+</div>
+
+<div class="section-label fade-in">THE STANDARD THAT MATTERS</div>
+<div class="fade-in">
+<p>When the question moves from "does it converse and resolve well?" to "can it be trusted to <em>act</em> — correctly, authorized to the caller's real entitlements, provably, every time, across any enterprise process and not just the support queue?" — a transcript, a reasoning trace, and a sampled score are all fluent answers to the wrong question. The right answer is not something you generate on demand when an examiner arrives. It is a chain that was already there, because the action could not have executed any other way.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A transcript is testimony and a reasoning trace is a story. Provenance is evidence — and only evidence survives the room where the action is questioned.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

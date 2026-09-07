@@ -1,0 +1,110 @@
+<div class="hook fade-in"><p>Your application-security program did everything the industry asked of it. Vulnerabilities are caught in the pull request, dependencies are inventoried, images are signed, pipelines are gated, and your posture has never been more visible. Yet the risk most likely to put your name in an incident report has quietly moved: it is no longer the unpatched library. <strong>It is the authorized-looking action that no policy ever gated.</strong></p></div>
+
+<div class="section-label fade-in">THE PROGRAM WORKED</div>
+<div class="fade-in">
+<p>Start with what is true, because it matters. Shift-left worked. Finding the vulnerable dependency in the pull request instead of in production is cheaper, faster, and real — the economics are not marketing. Modern scanning across source, dependencies, containers, and infrastructure-as-code, prioritized by what is actually reachable and running, has genuinely cut the noise that once buried security teams. Signed artifacts, software bills of materials, and build provenance harden the supply chain against attack patterns that have actually hit real enterprises. Policy-as-code in the pipeline genuinely blocks bad builds before they exist. And the most runtime-oriented tools in the category do enforce at execution: admission control that refuses a non-compliant workload is enforcement, not posture. Immutability enforcement that pins a workload to the exact image you built is enforcement, not posture.</p>
+<p>None of this is wasted budget. It is hard, valuable security work, and nothing in this argument says to do less of it.</p>
+<p>But notice what every one of those controls has in common. They govern the artifact, the pipeline, and the workload's integrity. They prove the code that shipped was clean and that the image running is the one you built. Then the application executes — and the business actions it takes, the payment it releases, the record it changes, the data it exports, are governed by whatever the application happens to do. Not by the pipeline that shipped it.</p>
+</div>
+
+<div class="section-label fade-in">THE RISK THAT MOVED</div>
+<div class="fade-in">
+<p>Read the incident patterns that now dominate loss reports across industries and a shape emerges: the breach that hurts is decreasingly the exploited CVE and increasingly the authorized-looking action.</p>
+<p><em>Business-logic abuse</em>: the application behaving exactly as built, doing something the business never intended. A refund flow invoked at a scale nobody imagined. A workflow that pays the wrong party because an approval path had a gap no scanner classifies as a weakness — because it is not one. It compiles. It passes tests. It is simply wrong conduct. <em>Authorized-credential misuse</em>: a valid session, a legitimate token, an insider or an attacker who logged in rather than broke in, doing invalid things with valid access. And now the AI feature: the assistant that retrieves, summarizes, and exports — through an integration you built on purpose — data it should never have moved.</p>
+<p>Every scanner in your stack passes all of these. That is not a tool failure; it is a scope boundary. <strong>Scanners audit code. These are conduct.</strong> Static analysis can prove your software contains no known weakness. Nothing in the pipeline can prove that the action your software just took was authorized, within policy, and provable after the fact.</p>
+<p>Which is why the question a security leader should sit with is no longer <em>"is our software secure?"</em> You have spent a decade earning a yes. The question is <em>"is what our software does governed?"</em> — and in most enterprises the honest answer is: only by the application code itself.</p>
+</div>
+
+<div class="section-label fade-in">TWO STRONG ANSWERS, ONE SHARED SILENCE</div>
+<div class="fade-in">
+<p>The category is not naive about governance. Two architectural patterns come closest to an answer, and both deserve precise credit before precise critique.</p>
+<p>The first is the pipeline-governance pattern: a single platform where security policy is code, enforced in the pipeline — gating the merge, the build, the deployment. Concede the substance: the pipeline is genuinely governed. Policy is versioned, enforcement is automatic, exceptions are visible. But be precise about the object of that governance. It governs the <strong>delivery</strong> of code. The moment the artifact is deployed, the platform's writ ends, and the running application's business actions answer to nothing it shipped. Delivery governance is real governance — of delivery.</p>
+<p>The second is the runtime-enforcement pattern: admission control that refuses a workload failing policy, immutability enforcement that keeps what runs identical to what was built. Concede this fully too: that is real execution-time enforcement, not a dashboard. But again, its object: it governs <strong>which</strong> software runs and that it stays unmodified. Workload integrity. It does not govern what the software <strong>does</strong>. A perfectly attested, drift-free, vulnerability-free workload can still release the wrong payment to the wrong counterparty — and the enforcement layer will correctly observe that a fully compliant workload did it.</p>
+<p><strong>Integrity of the actor is not governance of the action.</strong> That sentence marks the boundary of the whole category — not of any one product's roadmap, but of the architectural position they share: standing outside the business process, securing the thing that will execute it. What none of them stand inside is the execution itself.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The delivery pipeline's governance ends at deploy, leaving runtime business actions ungoverned; the composable process fabric gates each business action inline through a governed connector with per-action audit" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="es-ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor" opacity="0.5"/>
+    </marker>
+  </defs>
+  <text x="24" y="34" font-size="11" letter-spacing="2" fill="currentColor" opacity="0.5">SECURE THE SUPPLY — THE APPSEC STACK</text>
+  <rect x="24" y="52" width="120" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="84" y="71" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">SCAN</text>
+  <text x="84" y="85" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">SAST · SCA · IaC</text>
+  <line x1="144" y1="74" x2="156" y2="74" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#es-ar5)"/>
+  <rect x="160" y="52" width="104" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="212" y="71" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">POLICY GATE</text>
+  <text x="212" y="85" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">merge · build</text>
+  <line x1="264" y1="74" x2="274" y2="74" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#es-ar5)"/>
+  <rect x="278" y="52" width="128" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="342" y="71" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">SIGNED ARTIFACT</text>
+  <text x="342" y="85" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">SBOM · provenance</text>
+  <line x1="406" y1="74" x2="416" y2="74" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#es-ar5)"/>
+  <rect x="420" y="52" width="116" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="478" y="71" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">ADMISSION</text>
+  <text x="478" y="85" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">control · drift pin</text>
+  <line x1="540" y1="74" x2="590" y2="74" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#es-ar5)"/>
+  <line x1="566" y1="22" x2="566" y2="186" stroke="currentColor" stroke-opacity="0.55" stroke-dasharray="5 4"/>
+  <text x="566" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">governance ends at deploy</text>
+  <rect x="596" y="44" width="180" height="110" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <text x="686" y="64" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">RUNNING APPLICATION</text>
+  <text x="686" y="86" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">release payment</text>
+  <text x="686" y="104" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">change record</text>
+  <text x="686" y="122" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">export data</text>
+  <text x="686" y="144" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.5">no shipped control applies here</text>
+  <text x="686" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">ungoverned at runtime</text>
+  <text x="24" y="212" font-size="11" letter-spacing="2" fill="currentColor" opacity="0.5">GOVERN THE ACTION — THE COMPOSABLE PROCESS FABRIC</text>
+  <rect x="24" y="228" width="150" height="44" rx="8" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="99" y="247" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">BUSINESS ACTION</text>
+  <text x="99" y="261" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">payment · record · export</text>
+  <line x1="174" y1="250" x2="196" y2="250" stroke="currentColor" stroke-opacity="0.6" marker-end="url(#es-ar5)"/>
+  <rect x="200" y="228" width="186" height="44" rx="8" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="293" y="247" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">DETERMINISTIC WORKFLOW</text>
+  <text x="293" y="261" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">inline policy gate · HITL</text>
+  <line x1="386" y1="250" x2="408" y2="250" stroke="currentColor" stroke-opacity="0.6" marker-end="url(#es-ar5)"/>
+  <rect x="412" y="228" width="168" height="44" rx="8" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="496" y="247" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">GOVERNED CONNECTOR</text>
+  <text x="496" y="261" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">the only door out</text>
+  <line x1="580" y1="250" x2="602" y2="250" stroke="currentColor" stroke-opacity="0.6" marker-end="url(#es-ar5)"/>
+  <rect x="606" y="228" width="170" height="44" rx="8" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="691" y="247" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.85">IMMUTABLE AUDIT</text>
+  <text x="691" y="261" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">written per action</text>
+  <text x="400" y="302" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">the gate sits in the execution path — not beside it</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE SCOREBOARD MEASURES THE WRONG SURFACE</div>
+<div class="fade-in">
+<p>Now reread your own security metrics through that lens. Vulnerabilities found earlier in the lifecycle. Remediation cycle times trending down. Fewer critical findings reaching production. Scan coverage across repositories approaching complete. Every one of those numbers is worth having — and every one of them measures the same surface: the artifact, and the pipeline that produced it. Not one measures whether the actions your software executed last quarter were authorized, within policy, and provable to an auditor or a regulator.</p>
+<p>The category's own narrative — security built in, not bolted on — is true, of code. The sentence simply stops before runtime conduct. And so the residual risk relocates to a layer the appsec stack implicitly assumes someone else owns. Ask who, specifically: the application teams? Identity? The business owner of the process? In most enterprises the honest answer is that action-level governance has no owner at all. It is an emergent property of whatever the application was written to do.</p>
+</div>
+
+<div class="section-label fade-in">GOVERNED BY CONSTRUCTION</div>
+<div class="fade-in">
+<p>There is a structural way out, and it begins by changing what the "application" is. Entroid is built as a Composable Process Fabric: business processes are not opaque code you scan and then trust, but compositions of five governed primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — running on one runtime over a shared semantic ontology. The consequence is architectural, and it is the entire point: <strong>when a process is composed from governed primitives, action-level governance is not a control you add. It is a property of how the software is built.</strong></p>
+<ul>
+<li><strong>Inline gates.</strong> Deterministic Workflows enforce policy inside the execution path. The check on a high-consequence action is not a pipeline stage that ran weeks before deployment; it is a gate the action must pass at the moment it executes, evaluated against live state.</li>
+<li><strong>One door out.</strong> Connectors are the only primitive that touches external systems. There is no side channel by which a function, an agent, or an AI feature reaches a payment rail or a data store except through a permissioned, policy-checked Connector.</li>
+<li><strong>Humans as a primitive.</strong> Human-in-the-loop review is first-class in Atomic Agents — a pause-before-commit built into the composition, not an approval workflow bolted on beside it.</li>
+<li><strong>Audit at the action.</strong> Every executed action writes an immutable, per-action audit record at execution time. Proof that an action was authorized exists because the action executed — not because someone assembled evidence afterward.</li>
+</ul>
+<p>An illustrative example — hypothetical, not a case study. Consider a payment-release step. In a conventional stack, whatever code implements it passed every scan you own; whether <em>this</em> release, to <em>this</em> party, at <em>this</em> amount is allowed gets decided by application logic nobody governs from outside. Composed on the fabric, the release is a workflow step: the inline gate evaluates policy against live state before anything moves, escalates to a human when a threshold trips, executes only through the governed Connector, and writes the audit record as part of the act itself.</p>
+<p>Two honest boundaries. First, this does not replace your appsec stack — you still want shift-left scanning, signed artifacts, and admission control, and Entroid's own DevSecOps module ships gated software to Kubernetes with AI guardrails for exactly that reason. Second, this is not integration-free: the fabric runs over your existing estate, reaching it through governed Connectors rather than pretending it is not there. The claim is narrower and structural: the appsec stack governs the <strong>supply</strong> of software. The fabric governs the <strong>conduct</strong> of the process.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE QUESTION TO CARRY INTO YOUR NEXT REVIEW</div>
+<div class="fade-in">
+<p>At your next application-security review, ask a different question. Not how many vulnerabilities were found, or how fast they closed, or what fraction of repositories is covered. Pick your three highest-consequence business actions — the payment release, the customer-record change, the bulk data export — and ask: at the moment of execution, what checks whether this action is authorized and in policy? And what proof exists afterward that it was?</p>
+<p>If the answer is "the application logic" and "the application logs," you have located the moved risk. Secure software was the prerequisite. Governed conduct is the job — and it belongs to whoever decides how the enterprise's processes are built.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>You can prove the code that shipped was clean. Can you prove the action it just took was allowed?</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

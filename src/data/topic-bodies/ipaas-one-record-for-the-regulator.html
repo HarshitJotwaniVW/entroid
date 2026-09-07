@@ -1,0 +1,102 @@
+<div class="hook fade-in"><p>Picture the request. A regulator points at a single transaction and asks four plain questions: <strong>who approved it, on whose authority, what data did the decision touch, and can you replay it exactly as it ran?</strong> If your honest answer begins with "we'll pull logs from a few systems and correlate them," you have already conceded the point. A trail you assemble after the fact is not an audit trail. It is a hypothesis you are asking the auditor to accept.</p></div>
+
+<div class="section-label fade-in">THE RECONSTRUCTION TAX</div>
+<div class="fade-in"><p>In the prevailing integration model, a business process is not a thing that exists. It is an <em>emergent effect</em> of calls choreographed between systems of record. A recipe or flow fires. The gateway records which API was invoked, by which identity, under which policy. The automation engine keeps a job history with its own run identifiers. And each endpoint — the ERP, the CRM, the ledger, the case system — keeps its own internal record of what it was told to do. Five participants, five clocks, five schemas, five notions of "who."</p>
+<p>So when a regulator asks about one business event, someone has to become a forensic investigator inside their own company. They pull a gateway access log, match it to a recipe run ID, join that to three systems' internal audit tables, reconcile timestamps that were never synchronized, and infer the identity chain across handoffs that were never designed to line up. The evidence exists — scattered — but the <strong>correlation is a reconstruction performed under deadline</strong>, and every join is a place where the story can quietly diverge from what actually happened. The cost of that reassembly is a tax you pay every quarter, every audit, every incident. Worse, it is a tax with no guaranteed ceiling: the harder the question, the more systems you have to stitch, the more likely the seams show.</p></div>
+
+<div class="section-label fade-in">WHAT THE PLATFORMS QUIETLY CONCEDE</div>
+<div class="fade-in"><p>Give the category its due, because the strengths are real. Prebuilt connector breadth and API-led connectivity genuinely accelerate integration and let teams reuse governed interfaces instead of rebuilding them. Design-time and runtime API governance — one control plane, rulesets applied across the API estate — is valuable and hard-won. Low-code recipes really do let business teams automate without waiting on engineering. And the newest agent control planes genuinely discover services, mint delegated identities, and apply policy to which API or agent may be called, logged at the gateway. That is advanced work, and pretending otherwise fools no expert reader.</p>
+<p>But notice precisely <em>what</em> all of that governs and records: the connection, the API, the recipe job, and the agent's <strong>call</strong> — with identity and policy enforced at the gateway. The tells are in the vendors' own language. One enterprise-automation platform promises "immutable audit logs for all AI actions" — auditing <em>actions</em>, because there is no process object to audit. A data-activation platform concedes its audit trail is "implicit," distributed across the endpoints it activates. A mass-market automation platform's compliance guidance amounts to "log everything — every input, output, and error." Read those honestly and they are all saying the same thing: the record is a downstream artifact you are responsible for collecting and correlating, not a native property of the process. It could not be otherwise — the business process never ran <em>in</em> the platform. It ran in the endpoints the platform glued together. Auditing the tool call is not auditing the process.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT A REGULATOR ACTUALLY ASKS</div>
+<div class="fade-in"><p>The gap matters because evidentiary questions are per-instance and per-action — not per-connection. Look at what the frameworks actually demand:</p>
+<ul>
+<li><strong>SOX.</strong> Who was authorized to initiate this entry, who approved it, was segregation of duties preserved, and was the control operating on the date in question? These are questions about <em>authority and state at a specific step</em>, not about which API answered.</li>
+<li><strong>HIPAA.</strong> Which identity touched which protected record, was access limited to the minimum necessary, and where is the per-access record? A gateway can tell you a call happened; it struggles to tell you the business justification the process was operating under when it happened.</li>
+<li><strong>The EU AI Act.</strong> Was there meaningful human oversight over this automated decision, and can you explain and reproduce it? "Log everything" produces volume. It does not produce an <em>explanation</em> of why this instance decided as it did, or a faithful replay of the run.</li>
+</ul>
+<p>Compress all of it into the sentence an examiner will actually say: <strong>"Show me who approved step 4, on whose authority, and replay it."</strong> A stitched reconstruction can <em>approximate</em> that answer. What it cannot do is <em>guarantee</em> it — because the keys that would bind the approval, the authority, the data, and the effect into one provable chain live in different systems that each recorded only their own slice. You are not producing evidence. You are defending a correlation.</p></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Diagram contrasting scattered per-call logs across endpoints versus one durable process ledger">
+  <style>
+    .lbl { font: 600 13px system-ui, sans-serif; fill: currentColor; stroke: none; }
+    .sub { font: 400 11px system-ui, sans-serif; fill: currentColor; stroke: none; opacity: .6; }
+    .node { stroke-width: 1.4; opacity: .55; }
+    .muted { opacity: .35; stroke-dasharray: 4 4; }
+    .solid { stroke-width: 1.8; opacity: .9; }
+    .fillsoft { fill: currentColor; opacity: .06; stroke: none; }
+  </style>
+
+  <!-- LEFT: choreographed calls between systems, scattered logs -->
+  <text class="lbl" x="40" y="34">Choreographed between systems</text>
+  <text class="sub" x="40" y="52">governed at the gateway · state &amp; record scattered</text>
+
+  <!-- gateway bar -->
+  <rect class="node solid" x="40" y="70" width="300" height="26" rx="5"/>
+  <text class="sub" x="52" y="87">API / agent-call gateway — logs the call</text>
+
+  <!-- endpoints -->
+  <rect class="node" x="40" y="130" width="80" height="52" rx="6"/>
+  <rect class="node" x="150" y="130" width="80" height="52" rx="6"/>
+  <rect class="node" x="260" y="130" width="80" height="52" rx="6"/>
+  <text class="sub" x="62" y="160">ERP</text>
+  <text class="sub" x="168" y="160">CRM</text>
+  <text class="sub" x="280" y="160">Ledger</text>
+
+  <!-- call arrows -->
+  <path class="node" d="M80 96 L80 130"/>
+  <path class="node" d="M190 96 L190 130"/>
+  <path class="node" d="M300 96 L300 130"/>
+
+  <!-- scattered log fragments -->
+  <rect class="node muted" x="40" y="210" width="80" height="20" rx="3"/>
+  <rect class="node muted" x="150" y="210" width="80" height="20" rx="3"/>
+  <rect class="node muted" x="260" y="210" width="80" height="20" rx="3"/>
+  <rect class="node muted" x="95" y="244" width="80" height="20" rx="3"/>
+  <rect class="node muted" x="205" y="244" width="80" height="20" rx="3"/>
+  <text class="sub" x="40" y="292">5 logs · 5 clocks · reassemble after the fact</text>
+
+  <!-- divider -->
+  <path class="node" d="M400 40 L400 292" stroke-dasharray="3 6"/>
+
+  <!-- RIGHT: process is the runtime object -->
+  <text class="lbl" x="460" y="34">The process is the runtime object</text>
+  <text class="sub" x="460" y="52">inline governance · durable state · one audit</text>
+
+  <!-- durable process object -->
+  <rect class="fillsoft" x="460" y="72" width="300" height="150" rx="10"/>
+  <rect class="node solid" x="460" y="72" width="300" height="150" rx="10"/>
+  <text class="lbl" x="478" y="96">Process instance</text>
+
+  <!-- inline steps / ledger rows -->
+  <line class="node solid" x1="478" y1="112" x2="742" y2="112"/>
+  <text class="sub" x="478" y="130">step 1 · state → decision</text>
+  <text class="sub" x="478" y="150">step 4 · approval · who / authority</text>
+  <text class="sub" x="478" y="170">step 5 · external effect</text>
+  <line class="node" x1="478" y1="182" x2="742" y2="182"/>
+  <text class="sub" x="478" y="202">immutable per-action ledger · replayable</text>
+
+  <!-- connectors as the only edge -->
+  <rect class="node solid" x="560" y="244" width="100" height="26" rx="5"/>
+  <text class="sub" x="574" y="261">Connectors</text>
+  <path class="node solid" d="M610 222 L610 244"/>
+  <text class="sub" x="460" y="292">one record · governed I/O edge to the estate</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">MAKE THE PROCESS THE THING YOU AUDIT</div>
+<div class="fade-in"><p>The fix is architectural, not procedural. Stop treating the audit trail as something you harvest, and make it a property of a process that actually exists as a runtime object. That is the design premise of a composable process fabric. The business process runs as a first-class object with <strong>durable, governed state on one runtime</strong>. Governance is inline — the deterministic workflow enforces authority and sequence at the moment of the action, not as a design-time ruleset a call may or may not have respected. Human approval is a first-class step, not a side conversation logged elsewhere. And Connectors are the only primitive that touches external systems: a governed, typed, audited I/O edge — the thin, recorded boundary, not the place the business logic lives.</p>
+<p>Because every state transition, every decision, every approval, and every external effect happens <em>on the same runtime</em>, the record is not collected — it is <strong>emitted</strong>. One immutable, per-action audit belongs to the process instance itself. This is an architectural property of making the process the governed object, and it is worth stating plainly what it does <em>not</em> claim: this is not zero integration. The fabric still runs over your existing estate through those governed Connectors. The difference is not whether you connect to systems of record. The difference is <em>where the business actually runs</em> and, therefore, <em>where the record natively lives</em>.</p></div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">ONE LEDGER, EXPLAINABLE BY DESIGN</div>
+<div class="fade-in"><p>Now replay the regulator's question against each model. In the choreographed world, "who approved step 4, on whose authority, replay it" launches a forensic project: locate the recipe run, find the gateway entry for the approval call, correlate it to the approver's identity in a third system, and hope the reconstructed sequence is faithful. In the process-as-object world, step 4 is a row in <em>this instance's</em> ledger. The approver, the authority they held, the state the decision saw, and the external effect it produced are one linked chain, and the run is replayable because the runtime is the source, not the endpoints. That is the entire "+1": the evidentiary record is a native property of the process, so <strong>explainability is by construction rather than by reconstruction</strong>.</p>
+<p>For a CFO or CRO, the change is not cosmetic. It moves the audit conversation from "can we reassemble what happened, and how confident are we?" to "here is the instance, with its authority and its replay." It collapses the standing cost of evidence production and, more importantly, removes the category of risk where the evidence exists but the correlation is contestable. You are no longer defending a hypothesis. You are handing over a fact.</p></div>
+
+<div class="closing fade-in"><blockquote>The question was never whether you can find the record. It's whether the record was ever one thing to begin with.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,481 @@
+/* ============================================================================
+   Unified Enterprise Platform orbit — see src/components/PlatformOrbit.jsx.
+
+   Two states matter here:
+     .porb                 at rest / no JavaScript — everything visible
+     .porb.is-ready        the scroll sequence is driving; nodes and cards wait
+                           for their beat, and .is-ringed draws the dashed ring
+   ========================================================================== */
+
+/* One beat of the sequence. STEPS in the component must match --porb-steps,
+   which the component sets inline. */
+.porb {
+  --porb-step: 58vh;
+  --porb-size: clamp(210px, 20vw, 300px);
+  position: relative;
+}
+
+.porb.is-ready {
+  height: calc(100vh + var(--porb-steps) * var(--porb-step));
+}
+
+/* Heading above, graphic below, the pair centred in the pinned viewport. */
+.porb__stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.porb.is-ready .porb__stage {
+  position: sticky;
+  /* Clears the floating nav pill, which overlays the page. */
+  top: 0;
+  height: 100vh;
+  padding: 84px 0 20px;
+}
+
+/* Tighter than a free-standing section head: it shares the viewport with the
+   graphic for the whole sequence, so every pixel it gives back is one the ring
+   and the cards can use. The head and the three card rows have to fit 100vh
+   between them, so both are trimmed against that budget. */
+.porb__head.porb__head {
+  flex: 0 0 auto;
+}
+
+.porb__head .section__head--split {
+  margin-bottom: clamp(22px, 2.4vw, 34px);
+}
+
+/* Heading and subtext keep the size every other section uses; the room comes
+   out of the spacing and the card copy instead. */
+.porb__head .section__para {
+  max-width: 780px;
+}
+
+.porb__head .section__label {
+  margin-bottom: 12px;
+}
+
+/* Left bank, ring, right bank. The right bank is first in the source (so the
+   cards read 1..6) and is placed into the last column here. */
+.porb__inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  align-content: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: clamp(20px, 3vw, 56px);
+  row-gap: clamp(8px, .9vw, 10px);
+  width: 100%;
+}
+
+/* The ring spans every card row in the middle column. Explicit placement is
+   what keeps the two banks level: because both sides sit in the same row
+   tracks, row 1 is as tall as the taller of card 1 and card 4, and the two
+   columns stay aligned all the way down. Leaving it to auto-placement instead
+   gives each item a row of its own — the columns run backwards (3, then 2,
+   then 1) — and the banks end up stacked above and below the ring. */
+.porb__ring {
+  grid-area: 1 / 2 / calc(var(--porb-rows) + 1) / 3;
+  position: relative;
+  width: var(--porb-size);
+  height: var(--porb-size);
+  align-self: center;
+  margin: 0 auto;
+}
+
+/* The soft bloom behind the mark, present from the first frame. */
+.porb__glow {
+  position: absolute;
+  inset: -16%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+      rgba(59, 64, 214, .10) 0%,
+      rgba(106, 92, 240, .06) 34%,
+      rgba(106, 92, 240, 0) 68%);
+  pointer-events: none;
+}
+
+.porb__circle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.porb__circle circle {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: .35;
+  stroke-dasharray: 1.4 1.9;
+  transform-origin: 50% 50%;
+}
+
+/* Hidden until its beat, then drawn with a small settle. */
+.porb.is-ready .porb__circle circle {
+  opacity: 0;
+  transform: scale(.86) rotate(-14deg);
+  transition: opacity .6s ease, transform .8s cubic-bezier(.22, .8, .3, 1);
+}
+
+.porb.is-ready.is-ringed .porb__circle circle {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Centre: Entroid mark + wordmark ──────────────────────────── */
+.porb__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.porb__mark {
+  display: grid;
+  place-items: center;
+  width: clamp(78px, 8vw, 108px);
+  height: clamp(78px, 8vw, 108px);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 6px rgba(10, 15, 31, .05), 0 22px 48px rgba(10, 15, 31, .10);
+}
+
+.porb__mark img {
+  width: 58%;
+  height: 58%;
+  object-fit: contain;
+}
+
+.porb__name {
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
+/* ── Nodes on the ring ────────────────────────────────────────── */
+.porb__node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 3.9vw, 56px);
+  height: clamp(42px, 3.9vw, 56px);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 3px rgba(10, 15, 31, .05), 0 12px 26px rgba(10, 15, 31, .07);
+  color: var(--ink);
+}
+
+.porb__node svg {
+  width: 46%;
+  height: 46%;
+}
+
+/* Waiting for its beat. */
+.porb.is-ready .porb__node {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.4);
+  transition:
+    opacity .5s ease,
+    transform .6s cubic-bezier(.22, 1.2, .4, 1),
+    box-shadow .45s ease;
+}
+
+/* Arrived. Nodes stay lit once in, matching their cards — only the shadow
+   marks which one arrived most recently. */
+.porb.is-ready .porb__node.is-shown,
+.porb.is-ready .porb__node.is-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.porb.is-ready .porb__node.is-active {
+  box-shadow: 0 2px 5px rgba(10, 15, 31, .06), 0 18px 38px rgba(10, 15, 31, .15);
+}
+
+/* ── Cards ────────────────────────────────────────────────────── */
+/* Compact, because all three in a column are on screen together and stay
+   there. Each card holds its slot from the first frame, so an arrival fades in
+   without shifting the ones already placed. */
+.porb__card {
+  grid-area: var(--porb-row) / var(--porb-col);
+  width: 100%;
+  max-width: 330px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* The icon sits to the left of the copy rather than above it. Stacked, it cost
+   the card a whole row of height, and three of these have to share the pinned
+   viewport with the heading. */
+.porb__card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: 12px;
+}
+
+.porb__cardIcon {
+  display: block;
+  color: var(--ink);
+  /* Optically level with the title's cap height. */
+  margin-top: 1px;
+}
+
+.porb__cardIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.porb__cardTitle,
+.porb__cardText {
+  grid-column: 2;
+}
+
+.porb.is-ready .porb__card {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity .45s ease,
+    transform .55s cubic-bezier(.22, .8, .3, 1),
+    border-color .45s ease;
+}
+
+.porb.is-ready .porb__card.is-shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* The most recent arrival leads, without the earlier ones receding. Carried by
+   the border alone now that the cards have no shadow. */
+.porb.is-ready .porb__card.is-active {
+  border-color: #c3c6e4;
+}
+
+/* The nodes share the cards' shadow so the ring and the banks read as one set
+   of surfaces. */
+.porb__node {
+  box-shadow: var(--shadow-card);
+}
+
+.porb__card--right {
+  justify-self: start;
+}
+
+.porb__card--left {
+  justify-self: end;
+}
+
+.porb__cardTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.porb__cardText {
+  font-size: clamp(12.5px, .92vw, 14px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ── Narrow screens ───────────────────────────────────────────── */
+/* One column: the ring on top, then the six cards in order. The beats shorten
+   so the sequence does not turn the section into an endless scroll. */
+@media (max-width: 900px) {
+  .porb {
+    --porb-step: 40vh;
+    --porb-size: min(72vw, 320px);
+  }
+
+  .porb__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(18px, 4vw, 28px);
+    justify-items: center;
+  }
+
+  .porb__ring {
+    grid-area: auto;
+    order: -1;
+  }
+
+  .porb__card {
+    grid-area: auto;
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .porb.is-ready .porb__stage {
+    padding: 76px 0 24px;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+/* Short viewports (laptops around 768px) have to give back more still. */
+@media (min-width: 901px) and (max-height: 840px) {
+  .porb {
+    --porb-size: clamp(180px, 17vw, 240px);
+  }
+
+  .porb.is-ready .porb__stage {
+    padding: 84px 0 18px;
+  }
+
+  .porb__head .section__heading {
+    font-size: clamp(22px, 2.1vw, 30px) !important;
+  }
+
+  .porb__head .section__para {
+    font-size: 14px;
+  }
+
+  .porb__head .section__head--split {
+    margin-bottom: 14px;
+  }
+
+  .porb__inner {
+    row-gap: 10px;
+  }
+
+  .porb__cardIcon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .porb__cardText {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+}
+
+/* Shorter still (a 13-inch laptop leaves roughly 740px of viewport). The card
+   padding is held at 20px throughout — the type, the icons and the ring give
+   the room back instead. */
+@media (min-width: 901px) and (max-height: 780px) {
+  .porb {
+    --porb-size: clamp(160px, 15vw, 210px);
+  }
+
+  .porb.is-ready .porb__stage {
+    padding: 78px 0 14px;
+  }
+
+  .porb__head .section__heading {
+    font-size: clamp(20px, 1.9vw, 26px) !important;
+  }
+
+  .porb__head .section__para {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .porb__head .section__head--split {
+    margin-bottom: 10px;
+  }
+
+  .porb__head .section__label {
+    margin-bottom: 8px;
+  }
+
+  .porb__inner {
+    row-gap: 8px;
+  }
+
+  .porb__cardIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .porb__cardTitle {
+    font-size: 13.5px;
+    margin-bottom: 4px;
+  }
+
+  .porb__cardText {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+}
+
+/* Below this there is no honest way to fit a heading and three card rows into
+   one screen, so the section stops pinning and simply renders in flow. The
+   sequence then measures a negative span and reports itself complete, which is
+   the same end state as the no-JavaScript render: everything visible. */
+@media (max-height: 700px) {
+  .porb.is-ready {
+    height: auto;
+  }
+
+  .porb.is-ready .porb__stage {
+    position: static;
+    height: auto;
+    padding: 0;
+  }
+}
+
+/* ── On a dark section ───────────────────────────────────────── */
+/* The token swap in .section--dark handles the type; these are the surfaces
+   that name #fff outright and cannot follow it. */
+.section--dark .porb__card {
+  background: rgba(255, 255, 255, .05);
+}
+
+.section--dark .porb__node {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: none;
+  color: #fff;
+}
+
+.section--dark .porb__node.is-active {
+  background: rgba(255, 255, 255, .13);
+  border-color: rgba(255, 255, 255, .28);
+}
+
+/* The centre keeps its white disc: the mark is drawn in brand purple and needs
+   a light ground to read at all. */
+.section--dark .porb__mark {
+  border-color: rgba(255, 255, 255, .3);
+}
+
+.section--dark .porb__glow {
+  background: radial-gradient(circle at 50% 50%,
+      rgba(157, 159, 251, .16) 0%,
+      rgba(157, 159, 251, .08) 34%,
+      rgba(157, 159, 251, 0) 68%);
+}
+
+.section--dark .porb__circle circle {
+  stroke: rgba(255, 255, 255, .22);
+}
+
+/* No motion: keep the scroll sequence (it is disclosure, not decoration) but
+   drop the easing so states swap instantly. */
+@media (prefers-reduced-motion: reduce) {
+
+  .porb.is-ready .porb__circle circle,
+  .porb.is-ready .porb__node,
+  .porb.is-ready .porb__card {
+    transition-duration: .01ms;
+  }
+}

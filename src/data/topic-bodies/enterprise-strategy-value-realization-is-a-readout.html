@@ -1,0 +1,102 @@
+<div class="hook fade-in"><p>Somewhere in your portfolio right now is a bet that stopped returning value six weeks ago. The capital is still committed to it. The forecast still shows it inside tolerance. You will learn the truth at the next portfolio review, when the actuals finally catch up to the model and someone asks why the variance is this wide. <strong>By the time value leakage shows up in a reconciliation, it has already leaked.</strong></p></div>
+
+<div class="section-label fade-in">THE RECONCILIATION IS A RE-ENACTMENT</div>
+<div class="fade-in">
+<p>Look closely at how a modern strategic-portfolio, funding, or capex module actually produces its numbers. It holds a plan — allocations, business cases, expected value by initiative — and then it <em>reconciles</em>. Actuals are exported from the systems where the work runs, pulled in on a cadence, and compared against the forecast. The enterprise-agile and portfolio vendors roll this up as "cost of work" and forecast-vs-actual burn; the connected-planning vendors model capex and value realization and, to their credit, market it explicitly as protecting against leakage. The output is a clean variance line on a review slide.</p>
+<p>But notice what that line <em>is</em>. It is an inference assembled <strong>after</strong> the period closed, from data polled out of other systems and fitted back to a plan. The value target lives in the model. The work that delivers the value lives somewhere else. The number you present is a re-enactment of a quarter that has already happened — a document <em>about</em> the investment, maintained <em>beside</em> the process that spends it.</p>
+</div>
+
+<div class="section-label fade-in">GIVE THE MODEL ITS DUE</div>
+<div class="fade-in">
+<p>Be fair about what these approaches get right, because over-claiming here is the fastest way to lose a finance reader. Forecast-vs-actual modelling imposes real discipline; it forces trade-offs to be named and defended, and a portfolio without it is worse in every respect. Scenario analysis — reallocating capital across a book of bets under different assumptions and seeing where the value moves — is a genuinely hard, genuinely useful capability. And the newer tools that pull actuals through live metric integrations really do cut staleness versus a spreadsheet someone updates by hand once a quarter. None of this is a straw man.</p>
+<p>So the critique is not that the model is crude. It is that the model is a <strong>separate copy</strong>. Interrogate the verb every one of these systems shares: they <em>poll</em>. However continuous the integration, a scheduled read of an external ledger is still a read of an external ledger, pulled into an artifact that sits to the side of the work and has to be reconciled back to it.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5">
+<text x="30" y="34" stroke="none" fill="currentColor" font-size="13" font-weight="700" letter-spacing="1">VALUE MODELLED BESIDE THE WORK</text>
+<text x="30" y="52" stroke="none" fill="currentColor" font-size="11" opacity="0.6">forecast vs actual, polled on a review cadence</text>
+
+<rect x="30" y="74" width="170" height="46" rx="8" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+<text x="115" y="94" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.85">PORTFOLIO · CAPEX MODEL</text>
+<text x="115" y="109" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.55">forecast vs actual</text>
+
+<rect x="30" y="190" width="170" height="46" rx="8" stroke-opacity="0.55"/>
+<text x="115" y="210" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.85">DELIVERY SYSTEMS</text>
+<text x="115" y="225" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.55">where the money is spent</text>
+
+<path d="M115 190 L115 122" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+<path d="M111 128 L115 120 L119 128" stroke-opacity="0.5"/>
+<text x="128" y="160" stroke="none" fill="currentColor" font-size="9" opacity="0.6">poll actuals</text>
+
+<line x1="240" y1="82" x2="240" y2="248" stroke-dasharray="2 6" stroke-opacity="0.3"/>
+<line x1="320" y1="82" x2="320" y2="248" stroke-dasharray="2 6" stroke-opacity="0.3"/>
+<text x="240" y="76" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.55">review</text>
+<text x="320" y="76" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.55">review</text>
+<rect x="244" y="150" width="72" height="30" rx="4" stroke-opacity="0.35" fill="currentColor" fill-opacity="0.06"/>
+<text x="280" y="169" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.7">leakage window</text>
+
+<line x1="400" y1="24" x2="400" y2="296" stroke-dasharray="2 6" stroke-opacity="0.35"/>
+
+<text x="430" y="34" stroke="none" fill="currentColor" font-size="13" font-weight="700" letter-spacing="1">VALUE AS A READOUT ON THE FABRIC</text>
+<text x="430" y="52" stroke="none" fill="currentColor" font-size="11" opacity="0.6">realized value IS a query over live delivery</text>
+
+<path d="M430 172 L760 172" stroke-opacity="0.7"/>
+<circle cx="470" cy="172" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<circle cx="560" cy="172" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<circle cx="650" cy="172" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<path d="M752 168 L760 172 L752 176" stroke-opacity="0.7"/>
+<text x="600" y="196" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.65">workflows · agents that deliver the value</text>
+
+<text x="470" y="152" stroke="none" fill="currentColor" font-size="13" text-anchor="middle" opacity="0.9" font-weight="700">$</text>
+<path d="M470 140 L470 164" stroke-opacity="0.5"/>
+<text x="470" y="130" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.7">investment bound here</text>
+
+<rect x="600" y="96" width="152" height="42" rx="8" stroke-opacity="0.6"/>
+<text x="676" y="115" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.9">REALIZED VALUE</text>
+<text x="676" y="129" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.6">= query over live state</text>
+<path d="M650 167 L672 138" stroke-opacity="0.6"/>
+<path d="M665 142 L673 136 L674 145" stroke-opacity="0.6"/>
+
+<path d="M560 172 L560 224" stroke-width="2.5" stroke-opacity="0.9"/>
+<path d="M552 218 L560 228 L568 218" stroke-opacity="0.9"/>
+<text x="560" y="246" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.8">divergence moves the number now</text>
+
+<text x="600" y="286" stroke="none" fill="currentColor" font-size="10" text-anchor="middle" opacity="0.7" font-weight="600">prevented, not reconciled</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">MODELLED BESIDE, NOT COMPUTED FROM</div>
+<div class="fade-in">
+<p>This is the whole distinction, and it survives any roadmap. A real-time read of a separate system of record is not the same thing as a value figure that <strong>is</strong> a query over the same running process that produces the value. In the first case there are two objects — the plan and the work — and a reconciliation forever chasing the gap between them. In the second there is one object, observed at the instant it changes.</p>
+<p>The consequence is the difference between <em>detecting</em> leakage and <em>preventing</em> it. A faster integration lets the model notice a starved or off-track bet sooner. It still notices <strong>after</strong> — after the capital kept flowing to a diverging initiative, after the value quietly stopped accruing, after the variance grew large enough to clear the noise floor of a quarterly read. The sharpest vendors in this category have even conceded the shape of the problem by shipping tighter and tighter linkage layers to shorten the lag between a decision and the actuals. Shrinking the lag is worth doing. It does not change the <em>kind</em> of thing you are looking at: a detection, arriving after the money was already committed.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">BIND THE MONEY TO THE WORK</div>
+<div class="fade-in">
+<p>The alternative is not a faster model. It is not a model at all. Entroid runs every enterprise process as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — on one Semantic Ontology, in a single runtime. Because the work actually executes on that fabric, its live state <strong>is</strong> the data. There is no separate copy to poll.</p>
+<p>On top of that same running fabric sit the Business Portfolios and Business Planning modules — investments, business cases, value realization. Here, capital is not allocated to a line item in a model that watches from the side. It is <strong>bound to the executing primitives</strong> — the very Workflows, Agents and Functions that deliver the outcome. Realized value becomes a Function: a query over the state of the process instances that produce it, computed continuously from delivery rather than entered and then reconciled. Progress is a byproduct of the work, not an attestation about it.</p>
+<p>Consider a market-expansion bet whose value target is on-time site activations. In a portfolio model, that target is a forecast line, and the truth about it arrives when someone exports activation data from the delivery systems and fits it back to the plan at the next review. On the fabric, the value figure is a query over the very workflows and agents activating the sites. Realized value is <em>emitted by the work</em>. A site that slips does not wait for a review to register as leakage — the number moves the moment the workflow diverges, while the capital can still be redirected. This is an architectural property of computing value from live state, not a claimed result from any deployment.</p>
+</div>
+
+<div class="section-label fade-in">PROPOSALS AS LIVE CLAIMS ON REAL CAPACITY</div>
+<div class="fade-in">
+<p>The same shift changes what distributed planning even means. Business Portfolios realizes value through distributed planning and business proposals — the mechanism by which parts of the enterprise put forward where capital and effort should go. Beside the runtime, a proposal is a spreadsheet allocation: a number in a plan that someone must later prove out against actuals. On the fabric, a proposal is a <strong>live claim on real capacity</strong> — it draws on the same primitives and the same running capacity the enterprise is actually operating.</p>
+<ul>
+<li><strong>Contention is visible immediately</strong> — when two proposals reach for the same capacity, the conflict shows at the moment of the claim, not when the actuals collide a quarter later.</li>
+<li><strong>Funding is enforceable, not aspirational</strong> — because the money is bound to the executing primitives, a bet that is starved or drifting off its value target surfaces at divergence, where prevention is still possible, rather than at reconciliation, where only accounting is.</li>
+</ul>
+<p>The board question underneath all of this was never "what was this bet worth last quarter." It is "what is it worth now, and can I trust the number well enough to move capital today." A reconciliation answers the first and hopes nobody presses the second. A readout answers both, because the number and the work are the same object.</p>
+</div>
+
+<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<div class="fade-in">
+<p>Two honest caveats, because a CFO will supply them if you don't. First, this is not a claim that Entroid floats free of your estate. It reaches your ERP, ledger, capex and treasury systems through governed Connectors — the one primitive licensed to touch the outside world, with authentication, authorization and audit. The distinction from the connected-planning and portfolio platforms is not integration versus none. It is that the money and the value target execute on the same fabric as the work, rather than being modelled beside it and reconciled to it.</p>
+<p>Second, this is not a claim that the other tools are static or that they "cannot" read actuals in real time — the best of them do, and it genuinely narrows the staleness gap. The structural difference is simpler and more durable than any feature comparison: a fast read of a separate ledger is still a read of a separate ledger, and it still leaves a human to close the gap between the plan and the doing. A value figure computed as a query over the same running process has no gap to close, because there is no second copy to reconcile.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A reconciliation tells you what a bet was worth last quarter. A readout tells you what it is worth right now — because the money, the value, and the work are the same object, running.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

@@ -1,0 +1,112 @@
+<div class="hook fade-in"><p>Ask your PMO what the portfolio is worth this quarter and you will get a number. Ask where the number comes from and you will get a spreadsheet — planned benefit against actual, rolled up from status someone typed in, reconciled at the next portfolio review. <strong>Until the deliverable work actually runs somewhere you can read, portfolio value is a forecast wearing the costume of a fact.</strong></p></div>
+
+<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<div class="fade-in">
+<p>Start with credit, because the category earned it. A single place that holds every project, task, roadmap and portfolio is a genuine improvement over the sprawl of disconnected spreadsheets and slide decks it replaced — chaos really does go down when the plan lives in one system instead of forty. Capacity and resource planning genuinely help balance demand against supply, so two programs stop silently booking the same three engineers. Value-stream and flow metrics genuinely expose the bottlenecks between planning and delivery that used to hide in the seams between teams. And the newer AI copilots genuinely save time — summarizing status, drafting the steering-committee update, forecasting which initiative is about to slip.</p>
+<p>None of this is snake oil. If the choice in front of you is a modern PPM suite versus a wall of spreadsheets, choose the suite. The critique that follows is not that these tools do too little. It is that they are architecturally the wrong <em>kind</em> of system to answer the one question a portfolio exists to answer: <strong>what is this worth right now?</strong></p>
+</div>
+
+<div class="section-label fade-in">THE SHARPEST MOVE IS THE RIGHT DIAGNOSIS</div>
+<div class="fade-in">
+<p>The most sophisticated move in the category is also the correct one: connect planning to delivery. The leaders have recognized that a portfolio plan is worthless if it cannot see what is actually being built, so they bridge portfolio management to value-stream management — threading flow metrics like throughput, cycle time, work-in-progress and flow efficiency up from the delivery teams to the executive roadmap. Strategy-to-delivery, tracked end to end. Concede this fully: it is the right diagnosis. The gap between what an enterprise decided to do and what it is actually shipping is exactly where value leaks, and naming that gap is real progress.</p>
+<p>But look closely at what <em>connect</em> means architecturally. The plan lives in one system. The work executes in another — the delivery tools, the ticketing queues, the pipelines, the line-of-business apps where deliverables are actually produced. The bridge between them is measurement plus human updates: someone marks a story done, a connector syncs a status, a metric counts the throughput. Connecting a planning system to a delivery system with metrics is still <strong>two systems joined by observation</strong>. The flow metrics do not close the gap between plan and delivery — they measure it, after the fact. Value stays bound to a model that sits beside the work, and a model beside the work can only ever be reconciled, never simply read.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="On the left, a PPM tool holds the plan while the deliverable work executes in separate delivery systems across a dashed boundary; status is typed in and flow metrics observe the gap, so value is a forecast reconciled at review. On the right, Entroid runs the project as a composition of primitives on one fabric, so portfolio value is computed from live delivery.">
+<defs>
+<marker id="ppmah" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M1.5,1.5 L6,4.5 L1.5,7.5" fill="none" stroke="currentColor" stroke-width="1.3"/></marker>
+</defs>
+<style>
+.pt{font-family:inherit;font-size:12px;fill:currentColor;stroke:none}
+.ps{font-family:inherit;font-size:10px;fill:currentColor;stroke:none;opacity:.62}
+.pc{font-family:inherit;font-size:11px;fill:currentColor;stroke:none;opacity:.9;font-weight:600;letter-spacing:.05em}
+.pbox{stroke:currentColor;stroke-width:1.5;opacity:.6}
+.pstrong{stroke:currentColor;stroke-width:1.75}
+.pmuted{stroke:currentColor;stroke-width:1.2;opacity:.35}
+.pdash{stroke:currentColor;stroke-width:1.2;opacity:.55;stroke-dasharray:4 4}
+.pnode{stroke:currentColor;stroke-width:1.5;opacity:.8}
+.psolid{stroke:currentColor;stroke-width:1.4;opacity:.75}
+</style>
+
+<text class="pc" x="40" y="26">TRACKED BESIDE THE WORK</text>
+<rect class="pbox" x="40" y="44" width="256" height="50" rx="6"/>
+<text class="pt" x="54" y="68">Portfolio · Roadmap · Tasks</text>
+<text class="ps" x="54" y="84">%-complete · RAG · planned benefit</text>
+
+<line class="pdash" x1="40" y1="152" x2="296" y2="152"/>
+<text class="ps" x="168" y="147" text-anchor="middle">system boundary</text>
+
+<rect class="pbox" x="40" y="176" width="256" height="50" rx="6"/>
+<text class="pt" x="54" y="200">Delivery systems</text>
+<text class="ps" x="54" y="216">where the deliverables actually execute</text>
+
+<line class="pdash" x1="104" y1="176" x2="104" y2="96" marker-end="url(#ppmah)"/>
+<text class="ps" x="104" y="132" text-anchor="middle">manual status</text>
+<line class="pdash" x1="236" y1="176" x2="236" y2="96" marker-end="url(#ppmah)"/>
+<text class="ps" x="236" y="132" text-anchor="middle">flow metrics</text>
+
+<text class="ps" x="40" y="252">value = forecast vs actual, reconciled at review</text>
+
+<line class="pmuted" x1="376" y1="34" x2="376" y2="262"/>
+
+<text class="pc" x="424" y="26">RUNS ON THE FABRIC</text>
+<rect class="pstrong" x="424" y="44" width="344" height="218" rx="10"/>
+<text class="ps" x="596" y="66" text-anchor="middle">one fabric · one runtime · one immutable audit</text>
+
+<circle class="pnode" cx="472" cy="112" r="16"/><text class="pt" x="472" y="116" text-anchor="middle">W</text>
+<circle class="pnode" cx="532" cy="112" r="16"/><text class="pt" x="532" y="116" text-anchor="middle">I</text>
+<circle class="pnode" cx="592" cy="112" r="16"/><text class="pt" x="592" y="116" text-anchor="middle">A</text>
+<circle class="pnode" cx="652" cy="112" r="16"/><text class="pt" x="652" y="116" text-anchor="middle">F</text>
+<circle class="pnode" cx="712" cy="112" r="16"/><text class="pt" x="712" y="116" text-anchor="middle">C</text>
+<line class="psolid" x1="488" y1="112" x2="516" y2="112"/>
+<line class="psolid" x1="548" y1="112" x2="576" y2="112"/>
+<line class="psolid" x1="608" y1="112" x2="636" y2="112"/>
+<line class="psolid" x1="668" y1="112" x2="696" y2="112"/>
+<text class="ps" x="596" y="148" text-anchor="middle">the project = a running composition of the primitives</text>
+
+<line class="psolid" x1="596" y1="156" x2="596" y2="186" marker-end="url(#ppmah)"/>
+<text class="ps" x="596" y="180" text-anchor="middle" opacity=".5"> </text>
+
+<rect class="pbox" x="500" y="190" width="192" height="44" rx="6"/>
+<text class="pt" x="596" y="210" text-anchor="middle">Portfolio value</text>
+<text class="ps" x="596" y="226" text-anchor="middle">computed from live delivery</text>
+
+<text class="ps" x="424" y="256">status = byproduct · capacity is read, not estimated</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHY THE NUMBER ARRIVES LATE</div>
+<div class="fade-in">
+<p>This is not a shortcoming a better dashboard fixes. It is the architecture. When the deliverable work runs somewhere other than where the portfolio is kept, three things follow by construction:</p>
+<ul>
+<li><strong>Status is a manual update.</strong> Percent-complete and RAG are assertions a person enters, not facts the system observes. Between updates the portfolio is stale — and because the layout is so polished, it is <em>confidently, precisely</em> stale.</li>
+<li><strong>Utilization is an estimate.</strong> Who is genuinely working on what, at this moment, is inferred from timesheets and allocations. That is a forecast of capacity, not a reading of it.</li>
+<li><strong>Realized value is proven at review.</strong> Flow metrics can tell you throughput happened; they cannot tell you the benefit landed. That proof waits for the next portfolio review, where actuals are reconciled against the plan.</li>
+</ul>
+<p>The cost here is not inaccuracy — it is latency. Illustratively: a starved initiative that quietly stalled in week two does not surface until the quarter's numbers are reconciled and someone asks why the variance is this wide. The one signal an executive most needs — <em>value is leaking here, now</em> — arrives a full reporting cycle after the leak began. You end up governing the portfolio through the rear-view mirror, and steering a portfolio on last quarter's readings is how good capital keeps flowing into an initiative that already stopped returning it.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHEN THE WORK RUNS ON THE FABRIC</div>
+<div class="fade-in">
+<p>Entroid starts from a different premise: the deliverable work should execute on the same fabric that holds the plan. In ES a project is not a card that links out to work happening elsewhere — <strong>the project is a composition of the five primitives that actually deliver it.</strong> The steps that produce the deliverable are Deterministic Workflows with governance inline; the judgment calls run through Intelligence Orchestration and Atomic Agents with human-in-the-loop as a first-class step, not an escalation bolt-on; the reaches into your existing estate happen through governed Connectors — the one primitive that touches outside systems. All of it on one runtime, over a Semantic Ontology, with an immutable per-action audit. The PMO modules — Programs, Projects, Tasks, Trackers, Meetings — and Business Portfolios sit <em>on</em> that fabric rather than beside it.</p>
+<p>When the work runs there, the numbers stop being entered and start being read:</p>
+<ul>
+<li><strong>Status is a byproduct of execution.</strong> A step is complete because it ran, not because someone marked it done. Percent-complete becomes a query over live process state, not a claim to be trusted or doubted.</li>
+<li><strong>Capacity is read, not estimated.</strong> Utilization is derived from what the primitives are actually executing, so the resource picture is a live reading of demand against supply.</li>
+<li><strong>Portfolio value is computed from delivery.</strong> ES Business Portfolios compute realized value from the live state of the processes that deliver it — value is a continuous readout of what is actually shipping, not a forecast someone proves out at the review.</li>
+</ul>
+<p>Because the plan and the work are the same object, distributed planning stops being an allocation to reconcile later and becomes a <strong>live claim on real delivery capacity.</strong> When a program proposes to consume capacity, it claims against the actual running supply — not against a figure in a planning sheet that reality will contradict a quarter from now. There is no gap between plan and delivery to bridge with metrics, because there are not two systems. The status <em>is</em> the work, observed. This is an architectural property of running the deliverable on the fabric, not a reporting feature layered on top.</p>
+</div>
+
+<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<div class="fade-in">
+<p>Say this precisely, because the category's worst habit is over-claiming and it is not one to copy. ES does not make integration disappear — the deliverable work runs over your existing estate through governed Connectors, and standing up a portfolio on the fabric is real, deliberate work. The claim is narrower and sturdier than "no integration": it is that <strong>value, status and capacity are architectural readouts of running work rather than manual inputs reconciled at review</strong>, because the plan and the work share one runtime and one audit trail.</p>
+<p>And be honest about the kind of difference, not just the degree. A portfolio number computed from live delivery is not automatically a more flattering forecast — it is a different sort of object entirely. A forecast is a claim about the future you defend at the next review. A readout is a fact about the present you can act on this afternoon. The category has spent a decade getting very good at producing the first. The question for an enterprise buyer is whether the second is what a portfolio was always supposed to be.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Flow metrics clock how fast the work moved last quarter. A portfolio that runs on the fabric shows what it is worth this minute — because the plan and the delivery are one running object, and status is just what the work is doing when you look.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

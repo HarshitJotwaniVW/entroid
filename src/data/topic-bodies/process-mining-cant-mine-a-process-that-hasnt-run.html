@@ -1,0 +1,99 @@
+<div class="hook fade-in">Every process-mining vendor now opens with the same promise: process intelligence is the <strong>foundation</strong> for agentic AI. It's a good line. It also quietly assumes something that isn't true for the workflows you actually want agents to run — that the process already happened, in systems you already instrument, and left behind a clean event log to mine. The workflows most worth handing to an agent are the ones that have never run before. There is nothing there to mine.</div>
+
+  <div class="section-label fade-in">The Circular Premise</div>
+  <div class="fade-in"><p>Look at how the category sequences its own method. One vendor frames the journey as <strong>discover, build, run</strong>. Another frames it as <strong>discover, simulate, implement, monitor</strong>. Different vocabularies, identical first move: everything starts with <em>discover</em> — and discovery has exactly one input. Event logs, extracted in batch from the systems where a process has already executed enough times to leave a statistically legible trail.</p>
+<p>That is a perfectly reasonable first step when the process is a decade-old order-to-cash flow humming through your ERP. It is a contradiction when the process is net-new. You cannot discover a path that no instance has ever walked. Point a miner at a workflow that has never run and it returns an empty model — not because the tool is weak, but because the method is <em>defined over history</em>, and there is no history yet. The category’s own flagship argument — that agentic AI arrives on the back of process intelligence — inherits this assumption whole. It’s a cold-start problem wearing the word "foundation."</p></div>
+
+  <div class="section-label fade-in">What Mining Gets Right</div>
+  <div class="fade-in"><p>Be fair to it, because the honest version of this argument is the stronger one. For brownfield diagnosis, mining is genuinely valuable, and pretending otherwise would be cheap. If you have a high-volume, long-lived process — invoice posting, procurement, claims adjudication — running across systems that emit timestamps, then reconstructing the real as-is flow from millions of events surfaces rework loops, maverick paths, and bottlenecks that no process owner could ever see from the inside. That is real analytical work, done well, and it has earned its place in the enterprise.</p>
+<p>The point is narrower, and it matters. Mining's competence is bounded to processes that meet three conditions at once:</p>
+<ul>
+<li><strong>They already ran.</strong> The evidence has to exist before the method can begin.</li>
+<li><strong>They ran often enough to be legible.</strong> A pattern needs volume; rare paths never rise above noise.</li>
+<li><strong>They ran inside systems you extract from.</strong> No connector coverage, no events, no model.</li>
+</ul>
+<p>Every one of those is an assumption about the past. Agentic AI's entire pitch is about the future — processes that do not exist yet. The method and the mission point in opposite directions.</p></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Greenfield Blind Spot</div>
+  <div class="fade-in"><p>Here is where the foundation cracks, and it cracks precisely where the value is highest. The processes enterprises most want agents to own are the ones with the thinnest historical record:</p>
+<ul>
+<li><strong>Net-new orchestrations.</strong> A workflow assembled this quarter to chase an opportunity that didn't exist last quarter. Zero prior instances, zero logs.</li>
+<li><strong>Cross-system flows nobody logs end to end.</strong> The work lives as fragments across procurement, ERP, tax, and banking. Each system logs its own slice; no system logs the whole. There is no unified event stream to discover — only seams between the ones that exist.</li>
+<li><strong>Long-tail and exception paths.</strong> The rare, high-consequence variants that occur too seldom to form a mineable pattern — which is exactly why you wanted an agent on them in the first place.</li>
+</ul>
+<p>A method that requires a dense, unified, historical log is strongest on the commoditized processes you have already optimized to death, and weakest on the frontier processes you are trying to create. The foundation is thickest where you need it least. Sequence your entire agentic program behind "discover first" and you have gated your most valuable ambitions behind data that, by definition, cannot exist until after those ambitions have already been realized some other way.</p></div>
+
+  <div class="section-label fade-in">Model, Don't Mine</div>
+  <div class="fade-in"><p>There is a different starting point, and it is older than mining: you <strong>model the process from a specification, then run it</strong>. Not "discover what happened" but "compose what should happen." On Entroid a net-new process is authored as a composition of five primitives on a semantic ontology, and it executes in one runtime — no dependency on a pre-existing event log:</p>
+<ul>
+<li><strong>Deterministic Workflows</strong> lay down the known path — the sequence, the routing, the branch conditions — and carry governance inline: approval gates, segregation of duties, entitlement and authority limits, human-in-the-loop checkpoints. On the very first instance, not after the hundredth.</li>
+<li><strong>Intelligence Orchestration</strong> applies runtime judgment to choose among paths and owns which agent is permitted to do what.</li>
+<li><strong>Atomic Agents</strong> execute the bounded units of work at the leaves, with pause &rarr; surface reasoning &rarr; incorporate feedback &rarr; resume as a first-class property.</li>
+<li><strong>Functions</strong> compute the rules and limits; <strong>Connectors</strong> are the only primitive that touches an external system, under authN/authZ, rate limits, and audit.</li>
+</ul>
+<p>Nothing in that list asks whether the process ran before. You are not reconstructing a model from evidence you hope is complete; you are <em>declaring</em> one and executing it. Governance is compiled into the path at design time, so on instance one a non-compliant action is impossible rather than merely reported next week.</p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+      <defs>
+        <marker id="ah-muted" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--t4)"/></marker>
+        <marker id="ah-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)"/></marker>
+      </defs>
+      <rect x="0" y="0" width="800" height="320" fill="var(--bg2)"/>
+      <text x="30" y="26" fill="var(--t3)" font-size="12" font-weight="600" letter-spacing="2.5">TWO WAYS TO GET A PROCESS MODEL</text>
+
+      <!-- Lane 1: MINE (needs history) -->
+      <text x="30" y="47" fill="var(--t4)" font-size="10.5" font-weight="600" letter-spacing="1.5">MINE &mdash; RECONSTRUCT FROM THE PAST</text>
+      <g opacity="0.6">
+        <rect x="30" y="54" width="150" height="50" rx="8" fill="var(--bg3)" stroke="var(--border)"/>
+        <text x="105" y="76" text-anchor="middle" fill="var(--t2)" font-size="12" font-weight="600">Prior event logs</text>
+        <text x="105" y="91" text-anchor="middle" fill="var(--t4)" font-size="9.5">must already exist</text>
+        <line x1="182" y1="79" x2="223" y2="79" stroke="var(--t4)" stroke-width="1.5" marker-end="url(#ah-muted)"/>
+        <rect x="227" y="54" width="150" height="50" rx="8" fill="var(--bg3)" stroke="var(--border)"/>
+        <text x="302" y="83" text-anchor="middle" fill="var(--t2)" font-size="12" font-weight="600">Discover / model</text>
+        <line x1="379" y1="79" x2="420" y2="79" stroke="var(--t4)" stroke-width="1.5" marker-end="url(#ah-muted)"/>
+        <rect x="424" y="54" width="150" height="50" rx="8" fill="var(--bg3)" stroke="var(--border)"/>
+        <text x="499" y="83" text-anchor="middle" fill="var(--t2)" font-size="12" font-weight="600">Recommend</text>
+        <line x1="576" y1="79" x2="617" y2="79" stroke="var(--t4)" stroke-width="1.5" marker-end="url(#ah-muted)"/>
+        <rect x="620" y="54" width="150" height="50" rx="8" fill="var(--bg3)" stroke="var(--border)"/>
+        <text x="695" y="76" text-anchor="middle" fill="var(--t2)" font-size="12" font-weight="600">Hand to</text>
+        <text x="695" y="91" text-anchor="middle" fill="var(--t2)" font-size="12" font-weight="600">outside agent</text>
+      </g>
+      <!-- greenfield break -->
+      <g stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"><line x1="196" y1="71" x2="210" y2="87"/><line x1="210" y1="71" x2="196" y2="87"/></g>
+      <text x="203" y="120" text-anchor="middle" fill="#ef4444" font-size="9.5" font-weight="600">net-new: nothing to mine</text>
+
+      <!-- Lane 2: MODEL & RUN -->
+      <text x="30" y="141" fill="var(--accent)" font-size="10.5" font-weight="600" letter-spacing="1.5">MODEL &amp; RUN &mdash; COMPOSE, THEN EXECUTE</text>
+      <rect x="30" y="148" width="210" height="52" rx="8" fill="var(--bg3)" stroke="var(--accent)"/>
+      <text x="135" y="178" text-anchor="middle" fill="var(--t1)" font-size="12.5" font-weight="600">Specification</text>
+      <line x1="242" y1="174" x2="291" y2="174" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah-accent)"/>
+      <rect x="295" y="148" width="210" height="52" rx="8" fill="rgba(139,92,246,0.12)" stroke="var(--accent)"/>
+      <text x="400" y="171" text-anchor="middle" fill="var(--t1)" font-size="12" font-weight="700">One runtime</text>
+      <text x="400" y="187" text-anchor="middle" fill="var(--t2)" font-size="10">observe &middot; decide &middot; act &middot; govern</text>
+      <line x1="507" y1="174" x2="556" y2="174" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah-accent)"/>
+      <rect x="560" y="148" width="210" height="52" rx="8" fill="var(--bg3)" stroke="var(--accent)"/>
+      <text x="665" y="171" text-anchor="middle" fill="var(--t1)" font-size="12" font-weight="600">Authoritative log</text>
+      <text x="665" y="187" text-anchor="middle" fill="var(--t3)" font-size="10">emitted live, from instance one</text>
+    </svg>
+  </div>
+
+  <div class="section-label fade-in">The Log Is the Output, Not the Input</div>
+  <div class="fade-in"><p>Notice what just inverted. Mining treats the event log as the input it cannot start without. When you run the process, the log becomes the <strong>output</strong>.</p>
+<p>Because Entroid is the system of action rather than a system of observation, every step emits an immutable, per-action audit record against live authoritative state. And that record captures more than any reconstruction ever could: not merely that a state changed, but <em>which</em> agent decided, under <em>what</em> authority, against which policy gate, with what human sign-off, in what sequence. The greenfield process is fully observable from its first instance — without ever having been mined — and the record is ground truth, not an inference reconciled after the fact from timestamps in four systems that never agreed on a clock.</p>
+<p>The mining-style views you actually wanted — conformance, variant analysis, bottleneck detection — don't disappear. They arrive for free, computed over a native execution stream that is richer than anything a batch extraction could reassemble. You stop mining to <em>obtain</em> the log and start running to <em>produce</em> it.</p></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">A Process That Never Ran</div>
+  <div class="fade-in"><p>Make it concrete — illustratively, not as a delivered result. Consider a supplier-onboarding-to-first-payment flow that has never existed as a single process. Today it's a relay race: procurement intake, then sanctions and KYC screening, then tax validation, then vendor creation in the ERP, then bank-detail verification — each step in a different system, none logging the whole. There is nothing to mine, because end-to-end this was never a process. It was people, tickets, and email.</p>
+<p>On the fabric you compose it as one thing. A <strong>Deterministic Workflow</strong> sequences intake &rarr; screening &rarr; entitlement check &rarr; vendor creation, with a segregation-of-duties gate and a mandatory human checkpoint before any bank detail is written. <strong>Intelligence Orchestration</strong> routes the ambiguous cases to the right path. <strong>Atomic Agents</strong> extract fields from a tax certificate and reconcile the incoming bank record, pausing to surface their reasoning for review whenever confidence is low. A <strong>Function</strong> enforces the authority limit. A <strong>Connector</strong> writes to the ERP under scoped credentials, and nothing else touches that system.</p>
+<p>It runs on day one. It is governed on day one — a payment above threshold cannot commit without the gate, because the gate is on the path, not in a report. And only <em>now</em> does it have an event history, because only now has it actually run. The order the whole category assumes — discover, then act — is exactly backwards for the processes that matter most. You act first, under governance, and discovery becomes a byproduct.</p></div>
+
+  <div class="closing fade-in">
+    <blockquote>You can't mine your way to a process that has never run. You model it, govern it, and let it run &mdash; and the log writes itself.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

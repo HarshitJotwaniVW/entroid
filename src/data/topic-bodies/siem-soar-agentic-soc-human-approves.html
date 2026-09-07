@@ -1,0 +1,108 @@
+<div class="hook fade-in">The category has a genuinely good story about the future of the SOC, and it goes like this: first humans run the response, then AI assists, then AI agents lead the investigation — always under human governance. It is a real advance, and the instinct to keep a person in charge is the right one. <strong>But look closely at what the human is actually governing: a recommendation, and a plan that will execute somewhere the platform does not control.</strong></div>
+
+<div class="section-label fade-in">THE MATURITY LADDER IS REAL</div>
+<div class="fade-in">
+<p>Start with credit where it is due, because the advances here are not marketing. Modern correlation and risk-based alerting genuinely collapse alert volume and pull analysts out of the fatigue spiral that defined the last decade of security operations. Folding detection, orchestration, and user-behavior analytics into a single workspace genuinely ends the swivel-chair tax of pivoting across four consoles to understand one incident. Detection content that is verified and mapped to a shared threat framework is real engineering, not a feed. And prebuilt playbooks spanning hundreds of tools genuinely compress the minutes between an alert and an action.</p>
+<p>The agentic-SOC arc sits on top of all that. An AI agent triages the alert, gathers context, reconstructs the likely chain of events, and proposes a response — and a human approves before anything fires. Framed as a maturity model, it is honest about the destination: <em>agentic-led, human-governed.</em> Keeping a person in the loop before a containment action is a responsible default, not a limitation. I am not going to argue the instinct is wrong. I am going to argue that the architecture underneath it did not change.</p>
+</div>
+
+<div class="section-label fade-in">THE APPROVAL IS ON A PLAN, NOT AN ACTION</div>
+<div class="fade-in">
+<p>Follow the containment action through the stack and the seam appears. The playbook may run inside the analytics console — that is genuinely tidier than the old bolt-on orchestration layer — but the <strong>isolate-the-host</strong> step still dispatches out to the endpoint tool that owns the host. The <strong>revoke-the-token</strong> step calls the identity provider. The <strong>block-the-indicator</strong> step calls the firewall. The agent triages and recommends; the human approves; and then the platform hands the approved action to a system it integrates with but does not run.</p>
+<p>So ask what the human's click actually gates. It gates <em>dispatch</em>. The moment after approval, the action leaves the governed workspace and executes in a tool with its own state, its own permissions, its own failure modes, and — if you are lucky — its own separate audit trail. Governance was exercised over the alert and the playbook. It was not exercised over the executed response, because the executed response happened somewhere else. The loop is left open at exactly the point that matters most: the instant something changed in production.</p>
+<p>Consider, purely illustratively, a compromised-credential case. The agent correlates the signals, assembles the timeline, and recommends: disable the account, kill the active sessions, isolate the laptop. A human reads the plan and approves. Three separate tools now act on three separate schedules. If the session-kill silently fails, or the isolation lands on the wrong asset because an identifier drifted between systems, the approval record still reads <em>approved</em> — because what was approved was the plan, not the three actions that did or did not occur.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A diagram contrasting the orchestration model, in which a playbook dispatches approved response actions across separate EDR, firewall, IAM and ticketing tools the platform does not own, with Entroid, in which a governed deterministic workflow executes the containment inline on one runtime with a per-action audit.">
+  <defs>
+    <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" opacity="0.55"/></marker>
+  </defs>
+  <line x1="400" y1="18" x2="400" y2="300" stroke="currentColor" stroke-width="1" opacity="0.18" stroke-dasharray="3 5"/>
+
+  <text x="200" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor" opacity="0.85" letter-spacing="1.2">THE ORCHESTRATION MODEL</text>
+
+  <rect x="90" y="46" width="220" height="32" rx="6" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.55"/>
+  <text x="200" y="66" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.8">Detect · Correlate · Alert</text>
+  <line x1="200" y1="78" x2="200" y2="94" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#ah)"/>
+
+  <rect x="90" y="96" width="220" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.55"/>
+  <text x="200" y="115" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.8">Playbook orchestrates</text>
+  <line x1="200" y1="126" x2="200" y2="140" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#ah)"/>
+
+  <rect x="116" y="142" width="168" height="28" rx="14" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.75"/>
+  <text x="200" y="160" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.9">Analyst approves the plan</text>
+
+  <text x="200" y="188" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6" letter-spacing="0.4">— dispatch crosses out to tools it doesn't own —</text>
+  <line x1="44" y1="196" x2="356" y2="196" stroke="currentColor" stroke-width="1.2" opacity="0.5" stroke-dasharray="6 5"/>
+  <line x1="200" y1="170" x2="200" y2="210" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#ah)"/>
+
+  <g font-size="10.5" fill="currentColor">
+    <rect x="42" y="214" width="72" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/><text x="78" y="233" text-anchor="middle" opacity="0.75">EDR</text>
+    <rect x="122" y="214" width="72" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/><text x="158" y="233" text-anchor="middle" opacity="0.75">Firewall</text>
+    <rect x="202" y="214" width="60" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/><text x="232" y="233" text-anchor="middle" opacity="0.75">IAM</text>
+    <rect x="270" y="214" width="88" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/><text x="314" y="233" text-anchor="middle" opacity="0.75">Ticketing</text>
+  </g>
+  <text x="200" y="270" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.65" font-style="italic">containment executes here — governance ended at dispatch</text>
+
+  <text x="600" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor" opacity="0.92" letter-spacing="1.2">ENTROID</text>
+
+  <rect x="500" y="46" width="200" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
+  <text x="600" y="65" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.8">Detect</text>
+  <line x1="600" y1="76" x2="600" y2="90" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#ah)"/>
+
+  <rect x="452" y="92" width="296" height="152" rx="10" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.78"/>
+  <text x="600" y="109" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7" letter-spacing="0.8">GOVERNED DETERMINISTIC WORKFLOW · ONE RUNTIME</text>
+
+  <rect x="474" y="118" width="252" height="26" rx="6" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+  <text x="600" y="135" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.82">Change-control gate</text>
+
+  <rect x="474" y="150" width="252" height="26" rx="6" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.85"/>
+  <text x="600" y="167" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.95">HITL pause — approve THIS action</text>
+
+  <rect x="474" y="182" width="252" height="26" rx="6" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+  <text x="600" y="199" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.82">Execute via Connector: isolate · revoke · block</text>
+
+  <rect x="474" y="214" width="252" height="22" rx="6" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.5" stroke-dasharray="4 3"/>
+  <text x="600" y="229" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.78">immutable per-action audit</text>
+
+  <path d="M452,168 C418,168 418,61 500,61" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.45" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+  <text x="600" y="270" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7" font-style="italic">detection feeds a governed response — closed-loop</text>
+</svg>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">TWO THINGS BOTH CALLED "HUMAN IN THE LOOP"</div>
+<div class="fade-in">
+<p>This is where the same phrase hides a real architectural difference. "Human in the loop" can mean two very different things.</p>
+<ul>
+<li><strong>A gate on dispatch.</strong> A person approves a plan, and the plan then runs — unwitnessed by the governance layer — across tools that layer does not own. The human is a checkpoint before a hand-off. That is closer to a signature on a travel itinerary than a hand on the controls: you approved the route; someone else flew the plane.</li>
+<li><strong>A pause before the action itself.</strong> The checkpoint sits immediately in front of the action, inside the same governed process that will perform it. The human does not approve a plan that leaves the building; the human approves <em>this specific action</em>, and the same runtime that paused for approval is the one that then executes it and writes down what it did.</li>
+</ul>
+<p>The difference is not how polite or capable the AI is upstream. It is whether the thing you governed is the thing that acted.</p>
+</div>
+
+<div class="section-label fade-in">WHEN THE RESPONSE RUNS ON ONE RUNTIME</div>
+<div class="fade-in">
+<p>Entroid is built so that the response is not a hand-off. A security response is a governed <strong>Deterministic Workflow</strong> that executes the containment inline — isolate the host, revoke the token, block the indicator, disable the account — with change-control and human-in-the-loop as first-class primitives rather than add-ons. The agent that investigates is an <strong>Atomic Agent</strong>: it can reason and recommend, but when it acts, it acts as a governed step in that workflow, pausing at the human checkpoint by construction rather than by policy.</p>
+<p>Be precise about what this is and is not. ES does not pretend to own your endpoint tool or your identity provider, and it does not ask you to tear them out. It reaches them through governed <strong>Connectors</strong> — the one primitive designed to touch external systems — running over the estate you already have. The difference is architectural, and it is about where the governance envelope sits:</p>
+<ul>
+<li><strong>The action, not just the alert.</strong> The audit records the executed containment — what changed, on which resolved asset, whether it succeeded — not merely the recommendation and the dispatch.</li>
+<li><strong>Change-control on execution.</strong> The gate is in front of the step that reaches production, so approval governs the act itself, and the act is reversible by the same process that made it.</li>
+<li><strong>One runtime, one trail.</strong> Detection and response are steps in one process on one fabric, so there is a single immutable, per-action record — not a plan approved here and an action performed, or half-performed, somewhere else.</li>
+</ul>
+<p>It also closes the gap the earlier example exposed. Because the workflow resolves what it is acting on against a shared <strong>Semantic Ontology</strong> instead of passing loosely-agreed identifiers between tools that each mean something slightly different by "host" or "user," the action lands on the asset you approved — and the record proves it did.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE QUESTION A CISO SHOULD ACTUALLY ASK</div>
+<div class="fade-in">
+<p>Strip away the maturity ladders, the seat counts, and the story about how many playbooks ship in the box, and the board-level question is narrow: when a containment action fires in your environment at 3 a.m., <strong>what exactly did you govern?</strong> If the honest answer is that you governed an alert and approved a plan, then your governance stops one step short of the only thing a regulator or a post-incident review will care about — the action that actually changed the state of production, whether it succeeded, and whether it can be rolled back.</p>
+<p>The agentic-SOC vendors are right that autonomy without a human is reckless, and right that the analyst's day gets materially better when an agent does the triage. Concede all of it. The unfinished half is that approving a recommendation is not the same as governing an execution — and no amount of agent sophistication upstream changes what happens at the seam where the platform dispatches an action into a tool it does not run. Governance has to live where the action lives. On a composable process fabric, it does, because detection and response are steps in the same governed process rather than two systems shaking hands across a boundary.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Approving the plan is not governing the action. If the containment fires in a tool you don't run, you reviewed a recommendation — you didn't govern a response.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

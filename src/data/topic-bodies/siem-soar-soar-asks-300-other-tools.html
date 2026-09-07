@@ -1,0 +1,125 @@
+<div class="hook fade-in">
+  <p>Ask a SOAR platform what makes it powerful and it answers with a number: hundreds of third-party tools integrated, thousands of prebuilt actions, one playbook to orchestrate them all. Read as marketing, that number is a breadth flex. Read as architecture, it is a confession. <strong>A platform that has to reach hundreds of other tools to respond is telling you precisely where the response does not happen — inside itself.</strong></p>
+</div>
+
+<div class="section-label fade-in">WHAT THE SIEM/SOAR LEADERS GET RIGHT</div>
+<div class="fade-in">
+  <p>Lead with the concession, because a CISO stops reading the moment you pretend the incumbents are bad at their jobs. They are not — the detection side of this category is genuinely, hard-won good, and the argument that follows only works if we are honest about that first.</p>
+  <ul>
+    <li><strong>Modern correlation and risk-based alerting really do end alert fatigue.</strong> Scoring entities over time and firing on accumulated risk, instead of on every raw signal, is the difference between an analyst who can think and one drowning in a queue. That was hard to build, and it works.</li>
+    <li><strong>Unifying SIEM, SOAR and UEBA in one workspace removes the swivel-chair.</strong> An analyst who investigates, pivots and launches a response from a single console rather than five is faster and less error-prone. The consolidation is a legitimate win, not a slide.</li>
+    <li><strong>Verified, framework-mapped detection content is valuable.</strong> Curated rules mapped to a recognised attack framework, maintained by a research team, are worth paying for. Most enterprises cannot write and keep that content current on their own.</li>
+    <li><strong>Prebuilt playbooks across a huge tool estate genuinely speed response.</strong> When the fix is known and scripted, orchestration compresses minutes of manual clicking into seconds. That is real time saved on real incidents.</li>
+    <li><strong>Human-in-the-loop before response is the responsible default.</strong> Requiring an analyst to approve a containment before it fires is the right instinct in a domain where one wrong move quarantines a hospital's clinical workstations.</li>
+  </ul>
+  <p>Take the most advanced position seriously, too. The leaders now pitch an "agentic SOC" maturity arc — human-driven, then AI-assisted, then agentic-led but human-governed — with native SOAR whose playbooks "run inside the SIEM." That is a genuinely advanced architecture, and the human-governance instinct is correct. Nothing below argues that they detect poorly, or that keeping a human in the loop is wrong.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">READ THE INTEGRATION COUNT AS A CONFESSION</div>
+<div class="fade-in">
+  <p>Here is the structural fact underneath every "orchestrate hundreds of tools with thousands of automated actions" headline: <strong>the SIEM detects, correlates and alerts, and the SOAR playbook orchestrates a response that executes somewhere else.</strong> Isolating the host happens inside the endpoint tool. Revoking the token happens inside identity. Blocking the indicator happens inside the firewall. The playbook fires the requests and records that it fired them. Breadth of integration is not a measure of how much the platform can do — it is a map of everywhere the doing actually lives, and none of those places is the platform.</p>
+  <p>Be precise about the strongest version of the counter-argument, because it earns precision. Yes, the native-SOAR playbook runs <em>inside</em> the SIEM console — the logic is co-located with the detection. And yes, the agentic tier will triage the alert and recommend the action autonomously before a human approves it. Both are real advances. But follow the action one step past the demo: the playbook running inside the console still <em>dispatches</em> the containment out to the endpoint, firewall or identity tool that performs it, and the agent still triages and recommends while a human approves — and then a <em>separate</em> tool acts. The intelligence moved inside. The execution did not. Governance, in this pattern, is over the alert and over the playbook definition — not over the executed change, with a per-action record of what actually happened in the estate.</p>
+  <p>That is the whole distinction, and it is architectural, not a gap in anyone's roadmap. <em>Orchestrating</em> a containment across tools you integrate with is a different category of thing from <em>executing</em> the containment as a governed action you own.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+  <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" font-family="Inter, system-ui, sans-serif">
+    <text x="24" y="24" font-size="12" stroke="none" fill="currentColor" opacity="0.55" letter-spacing="1.5">SIEM / SOAR&#160;&#160;·&#160;&#160;DETECT &amp; ALERT HERE, CONTAIN THERE</text>
+
+    <rect x="24" y="40" width="300" height="92" rx="10" stroke-width="1.4" opacity="0.85"/>
+    <rect x="38" y="66" width="82" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="79" y="90" font-size="11.5" stroke="none" fill="currentColor" text-anchor="middle">DETECT</text>
+    <rect x="128" y="66" width="82" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="169" y="90" font-size="11.5" stroke="none" fill="currentColor" text-anchor="middle">CORRELATE</text>
+    <rect x="218" y="66" width="82" height="40" rx="7" stroke-width="1.2" opacity="0.7"/>
+    <text x="259" y="90" font-size="11.5" stroke="none" fill="currentColor" text-anchor="middle">ALERT</text>
+    <path d="M120 86 h8" stroke-width="1.2" opacity="0.7"/>
+    <path d="M210 86 h8" stroke-width="1.2" opacity="0.7"/>
+
+    <rect x="336" y="66" width="70" height="40" rx="7" stroke-width="1.3" opacity="0.85"/>
+    <text x="371" y="84" font-size="11" stroke="none" fill="currentColor" text-anchor="middle">PLAYBOOK</text>
+    <text x="371" y="98" font-size="8.5" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.6">analyst approves</text>
+    <path d="M300 86 h36" stroke-width="1.2" opacity="0.7"/>
+
+    <line x1="424" y1="34" x2="424" y2="150" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.6"/>
+    <text x="424" y="168" font-size="10.5" stroke="none" fill="currentColor" opacity="0.6" text-anchor="middle" letter-spacing="1">TOOL BOUNDARY</text>
+
+    <path d="M406 86 h34" stroke-width="1.4" opacity="0.7"/>
+    <path d="M434 80 l8 6 l-8 6" stroke-width="1.4" opacity="0.7"/>
+    <line x1="448" y1="52" x2="448" y2="140" stroke-width="1.2" opacity="0.5"/>
+    <path d="M448 56 h6" stroke-width="1.1" opacity="0.6"/>
+    <path d="M448 84 h6" stroke-width="1.1" opacity="0.6"/>
+    <path d="M448 112 h6" stroke-width="1.1" opacity="0.6"/>
+    <path d="M448 140 h6" stroke-width="1.1" opacity="0.6"/>
+
+    <rect x="456" y="44" width="150" height="24" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="531" y="60" font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">EDR&#160;&#160;·&#160;&#160;isolate host</text>
+    <rect x="456" y="72" width="150" height="24" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="531" y="88" font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">IAM&#160;&#160;·&#160;&#160;revoke token</text>
+    <rect x="456" y="100" width="150" height="24" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="531" y="116" font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">FIREWALL&#160;&#160;·&#160;&#160;block IOC</text>
+    <rect x="456" y="128" width="150" height="24" rx="6" stroke-width="1.1" opacity="0.6"/>
+    <text x="531" y="144" font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle" opacity="0.85">TICKET&#160;&#160;·&#160;&#160;record</text>
+
+    <text x="620" y="86" font-size="10.5" stroke="none" fill="currentColor" opacity="0.55">the state change happens here</text>
+    <text x="620" y="104" font-size="10.5" stroke="none" fill="currentColor" opacity="0.55">4 tool logs&#160;·&#160;no single record</text>
+
+    <text x="24" y="200" font-size="12" stroke="none" fill="currentColor" opacity="0.55" letter-spacing="1.5">ENTROID&#160;&#160;·&#160;&#160;ONE RUNTIME, CONTAINMENT EXECUTED INLINE</text>
+    <rect x="24" y="214" width="752" height="88" rx="10" stroke-width="1.6"/>
+
+    <g stroke-width="1.2" opacity="0.9">
+      <rect x="40" y="238" width="68" height="32" rx="6"/>
+      <rect x="126" y="238" width="150" height="32" rx="6"/>
+      <rect x="294" y="238" width="92" height="32" rx="6"/>
+      <rect x="404" y="238" width="190" height="32" rx="6"/>
+      <rect x="612" y="238" width="80" height="32" rx="6"/>
+    </g>
+    <g stroke-none="true" font-size="10.5" stroke="none" fill="currentColor" text-anchor="middle">
+      <text x="74" y="258">DETECT</text>
+      <text x="201" y="252">GOVERNED WORKFLOW</text>
+      <text x="201" y="264" opacity="0.6" font-size="9">change-control gate</text>
+      <text x="340" y="258">CONNECTOR</text>
+      <text x="499" y="252">EXECUTE INLINE</text>
+      <text x="499" y="264" opacity="0.6" font-size="9">isolate · revoke · block · disable</text>
+      <text x="652" y="258">VERIFY</text>
+    </g>
+    <g stroke-width="1.2" opacity="0.8">
+      <path d="M108 254 h18"/><path d="M276 254 h18"/><path d="M386 254 h18"/><path d="M594 254 h18"/>
+    </g>
+    <text x="400" y="292" font-size="10" stroke="none" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.5">one immutable per-action record&#160;&#160;·&#160;&#160;the response is owned, not dispatched</text>
+  </svg>
+</div>
+
+<div class="section-label fade-in">ONE CONTAINMENT, TWO ARCHITECTURES</div>
+<div class="fade-in">
+  <p>Walk the containment every responder knows: a workstation is confirmed compromised, and you need to isolate the host, revoke the user's live session token, disable the account and block the command-and-control indicator. Both architectures detect and decide well. Watch where they physically diverge — and where the state change actually happens.</p>
+  <p><strong>As an orchestrated dispatch.</strong> The playbook fans out. It calls the endpoint tool's API to network-isolate the host; the state change happens <em>inside the EDR's</em> control plane. It calls identity to revoke the token and disable the account; that change happens <em>inside the IAM</em>. It calls the firewall to block the indicator; that change happens <em>inside the firewall</em>. It opens a ticket for the record. Four systems, four control planes, four independent success-or-failure states — and the SOAR knows only what each API returned: a 200, a timeout, a partial. If identity revoked the token but the endpoint isolation silently failed, the platform believes it "contained" a host that is still on the network. And the evidence of what happened is now scattered across the EDR console log, the IAM audit trail, the firewall change record and the SOAR run history. <strong>The audit fractures across four tools' logs, and no single record reconciles them.</strong> Here, "contained" means the requests were sent.</p>
+  <p><strong>As one governed action.</strong> The same detection feeds a governed Deterministic Workflow that executes the containment as a single change-controlled procedure. Isolate, revoke, disable, block — each actuation reaches the estate through a governed Connector, the one primitive licensed to touch external systems. An inline change-control gate decides the action before it runs: auto-approve because it is inside policy, or pause for a named human — human-in-the-loop is a first-class state of the workflow, not a bolt-on. The workflow verifies each step landed and can reverse the ones that should not stand. And every step — the decision, the gate verdict, each Connector call, each result — is written to one immutable per-action record on one runtime. <strong>Here, "contained" means the host is isolated, the token is dead, the indicator is blocked, and the change is proven — not that an integration returned a status code.</strong></p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT THE DISPATCH ACTUALLY COSTS</div>
+<div class="fade-in">
+  <p>Every time the response crosses a tool boundary, something the platform needs to guarantee has to be re-established in a system it does not own — and each one is a place the loop quietly comes apart.</p>
+  <ul>
+    <li><strong>The audit.</strong> The platform can prove it <em>sent</em> the action. Whether the action <em>held</em> — and what state the target was actually in when it landed — lives in the target tool's own log. The record of intent and the record of effect sit on opposite sides of the seam, and stitching them into one defensible timeline is manual work done after the fact, usually under incident pressure.</li>
+    <li><strong>The precondition.</strong> A containment is only safe against the state that justified it. Between "playbook fires" and "endpoint tool executes," live state moves — the session may have already propagated, the host may have already spread. The dispatching platform cannot re-check the precondition at the instant of execution, because it does not own that instant.</li>
+    <li><strong>The permission.</strong> To act inside tools you do not own, the platform holds standing credentials to make production changes in each of them. The blast radius of the automation is defined by service-account permissions living outside the platform's own governance, exercised by a playbook step no single gate fully controls.</li>
+  </ul>
+  <p>None of this makes SOAR useless — orchestration is genuinely faster than a human doing the same clicks, and for known, low-risk fixes that speed is the point. But it does mean the word "contained" is carrying more weight than the architecture supports. The platform governed the <em>alert</em> and the <em>playbook</em>. The change — the thing that actually stops the breach — ran in tools it can only ask.</p>
+</div>
+
+<div class="section-label fade-in">EXECUTION IS AN ARCHITECTURE, NOT AN INTEGRATION COUNT</div>
+<div class="fade-in">
+  <p>This is why the difference cannot be bolted onto an orchestration layer — it is a property of <em>where the response is composed</em>. Entroid is a Composable Process Fabric: five primitives on a shared Semantic Ontology — Deterministic Workflows that carry change-control and rollback inline, Intelligence Orchestration, Atomic Agents with HITL as a first-class construct, Functions, and Connectors as the <em>only</em> primitive that reaches external systems — all on one runtime with an immutable per-action audit. ES SIEM &amp; SOAR detects and responds; Sentinel investigates and remediates; Sherlock reasons over the estate. A security response here is a governed Deterministic Workflow that <em>executes</em> the containment — isolate, revoke, block, disable — as one change-controlled action with a per-action record.</p>
+  <p>Be exact about what that does and does not claim, because over-claiming is how you lose this reader. It does <strong>not</strong> claim zero integration. ES still reaches the endpoint, the firewall and the identity provider through Connectors — it runs <em>over</em> the estate you already own, rather than replacing it. The difference is not that ES avoids the tools of execution. It is that the <em>response itself</em> — the decision, the change-control gate, the sequencing, the verification, the reversal and the audit — is a single governed object on one runtime, instead of an orchestration script whose governance stops at the dispatch and whose evidence scatters across the tools it calls. Detection feeds a governed response, closed-loop, on one fabric. That is an architectural property of the design — not a demo, and not a milestone on a roadmap.</p>
+</div>
+
+<div class="closing fade-in">
+  <blockquote>"Contained" should mean the host is isolated and the change is proven — not that a request was successfully dispatched to a tool you don't own.</blockquote>
+</div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

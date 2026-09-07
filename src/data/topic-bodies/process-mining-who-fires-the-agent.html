@@ -1,0 +1,83 @@
+<div class="hook fade-in"><p>An autonomous agent releases a payment it should have held, or clears a credit above its limit. The incident review convenes, and someone asks the only question that matters: <strong>who fires the agent?</strong> If your agents are rented from four different runtimes, the honest answer is that nobody can — because no single system granted the agent its authority, executed its action, and recorded what it did.</p></div>
+
+<div class="section-label fade-in">THE RENTED RUNTIME</div>
+<div class="fade-in">
+<p>The dominant agent strategy in enterprise software right now is to not run the agent at all. Process-intelligence vendors have repositioned around agentic AI, but their architecture gives away what they actually do: they <em>observe</em> your processes and feed context to agents that execute somewhere else.</p>
+<p>One market leader packages this as a meta-orchestration layer over agents built across four different third-party runtimes — a chat-agent builder, an enterprise agent orchestrator, a cloud model platform, and an open-source agent framework. Read that list again. That is four separate control planes, four permission models, and four runtimes, marketed as openness. Another vendor splits the same problem a different way, distributing context, build, and inventory across three separate tools in its own suite. That same vendor has even raised the question of who ultimately "fires the agent" — and its own split architecture is precisely what leaves that question unanswered.</p>
+<p>None of this is presented as a compromise. It is the recommended blueprint. It is also why the systems integrators are so pleased: the seams between four vendors are billable forever.</p>
+</div>
+
+<div class="section-label fade-in">FOUR SEAMS, FOUR OWNERS</div>
+<div class="fade-in">
+<p>Every runtime you assemble into a working agent brings its own governance model. Stitch build, inventory, context, and execution across four tools and every join between them becomes a governance discontinuity — a place where a policy is translated, re-implemented, or simply dropped.</p>
+<p>Trace a single autonomous action through that topology. The agent's <strong>authority</strong> is granted in one vendor's console. Its <strong>decision</strong> is orchestrated in a second. The <strong>work</strong> touches your systems of record through a third. The <strong>record</strong> of what happened is written — partially — in all of them. No single log is authoritative. No single owner enforced, executed, and recorded the action end to end. When you need to reconstruct what the agent was allowed to do at the moment it acted, you are correlating timestamps across four exports.</p>
+<p>That is the accountability gap in one sentence: <strong>accountability spread across four vendors belongs to no one.</strong> And it drifts. Entitlements granted in the agent-builder tool and enforced nowhere downstream go stale; a threshold tightened in one tool is invisible to the runtime that actually executes; the identity the agent uses to write to the ERP is not the identity that reasoned about whether it should. Each seam is a standing liability that no one vendor is contractually on the hook for.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">OBSERVE, RECOMMEND, HAND OFF</div>
+<div class="fade-in">
+<p>There is an architectural tell underneath all of this. Process intelligence is a <em>system of observation</em>. It reconstructs your process from batch-extracted event logs — a picture of what already happened — and then hands the resulting context to an agent that acts elsewhere. Observe, recommend, hand off.</p>
+<p>The consequence is structural, not incidental. The event logs are extracted on a schedule, so the agent reasons over a reconstruction that is already minutes or hours stale. And the moment of action leaves the system that understood the process entirely. Governance can only be a report written after the fact, never a gate at the instant the action is attempted. By the time a violation surfaces on a dashboard, the payment has cleared.</p>
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Observe, recommend, hand off split across separate runtimes versus observe, decide, act, govern closed inside one runtime">
+  <text x="40" y="30" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" opacity="0.6">THE RENTED MODEL — SYSTEM OF OBSERVATION</text>
+  <rect x="40" y="48" width="150" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+  <text x="115" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="currentColor">Observe</text>
+  <rect x="230" y="48" width="150" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+  <text x="305" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="currentColor">Recommend</text>
+  <rect x="420" y="48" width="150" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+  <text x="495" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="currentColor">Hand off</text>
+  <rect x="610" y="48" width="150" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.45"/>
+  <text x="685" y="72" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="currentColor" opacity="0.75">Agent runtime</text>
+  <text x="685" y="88" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="currentColor" opacity="0.75">— elsewhere</text>
+  <line x1="190" y1="74" x2="230" y2="74" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+  <line x1="380" y1="74" x2="420" y2="74" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+  <line x1="570" y1="74" x2="610" y2="74" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.45"/>
+  <text x="590" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" fill="currentColor" opacity="0.55">governance + audit stop at the seam</text>
+  <line x1="40" y1="152" x2="760" y2="152" stroke="currentColor" stroke-width="1" opacity="0.15"/>
+  <text x="40" y="186" font-family="system-ui,sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" opacity="0.6">THE FABRIC — SYSTEM OF ACTION</text>
+  <rect x="40" y="200" width="720" height="98" rx="12" fill="currentColor" opacity="0.05"/>
+  <rect x="40" y="200" width="720" height="98" rx="12" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <text x="60" y="224" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1" fill="currentColor" opacity="0.6">ONE RUNTIME · ONE IMMUTABLE AUDIT TRAIL</text>
+  <rect x="62" y="240" width="150" height="42" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <text x="137" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="currentColor">Observe</text>
+  <rect x="238" y="240" width="150" height="42" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <text x="313" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="currentColor">Decide</text>
+  <rect x="414" y="240" width="150" height="42" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <text x="489" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="currentColor">Act</text>
+  <rect x="590" y="240" width="150" height="42" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <text x="665" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="currentColor">Govern</text>
+  <line x1="212" y1="261" x2="238" y2="261" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <line x1="388" y1="261" x2="414" y2="261" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+  <line x1="564" y1="261" x2="590" y2="261" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+</svg>
+</div>
+<p>Contrast the shape below the line: <strong>observe, decide, act, govern — closed inside one runtime, on live authoritative state.</strong> The system that sees the process is the system that acts on it, so policy can be a hard gate at the moment of action rather than a post-mortem on what already went wrong.</p>
+</div>
+
+<div class="section-label fade-in">THE RUNTIME THAT CAN ACTUALLY FIRE</div>
+<div class="fade-in">
+<p>Entroid models every process as a composition of five primitives on one semantic ontology, and — this is the part that matters — executes and governs them in a single runtime. That design is what gives the question an answer.</p>
+<ul>
+<li><strong>Intelligence Orchestration owns agent authority and permissioning.</strong> Authority granted in one place can be revoked in one place. That is what firing an agent mechanically means: there is a control plane with the standing to say no, and to narrow or withdraw an agent's remit the instant policy changes.</li>
+<li><strong>Deterministic Workflows enforce governance inline.</strong> Approval gates, segregation of duties, entitlement and authority limits, thresholds, and human-in-the-loop checkpoints live on the path itself — so a non-compliant action is impossible to execute, not merely reported after it clears.</li>
+<li><strong>Atomic Agents do the bounded work at the leaf.</strong> Human-in-the-loop is first-class: pause, surface the reasoning, incorporate feedback, resume — always inside the authority the orchestration layer set.</li>
+<li><strong>Connectors are the only primitive that touches external systems.</strong> Every read and write to a system of record passes through one governed, authenticated, rate-limited, audited door.</li>
+<li><strong>One immutable audit trail binds every agent decision</strong> across all five primitives — a single authoritative record, not four partial ones you reconcile after the fact.</li>
+</ul>
+<p>Underneath sit the platform capabilities that make the record trustworthy: durable long-running process state, versioning of in-flight instances, compensation and rollback when a step must be unwound, and configurable exception handling and escalation. The trail is not a log stitched together later; it is the runtime's own memory of what it enforced.</p>
+<p>This is the honest version of the word "autonomous." An agent is autonomous here <em>because</em> a single runtime enforces the limits it operates inside and can revoke its authority in one action — not because it has been let loose across four platforms that no one fully controls.</p>
+</div>
+
+<div class="section-label fade-in">CONSOLIDATION IS A GOVERNANCE DECISION</div>
+<div class="fade-in">
+<p>Consolidation usually gets pitched to a CIO as procurement math — fewer contracts, fewer integrations, lower total cost. That undersells it badly. On one fabric, the reason to consolidate is that a single system enforced, executed, and recorded the action, which means a single owner can answer for it. Fewer vendors is the invoice. One accountable runtime is the point.</p>
+<p>Consider a payment-posting agent — illustrative, not a delivered result — that attempts to clear an invoice above its authorized limit. In the rented model, the threshold check lived in one tool, the execution in another, and the log in a third; establishing what was permitted, and precisely when, becomes forensic archaeology across vendors while the money has already moved. On the fabric, the entitlement limit is a hard gate in a Deterministic Workflow: the action simply never executes. If the policy itself was wrong, Intelligence Orchestration narrows the agent's authority immediately, and the immutable trail shows exactly what was allowed, by whom, and at what version of the process. One place enforced it. One place can change it. One place has to answer for it.</p>
+<p>For the CISO and the risk officer, that collapses the entire agentic-AI control question into something auditable. There is one identity boundary, one entitlement model, and one record to examine — not a distributed system whose failure modes live in the gaps between four control planes you do not operate.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>An agent you cannot fire isn't autonomous — it's unaccountable. Accountability exists only where one runtime granted the authority, enforced the limit, executed the act, and wrote the record.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

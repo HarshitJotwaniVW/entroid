@@ -1,0 +1,91 @@
+/* ============================================================================
+   Serpentine card chain — see src/components/ChainFlow.jsx.
+   ========================================================================== */
+
+.chain {
+  position: relative;
+  /* Room either side for the curves to bow into without being clipped. */
+  padding: 0 clamp(70px, 9vw, 130px);
+}
+
+/* The overlay is sized in JS to the wrapper's own box, so its user units are
+   plain pixels and the measured coordinates drop straight in. */
+.chain__wires {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.chain__track,
+.chain__live {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chain__track {
+  stroke: #d6d8e0;
+}
+
+.chain__live {
+  stroke: var(--brand);
+}
+
+.chain__cards {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(26px, 2.6vw, 40px);
+  margin: 0;
+  padding: 0;
+}
+
+/* Takes .card for its surface, so it follows the shared card tokens. */
+.chain__card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.chain__num {
+  display: block;
+  font-family: var(--font-caption);
+  font-size: 12px;
+  letter-spacing: .16em;
+  color: var(--brand);
+  margin-bottom: 10px;
+}
+
+.chain__title {
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.chain__text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Narrow screens have no room for the bows; the chain becomes a plain column
+   and the overlay is hidden rather than drawn across the cards. */
+@media (max-width: 720px) {
+  .chain {
+    padding: 0;
+  }
+
+  .chain__wires {
+    display: none;
+  }
+
+  .chain__cards {
+    gap: 14px;
+  }
+}

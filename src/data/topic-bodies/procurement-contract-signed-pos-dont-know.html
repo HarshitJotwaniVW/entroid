@@ -1,0 +1,111 @@
+<div class="hook fade-in">
+<p>The negotiation went well. You held the line on price, locked a volume tier, and won a segregation clause that keeps one supplier from owning a category. Legal papered it, both sides signed, and the executed contract landed in the repository with its metadata clean and its obligations extracted. Then next quarter a buyer raises a PO against that supplier — and <strong>nothing in the requisition screen knows the contract exists.</strong> The negotiated price is a number in a document; the PO carries a catalog price. The two only meet if a human remembers to make them.</p>
+</div>
+
+<div class="section-label fade-in">WHAT THE REPOSITORY GENUINELY FIXED</div>
+<div class="fade-in">
+<p>Start with the concession, because it is real and anyone who has run a contract function can smell a strawman instantly. Before contract lifecycle management, the "contract" was a PDF in someone's inbox and a paper original in a cabinet three floors down. Terms lived in people's heads and expired without anyone noticing. The CLM layer fixed a genuine, expensive mess.</p>
+<p>A modern repository centralizes every executed agreement in one governed store, versions the redlines, and pulls a clause library into authoring so the third draft looks like the two hundredth. It extracts obligations, effective dates, renewal windows, and price schedules into structured metadata. It fires renewal alerts before auto-renew clauses quietly re-up a bad deal. It gives legal, procurement, and finance one place to answer "what did we actually agree to." That is a large maturity gain over the cabinet-and-inbox era, and the newer AI-assisted tooling makes it faster still — reading a stack of agreements and surfacing the off-market clause, drafting the fallback language, summarizing the obligation set. None of that is marketing air. Authoring and centralizing contracts is a solved-enough problem, and the suites solved it.</p>
+</div>
+
+<div class="section-label fade-in">A STORED TERM IS INERT</div>
+<div class="fade-in">
+<p>Read the category's own verbs, though, and the ceiling comes into focus. The repository <em>stores, extracts, surfaces, reminds, alerts,</em> and — in its AI form — <em>reads, flags,</em> and <em>recommends.</em> Every one of those is an operation on a <strong>record</strong>. Not one of them is the operation that spends money. When a requisition becomes a PO, when a PO is receipted, when an invoice is matched and posted for payment — the authoritative action happens in the transaction system, and the contract is a document sitting <em>beside</em> that system, not a control living <em>inside</em> it.</p>
+<p>That gap is architectural, not a configuration someone forgot to switch on. The enforcement point — the moment the PO commits at a price — is in a system the repository does not own. So the term can only be honored by a handoff: metadata syncs into a catalog on a schedule, an obligation reminder emails a category manager, a buyer is trusted to cross-reference the clause before they click submit. Each of those is a person or a batch job standing in for the term. Best-effort by design. The contract was negotiated as a binding control and then filed as a passive reference.</p>
+<ul>
+<li><strong>"Stores the price schedule"</strong> — a stored price does not price the PO; the catalog does, and catalogs drift.</li>
+<li><strong>"Alerts on renewal"</strong> — an alert fires at a human, who may or may not act before the term lapses and orders keep flowing against an expired agreement.</li>
+<li><strong>"Extracts the volume tier"</strong> — extracted into a field, not into the logic that decides whether this order earns the tier or blows past the cap.</li>
+<li><strong>"Flags the off-contract clause"</strong> — a flag is a message about an action, raised at best when the action is proposed and often only after it posted.</li>
+</ul>
+<p>Faster authoring and cleaner metadata are worth having. But a term you can find quickly is still a term that has to be manually applied at the one moment it matters — the executing action.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: a CLM repository stores the signed terms and only reminds; the requisition flows through intake and approval routing, the authoritative PO posts to the ERP at a catalog price, and a spend-analytics dashboard flags the off-contract price after it posted. Right: intake to PR to PO runs as one governed workflow where a contract gate checks price, volume, dates and segregation inline; a non-compliant PO is refused before it commits, a governed connector posts the compliant PO to the ledger, and an immutable record is emitted.">
+  <defs>
+    <marker id="clHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <line x1="400" y1="20" x2="400" y2="300" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6" opacity="0.25"/>
+
+  <!-- LEFT: REPOSITORY BESIDE THE TRANSACTION -->
+  <text x="28" y="38" font-size="13" font-weight="700" fill="currentColor" letter-spacing="1.1">STORED &amp; ROUTED · beside the transaction</text>
+
+  <rect x="150" y="58" width="150" height="42" rx="7" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="225" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">CLM repository</text>
+  <text x="225" y="91" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.65">signed terms · reminds</text>
+
+  <path d="M225 150 L225 104" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.5" marker-end="url(#clHead)"/>
+  <text x="234" y="130" font-size="9.5" fill="currentColor" opacity="0.6">reads / reminds</text>
+  <text x="234" y="143" font-size="9.5" fill="currentColor" opacity="0.6">(no gate)</text>
+
+  <circle cx="52" cy="175" r="9" fill="currentColor" fill-opacity="0.18" stroke="currentColor"/>
+  <text x="52" y="200" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">intake</text>
+  <line x1="61" y1="175" x2="120" y2="175" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+  <rect x="122" y="160" width="86" height="30" rx="5" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.4"/>
+  <text x="165" y="179" text-anchor="middle" font-size="9.5" fill="currentColor">approval route</text>
+  <line x1="208" y1="175" x2="256" y2="175" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+  <rect x="258" y="158" width="92" height="34" rx="5" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="304" y="173" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor">ERP posts PO</text>
+  <text x="304" y="186" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">catalog price</text>
+
+  <path d="M304 192 L304 232" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+  <rect x="196" y="234" width="216" height="40" rx="6" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <text x="304" y="251" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor">spend analytics</text>
+  <text x="304" y="265" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">flags off-contract price — after it posted</text>
+
+  <!-- RIGHT: ONE GOVERNED WORKFLOW -->
+  <text x="428" y="38" font-size="13" font-weight="700" fill="currentColor" letter-spacing="1.1">EXECUTED &amp; GOVERNED · one workflow</text>
+
+  <rect x="428" y="150" width="344" height="120" rx="8" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.4"/>
+  <text x="444" y="168" font-size="9" fill="currentColor" opacity="0.55" letter-spacing="1.4">GOVERNED FABRIC — the contract IS a gate operand</text>
+
+  <circle cx="470" cy="205" r="9" fill="currentColor" fill-opacity="0.18" stroke="currentColor"/>
+  <text x="470" y="230" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">intake → PR</text>
+  <line x1="479" y1="205" x2="556" y2="205" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+
+  <rect x="558" y="180" width="30" height="50" rx="4" fill="currentColor" fill-opacity="0.14" stroke="currentColor"/>
+  <text x="573" y="248" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.75">contract gate</text>
+  <text x="573" y="260" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">price · vol · dates · SoD</text>
+
+  <path d="M558 196 C 536 182, 516 182, 502 196" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#clHead)"/>
+  <text x="505" y="176" text-anchor="middle" font-size="9.5" font-weight="600" fill="currentColor">off-contract PO refused</text>
+
+  <line x1="588" y1="212" x2="648" y2="212" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+  <rect x="650" y="196" width="70" height="32" rx="5" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="685" y="211" text-anchor="middle" font-size="9" font-weight="600" fill="currentColor">Connector</text>
+  <text x="685" y="223" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">posts to ledger</text>
+
+  <path d="M685 228 L685 258" stroke="currentColor" stroke-width="1.4" marker-end="url(#clHead)"/>
+  <path d="M660 260 L676 260 L684 272 L676 284 L660 284 L652 272 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor"/>
+  <text x="668" y="304" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">immutable record</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHERE THE GAP CASHES OUT</div>
+<div class="fade-in">
+<p>The leakage is not exotic; it is the ordinary weather of a large procurement estate. <strong>Price creep:</strong> the negotiated rate is in the repository, but the requisition prices off a catalog or a stale rate card, and the delta rides quietly on every line. <strong>Off-contract and maverick buying:</strong> a preferred supplier and a hard-won rate exist, and the buyer routes to a familiar vendor anyway because nothing at the point of order forces the contracted one. <strong>Missed volume tiers and rebates:</strong> you committed to a tier to earn a discount and never call it because no system is counting cumulative spend against the threshold as orders execute. <strong>Expired-term ordering:</strong> the agreement lapsed, the renewal alert scrolled past, and POs keep flowing against terms that no longer exist. <strong>Clause violations:</strong> a segregation or exclusivity clause is written, signed, and then invisible to the person raising the order it prohibits.</p>
+<p>Where does the enterprise learn about all of this? Downstream, in the spend-analytics layer — the same architecture, one system further along. Analytics reads the transactions <em>after</em> they posted and reports the category's familiar metrics: off-contract spend, contract-leakage, realized-versus-negotiated savings. That reporting is genuinely useful for renegotiation and for finding the next tranche of savings. But notice what it concedes about tense. You are measuring value that already leaked. The dashboard is a detective control looking back at a window it can shrink but, by construction, can never close — because the decision to spend was made in a system where the term was not a gate.</p>
+</div>
+
+<div class="section-label fade-in">BIND THE TERM TO THE ONTOLOGY</div>
+<div class="fade-in">
+<p>Here is the architectural move, and it is a move about <em>where the term lives</em>, not about a smarter reminder. In a composable process fabric, procurement is not a stack of intake forms plus approval routing plus a repository plus analytics bolted together beside the ERP. It is a single governed workflow that actually runs the process — intake to sourcing to PR to PO to receipt to invoice to pay — as a composition of five primitives on a shared semantic ontology, in one runtime, with an immutable per-action audit.</p>
+<p>The contract is modelled on that ontology. Its price schedule, committed volume tier, effective and expiry dates, and its segregation and exclusivity clauses are not extracted into passive metadata — they are <strong>live operands</strong> in the deterministic workflow that executes the procure and pay steps. The classic three-way match extends into a contract match, enforced inline as a gate. A PO priced above the negotiated rate, routed to a supplier the exclusivity clause forbids, raised past the committed cap, or cut against a lapsed term does not get flagged for someone to chase later — <strong>it cannot execute.</strong> Where the check requires judgment rather than a rule — a genuine exception, a first-of-its-kind deviation — a human sits in the loop as a first-class step and approves or refuses before anything commits, with that decision recorded. Only a compliant action reaches the one primitive allowed to touch an external system: a governed connector posts the authoritative PO or invoice to the ERP or ledger. The audit record is a byproduct of the action having run, not a reconstruction assembled afterward.</p>
+<p>State this as what it is — an architectural property of where enforcement sits, not a claimed outcome. Because the term is an operand in the executing step rather than a document beside it, the control is applied at the moment of action instead of surfaced after it. That is the whole difference between a contract that <em>reminds</em> you and a contract that <em>governs</em> you.</p>
+</div>
+
+<div class="section-label fade-in">THE LINE, DRAWN HONESTLY</div>
+<div class="fade-in">
+<p>Two honest boundaries, because over-claiming is the fastest way to lose a reader who does this for a living. First, this is not zero-integration. The fabric runs over the estate you already own; connectors are how it posts to the ERP and reconciles with the systems of record. The claim is not that the estate disappears — it is that enforcement stops being distributed across systems that each own a fragment and can only report to one another.</p>
+<p>Second, the closest thing in the market is not the repository at all — it is the orchestration layer that gives you a single front door for intake and coordinates routing across the ERP and the source-to-pay suites. That is real and valuable: one place to ask, fewer maverick requests, cleaner hand-offs. But orchestrating and reporting across systems the layer does not own is a different thing from the transaction executing on one governed fabric where the term is checked at the instant of the action. A front door that routes a request to a system where the contract is still a passive document has moved the request, not the enforcement. The gate has to be where the money commits. In the record-and-route pattern, it structurally is not — and that stays true regardless of how good the reminders, the catalogs, or the AI get, because the limit is the location of the control, not the intelligence of the alert.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A contract you can find in two seconds is worth having. A contract that refuses the off-contract PO before it commits is worth negotiating for.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

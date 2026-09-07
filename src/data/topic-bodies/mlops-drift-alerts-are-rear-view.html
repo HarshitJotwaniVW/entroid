@@ -1,0 +1,117 @@
+<div class="hook fade-in"><p>A drift alert is a confession. It tells you that somewhere in the last hour, day, or week, a model's predictions moved far enough from reality that a threshold tripped — which means every decision built on those predictions has <em>already shipped</em>, already committed, already moved money. Monitoring is a rear-view mirror: indispensable for seeing where you have been, useless for stopping the crash you are already in. <strong>Governance that matters has to be a circuit breaker — able to stop a single out-of-policy action at the instant it tries to execute, not describe it after it has.</strong></p></div>
+
+<div class="section-label fade-in">THE MEASUREMENT IS REAL. THE TIMING IS NOT.</div>
+<div class="fade-in">
+<p>Start with what the ML and MLOps platforms genuinely got right, because the argument only holds if we are honest about their strengths. Feature stores, model registries, and end-to-end lineage make a model reproducible and auditable <em>as an artifact</em> — you can say exactly which data, which code, and which weights produced a given version. One-click serving really does compress weeks of deployment into an afternoon. Drift and data-quality monitoring surface degradation you would otherwise discover through angry customers. Agent evaluation is real engineering: LLM-as-judge harnesses that score accuracy, factuality, and cost against a rubric are a legitimate way to catch regressions before they spread.</p>
+<p>And the newest entrants go further than any of that. The most advanced AI gateways govern the <strong>call</strong> itself — they sit as a governed proxy in front of model serving, enforcing rate limits, guardrails, credential management, and inference logging on every request, even for agents running off-platform. That is not marketing; it is a real and difficult capability. But notice precisely what it governs. It governs how the agent <em>calls</em> the model and <em>invokes</em> a tool, and it captures that call. The business action the prediction drives — post the transaction, release the payment, change the plan — still commits in a system of record the gateway sits <em>beside</em>, not inside. Every one of these mechanisms watches the model and the call to it. None of them stands between the prediction and the irreversible act taken on it.</p>
+</div>
+
+<div class="section-label fade-in">THREE WAYS TO WATCH, ZERO WAYS TO STOP</div>
+<div class="fade-in">
+<p>Look closely at how the category actually enforces, and the same architectural shape appears three times — each detective, each probabilistic, none able to veto a single action in flight.</p>
+<ul>
+<li><strong>Drift as an early-warning signal.</strong> The observability vendors offer a 360-degree view of model health and frame drift as the leading indicator of trouble. It is a good indicator. But it is computed over a <em>window</em> — a population of predictions aggregated after the fact — and even the most candid vendors concede that degradation is caught <em>only after business outcomes have already been affected</em>. By construction, the alert cannot precede the decisions that triggered it.</li>
+<li><strong>The judge that runs by sampling.</strong> The evaluation vendors score outputs pass/fail against written guidelines using a model-as-judge, with a configurable sample rate — run on everything, or on a slice. Sampling is fine for measuring a <em>trend</em>. It is fatal as a control: a rate below 100% means some actions are never seen at all, and even a sampled hit arrives after the output was produced. You are grading a subset of a test that has already been submitted.</li>
+<li><strong>The release-time gate mistaken for a runtime gate.</strong> The pipeline platforms offer a conditional-deploy step: if the candidate model clears its metrics, promote it; if not, hold it. This is real and worth having — but it fires <em>once, at release</em>, on the model as an artifact. It answers "should this version go live?" It says nothing about the ten-thousandth prediction that version makes on a Tuesday, or whether the action taken on that specific prediction is within policy.</li>
+</ul>
+<p>The structural point survives any roadmap: all three observe outputs from <em>beside</em> the runtime. The strongest of them — the gateway — governs and captures the call, which is genuinely more than logging. But the model returns a prediction, and the act taken on that prediction commits somewhere else. That gap is not a feature backlog. It is where the model lives relative to the work.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">DETECTIVE VERSUS PREVENTIVE</div>
+<div class="fade-in">
+<p>The distinction that matters to a CISO or a controller is not "how good is the model" but "what can this control <em>do</em> to one bad action, right now." Detective controls observe and report; preventive controls stop. A rear-view mirror is a detective control. A circuit breaker is a preventive one. You want the model monitored <em>and</em> the action gated — but do not mistake the first for the second.</p>
+<table>
+<thead>
+<tr><th>Dimension</th><th>Detective (monitoring, judges, gateways)</th><th>Preventive (inline control)</th></tr>
+</thead>
+<tbody>
+<tr><td>When it acts</td><td>After the action, over a window — or once, at release</td><td>Before the side-effect commits, per action</td></tr>
+<tr><td>Coverage</td><td>Sampled or windowed aggregate</td><td>100% of actions, each one individually</td></tr>
+<tr><td>Mechanism</td><td>A second model or metric judging the first — probabilistic</td><td>Deterministic policy evaluated at the point of action</td></tr>
+<tr><td>Effect on one bad prediction</td><td>Recorded, alerted, scored</td><td>Allowed, denied, stepped-up, or held for a human</td></tr>
+<tr><td>Where the business action lands</td><td>A system of record beside the platform</td><td>A governed Connector inside the runtime</td></tr>
+</tbody>
+</table>
+<p>Read the last row twice. It is the whole argument. If the action commits in a system the governance layer sits beside, the governance layer can describe the action but cannot refuse it.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" role="img" aria-label="Left: a served model endpoint governed as an artifact, whose prediction crosses a dashed boundary into a separate system where the business action commits and drift is only detected afterward. Right: Entroid, where the model is a function inside a deterministic workflow that gates the action inline before a connector commits, with an immutable per-action audit.">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1L8 5L0 9" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    </marker>
+  </defs>
+  <line x1="400" y1="18" x2="400" y2="282" stroke-dasharray="3 5" stroke-opacity="0.5"/>
+
+  <text x="16" y="26" font-size="12" font-weight="700" stroke="none" fill="currentColor">SERVED MODEL — GOVERNED AS AN ARTIFACT</text>
+  <rect x="16" y="42" width="80" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="56" y="61" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Train</text>
+  <line x1="98" y1="57" x2="112" y2="57" stroke-opacity="0.7" marker-end="url(#arw)"/>
+  <rect x="114" y="42" width="86" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="157" y="61" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Register</text>
+  <line x1="202" y1="57" x2="216" y2="57" stroke-opacity="0.7" marker-end="url(#arw)"/>
+  <rect x="218" y="42" width="80" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="258" y="61" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Serve</text>
+
+  <rect x="152" y="88" width="146" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="225" y="107" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Gateway · logs the CALL</text>
+  <line x1="258" y1="72" x2="225" y2="88" stroke-opacity="0.7" marker-end="url(#arw)"/>
+
+  <line x1="225" y1="118" x2="225" y2="150" stroke-opacity="0.7" marker-end="url(#arw)"/>
+  <text x="232" y="140" font-size="10" stroke="none" fill="currentColor" fill-opacity="0.8">prediction</text>
+
+  <rect x="16" y="152" width="320" height="60" rx="6" stroke-dasharray="5 4" stroke-opacity="0.85"/>
+  <text x="176" y="178" font-size="11" font-weight="600" text-anchor="middle" stroke="none" fill="currentColor">Business app / system of record</text>
+  <text x="176" y="196" font-size="10.5" text-anchor="middle" stroke="none" fill="currentColor" fill-opacity="0.85">the ACTION commits here — outside the runtime</text>
+
+  <rect x="16" y="230" width="180" height="28" rx="5" stroke-opacity="0.6"/>
+  <text x="106" y="248" font-size="10.5" text-anchor="middle" stroke="none" fill="currentColor" fill-opacity="0.85">Drift monitor</text>
+  <path d="M196 244 C 250 244, 300 232, 300 214" stroke-dasharray="4 4" stroke-opacity="0.6" marker-end="url(#arw)"/>
+  <text x="205" y="272" font-size="10" stroke="none" fill="currentColor" fill-opacity="0.75">alert fires after outcomes commit</text>
+
+  <text x="416" y="26" font-size="12" font-weight="700" stroke="none" fill="currentColor">ES — MODEL AS A FUNCTION IN THE WORKFLOW</text>
+  <rect x="416" y="40" width="368" height="228" rx="8" stroke-opacity="0.85"/>
+  <text x="432" y="60" font-size="10.5" stroke="none" fill="currentColor" fill-opacity="0.85">Deterministic Workflow · one governed runtime</text>
+
+  <rect x="452" y="70" width="296" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="600" y="89" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Model = Function (prediction)</text>
+  <line x1="600" y1="100" x2="600" y2="120" stroke-opacity="0.7" marker-end="url(#arw)"/>
+
+  <rect x="452" y="122" width="296" height="46" rx="5" fill="currentColor" fill-opacity="0.07" stroke-opacity="0.9"/>
+  <text x="600" y="141" font-size="11" font-weight="600" text-anchor="middle" stroke="none" fill="currentColor">Inline gate: allow · deny · step-up</text>
+  <text x="600" y="158" font-size="10.5" text-anchor="middle" stroke="none" fill="currentColor" fill-opacity="0.9">human approval — SoD / threshold</text>
+  <line x1="600" y1="168" x2="600" y2="188" stroke-opacity="0.7" marker-end="url(#arw)"/>
+
+  <rect x="452" y="190" width="296" height="30" rx="5" stroke-opacity="0.75"/>
+  <text x="600" y="209" font-size="11" text-anchor="middle" stroke="none" fill="currentColor">Connector commits the action</text>
+
+  <rect x="452" y="230" width="296" height="30" rx="5" fill="currentColor" fill-opacity="0.11" stroke-opacity="0.7"/>
+  <text x="600" y="249" font-size="10.5" text-anchor="middle" stroke="none" fill="currentColor">Immutable per-action audit — 100% of actions</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">THE MODEL IS A FUNCTION, NOT AN ENDPOINT</div>
+<div class="fade-in">
+<p>Everything above follows from one architectural choice: whether the model is an endpoint your process calls out to, or a step <em>inside</em> the process itself. In Entroid it is the latter. A model runs as a governed <strong>Function</strong> on the Composable Process Fabric — the same runtime that executes the work, not a service beside it. Its prediction is consumed by a <strong>Deterministic Workflow</strong>, and the workflow acts on that prediction under controls that are inline by construction: allow, deny, step-up to stronger authentication, or require human approval before anything commits. Because the workflow is deterministic, the control is a <em>rule</em> evaluated at the point of action — not a second probabilistic model grading the first, and not a sample. It fires for 100% of actions because it <em>is</em> the action's gate.</p>
+<p>When a decision genuinely needs judgment, human-in-the-loop is a first-class primitive, not a fallback path: an <strong>Atomic Agent</strong> can pause the workflow and hold the action for a named approver, and the pause is part of the design, not an exception to it. Crucially, <strong>Connectors</strong> are the <em>only</em> primitive that touches an external system — so the commit itself happens through a governed edge the runtime controls, and the act of committing is permissioned and written to an <strong>immutable per-action audit</strong>. The prediction and the action it drove close on one runtime, described by a shared <strong>Semantic Ontology</strong>. This is an architectural property of the fabric, not a benchmark result: the gate can refuse an action because it sits <em>in</em> the path the action must travel, not beside it.</p>
+</div>
+
+<div class="section-label fade-in">WALKTHROUGH: BLOCK THE $4,000 UNAUTHORIZED REFUND</div>
+<div class="fade-in">
+<p>Consider — illustratively, as a way to see the mechanism, not as a delivered outcome — a refund-adjudication model that scores an incoming case and predicts <em>approve full refund, $4,000</em>. The prediction is wrong for this case: the customer is outside policy and the amount exceeds the agent's authority.</p>
+<p><strong>In the endpoint world:</strong> the model is served. The gateway dutifully logs the inference call and enforces its guardrails on that call. The evaluation harness may score this output — or may not, if the case fell outside the sample. The prediction then flows to the order-management system, where the refund <em>posts</em>. Two days later, a drift alert notes elevated approval rates in that customer segment. Every control did its job. The $4,000 is gone.</p>
+<p><strong>In Entroid:</strong> the same model runs as a Function, and its prediction enters a Deterministic Workflow before any money moves. An inline control evaluates the action deterministically: a refund above the threshold, outside the requesting agent's authority, triggers a segregation-of-duties check and a step-up. The Atomic Agent pauses and routes the case to a human approver. If policy denies it, the Connector never commits — the side-effect does not happen. If it is approved, that approval, its approver, and the policy path are written to the immutable per-action audit. Whichever branch executes, the decision to <em>act</em> was governed at the instant of action, for this one case, not inferred from a window afterward.</p>
+</div>
+
+<div class="section-label fade-in">WHAT THIS DOES NOT CLAIM</div>
+<div class="fade-in">
+<p>Over-claiming here would be the fastest way to lose a reader who has actually run these systems, so be precise about the boundaries. This does not make monitoring obsolete — drift, data-quality, and evaluation signals remain the right way to manage model <em>health</em> and decide when to retrain, and you should keep them. It does not mean Entroid replaces your estate with no integration; the fabric runs <em>over</em> existing systems through governed Connectors, which is real work, not magic. And it does not claim ES is the only design that can block an action in principle.</p>
+<p>The claim is narrower and sharper than any of those: the enforcement point moves. The category governs the <em>model</em> and the <em>call</em> to it — served, evaluated, logged, and, at the frontier, proxied and rate-limited — while the <em>action</em> taken on the prediction executes in a system the platform sits beside. ES governs that action inline, as a step in a deterministic workflow, because the model is a Function within the executing process rather than an endpoint the process calls out to. Detective controls tell you a decision was wrong. A preventive control keeps the wrong decision from becoming an event.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A model you can only watch is a model you can only apologize for. Governance is the power to say no before the money moves.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

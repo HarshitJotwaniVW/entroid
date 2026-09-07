@@ -1,0 +1,130 @@
+<div class="hook fade-in"><p>Your best sales quarter and your worst cash quarter can be the same quarter. The pipeline says <strong>closed-won</strong>; the general ledger says nothing yet — because the moment a deal closes is the moment it leaves the only system that was watching it. Everything you actually sold — provisioning the service, cutting the invoice, collecting the cash, earning the renewal — happens <em>after</em> the CRM stops looking.</p></div>
+
+<div class="section-label fade-in">THE FINISH LINE THAT ISN'T</div>
+<div class="fade-in">
+<p>Every sales-CRM playbook is engineered to move a deal left to right: pipeline stages, the B2B funnel, the sales cadence, prospecting, coverage, velocity — and lately smarter quoting that turns a tangled configuration into a clean price. The scoreboard celebrates one event above all others: <strong>closed-won</strong>. And structurally, that is where the design ends. The stages stop. The opportunity goes read-only. The rep gets paid.</p>
+<p>But for the customer, closed-won is not the finish line — it is the starting gun. It is the exact instant they begin <strong>owing money and expecting value</strong>. Forecast turns into obligation. The relationship you spent two quarters winning now has to be delivered, billed, collected, and renewed — and none of that lives on the pipeline. You have optimized, instrumented, and AI-accelerated the first half of the lifecycle, and handed off the half that actually carries the money.</p>
+</div>
+
+<div class="section-label fade-in">REVENUE IS FORECAST HERE, REALIZED SOMEWHERE ELSE</div>
+<div class="fade-in">
+<p>Start with what the category gets right, because an expert reader stops trusting you the moment you pretend otherwise. A unified customer record and a genuine 360-degree view really do reduce fragmentation. Pipeline management and activity logging really do run a sales organization. Marketing personalization grounded in a solid data foundation really does lift engagement. AI that drafts the outreach, scores the lead, and summarizes a sprawling case history really does give reps their hours back. And an agent grounded in trusted customer data really is better than a bolted-on bot. None of that is in dispute.</p>
+<p>Now notice what all of it has in common. It <strong>records</strong> the relationship, <strong>manages</strong> the pipeline, and — at its most advanced — <strong>acts on the record</strong>. The strongest position in the category makes exactly this case: because one vendor owns the record, the data foundation, and the agentic layer, its agents act on trusted data and get real work done. That is a real advantage over a bolted-on bot, and it deserves to be conceded plainly. But follow the action one step further. An agent operating on the customer record and inside the vendor's own apps is still operating on the <em>system of record</em>. The order still fulfills, the service still provisions, and the invoice still posts in <strong>other systems reached by integration</strong> — and at that moment of action, in those systems, the CRM's governance does not run.</p>
+<p>That is the seam. Revenue is <em>forecast</em> in the pipeline and only <em>realized</em> downstream in quote-to-cash and order-to-fulfill. The CRM records the win and hands a re-keyed copy to a separate billing system and a separate fulfillment system. The order is re-entered. The subscription is stood up in another tool. The invoice posts in the ledger. Every copy is a place for the number to drift, and every seam is a place where governance was declared but is not enforced.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE COST LIVES IN THE SEAM</div>
+<div class="fade-in">
+<p>Walk one deal across the seam. <em>The figures here are illustrative and modeled — not measured results.</em> A closed-won subscription is marked won on Tuesday. An order-entry specialist re-keys the configured products into the order system on Thursday — line items, terms, and discount schedule transcribed by hand. A provisioning ticket opens in a fourth system, where a human reads the quote and sets entitlements. Billing stands up the subscription and cuts the first invoice — except the discount schedule was transcribed one field off, so the invoice is wrong, the customer disputes it, and <strong>days-sales-outstanding climbs while the dispute ages</strong>. Revenue recognition waits on a fulfillment confirmation that lives in yet another system. By renewal, no single place can say whether the customer ever received what they bought.</p>
+<p>Now model the re-key tax conservatively: a handful of manual transcriptions per order, each with a small but non-zero error rate, multiplied across every deal you close in a year. The damage is not one large number — it is <strong>thousands of small ones</strong>: the specialist's time, the correction cycles, the disputed invoices, the delayed cash, the renewal that slips because the service was never clean. No pipeline stage can see a cent of it, because the pipeline ended at won. This is the closed-won cliff: the drop between the number you forecast and the number you actually collect, hidden in a handoff no sales metric is instrumented to watch.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Left: a CRM system of record with an agent acting on the record, handing re-keyed copies across a dashed governance boundary to separate order, billing, fulfillment and support systems. Right: the same lifecycle running as one governed workflow on a single fabric, from won to order to bill to collect to serve to renew, with inline approvals and one immutable audit.">
+  <defs>
+    <marker id="cwarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor" stroke="none"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="24" font-size="12" font-weight="600" fill="currentColor" stroke="none">SYSTEM OF RECORD &#8594; HANDOFF</text>
+
+  <rect x="28" y="42" width="150" height="150" rx="10" opacity="0.9"/>
+  <text x="38" y="64" font-size="12" font-weight="600" fill="currentColor" stroke="none">CRM record</text>
+  <rect x="38" y="76" width="60" height="20" rx="4" opacity="0.5"/>
+  <text x="46" y="90" font-size="9" fill="currentColor" stroke="none">Deal</text>
+  <rect x="106" y="76" width="62" height="20" rx="4" opacity="0.5"/>
+  <text x="114" y="90" font-size="9" fill="currentColor" stroke="none">Case</text>
+  <rect x="38" y="102" width="60" height="20" rx="4" opacity="0.5"/>
+  <text x="46" y="116" font-size="9" fill="currentColor" stroke="none">Activity</text>
+  <rect x="106" y="102" width="62" height="20" rx="4" opacity="0.5"/>
+  <text x="114" y="116" font-size="9" fill="currentColor" stroke="none">Pipeline</text>
+
+  <circle cx="70" cy="160" r="16" opacity="0.9"/>
+  <text x="70" y="163" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Agent</text>
+  <path d="M86 154 C 120 146, 122 130, 150 126" opacity="0.8" marker-end="url(#cwarrow)"/>
+  <text x="96" y="186" font-size="8" fill="currentColor" stroke="none" opacity="0.8">acts ON the record</text>
+
+  <line x1="210" y1="32" x2="210" y2="300" stroke-dasharray="5 5" opacity="0.6"/>
+  <text x="130" y="300" font-size="8" fill="currentColor" stroke="none" opacity="0.7">governance stops at the seam</text>
+
+  <rect x="238" y="50" width="120" height="34" rx="6" stroke-dasharray="3 3" opacity="0.7"/>
+  <text x="248" y="71" font-size="10" fill="currentColor" stroke="none">Order</text>
+  <rect x="238" y="92" width="120" height="34" rx="6" stroke-dasharray="3 3" opacity="0.7"/>
+  <text x="248" y="113" font-size="10" fill="currentColor" stroke="none">Billing</text>
+  <rect x="238" y="134" width="120" height="34" rx="6" stroke-dasharray="3 3" opacity="0.7"/>
+  <text x="248" y="155" font-size="10" fill="currentColor" stroke="none">Fulfillment</text>
+  <rect x="238" y="176" width="120" height="34" rx="6" stroke-dasharray="3 3" opacity="0.7"/>
+  <text x="248" y="197" font-size="10" fill="currentColor" stroke="none">Support</text>
+
+  <path d="M178 94 L236 67" stroke-dasharray="4 4" opacity="0.55" marker-end="url(#cwarrow)"/>
+  <path d="M178 110 L236 109" stroke-dasharray="4 4" opacity="0.55" marker-end="url(#cwarrow)"/>
+  <path d="M178 126 L236 151" stroke-dasharray="4 4" opacity="0.55" marker-end="url(#cwarrow)"/>
+  <path d="M178 146 L236 193" stroke-dasharray="4 4" opacity="0.55" marker-end="url(#cwarrow)"/>
+  <text x="250" y="228" font-size="8" fill="currentColor" stroke="none" opacity="0.7">re-keyed handoff</text>
+
+  <circle cx="400" cy="160" r="15" opacity="0.9"/>
+  <text x="400" y="164" font-size="10" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none">vs</text>
+
+  <text x="440" y="24" font-size="12" font-weight="600" fill="currentColor" stroke="none">ONE GOVERNED WORKFLOW &#183; ONE FABRIC</text>
+  <rect x="440" y="42" width="336" height="200" rx="12" opacity="0.9"/>
+  <text x="452" y="64" font-size="10" fill="currentColor" stroke="none" opacity="0.85">closed-won = workflow event</text>
+  <text x="452" y="94" font-size="8" fill="currentColor" stroke="none" opacity="0.75">approvals &#183; entitlements &#183; SoD — inline</text>
+
+  <path d="M483 120 L513 120" opacity="0.8" marker-end="url(#cwarrow)"/>
+  <path d="M539 120 L569 120" opacity="0.8" marker-end="url(#cwarrow)"/>
+  <path d="M595 120 L625 120" opacity="0.8" marker-end="url(#cwarrow)"/>
+  <path d="M651 120 L681 120" opacity="0.8" marker-end="url(#cwarrow)"/>
+  <path d="M707 120 L737 120" opacity="0.8" marker-end="url(#cwarrow)"/>
+
+  <circle cx="470" cy="120" r="13" opacity="0.9"/>
+  <circle cx="526" cy="120" r="13" opacity="0.9"/>
+  <circle cx="582" cy="120" r="13" opacity="0.9"/>
+  <circle cx="638" cy="120" r="13" opacity="0.9"/>
+  <circle cx="694" cy="120" r="13" opacity="0.9"/>
+  <circle cx="750" cy="120" r="13" opacity="0.9"/>
+
+  <text x="470" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Won</text>
+  <text x="526" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Order</text>
+  <text x="582" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Bill</text>
+  <text x="638" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Collect</text>
+  <text x="694" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Serve</text>
+  <text x="750" y="152" font-size="8" text-anchor="middle" fill="currentColor" stroke="none">Renew</text>
+
+  <rect x="452" y="188" width="312" height="26" rx="6" opacity="0.5"/>
+  <text x="608" y="205" font-size="9" text-anchor="middle" fill="currentColor" stroke="none">one immutable per-action audit</text>
+  <text x="452" y="234" font-size="8" fill="currentColor" stroke="none" opacity="0.75">record + fulfillment = one thread, run by governed Connectors</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">WHAT "WON" SHOULD INSTANTIATE</div>
+<div class="fade-in">
+<p>The fix is not a better handoff. It is refusing to hand off at all. On a composable process fabric, <strong>closed-won stops being a status change and becomes a workflow event</strong>. The same instant that once produced a read-only opportunity now instantiates one governed Deterministic Workflow that spans CRM, Orders, the Plans &amp; Products Catalog, Subscribers, billing, and fulfillment — on one runtime, over the same objects, with no re-key between them.</p>
+<p>Because these are the fabric's five primitives working as designed, the governance the CRM could only <em>declare</em> is now <em>enforced</em> where the action actually happens:</p>
+<ul>
+<li><strong>Deterministic Workflows</strong> carry approvals, entitlements, and separation-of-duties <em>inline</em> — checked in the thread itself, not re-implemented and hoped-for in each downstream tool.</li>
+<li><strong>Atomic Agents</strong> execute the steps — configure the order, set entitlements, draft the invoice — with human-in-the-loop as a first-class pause-before-commit, not a review bolted on after the fact.</li>
+<li><strong>Connectors</strong>, the only primitive that touches external systems, do the actual fulfillment against your existing billing and provisioning estate.</li>
+</ul>
+<p>Be precise about that last point: <strong>this is not a zero-integration claim</strong>. ES runs over the estate you already have, through governed Connectors. The difference is architectural — the record and the fulfillment are <em>one thread under one runtime</em>, rather than two systems bridged by a copy. Every step lands in a single immutable per-action audit, so "who approved this, on what entitlement, against which record" is a fact you can read, not a reconstruction you have to assemble.</p>
+<p>Illustratively, the won event now produces a live instance rather than a closed file: order captured, entitlements set, invoice posted, cash applied, service confirmed, renewal armed — each step governed inline. And <strong>customer health stops being a survey score and becomes live process state</strong>. Is this account's order-to-cash thread clean, or stalled at a disputed invoice? That is something the fabric computes because it is <em>running</em> the process — not a sentiment it infers after the fact.</p>
+</div>
+
+<div class="section-label fade-in">FROM WIN-RATE THEATER TO PROCESS TELEMETRY</div>
+<div class="fade-in">
+<p>Win rate, velocity, and coverage measure the sell. They say nothing about whether the sold thing was delivered, billed correctly, and paid — the events that decide whether a "win" becomes cash or a write-off. When closed-won instantiates the process, you can finally instrument the half of the lifecycle that moves the money, because the fabric owns those numbers by construction: it can report them because it <em>runs</em> the process they describe.</p>
+<ul>
+<li><strong>Order-to-cash cycle time</strong> — days from won to cash applied, as one measured thread rather than a guess stitched across four systems.</li>
+<li><strong>Straight-through-processing rate</strong> — the share of orders that flow won-to-fulfilled with zero human re-key.</li>
+<li><strong>Invoice accuracy and first-time-fix</strong> — first invoice correct, first service request resolved without a swivel-chair.</li>
+<li><strong>Days-sales-outstanding</strong> — read from live process state, not reconstructed from the ledger a month later.</li>
+<li><strong>Renewal and expansion capture</strong> — armed as a workflow the moment the deal is won, not chased as an afterthought at term.</li>
+</ul>
+<p>These are not vanity metrics dressed in operational language. They are telemetry from a process that actually executes end to end — which is precisely why a CRM whose scope ends at won cannot produce them, and a fabric that runs the whole lifecycle can. The win rate tells you the race is over. The process tells you whether you got paid for it.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>"Won" is not a finish line. It is a promise to deliver — and the promise is where your revenue actually lives or leaks.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

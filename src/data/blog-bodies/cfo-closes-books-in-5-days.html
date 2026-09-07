@@ -1,0 +1,57 @@
+
+  <div class="stat-row fade-in">
+  <div class="stat-box"><div class="stat-num">22</div><div class="stat-lbl">Days to close books</div></div>
+  <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Days with unified ops</div></div>
+  <div class="stat-box"><div class="stat-num">$2.1M</div><div class="stat-lbl">Wasted annually in labor</div></div>
+</div>
+
+<div class="hook fade-in">Every finance leader knows the ritual. Quarter-end comes, the clock starts, and your most senior people vanish into a reconciliation black hole for three weeks. Nobody talks about why: <strong>the systems were never designed to close together.</strong></div>
+
+  <div class="section-label fade-in">The Scene</div>
+  <div class="fade-in"><p>It's day 14 of the period-end close. Your Controller has been in the office since 6 AM, manually reconciling inter-company eliminations across three ERPs. The AP team is still waiting for a vendor confirmation that's been "in someone's inbox" since day 3. A journal entry from the European subsidiary has a transposition error: €2.3M posted to the wrong cost center.</p>
+<p>The error doesn't get caught until day 18. By then you're re-running consolidation, the audit partner is waiting, the board meeting's in four days, and your team is running on caffeine and prayer.</p>
+<p>And none of that is unusual. <mark class="hl"><strong>It happens every quarter.</strong></mark></p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <img src="/blog-assets/1460925895917-afdab827c52f.jpg" alt="Team working late on financial reports" loading="lazy">
+  </div>
+
+  <div class="section-label fade-in">The Cascade</div>
+  <div class="fade-in"><p>What looks like a 22-day close is actually four architectural gaps stacked together, each one forcing manual work the system should be doing:</p>
+<ul>
+<li><strong>Sub-ledgers don't reconcile automatically.</strong> GL, AR, and AP run in separate systems with different chart-of-accounts structures. Reconciliation happens in spreadsheets, by hand.</li>
+<li><strong>Inter-company eliminations are manual.</strong> Each entity has its own ERP instance, so there's no shared transaction layer to net positions against each other without someone keying it in.</li>
+<li><strong>Validation happens at the wrong point.</strong> Errors get caught at consolidation, not at entry. A mistake at step 3 becomes a full re-run at step 18.</li>
+<li><strong>Audit evidence is assembled after the fact.</strong> The close process doesn't produce compliance artifacts as it runs, so someone has to go back and reconstruct them for the auditors.</li>
+</ul>
+<p>The bottleneck isn't the team. It's the architecture forcing them to do work the system should have handled.</p></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Shift</div>
+  <div class="fade-in"><p>Picture the opposite. GL, AR, AP, Fixed Assets, and Cash Management all operating on <strong>one unified financial engine</strong>, with a single chart of accounts and a shared transaction layer feeding one audit trail.</p>
+<p>Your controller stops hand-matching inter-company entries, because both entities write to the same data foundation. When someone fat-fingers a journal entry, it gets flagged the same hour instead of showing up on day 18 when it's already too late to fix cleanly.</p>
+<p>Multi-company, multi-currency consolidation now runs on live transactions. The export-and-reconcile pattern goes away.</p>
+<p>The audit trail stops being a deliverable your team has to assemble. It writes itself as postings, adjustments, and approvals move through the workflow.</p></div>
+
+  <div class="section-label fade-in">The Result</div>
+  <div class="fade-in"><p>Nobody's spending 22 days on actual accounting. Most of the calendar goes to <strong>rebuilding connective tissue between systems that should have been connected from the start</strong>.</p>
+<p>Remove that burden and the same team, doing the same work, closes in five days. It isn't that they're working faster; most of the old workflow simply stops being necessary.</p></div>
+
+  <div class="insight fade-in">
+    <span class="insight-label">Key Insight</span>
+    The problem sits below the people and the processes. It's in the architecture that forces manual reconciliation across disconnected systems. A unified data foundation closes the gap by making most of the old workflow unnecessary in the first place.
+  </div>
+
+  <div class="closing fade-in">
+    <blockquote>Your finance team is plenty capable. The question is whether your systems are worthy of them.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h3>See what this looks like in practice.</h3>
+    <p>A strategic conversation about how the enterprise could operate<br>when every system shares one intelligence. No demo required.</p>
+    <a href="https://enterprisesingularity.com/#cta" class="cta-btn">
+      Start the Conversation
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+    </a>
+  </div>

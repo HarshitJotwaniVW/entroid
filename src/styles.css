@@ -1,0 +1,5858 @@
+/* ============================================================================
+   Entroid — homepage (website-v3)
+   Premium enterprise design language: large whitespace, minimal palette,
+   executive typography, card layouts, alternating white / light-grey sections,
+   subtle reveal animations. Design-forward but restrained.
+   ========================================================================== */
+
+:root {
+  --ink: #0a0f1f;
+  /* near-black headings */
+  --text: #232b3b;
+  /* body */
+  --muted: #5b6576;
+  /* secondary */
+  --faint: #8a93a3;
+  /* tertiary / labels */
+  --line: #e7e9f0;
+  /* borders */
+  --bg: #ffffff;
+  --bg-alt: #f6f7f9;
+  /* alternating section */
+  --bg-ink: #0a0f1f;
+  /* dark sections (hero, final) */
+  --brand: #3b40d6;
+  /* single accent */
+  --brand-2: #6a5cf0;
+  --brand-soft: #eef0fe;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  /* Cards take a deeper corner than panels do, plus their own hairline and a
+     soft, tightly-inset drop shadow. */
+  --radius-card: 18px;
+  --card-line: #f1f1f5;
+  --shadow-card: 0 12px 30px -16px rgba(35, 36, 38, .12);
+  --container: 1200px;
+  --shadow: 0 1px 2px rgba(10, 15, 31, .04), 0 8px 30px rgba(10, 15, 31, .05);
+  --shadow-lg: 0 20px 60px rgba(10, 15, 31, .12);
+  --font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Type roles. Whatever you put first here must also be added to the Google
+     Fonts <link> in index.html, or it silently falls back.
+     The generic family goes last — it always matches, so anything listed after
+     it can never be reached. */
+  --font-heading: 'Anta', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-caption: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+/* Headings take --font-heading. Declaring it on the elements themselves (rather
+   than on each BEM class) means it also reaches headings inside the blog
+   article bodies, which arrive as raw HTML. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* ── Captions ─────────────────────────────────────────────────
+   The small supporting type: section eyebrows, uppercase labels, step numbers,
+   badges and meta lines (read time, counts, crumbs, disclaimers). These run in
+   JetBrains Mono.
+
+   A few of these are h2/h4 elements (.faqgroup__title, .gloss__h's siblings,
+   the footer column headings) — they're headings semantically but read as
+   labels, so the class wins over the h1-h6 rule above by specificity.
+
+   Deliberately excluded: the infographic internals (.imf__*, .pig__*,
+   .converge__*, .foundation__*). Those are dense diagrams on tight grids and a
+   wider monospace face pushes their labels out of shape. */
+.hero__eyebrow,
+.section__label,
+.final__label,
+.phero__eyebrow,
+.modsec__eyebrow,
+.modsec__num,
+.modsec__panelLabel,
+.whead__label,
+.soon__eyebrow,
+.soon__badge,
+.uc__theme,
+.ucd__stepNum,
+.ucd__sideLabel,
+.ucd__outcomeLabel,
+.journeyx__num,
+.faqgroup__title,
+.kpi__prefix,
+.mega__title,
+.mscreen__live,
+.mscreen__kpiL,
+.mviz__cap,
+.pstrip__label,
+.proof__disclaimer,
+.footer__col h4,
+.footer__bottom,
+.blogselect__label,
+.blogcard__cat,
+.blogcard__meta,
+.bloghero__count,
+.bpost__crumb,
+.bpost__meta {
+  font-family: var(--font-caption);
+  /* Monospace already carries generous side bearings, so the wide tracking
+     these were given for Inter reads as broken-apart in mono. */
+  letter-spacing: .08em;
+  font-synthesis-weight: none;
+}
+
+/* Meta lines are sentence case, not tracked-out labels — no extra tracking. */
+.proof__disclaimer,
+.footer__bottom,
+.blogcard__meta,
+.bloghero__count,
+.bpost__crumb,
+.bpost__meta,
+.mviz__cap,
+.mscreen__kpiL,
+.pstrip__label {
+  letter-spacing: 0;
+}
+
+/* Form controls don't inherit font-family — browsers force their own UA font
+   (Arial, in Chrome), so without this every button, the blog topic <select>
+   and the glossary search box render in a different typeface to the page. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Full-bleed frame shared by nav, hero and every section, so all rows align to
+   the same left/right edges (matches the hero). Side padding == hero padding. */
+/* THE PAGE GUTTER. Every content edge on the page resolves to this, so the
+   header, the sections and the inset plates all line up on one vertical.
+   Inset plates (the dark bands, the CTA) split it: --plate-inset goes to the
+   plate's own margin and the remainder to the container inside it, so the sum
+   is still exactly one gutter. */
+:root {
+  --gutter: clamp(22px, 2.2vw, 40px);
+  --plate-inset: 14px;
+  /* 12px padding + 52px capsule + 12px padding. The hero offsets itself by
+     this to sit behind the header. */
+  --nav-h: 76px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ── Top navigation ──────────────────────────────────────────── */
+/* A FLOATING PILL, NOT A FULL-BLEED BAR. The header used to be an edge-to-edge
+   white strip with a hairline under it; it is now a rounded capsule inset from
+   both sides, so the page reads as scrolling UNDER a control rather than
+   beneath a fixed chrome band.
+
+   The outer element keeps `position: sticky` and stays in flow, which is what
+   makes this a purely visual change: the hero still starts below the header and
+   its `100vh - 68px` height calculation is untouched. The outer is transparent
+   and only supplies the gap around the capsule. */
+/* A plain bar rather than a floating capsule: the brand sits on the left, the
+   menu is grouped into its own pill in the middle, and the actions sit right.
+
+   It hides on the way down and comes back on the way up (see `Nav` in
+   Site.jsx). The transform is what moves it, so the bar never takes part in
+   layout and nothing below it shifts as it goes. */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px var(--gutter);
+  /* Transparent at rest, so the hero photograph runs right through it. */
+  background: transparent;
+  transition:
+    transform .32s cubic-bezier(.22, .8, .3, 1),
+    background .28s ease;
+}
+
+/* Once the page has moved, a white fade: fully opaque along the top edge and
+   clear by the bottom, so the bar reads over whatever scrolls beneath it
+   without drawing a hard line across the page. */
+.nav--scrolled {
+  background: #fff;
+  border-bottom: 1px solid var(--card-line);
+}
+
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 52px;
+  padding: 0;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+}
+
+/* The supplied lockup is 1705x356 — a 4.8:1 horizontal ratio, so height is what
+   costs width here. 26px of height sets it 125px wide, which leaves the menu
+   its full row at the widths the menu is shown at. */
+.nav__logo {
+  display: block;
+  height: 26px;
+  width: auto;
+  transition: opacity .2s ease;
+}
+
+.nav__brand:hover .nav__logo {
+  opacity: .78;
+}
+
+/* The mark alone, for the footer, where the lockup's near-black wordmark would
+   disappear into the ink ground. */
+.brandmark {
+  display: block;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.footer__logo {
+  width: 26px;
+  height: 26px;
+}
+
+/* The pill shape comes from `.btn` now; this only sizes the CTA for the row. */
+.nav__cta {
+  flex: none;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  white-space: nowrap;
+  background: var(--brand);
+  box-shadow: 0 6px 20px rgba(59, 64, 214, .28);
+}
+
+.nav__cta:hover {
+  box-shadow: 0 10px 26px rgba(59, 64, 214, .36);
+}
+
+/* Menu bar */
+/* CENTRED. `flex: 1` makes the menu the only element that absorbs the row's
+   slack, so the brand stays hard left and the CTA hard right while the items
+   centre themselves in what is left between them. The brand lockup and the CTA
+   are close enough in width that this reads as centred on the capsule. */
+/* The grouped pill. `flex: 1` on the list would stretch the pill across the
+   bar, so the centring is done by the auto margins instead and the pill stays
+   only as wide as its items. */
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 4px;
+  border-radius: 999px;
+  background: #f1f1f4;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 13px;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: color .15s, background .15s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Inside a grey pill, the current item reads as a white chip lifted out of it
+   rather than a tinted one sunk into it. */
+.nav__top:hover {
+  color: var(--ink);
+}
+
+.nav__top.is-open {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(10, 15, 31, .06), 0 4px 10px rgba(10, 15, 31, .05);
+}
+
+.nav__caret {
+  width: 13px;
+  height: 13px;
+  opacity: .55;
+}
+
+@media (max-width: 1040px) {
+  .nav__menu {
+    display: none;
+  }
+}
+
+/* ── Menu panels ──────────────────────────────────────────────
+   One visual language for both the wide Product mega panel and the compact
+   Industries / Resources dropdowns: a floating white card holding tiles, each
+   an icon in a tinted square beside a name and a supporting line. */
+
+/* The tile. */
+.navcard {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background .16s ease;
+}
+
+a.navcard:hover {
+  background: var(--bg-alt);
+}
+
+/* Items with no destination yet: styled identically, but inert. */
+.navcard--dead {
+  cursor: default;
+}
+
+/* The tile behind a menu glyph is artwork, not a colour swatch: a drawn base
+   (public/logos/icon-base.svg) of nested rounded squares and dashed guides.
+   It stays constant; only the glyph on top changes colour, from ink at rest to
+   brand purple on hover. 36px matches the artwork's own viewBox 1:1. */
+.navcard__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  background: url('/logos/icon-base.svg') center / 36px 36px no-repeat;
+  color: var(--ink);
+  transition: color .16s ease;
+}
+
+a.navcard:hover .navcard__icon {
+  color: var(--brand);
+}
+
+.navcard__text {
+  display: block;
+  min-width: 0;
+}
+
+.navcard__name {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -.005em;
+}
+
+.navcard__desc {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.42;
+  margin-top: 2px;
+}
+
+/* A tile with no supporting line centres its icon against the single row. */
+.navcard--simple {
+  align-items: center;
+}
+
+.navcard--simple .navcard__name {
+  font-weight: 550;
+}
+
+/* ── Dropdown (Industries, Resources) ───────────────────────── */
+/* Centred under its menu item rather than left-aligned to it — the menu itself
+   is centred now, so a left-hung panel pulls visibly off-axis. */
+.drop {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 12px;
+  z-index: 60;
+  min-width: 290px;
+}
+
+/* Bridges the gap between the trigger and the panel, so travelling the cursor
+   down to the panel doesn't cross a dead strip and close it. */
+.drop::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.drop ul {
+  list-style: none;
+}
+
+.drop--wide ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 12px;
+  min-width: 580px;
+}
+
+/* ── Mega panel (Product) ───────────────────────────────────── */
+/* The row is full-bleed and transparent; the card inside it carries the page
+   container's width, so the panel lines up with the nav capsule above it. */
+.mega {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  padding: 0 clamp(22px, 2.2vw, 40px);
+}
+
+.mega::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+/* Group menu, item list, rail. Narrower than the page: with the items in one
+   vertical column the panel needs nowhere near the full container width, and a
+   panel that stops short of the edges reads as a menu rather than a takeover. */
+.mega__card {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) minmax(0, 300px);
+  gap: 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 24px 26px 26px;
+}
+
+/* ── The group menu ──────────────────────────────────────────── */
+.mega__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid var(--line);
+  padding-right: 22px;
+}
+
+.mega__navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  transition: background .16s ease, color .16s ease;
+}
+
+.mega__navItem svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  /* The caret points down in the nav bar; here it points into the panel. */
+  transform: rotate(-90deg);
+  transition: opacity .16s ease;
+}
+
+.mega__navItem:hover {
+  background: var(--bg-alt);
+}
+
+.mega__navItem.is-active {
+  background: #f0f0fb;
+  color: var(--brand);
+}
+
+.mega__navItem.is-active svg {
+  opacity: 1;
+}
+
+/* ── The item panes ──────────────────────────────────────────── */
+/* All panes share one grid cell; only the active one shows, so every product
+   link stays in the DOM and the panel never changes width between groups. */
+.mega__panes {
+  display: grid;
+  min-width: 0;
+}
+
+.mega__pane {
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+
+.mega__pane.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mega__paneLink {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.mega__paneLink:hover {
+  text-decoration: underline;
+}
+
+/* Same heading for a group with no page of its own: a label, not a link. */
+.mega__paneLabel {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* One vertical column, which is what lets the panel be narrow. The largest
+   group has seven items, so a single column still fits without scrolling. */
+.mega__items {
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  align-content: start;
+}
+
+@media (max-width: 1120px) {
+  .mega__card {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .mega__aside {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The aside: Functions and Engineering, always on show. Tinted so it reads as a
+   different kind of thing from the rail-driven groups on the left. */
+.mega__aside {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-content: start;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #fcf6f4;
+}
+
+.mega__asideCol {
+  min-width: 0;
+}
+
+.mega__aside ul {
+  list-style: none;
+}
+
+.mega__railTitle {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  color: var(--faint);
+  margin-bottom: 10px;
+}
+
+.mega__railLink {
+  display: block;
+  padding: 6px 0;
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--text);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+
+.mega__railLink:hover {
+  color: var(--brand);
+}
+
+@media (max-width: 1240px) {
+  .mega__groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mega__card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mega__aside {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+/* FULLY ROUNDED, everywhere. The pill is the button shape for this site — the
+   nav CTA already used it, and `.nav__cta` no longer needs to override. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: transform .12s ease, box-shadow .2s, background .2s, color .2s;
+}
+
+/* Label, then a circular arrow badge inset into the pill's right end. The
+   extra right padding is what leaves the badge room without crowding it. */
+.btn--arrow {
+  padding: 7px 7px 7px 20px;
+  gap: 16px;
+}
+
+.btn__arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  transition: transform .18s ease;
+}
+
+/* On a light button the badge inverts, otherwise it is white on white and
+   disappears. Same shape as the dark button, read the other way round. */
+.btn--onDark .btn__arrow {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn__arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn--arrow:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(10, 15, 31, .16);
+}
+
+.btn--dark--bg {
+  background: #fff;
+  color: var(--brand);
+  box-shadow: 0 6px 20px rgba(59, 64, 214, .28);
+}
+
+.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(10, 15, 31, .22);
+  background-color: #5f49e6;
+}
+
+/* The secondary CTA: white, not transparent. On the white pages that reads the
+   same as before, but over the product hero's gradient and pattern it holds
+   its own shape instead of letting the ground through. */
+.btn--ghost {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn--ghost:hover {
+  border-color: #c9cede;
+}
+
+.btn--sm {
+  padding: 10px 16px;
+  font-size: 13.5px;
+}
+
+.btn--onDark {
+  background: #fff;
+  color: var(--ink);
+}
+
+.btn--onDark:hover {
+  transform: translateY(-1px);
+}
+
+.btn--ghostDark {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.btn--ghostDark:hover {
+  border-color: rgba(255, 255, 255, .6);
+}
+
+/* ── Hero ────────────────────────────────────────────────────── */
+/* WHITE, and continuous with the header. The nav capsule floats on a
+   transparent `.nav`, so the strip behind it is whatever the hero is — an ink
+   hero left a white band across the top of every page. Same ground on both
+   sides of that line, and the seam disappears. */
+.hero {
+  position: relative;
+  background: var(--bg) url('/bg/home-hero-bg.webp') center / cover no-repeat;
+  color: var(--text);
+  overflow: hidden;
+  /* Pulled up under the fixed-height header and padded back down, so the
+     photograph runs behind the header while the content still clears it. */
+  margin-top: calc(-1 * var(--nav-h));
+  padding-top: var(--nav-h);
+}
+
+/* Horizontal hero: 40% text / 60% focal architecture image. The dark ground
+   stays full-bleed (that's .hero), but the content inside keeps the shared
+   .container max-width so the copy starts on the same line as the nav logo and
+   the image ends on the same line as the nav CTA. */
+.hero__inner {
+  position: relative;
+  /* Above the vortex field and the ::before wash. */
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+  min-height: calc(100vh - var(--nav-h));
+  padding: 40px clamp(22px, 2.2vw, 40px) 48px;
+}
+
+.hero__lead {
+  text-align: left;
+}
+
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 15px;
+}
+
+.hero__headline {
+  font-size: clamp(56px, 2.4vw, 64px);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.hero__description {
+  font-size: 14.5px;
+  line-height: 1.64;
+  color: var(--muted);
+  margin: 0 0 28px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.hero__figure {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/* Placeholder for the hero artwork. Holds a 4:3 block at the width the image
+   will occupy, so dropping `hero.image` into content.js shifts no layout. */
+.heromedia {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  background: var(--bg-alt);
+  border: 1px dashed #d5d9e4;
+}
+
+.heromedia__label {
+  font-family: var(--font-caption);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* The artwork is a near-square stack diagram, so it keeps its own proportions
+   rather than being forced into the placeholder's 4:3 box. The rounding matches
+   the placeholder it replaced. */
+/* Height is capped against the viewport: at full column width this diagram is
+   taller than a laptop screen and ran off the fold. Capping the height and
+   letting the width follow keeps the whole stack visible. */
+.heromedia__img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(72vh, 720px);
+  margin-inline: auto;
+  border-radius: 16px;
+}
+
+@media (max-width: 960px) {
+
+  /* Keep the shared horizontal padding when the hero stacks, so the copy stays
+     on the nav's left edge instead of running to the screen edge. */
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 46px clamp(22px, 2.2vw, 40px) 54px;
+  }
+
+  .hero__lead {
+    text-align: center;
+  }
+
+  .hero__ctas {
+    justify-content: center;
+  }
+
+  .hero__figure {
+    justify-content: center;
+  }
+}
+
+/* ── Section shell ───────────────────────────────────────────── */
+.section {
+  padding: clamp(72px, 9vw, 116px) 0;
+  /* Every section is white; a hairline rule is what separates them now, in
+     place of the alternating white / light-grey fills. */
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  scroll-margin-top: 84px;
+}
+
+/* Kept as a hook (plenty of markup still sets it) but no longer a fill. */
+.section--alt {
+  background: var(--bg);
+}
+
+/* A warm tinted band, set per section via `surface: 'warm'` in content.js. It
+   carries a bottom rule of its own: the shared divider sits on `.section`'s
+   top edge, which would leave the tint's lower edge undivided. */
+.section--warm {
+  background: #fcf6f4;
+  border-bottom: 1px solid var(--line);
+}
+
+.section__head {
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
+/* Centred section intro: caption, heading, then the description directly
+   below it, the whole block centred in a readable measure. */
+.section__head--split {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: clamp(40px, 4.5vw, 60px);
+  text-align: center;
+}
+
+.section__headRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.section__head--split .section__heading {
+  margin-bottom: 0;
+}
+
+.section__head--split .section__para {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--muted);
+}
+
+.section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 16px;
+}
+
+.section__heading {
+  /* font-size: clamp(27px, 3.2vw, 40px); */
+  font-size: clamp(32px, 3.2vw, 56px) !important;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.section__para {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  font-weight: 350;
+}
+
+.section__body {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.section__body--reverse .section__visual {
+  order: -1;
+}
+
+/* The foundation stack should fill the height of the card grid beside it. */
+.section__body:has(.foundation) {
+  align-items: stretch;
+}
+
+@media (max-width: 940px) {
+  .section__body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .section__body--reverse .section__visual {
+    order: 0;
+  }
+}
+
+/* ── Capability cards ────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  transition: transform .18s ease, border-color .2s;
+}
+
+.card:hover {
+  /* transition: transform 0.3s; */
+  /* border-color: #d4d4d8; */
+  box-shadow: 0 12px 30px -12px rgba(35, 36, 38, 0.22);
+  
+}
+
+
+
+/* The glyph carries itself: no tile, no tint, just a larger mark in the
+   heading ink at a regular stroke weight. */
+.card__icon {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.card__icon svg {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.5;
+}
+
+.card__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+
+.card__text {
+  font-size: 13.8px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Full-width card grid (sections without a side visual) */
+.cards--wide {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .cards--wide {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .cards--wide {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Dark sections ───────────────────────────────────────────── */
+/* An inked band that breaks up the run of white sections. Everything inside
+   re-colours from one place: the section sets its own local values for the ink,
+   text, muted and line tokens, and the components that already read those
+   tokens follow automatically. Only the surfaces that hard-code #fff need
+   naming below. */
+.section--dark {
+  --ink: #ffffff;
+  --text: #ddd8ea;
+  --muted: #a79dbe;
+  --faint: #8c82a6;
+  --line: rgba(255, 255, 255, .16);
+  --card-line: rgba(255, 255, 255, .14);
+  --shadow-card: 0 12px 30px -16px rgba(0, 0, 0, .55);
+  background-color: #281647;
+  color: var(--text);
+  /* Curved, so the band reads as a plate laid on the page rather than a
+     full-bleed stripe. The corners show the white page behind them, so the
+     rule that divides the white sections would cut across them: dropped. */
+  border-top: 0;
+  border-radius: clamp(24px, 3vw, 44px);
+  /* Inset from the page edges, like the closing CTA plate. */
+  /* margin-inline: var(--plate-inset); */
+}
+
+/* The plate is already inset, so its container gives back the difference and
+   the copy inside lands on the same vertical as every other section. */
+.section--dark>.container,
+.final>.container {
+  padding-inline: calc(var(--gutter) - var(--plate-inset));
+}
+
+/* Two dark sections in a row would show a seam of white between their curves;
+   butt them together into one plate instead. */
+.section--dark+.section--dark {
+  /* margin-top: calc(-1 * clamp(40px, 3vw, 56px));
+  padding-top: clamp(40px, 3vw, 56px); */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.section--dark:has(+.section--dark) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* The eyebrow is brand purple on white, which goes muddy on ink. */
+.section--dark .section__label {
+  color: #9d9ffb;
+}
+
+/* Cards become a lifted surface rather than a white panel. */
+/* `background-color`, not the shorthand: a card may carry its own artwork as a
+   background image (the bento tiles do), and the shorthand would reset it. */
+.section--dark .card {
+  background-color: rgba(255, 255, 255, .045);
+  border-color: var(--card-line);
+}
+
+.section--dark .card:hover {
+  background-color: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .22);
+}
+
+.section--dark .card__icon {
+  color: #ffffff;
+}
+
+/* The drawn visuals sit on a white panel by default; on ink they take the same
+   translucent surface as the cards, and their dot grid is inverted. */
+.section--dark .section .section__visual.visual,
+.section--dark .section__visual.visual {
+  background: rgba(255, 255, 255, .045);
+  border-color: var(--card-line);
+  box-shadow: none;
+}
+
+.section--dark .section__visual.visual::before {
+  background-image: radial-gradient(rgba(255, 255, 255, .09) 1.1px, transparent 1.1px);
+}
+
+/* A photographic infographic keeps its own light artwork, so it gets a plate
+   to sit on rather than being inverted. */
+.section--dark .pig__img,
+.section--dark .section__img {
+  background: #fff;
+  border-color: var(--card-line);
+}
+
+/* ── Bento grid (section 03) ─────────────────────────────────── */
+/* Twelve columns, three rows. Two tiles run the full height of the top block,
+   one runs across the top of it, and the middle tile sits under that. The
+   bottom row is three tiles of one width. Every tile is placed by hand, so the
+   DOM can stay in reading order.
+
+     a  b  b  c
+     a  ██ ██ c      ██ = the middle tile, artwork only
+     d  d  e  f      (d, e and f at one width)
+
+   The column count is twelve rather than four so the top block can sit on
+   quarters while the bottom row sits on thirds.
+   ========================================================================== */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: minmax(200px, auto) minmax(200px, auto) minmax(232px, auto);
+  gap: 14px;
+}
+
+.bento__cell--a {
+  grid-area: 1 / 1 / 3 / 4;
+}
+
+.bento__cell--b {
+  grid-area: 1 / 4 / 2 / 10;
+}
+
+.bento__cell--c {
+  grid-area: 1 / 10 / 3 / 13;
+}
+
+.bento__cell--mid {
+  grid-area: 2 / 4 / 3 / 10;
+}
+
+.bento__cell--d {
+  grid-area: 3 / 1 / 4 / 5;
+}
+
+.bento__cell--e {
+  grid-area: 3 / 5 / 4 / 9;
+}
+
+.bento__cell--f {
+  grid-area: 3 / 9 / 4 / 13;
+}
+
+/* The photograph is the tile. `cover` keeps each image filling its slot at any
+   viewport; the artwork is a soft duotone texture, so the crop is safe. The
+   card's hairline is dropped: the artwork already gives the tile its edge. */
+.bento__cell {
+  position: relative;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, .045);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* The copy sits over the picture, so it takes a scrim of its own rather than
+   relying on the artwork staying dark where the words fall. Strongest at the
+   top left, where the text is. The middle tile carries no copy, so it is shown
+   unveiled. */
+.bento__cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 10, 24, .82) 0%, rgba(11, 10, 24, .58) 42%, rgba(11, 10, 24, .18) 100%);
+  pointer-events: none;
+}
+
+.bento__cell--mid::before {
+  content: none;
+}
+
+/* Top left, and held to a comfortable measure so the line length stays even
+   across a wide tile and a narrow one alike. */
+.bento__body {
+  position: relative;
+  max-width: 353px;
+  text-align: left;
+}
+
+.bento .card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 1.7vw, 18px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.bento .card__text {
+  color: rgba(255, 255, 255, .78);
+}
+
+/* Below the full grid the hand placement is dropped and the tiles flow: two
+   columns, then one. The middle tile leads, so it still reads as the centre of
+   the set. */
+@media (max-width: 900px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: minmax(260px, auto);
+  }
+
+  .bento__cell {
+    grid-area: auto;
+  }
+
+  .bento__cell--mid {
+    grid-column: 1 / -1;
+    order: -1;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 560px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── The delivery path (section 06) ──────────────────────────── */
+/* A fixed-height diagram rather than a row of chips: this is the section's
+   headline claim, so it gets the weight of a drawn figure. */
+.dpath {
+  position: relative;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(12px, 2vw, 28px);
+  margin-bottom: clamp(28px, 3vw, 44px);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(59, 64, 214, .06), transparent 62%),
+    #fff;
+  box-shadow: var(--shadow-card);
+}
+
+/* The rail the nodes sit on, behind them. */
+.dpath__rail {
+  position: absolute;
+  left: clamp(52px, 12vw, 150px);
+  right: clamp(52px, 12vw, 150px);
+  top: 84px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(59, 64, 214, .18), var(--brand) 50%, rgba(59, 64, 214, .18));
+}
+
+.dpath__steps {
+  list-style: none;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  margin: 0;
+  padding: 0;
+}
+
+.dpath__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 0 6px;
+}
+
+.dpath__node {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--card-line);
+  box-shadow: var(--shadow-card);
+  color: var(--brand);
+}
+
+.dpath__node svg {
+  width: 24px;
+  height: 24px;
+}
+
+.dpath__name {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.dpath__note {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 15ch;
+}
+
+/* The return arc: delivery loops rather than ending. */
+.dpath__loop {
+  position: absolute;
+  left: clamp(52px, 12vw, 150px);
+  right: clamp(52px, 12vw, 150px);
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+}
+
+.dpath__loop svg {
+  width: 100%;
+  height: 22px;
+  overflow: visible;
+}
+
+.dpath__loop path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.dpath__loopLabel {
+  position: absolute;
+  bottom: -4px;
+  padding: 0 10px;
+  background: #fff;
+  font-family: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: 10.5px;
+  color: var(--faint);
+}
+
+@media (max-width: 820px) {
+  .dpath {
+    height: auto;
+    padding: 24px 16px;
+  }
+
+  .dpath__rail,
+  .dpath__loop {
+    display: none;
+  }
+
+  .dpath__steps {
+    grid-auto-flow: row;
+    gap: 18px;
+  }
+}
+
+/* ── "How it works" ──────────────────────────────────────────── */
+/* The visual is a diagram, not a hero image: at full container width it read as
+   a stretched band, so it is capped and centred on the warm ground. */
+.pflow .section__visual {
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+/* ── Callout ─────────────────────────────────────────────────── */
+.callout {
+  margin-top: 34px;
+  border-left: 3px solid var(--brand);
+  background: #fff;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 18px 22px;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+/* ── Visual: flow diagram (vertical) ─────────────────────────── */
+.visual {
+  display: flex;
+  flex-direction: column;
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.flow__node {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-weight: 650;
+  color: var(--ink);
+  font-size: 15px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flow__node b {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-Weight: 500;
+  flex: none;
+}
+
+.flow__node--last {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.flow__node--last b {
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+}
+
+.flow__arrow {
+  width: 1px;
+  height: 26px;
+  background: var(--line);
+  margin: 0 auto;
+  position: relative;
+}
+
+.flow__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #c2c8d6;
+}
+
+/* ── Section: stacked layout (visual band above a wide card grid) */
+.section__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* Section image visual (e.g. section 01 infographic): contained, centred. */
+.section__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+/* Image visual beside a compact card grid, so both read on one screen. */
+.section__imgrow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+}
+
+/* Reversed orientation: cards on the left, image on the right. */
+.section__imgrow--rev {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.section__imgrow--rev .section__imgcards {
+  order: 1;
+}
+
+.section__imgrow--rev .section__imgfig {
+  order: 2;
+}
+
+.section__imgfig {
+  min-width: 0;
+}
+
+.section__imgcards {
+  min-width: 0;
+}
+
+.section__imgcards .cards {
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.section__imgcards .card {
+  padding: 20px;
+}
+
+/* Compact column beside the visual, so the mark steps down a little — but it
+   keeps the bare, inked treatment the other cards use. */
+.section__imgcards .card__icon {
+  margin-bottom: 12px;
+}
+
+.section__imgcards .card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.section__imgcards .card__title {
+  font-size: 14px;
+}
+
+.section__imgcards .card__text {
+  font-size: 12.8px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+
+  .section__imgrow,
+  .section__imgrow--rev {
+    grid-template-columns: 1fr;
+  }
+
+  .section__imgrow--rev .section__imgfig,
+  .section__imgrow--rev .section__imgcards {
+    order: 0;
+  }
+}
+
+/* Section 01: the tab rail and its panel want room to breathe around them. */
+#innovate {
+  padding-top: clamp(84px, 10vw, 140px);
+  padding-bottom: clamp(84px, 10vw, 140px);
+}
+
+/* ── Section 01 infographic: Innovate + Modernise -> production-ready ─── */
+.imf {
+  --img: #14a06a;
+  --img-soft: #e7f6ef;
+  --imgap: clamp(22px, 2.6vw, 48px);
+  width: 100%;
+}
+
+.imf__top {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: var(--imgap);
+  align-items: start;
+}
+
+.imf__side {
+  min-width: 0;
+}
+
+.imf__kicker {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.imf__kicker b {
+  display: block;
+  font-size: 13px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+.imf__kicker span {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.imf__kicker--in b {
+  color: var(--brand);
+}
+
+.imf__kicker--mod b {
+  color: var(--img);
+}
+
+.imf__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow);
+}
+
+/* Converging connectors: input node -> platform core (into the core). */
+.imf__link {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: var(--imgap);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.imf__link--r {
+  left: 100%;
+  color: var(--brand);
+}
+
+.imf__link--l {
+  right: 100%;
+  color: var(--img);
+  flex-direction: row-reverse;
+}
+
+.imf__linkDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.imf__linkLine {
+  flex: 1;
+  height: 2px;
+  background: currentColor;
+}
+
+.imf__linkHead {
+  width: 8px;
+  height: 12px;
+  flex: none;
+  color: currentColor;
+}
+
+.imf__link--l .imf__linkHead {
+  transform: scaleX(-1);
+}
+
+.imf__nodeIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-soft);
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.imf__nodeIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.imf__nodeIcon--mod {
+  background: var(--img-soft);
+  color: var(--img);
+}
+
+.imf__nodeTitle {
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.imf__nodeSub {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.imf__list {
+  list-style: none;
+  margin: 18px 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.imf__list li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.imf__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  flex: none;
+}
+
+.imf__dot--in {
+  background: var(--brand-soft);
+  box-shadow: inset 0 0 0 2px var(--brand);
+}
+
+.imf__dot--mod {
+  background: var(--img-soft);
+  box-shadow: inset 0 0 0 2px var(--img);
+}
+
+.imf__core {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: clamp(20px, 2.2vw, 30px);
+}
+
+.imf__coreHead {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.imf__coreMark {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  background: radial-gradient(circle at 50% 38%, var(--brand-2), var(--brand));
+  box-shadow: 0 8px 22px rgba(59, 64, 214, .32);
+}
+
+.imf__coreTitle {
+  display: block;
+  font-size: clamp(19px, 1.9vw, 26px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.imf__coreSub {
+  display: block;
+  font-size: 11.5px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-top: 6px;
+}
+
+.imf__mods {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.imf__mod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 13px 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-alt);
+}
+
+.imf__modIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--brand);
+  border: 1px solid var(--line);
+}
+
+.imf__modIcon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.imf__modLabel {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.imf__band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+}
+
+.imf__bandItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.imf__bandItem>span {
+  margin-left: 0;
+}
+
+.imf__bandDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c2c8d6;
+}
+
+.imf__bandItem:not(:first-child) {
+  margin-left: 16px;
+}
+
+.imf__arrow {
+  width: 2px;
+  height: 32px;
+  margin: 20px auto 0;
+  background: var(--brand);
+  position: relative;
+}
+
+.imf__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--brand);
+}
+
+.imf__out {
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: clamp(22px, 2.4vw, 32px);
+}
+
+.imf__outTitle {
+  text-align: center;
+  font-size: 13px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: 24px;
+}
+
+.imf__outGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.imf__outItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 0 8px;
+  border-left: 1px solid var(--line);
+}
+
+.imf__outItem:first-child {
+  border-left: none;
+}
+
+.imf__outIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-soft);
+  color: var(--brand);
+  margin-bottom: 6px;
+}
+
+.imf__outIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.imf__outT {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink);
+}
+
+.imf__outS {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.imf__tag {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 13px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--brand);
+}
+
+@media (max-width: 900px) {
+  .imf__top {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .imf__link {
+    display: none;
+  }
+
+  .imf__outGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 12px;
+  }
+
+  .imf__outItem {
+    border-left: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .imf__mods {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .imf__outGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Visual: converge (Section 01 — two starts, one engine, one outcome) ── */
+.converge {
+  display: grid;
+  grid-template-columns: minmax(210px, 1fr) 64px minmax(190px, auto) 52px minmax(230px, 1.15fr);
+  align-items: center;
+}
+
+.converge__col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.converge__in {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.converge__tag {
+  align-self: flex-start;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-Weight: 500;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.converge__tag--innovate {
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.converge__tag--modernise {
+  color: #0e7a63;
+  background: #e4f6f1;
+}
+
+.converge__inLabel {
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.converge__merge {
+  height: 132px;
+}
+
+.converge__merge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.converge__engine {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 16px;
+  padding: 22px 18px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.converge__engineTitle {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+}
+
+.converge__engineSub {
+  display: block;
+  color: rgba(255, 255, 255, .82);
+  font-size: 11.5px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.converge__arrow {
+  align-self: center;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--brand) 0 6px, transparent 6px 11px);
+  position: relative;
+}
+
+.converge__arrow::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid var(--brand);
+}
+
+.converge__out {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 20px 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.converge__outTitle {
+  display: block;
+  color: #fff;
+  font-size: 17px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+}
+
+.converge__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.converge__chip {
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+  color: #eef1ff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .converge {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    justify-items: stretch;
+  }
+
+  .converge__merge {
+    height: 34px;
+    transform: rotate(90deg);
+  }
+
+  .converge__arrow {
+    width: 2px;
+    height: 26px;
+    justify-self: center;
+    background: repeating-linear-gradient(var(--brand) 0 6px, transparent 6px 11px);
+  }
+
+  .converge__arrow::after {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -2px;
+    transform: translateX(-50%);
+    border: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid var(--brand);
+  }
+}
+
+/* ── Visual: ecosystem (hub + orbit chips) ───────────────────── */
+.eco {
+  position: relative;
+  aspect-ratio: 1/1;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.eco__rings {
+  position: absolute;
+  inset: 6%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.eco__rings::after {
+  content: '';
+  position: absolute;
+  inset: 16%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.eco__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 2;
+  background: radial-gradient(circle at 30% 30%, var(--brand-2), var(--brand));
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: var(--shadow-lg);
+}
+
+.eco__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 420px) {
+  .eco__node {
+    font-size: 11.5px;
+    padding: 6px 10px;
+  }
+}
+
+/* ── Visual: one-foundation stack (Section 02) ───────────────── */
+.foundation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.foundation__tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.foundation__tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 20px 6px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.foundation__band {
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+/* Lower bands grow to fill the remaining height so the stack matches the cards. */
+.foundation__band--mid,
+.foundation__band--base {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.foundation__band--mid {
+  background: var(--brand-soft);
+  border: 1px solid #d9dcfb;
+}
+
+.foundation__band--base {
+  background: linear-gradient(120deg, var(--brand), var(--brand-2));
+  box-shadow: var(--shadow-lg);
+}
+
+.foundation__bandTitle {
+  display: block;
+  font-size: 14px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
+.foundation__band--base .foundation__bandTitle {
+  color: #fff;
+  font-size: 16px;
+}
+
+.foundation__bandSub {
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  opacity: .9;
+  margin-top: 4px;
+}
+
+.foundation__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.foundation__chip {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid #d9dcfb;
+  border-radius: 999px;
+  padding: 3px 11px;
+}
+
+@media (max-width: 520px) {
+  .foundation__tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Visual: alignment beam (Section 03) ─────────────────────── */
+.beam {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.beam__main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.beam__pole {
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.beam__pole--top {
+  background: linear-gradient(120deg, var(--brand), var(--brand-2));
+  color: #fff;
+}
+
+.beam__pole--bottom {
+  background: var(--ink);
+  color: #fff;
+}
+
+.beam__poleLabel {
+  display: block;
+  font-size: 16px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+}
+
+.beam__poleSub {
+  display: block;
+  font-size: 11.5px;
+  opacity: .85;
+  margin-top: 2px;
+}
+
+.beam__line {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 0;
+}
+
+.beam__line::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(var(--brand) 0 6px, transparent 6px 11px);
+  opacity: .55;
+}
+
+.beam__stage {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.beam__loop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-left: 2px dashed var(--brand);
+  padding-left: 16px;
+}
+
+.beam__loopArrow {
+  width: 22px;
+  height: 22px;
+  color: var(--brand);
+}
+
+.beam__loopLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* ── Visual: foundry (Section 04 — context in, AI Foundry engine, AI-ready out) ── */
+.foundry {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.foundry__io {
+  border-radius: 12px;
+  padding: 13px 18px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.foundry__io--in {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  box-shadow: var(--shadow);
+}
+
+.foundry__io--out {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+}
+
+.foundry__outTitle {
+  display: block;
+  font-size: 16px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+}
+
+.foundry__outSub {
+  display: block;
+  font-size: 11.5px;
+  opacity: .78;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.foundry__arrow {
+  width: 2px;
+  height: 22px;
+  margin: 9px auto;
+  background: repeating-linear-gradient(var(--brand) 0 5px, transparent 5px 9px);
+  position: relative;
+}
+
+.foundry__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--brand);
+}
+
+.foundry__core {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 16px;
+  padding: 20px 18px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.foundry__coreTitle {
+  display: block;
+  color: #fff;
+  font-size: 17px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
+}
+
+.foundry__mods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.foundry__mod {
+  background: rgba(255, 255, 255, .13);
+  border: 1px solid rgba(255, 255, 255, .26);
+  color: #fff;
+  border-radius: 9px;
+  padding: 9px 8px;
+  font-size: 11.6px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* ── Visual: shield ──────────────────────────────────────────── */
+.shield {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+}
+
+.shield__frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4/4.4;
+}
+
+.shield__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shield__grid {
+  position: absolute;
+  inset: 16% 14% 14%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-content: center;
+}
+
+.shield__item {
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+/* ── Visual: stats / KPI cards ───────────────────────────────── */
+/* ── Section 06: proof (deployment path + C-suite KPIs) ──────── */
+.proof {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.proof__flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 40px;
+}
+
+.proof__flowItem {
+  display: inline-flex;
+  align-items: center;
+}
+
+.proof__flowNode {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+}
+
+.proof__flowNode--last {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.proof__flowArrow {
+  width: 34px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--brand) 0 6px, transparent 6px 11px);
+  opacity: .6;
+  margin: 0 4px;
+  position: relative;
+}
+
+.proof__flowArrow::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--brand);
+}
+
+.proof__kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .proof__kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .proof__kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 22px 24px;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .2s, border-color .2s;
+}
+
+.kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: #d7dbe8;
+}
+
+.kpi__prefix {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.kpi__value {
+  font-size: clamp(34px, 3.6vw, 46px);
+  font-Weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: 12px;
+  background: linear-gradient(120deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kpi__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: 8px;
+}
+
+.kpi__text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.proof__disclaimer {
+  margin-top: 26px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--faint);
+  max-width: 960px;
+}
+
+/* ── Visual: layers (ownership stack) ────────────────────────── */
+
+/* ── Visual: layers (ownership stack) ────────────────────────── */
+.layers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.layers__row {
+  border-radius: 12px;
+  padding: 18px 20px;
+  font-weight: 700;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.layers__row--top {
+  background: var(--brand-soft);
+  border-color: #d9dcfb;
+}
+
+.layers__base {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+  font-weight: 700;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Final section (dark) ────────────────────────────────────── */
+/* An inset plate, not a full-bleed band: margins on all four sides keep it off
+   the page edges and, crucially, off the footer, which is dark too and used to
+   read as one continuous block with it. */
+.final {
+  /* The infinity motif tiles across the CTA plate only. The artwork is white at
+     10% opacity, so it reads as a faint lift over the purple with no separate
+     overlay; --dark-pattern sets how small the tile renders. */
+  --dark-pattern: 170px;
+  background-color: #281647;
+  background-image: url('/patterns/infinity-pattern.svg');
+  background-repeat: repeat;
+  background-size: var(--dark-pattern) var(--dark-pattern);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: clamp(24px, 3vw, 56px) var(--plate-inset) clamp(40px, 5vw, 80px);
+  border-radius: clamp(24px, 3vw, 44px);
+  border-top: 0;
+}
+
+.final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 80% at 50% 0%, rgba(106, 92, 240, .26), transparent 60%);
+}
+
+.final .container {
+  position: relative;
+}
+
+.final__label {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 12px;
+  font-weight: 700;
+  color: #a9b0ff;
+  margin-bottom: 18px;
+}
+
+.final__heading {
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+}
+
+.final__para {
+  font-size: 18px;
+  color: #c4cad8;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  font-weight: 350;
+}
+
+/* Three rows of three: proper boxes with arrows between them, rather than a
+   pill row that wrapped wherever it ran out of space. */
+.journey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 18px);
+  max-width: 1000px;
+  margin: 0 auto 44px;
+}
+
+.journey__row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: clamp(8px, 1vw, 14px);
+  width: 100%;
+}
+
+.journey__step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-height: 76px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 16px;
+  text-align: left;
+  backdrop-filter: blur(4px);
+}
+
+.journey__num {
+  font-family: var(--font-caption);
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: #a9b0ff;
+}
+
+.journey__label {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #eef1ff;
+}
+
+.journey__arrow {
+  display: grid;
+  place-items: center;
+  color: #8b8fd6;
+}
+
+.journey__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 760px) {
+  /* One box per row; the arrows would have nowhere to sit. */
+  .journey__row {
+    grid-template-columns: 1fr;
+  }
+
+  .journey__arrow {
+    display: none;
+  }
+}
+
+.final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.final__cta {
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: 26px;
+  color: #fff;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+/* Full-bleed, with the top corners curved so it reads as a plate rising from
+   the foot of the page rather than a flat band. */
+.footer {
+  background: #06090f;
+  color: #aeb6c6;
+  padding: clamp(56px, 6vw, 84px) 0 40px;
+  border-radius: clamp(28px, 3.5vw, 52px) clamp(28px, 3.5vw, 52px) 0 0;
+  overflow: hidden;
+  /* The artwork sits behind the whole footer, anchored to the bottom edge so
+     the tower stands at the foot of the page. Its top is transparent, so the
+     ink underneath carries the upper part where the link columns sit. */
+  /* background-image: url('/bg/footer-img.png'); */
+  /* background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover; */
+}
+
+/* Brand and contact block on the left, then one column per top-level menu. */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.35fr repeat(6, minmax(0, 1fr));
+  gap: 40px clamp(20px, 2.2vw, 40px);
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.footer__brandCol {
+  padding-right: clamp(0px, 2vw, 32px);
+}
+
+/* `address` carries the postal lines, phone and email; it is a block, not the
+   italic run browsers give it by default. */
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 18px;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #9aa4b8;
+}
+
+.footer__contact a {
+  color: #9aa4b8;
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.footer__contact a:hover {
+  color: #fff;
+}
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer__socialLink {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .06);
+  color: #c4ccdb;
+  transition: background .16s ease, color .16s ease;
+}
+
+.footer__socialLink:hover {
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+}
+
+.footer__socialLink svg {
+  width: 17px;
+  height: 17px;
+}
+
+@media (max-width: 1180px) {
+  .footer__top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer__brandCol {
+    grid-column: 1 / -1;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.footer__tag {
+  font-size: 14px;
+  color: #7f8aa0;
+  max-width: 300px;
+}
+
+/* A rule under each group heading separates the groups sharing a column. */
+.footer__col h4 {
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+}
+
+.footer__col a {
+  display: block;
+  color: #9aa4b8;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+
+.footer__col a:hover {
+  color: #fff;
+}
+
+.footer__bottom {
+  padding-top: 24px;
+  font-size: 12.5px;
+  color: #6a7391;
+}
+
+@media (max-width: 1180px) {
+  .footer__top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .footer__top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .footer__top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Product (category) page ─────────────────────────────────── */
+.mega__title--link {
+  display: block;
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.mega__title--link:hover {
+  color: var(--ink);
+}
+
+/* White, like the homepage hero: the page's surfaces are all white now, with
+   hairlines rather than tinted bands doing the separating. */
+.phero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Product / industry pages are capped to a comfortable centred width so
+   content is not stretched edge to edge on wide monitors. */
+.solpage .container {
+  max-width: 1440px;
+}
+
+/* Base hero (blog list, glossary, in-progress): single column, left aligned. */
+/* A full-screen hero: `min-height` rather than `height` so a long headline or
+   a narrow window grows it instead of clipping. 100svh (with a vh fallback)
+   keeps mobile browser chrome from cutting the bottom off. */
+.phero__inner {
+  min-height: calc(100vh - 76px);
+  min-height: calc(100svh - 76px);
+  align-content: center;
+  padding-top: clamp(46px, 6vw, 80px);
+  padding-bottom: clamp(40px, 5vw, 68px);
+}
+
+.phero__inner>.phero__headline {
+  max-width: 780px;
+}
+
+.phero__inner>.phero__intro {
+  max-width: 720px;
+}
+
+/* Product / industry hero: one centred column. The lead sits on its own line
+   with the value cards beneath it, both centred in the container. */
+.solpage .phero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(30px, 4vw, 64px);
+  justify-items: center;
+  text-align: center;
+}
+
+.phero__lead {
+  min-width: 0;
+  max-width: 900px;
+}
+
+/* The intro is justified site-wide; centred copy is the point here, so this
+   overrides it (and the ragged edge suits a short, centred measure). */
+.solpage .phero__eyebrow,
+.solpage .phero__headline,
+.solpage .phero__intro {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The headline carries this hero, so it runs larger than the base one: 72px
+   once the viewport is wide enough to hold it. */
+.solpage .phero__headline {
+  font-size: clamp(38px, 5.4vw, 72px);
+}
+
+.solpage .phero__ctas {
+  justify-content: center;
+}
+
+/* ── Hero grounds ────────────────────────────────────────────
+   Two of them: a photograph (industry pages, via `heroImage`) or the brand
+   gradient (everything else, product pages included). Both are pulled up under
+   the sticky, transparent nav and padded back down, exactly as the homepage
+   hero is, so the ground runs behind the nav capsule instead of starting below
+   a white band. The inner's own `100vh - var(--nav-h)` then adds back up to a
+   full viewport. */
+.phero--image,
+.phero--gradient {
+  margin-top: calc(-1 * var(--nav-h));
+  padding-top: var(--nav-h);
+}
+
+/* The photograph runs raw — covered, with no wash or tint over it — exactly as
+   the homepage hero does. */
+.phero--image {
+  background-color: var(--bg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* White at the top, settling into the brand at the foot. Kept faint: this is a
+   ground for the copy, not a panel in its own right. */
+.phero--gradient {
+  background-image: linear-gradient(180deg,
+      rgba(59, 64, 214, 0) 0%,
+      rgba(59, 64, 214, 0) 34%,
+      rgba(59, 64, 214, .022) 64%,
+      rgba(59, 64, 214, .05) 86%,
+      rgba(59, 64, 214, .075) 100%);
+}
+
+/* The infinity motif rises out of the foot of the gradient: a tiled band along
+   the bottom, masked so it fades to nothing before it reaches the copy. It is
+   drawn in WHITE and sits over the gradient, so the motif reads as light marks
+   lifted out of the brand tint behind it — which is why the tile is a
+   full-opacity copy of the 5% one the dark surfaces use: the strength is set
+   here, by `opacity`, against this ground. */
+.phero--gradient::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: min(58%, 460px);
+  background: url('/patterns/infinity-pattern-white.svg') repeat;
+  background-size: 320px 320px;
+  opacity: .80;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 72%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 72%, #000 100%);
+  pointer-events: none;
+}
+
+/* The copy rides above both grounds. */
+.phero .phero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.phero__eyebrow {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--brand);
+  margin-bottom: 18px;
+}
+
+/* Slim value highlights strip (compact, understated, does not compete with modules). */
+.pstrip__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.2vw, 18px);
+}
+
+/* Inside the hero the cards are a full-width row beneath the two columns, and
+   the hero's own grid rows have to stop stretching or the row would be pushed
+   to the foot of a full-height section. */
+.solpage .phero__inner {
+  align-content: center;
+  grid-auto-rows: min-content;
+}
+
+/* The hero centres its children, so the strip is told to take the full width
+   rather than shrinking to its content. */
+.solpage .phero__inner>.pstrip__row {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  width: 100%;
+  margin-top: clamp(34px, 4.5vw, 64px);
+}
+
+/* Cards, not cells: the same surface tokens the rest of the site's cards use. */
+.pstrip__item {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+@media (max-width: 900px) {
+  .pstrip__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pstrip__value {
+  font-size: 18px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+  color: var(--brand);
+  margin-bottom: 5px;
+  line-height: 1.15;
+}
+
+.pstrip__label {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--muted);
+  letter-spacing: .01em;
+}
+
+@media (max-width: 820px) {
+  .pstrip__row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pstrip__item {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .pstrip__item:nth-child(2n) {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(18px, 2vw, 30px);
+  }
+}
+
+@media (max-width: 480px) {
+  .pstrip__row {
+    grid-template-columns: 1fr;
+  }
+
+  .pstrip__item:nth-child(2n) {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.phero__headline {
+  font-size: clamp(32px, 4.6vw, 54px);
+  line-height: 1.05;
+  font-Weight: 500;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.phero__intro {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.6;
+  color: var(--muted);
+  font-weight: 350;
+  max-width: 760px;
+}
+
+.phero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+/* Dedicated section per module (one section each, alternating layout + bg). */
+.modintro {
+  padding: clamp(58px, 7vw, 100px) 0 clamp(20px, 3vw, 36px);
+}
+
+/* No rule under the "Modules" head: the grid below it is a set of cards, and a
+   separator there read as the head being cut off from what it introduces. */
+.modgrid {
+  padding: 0 0 clamp(58px, 7vw, 100px);
+}
+
+.modcards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.4vw, 20px);
+}
+
+@media (max-width: 900px) {
+  .modcards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.modcard {
+  padding: clamp(22px, 2vw, 30px);
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: 84px;
+}
+
+.modcard__icon {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.modcard__icon svg {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.5;
+}
+
+.modcard__title {
+  font-family: var(--font-heading);
+  font-size: clamp(19px, 1.6vw, 23px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.modcard__tagline {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.modcard__summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.modcard__caps {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.modcard__caps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.modsec {
+  padding: clamp(46px, 5.5vw, 76px) 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 84px;
+}
+
+/* Kept as a hook (the markup still alternates it) but no longer a fill: every
+   module section is white and the border-top above does the dividing. */
+.modsec--alt {
+  background: var(--bg);
+}
+
+.modsec__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+
+.modsec__grid--rev .modsec__lead {
+  order: 2;
+}
+
+.modsec__grid--rev .modsec__screenWrap {
+  order: 1;
+}
+
+.modsec__screenWrap {
+  min-width: 0;
+}
+
+.modsec__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+
+.modsec__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.modsec__num {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--brand);
+}
+
+/* No tile and no tint, matching the homepage cards: a larger glyph in the
+   heading ink at a regular stroke weight. */
+.modsec__icon {
+  display: block;
+  color: var(--ink);
+}
+
+.modsec__icon svg {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.5;
+}
+
+.modsec__title {
+  font-size: clamp(26px, 3vw, 38px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.modsec__tagline {
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
+}
+
+.modsec__summary {
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--muted);
+  font-weight: 350;
+}
+
+.modsec__panel {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.modsec__panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+}
+
+.modsec__panelLabel {
+  font-size: 11px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: 18px;
+}
+
+.modsec__caps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  margin-top: 24px;
+}
+
+.modsec__caps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding-left: 0;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--ink);
+  line-height: 1.42;
+}
+
+.capchk {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--brand);
+  margin-top: 1px;
+}
+
+/* Per-module mini diagrams (in the module lead column). */
+.modsec__viz {
+  margin-top: 24px;
+}
+
+.mviz {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 16px 18px;
+}
+
+.mviz--flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 6px;
+}
+
+.mviz__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mviz__stepBox {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 11px;
+  white-space: nowrap;
+}
+
+.mviz__arrow {
+  color: var(--brand);
+  font-Weight: 500;
+}
+
+.mviz--match {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.mviz__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mviz__inBox {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+.mviz__matchTo {
+  color: var(--brand);
+  font-Weight: 500;
+  font-size: 18px;
+}
+
+.mviz__matchResult {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+  background: var(--brand-soft);
+  border-radius: 9px;
+  padding: 9px 12px;
+}
+
+.mviz--bars {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.mviz__barRow {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.mviz__barLabel {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.mviz__barTrack {
+  height: 9px;
+  background: var(--bg-alt);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mviz__barFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+}
+
+.mviz__cap {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.mviz--stat .mviz__statVal {
+  font-size: 30px;
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--brand);
+  line-height: 1;
+}
+
+.mviz__statLabel {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+.mviz__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.mviz__chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 9px;
+}
+
+.mviz--stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mviz__row {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 11px;
+}
+
+.mviz__base {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 8px;
+  padding: 9px 11px;
+  margin-top: 2px;
+}
+
+.mviz--hub {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.mviz__hubCore {
+  font-size: 13px;
+  font-weight: 750;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.mviz__hubNodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.mviz__hubNode {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 9px;
+}
+
+.mviz__spark {
+  width: 100%;
+  height: 48px;
+  display: block;
+}
+
+/* Large module-screen mockup (the showcase visual on product/industry pages). */
+.mscreen {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.mscreen__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 16px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--line);
+}
+
+.mscreen__bar .mscreen__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #cdd3e1;
+}
+
+.mscreen__barTitle {
+  margin-left: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.mscreen__live {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.mscreen__tabs {
+  display: flex;
+  gap: 20px;
+  padding: 12px 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mscreen__tab {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  padding-bottom: 11px;
+  border-bottom: 2px solid transparent;
+}
+
+.mscreen__tab.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--brand);
+}
+
+.mscreen__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mscreen__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mscreen__kpi {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 13px 14px;
+  background: #fff;
+}
+
+.mscreen__kpiV {
+  display: block;
+  font-size: 18px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.mscreen__kpiL {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.mscreen__chart {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.mscreen__chart .mviz {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.mscreen__chart .mviz--bars .mviz__barTrack {
+  height: 12px;
+}
+
+.mscreen__chart .mviz__spark {
+  height: 96px;
+}
+
+.mscreen__rows {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.mscreen__rows li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 2px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.mscreen__rows li:first-child {
+  border-top: none;
+}
+
+.mscreen__rowDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+
+.mscreen__rowMeta {
+  margin-left: auto;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+@media (max-width: 820px) {
+  .modsec__grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .modsec__grid--rev .modsec__lead {
+    order: 2;
+  }
+
+  .modsec__grid--rev .modsec__screenWrap {
+    order: 1;
+  }
+
+  .modsec__caps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Why Us page ─────────────────────────────────────────────── */
+.wsec {
+  padding: clamp(56px, 7vw, 100px) 0;
+  border-top: 1px solid transparent;
+  /* Clears the sticky nav when the footer deep-links to a section. */
+  scroll-margin-top: 84px;
+}
+
+.wsec--alt {
+  background: var(--bg-alt);
+}
+
+.whead {
+  max-width: 820px;
+  margin-bottom: clamp(28px, 3.5vw, 48px);
+}
+
+.whead__label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+
+.whead__heading {
+  font-size: clamp(26px, 3vw, 40px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1.12;
+}
+
+.whead__lede {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.pillar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.pillar__title {
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.pillar__title::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  margin-bottom: 15px;
+}
+
+.pillar__text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wstats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 30px;
+  margin-bottom: clamp(30px, 3.5vw, 46px);
+}
+
+.wstat {
+  border-left: 2px solid var(--brand);
+  padding-left: 16px;
+}
+
+.wstat__v {
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--brand);
+  line-height: 1;
+}
+
+.wstat__l {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .wstats {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 24px;
+  }
+}
+
+.founders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.founder {
+  display: flex;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.founder__avatar {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 750;
+  font-size: 17px;
+  letter-spacing: .02em;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow: 0 8px 20px rgba(59, 64, 214, .22);
+}
+
+.founder__body {
+  min-width: 0;
+}
+
+.founder__name {
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.founder__role {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--brand);
+  margin-top: 3px;
+  margin-bottom: 12px;
+}
+
+.founder__bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 820px) {
+  .founders {
+    grid-template-columns: 1fr;
+  }
+}
+
+.beliefs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 40px;
+}
+
+.belief__title {
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.belief__title::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  flex: none;
+}
+
+.belief__text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .beliefs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Coming soon page ────────────────────────────────────────── */
+.soon__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(72px, 12vw, 150px) 0;
+}
+
+.soon__eyebrow {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--brand);
+  margin-bottom: 20px;
+}
+
+.soon__badge {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.soon__title {
+  font-size: clamp(30px, 4vw, 46px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.soon__text {
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.soon__ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── FAQ page ────────────────────────────────────────────────── */
+.faqwrap {
+  padding: clamp(24px, 4vw, 56px) 0 clamp(56px, 7vw, 92px);
+}
+
+.faqgroups {
+  max-width: 840px;
+}
+
+.faqgroup {
+  margin-bottom: clamp(30px, 4vw, 50px);
+}
+
+.faqgroup__title {
+  font-size: 13px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--brand);
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.faqitem {
+  border-bottom: 1px solid var(--line);
+}
+
+.faqitem__q {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 2px;
+  font-size: 16px;
+  font-weight: 650;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.faqitem__q::-webkit-details-marker {
+  display: none;
+}
+
+.faqitem__icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.faqitem__icon::before,
+.faqitem__icon::after {
+  content: '';
+  position: absolute;
+  background: var(--brand);
+  border-radius: 2px;
+}
+
+.faqitem__icon::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+}
+
+.faqitem__icon::after {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 16px;
+  transition: transform .2s ease;
+}
+
+.faqitem[open] .faqitem__icon::after {
+  transform: scaleY(0);
+}
+
+.faqitem__a {
+  padding: 0 2px 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+/* The homepage's closing plate: inset from the page edges and curved, so it
+   does not run into the footer, which is dark too and used to read as one
+   continuous block with it. */
+.pcta {
+  text-align: center;
+  background-color: #281647;
+  background-image: url('/patterns/infinity-pattern.svg');
+  background-repeat: repeat;
+  background-size: 170px 170px;
+  color: #fff;
+  width: calc(100% - 2 * var(--plate-inset));
+  max-width: calc(1440px - 2 * var(--plate-inset));
+  margin: clamp(24px, 3vw, 56px) auto clamp(40px, 5vw, 80px);
+  border-radius: clamp(24px, 3vw, 44px);
+  border-top: 0;
+}
+
+.pcta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.pcta__heading {
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.pcta__text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #aeb6c6;
+  max-width: 620px;
+  margin: 0 auto 30px;
+}
+
+.btn--lg {
+  padding: 15px 30px;
+  font-size: 16px;
+}
+
+/* ── Use Cases page ──────────────────────────────────────────── */
+.uccards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .uccards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.uc {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 26px 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s ease, box-shadow .2s, border-color .2s;
+}
+
+.uc:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: #d7dbe8;
+}
+
+.uc__theme {
+  font-size: 11px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+
+.uc__title {
+  font-size: 20px;
+  font-Weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+
+.uc__scenario {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.uc__chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.uc__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.uc__chip {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.uc__arrow {
+  color: var(--brand);
+  font-Weight: 500;
+  font-size: 12px;
+}
+
+.uc__outcome {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.uc--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.uc__more {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: .01em;
+  opacity: .85;
+  transition: opacity .15s;
+}
+
+.uc--link:hover .uc__more {
+  opacity: 1;
+}
+
+/* Lead-in band */
+.uclede {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.uclede__text {
+  max-width: 920px;
+  padding: clamp(30px, 4vw, 46px) 0;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 350;
+}
+
+/* Use case detail view */
+.ucd {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .ucd {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ucd__detail {
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.66;
+  color: var(--muted);
+  font-weight: 350;
+}
+
+.ucd__steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 28px 0;
+}
+
+.ucd__step {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 18px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+
+.ucd__step:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.ucd__stepNum {
+  font-size: 13px;
+  font-Weight: 500;
+  color: var(--brand);
+  padding-top: 2px;
+}
+
+.ucd__stepTitle {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: 5px;
+}
+
+.ucd__stepText {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.ucd__outcome {
+  border-left: 3px solid var(--brand);
+  background: var(--brand-soft);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px;
+}
+
+.ucd__outcomeLabel {
+  display: block;
+  font-size: 11px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.ucd__outcome p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 550;
+}
+
+.ucd__side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 88px;
+}
+
+@media (max-width: 820px) {
+  .ucd__side {
+    position: static;
+  }
+}
+
+.ucd__panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 22px 24px;
+  box-shadow: var(--shadow);
+}
+
+.ucd__sideLabel {
+  font-size: 11px;
+  font-Weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.ucd__caps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.ucd__caps li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.ucd__caps li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+
+.ucd__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.ucd__chip {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform .15s, border-color .2s, background .2s;
+}
+
+.ucd__chip--link:hover {
+  background: var(--brand-soft);
+  border-color: #d9dcfb;
+  color: var(--brand);
+  transform: translateY(-1px);
+}
+
+/* ── Industry journey (end-to-end, on the shared SolutionPage) ── */
+.journeyx {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1040px) {
+  .journeyx {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .journeyx {
+    grid-template-columns: 1fr;
+  }
+}
+
+.journeyx__step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px 24px;
+  box-shadow: var(--shadow);
+}
+
+.journeyx__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 12.5px;
+  font-Weight: 500;
+  margin-bottom: 14px;
+}
+
+.journeyx__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: 7px;
+  line-height: 1.25;
+}
+
+.journeyx__text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ── Reveal on scroll ─────────────────────────────────────────
+   `.reveal` hides an element until it scrolls into view (JS adds
+   `.is-visible`). `--reveal-delay` staggers neighbours; the `reveal--*`
+   modifiers pick the motion. `.stagger` cascades a container's direct
+   children once the container itself is in view. Everything collapses to a
+   plain, instant render under `prefers-reduced-motion`. */
+:root {
+  /* An ease-in-out rather than an ease-out: the element accelerates gently
+     instead of lurching off the mark, and coasts into place instead of
+     snapping the last few pixels. */
+  --ease-out: cubic-bezier(.33, 0, .2, 1);
+  --reveal-dur: 1.8s;
+  /* entrance length for a single element */
+  --stagger-dur: 1.5s;
+  /* entrance length for each cascaded child */
+  --stagger-step: 150ms;
+  /* gap between one child and the next */
+}
+
+/* Entrances run as animations rather than transitions, with `backwards` fill:
+   the element holds the "from" pose through its delay, animates in, and then
+   releases the transform entirely — so hover lifts on cards, KPIs and tiles
+   keep working once the element has arrived. */
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  animation: rv-up var(--reveal-dur) var(--ease-out) var(--reveal-delay, 0ms) backwards;
+}
+
+.reveal--fade.is-visible {
+  animation-name: rv-fade;
+}
+
+.reveal--left.is-visible {
+  animation-name: rv-left;
+}
+
+.reveal--right.is-visible {
+  animation-name: rv-right;
+}
+
+.reveal--zoom.is-visible {
+  animation-name: rv-zoom;
+}
+
+/* The fade finishes around 70%, leaving the tail of the animation as pure
+   movement — over a long duration that reads as a smooth settle rather than
+   text that is still washing in when it should be readable. */
+@keyframes rv-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rv-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rv-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-36px, 10px, 0);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rv-right {
+  from {
+    opacity: 0;
+    transform: translate3d(36px, 10px, 0);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rv-zoom {
+  from {
+    opacity: 0;
+    transform: scale(.955);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Cascading children: the container fades in, its children arrive in sequence. */
+.stagger>* {
+  opacity: 0;
+}
+
+.stagger.is-visible>* {
+  opacity: 1;
+  animation: rv-up var(--stagger-dur) var(--ease-out) backwards;
+}
+
+.stagger.is-visible>*:nth-child(1) {
+  animation-delay: calc(var(--stagger-step) * 0);
+}
+
+.stagger.is-visible>*:nth-child(2) {
+  animation-delay: calc(var(--stagger-step) * 1);
+}
+
+.stagger.is-visible>*:nth-child(3) {
+  animation-delay: calc(var(--stagger-step) * 2);
+}
+
+.stagger.is-visible>*:nth-child(4) {
+  animation-delay: calc(var(--stagger-step) * 3);
+}
+
+.stagger.is-visible>*:nth-child(5) {
+  animation-delay: calc(var(--stagger-step) * 4);
+}
+
+.stagger.is-visible>*:nth-child(6) {
+  animation-delay: calc(var(--stagger-step) * 5);
+}
+
+.stagger.is-visible>*:nth-child(7) {
+  animation-delay: calc(var(--stagger-step) * 6);
+}
+
+.stagger.is-visible>*:nth-child(8) {
+  animation-delay: calc(var(--stagger-step) * 7);
+}
+
+.stagger.is-visible>*:nth-child(9) {
+  animation-delay: calc(var(--stagger-step) * 8);
+}
+
+/* Past the ninth child everything shares the last step, so long grids don't
+   accumulate a multi-second tail. */
+.stagger.is-visible>*:nth-child(n+10) {
+  animation-delay: calc(var(--stagger-step) * 9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .stagger>* {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* The left/right entrances briefly reach past the section edge. Clip that so
+   no transient horizontal scrollbar appears — `clip` rather than `hidden`, so
+   the sticky nav and sticky sidebars keep working. */
+@supports (overflow-x: clip) {
+
+  .section,
+  .modsec,
+  .modintro,
+  .wsec,
+  .phero,
+  .pstrip,
+  .faqwrap,
+  .soon {
+    overflow-x: clip;
+  }
+}
+
+/* ============================================================================
+   Homepage concept-visual enrichment: more depth and detail, and away from the
+   flat arrow/flowchart look. Each visual sits on a soft dot-grid canvas; the
+   dashed directed lines are removed; the cascade becomes a stepped staircase.
+   ========================================================================== */
+.section .section__visual.visual {
+  position: relative;
+  border-radius: 22px;
+  padding: clamp(20px, 2.6vw, 38px);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 28px 66px -36px rgba(20, 24, 54, .34);
+}
+
+.section .section__visual.visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-image: radial-gradient(rgba(59, 64, 214, .06) 1.1px, transparent 1.1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(140% 108% at 50% -8%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(140% 108% at 50% -8%, #000 40%, transparent 100%);
+  pointer-events: none;
+}
+
+.section .section__visual.visual>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* A photographic visual carries its own frame, so it skips the panel above and
+   runs the full width of the container instead of being inset by its padding. */
+.section .section__visual.visual.section__visual--bare {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.section .section__visual.visual.section__visual--bare::before {
+  display: none;
+}
+
+/* Section 01 converge: drop dashed connectors; a glowing engine + colour-keyed
+   inputs carry the "two paths, one platform" idea by hierarchy, not arrows. */
+/* Vertical converge: two inputs at the top, engine, then the output, to match
+   the vertical orientation of the other section visuals. */
+.converge {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-template-columns: none;
+  align-items: stretch;
+}
+
+.converge__col {
+  flex-direction: row;
+  gap: 12px;
+}
+
+.converge__in {
+  flex: 1 1 0;
+}
+
+.converge__engine {
+  align-self: center;
+  min-width: 250px;
+}
+
+.converge__out {
+  width: 100%;
+}
+
+.converge__merge,
+.converge__arrow {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .converge__col {
+    flex-direction: column;
+  }
+}
+
+.converge__in {
+  border-left: 3px solid transparent;
+}
+
+.converge__col .converge__in:nth-child(1) {
+  border-left-color: var(--brand);
+}
+
+.converge__col .converge__in:nth-child(2) {
+  border-left-color: #12b892;
+}
+
+.converge__engine {
+  position: relative;
+}
+
+.converge__engine::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 30px;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 64, 214, .22), transparent 70%);
+  z-index: -1;
+}
+
+/* Section 03 cascade: replace the dashed beam line with a descending staircase
+   of tier cards (a real cascade), each with a gradient edge. */
+.beam__line::before {
+  display: none;
+}
+
+.beam__line {
+  align-items: stretch;
+  gap: 9px;
+  padding: 10px 0;
+}
+
+.beam__stage {
+  text-align: left;
+  border-radius: 12px;
+  padding: 12px 16px 12px 22px;
+  position: relative;
+}
+
+.beam__stage::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 11px;
+  bottom: 11px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(var(--brand), var(--brand-2));
+}
+
+.beam__stage:nth-child(2) {
+  margin-left: 8%;
+}
+
+.beam__stage:nth-child(3) {
+  margin-left: 16%;
+}
+
+.beam__stage:nth-child(4) {
+  margin-left: 24%;
+}
+
+.beam__loop {
+  border-left: none;
+  background: var(--brand-soft);
+  border: 1px solid #d9dcfb;
+  border-radius: 14px;
+  padding: 16px 12px;
+}
+
+/* Section 04 foundry: drop arrows; the gradient core with its module grid leads. */
+.foundry {
+  gap: 14px;
+}
+
+.foundry__arrow {
+  display: none;
+}
+
+/* Section 06 proof: keep the stages but as a plain stepper, no arrowheads. */
+.proof__flowArrow {
+  width: 26px;
+  background: var(--line);
+  opacity: 1;
+}
+
+.proof__flowArrow::after {
+  display: none;
+}
+
+/* Element-level depth across the visuals. */
+.foundation__tile {
+  background: linear-gradient(180deg, #fff, #f7f8fe);
+}
+
+.eco__node {
+  box-shadow: 0 12px 26px -14px rgba(20, 24, 54, .5);
+}
+
+.layers__row {
+  box-shadow: 0 16px 32px -20px rgba(20, 24, 54, .45);
+}
+
+.shield__item {
+  box-shadow: 0 12px 26px -16px rgba(20, 24, 54, .4);
+}
+
+/* Section 01 (Innovation & Modernisation): balance the converge visual so its
+   canvas matches the taller card grid (content centred, no cut-short gap), and
+   break the box-in-box look by making the engine a circular hub. */
+.section__body:has(.converge) {
+  align-items: stretch;
+}
+
+.section__body:has(.converge) .section__visual.visual {
+  display: flex;
+  align-items: center;
+}
+
+.converge {
+  width: 100%;
+  gap: 22px;
+}
+
+.converge__in {
+  box-shadow: 0 14px 34px -20px rgba(20, 24, 54, .45);
+}
+
+.converge__engine {
+  align-self: center;
+  min-width: 0;
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.converge__engine .converge__engineTitle {
+  font-size: 14.5px;
+  line-height: 1.2;
+}
+
+/* ============================================================================
+   Refined visual palette: soften the heavy purple gradients and black slabs.
+   Primary/hub elements become a light brand tint; output/result elements become
+   a light neutral with dark text. Colour now reads as accent, not full fill.
+   ========================================================================== */
+.converge__engine,
+.foundry__core,
+.foundation__band--base,
+.beam__pole--top,
+.eco__hub {
+  background: var(--brand-soft);
+  border: 1px solid #d9dcfb;
+  box-shadow: 0 16px 38px -26px rgba(59, 64, 214, .40);
+}
+
+.converge__engineTitle,
+.foundry__coreTitle,
+.foundation__band--base .foundation__bandTitle,
+.beam__pole--top .beam__poleLabel,
+.eco__hub {
+  color: var(--brand);
+}
+
+.converge__engineSub,
+.foundation__band--base .foundation__bandSub,
+.beam__pole--top .beam__poleSub {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.foundry__mod {
+  background: #fff;
+  border: 1px solid #e2e4f7;
+  color: var(--ink);
+}
+
+.converge__engine::after {
+  background: radial-gradient(circle at 50% 50%, rgba(59, 64, 214, .14), transparent 70%);
+}
+
+.converge__out,
+.foundry__io--out,
+.beam__pole--bottom,
+.layers__base,
+.proof__flowNode--last {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: 0 14px 30px -22px rgba(20, 24, 54, .28);
+}
+
+.converge__outTitle,
+.foundry__outTitle,
+.beam__pole--bottom .beam__poleLabel {
+  color: var(--ink);
+}
+
+.foundry__outSub,
+.beam__pole--bottom .beam__poleSub {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.converge__chip {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.converge__engine::after {
+  inset: -18px;
+  border-radius: 50%;
+}
+
+.converge__out {
+  border-radius: 16px;
+}
+
+/* ============================================================================
+   Unified Enterprise Platform infographic (section 02, full width).
+   ========================================================================== */
+.section__full {
+  width: 100%;
+}
+
+/* Keep the figure from getting too tall so the image and the cards read as one
+   compact block rather than spanning several screens. */
+.pig,
+.pig__img {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pig__img {
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+}
+
+.section__afterCards {
+  margin-top: clamp(28px, 3vw, 44px);
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section 02 fits a single viewport: compact eyebrow header, the image sized to
+   the available height, and the six cards as one tight row beneath. */
+.section--fit {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 78px 0 36px;
+}
+
+.section--fit .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(12px, 1.8vh, 22px);
+  width: 100%;
+}
+
+.section--fit .section__head--split {
+  margin-bottom: 0;
+}
+
+.section--fit .section__heading {
+  font-size: clamp(20px, 2.1vw, 27px);
+}
+
+.section--fit .section__para {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.section__label--solo {
+  margin-bottom: 0;
+}
+
+.section--fit .section__full {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image on the left, cards stacked on the right so each card gets a full row. */
+.pigrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.68fr) minmax(255px, .92fr);
+  gap: clamp(18px, 2.2vw, 40px);
+  align-items: stretch;
+}
+
+.pigrow__fig {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pigrow__fig .pig__img {
+  width: auto%;
+  height: auto;
+  max-width: 100%;
+  max-height: 66vh;
+  margin: 0;
+}
+
+.pigrow__cards {
+  min-width: 0;
+}
+
+.pigrow__cards .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.pigrow__cards .card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pigrow__cards .card__icon {
+  display: none;
+}
+
+.pigrow__cards .card__title {
+  font-size: 13.5px;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.pigrow__cards .card__text {
+  font-size: 12px;
+  line-height: 1.42;
+}
+
+/* Reversed orientation: cards on the left, image on the right. */
+.pigrow--rev {
+  grid-template-columns: minmax(255px, .92fr) minmax(0, 1.68fr);
+}
+
+.pigrow--rev .pigrow__cards {
+  order: 1;
+}
+
+.pigrow--rev .pigrow__fig {
+  order: 2;
+}
+
+@media (max-width: 1040px) {
+
+  .pigrow,
+  .pigrow--rev {
+    grid-template-columns: 1fr;
+  }
+
+  .pigrow--rev .pigrow__fig,
+  .pigrow--rev .pigrow__cards {
+    order: 0;
+  }
+
+  .pigrow__cards .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pigrow__cards .card {
+    flex: none;
+  }
+
+  .pigrow__fig .pig__img {
+    max-height: none;
+  }
+}
+
+@media (max-width: 1040px) {
+  .section--fit {
+    min-height: 0;
+    display: block;
+    padding: clamp(58px, 7vw, 88px) 0;
+  }
+
+  .section--fit .pig__img {
+    max-height: none;
+    width: auto;
+  }
+
+  .section--fit .cards--wide {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section--fit .cards--wide .card__icon {
+    display: block;
+  }
+}
+
+.pig {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vw, 30px);
+}
+
+.pig__ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.pig__ico svg {
+  width: 21px;
+  height: 21px;
+}
+
+.pig__ico--sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.pig__ico--sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+.pig__ico--round {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.pig__ico--globe {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+/* top: business functions */
+.pig__railLabel {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  font-Weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.pig__funcs {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+}
+
+.pig__func {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 15px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+/* middle: sources | slab | possibilities */
+.pig__mid {
+  display: grid;
+  grid-template-columns: minmax(160px, .82fr) minmax(0, 3fr) minmax(160px, .82fr);
+  gap: clamp(14px, 1.5vw, 24px);
+  align-items: stretch;
+}
+
+.pig__side {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: var(--shadow);
+}
+
+.pig__sideTitle {
+  font-size: 11px;
+  font-Weight: 500;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+.pig__sideList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.pig__sideList li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pig__slab {
+  border: 1px solid #d9dcfb;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f3f4ff, #eceefe);
+  padding: 14px;
+  box-shadow: 0 34px 80px -46px rgba(59, 64, 214, .55);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pig__slabBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(120deg, #262a99, var(--brand-2));
+  border-radius: 12px;
+  padding: 15px 20px;
+  color: #fff;
+}
+
+.pig__slabMark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .9);
+  flex: none;
+}
+
+.pig__slabName {
+  font-size: 16.5px;
+  font-Weight: 500;
+  letter-spacing: -.01em;
+}
+
+.pig__slabDiv {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, .4);
+}
+
+.pig__slabKicker {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .85);
+}
+
+.pig__panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+
+.pig__panelLabel {
+  text-align: center;
+  font-size: 11px;
+  font-Weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 16px;
+}
+
+.pig__services {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px 10px;
+}
+
+.pig__svc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.28;
+}
+
+.pig__knowHead {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pig__knowTitle {
+  font-size: 14.5px;
+  font-Weight: 500;
+  color: var(--brand);
+  letter-spacing: .01em;
+}
+
+.pig__knowSub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.pig__knowRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.pig__know {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink);
+  justify-content: center;
+  text-align: center;
+}
+
+/* bottom: outcomes */
+.pig__outcomes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.pig__outcome {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+
+.pig__outcomeTitle {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink);
+}
+
+.pig__outcomeText {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+  max-width: 210px;
+}
+
+@media (max-width: 1080px) {
+  .pig__funcs {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .pig__mid {
+    grid-template-columns: 1fr;
+  }
+
+  .pig__services {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .pig__knowRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pig__outcomes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .pig__funcs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pig__services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pig__knowRow {
+    grid-template-columns: 1fr;
+  }
+
+  .pig__outcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .pig__slabBar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* ============================================================================
+   Justified body copy, site-wide.
+
+   Most descriptive paragraphs (as opposed to headings, labels, eyebrows,
+   buttons and chips, which stay as they are) are justified. Automatic
+   hyphenation is on so the narrower columns — KPI text, sidebar definitions —
+   don't open up rivers of whitespace.
+
+   Two deliberate exceptions, set below this block: a section's own subtext is
+   centred under its heading, and card text reads ragged-right. Both sit in
+   columns narrow enough that justifying them only opened up rivers.
+   ========================================================================== */
+.hero__description,
+.kpi__text,
+.callout,
+.phero__intro,
+.uclede__text,
+.modsec__summary,
+.journeyx__text,
+.pillar__text,
+.founder__bio,
+.belief__text,
+.whead__lede,
+.uc__scenario,
+.uc__outcome,
+.ucd__detail,
+.ucd__stepText,
+.ucd__outcome p,
+.faqitem__a,
+.gloss__def,
+/* Note: the footer tagline is deliberately NOT justified — it's a two-line
+   fragment in a narrow column, where justification only opens up rivers. */
+.blogcard__excerpt {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  /* Only break genuinely long words, and never leave a stub on either
+     side — keeps the narrow columns tidy without littering hyphens. */
+  hyphenate-limit-chars: 10 5 4;
+}
+
+/* A section's subtext is centred beneath its heading — the hero is not a
+   `.section` and keeps the justified treatment above. */
+.section__para,
+.section__head--split .section__para {
+  text-align: center;
+}
+
+/* Card copy reads ragged-right: the columns are too narrow to justify without
+   stretching the word spacing. */
+.card__text {
+  text-align: left;
+}
+
+/* The KPI footnote is centred under the metrics it qualifies. */
+.proof__disclaimer {
+  text-align: center;
+}
+
+/* Centred blocks: justify the body of the paragraph but keep the final line
+   centred, so the block still reads as a centred composition. */
+.final__para,
+.pcta__text,
+.soon__text {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  /* Only break genuinely long words, and never leave a stub on either
+     side — keeps the narrow columns tidy without littering hyphens. */
+  hyphenate-limit-chars: 10 5 4;
+  text-align-last: center;
+}

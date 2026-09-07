@@ -1,0 +1,138 @@
+/**
+ * Entroid glossary — plain-English definitions of the platform
+ * terms and the AI, data, governance, security, operations and business
+ * vocabulary used across the site. Hand-authored (definitions, not marketing).
+ */
+export const glossaryIntro =
+  'Plain-English definitions of Entroid and the AI, data, governance and operations terms used across the site.'
+
+export const glossary = [
+  {
+    section: 'Platform',
+    terms: [
+      { term: 'Entroid', def: 'A unified enterprise platform that brings an organisation’s applications, data and knowledge onto one governed foundation, with AI able to reason and act across every function.' },
+      { term: 'Semantic Ontology (SEOM)', def: 'The shared model of the enterprise — its objects, their properties, states and relationships — defined once so every module and AI agent works from the same meaning of the business.' },
+      { term: 'Governed AI Core', def: 'The intelligence at the centre of the platform that reasons on enterprise context and can take action, but only within defined, auditable controls.' },
+      { term: 'Unified Enterprise Platform', def: 'A single platform on which every business function runs, sharing common services and one source of enterprise knowledge instead of separate systems stitched together.' },
+      { term: 'AI Foundry', def: 'The environment for building, orchestrating and operating the platform’s AI — its agents, models and forecasting.' },
+      { term: 'Command Center', def: 'The platform’s reasoning hub, where AI observes signals across the enterprise, explains what is happening and drives closed-loop action.' },
+      { term: 'Sherlock', def: 'The platform’s automated root-cause analysis, which finds why an issue occurred and runs the corrective procedure.' },
+      { term: 'Sentinel', def: 'The platform’s AI incident capability, which detects, investigates and remediates incidents across connected systems.' },
+      { term: 'Marketplace', def: 'A governed catalog where products, AI agents and solution blueprints are published, discovered and subscribed to.' },
+      { term: 'Module', def: 'A single business capability delivered on the platform (for example Procurement or General Ledger), sharing the same data, services and governance as every other module.' },
+      { term: 'Space', def: 'A group of related modules that together cover a business function, such as Finance, Supply Chain or Customers.' },
+    ],
+  },
+  {
+    section: 'AI & Agents',
+    terms: [
+      { term: 'Agent', def: 'A software worker that carries out a task on the platform, able to make decisions and take actions rather than only answer questions.' },
+      { term: 'Autonomous Agent', def: 'An agent that executes work end to end without step-by-step human direction, within governed limits.' },
+      { term: 'Conversational Agent', def: 'An agent that works through natural-language dialogue, answering questions and completing tasks in plain language.' },
+      { term: 'Agentic AI', def: 'AI that pursues a goal by planning and taking actions, not just generating text or recommendations.' },
+      { term: 'Large Language Model (LLM)', def: 'An AI model trained on large amounts of text that generates and interprets natural language; the reasoning engine behind conversational and generative AI.' },
+      { term: 'Retrieval-Augmented Generation (RAG)', def: 'A technique where an AI model retrieves relevant enterprise information before answering, so responses are grounded in real data rather than the model’s memory.' },
+      { term: 'Grounding', def: 'Tying an AI response or action to verified enterprise data and context, reducing guesswork and error.' },
+      { term: 'Hallucination', def: 'A confident but incorrect or fabricated AI output, produced when a model answers without grounding in real data.' },
+      { term: 'Guardrail', def: 'A rule or boundary that constrains what an AI system is allowed to say or do.' },
+      { term: 'Inline Gate', def: 'A control placed directly in the path of an action, so a required check must pass before the action can execute — rather than detecting the problem afterwards.' },
+      { term: 'Human-in-the-Loop (HITL)', def: 'A design in which a person reviews or approves an AI decision before it takes effect.' },
+      { term: 'Orchestration', def: 'Coordinating multiple agents, models or systems so they work together toward one outcome.' },
+      { term: 'Inference', def: 'The act of an AI model producing an output — a prediction or answer — from a given input.' },
+      { term: 'Forecasting', def: 'Using historical data to predict future values, such as demand, cost or risk.' },
+      { term: 'Vision AI', def: 'AI that interprets images or video, for example to read documents or monitor a physical site.' },
+      { term: 'Machine Learning (ML)', def: 'A branch of AI in which models learn patterns from data to make predictions or decisions.' },
+    ],
+  },
+  {
+    section: 'Data & Knowledge',
+    terms: [
+      { term: 'Ontology', def: 'A formal description of the concepts in a domain and how they relate. On the platform, the shared enterprise ontology gives every module one definition of the business.' },
+      { term: 'Knowledge Graph', def: 'A network of enterprise entities and the relationships between them, used to connect information and give AI trustworthy context.' },
+      { term: 'Semantic Layer', def: 'A consistent, business-friendly definition of data over raw systems, so terms like “customer” or “revenue” mean the same thing everywhere.' },
+      { term: 'Data Lineage', def: 'The traceable record of where data came from and how it changed as it moved through systems.' },
+      { term: 'Master Data', def: 'The single authoritative record for a core business entity — such as a customer, vendor or material — shared across the enterprise.' },
+      { term: 'Source of Truth', def: 'The one system or record treated as authoritative for a given piece of information.' },
+      { term: 'Impact Analysis', def: 'Seeing, before a change is made, every downstream object and process the change would affect.' },
+    ],
+  },
+  {
+    section: 'Governance, Risk & Compliance',
+    terms: [
+      { term: 'Governance', def: 'The framework of policies, roles and controls that directs and constrains how an enterprise operates and makes decisions.' },
+      { term: 'GRC (Governance, Risk & Compliance)', def: 'The combined discipline of governing the enterprise, managing its risks and meeting its obligations.' },
+      { term: 'Compliance', def: 'Meeting the laws, regulations and internal policies that apply to the business, and being able to prove it.' },
+      { term: 'Audit Trail', def: 'A complete, tamper-evident record of who did what, when, and under what authority.' },
+      { term: 'Explainability', def: 'The ability to show why an AI system or process reached a decision, in terms a person or regulator can follow.' },
+      { term: 'Delegation of Authority', def: 'The formal assignment of who may approve or execute a given decision, up to defined limits.' },
+      { term: 'Three Lines of Defense', def: 'A risk-governance model separating those who own risk, those who oversee it, and those who independently assure it.' },
+      { term: 'SOX (Sarbanes-Oxley)', def: 'A regulation requiring companies to maintain and prove effective financial controls.' },
+      { term: 'Risk Register', def: 'A maintained list of the risks facing the enterprise, with their likelihood, impact and mitigation.' },
+      { term: 'Attestation', def: 'A formal sign-off confirming that a control was performed or a statement is accurate.' },
+      { term: 'Policy-as-Code', def: 'Expressing governance rules as machine-executable code so they are enforced automatically rather than checked by hand.' },
+      { term: 'Control', def: 'A rule or step that prevents, detects or corrects an error or risk in a process.' },
+    ],
+  },
+  {
+    section: 'Security',
+    terms: [
+      { term: 'DevSecOps', def: 'Building security into software delivery from the start, rather than adding it at the end.' },
+      { term: 'SIEM (Security Information & Event Management)', def: 'Technology that collects and analyses security signals across systems to detect threats.' },
+      { term: 'SOAR (Security Orchestration, Automation & Response)', def: 'Technology that automates the investigation of and response to security incidents.' },
+      { term: 'SBOM (Software Bill of Materials)', def: 'A complete inventory of the components inside a piece of software, used to manage vulnerabilities.' },
+      { term: 'Endpoint', def: 'A device such as a laptop, server or phone that connects to the enterprise network.' },
+      { term: 'Remediation', def: 'The action taken to fix an incident, vulnerability or control failure.' },
+    ],
+  },
+  {
+    section: 'Operations',
+    terms: [
+      { term: 'AIOps', def: 'The use of AI to run IT operations — detecting, diagnosing and resolving issues across systems.' },
+      { term: 'MTTR (Mean Time to Resolution)', def: 'The average time to resolve an incident, from detection to confirmed fix. A core measure of operations performance.' },
+      { term: 'MTTD (Mean Time to Detect)', def: 'The average time taken to notice that an incident has occurred.' },
+      { term: 'SLA (Service-Level Agreement)', def: 'A committed standard for a service, such as response time or availability.' },
+      { term: 'Incident', def: 'An unplanned disruption or degradation of a service.' },
+      { term: 'Root Cause Analysis (RCA)', def: 'Determining the underlying reason an incident occurred, not just its symptoms.' },
+      { term: 'CMDB (Configuration Management Database)', def: 'A record of IT assets and how they relate — often a static snapshot rather than the live system.' },
+      { term: 'Runbook', def: 'A defined procedure for handling a specific operational task or incident.' },
+      { term: 'Observability', def: 'The ability to understand a system’s internal state from the signals it emits.' },
+      { term: 'Change Management', def: 'The controlled process for making changes to systems so they are reviewed, approved and safe.' },
+      { term: 'FinOps', def: 'The practice of managing and optimising cloud spend as a shared, accountable discipline.' },
+    ],
+  },
+  {
+    section: 'Business & Finance',
+    terms: [
+      { term: 'ERP (Enterprise Resource Planning)', def: 'Core software for running finance, supply chain and operations.' },
+      { term: 'CRM (Customer Relationship Management)', def: 'Software for managing customer relationships, sales and service.' },
+      { term: 'HCM (Human Capital Management)', def: 'Software for managing the workforce — hiring, pay, time and development.' },
+      { term: 'OKR (Objectives & Key Results)', def: 'A goal-setting method linking measurable results to objectives, cascaded across the organisation.' },
+      { term: 'KPI (Key Performance Indicator)', def: 'A metric used to track performance against a goal.' },
+      { term: 'Portfolio', def: 'A managed collection of investments, programs or products, prioritised toward strategy.' },
+      { term: 'Reconciliation', def: 'Checking that two sets of records agree, such as a sub-ledger against the general ledger.' },
+      { term: 'Period-End Close', def: 'The recurring process of finalising the books at the end of a financial period.' },
+      { term: 'Order-to-Cash (O2C)', def: 'The end-to-end process from taking a customer order to collecting payment.' },
+      { term: 'Procure-to-Pay (P2P)', def: 'The end-to-end process from requesting a purchase to paying the supplier.' },
+      { term: 'General Ledger', def: 'The central accounting record of all financial transactions.' },
+      { term: 'Total Cost of Ownership (TCO)', def: 'The full cost of running a system — licences, integration and operation — not just its purchase price.' },
+      { term: 'Modernization', def: 'Moving a legacy application onto a current technology stack while preserving its business logic.' },
+    ],
+  },
+  {
+    section: 'Enterprise Functions',
+    terms: [
+      { term: 'Intelligence Hub', def: 'The platform’s intelligence layer — the semantic model plus the AI that reasons and acts on it.' },
+      { term: 'Corporate Drivers', def: 'The area that sets and cascades strategy: objectives, planning, portfolios, OKRs and governance bodies.' },
+      { term: 'Trust, Governance & Assurance', def: 'The area covering governance, risk, compliance, audit and data governance.' },
+      { term: 'Customers', def: 'The function covering CRM, orders, service and campaigns.' },
+      { term: 'People', def: 'The function covering workforce, recruitment, time, pay and development.' },
+      { term: 'Supply Chain', def: 'The function covering procurement, materials, vendors, warehouses and field force.' },
+      { term: 'Operations', def: 'The function covering service management, incidents, assets and maintenance.' },
+      { term: 'Finance', def: 'The function covering the ledger, payables, receivables, treasury and reporting.' },
+      { term: 'PMO', def: 'The function covering programs, projects, tasks and delivery.' },
+      { term: 'IT & CyberSecurity', def: 'The function covering IT strategy, delivery, infrastructure, service and security.' },
+      { term: 'Engineering Toolkits', def: 'The tools for building, integrating and modernising applications on the platform.' },
+      { term: 'Operations Toolkits', def: 'The tools for running the platform — observability, FinOps, security operations and DevSecOps.' },
+    ],
+  },
+]

@@ -1,0 +1,125 @@
+<div class="hook fade-in"><p>The work order closed at 06:41. Created under the right role, approved by the right role, every procedure step signed with a timestamp, parts consumed, wrench time captured to the minute. It may be the best-governed object in your plant. <strong>Now pull the record of who decided the line was safe to run again.</strong> There isn't one — because in the maintenance stack's model of production, that decision does not exist.</p></div>
+
+<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<div class="fade-in">
+<p>Be precise about what the maintenance and CMMS platforms got right, because it is substantial. They took the most chaotic artifact in industrial operations — the paper work order, the whiteboard backlog, the PM schedule that lived in one planner's head — and made it a governed digital object. Role-based permissions decide who can create, approve, execute, and close. Procedures attach to the order; each step completes with a name and a timestamp; the finished record doubles as compliance evidence. Asset histories accumulate. Meter- and condition-based triggers replace calendar guesswork. Anyone who has run a maintenance department on carbon-copy triplicate knows this was not an incremental improvement. It was a generational one.</p>
+<p>And within its object model, the governance is genuinely good — arguably tighter than what some production systems apply to their own transactions. Creation is permissioned. Approval is permissioned. Closure is permissioned. The lifecycle of the work order, <em>as an object</em>, is close to airtight.</p>
+<p>The problem is that phrase: as an object. The work order is governed as if it were a self-contained story with a beginning, a middle, and an end. On a real production line it is none of those things. It is the middle of a much larger event — and the stack that governs it so carefully has no model of the rest.</p>
+</div>
+
+<div class="section-label fade-in">'CLOSED' IS THE MIDDLE</div>
+<div class="fade-in">
+<p>Walk through a composite scenario — illustrative, but it will be familiar. A bearing on a forming press begins to degrade partway through Tuesday's second shift. Vibration drifts. Nobody notices until Wednesday morning, when an operator flags chatter. A work order is raised, approved, scheduled, executed. Thursday, 06:41: closed. In the maintenance system, this is a complete, well-audited story.</p>
+<p>On the line, four other stories are just beginning, and none of them has a system of record:</p>
+<ul>
+<li><strong>WIP disposition.</strong> Everything produced between the last known-good state and detection was made on a degrading asset. Which units, exactly? Held where, on whose authority, against what criteria for release, rework, or scrap? That is a quality decision — and it lives in a quality system, an NCR form, or a supervisor's judgment, none of which the work order can see.</li>
+<li><strong>Equipment clearance.</strong> Repaired is not the same as qualified. First-run checks, dimensional verification, requalification in regulated environments — quality must clear the asset before it produces sellable material again. That clearance lives in the QMS or the MES, not in the closed order.</li>
+<li><strong>Schedule recovery.</strong> Planning has lost hours of capacity and must re-sequence orders, reallocate lines, and reset customer promises. In most plants that work happens in a planner's spreadsheet, reconciled against the ERP after the fact.</li>
+<li><strong>The release itself.</strong> Someone decides production restarts. Not the CMMS, which shows a closed order. Not the MES, which shows a paused line. Not the QMS, which may not have been told anything happened. A person decides — and the decision leaves no trace anywhere.</li>
+</ul>
+<p>The maintenance record ends exactly where the consequential decisions begin. 'Closed' is not the end of the story. It is the middle — and the second half is unwritten.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE DECISION WITH NO RUNTIME</div>
+<div class="fade-in">
+<p>What does the release-back-to-production decision actually look like today? A radio call. A nod across the floor. At best, a line in a shift log: <em>press 4 back up, 06:50</em>. Then reconciliation: the MES status flipped by hand, the QMS updated if someone remembers, the spreadsheet corrected at the next planning meeting. Four systems, one verbal decision, stitched together afterward by whoever happened to be standing there.</p>
+<p>Notice the asymmetry. The audit trail proves the wrench time in forensic detail — who turned which bolt, when, against which procedure revision. And it is silent on every decision that carried actual production risk: whether the suspect WIP was held, who cleared the asset, who authorized the restart, whether quality was in the room. The best-audited hour of the incident is the least consequential one.</p>
+<p>This is also where the category's favorite metric deserves scrutiny. The maintenance platforms sell, fairly enough, on the cost of unplanned downtime — and directionally they are right that it is enormous. But look at where that cost actually accrues. A meaningful share of it is not the hours the asset sat idle; it is the seams: suspect material that escaped because nobody connected the degradation window to specific units, schedules recovered by heroics and expedite fees, lines restarted on verbal authority and stopped again. A work-order object model has no production-scheduling linkage, no quality tie-in, and no gated release — which means the hero number is largely generated in territory the model never mentions.</p>
+<p>The connected-worker variant of the stack deserves the same precision. A timestamped checklist proves that a technician attested a step happened. That is evidence, and evidence has value. But attestation that a step occurred is not governance of what the step triggers. A completed lock-out/tag-out checklist proves someone recorded the locks as removed. It does not gate the restart on that verification — the restart happens wherever, and whenever, someone decides it happens.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: the stitched stack, where a closed CMMS work order connects to MES, QMS and planning only by dashed human handoffs. Right: one governed fabric, where LOTO verification gates a permissioned line release that triggers WIP disposition, quality clearance and schedule recovery on a single audit spine." fill="none">
+  <defs>
+    <marker id="arr-wo5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.5,0.5 L7.5,4 L0.5,7.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+    </marker>
+  </defs>
+  <text x="180" y="26" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="1.5" fill="currentColor" opacity="0.55">THE STITCHED STACK</text>
+  <text x="605" y="26" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="1.5" fill="currentColor" opacity="0.55">ONE GOVERNED FABRIC</text>
+  <line x1="395" y1="42" x2="395" y2="300" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+
+  <rect x="105" y="48" width="150" height="46" rx="8" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <text x="180" y="67" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" opacity="0.8">CMMS</text>
+  <text x="180" y="83" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.55">work order: CLOSED</text>
+
+  <rect x="22" y="150" width="140" height="46" rx="8" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="92" y="169" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" opacity="0.7">MES</text>
+  <text x="92" y="185" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.5">WIP status: ?</text>
+
+  <rect x="198" y="150" width="140" height="46" rx="8" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="268" y="169" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" opacity="0.7">QMS</text>
+  <text x="268" y="185" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.5">clearance: ?</text>
+
+  <rect x="110" y="235" width="140" height="46" rx="8" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="180" y="254" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" opacity="0.7">PLANNING</text>
+  <text x="180" y="270" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.5">spreadsheet: ?</text>
+
+  <line x1="150" y1="94" x2="100" y2="150" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.4"/>
+  <line x1="210" y1="94" x2="260" y2="150" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.4"/>
+  <line x1="180" y1="94" x2="180" y2="235" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.4"/>
+  <text x="180" y="306" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.5">release = verbal handoff · reconciled after</text>
+
+  <rect x="520" y="48" width="170" height="34" rx="8" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <text x="605" y="69" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">Maintenance complete</text>
+  <line x1="605" y1="82" x2="605" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.6" marker-end="url(#arr-wo5)"/>
+  <path d="M605,106 L662,131 L605,156 L548,131 Z" stroke="currentColor" stroke-width="1.4" opacity="0.8"/>
+  <text x="605" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor" opacity="0.8">LOTO verified</text>
+  <text x="605" y="142" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.5">inline gate</text>
+  <line x1="605" y1="156" x2="605" y2="174" stroke="currentColor" stroke-width="1.3" opacity="0.6" marker-end="url(#arr-wo5)"/>
+  <rect x="513" y="178" width="184" height="34" rx="8" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <text x="605" y="199" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">Line release — permissioned</text>
+
+  <line x1="555" y1="212" x2="484" y2="237" stroke="currentColor" stroke-width="1.2" opacity="0.55" marker-end="url(#arr-wo5)"/>
+  <line x1="605" y1="212" x2="605" y2="237" stroke="currentColor" stroke-width="1.2" opacity="0.55" marker-end="url(#arr-wo5)"/>
+  <line x1="655" y1="212" x2="726" y2="237" stroke="currentColor" stroke-width="1.2" opacity="0.55" marker-end="url(#arr-wo5)"/>
+
+  <rect x="425" y="240" width="112" height="32" rx="7" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="481" y="260" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">WIP disposition</text>
+  <rect x="549" y="240" width="112" height="32" rx="7" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="605" y="260" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">Quality clearance</text>
+  <rect x="673" y="240" width="112" height="32" rx="7" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+  <text x="729" y="260" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">Schedule recovery</text>
+
+  <line x1="481" y1="272" x2="481" y2="290" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+  <line x1="605" y1="272" x2="605" y2="290" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+  <line x1="729" y1="272" x2="729" y2="290" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+  <line x1="425" y1="290" x2="785" y2="290" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+  <text x="605" y="308" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.5">one audit spine — emitted per action, by construction</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">COMPLETION AS A NODE, NOT AN ENDING</div>
+<div class="fade-in">
+<p>Now invert the architecture. Entroid is a Composable Process Fabric: five primitives — Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class construct, Functions, and Connectors — running on a shared semantic ontology, on one runtime, with an immutable audit record emitted for every action. In ES Manufacturing, the production process is not documented by the system; it <em>is</em> the governed workflow executing on the fabric.</p>
+<p>That changes what maintenance completion is. It stops being the terminal state of a self-contained object and becomes a node in a cross-functional workflow spanning maintenance, production, quality, and planning — architecturally, by construction:</p>
+<ul>
+<li><strong>LOTO-complete is a gate, not a checkbox.</strong> The line-release action is a permissioned step in a Deterministic Workflow. It structurally cannot execute until the verification steps ahead of it complete — the gate sits in the execution path, not in a report someone reads later.</li>
+<li><strong>WIP disposition routes by construction.</strong> The completion event triggers disposition routing for material produced in the exposure window. Genealogy identifies the affected units because it is emitted as production executes — not joined from logs afterward by an engineer with a query and a deadline.</li>
+<li><strong>Schedule recovery is the same workflow, not a meeting.</strong> Planning acts on the same record maintenance and quality are acting on — re-sequencing as a governed step, visible to everything downstream of it.</li>
+<li><strong>Humans still decide; the runtime governs.</strong> The quality engineer still makes the disposition call. The supervisor still releases the line. Human-in-the-loop is a first-class primitive, not an escape hatch — so each judgment executes as a permissioned action inside the workflow, and the audit record of the decision exists because the decision executed there.</li>
+</ul>
+<p>None of this requires pretending your existing estate disappears. Connectors — the only primitive that touches external systems — carry the workflow across the CMMS, MES, and ERP you already run. The claim is not zero integration. The claim is that the integration points become governed steps in the process, rather than the places where governance quietly ends.</p>
+<p>That is the whole difference in one sentence: the maintenance stack produces a record of the repair; the fabric governs the execution of everything the repair sets in motion.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHAT TO ASK AT THE NEXT REVIEW</div>
+<div class="fade-in">
+<p>If you run architecture or operations diligence, the maintenance–production seam is easy to probe. Five questions:</p>
+<ul>
+<li><strong>What does 'closed' cause?</strong> When a work order closes, what state changes in the systems that manage production, quality, and planning — as a governed consequence, not via a human courier?</li>
+<li><strong>Can it hold the WIP?</strong> Show the mechanism that identifies and holds material produced between last-known-good and detection. If the answer begins with "an engineer would query," that is a research project, not a control.</li>
+<li><strong>Who can release the line?</strong> Name the role — and show where that permission is enforced at the moment of restart, not where it is written in a procedure document.</li>
+<li><strong>Where is the release audited?</strong> Pull the audit record of the last restart decision itself. The decision — not the work order that sat near it.</li>
+<li><strong>What does quality know, and when?</strong> Does the quality function learn about the event from the runtime, or from a conversation?</li>
+</ul>
+<p>If the honest answer to most of these is an integration diagram plus a person carrying the decision across it, then the stack has digitized the record of maintenance — and left the governance of its consequences exactly where the paper system left it: in the hallway.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>The audit trail proves the wrench time to the minute. The decision that carried the risk — restarting the line — never touched a runtime at all.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

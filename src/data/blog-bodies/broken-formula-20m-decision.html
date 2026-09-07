@@ -1,0 +1,54 @@
+
+  <div class="stat-row fade-in">
+  <div class="stat-box"><div class="stat-num">$20M</div><div class="stat-lbl">Decision based on one spreadsheet</div></div>
+  <div class="stat-box"><div class="stat-num">$3.8M</div><div class="stat-lbl">Over budget 5 months in</div></div>
+  <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Rows missed by broken SUM formula</div></div>
+</div>
+
+<div class="hook fade-in">A $20M decision rested on a spreadsheet. One formula was wrong. Nobody caught it, not the analyst, not the reviewer, not the board. <mark class="hl"><strong>Five months and $3.8M later, someone finally did.</strong></mark></div>
+
+  <div class="section-label fade-in">The Scene</div>
+  <div class="fade-in"><p>The business case was thorough: 47 tabs, three scenario models, five years of projections. Built by a senior analyst over two weeks, reviewed by the FP&A director, and presented to the board with confidence.</p>
+<p>The board approved the $20M strategic initiative based on a projected 3-year ROI of 22%. Five months in, the program was over budget. Not by a little, but by $3.8M.</p>
+<p>The post-mortem found the issue: a SUM formula on the cost summary tab excluded two rows of infrastructure costs. The formula referenced B4:B17 instead of B4:B19. Two rows, $3.8M, completely invisible in a 47-tab workbook.</p>
+<p><strong>The analyst wasn't careless. The reviewer wasn't negligent. The spreadsheet was just too complex for any human to audit end-to-end.</strong></p></div>
+
+  <div class="scene-img-wrap fade-in">
+    <img src="/blog-assets/1454165804606-c3d57bc86b40.jpg" alt="Executive reviewing financial documents" loading="lazy">
+  </div>
+
+  <div class="section-label fade-in">The Cascade</div>
+  <div class="fade-in"><ul>
+<li><strong>Spreadsheet planning has no structural validation.</strong> A broken formula produces a number that looks exactly like a correct one.</li>
+<li><mark class="hl"><strong>Complexity breeds errors.</strong></mark> 47 tabs of interconnected formulas create hundreds of potential failure points that no reviewer can fully trace.</li>
+<li><strong>The error was invisible at the point of decision</strong> and only became visible five months later, when actuals diverged from plan.</li>
+<li><strong>No audit trail on assumptions.</strong> Nobody could trace which inputs produced which outputs, or when the formula was last changed.</li>
+</ul></div>
+
+  <div class="divider fade-in"><span class="divider-dot"></span></div>
+
+  <div class="section-label fade-in">The Shift</div>
+  <div class="fade-in"><p>Now picture financial planning built on a <strong>governed data foundation</strong> instead of a spreadsheet someone emailed at midnight.</p>
+<p>Budget, revenue, expense, CapEx, and workforce planning all connect to live operational data. Scenario modeling runs with AI instead of manually tweaking cell references. Every assumption gets tracked with a full audit trail.</p>
+<p>When the board reviews a business case, the numbers aren't static projections from a spreadsheet. They're <strong>live calculations against actual enterprise data</strong>, validated structurally instead of by a human squinting at row 19 of tab 23.</p></div>
+
+  <div class="section-label fade-in">The Result</div>
+  <div class="fade-in"><p>The broken formula wasn't a human failure. It was an architectural one. When $20M decisions rest on a tool that can't validate its own calculations, the question isn't whether an error will occur. It's when.</p></div>
+
+  <div class="insight fade-in">
+    <span class="insight-label">Key Insight</span>
+    When $20M decisions rest on a tool that can't validate its own calculations (no version control, no audit trail, no live data connection), errors are a question of timing, not possibility. Boards deserve a foundation that can't silently hide a $3.8M miscalculation in row 19 of tab 23.
+  </div>
+
+  <div class="closing fade-in">
+    <blockquote>Your board deserves better than a spreadsheet. Not because spreadsheets are bad tools, but because $20M decisions deserve a foundation that can't silently hide a $3.8M error.</blockquote>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h3>See what this looks like in practice.</h3>
+    <p>A strategic conversation about how the enterprise could operate<br>when every system shares one intelligence. No demo required.</p>
+    <a href="https://enterprisesingularity.com/#cta" class="cta-btn">
+      Start the Conversation
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+    </a>
+  </div>

@@ -1,0 +1,125 @@
+/* ── Hero god rays ───────────────────────────────────────────────
+   Volumetric light for the hero: a single off-canvas source in the
+   top-left throwing soft beams down across the section, over a wide
+   atmospheric wash in the brand indigo. Everything here is gradients
+   and blur — no images, no canvas.
+
+   The layer is purely decorative and sits behind .hero__inner. */
+
+.heroRays {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Isolate the blend modes below so they lighten the hero's own ground
+     rather than whatever is painted behind the section. */
+  isolation: isolate;
+}
+
+/* The atmosphere the beams travel through. Brightest near the source,
+   falling away to the hero's ink toward the bottom-right. */
+.heroRays__wash {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(86% 122% at 4% 64%, rgba(38, 116, 255, 1) 0%, rgba(28, 82, 244, .92) 18%, rgba(24, 56, 200, .68) 38%, rgba(16, 32, 132, .34) 58%, rgba(8, 14, 62, .1) 74%, transparent 88%),
+    radial-gradient(54% 74% at 6% 0%, rgba(34, 90, 248, .58) 0%, rgba(18, 38, 156, .2) 46%, transparent 74%),
+    radial-gradient(52% 60% at 34% 104%, rgba(30, 70, 228, .3) 0%, transparent 62%),
+    radial-gradient(44% 46% at 96% 8%, rgba(88, 74, 226, .16) 0%, transparent 62%);
+  animation: heroRaysBreathe 16s ease-in-out infinite;
+}
+
+/* The beams themselves. Each is anchored at the light source and rotated
+   out from it; the shared origin is what makes them read as one source. */
+.heroRays__beams {
+  position: absolute;
+  inset: 0;
+}
+
+/* A beam is a wrapper plus a body, and the split matters. CSS applies a
+   mask *after* filter, and mask-repeat defaults to `repeat` — so blurring
+   on the same element sprays a halo outside its box that then gets masked
+   by tiled copies of the gradient, stamping hard bands along the beam.
+   Masking the body and blurring the wrapper puts the two in the right
+   order: shape the beam first, then let the blur spread freely.
+
+   The origin sits well off-canvas so the flat cap where a beam begins is
+   never in frame. */
+.heroRays__beam {
+  position: absolute;
+  left: -8%;
+  top: -46%;
+  height: 320%;
+  transform-origin: 50% 0;
+  mix-blend-mode: screen;
+  animation: heroRaysSway 22s ease-in-out infinite;
+}
+
+.heroRays__beamBody {
+  width: 100%;
+  height: 100%;
+  /* Feathered across the beam, so it has no defined flank... */
+  background: linear-gradient(90deg, transparent 0%, transparent 8%, var(--beam-color) 50%, transparent 92%, transparent 100%);
+  /* ...and along its length, so it dies out with distance instead of
+     stopping at the edge of the section. Both ends start fully clear so
+     the flat cap where the beam begins never reads as a line. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .3) 12%, rgba(0, 0, 0, .85) 26%, #000 40%, rgba(0, 0, 0, .62) 64%, rgba(0, 0, 0, .22) 84%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .3) 12%, rgba(0, 0, 0, .85) 26%, #000 40%, rgba(0, 0, 0, .62) 64%, rgba(0, 0, 0, .22) 84%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Bloom right at the source, where the light is strongest. */
+.heroRays__source {
+  position: absolute;
+  left: -4%;
+  top: 52%;
+  width: 860px;
+  height: 860px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(150, 196, 255, .58) 0%, rgba(46, 108, 255, .32) 24%, rgba(24, 54, 210, .1) 46%, transparent 68%);
+  mix-blend-mode: screen;
+  animation: heroRaysBreathe 11s ease-in-out infinite;
+}
+
+/* Settles the whole thing back into the section: darkens the outer edges
+   so the light never runs flat into the hero's boundary. */
+.heroRays__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(96deg, transparent 40%, rgba(5, 8, 22, .42) 74%, rgba(5, 8, 22, .74) 100%),
+    linear-gradient(180deg, rgba(5, 8, 22, .42) 0%, transparent 26%, transparent 80%, rgba(5, 8, 22, .42) 100%);
+}
+
+@keyframes heroRaysSway {
+  0%, 100% { transform: rotate(var(--beam-angle)) scaleX(1); }
+  50% { transform: rotate(calc(var(--beam-angle) + 2.4deg)) scaleX(1.12); }
+}
+
+@keyframes heroRaysBreathe {
+  0%, 100% { opacity: .82; }
+  50% { opacity: 1; }
+}
+
+/* Stacked hero: the copy sits directly over the light, so calm it down. */
+@media (max-width: 960px) {
+  .heroRays__beam {
+    opacity: .5;
+  }
+
+  .heroRays__vignette {
+    background:
+      linear-gradient(96deg, transparent 24%, rgba(5, 8, 22, .5) 70%, rgba(5, 8, 22, .8) 100%),
+      linear-gradient(180deg, rgba(5, 8, 22, .5) 0%, transparent 26%, transparent 62%, rgba(5, 8, 22, .58) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroRays__beam,
+  .heroRays__wash,
+  .heroRays__source {
+    animation: none;
+  }
+}

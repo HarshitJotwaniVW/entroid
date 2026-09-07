@@ -1,0 +1,94 @@
+<div class="hook fade-in"><p>Give every employee one place to ask for what they need, and route that request across the ERP, the source-to-pay suite, the contract repository and the risk system. That is a genuine improvement — fewer rogue purchases, less email, a status bar instead of a shrug. But <strong>routing a request is not running the transaction.</strong> The purchase order still posts somewhere the routing layer does not govern, and the control still fires wherever that system decides to fire it.</p></div>
+
+<div class="section-label fade-in">THE FRONT DOOR IS REAL</div>
+<div class="fade-in">
+<p>Start with the concession, because it is earned. A procurement-orchestration layer — the intake-to-pay tier that sits above your ERP and your source-to-pay suite — solves a problem that is genuinely painful. Before it, a single request to buy something fractured into a dozen paths: a form here, a chat message there, a card swipe when the form was too slow. The orchestration layer collapses that into one front door. It asks the requester structured questions, pulls the right catalog, decides which approvals and which downstream systems the request needs to touch, and hands each leg to the system that owns it — the suite for sourcing, the contract system for terms, the ERP for the PO, the risk tool for the check.</p>
+<p>The payoff is real and worth naming plainly: <strong>fewer maverick requests, less shadow spend, a shorter path from "I need this" to "it's ordered," and a single status view</strong> across systems that never used to talk. If your problem is that employees cannot find the front door, this is a good answer. Intake and coordinated routing reduce friction and pull spend back under policy. Nothing that follows disputes that.</p>
+</div>
+
+<div class="section-label fade-in">ORCHESTRATION IS A STATEMENT ABOUT STATUS</div>
+<div class="fade-in">
+<p>Now the structural point. Read the verbs the orchestration layer actually performs: it <em>routes</em>, <em>notifies</em>, <em>tracks</em>, <em>reconciles</em>, and <em>reports</em>. Every one of them is a statement about where a request <em>is</em> — not an act that <em>commits</em> it. When the PO needs to become authoritative, the layer hands it to the ERP, and the ERP posts it. When a three-way match must be enforced, or segregation of duties checked, or a budget threshold held, that enforcement happens inside whichever system owns the ledger and the master data. The orchestration layer then reads the result back and lights up the status bar.</p>
+<p>You will hear this tier described as a <em>single workflow layer over your whole stack</em> — one place where the process finally lives. Take the phrase seriously and it splits in two. There is a workflow of <strong>coordination</strong> — who is asked, in what order, with what visibility — and that one genuinely does live in the layer. And there is a workflow of <strong>execution</strong> — requisition becomes commitment becomes obligation becomes payment — and that one lives in the systems of record, each posting its own step under its own controls. The layer owns the first and narrates the second. Calling both "the workflow" is exactly where the seam vanishes from the slide but not from the architecture.</p>
+<p>That seam is easy to miss because the single pane of glass makes the whole thing feel like one system. It is not one system. It is a coordinator sitting above several systems it does not own — each with its own controls, its own data model, and its own moment of commit. The layer can <strong>request</strong> that a control fire; it cannot <strong>be</strong> the control. Its authority ends at the API boundary of the system that actually posts the transaction, and everything past that boundary — the enforcement that matters most — runs on someone else's terms.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: an orchestration layer routes an intake through approval, the ERP posts the PO, and a dashboard flags the exception after it posted. Right: one governed workflow blocks a non-compliant action at an inline gate before a Connector posts to the ledger and writes an immutable record.">
+  <defs>
+    <marker id="es-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path>
+    </marker>
+  </defs>
+  <g stroke="currentColor" fill="none">
+    <line x1="400" y1="30" x2="400" y2="300" stroke-width="1" opacity="0.25" stroke-dasharray="4 5"></line>
+
+    <text x="200" y="26" text-anchor="middle" fill="currentColor" stroke="none" font-size="14" font-weight="700" letter-spacing="1.2">ROUTE, THEN REPORT</text>
+    <rect x="70" y="46" width="260" height="40" rx="8" opacity="0.6"></rect>
+    <text x="200" y="71" text-anchor="middle" fill="currentColor" stroke="none" font-size="13">Intake form</text>
+    <rect x="70" y="108" width="260" height="40" rx="8" opacity="0.6"></rect>
+    <text x="200" y="133" text-anchor="middle" fill="currentColor" stroke="none" font-size="13">Approval routing</text>
+    <rect x="70" y="170" width="260" height="40" rx="8" stroke-width="2"></rect>
+    <text x="200" y="189" text-anchor="middle" fill="currentColor" stroke="none" font-size="13" font-weight="700">PO / invoice posts in ERP</text>
+    <text x="200" y="203" text-anchor="middle" fill="currentColor" stroke="none" font-size="10.5" opacity="0.7">authoritative commit</text>
+    <rect x="70" y="234" width="260" height="46" rx="8" opacity="0.6"></rect>
+    <text x="200" y="255" text-anchor="middle" fill="currentColor" stroke="none" font-size="13">Dashboard flags exception</text>
+    <text x="200" y="270" text-anchor="middle" fill="currentColor" stroke="none" font-size="10.5" opacity="0.7">detective &#8212; after it posted</text>
+    <line x1="200" y1="86" x2="200" y2="106" marker-end="url(#es-ah)"></line>
+    <line x1="200" y1="148" x2="200" y2="168" marker-end="url(#es-ah)"></line>
+    <line x1="200" y1="210" x2="200" y2="232" marker-end="url(#es-ah)"></line>
+    <path d="M330 257 C 372 257 372 195 332 191" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#es-ah)" opacity="0.7"></path>
+
+    <text x="600" y="26" text-anchor="middle" fill="currentColor" stroke="none" font-size="14" font-weight="700" letter-spacing="1.2">ONE GOVERNED WORKFLOW</text>
+    <rect x="470" y="46" width="260" height="40" rx="8" opacity="0.6"></rect>
+    <text x="600" y="71" text-anchor="middle" fill="currentColor" stroke="none" font-size="13">Intake</text>
+    <rect x="470" y="108" width="260" height="46" rx="8" stroke-width="2"></rect>
+    <text x="600" y="129" text-anchor="middle" fill="currentColor" stroke="none" font-size="12.5" font-weight="700">Inline gate</text>
+    <text x="600" y="144" text-anchor="middle" fill="currentColor" stroke="none" font-size="10.5" opacity="0.75">3-way match &#183; SoD &#183; threshold</text>
+    <rect x="470" y="176" width="260" height="40" rx="8" opacity="0.6"></rect>
+    <text x="600" y="201" text-anchor="middle" fill="currentColor" stroke="none" font-size="12.5">Governed Connector posts to ledger</text>
+    <rect x="470" y="238" width="260" height="40" rx="8" opacity="0.6"></rect>
+    <text x="600" y="263" text-anchor="middle" fill="currentColor" stroke="none" font-size="13">Immutable per-action record</text>
+    <line x1="600" y1="86" x2="600" y2="106" marker-end="url(#es-ah)"></line>
+    <line x1="600" y1="154" x2="600" y2="174" marker-end="url(#es-ah)"></line>
+    <text x="614" y="169" fill="currentColor" stroke="none" font-size="10" opacity="0.7">enforced at commit</text>
+    <line x1="600" y1="216" x2="600" y2="236" marker-end="url(#es-ah)"></line>
+    <path d="M730 131 L 770 131" stroke-width="1.5"></path>
+    <line x1="759" y1="122" x2="771" y2="140" stroke-width="2"></line>
+    <line x1="771" y1="122" x2="759" y2="140" stroke-width="2"></line>
+    <text x="765" y="158" text-anchor="middle" fill="currentColor" stroke="none" font-size="10" opacity="0.75">blocked</text>
+  </g>
+</svg>
+</div>
+
+<div class="section-label fade-in">FLAGGED AFTER, OR STOPPED AT THE COMMIT</div>
+<div class="fade-in">
+<p>The consequence is a difference in the <em>kind</em> of control you actually get. Route-then-report tends to produce <strong>detective</strong> control: the request is coordinated, the PO posts in the ledger, and a spend-analytics or compliance readout later surfaces that it was off-contract, over threshold, or split into two orders to slip under an approval limit. That flag is worth having. But it arrives <em>after</em> the authoritative posting. The commitment already exists; you are now in remediation — chasing a reversal or a supplier conversation instead of a clean stop.</p>
+<p>Even the preventive-looking gates have a reach problem. When the coordinator inserts an approval step before it routes the request onward, that gate lives in the coordinator — not in the system that posts. Two seams open. An action taken directly in the system of record, outside the front door, never meets the gate at all. And the gate's decision is only as binding as the downstream system chooses to honor: the coordinator asked, but the ERP is where the transaction becomes real. <strong>A control that does not sit at the moment of commit is advice, however well it is routed.</strong></p>
+</div>
+
+<div class="section-label fade-in">WHAT IT MEANS TO RUN THE TRANSACTION</div>
+<div class="fade-in">
+<p>The alternative is not a better coordinator. It is to make the procurement <em>process itself</em> the thing that executes. On a Composable Process Fabric, source-to-pay is modelled, executed, and governed as one workflow that runs the whole arc — intake to sourcing to purchase requisition to PO to receipt to invoice to payment — as a composition of five primitives on a single runtime:</p>
+<ul>
+<li><strong>Deterministic Workflows</strong> carry the governance inline — three-way match, segregation of duties, budget and authority thresholds, approval gates — as steps in the execution path, not as reports about it.</li>
+<li><strong>Connectors</strong> are the only primitive that touches an external system, and they are what post the authoritative PO or invoice into your ERP and ledger.</li>
+<li><strong>Functions</strong> do the deterministic computation, <strong>Atomic Agents</strong> — with human-in-the-loop as a first-class step — handle the judgment calls, and <strong>Intelligence Orchestration</strong> composes them, all over a <strong>Semantic Ontology</strong> so every step reads the same governed meaning of "supplier," "contract," and "commitment."</li>
+</ul>
+<p>Here is why the arrangement changes the physics. The gate and the posting live in the <em>same runtime</em>. The Connector that commits the PO is downstream of the Deterministic Workflow step that enforces the control. A non-compliant, off-contract, or over-threshold action <strong>cannot reach the posting step</strong> — there is no path from an unapproved requisition to a committed PO, because the enforcement is not a message sent to another system and hoped upon; it is the step the transaction must clear to execute at all. The control is enforced at the moment of action, and every action leaves an immutable, per-action record as a property of how it ran — not a log assembled afterward. Supplier risk and performance are computed from that same live process state, so the readout sits on the substrate that executed the work, not on a master data set polled once the invoice already posted.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">NOT ZERO INTEGRATION — A DIFFERENT PLACE FOR THE CONTROL</div>
+<div class="fade-in">
+<p>Be clear about what this does not claim. The fabric does not float above your systems by magic, and it does not replace the ERP on day one. It runs over the existing estate through governed Connectors — it integrates, deliberately and continuously. Anyone selling you zero integration is selling you the same seam under a new name.</p>
+<p>The difference is not the <em>number</em> of connections. It is <em>where the enforcement sits relative to them.</em> In the coordinated stack, the connections carry requests and status between systems that each enforce their own controls; the strongest guarantee any single action gets is whatever the owning system happens to check at its own commit, and the coordinator's gate is advisory the moment it crosses the seam. On the fabric, the Connector is a governed primitive inside a runtime that has <em>already</em> enforced the control before the Connector fires. Integration becomes the last mile of a transaction that was governed the whole way — not the boundary where governance is handed off. Same estate; a different place for the control to live.</p>
+<p><em>These are architectural properties of how the fabric is built, illustrated with an ordinary procurement scenario — not a benchmarked result from a named deployment.</em> The claim is about structure: put the gate and the commit in one runtime, and "the control fired" stops being a status you report and becomes a condition of the action existing at all. That is the line between orchestrating a request and running the transaction.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A router can tell you where your transaction went. Only the system that runs it can guarantee how it behaved on the way.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

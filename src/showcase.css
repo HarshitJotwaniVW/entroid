@@ -1,0 +1,387 @@
+/* ============================================================================
+   Tab rail and scroll-stacked deck — see src/components/Showcase.jsx.
+   ========================================================================== */
+
+/* ── Tab rail + rotating panel ───────────────────────────────── */
+.tabsx {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: start;
+}
+
+.tabsx__rail {
+  display: flex;
+  flex-direction: column;
+}
+
+/* No rule down the rail: each tab is its own bordered box, and the active
+   tab's purple bar rides its left edge as the countdown to the next tab. */
+.tabsx__rail {
+  /* gap: 8px; */
+  /* border: 0.5px solid #dcdce4;
+  border-radius: 16px;
+  overflow: hidden; */
+}
+
+.tabsx__tab {
+  position: relative;
+  appearance: none;
+  /* border-bottom: 0.5px solid #dcdce4 !important; */
+  border: 0.5px;
+  /* border-radius: var(--radius-lg); */
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 13px 16px 13px 16px;
+  color: var(--muted);
+  transition: color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.tabsx__tab:hover {
+  color: var(--text);
+}
+
+.tabsx__tab.is-active {
+  color: var(--ink);
+  font-weight: 600;
+  /* border-color: #dcdce4; */
+  /* box-shadow: var(--shadow-card); */
+  /* border-bottom: 0.5px solid var(--card-line); */
+}
+
+/* Rides the tab's own left edge, clipped by the box's radius. */
+.tabsx__prog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  overflow: hidden;
+}
+
+.tabsx__progFill {
+  display: block;
+  width: 100%;
+  height: 0;
+  background: var(--brand);
+  border-radius: 2px;
+  /* Duration comes inline from ROTATE_MS; this is the safety net, since a
+     duration-less animation would end at once and race the tabs. */
+  animation: tabsxFill 5s linear forwards;
+}
+
+@keyframes tabsxFill {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+.tabsx__panel {
+  padding: clamp(20px, 2vw, 28px);
+  background: #FCF6F4;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2vw, 32px);
+}
+
+/* Copy first, artwork second — the image is first in the DOM (it is optional
+   and wraps the text when absent), so `order` puts it on the right without
+   moving the heading and body out of reading order. */
+/* Fades in on swap, so a per-tab image change is legible. */
+@keyframes tabsxImgIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tabsx__img {
+  order: 2;
+  animation: tabsxImgIn .4s ease both;
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-card) - 10px);
+  background: transparent;
+}
+
+/* Every body is in the grid cell; only the active one is shown, so the copy
+   stays in the DOM and the panel never jumps height between tabs. */
+.tabsx__bodies {
+  order: 1;
+  flex: 0 0 34%;
+  display: grid;
+}
+
+.tabsx__body {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .35s ease, transform .45s cubic-bezier(.22, .8, .3, 1);
+}
+
+.tabsx__body.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.tabsx__title {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.tabsx__text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+@media (max-width: 860px) {
+  .tabsx {
+    grid-template-columns: 1fr;
+  }
+
+  .tabsx__rail {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .tabsx__tab {
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+
+  /* No room for the split: copy above, artwork below. */
+  .tabsx__panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabsx__bodies {
+    flex: 0 0 auto;
+  }
+
+  .tabsx__img {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .tabsx__prog {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: -1px;
+    width: auto;
+    height: 2px;
+  }
+
+  .tabsx__progFill {
+    width: 0;
+    height: 100%;
+    animation-name: tabsxFillX;
+  }
+
+  @keyframes tabsxFillX {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+}
+
+/* ── The card sections ───────────────────────────────────────── */
+/* Plain white sections divided by a hairline, exactly like `.section` on the
+   homepage. (These used to be a sticky deck of cards; the wrapper and the
+   `stack` names are kept so the section data and the grouping in Home.jsx do
+   not have to change.) */
+.stackg {
+  display: block;
+  width: 100%;
+}
+
+.stackx {
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  padding: clamp(72px, 9vw, 116px) 0;
+  scroll-margin-top: 84px;
+}
+
+/* The inner container: matches `.container` so these line up with every other
+   section. No border, radius or shadow — the section is the surface now. */
+.stackx__card {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Centred head across the card. */
+.stackx__lead {
+  max-width: 860px;
+  margin: 0 auto clamp(24px, 2.8vw, 40px);
+  text-align: center;
+}
+
+/* Accordion left, artwork right. Both take the same height from JS, so the
+   picture stands exactly as tall as the boxes beside it. */
+.stackx__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 52px);
+  align-items: stretch;
+}
+
+.stackx__label {
+  font-family: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+
+.stackx__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.5vw, 34px);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.stackx__para {
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--muted);
+}
+
+/* ── The tile grid ───────────────────────────────────────────── */
+/* Two columns of cards in the left half, the artwork in the right. Six cards
+   make three rows, which is what lets the picture stand the same height. */
+.stackx__cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1vw, 14px);
+  margin: 0;
+  padding: 0;
+  align-content: start;
+}
+
+.stackx__tile {
+  padding: clamp(16px, 1.4vw, 20px);
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Bare glyph in the heading ink, matching the cards on the homepage. */
+.stackx__tileIcon {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.stackx__tileIcon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.stackx__tileTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.stackx__tileText {
+  font-size: clamp(12.5px, .92vw, 13.5px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ── Artwork ─────────────────────────────────────────────────── */
+.stackx__figure {
+  min-width: 0;
+  display: grid;
+  align-content: stretch;
+}
+
+/* `contain` rather than `cover`: these are diagrams, and cropping one to fill
+   a box would cut labels off. */
+.stackx__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: clamp(10px, 1vw, 16px);
+}
+
+.stackx__ph {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border-radius: var(--radius-card);
+  border: 1px dashed var(--line);
+  background: var(--bg-alt);
+  color: var(--faint);
+  font-family: var(--font-caption);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .stackx__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stackx__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stackx__figure {
+    order: -1;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stackx__panel {
+    transition: none;
+  }
+}

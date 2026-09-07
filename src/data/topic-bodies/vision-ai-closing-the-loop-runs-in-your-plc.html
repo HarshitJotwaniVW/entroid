@@ -1,0 +1,108 @@
+<div class="hook fade-in"><p>A defect scrolls past the camera. The model fires. A bit flips in a PLC tag, a solenoid kicks, the part drops into a reject bin. The vendor calls this a <strong>closed loop</strong>. It isn't one. It's two open loops stitched together by a single value on a wire — and the seam is exactly where accountability leaks out.</p></div>
+
+<div class="section-label fade-in">WHAT "CLOSED" MEANS ON THE FLOOR</div>
+<div class="fade-in">
+<p>Give the category its due, because the engineering is real. The newest manufacturing computer-vision platforms are genuinely more end-to-end than a bare detector that returns a bounding box and stops. They don't just classify — they write the detection into a PLC tag over an industrial protocol, or pipe extracted fields straight into an MES, an ERP, or an RPA bot. That is a legitimate step past "here's a dashboard, watch it yourself."</p>
+<p>And the surrounding capabilities deserve the same honesty. <strong>Expert-guided labeling and rapid model training have genuinely put computer vision within reach</strong> — a line engineer can stand up a defect model without a research team. Pixel-level grounding and source citations make the <em>read</em> verifiable and materially cut confidently-wrong reads: you can see the pixels the model keyed on. Confidence scores plus human-in-the-loop review are a real, pragmatic middle path, not a fig leaf. And edge deployment with SOC 2, HIPAA, and zero-data-retention postures is real assurance for real security teams.</p>
+<p>All of that is true, and none of it is the point. Because every one of those strengths governs the <strong>model</strong> and the <strong>read</strong> — accuracy, drift, provenance of the pixel, the perimeter around the endpoint. "Closing the loop," though, is a claim about the <strong>action</strong>. And the action is precisely where this architecture quietly hands off.</p>
+</div>
+
+<div class="section-label fade-in">NO POLICY CROSSES THE WIRE</div>
+<div class="fade-in">
+<p>When a detection becomes a tag value on OPC-UA, Modbus, or EtherNet/IP — or a structured record dropped into an MES queue for an RPA bot to pick up — what travels across that wire is <strong>data, not decision authority</strong>. A boolean. A class label. A confidence float. The logic that decides what to <em>do</em> with it lives somewhere else entirely.</p>
+<p>Consider what "what to do with it" actually contains: the acceptance threshold for <em>this</em> product and <em>this</em> customer's spec; whether the current batch is under a quality hold; who is allowed to override a disposition; whether a borderline score should pause for a human rather than actuate. That logic is authored by different people — controls engineers in ladder logic, integrators in MES workflows — on a different release cycle, in a different tool, under a different change process. The vision platform governs the model. The second system governs nothing about the detection; it simply reacts to a value it received.</p>
+<p>This is structural, and it stays true no matter what any roadmap adds: <strong>the moment the consequential action executes in a system that only received a value, the governance that made the read trustworthy stops at the network boundary.</strong> No policy is attached to the number on the wire. The most carefully governed detection in the world becomes an ungoverned actuation the instant it crosses into the PLC.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE SPLIT-BRAIN AUDIT</div>
+<div class="fade-in">
+<p>Now trace the evidence, because this is where a CISO or a quality director should get uncomfortable. Two systems act, so two systems log — and they log different halves of the same event.</p>
+<p>The vision platform records <strong>what the camera saw</strong>: the image, the score, the grounding overlay, the model version. The PLC historian or MES records <strong>what the actuator did</strong>: reject arm energized, batch dispositioned, reject counter incremented. Two logs. Two clocks. Two identity models. No cryptographic binding between the "saw" and the "did."</p>
+<p>So when a recall, a safety incident, or an auditor arrives and asks the only question that matters — <em>"prove this action followed from that detection, under the policy in force at that timestamp, with the right approval"</em> — you are joining across two systems after the fact, and the join is lossy. You can show the camera saw a defect. You can show a reject fired forty milliseconds later. What you cannot produce is a single tamper-evident record that binds <strong>this action to that detection under that policy with that authorization</strong>. That is not an integration bug you can patch. It is the native shape of a detect-and-write-back architecture: the audit is split-brained by construction.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: a vision model served as an endpoint whose detection is thrown as a tag value over a dashed wall into a separate PLC/MES/ERP system that acts ungoverned, producing two disconnected logs. Right: Entroid runs the vision model as a Function inside one Deterministic Workflow — detection to inline policy with HITL to a governed Connector to one immutable audit.">
+  <g fill="none" stroke="currentColor" stroke-width="1.5">
+    <!-- PANEL A -->
+    <text x="24" y="26" font-size="12" letter-spacing="1.2" fill="currentColor" stroke="none" opacity="0.85">SERVED AS AN ENDPOINT</text>
+    <!-- vision box -->
+    <rect x="30" y="58" width="140" height="56" rx="8" opacity="0.9"/>
+    <text x="100" y="82" font-size="12.5" text-anchor="middle" fill="currentColor" stroke="none">Vision model</text>
+    <text x="100" y="100" font-size="10" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.6">label · train · grounded read</text>
+    <!-- dashed wall -->
+    <line x1="200" y1="42" x2="200" y2="210" stroke-dasharray="5 5" opacity="0.55"/>
+    <text x="200" y="230" font-size="9.5" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.55">the wire is a wall</text>
+    <!-- arrow across wall -->
+    <line x1="170" y1="86" x2="242" y2="86" opacity="0.9"/>
+    <path d="M242 86 l-8 -4 l0 8 z" fill="currentColor" stroke="none"/>
+    <text x="205" y="76" font-size="9.5" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">tag value</text>
+    <!-- second system -->
+    <rect x="245" y="58" width="130" height="56" rx="8" opacity="0.9"/>
+    <text x="310" y="80" font-size="11.5" text-anchor="middle" fill="currentColor" stroke="none">PLC / MES / ERP</text>
+    <text x="310" y="100" font-size="10" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.6">acts — ungoverned</text>
+    <!-- split logs -->
+    <rect x="40" y="150" width="120" height="34" rx="6" opacity="0.5"/>
+    <text x="100" y="171" font-size="9.5" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.8">log: what it SAW</text>
+    <rect x="250" y="150" width="120" height="34" rx="6" opacity="0.5"/>
+    <text x="310" y="171" font-size="9.5" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.8">log: what it DID</text>
+    <line x1="160" y1="167" x2="205" y2="167" stroke-dasharray="3 4" opacity="0.4"/>
+    <line x1="245" y1="167" x2="250" y2="167" stroke-dasharray="3 4" opacity="0.4"/>
+    <text x="205" y="163" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.6">✕</text>
+    <text x="205" y="205" font-size="9.5" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.6">split-brain audit — no binding</text>
+
+    <!-- divider -->
+    <line x1="405" y1="30" x2="405" y2="270" stroke-dasharray="2 6" opacity="0.35"/>
+    <text x="405" y="150" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.5">vs</text>
+
+    <!-- PANEL B -->
+    <text x="436" y="26" font-size="12" letter-spacing="1.2" fill="currentColor" stroke="none" opacity="0.85">A FUNCTION INSIDE ONE WORKFLOW</text>
+    <rect x="436" y="42" width="344" height="228" rx="14" opacity="0.9"/>
+    <text x="452" y="62" font-size="10" fill="currentColor" stroke="none" opacity="0.6">Deterministic Workflow — one runtime</text>
+    <!-- step 1 -->
+    <rect x="456" y="72" width="304" height="38" rx="7" opacity="0.85"/>
+    <text x="608" y="95" font-size="11" text-anchor="middle" fill="currentColor" stroke="none">1 · Function — vision model (grounded read)</text>
+    <line x1="608" y1="110" x2="608" y2="124" opacity="0.8"/>
+    <path d="M608 124 l-4 -8 l8 0 z" fill="currentColor" stroke="none"/>
+    <!-- step 2 -->
+    <rect x="456" y="124" width="304" height="38" rx="7" opacity="0.85"/>
+    <text x="608" y="147" font-size="11" text-anchor="middle" fill="currentColor" stroke="none">2 · Confidence gate · inline policy · HITL</text>
+    <line x1="608" y1="162" x2="608" y2="176" opacity="0.8"/>
+    <path d="M608 176 l-4 -8 l8 0 z" fill="currentColor" stroke="none"/>
+    <!-- step 3 -->
+    <rect x="456" y="176" width="304" height="38" rx="7" opacity="0.85"/>
+    <text x="608" y="199" font-size="11" text-anchor="middle" fill="currentColor" stroke="none">3 · Connector → PLC / MES (governed action)</text>
+    <!-- audit strip -->
+    <rect x="456" y="226" width="304" height="30" rx="7" stroke-dasharray="4 3" opacity="0.7"/>
+    <text x="608" y="245" font-size="10" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">⌗ one immutable audit — detect · decide · act, bound</text>
+  </g>
+</svg>
+</div>
+
+<div class="section-label fade-in">ONE DEFECT, TWO ARCHITECTURES</div>
+<div class="fade-in">
+<p>Make it concrete. Picture a hypothetical seal-weld inspection on a packaging line — illustrative, not a delivered deployment. A borderline weld comes through.</p>
+<p><strong>The endpoint pattern.</strong> The model returns "defect, high confidence" and writes it to a data block. Ladder logic reads the tag and energizes a reject solenoid. The part diverts. What never happened: no reason code was bound to the disposition; no segregation of duties was enforced, so the same identity that runs the line is the one who could later clear anything; no gate held the borderline score for a quality inspector; and no single record ties the pixel evidence to the actuation. If the acceptance threshold was wrong for this customer's spec, nobody authored that as reviewable policy — it's buried in ladder logic that the vision team never sees and the auditor can't read.</p>
+<p><strong>The fabric pattern.</strong> In Entroid the same vision model runs as a governed <strong>Function inside a Deterministic Workflow</strong> — and this is an architectural property of the design, not a claimed result. The detection is consumed <em>inline</em>. A policy gate evaluates it: a high-confidence defect opens a governed quarantine automatically; a borderline band routes to a human-in-the-loop step where a quality inspector — an Atomic Agent with HITL as a first-class primitive — adjudicates before anything actuates; a clean read passes with sampled logging. The quarantine or rework action still reaches your MES or PLC, but it reaches them through a <strong>Connector — the only primitive that touches external systems</strong>. ES runs <em>over</em> your existing estate; it does not rip out your controls.</p>
+<p>The difference is what rides with the action. That actuation is permissioned. It enforces segregation of duties by construction — the operator who ran the line cannot also clear the hold. It carries a reason code. And the entire <strong>detect → decide → act</strong> sequence is written as one immutable per-action audit entry that binds the grounded pixel evidence, the policy version, the human approver if there was one, and the actuation itself. Not two logs to reconcile. One accountable transaction on one runtime.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">WHERE THE LOOP ACTUALLY CLOSES</div>
+<div class="fade-in">
+<p>Here's the uncomfortable part for anyone about to sign a manufacturing-vision contract on the strength of a slick "closed loop" demo: <strong>you are not choosing between a good detector and a bad one.</strong> The read may be excellent. Demand the grounding, demand the confidence scoring, demand the edge security certifications — those are table stakes and the leaders deliver them. The real question is architectural, and the demo won't answer it: <em>where do the decision and the action live, relative to the governance?</em></p>
+<p>In the detect-and-write-back pattern, the loop closes inside a second system that acts on a value it cannot govern, and reports its half of the story into a separate log. In ES, the loop closes inside the workflow itself. Five primitives carry it: Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with HITL first-class, Functions (where your vision model lives), and Connectors (the only primitive that ever touches the PLC or MES) — all on a Semantic Ontology, one runtime, one immutable per-action audit.</p>
+<ul>
+<li><strong>Detect, decide, act, and audit stop being four systems</strong> and become four steps of one transaction.</li>
+<li><strong>Policy travels with the action</strong> because there is no wire to cross — the decision executes on the same runtime as the read.</li>
+<li><strong>The audit is single-brained by construction</strong>, so "prove it was authorized" is a query, not a forensic reconstruction across two historians.</li>
+</ul>
+<p>That last point is the whole argument compressed. A signal thrown over a wall can be fast, cheap, and even accurate. What it can never be, on its own, is <strong>accountable</strong> — and on a regulated factory floor, accountability is the product.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>Closing the loop in a second system just moves the open end somewhere your auditor can't reach.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>

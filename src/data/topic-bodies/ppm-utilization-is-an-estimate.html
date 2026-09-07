@@ -1,0 +1,106 @@
+<div class="hook fade-in"><p>Open your resource-management view and read the utilization number next to any senior engineer's name. It says she is at 92% this quarter. Now ask the harder question: how does the tool know? It knows because someone allocated her to three initiatives, because she filed timesheets that summed to a full week, and because her manager tagged her amber at the last review. Every one of those is a report <em>about</em> her work. <strong>Not one of them is her work. Utilization is an estimate the enterprise has agreed to treat as a fact.</strong></p></div>
+
+<div class="section-label fade-in">WHAT THE NUMBER ACTUALLY IS</div>
+<div class="fade-in">
+<p>Give the category its due first, because a resource-planning leader will stop reading the moment you strawman the tools they rely on. A single view of projects, tasks, roadmaps and people genuinely does reduce chaos — a portfolio run out of a dozen disconnected spreadsheets is worse in every measurable way. Capacity and demand planning genuinely help: modelling a pipeline of requested work against a supply of people forces the hard trade-offs to be named before they become fires. The best of the enterprise-PPM suites and work-management platforms have made this discipline accessible to organizations that never had it. None of that is in dispute.</p>
+<p>But look precisely at how the supply side of that model is produced. Capacity is assembled from three inputs: <strong>allocations</strong> — forward-looking commitments a resource manager types into a grid; <strong>timesheets</strong> — backward-looking self-reports of where hours supposedly went; and <strong>manager judgment</strong> — a periodic read on who is drowning and who has slack. Utilization is then computed as booked-or-reported hours over available hours. It is a clean percentage. It is also an inference assembled entirely from proxies, about people whose actual deliverable work is executing in systems the planning tool cannot see.</p>
+</div>
+
+<div class="section-label fade-in">THREE PROXIES, NONE OF THEM THE WORK</div>
+<div class="fade-in">
+<p>The reason utilization is perennially wrong is not sloppy data hygiene. It is structural — each of the three inputs is a proxy that drifts from the truth in a predictable direction:</p>
+<ul>
+<li><strong>An allocation is a plan, not a fact.</strong> It records where someone was <em>supposed</em> to be at the moment the grid was filled in, not where the work actually pulled them. The instant priorities shift — and they shift daily — the allocation is stale, and nothing in the tool knows until a human re-enters it.</li>
+<li><strong>A timesheet is a memory, not a measurement.</strong> It is reconstructed after the fact, rounded to the nearest half-day, and quietly incentivized to sum to a full week. It tells you what a person was willing to write down, sampled long after the work moved on.</li>
+<li><strong>Manager judgment is a snapshot, not a signal.</strong> It is the most honest of the three and the least continuous — a point-in-time impression of attention, refreshed at whatever cadence the review calendar allows.</li>
+</ul>
+<p>Stack three lagging, subjective proxies on top of each other and you do not get a live picture of capacity. You get a model that is confidently precise and quietly wrong, and that stays wrong until the next re-planning cycle scrambles to true it up. The quarterly capacity rebalance is not a best practice. It is the interval at which the enterprise admits the estimate has drifted too far from reality to keep pretending.</p>
+</div>
+
+<div class="section-label fade-in">THE ESTIMATE HAS A PRICE</div>
+<div class="fade-in">
+<p>This would be an academic quibble if the estimate were harmless. It is not. A capacity number that runs a few points hot hides the person who is actually underwater until they burn out or miss; a number that runs cold parks expensive specialists on a phantom bench while initiatives that need them wait in the demand queue. Neither error is visible in the tool, because the tool only knows what was entered. It surfaces at the portfolio review, as the same recurring conversation: why did this initiative slip when the plan showed headroom, and why are we re-cutting the resource plan again this quarter.</p>
+<p>That quarterly scramble is not a maturity failure to be trained away. It is the debt payment on running the enterprise off a model that has to be reconciled to reality after the fact. And it lands hardest exactly where the stakes are highest — the capital-intensive, cross-functional bets whose success depends on the scarcest people, the ones an estimate is least equipped to track in motion. The cost of a wrong utilization number is not the number. It is the decision made on it.</p>
+</div>
+
+<div class="divider fade-in"><span class="divider-dot"></span></div>
+
+<div class="section-label fade-in">THE RIGHT DIAGNOSIS, ONLY HALF-CLOSED</div>
+<div class="fade-in">
+<p>The sharpest players in this space have seen the problem clearly, and their answer deserves genuine credit. The strongest current move is to <strong>connect planning to delivery</strong> — to bridge the portfolio layer to the systems where work is actually executed and pull flow and throughput metrics back, so the plan can be trued against reality closer to continuously instead of once a quarter. That is the correct diagnosis. The value-stream-management vendors are right that the gap between the plan and the doing is where estimates go to die, and pulling real delivery signal across that gap genuinely narrows the staleness.</p>
+<p>But be precise about what that architecture is. Connecting a planning system to a delivery system with flow metrics is still <strong>two systems joined by measurement</strong>. The capacity model lives in one place; the deliverable work executes in another; the metrics observe the distance between them. A faster, richer integration shortens the lag and enriches the observation — it does not remove the second system, and it does not remove the human who still has to reconcile what the metrics say against what the plan assumed. Flow metrics <em>watch</em> the gap. They do not <em>close</em> it. Utilization computed from a live feed of a separate system is a fresher estimate. It is still an estimate.</p>
+</div>
+
+<div class="scene-img-wrap fade-in">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5">
+<text x="30" y="34" stroke="none" fill="currentColor" font-size="13" font-weight="700" letter-spacing="1">CAPACITY AS AN ESTIMATE</text>
+<text x="30" y="52" stroke="none" fill="currentColor" font-size="11" opacity="0.6">allocations + timesheets + judgment, trued on a cadence</text>
+
+<rect x="30" y="74" width="182" height="50" rx="8" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+<text x="121" y="95" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.85">CAPACITY MODEL</text>
+<text x="121" y="112" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.55">utilization % = booked / available</text>
+
+<text x="40" y="150" stroke="none" fill="currentColor" font-size="8.5" opacity="0.6">typed in: allocations · timesheets · RAG</text>
+
+<rect x="30" y="196" width="182" height="46" rx="8" stroke-opacity="0.55"/>
+<text x="121" y="216" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.85">DELIVERY SYSTEMS</text>
+<text x="121" y="231" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.55">where the work actually runs</text>
+
+<path d="M121 196 L121 126" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+<path d="M117 132 L121 124 L125 132" stroke-opacity="0.5"/>
+<text x="134" y="165" stroke="none" fill="currentColor" font-size="9" opacity="0.6">poll flow metrics</text>
+
+<line x1="250" y1="82" x2="250" y2="250" stroke-dasharray="2 6" stroke-opacity="0.3"/>
+<line x1="330" y1="82" x2="330" y2="250" stroke-dasharray="2 6" stroke-opacity="0.3"/>
+<text x="250" y="76" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.55">review</text>
+<text x="330" y="76" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.55">review</text>
+<rect x="254" y="150" width="72" height="30" rx="4" stroke-opacity="0.35" fill="currentColor" fill-opacity="0.06"/>
+<text x="290" y="169" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.7">drift window</text>
+
+<line x1="400" y1="24" x2="400" y2="296" stroke-dasharray="2 6" stroke-opacity="0.35"/>
+
+<text x="430" y="34" stroke="none" fill="currentColor" font-size="13" font-weight="700" letter-spacing="1">CAPACITY AS A FACT</text>
+<text x="430" y="52" stroke="none" fill="currentColor" font-size="11" opacity="0.6">utilization IS a query over live execution</text>
+
+<path d="M430 176 L760 176" stroke-opacity="0.7"/>
+<path d="M752 172 L760 176 L752 180" stroke-opacity="0.7"/>
+<circle cx="470" cy="176" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<circle cx="560" cy="176" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<circle cx="650" cy="176" r="5" fill="currentColor" stroke="none" opacity="0.85"/>
+<text x="595" y="200" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.65">workflows · agents · functions doing the work</text>
+
+<circle cx="470" cy="140" r="7" stroke-opacity="0.8"/>
+<circle cx="560" cy="140" r="7" stroke-opacity="0.8"/>
+<circle cx="650" cy="140" r="7" stroke-width="2.5" stroke-opacity="0.95"/>
+<path d="M470 147 L470 171" stroke-opacity="0.5"/>
+<path d="M560 147 L560 171" stroke-opacity="0.5"/>
+<path d="M650 147 L650 171" stroke-width="2.5" stroke-opacity="0.9"/>
+<text x="470" y="126" stroke="none" fill="currentColor" font-size="8.5" text-anchor="middle" opacity="0.7">assigned to live steps</text>
+
+<rect x="600" y="86" width="158" height="40" rx="8" stroke-opacity="0.6"/>
+<text x="679" y="104" stroke="none" fill="currentColor" font-size="10.5" text-anchor="middle" opacity="0.9">LIVE CAPACITY</text>
+<text x="679" y="118" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.6">= who is executing now</text>
+
+<text x="650" y="128" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.85" font-weight="600">over-committed</text>
+<text x="650" y="234" stroke="none" fill="currentColor" font-size="9" text-anchor="middle" opacity="0.8">contention surfaces at the claim</text>
+
+<text x="595" y="286" stroke="none" fill="currentColor" font-size="10" text-anchor="middle" opacity="0.7" font-weight="600">read, not entered · no drift window</text>
+</svg>
+</div>
+
+<div class="section-label fade-in">CAPACITY IS READ, NOT ENTERED</div>
+<div class="fade-in">
+<p>The alternative is not a better estimate. It is to stop estimating. Entroid runs every enterprise process as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions and Connectors — on one Semantic Ontology, in a single runtime with an immutable per-action audit. In this model a project is not a card that <em>links</em> to work happening elsewhere. The project <strong>is</strong> the composition of primitives that deliver it, and that composition executes on the fabric itself.</p>
+<p>That single fact changes what capacity is. When the deliverable work runs as governed workflows and agents on the fabric, the fabric already holds the ground truth: which process instances are executing right now, which human steps are assigned and waiting on a person, what is queued behind them, what is blocked. The Workforce and PMO modules do not open a grid and ask a manager to estimate consumption — they read it. <strong>Utilization becomes a Function: a query over the set of live process instances currently drawing on a person, a team, or a skill.</strong> Not booked hours over available hours. Actual claim over actual capacity, computed from execution.</p>
+<p>Allocation inverts in the same motion. Beside the runtime, an allocation is a forecast a resource manager enters and defends later against timesheets. On the fabric, an allocation is a <strong>live claim on real, currently-observed capacity</strong> — it draws on the same running primitives the enterprise is actually operating. So when two initiatives reach for the same scarce engineer, the contention is visible at the moment of the claim, not when the actuals collide at the next review. This is an architectural property of computing capacity from live state, not a claimed outcome from any deployment — offered to illustrate how the mechanism behaves, not as a delivered result.</p>
+</div>
+
+<div class="section-label fade-in">WHAT THIS DOES NOT CLAIM</div>
+<div class="fade-in">
+<p>Two caveats, because a resource leader will supply them if I don't. First, this is not a claim that Entroid sees the whole of a person's day. No system captures the thinking, the hallway decision, the meeting that never generated a ticket — and any tool that claims otherwise is selling you a fuller estimate, not a fact. The claim is narrower and therefore stronger: <em>for the deliverable work that constitutes the project</em>, capacity consumption is a byproduct of execution rather than a self-report. The share of an enterprise that runs on the fabric is the share whose capacity is read rather than guessed, and that share is a decision you make, not a limit of the design.</p>
+<p>Second, this is not a claim that ES floats free of your estate or needs zero integration. It reaches your HRIS, your delivery systems and your existing tools of record through governed Connectors — the single primitive licensed to touch the outside world, with authentication, authorization and audit inline. The distinction from the capacity-planning vendors is not integration versus none. It is that the work whose capacity you are counting executes on the same fabric as the plan that counts it — so there is no second system to reconcile, and no gap for a flow metric to watch.</p>
+</div>
+
+<div class="closing fade-in"><blockquote>A timesheet tells you what someone was willing to write down last week. A live readout tells you who is executing right now — because on the fabric, capacity is not a number you enter. It is a fact you read.</blockquote></div>
+
+<div class="cta-section fade-in"><h3>See what this looks like for your enterprise.</h3><p>Not a demo. A strategic conversation about how your enterprise could operate<br>when every process runs on one governed fabric.</p><a href="https://enterprisesingularity.com/#cta" class="cta-btn">Start the Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg></a></div>
