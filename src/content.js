@@ -138,19 +138,15 @@ export const sections = [
     heading: 'Modernise without rebuilding your enterprise.',
     paragraph:
       'Entroid enables organisations to innovate faster and modernise legacy systems on a single enterprise platform. Build production-ready solutions or transform existing applications while preserving business logic, accelerating delivery, and reducing the complexity, cost and risk of enterprise transformation.',
+    // Per-tab artwork. A tab without an `image` falls back to the section
+    // visual below, so these can be filled in a card at a time.
     cards: [
-      { title: 'Concept to Production', text: 'Turn business requirements into production-ready enterprise solutions through a single, continuous delivery process.' },
-      { title: 'Continuous Delivery', text: 'Design, build, test and deploy through one integrated workflow, eliminating delays and unnecessary handoffs.' },
-      { title: 'Modernise Legacy Applications', text: 'Transform legacy applications onto a modern technology stack while preserving business rules, processes and enterprise knowledge.' },
-      {
-        title: 'Accelerated Enterprise Delivery',
-        text: 'Accelerate implementation using reusable enterprise capabilities, configurable modules and AI-assisted development.',
-        // Per-tab artwork. Tabs without one fall back to the section visual
-        // below, so these can be filled in a card at a time.
-        image: '/illustration/accelerated-enterprise-delivery.webp',
-      },
-      { title: 'Full Enterprise Ownership', text: 'Own, maintain and extend your solutions independently without vendor lock-in or proprietary dependencies.' },
-      { title: 'Go Live in Days', text: 'Deliver new business capabilities and modernised applications in days instead of months.' },
+      { title: 'Concept to Production', text: 'Turn business requirements into production-ready enterprise solutions through a single, continuous delivery process.', image: '/illustration/concept-to-production.png' },
+      { title: 'Continuous Delivery', text: 'Design, build, test and deploy through one integrated workflow, eliminating delays and unnecessary handoffs.', image: '/illustration/continuous-delivery.png' },
+      { title: 'Modernise Legacy Applications', text: 'Transform legacy applications onto a modern technology stack while preserving business rules, processes and enterprise knowledge.', image: '/illustration/modernise-legacy-applications.png' },
+      { title: 'Accelerated Enterprise Delivery', text: 'Accelerate implementation using reusable enterprise capabilities, configurable modules and AI-assisted development.', image: '/illustration/accelerated-enterprise-delivery.png' },
+      { title: 'Full Enterprise Ownership', text: 'Own, maintain and extend your solutions independently without vendor lock-in or proprietary dependencies.', image: '/illustration/full-enterprise-ownership.png' },
+      { title: 'Go Live in Days', text: 'Deliver new business capabilities and modernised applications in days instead of months.', image: '/illustration/go-live-in-days.png' },
     ],
     // Left tab rail; the panel on the right rotates through the cards.
     layout: 'tabs',
@@ -208,7 +204,7 @@ export const sections = [
     heading: 'Enterprise AI that understands your business.',
     paragraph:
       'Entroid embeds AI into every business function through a governed enterprise AI platform. Built on enterprise context, knowledge and data, AI agents understand your organisation, collaborate across workflows, automate complex work and continuously improve decisions while remaining secure, explainable and under enterprise control.',
-    infographic: '/enterprise-AI.png',
+    infographic: '/illustration/enterprise-ai.png',
     cards: [
       { title: 'Intelligent Agents', text: 'Purpose-built AI agents understand enterprise context, reason across business processes and execute work with human oversight.' },
       { title: 'Conversational Enterprise', text: 'Interact with enterprise knowledge, applications and workflows using natural language across every business function.' },
@@ -230,7 +226,7 @@ export const sections = [
     id: 'governance',
     number: '05',
     layout: 'stack',
-    infographic: '/Governance-security-scale.png',
+    infographic: '/illustration/governance-security-%26-scale.png',
     label: 'Governance, Security & Scale',
     heading: 'Governed by design. Trusted at enterprise scale.',
     paragraph:
@@ -252,7 +248,7 @@ export const sections = [
     heading: 'Own your platform. Control your future.',
     paragraph:
       'Entroid gives organisations complete ownership of their enterprise solutions, intellectual property and future roadmap. Build, extend and evolve applications on an open, enterprise-grade platform without vendor lock-in, while retaining the freedom to innovate, customise and grow on your own terms.',
-    infographic: '/ownership-independence.png',
+    infographic: '/illustration/ownership-%26-independence.png',
     cards: [
       { title: 'Enterprise Ownership', text: 'Own your applications, configurations, data models and enterprise solutions without dependency on proprietary platforms.' },
       { title: 'Freedom from Vendor Lock-in', text: 'Open standards and portable architecture give your organisation the flexibility to evolve independently.' },
@@ -336,7 +332,7 @@ export const footer = {
     { name: 'LinkedIn', to: 'https://www.linkedin.com/company/entroid' },
     { name: 'X', to: 'https://x.com/entroid_ai' },
     { name: 'Facebook', to: 'https://www.facebook.com/entroid' },
-    { name: 'Instagram', to: 'https://www.instagram.com/entroid' },
+    { name: 'Instagram', to: 'https://www.instagram.com/entroid_/' },
     { name: 'YouTube', to: 'https://www.youtube.com/@Entroid' },
   ],
   // Every link resolves to a real destination: homepage section anchors (/#id),

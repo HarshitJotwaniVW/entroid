@@ -94,12 +94,9 @@ export const products = {
     flowText:
       'Enterprise objects, relationships and lifecycle are modelled once in the Semantic Ontology, intelligence reasons on that trusted context, and the loop closes from prediction to action across every domain.',
     visual: {
-      type: 'foundry',
-      input: 'Enterprise objects · relationships · lifecycle',
-      core: 'Semantic Ontology',
-      modules: ['Command Center', 'Predictive AI', 'Conversational AI', 'Sherlock', 'Sentinel', 'Marketplace'],
-      output: 'Grounded intelligence that acts',
-      outputSub: 'Predict, explain, decide, act, in a closed loop',
+      type: 'image',
+      src: '/illustration/intelligence-hub.png',
+      alt: 'The Intelligence Hub: enterprise objects, relationships and lifecycle modelled once, with intelligence reasoning on that context and closing the loop from prediction to action.',
     },
 
     closing: {
@@ -246,8 +243,9 @@ export const products = {
     flowText:
       'Structure and frameworks define what is governed, risk and compliance are scored and evidenced, audit assures the controls, data is catalogued and traced, and every decision is recorded and explainable.',
     visual: {
-      type: 'shield',
-      items: ['Governance', 'Risk', 'Compliance', 'Audit', 'Data', 'Explainability'],
+      type: 'image',
+      src: '/illustration/trust-governance-%26-assurance.png',
+      alt: 'Trust, Governance and Assurance: governance, risk, compliance, audit, data and explainability evidenced end to end.',
     },
 
     closing: {
