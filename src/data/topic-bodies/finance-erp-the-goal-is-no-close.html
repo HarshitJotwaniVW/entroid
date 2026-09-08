@@ -1,10 +1,10 @@
 <div class="hook fade-in"><p>Your finance organization has a number it is proud of: days to close. It has fallen for a decade, and every suite on the market promises to push it lower still — weeks to days, a soft close every morning, a rolling close, a continuous close. Here is the part nobody selling you a shorter close will say out loud: <strong>a faster close is still a close.</strong> The metric you are racing to shrink is a measure of how broken the model is — not how good it has become.</p></div>
 
-<div class="section-label fade-in">THE KPI ON TRIAL</div>
+<h2 class="section-label fade-in">The KPI on trial</h2>
 <div class="fade-in"><p>Put days-to-close on the stand and ask it one question: <em>why does it exist at all?</em> It exists because, in the ledger-of-record model, transactions post first and correctness is established afterward. Every day of a close is a day spent proving that what already hit the books was right — reconciling sub-ledgers, testing controls, chasing intercompany breaks, booking the adjustments the postings should have carried in the first place.</p>
 <p>So a low days-to-close number is not a trophy. It is a burn-down chart for a backlog of <strong>unverified postings</strong>. The whole "compress the close" industry — closing assistants that take you from weeks to days, agent suites that pitch the fastest close, data-core ERPs that close the books faster, AI general-ledger platforms selling a rolling close, reconciliation overlays selling an on-demand close — is optimizing the length of the recovery, not removing the reason you need to recover. Shrinking a defect-recovery window is progress. It is not the destination, and the KPI itself is the tell.</p></div>
 
-<div class="section-label fade-in">CREDIT WHERE IT IS GENUINELY DUE</div>
+<h2 class="section-label fade-in">Credit where it is genuinely due</h2>
 <div class="fade-in"><p>This is not a case that the category is standing still or shipping vapor. It is not. Real engineering has gone into it, and an expert reader knows it:</p>
 <ul>
 <li><strong>The unified universal journal is real.</strong> A ledger that merges the accounting and controlling views into one record genuinely eliminates an entire class of reconciliation — the tie-out between two representations of the same event simply stops existing. That is a legitimate architectural win.</li>
@@ -16,7 +16,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">MORE-FREQUENT PERIODIC IS STILL PERIODIC</div>
+<h2 class="section-label fade-in">More-frequent periodic is still periodic</h2>
 <div class="fade-in"><p>Watch the language the moment a vendor says "continuous." The continuous-accounting layer runs its reconciliation nightly instead of monthly. The reconciliation overlay offers a close "on demand." The soft-close crowd runs the same batch every morning. Each of these compresses the <em>interval</em> between runs. Not one of them removes the <em>run</em>.</p>
 <p>A reconciliation executed every night is still a reconciliation: a batch comparison of numbers that already posted, checked against sub-ledgers that were free to drift since the last comparison. Frequency is not elimination. Doing the wrong-shaped thing more often does not change its shape — it just resurfaces the same after-the-fact question at a higher cadence.</p>
 <p>And several of these "continuous" closes still require a human to post the final entries or approve the period at period-end. That is the clean test. <strong>If a person still has to staff it, summarize it, and race to finish it, it is a project</strong> — no matter how short the project has become. "Continuous" that bottoms out at a human clicking <em>approve</em> on the last day of the month is a faster periodic close wearing the vocabulary of a continuous one.</p></div>
@@ -102,14 +102,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHEN THE CLOSE IS A BYPRODUCT</div>
+<h2 class="section-label fade-in">When the close is a byproduct</h2>
 <div class="fade-in"><p>There is only one way to make a close disappear, and it is not to run it faster. It is to move correctness from the end of the process to the moment of the posting — which is an <strong>architecture</strong> decision, not a discipline decision. On a composable process fabric, record-to-report is not a system of record with a close bolted onto its month-end. It is a single governed <strong>Deterministic Workflow</strong>, and that changes where the controls live.</p>
 <p>By design, the controls — segregation of duties, approval thresholds, three-way match — fire <em>inline</em>, as the action executes, not as a test run over the results afterward. A posting that would violate a control never becomes a journal entry you have to catch and reverse in a close. It is gated at the gate. <strong>Connectors</strong> — the only primitive that touches your existing systems of record — write to the ledger as a byproduct of that governed execution, which is also why this is not a rip-and-replace fantasy: the fabric runs over the estate you already have, through governed connections, not instead of it.</p>
 <p>The structural consequence is the whole argument. Because reconciliation is enforced <em>by construction</em> inside the workflow rather than reconstructed after it, the sub-ledgers cannot silently drift between runs — there is no batch, so there is nothing to fall out of sync between batches. The books are therefore held in a <strong>continuously closeable state</strong>. The close stops being a <em>run</em> and becomes a <em>read</em>: a figure computed from live process state, on one runtime, with no handoff to a separate close tool. This is an architectural property of the design, not a benchmark — but it is the difference between a fast close and no close.</p></div>
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE LINE A CFO SHOULD DRAW</div>
+<h2 class="section-label fade-in">The line a CFO should draw</h2>
 <div class="fade-in"><p>Hold the two models side by side, because the vocabulary hides the gap. One is <strong>more-frequent periodic</strong>: the close still runs, on a shorter cycle, over numbers that already posted, and it still ends with someone approving a period. The other is an <strong>always-closeable state</strong>: nothing to run, because the control already fired when the transaction was born, and the period figure is a query.</p>
 <p>Illustratively — and this is a hypothetical of how the architecture behaves, not a delivered result to quote — the question a controller asks stops being <em>"when will the books be closed?"</em> and becomes <em>"what is net income as of this second?"</em>, answered against postings whose controls have already passed. Audit shifts in the same motion: every action carries an immutable, per-action audit record as a byproduct of execution, so assurance is continuous rather than sampled and reconstructed at quarter-end. The period-end war room has no backlog to work, because there is no backlog of unverified postings to verify. The scramble is not shortened. It is <strong>structurally out of a job.</strong></p>
 <p>So when the next roadmap promises to take your close from weeks to days, take the win — it is a real one — and then ask the only question that matters. Not <em>"how much shorter?"</em> That question accepts the premise. Ask <em>"why is there still a close to shorten?"</em> The honest answer is that the transactions posted before anyone checked them, and the day you stop needing that number is the day the check moved to where the transaction is created.</p></div>

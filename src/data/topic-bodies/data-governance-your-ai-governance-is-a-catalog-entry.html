@@ -1,20 +1,20 @@
 <div class="hook fade-in"><p>The data-governance category has answered the agent era with a single, confident move: give the agent governed context — trusted definitions, certified metrics, lineage, policies expressed as metadata — and monitor its decisions afterward. It is a good answer to the wrong half of the problem. <strong>An agent with perfect context and no gate is a confident actor with excellent citations</strong> — and nothing stands between it and the commit.</p></div>
 
-<div class="section-label fade-in">THE PIVOT DESERVES CREDIT</div>
+<h2 class="section-label fade-in">The pivot deserves credit</h2>
 <div class="fade-in">
 <p>Start with what the category got right, because it got a great deal right. Modern catalogs genuinely solved discovery: a searchable, business-glossaried, usage-ranked inventory of a sprawling estate is a real achievement, and anyone who lived through the spreadsheet-of-databases era knows how hard-won it was. Automated classification and sensitivity labeling at estate scale is real. Crawled column-level lineage genuinely helps impact analysis — knowing which dashboards break before you drop the column is not a small thing. Data-quality profiling and observability catch real rot in real pipelines. This is serious engineering, and it earned its place in the enterprise stack.</p>
 <p>The AI pivot is an extension of that competence, and on its own terms it is coherent. An agent grounded in certified definitions and trusted metrics gives measurably better answers than one improvising over raw tables. The category's own diagnosis — that a large share of enterprise AI pilots stall for data-and-governance reasons — is directionally right, and it is telling that the vendors themselves keep saying it. If your agent program is failing because the model cannot tell which of four revenue tables is the real one, governed context is exactly the medicine.</p>
 <p>So concede the premise in full: <strong>context quality genuinely matters</strong>. The gap is not in what the pivot does. It is in what it quietly assumes about what an agent is.</p>
 </div>
 
-<div class="section-label fade-in">THE AGENT STOPPED ASKING AND STARTED DOING</div>
+<h2 class="section-label fade-in">The agent stopped asking and started doing</h2>
 <div class="fade-in">
 <p>The context architecture was designed for a consumer that asks questions. Feed it better metadata and it gives better answers; log its outputs and you can review its reasoning. Both halves of that design — <em>inform before, review after</em> — govern cognition. Neither governs conduct.</p>
 <p>But the agent your board just funded is not a question-answerer. It acts. It fires the query, writes the record, updates the limit, triggers the export, calls the downstream API. And in the catalog-plus-context pattern, every one of those actions executes in systems the metadata layer <em>describes</em> but does not <em>govern</em>. The policy exists as a tag the agent was shown, not as a gate the action must pass. The classification is advice a downstream engine may or may not honor. The monitoring dashboard will faithfully display what the agent did — tomorrow.</p>
 <p>That leaves the pattern with two governed verbs and one ungoverned one. What the agent <strong>knows</strong> is governed by context. What the agent <strong>did</strong> is reviewed by monitoring. What the agent <strong>does</strong> — the act itself, at the moment of commit — belongs to whatever system receives the write, and that system has never read the catalog.</p>
 </div>
 
-<div class="section-label fade-in">WHERE ENFORCEMENT ACTUALLY ENDS</div>
+<h2 class="section-label fade-in">Where enforcement actually ends</h2>
 <div class="fade-in">
 <p>The strongest architecture in this category deserves to be taken at full strength, because it is genuinely different from the rest. The query-time access-control pattern — attribute-based policy, row- and column-level security, dynamic masking applied inside the data platforms they front, every query authorized and logged — is <strong>enforcement, not documentation</strong>. A policy there is not a tag hoping to be honored; it is applied to the read, at the read. Within this category, that is the high-water mark, and it deserves respect.</p>
 <p>Now trace its boundary precisely. It governs the data <em>read</em>, at the door of the platforms it integrates with. The moment data crosses that threshold — into a BI extract, an application cache, a file export, or an agent's context window — the enforcement zone ends. For an agent this is not an edge case; it is the main case. The context window is, by construction, <em>outside the perimeter</em>: the whole point of retrieval is to carry data out of the governed platform and into the model. Every downstream token the agent produces, and every action those tokens trigger, happens beyond the last checkpoint.</p>
@@ -23,7 +23,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">A SCENARIO WITH PERFECT CONTEXT</div>
+<h2 class="section-label fade-in">A scenario with perfect context</h2>
 <div class="fade-in">
 <p>Consider a deliberately illustrative case — hypothetical, but assembled entirely from parts the category itself advertises. A bank deploys a credit-operations agent. Its context is immaculate: certified glossary definitions for every exposure metric, lineage back to source for the balances it reads, sensitivity labels on every column, its reads served through query-time policy with the restricted fields properly masked. Every retrieval it performs is compliant. Its citations are flawless.</p>
 <p>Then it acts. It writes a credit-limit increase into the system of record for a customer whose data carries a consent restriction prohibiting automated decisioning — a restriction that exists, fully documented, as metadata in the catalog. Or it assembles a perfectly-masked customer segment and pushes it to a third-party campaign tool in a jurisdiction the residency policy names. No read was violated. The act was.</p>
@@ -72,7 +72,7 @@
 <text x="600" y="296" text-anchor="middle" font-size="9.5" fill="currentColor" stroke="none" opacity="0.7">one gate for read · write · act</text>
 </svg></div>
 
-<div class="section-label fade-in">GOVERNING THE ACT IS AN ARCHITECTURE DECISION</div>
+<h2 class="section-label fade-in">Governing the act is an architecture decision</h2>
 <div class="fade-in">
 <p>You cannot patch this gap with better metadata, because the gap is not informational — it is positional. A control can only bind an action if it stands in the action's execution path. That is a statement about architecture, and it is the architectural claim Entroid is built on.</p>
 <p>On the Composable Process Fabric, the Semantic Ontology is not a catalog beside the data — it is the governed model the runtime executes on. An agent here is an <strong>Atomic Agent</strong>: a first-class primitive of the fabric, not a client calling in from outside. That single placement decision changes what governance can mean:</p>
@@ -85,7 +85,7 @@
 <p>And the context story does not get worse — it gets stronger, because <strong>context and control come from the same object</strong>. The definition the agent reasons over and the entitlement that gates its write live in the same Semantic Ontology; there is no seam where the description of policy and the enforcement of policy can drift apart. To be equally clear about what this is not: it is not a zero-integration claim. ES runs over the existing estate — the warehouses, the applications, the systems of record stay — reached through governed Connectors. The claim is about <em>locus</em>: the read, the write, and the act share one gate and one audit, because the data model is the runtime the process executes on.</p>
 </div>
 
-<div class="section-label fade-in">QUESTIONS FOR THE SPONSOR</div>
+<h2 class="section-label fade-in">Questions for the sponsor</h2>
 <div class="fade-in">
 <p>If you are the CDO or CIO sponsoring an agent program, the evaluation question is no longer "is our data AI-ready?" That question is real, and the catalogs answer it well. The question that decides whether your auditor, your regulator, and your risk committee can live with the program is sharper:</p>
 <ul>

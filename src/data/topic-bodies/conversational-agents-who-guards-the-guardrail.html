@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every serious agent platform now ships a guardrail. One camp wraps each production agent in a supervisor that audits its every action. Another compiles policy into the agent itself so the model, they say, <strong>cannot override</strong> it. Both genuinely lower the odds of a bad action. Neither makes a bad action impossible — because the thing deciding to act is still a model, and the guardrail still lives inside or beside the very agent it is meant to police.</p></div>
 
-<div class="section-label fade-in">THE WATCHER AROUND THE AGENT</div>
+<h2 class="section-label fade-in">The watcher around the agent</h2>
 <div class="fade-in">
 <p>The trust-layer camp's promise is elegant: every production agent is managed by supervisory agents that audit what it does — an <em>observe-to-intercept</em> loop that catches the model before it goes wrong. Give them credit. This works more often than it doesn't. A second model scoring the first's proposed output is a real improvement over an unmonitored agent, and across high-volume support queues it prevents a large number of genuinely bad actions.</p>
 <p>But look at the topology. A probabilistic actor proposes; a probabilistic observer judges. Both are language models with, by construction, a non-zero error rate. "Observe-to-intercept" only intercepts if the observation completes before the side effect commits — and if the observer <em>does</em> sit synchronously in the path of the action, you have not removed the model from the decision, you have added a second one. The supervisor is not a gate the action must pass. It is a watcher standing <strong>around</strong> the action, hoping to tap the brakes in time. When it misses — and anything probabilistic misses some of the time — the connector call has already left the building.</p>
 </div>
 
-<div class="section-label fade-in">GOVERNANCE YOU COMPILE IS GOVERNANCE YOU CAN LOOSEN</div>
+<h2 class="section-label fade-in">Governance you compile is governance you can loosen</h2>
 <div class="fade-in">
 <p>The governance-first camp saw this and moved the control earlier. Their argument is one we largely agree with: <strong>prompts are not a control plane</strong>, and natural-language instructions are a weak place to put a policy. So they compile the policy into the agent, hand-script the critical branches, and validate the whole artifact before launch. Compiled guardrails and scripted decision paths are meaningfully more robust than a system prompt full of "please do not." This is the camp closest to our own thinking, and it deserves a precise critique rather than a lazy one.</p>
 <p>Here is the structural limit, and it holds regardless of any product's roadmap. Governance authored into the agent at design or compile time is authored by the builder — and the same hand that authored it can loosen it: widen a threshold in the next release, add an exception branch, ship a variant with the check relaxed. "Validated before launch" is a statement about the <em>build</em>; the action happens at <em>runtime</em>. Nothing compiled into the agent is a party the agent must satisfy that is independent of the agent. It is the agent grading its own homework with a better rubric. A rubric is not a gate. A gate is something <strong>outside</strong> the actor that the action must physically pass through — and that the actor cannot rewrite on its way through.</p>
@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE CATEGORY IS TELLING ON ITSELF</div>
+<h2 class="section-label fade-in">The category is telling on itself</h2>
 <div class="fade-in">
 <p>You do not have to take our word for the gap — the category is documenting it. The governance-first camp's own research has found that <strong>most</strong> failed autonomous actions had safeguards in place beforehand, and that a <strong>majority</strong> still executed consequential actions despite those safeguards. Read that twice: the safeguards were present and the actions fired anyway. From the other direction, the autonomy-forward camp openly concedes that models hallucinate and leans on after-the-fact quality assurance to clean up what slips through.</p>
 <p>Both admissions point at the same architectural fact: a safeguard that lives inside or beside the agent shares the agent's failure modes and its blind spots. When the agent is wrong in a way its own design did not anticipate, a guardrail built from the same assumptions tends to be wrong right along with it.</p>
@@ -75,7 +75,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">ACCESS IS NOT THE SAME AS GATING</div>
+<h2 class="section-label fade-in">Access is not the same as gating</h2>
 <div class="fade-in">
 <p>There is a distinction the marketing blurs, and it is the whole game. Deterministic <strong>access</strong> control is real: many platforms can say, with certainty, that a given identity may read from or write to a given system of record. That is worth having. But controlling whether an identity can <em>reach</em> a system is not the same as controlling whether a specific proposed action is allowed to <em>execute</em> at this moment.</p>
 <p>Consider a voice agent asked to issue a refund. The caller's identity may be fully entitled to issue refunds — deterministic ACCESS to the billing system is satisfied. And still this particular refund may be over the caller's authority limit, may require a second approver it does not have, may violate a separation-of-duties rule, may breach a policy threshold. Deterministic ACCESS answers <em>"can this badge open this door?"</em> Deterministic GATING of the ACTION answers a harder question: <em>"should this specific action, with these parameters, in this sequence, pass — right now?"</em> A platform can nail the first and never once ask the second.</p>
@@ -83,7 +83,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT AN INLINE GATE ACTUALLY IS</div>
+<h2 class="section-label fade-in">What an inline gate actually is</h2>
 <div class="fade-in">
 <p>This is the difference Entroid is built around, and it is architectural, not aspirational. In our fabric, a conversational agent is not a product bolted on top of your systems. It is an <strong>Atomic Agent with a dialogue interface</strong> — a first-class primitive inside one governed runtime, composed with the others rather than wrapped by them.</p>
 <p>Follow a single utterance-to-action through it. Three primitives carry the load:</p>

@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Read the marketing for the smartest finance AI on the market and you will find the same verb over and over: <strong>detect</strong>. It detects the anomaly, resolves the posting error, flags the variance, clears the backlog. Every one of those verbs is a quiet confession — that the bad entry was allowed to post in the first place, and now something has to go find it. Detect-and-correct is not a feature you bolt on. It is a consequence of where the control sits in the architecture.</p></div>
 
-<div class="section-label fade-in">THE TELL IN THE VERB</div>
+<h2 class="section-label fade-in">The tell in the verb</h2>
 <div class="fade-in">
 <p>Let me concede the strengths honestly, because the incumbents have earned them. A unified universal-journal ledger that merges the accounting and controlling views into one record genuinely eliminates a whole class of period-end reconciliation — two views that used to be tied out by hand are now one row. In-memory, real-time reporting genuinely beats waiting on an overnight aggregation batch. Close-orchestration cockpits — task lists, ownership, status, dependencies — genuinely make a period-end close faster and more controlled than a spreadsheet and a prayer. Intercompany matching engines genuinely cut manual reconciliation. And the newest finance agents genuinely draft accruals, propose intercompany eliminations, and resolve routine posting errors well.</p>
 <p>So this is not an argument that the category is bad at what it does. It is an argument about <em>when</em> it does it. Look at how each of the leading positions describes its own AI, and notice that the timing is baked into the language:</p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY THE JOURNAL POSTS FIRST</div>
+<h2 class="section-label fade-in">Why the journal posts first</h2>
 <div class="fade-in">
 <p>This is not a product gap that a smarter model closes. It is structural, and it stays true regardless of any vendor's roadmap. A system-of-record ERP is, by design, a system for <em>recording</em> transactions and holding the authoritative ledger. Its native posting path is an ingestion path: an interface table or staging area receives entries, and a scheduled "validate-and-account" routine picks them up, checks them, and commits them to the ledger. Controls — segregation of duties, approval thresholds, three-way match — are implemented as configuration and jobs that surround that path. They run <em>around</em> the posting, not <em>as</em> the posting.</p>
 <p>Because the ledger is the source of truth, the fastest way to make it authoritative is to get the transaction into it and then govern what landed. So the sequence is fixed: post first, control second. Reconciliation is a period-end activity that ties the ledger to subledgers and banks after both have moved. The close is a project — a cockpit full of tasks that begins when the period ends, because there is nothing continuous to read; the state you need only exists once everything has posted. Even a "single source of truth" universal journal does not change this ordering. Merging accounting and controlling into one record removes a reconciliation between two views. It does not move the control to the moment of commit. It is a better record. It is still a record.</p>
@@ -69,14 +69,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHERE THE CONTROL SHOULD FIRE</div>
+<h2 class="section-label fade-in">Where the control should fire</h2>
 <div class="fade-in">
 <p>Entroid is built the other way around, and the difference is not a smarter detector — it is a different place in the architecture for the control to live. In ES a financial process is not a set of records with governance wrapped around them; it is a <strong>Deterministic Workflow</strong> that executes with governance enforced <em>inline</em>. Record-to-report, the AP-to-GL posting path, order-to-cash, reconciliation, treasury — each runs as one governed workflow on a single runtime over a shared Semantic Ontology.</p>
 <p>On that fabric, segregation of duties, approval thresholds, and three-way match are not jobs that inspect the ledger afterward. They are <em>preconditions of the posting itself</em> — gates on the path to commit. Only one primitive, the <strong>Connector</strong>, ever writes to the ledger, and it writes only after the control has passed. So a posting that fails segregation of duties, exceeds an approval threshold, or breaks the three-way match against its purchase order and receipt simply never commits. There is no non-compliant entry sitting in the ledger, because the commit was the last step, not the first. And the immutable, per-action audit record is not something a separate process reconstructs at quarter-end — it is a byproduct of the control that already fired, written as the gate evaluates.</p>
 <p>State this at its correct altitude, without over-claiming: these are <em>architectural</em> properties of where the control sits, not a promise of a specific outcome or a claim that ES has zero moving parts. ES does not float above your estate. It runs over the existing systems through governed Connectors — the point is not that integration disappears, but that the control fires at the moment of posting rather than in a batch that sweeps the ledger afterward.</p>
 </div>
 
-<div class="section-label fade-in">ONE POSTING, TWO ARCHITECTURES</div>
+<h2 class="section-label fade-in">One posting, two architectures</h2>
 <div class="fade-in">
 <p>Put a single accrual through both and the divergence is concrete. In the system-of-record model, a human or an agent drops the entry into an interface table. It sits. A scheduled validate-and-account routine runs, applies its checks, and commits what passes; whatever is malformed, out of balance, or non-compliant either errors into a suspense state or posts and waits to be caught. Then a detection model scans the posted population, surfaces the outlier, and routes it to a person to investigate, reverse, and document. Four steps of after-the-fact work, every one of which is a place the number was already wrong in the ledger.</p>
 <p>In ES the same accrual is submitted into a Deterministic Workflow — and it makes no difference whether a controller or an Atomic Agent submits it, because both hit the same gate, and human-in-the-loop is a first-class checkpoint, not an escape hatch. The inline control evaluates segregation of duties, the approval threshold, and the three-way match as one atomic precondition. Pass, and the Connector commits and the ledger updates as a byproduct of the action. Fail, and the entry is blocked or routed before it ever touches the ledger, with the control result written as immutable evidence of <em>why</em>. There is no suspense account to clear, no backlog to work off, no anomaly to detect — because the thing detection exists to find was never allowed to exist.</p>
@@ -85,7 +85,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT THIS DOES TO THE CLOSE</div>
+<h2 class="section-label fade-in">What this does to the close</h2>
 <div class="fade-in">
 <p>Collapse the timing and the close changes character. When every posting has already passed its controls at commit, there is no accumulated population of unvalidated entries waiting for a period-end reckoning. Reconciliation is not a recurring event that ties out balances after both sides have moved; the matched, controlled state <em>is</em> the running state. The close stops being a project you launch when the period ends and becomes a continuous readout of live process state — the ledger is simply where governed execution has been landing all along.</p>
 <p>For a CFO that reframes the entire conversation: the question is no longer "how fast can we close" but "why is there a close event at all." For a CIO or a controls owner it reframes the control model: you are no longer buying an ever-smarter detector to chase entries after they land, you are moving the control onto the path so there is nothing to chase. The category's AI is genuinely good at the after-the-fact work. The architectural point is that the most valuable thing you can do with a control is fire it one step earlier — at the commit, not after it.</p>

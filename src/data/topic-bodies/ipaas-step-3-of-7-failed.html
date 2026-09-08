@@ -1,20 +1,20 @@
 <div class="hook fade-in"><p>It's 2:14 a.m. An order fails on <strong>step 3 of 7</strong>. The order-management system already captured the payment. The ERP already decremented inventory. The shipping platform never received the handoff. Three systems now hold three different versions of the truth — and not one of them holds the whole of it. The on-call engineer's first question isn't <em>how do we retry?</em> It's <em>which system do we believe?</em></p></div>
 
-<div class="section-label fade-in">WHERE THE BUSINESS PROCESS ACTUALLY LIVES</div>
+<h2 class="section-label fade-in">Where the business process actually lives</h2>
 <div class="fade-in">
 <p>Start with the concession, because the platforms that connect these systems are genuinely good at what they do. Prebuilt connector breadth and API-led connectivity collapse months of point-to-point plumbing into reusable, governed APIs. Low-code recipes let a revenue-ops team automate a fulfillment flow without a platform team in the loop. And the newer agent control planes genuinely discover, secure, and govern which APIs and agents may be invoked — identity on the call, policy at the gateway, the whole API estate under one set of rulesets. That is real engineering and real value. None of it is the problem.</p>
 <p>The problem is subtler, and it's structural. In every one of these architectures, the platform sits <strong>between</strong> your systems and choreographs <strong>calls</strong> between them. The order flow you drew on a whiteboard — capture payment, reserve inventory, schedule shipment — is not an object that exists anywhere. It is an implied sequence. Its state is smeared across the endpoints it touches: the payment status lives in the OMS, the reservation lives in the ERP, the shipment lives (or doesn't) in the carrier system. The connection is governed. The recipe is governed. The agent call is governed. The <em>business transaction</em> is governed by nobody — because it doesn't exist as a durable thing you can point at.</p>
 <p>That's the sentence to sit with: <strong>when step 3 fails, there is no process to roll back — only three endpoints in disagreement.</strong></p>
 </div>
 
-<div class="section-label fade-in">"RETRY FROM THE LAST CHECKPOINT" IS NOT A ROLLBACK</div>
+<h2 class="section-label fade-in">"Retry from the last checkpoint" is not a rollback</h2>
 <div class="fade-in">
 <p>Watch what the platforms actually offer you at the moment of failure. One well-known recovery model is <em>restart from the last good point</em> — replay the flow from the last checkpoint. Another is <em>fall back to a backup agent</em> — if the primary path errors, route to a secondary. Both are legitimate reliability features. Both are also forward-only continuation, and continuation is not the same as rollback.</p>
 <p>Retrying step 3 does nothing about the payment captured in step 1 or the inventory reserved in step 2. If the retry finally succeeds, you may double-charge or double-reserve unless every downstream call happened to be idempotent — which, across a heterogeneous SaaS estate, is a property you hope for, not one the platform guarantees. If the retry keeps failing, you're left with a half-committed transaction and a manual reconciliation ticket. The platform did its job: it faithfully re-drove the flow. What it cannot do is <em>undo</em> the effects that already landed in systems it doesn't own — because it never owned the transaction in the first place, only the calls.</p>
 <p>Compensation is the thing that's missing. A real business rollback isn't "run the flow again." It is: <em>the shipment failed, so release the inventory reservation and void or refund the capture — in the right order, exactly once, with a record of each reversal.</em> That is a semantic operation on a process. You cannot checkpoint your way to it.</p>
 </div>
 
-<div class="section-label fade-in">YOU CANNOT TWO-PHASE-COMMIT A SAAS ESTATE</div>
+<h2 class="section-label fade-in">You cannot two-phase-commit a SaaS estate</h2>
 <div class="fade-in">
 <p>Some enterprise-automation vendors go further and market <em>transactional integrity across CRM, ERP, and HR.</em> It's worth being precise about what that phrase can and cannot mean, because the words evoke database ACID guarantees the architecture cannot deliver.</p>
 <p>True transactional integrity across systems requires a distributed commit protocol — two-phase commit — where every participant can <em>prepare</em>, hold a lock, and then <em>commit or abort</em> on a coordinator's command. Independent SaaS APIs do not expose that. There is no prepare phase on a payment API, no distributed lock you can hold across a carrier's REST endpoint, no coordinator the CRM will obey. You physically cannot two-phase-commit across systems you reach only through their public interfaces.</p>
@@ -88,7 +88,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHEN THE PROCESS IS THE RUNTIME OBJECT</div>
+<h2 class="section-label fade-in">When the process is the runtime object</h2>
 <div class="fade-in">
 <p>Entroid starts from the opposite end. Instead of choreographing calls between systems and hoping their states converge, it makes the <strong>process itself the first-class runtime object</strong> — with durable, governed state that lives on one runtime, not scattered across the endpoints. In the five-primitive fabric, a Deterministic Workflow carries that state and its governance <em>inline</em>; Connectors are the only primitive that touches an external system, so every external effect is a typed, audited edge of a process the runtime already knows about.</p>
 <p>That single architectural choice is what turns compensation, idempotency, exactly-once, and replay from things you hand-wire per recipe into <strong>properties of the runtime.</strong> Walk the same failure again:</p>
@@ -100,7 +100,7 @@
 <p>Now the runtime does what a checkpoint can't. It runs the <strong>saga in reverse</strong> — release the reservation, then void the capture — each compensation executed through its Connector as a governed, reversible edge; each carried out exactly once because the runtime holds the idempotency keys and dedup state; each written into <strong>one immutable per-action audit</strong>. When the endpoint recovers, an operator can <strong>deterministically replay the process from step 2</strong> against durable history rather than guessing which of three systems to trust. There is a truth now — because there is a process that holds it.</p>
 </div>
 
-<div class="section-label fade-in">THE HONEST VERSION</div>
+<h2 class="section-label fade-in">The honest version</h2>
 <div class="fade-in">
 <p>Here is the concession that keeps this credible: ES does not repeal distributed systems. It cannot two-phase-commit a payment API any more than anyone else can — no one holds a lock inside a system reached only through its public interface. It also does not remove integration; it runs <em>over</em> your existing estate through governed Connectors, and the ES Engineering Toolkits still do the real work of ingesting, transforming, and connecting.</p>
 <p>What changes is <em>where the guarantees live.</em> The distributed pattern ES implements is the saga — local effects paired with compensations — which is the architecturally correct answer for a business transaction spanning independent endpoints. The difference is that the saga, its durable state, its idempotency, and its audit are owned by the runtime as structural properties, not reconstructed by hand in every recipe and swept up after the fact by a nightly reconciliation job. The connector stays the thin, audited edge. The business runs in the fabric.</p>

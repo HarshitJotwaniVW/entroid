@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every finance organization treats reconciliation as work to be done better — run it nightly instead of monthly, match a million lines in seconds instead of days, point an AI agent at the exceptions. <strong>But reconciliation is not a task to optimize. It is a symptom — the tax you pay for allowing two records of the same truth to exist and drift apart.</strong> Automate it and you industrialize the gap. Relocate it into a harmonized data foundation and you have merely built a third record to tie back. The only way to win is to stop creating the second ledger in the first place.</p></div>
 
-<div class="section-label fade-in">WHY THE SECOND LEDGER EXISTS</div>
+<h2 class="section-label fade-in">Why the second ledger exists</h2>
 <div class="fade-in">
 <p>Start with the strengths, because they are real. A unified universal-journal ledger that merges the accounting and the controlling view into a single row genuinely eliminates a whole <em>class</em> of reconciliation — the internal tie-out between two sub-systems that used to disagree by design. In-memory reporting really does beat waiting for an overnight batch to aggregate. Intercompany matching engines really do collapse manual recon. And the newest finance AI drafts accruals, proposes clearing entries, and resolves posting errors genuinely well. None of this is marketing; a finance leader who dismisses it is not paying attention.</p>
 <p>And yet none of it removes the reason reconciliation exists. It exists because the transaction is <strong>recorded first</strong> and the agreement between records is <strong>checked afterward</strong>. A sub-ledger posts, the GL posts, and a job later confirms they agree. The bank clears on its own timeline, the ERP holds its own view, and a match run ties them out. Even a single-source-of-truth universal journal is still a <em>record</em> — an authoritative, beautifully merged one — but the controls, the reconciliation, and the close still run as a separate pass over what has already posted. The distance between <em>recorded</em> and <em>reconciled</em> is where the entire close lives.</p>
 </div>
 
-<div class="section-label fade-in">THREE WAYS TO ATTACK A SYMPTOM — AND WHY EACH ONE RELOCATES IT</div>
+<h2 class="section-label fade-in">Three ways to attack a symptom — and why each one relocates it</h2>
 <div class="fade-in">
 <p>The category has essentially three moves. Each is a genuine advance. None removes the gap.</p>
 <ul>
@@ -19,7 +19,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE TWO-LEDGER TAX</div>
+<h2 class="section-label fade-in">The two-ledger tax</h2>
 <div class="fade-in">
 <p>For an architect, the cost of a second record is not abstract. It shows up as three standing liabilities on the balance sheet of your control environment:</p>
 <ul>
@@ -91,7 +91,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">DESIGN THE SECOND LEDGER OUT</div>
+<h2 class="section-label fade-in">Design the second ledger out</h2>
 <div class="fade-in">
 <p>Entroid does not reconcile faster. It removes the condition that makes reconciliation necessary — inside its own runtime — by never creating the second copy.</p>
 <p>A financial process on the fabric — record-to-report, order-to-cash, a bank match, an intercompany settlement — is one governed <strong>Deterministic Workflow</strong>. The controls that a suite runs as a later pass are, here, the gate the action must clear to post <em>at all</em>: segregation of duties, approval thresholds, three-way match, evaluated inline, at the moment of posting. Because the primitives run on <strong>one runtime over a shared Semantic Ontology</strong>, the sub-ledger, the control, and the ledger are not three systems that have to be tied out — they are one governed object. There is no internal second copy to reconcile because there is no second copy. This is an architectural property of the design, not a feature bolted onto a record.</p>

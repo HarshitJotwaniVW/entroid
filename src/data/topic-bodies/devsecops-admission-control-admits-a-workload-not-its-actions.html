@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>The sharpest runtime claim in the DevSecOps category is also its most honest one: an admission controller that refuses a non-compliant workload is enforcement, not posture. It acts at execution time. It blocks instead of reporting. <strong>And its object is the workload — which software runs, and that it stays unmodified — not the business action that software takes on its very first request.</strong></p></div>
 
-<div class="section-label fade-in">THE CONCESSION, MADE PROPERLY</div>
+<h2 class="section-label fade-in">The concession, made properly</h2>
 <div class="fade-in">
 <p>Most critiques of pipeline security aim at an easy target: the scanner that files a ticket, the dashboard that ranks findings nobody fixes. The most runtime-oriented of the cloud-native security platforms deserve a harder critique than that, because they actually enforce. An admission controller standing at the cluster door refuses the unsigned image, the container carrying an exploitable critical vulnerability, the workload requesting privileges its policy forbids. That is a gate, and in well-run estates it is a default-deny gate. Immutability enforcement goes further still: it pins the running workload to exactly what was built, so a process that was never in the image gets killed, and a binary modified in place gets terminated. This is execution-time enforcement. It is not advice.</p>
 <p>The supply side of the category has earned its concessions too. Shift-left genuinely works — finding the vulnerable dependency in the pull request instead of in production is cheaper, faster, and real. Context-aware prioritization of static-analysis, dependency, container, and infrastructure-as-code findings genuinely cuts noise. Signed artifacts, software bills of materials, and build provenance genuinely harden the supply chain against attacks that actually happen. Policy-as-code in the pipeline genuinely stops bad builds from shipping. This is hard, valuable security work, and nothing in this piece argues for replacing it.</p>
 <p>The argument here is narrower, and it needs to be exact: <em>name what the enforcement governs.</em></p>
 </div>
 
-<div class="section-label fade-in">NAME THE CONTROL OBJECT</div>
+<h2 class="section-label fade-in">Name the control object</h2>
 <div class="fade-in">
 <p>Every security control has a control object — the thing about which it makes and verifies claims. Read the runtime security stack precisely and its object is remarkably consistent:</p>
 <ul>
@@ -18,7 +18,7 @@
 <p>The first two are statements about the <strong>actor</strong>. The third is a statement about the <strong>act</strong>. They are verified by different mechanisms, at different layers, against different policy vocabularies — and no accumulation of the first two compounds into the third. Integrity of the actor is not governance of the action.</p>
 </div>
 
-<div class="section-label fade-in">THE FIRST-REQUEST PROBLEM</div>
+<h2 class="section-label fade-in">The first-request problem</h2>
 <div class="fade-in">
 <p>Consider — deliberately hypothetical — a payments service. The image was built from a clean commit. Every dependency was scanned. The artifact is signed, its bill of materials attached, its provenance attested. Admission policy is strict, and the workload passes it. Immutability enforcement pins it to the image from the moment it starts. Minutes later it serves its first request: a refund above the approval threshold, to a payee account created yesterday. The service releases the funds — because its code permits it and the caller was authenticated.</p>
 <p>Now walk the control chain backwards. No vulnerability was exploited. No drift occurred. No admission policy was violated. The signature is valid; the inventory is accurate. Every control passed, because every control was evaluating a different object than the one that failed. The action was out of policy, and nothing between the commit and the cluster door was positioned to evaluate the action.</p>
@@ -27,7 +27,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY THE CLUSTER DOOR CANNOT SEE THE ACT</div>
+<h2 class="section-label fade-in">Why the cluster door cannot see the act</h2>
 <div class="fade-in">
 <p>This is not a maturity gap that a future release closes. It is an abstraction boundary, and it holds regardless of roadmap. An admission decision is made once, at scheduling time, in the vocabulary available at the cluster layer: images, signatures, namespaces, labels, capabilities. At that moment the business action does not exist yet. It arrives later — per request, thousands of times a day — carrying context the cluster layer never sees: the amount, the payee, the invoker, the approval state.</p>
 <p>Immutability enforcement watches continuously, but its vocabulary is processes, files, and binaries — deviation from the build. A wrong payment is not a deviation from the build. It <em>is</em> the build, executing a code path you shipped. At the workload layer, the out-of-policy refund and the in-policy refund are the same process making the same class of call; there is no signal at that altitude that distinguishes them.</p>
@@ -94,7 +94,7 @@
 <text x="400" y="300" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.55">One runtime: the gate, the action, and the audit record share the same execution path.</text>
 </svg></div>
 
-<div class="section-label fade-in">GOVERNING THE ACTION AS THE UNIT</div>
+<h2 class="section-label fade-in">Governing the action as the unit</h2>
 <div class="fade-in">
 <p>Entroid approaches the problem from the other end. The question is not "how do we secure what ships" — the category answers that well — but "what sits in the execution path of each business action at the moment it executes." ES is a composable process fabric: five primitives on a shared semantic ontology, one runtime, an immutable per-action audit. The governance claims that follow are architectural properties of that design — things true by construction, not outcomes we are asserting:</p>
 <ul>
@@ -109,7 +109,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">TWO QUESTIONS FOR YOUR NEXT REVIEW</div>
+<h2 class="section-label fade-in">Two questions for your next review</h2>
 <div class="fade-in">
 <p>For the next architecture review, put two questions to every runtime-enforcement claim on the table. First: <strong>what is the control object?</strong> If the answer is workload identity and integrity, keep it — that enforcement is hard-won and it defends against real supply-chain attacks. Second: <strong>what sits in the execution path of the business action</strong> — the payment, the record change, the export? If the honest answer is "the application's own code, plus logs afterwards," you have found the actual boundary of your governance. It is not where the pipeline diagram says it is. It is at the door of the cluster, one abstraction layer below and one moment in time before the actions your regulators, auditors, and customers actually care about.</p>
 </div>

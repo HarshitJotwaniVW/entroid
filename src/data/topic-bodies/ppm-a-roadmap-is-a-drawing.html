@@ -2,19 +2,19 @@
   <p>A roadmap is a drawing. Bars, dependencies, milestones — a rendering of work you <em>intend</em> to do. <strong>Redraw it, and nothing downstream moves.</strong> The bars slide, a milestone shifts a quarter to the right, and then a human opens a dozen delivery systems and re-plans the actual work by hand. The drawing and the work were always two artifacts. The roadmap described the work; it never held it.</p>
 </div>
 
-<div class="section-label fade-in">THE PICTURE IS REAL WORK — AND GENUINELY USEFUL</div>
+<h2 class="section-label fade-in">The picture is real work — and genuinely useful</h2>
 <div class="fade-in">
   <p>Start with the concession, because it is earned. A single surface that unifies projects, tasks, roadmaps and the portfolio above them is a real advance over the archipelago of spreadsheets and slide decks it replaced. When every initiative, dependency and milestone lives in one board instead of forty tabs, chaos genuinely drops. Capacity and resource planning let you see demand against supply and rebalance before a team is underwater. Value-stream and flow views expose where work piles up between planning and delivery. And the newer AI planning assistants really do save hours — they summarize status, forecast slippage, and draft the update a program manager used to assemble by hand.</p>
   <p>None of that is theater. The <strong>enterprise-PPM suites</strong> and <strong>work-management platforms</strong> earned their seat by making intent legible. The question is not whether the picture is valuable. It is what the picture <em>is</em> — and what it can and cannot do when leadership changes its mind.</p>
 </div>
 
-<div class="section-label fade-in">A DRAWING HOLDS NO WORK</div>
+<h2 class="section-label fade-in">A drawing holds no work</h2>
 <div class="fade-in">
   <p>Here is the uncomfortable part. Every one of those objects — the Gantt bar, the percent-complete, the RAG dot, the portfolio roll-up — is a <strong>representation entered by a person</strong>. The bar is not the work; it is a rectangle whose length someone typed. Percent-complete is not a measurement; it is an estimate a lead nudged from 60 to 75 before the review. The portfolio is not a state; it is a forecast reconciled at a cadence. The tool is a tracking layer <em>beside</em> the work, and the actual deliverable — the code, the migration, the campaign, the onboarding flow — executes in other systems entirely.</p>
   <p>That gap is invisible until you re-plan. Re-sequence the roadmap and the drawing updates instantly, because moving a rectangle is cheap. But the running work does not know the drawing changed. So a human becomes the propagation layer: re-cutting sprints, re-assigning owners, re-timing dependencies, re-keying the plan into each delivery system that actually does the thing. The re-plan you drew is a <em>to-do list for people</em>, not an instruction the work obeys. And in the window between the redraw and the re-key — often days — the roadmap says one thing and the enterprise is doing another. The dependency arrows on the chart are decoration; nothing enforces them. You can draw a milestone as gating and ship straight past it, and the picture will not stop you. It will just be wrong.</p>
 </div>
 
-<div class="section-label fade-in">THE SHARPEST ANSWER — AND ITS CEILING</div>
+<h2 class="section-label fade-in">The sharpest answer — and its ceiling</h2>
 <div class="fade-in">
   <p>Give the category its best move. The most sophisticated <strong>strategic-portfolio-management vendors</strong> saw exactly this gap and named it correctly: connect planning to delivery. Bridge the portfolio layer to the delivery layer, instrument the seam with flow metrics, and track strategy-to-delivery end to end so leadership can finally see whether the plan and the work agree. That is the right diagnosis, and it is genuinely valuable — measuring the seam beats pretending it isn't there.</p>
   <p>But be precise about the shape of the fix. Connecting a planning system to a delivery system with flow metrics is still <strong>two systems joined by measurement and human updates</strong>. The plan lives in one place; the work executes in another; the metrics <em>observe</em> the distance between them. Flow metrics are a better instrument trained on the gap — they do not close it. When you re-plan, the two systems still diverge until someone reconciles them, and the metric's job is to report how far apart they drifted. The architecture is: draw here, execute there, measure the difference. No amount of measurement collapses two artifacts into one.</p>
@@ -68,7 +68,7 @@
   </svg>
 </div>
 
-<div class="section-label fade-in">A COMPOSITION IS A RUNNING THING</div>
+<h2 class="section-label fade-in">A composition is a running thing</h2>
 <div class="fade-in">
   <p>There is a different architecture — one where you do not draw the work and execute it elsewhere, because there is no elsewhere. On a <strong>composable process fabric</strong>, a project is not a folder of cards pointing at work in other systems. The project <em>is</em> the composition of primitives that deliver it, and those primitives run on the same fabric the roadmap lives on. The deliverable work executes as governed workflows; the roadmap is a view over them.</p>
   <p>Concretely, the composition is assembled from five primitives, and the project is the graph that wires them together:</p>
@@ -82,7 +82,7 @@
   <p>All of it sits on a semantic ontology, runs on one runtime, and emits an immutable, per-action audit. The milestone is not a rectangle; it is a node in a dependency graph the runtime <em>enforces</em>. The dependency arrow is not decoration; it is a constraint the work cannot violate.</p>
 </div>
 
-<div class="section-label fade-in">WHAT MOVES WHEN YOU MOVE THE MILESTONE</div>
+<h2 class="section-label fade-in">What moves when you move the milestone</h2>
 <div class="fade-in">
   <p>This is the architectural payoff, and it is worth stating as a property of the design rather than a promised outcome. When leadership re-sequences a plan on this fabric, they are not editing a picture that a human then re-keys into delivery. They are <strong>reconfiguring the running composition directly</strong>. Move a milestone earlier and the dependency graph re-times the workflows behind it; the gate moves with it because the gate <em>is</em> the milestone, not a label beside one. There is no redraw-then-re-key interval, because there is no second artifact to reconcile. The plan and the work are the same object.</p>
   <p>Follow that through to the numbers leaders actually stare at:</p>
@@ -94,7 +94,7 @@
   <p><em>Illustratively</em> — and only illustratively, since this is how the architecture behaves, not a delivered result to hold up — imagine a CIO pulling a platform-migration milestone forward a quarter to unblock a revenue initiative. In the drawing world, that is an edit followed by a week of humans re-planning across delivery systems, and a portfolio view that is stale until they finish. On the fabric, the same edit re-times the enforced composition, the downstream gates shift with it, and the portfolio readout reflects the new reality as the work re-sequences — because the readout was never a separate document.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THIS IS NOT</div>
+<h2 class="section-label fade-in">What this is not</h2>
 <div class="fade-in">
   <p>Be careful with the claim, because over-claiming is how you lose a technical reader. This is <strong>not</strong> a promise that the fabric needs no integration and swallows your estate. It runs <em>over</em> the systems you already have through governed Connectors — the ERP, the code hosts, the identity provider stay where they are. What changes is where the deliverable work is <em>composed and governed</em>: on one fabric, under one audit, as one running thing, instead of drawn in a planning tool and executed out of reach of it.</p>
   <p>And it is not a claim that the picture was worthless. A unified roadmap made intent legible, and that mattered. The structural limit is narrower and sharper: a picture of intended work cannot be the work, so re-planning it can never be more than an instruction to humans — and connecting it to delivery by measurement, however well done, leaves you with two systems and a metric between them. The alternative is not a better picture. It is not needing one, because the roadmap became a readout of a system that is actually running.</p>

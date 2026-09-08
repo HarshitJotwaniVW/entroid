@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>At 4:47 p.m. the manager clicks <strong>terminate</strong>. The record updates instantly. The access does not. For the next several hours — sometimes days — a former employee still holds live credentials to email, the code repository, the CRM, the finance system, and the badge reader at the loading dock. Your HR system knows they are gone. Every system that could actually stop them has only been <em>told</em> — and telling is all it can do.</p></div>
 
-<div class="section-label fade-in">TERMINATED IS A STATUS, NOT A STATE</div>
+<h2 class="section-label fade-in">Terminated is a status, not a state</h2>
 <div class="fade-in">
 <p>Offboarding is where the gap between a <em>record</em> and the <em>real world</em> stops being an abstraction and becomes an exposure with a clock on it. The HR system of record does exactly what it was built to do: it flips a status field to <em>terminated</em> and generates the tasks — revoke access, disable accounts, collect the laptop, pull the next payroll run, deactivate the badge. Those tasks are correct. They are also just <strong>tasks</strong>. The status change is a fact inside the HRIS; the revocation is an action that has to happen inside identity, IT, finance, and facilities systems the HRIS does not control and can only notify.</p>
 <p>The distance between "terminated in HR" and "access actually gone everywhere" is not a data-quality problem you can integrate your way out of. It is a live interval in which your own directory asserts that a person is authorized to do things the organization has already decided they may not do.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE RECORD GETS RIGHT</div>
+<h2 class="section-label fade-in">What the record gets right</h2>
 <div class="fade-in">
 <p>Give the modern people platforms their due, because an expert reader will. A unified HR record genuinely reduces the fragmentation that used to leave three departments disagreeing about whether someone had even left. Self-service portals really do take toil off HR's plate. Skills and talent intelligence really do surface mobility and hiring signals no spreadsheet ever could. HR copilots really do answer policy questions and draft the boilerplate well. And the most advanced of them — the workforce clouds that natively span HR and IT — genuinely execute more than a pure system of record: they can provision an account and ship a device during onboarding, inside their own combined domain, without a human relaying a ticket.</p>
 <p>That is real, and it is more than notify-and-hope. Concede it plainly. Then look at what <em>unified</em> actually means in these architectures — because that is precisely where offboarding breaks.</p>
 </div>
 
-<div class="section-label fade-in">UNIFIED MEANS THE DATA, NOT THE WORK</div>
+<h2 class="section-label fade-in">Unified means the data, not the work</h2>
 <div class="fade-in">
 <p>In the suite model, <strong>unified</strong> describes the record and the view: one place where the employee's data lives, one screen where a manager sees status, comp, and the offboarding checklist together. That is unification of <em>information</em>. The <em>work</em> of offboarding is not unified — it is distributed across systems the suite reaches by message. Identity revocation happens in the IdP and SSO layer. SaaS entitlements live in dozens of applications, each with its own admin. Privileged access sits in a vault. The device is governed by an MDM. Final pay and expense clawback live in payroll and finance. The badge lives in physical security.</p>
 <p>Even the workforce cloud that provisions across HR and IT is doing this <em>within its own domain</em>. The moment offboarding touches a system outside that domain — and in a real enterprise it always does — the model reverts to what it fundamentally is: a record that updates, plus a task that routes, plus a notification that waits for someone or something else to act. Unifying the record and automating provisioning inside one suite's own domains is a genuine improvement. It is still records-plus-point-automations. It is not the offboarding process running as <strong>one governed workflow</strong> on the same fabric that runs finance, facilities, and every other enterprise process.</p>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">SECURITY CAN'T INHERIT A TIMESTAMP</div>
+<h2 class="section-label fade-in">Security can't inherit a timestamp</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part for anyone who owns risk. In the record-and-route model, the authoritative fact — "this person is terminated" — lives in a system that has no ability to enforce it. Enforcement is delegated downstream to systems that receive a signal and act on their own schedule: <em>if</em> the integration is healthy, <em>if</em> the connector didn't silently fail, <em>if</em> the application was in the provisioning catalog in the first place. The time from decision to revocation is therefore not a number the security team controls. It is an emergent property of how many handoffs fired correctly.</p>
 <p>Directionally, the industry already knows how this ends: orphaned accounts that outlive employment, standing entitlements no one reclaimed, contractors whose access quietly persists past the engagement, the departing insider who still has a working VPN on a Friday night. These are not exotic failures. They are the <strong>expected output</strong> of an architecture where the system that holds the truth cannot perform the action, and the systems that perform the action only hold a copy of the truth. Any vendor can improve its connectors and shorten the average lag. None can change the fact that in this pattern, revocation is something you <em>request and then verify</em> — never something the decision itself performs.</p>
@@ -90,7 +90,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">OFFBOARDING AS ONE GOVERNED WORKFLOW</div>
+<h2 class="section-label fade-in">Offboarding as one governed workflow</h2>
 <div class="fade-in">
 <p>Entroid starts from a different primitive. A people process is not a record update plus a portal plus a set of point workflows; it is a single <strong>Deterministic Workflow</strong> that spans HR, IT, identity, finance, and facilities as one composition, executing on the same fabric that runs every other enterprise process. Offboarding, modeled this way, is not a status change that emits tasks. It <em>is</em> the work.</p>
 <p>Concretely — and illustratively, since the claim here is an architectural property of the design, not a delivered result — a termination step in ES would not "notify identity to revoke." It would, as governed actions inside the same run:</p>
@@ -102,7 +102,7 @@
 <p>None of this claims ES needs zero integration. It reaches the identity provider, the MDM, and the payroll system through governed Connectors over your <em>existing</em> estate — that plumbing is real and it stays. The difference is architectural: those Connectors are steps <em>inside</em> the governed process, executing under inline entitlements, rather than external endpoints a record system hopes will act after it flips a flag.</p>
 </div>
 
-<div class="section-label fade-in">CLOSING THE WINDOW BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Closing the window by construction</h2>
 <div class="fade-in">
 <p>Because every action runs on one runtime, the revocation is bound into an <strong>immutable, per-action audit</strong> as it happens. There is no nightly reconciliation job trying to prove access was removed by cross-referencing an HR export against an identity log against a payroll run. The workflow that revoked the entitlement is the same workflow that recorded revoking it, at the moment it committed, with the entitlement check that authorized it attached.</p>
 <p>That is what "closing the window by construction" means. In the record-and-route model, the gap between decision and enforcement is a variable you monitor and hope to shrink. In a composed-process model, the enforcement <em>is</em> the decision executing — there is no notify-and-wait interval to measure because there is no notify-and-wait step. For the CISO, offboarding stops being an integration you audit after the fact and becomes a control that proves itself. For the CHRO, "we terminated them" and "their access is gone" stop being two different facts on two different clocks.</p>

@@ -1,10 +1,10 @@
 <div class="hook fade-in">Every process-mining vendor now opens with the same promise: process intelligence is the <strong>foundation</strong> for agentic AI. It's a good line. It also quietly assumes something that isn't true for the workflows you actually want agents to run — that the process already happened, in systems you already instrument, and left behind a clean event log to mine. The workflows most worth handing to an agent are the ones that have never run before. There is nothing there to mine.</div>
 
-  <div class="section-label fade-in">The Circular Premise</div>
+  <h2 class="section-label fade-in">The circular premise</h2>
   <div class="fade-in"><p>Look at how the category sequences its own method. One vendor frames the journey as <strong>discover, build, run</strong>. Another frames it as <strong>discover, simulate, implement, monitor</strong>. Different vocabularies, identical first move: everything starts with <em>discover</em> — and discovery has exactly one input. Event logs, extracted in batch from the systems where a process has already executed enough times to leave a statistically legible trail.</p>
 <p>That is a perfectly reasonable first step when the process is a decade-old order-to-cash flow humming through your ERP. It is a contradiction when the process is net-new. You cannot discover a path that no instance has ever walked. Point a miner at a workflow that has never run and it returns an empty model — not because the tool is weak, but because the method is <em>defined over history</em>, and there is no history yet. The category’s own flagship argument — that agentic AI arrives on the back of process intelligence — inherits this assumption whole. It’s a cold-start problem wearing the word "foundation."</p></div>
 
-  <div class="section-label fade-in">What Mining Gets Right</div>
+  <h2 class="section-label fade-in">What mining gets right</h2>
   <div class="fade-in"><p>Be fair to it, because the honest version of this argument is the stronger one. For brownfield diagnosis, mining is genuinely valuable, and pretending otherwise would be cheap. If you have a high-volume, long-lived process — invoice posting, procurement, claims adjudication — running across systems that emit timestamps, then reconstructing the real as-is flow from millions of events surfaces rework loops, maverick paths, and bottlenecks that no process owner could ever see from the inside. That is real analytical work, done well, and it has earned its place in the enterprise.</p>
 <p>The point is narrower, and it matters. Mining's competence is bounded to processes that meet three conditions at once:</p>
 <ul>
@@ -16,7 +16,7 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <div class="section-label fade-in">The Greenfield Blind Spot</div>
+  <h2 class="section-label fade-in">The greenfield blind spot</h2>
   <div class="fade-in"><p>Here is where the foundation cracks, and it cracks precisely where the value is highest. The processes enterprises most want agents to own are the ones with the thinnest historical record:</p>
 <ul>
 <li><strong>Net-new orchestrations.</strong> A workflow assembled this quarter to chase an opportunity that didn't exist last quarter. Zero prior instances, zero logs.</li>
@@ -25,7 +25,7 @@
 </ul>
 <p>A method that requires a dense, unified, historical log is strongest on the commoditized processes you have already optimized to death, and weakest on the frontier processes you are trying to create. The foundation is thickest where you need it least. Sequence your entire agentic program behind "discover first" and you have gated your most valuable ambitions behind data that, by definition, cannot exist until after those ambitions have already been realized some other way.</p></div>
 
-  <div class="section-label fade-in">Model, Don't Mine</div>
+  <h2 class="section-label fade-in">Model, don't mine</h2>
   <div class="fade-in"><p>There is a different starting point, and it is older than mining: you <strong>model the process from a specification, then run it</strong>. Not "discover what happened" but "compose what should happen." On Entroid a net-new process is authored as a composition of five primitives on a semantic ontology, and it executes in one runtime — no dependency on a pre-existing event log:</p>
 <ul>
 <li><strong>Deterministic Workflows</strong> lay down the known path — the sequence, the routing, the branch conditions — and carry governance inline: approval gates, segregation of duties, entitlement and authority limits, human-in-the-loop checkpoints. On the very first instance, not after the hundredth.</li>
@@ -80,14 +80,14 @@
     </svg>
   </div>
 
-  <div class="section-label fade-in">The Log Is the Output, Not the Input</div>
+  <h2 class="section-label fade-in">The log is the output, not the input</h2>
   <div class="fade-in"><p>Notice what just inverted. Mining treats the event log as the input it cannot start without. When you run the process, the log becomes the <strong>output</strong>.</p>
 <p>Because Entroid is the system of action rather than a system of observation, every step emits an immutable, per-action audit record against live authoritative state. And that record captures more than any reconstruction ever could: not merely that a state changed, but <em>which</em> agent decided, under <em>what</em> authority, against which policy gate, with what human sign-off, in what sequence. The greenfield process is fully observable from its first instance — without ever having been mined — and the record is ground truth, not an inference reconciled after the fact from timestamps in four systems that never agreed on a clock.</p>
 <p>The mining-style views you actually wanted — conformance, variant analysis, bottleneck detection — don't disappear. They arrive for free, computed over a native execution stream that is richer than anything a batch extraction could reassemble. You stop mining to <em>obtain</em> the log and start running to <em>produce</em> it.</p></div>
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <div class="section-label fade-in">A Process That Never Ran</div>
+  <h2 class="section-label fade-in">A process that never ran</h2>
   <div class="fade-in"><p>Make it concrete — illustratively, not as a delivered result. Consider a supplier-onboarding-to-first-payment flow that has never existed as a single process. Today it's a relay race: procurement intake, then sanctions and KYC screening, then tax validation, then vendor creation in the ERP, then bank-detail verification — each step in a different system, none logging the whole. There is nothing to mine, because end-to-end this was never a process. It was people, tickets, and email.</p>
 <p>On the fabric you compose it as one thing. A <strong>Deterministic Workflow</strong> sequences intake &rarr; screening &rarr; entitlement check &rarr; vendor creation, with a segregation-of-duties gate and a mandatory human checkpoint before any bank detail is written. <strong>Intelligence Orchestration</strong> routes the ambiguous cases to the right path. <strong>Atomic Agents</strong> extract fields from a tax certificate and reconcile the incoming bank record, pausing to surface their reasoning for review whenever confidence is low. A <strong>Function</strong> enforces the authority limit. A <strong>Connector</strong> writes to the ERP under scoped credentials, and nothing else touches that system.</p>
 <p>It runs on day one. It is governed on day one — a payment above threshold cannot commit without the gate, because the gate is on the path, not in a report. And only <em>now</em> does it have an event history, because only now has it actually run. The order the whole category assumes — discover, then act — is exactly backwards for the processes that matter most. You act first, under governance, and discovery becomes a byproduct.</p></div>

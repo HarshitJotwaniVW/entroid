@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Give every employee one place to ask for what they need, and route that request across the ERP, the source-to-pay suite, the contract repository and the risk system. That is a genuine improvement — fewer rogue purchases, less email, a status bar instead of a shrug. But <strong>routing a request is not running the transaction.</strong> The purchase order still posts somewhere the routing layer does not govern, and the control still fires wherever that system decides to fire it.</p></div>
 
-<div class="section-label fade-in">THE FRONT DOOR IS REAL</div>
+<h2 class="section-label fade-in">The front door is real</h2>
 <div class="fade-in">
 <p>Start with the concession, because it is earned. A procurement-orchestration layer — the intake-to-pay tier that sits above your ERP and your source-to-pay suite — solves a problem that is genuinely painful. Before it, a single request to buy something fractured into a dozen paths: a form here, a chat message there, a card swipe when the form was too slow. The orchestration layer collapses that into one front door. It asks the requester structured questions, pulls the right catalog, decides which approvals and which downstream systems the request needs to touch, and hands each leg to the system that owns it — the suite for sourcing, the contract system for terms, the ERP for the PO, the risk tool for the check.</p>
 <p>The payoff is real and worth naming plainly: <strong>fewer maverick requests, less shadow spend, a shorter path from "I need this" to "it's ordered," and a single status view</strong> across systems that never used to talk. If your problem is that employees cannot find the front door, this is a good answer. Intake and coordinated routing reduce friction and pull spend back under policy. Nothing that follows disputes that.</p>
 </div>
 
-<div class="section-label fade-in">ORCHESTRATION IS A STATEMENT ABOUT STATUS</div>
+<h2 class="section-label fade-in">Orchestration is a statement about status</h2>
 <div class="fade-in">
 <p>Now the structural point. Read the verbs the orchestration layer actually performs: it <em>routes</em>, <em>notifies</em>, <em>tracks</em>, <em>reconciles</em>, and <em>reports</em>. Every one of them is a statement about where a request <em>is</em> — not an act that <em>commits</em> it. When the PO needs to become authoritative, the layer hands it to the ERP, and the ERP posts it. When a three-way match must be enforced, or segregation of duties checked, or a budget threshold held, that enforcement happens inside whichever system owns the ledger and the master data. The orchestration layer then reads the result back and lights up the status bar.</p>
 <p>You will hear this tier described as a <em>single workflow layer over your whole stack</em> — one place where the process finally lives. Take the phrase seriously and it splits in two. There is a workflow of <strong>coordination</strong> — who is asked, in what order, with what visibility — and that one genuinely does live in the layer. And there is a workflow of <strong>execution</strong> — requisition becomes commitment becomes obligation becomes payment — and that one lives in the systems of record, each posting its own step under its own controls. The layer owns the first and narrates the second. Calling both "the workflow" is exactly where the seam vanishes from the slide but not from the architecture.</p>
@@ -63,13 +63,13 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">FLAGGED AFTER, OR STOPPED AT THE COMMIT</div>
+<h2 class="section-label fade-in">Flagged after, or stopped at the commit</h2>
 <div class="fade-in">
 <p>The consequence is a difference in the <em>kind</em> of control you actually get. Route-then-report tends to produce <strong>detective</strong> control: the request is coordinated, the PO posts in the ledger, and a spend-analytics or compliance readout later surfaces that it was off-contract, over threshold, or split into two orders to slip under an approval limit. That flag is worth having. But it arrives <em>after</em> the authoritative posting. The commitment already exists; you are now in remediation — chasing a reversal or a supplier conversation instead of a clean stop.</p>
 <p>Even the preventive-looking gates have a reach problem. When the coordinator inserts an approval step before it routes the request onward, that gate lives in the coordinator — not in the system that posts. Two seams open. An action taken directly in the system of record, outside the front door, never meets the gate at all. And the gate's decision is only as binding as the downstream system chooses to honor: the coordinator asked, but the ERP is where the transaction becomes real. <strong>A control that does not sit at the moment of commit is advice, however well it is routed.</strong></p>
 </div>
 
-<div class="section-label fade-in">WHAT IT MEANS TO RUN THE TRANSACTION</div>
+<h2 class="section-label fade-in">What it means to run the transaction</h2>
 <div class="fade-in">
 <p>The alternative is not a better coordinator. It is to make the procurement <em>process itself</em> the thing that executes. On a Composable Process Fabric, source-to-pay is modelled, executed, and governed as one workflow that runs the whole arc — intake to sourcing to purchase requisition to PO to receipt to invoice to payment — as a composition of five primitives on a single runtime:</p>
 <ul>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">NOT ZERO INTEGRATION — A DIFFERENT PLACE FOR THE CONTROL</div>
+<h2 class="section-label fade-in">Not zero integration — a different place for the control</h2>
 <div class="fade-in">
 <p>Be clear about what this does not claim. The fabric does not float above your systems by magic, and it does not replace the ERP on day one. It runs over the existing estate through governed Connectors — it integrates, deliberately and continuously. Anyone selling you zero integration is selling you the same seam under a new name.</p>
 <p>The difference is not the <em>number</em> of connections. It is <em>where the enforcement sits relative to them.</em> In the coordinated stack, the connections carry requests and status between systems that each enforce their own controls; the strongest guarantee any single action gets is whatever the owning system happens to check at its own commit, and the coordinator's gate is advisory the moment it crosses the seam. On the fabric, the Connector is a governed primitive inside a runtime that has <em>already</em> enforced the control before the Connector fires. Integration becomes the last mile of a transaction that was governed the whole way — not the boundary where governance is handed off. Same estate; a different place for the control to live.</p>

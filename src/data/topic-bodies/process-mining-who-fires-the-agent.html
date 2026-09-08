@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>An autonomous agent releases a payment it should have held, or clears a credit above its limit. The incident review convenes, and someone asks the only question that matters: <strong>who fires the agent?</strong> If your agents are rented from four different runtimes, the honest answer is that nobody can — because no single system granted the agent its authority, executed its action, and recorded what it did.</p></div>
 
-<div class="section-label fade-in">THE RENTED RUNTIME</div>
+<h2 class="section-label fade-in">The rented runtime</h2>
 <div class="fade-in">
 <p>The dominant agent strategy in enterprise software right now is to not run the agent at all. Process-intelligence vendors have repositioned around agentic AI, but their architecture gives away what they actually do: they <em>observe</em> your processes and feed context to agents that execute somewhere else.</p>
 <p>One market leader packages this as a meta-orchestration layer over agents built across four different third-party runtimes — a chat-agent builder, an enterprise agent orchestrator, a cloud model platform, and an open-source agent framework. Read that list again. That is four separate control planes, four permission models, and four runtimes, marketed as openness. Another vendor splits the same problem a different way, distributing context, build, and inventory across three separate tools in its own suite. That same vendor has even raised the question of who ultimately "fires the agent" — and its own split architecture is precisely what leaves that question unanswered.</p>
 <p>None of this is presented as a compromise. It is the recommended blueprint. It is also why the systems integrators are so pleased: the seams between four vendors are billable forever.</p>
 </div>
 
-<div class="section-label fade-in">FOUR SEAMS, FOUR OWNERS</div>
+<h2 class="section-label fade-in">Four seams, four owners</h2>
 <div class="fade-in">
 <p>Every runtime you assemble into a working agent brings its own governance model. Stitch build, inventory, context, and execution across four tools and every join between them becomes a governance discontinuity — a place where a policy is translated, re-implemented, or simply dropped.</p>
 <p>Trace a single autonomous action through that topology. The agent's <strong>authority</strong> is granted in one vendor's console. Its <strong>decision</strong> is orchestrated in a second. The <strong>work</strong> touches your systems of record through a third. The <strong>record</strong> of what happened is written — partially — in all of them. No single log is authoritative. No single owner enforced, executed, and recorded the action end to end. When you need to reconstruct what the agent was allowed to do at the moment it acted, you are correlating timestamps across four exports.</p>
@@ -16,7 +16,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">OBSERVE, RECOMMEND, HAND OFF</div>
+<h2 class="section-label fade-in">Observe, recommend, hand off</h2>
 <div class="fade-in">
 <p>There is an architectural tell underneath all of this. Process intelligence is a <em>system of observation</em>. It reconstructs your process from batch-extracted event logs — a picture of what already happened — and then hands the resulting context to an agent that acts elsewhere. Observe, recommend, hand off.</p>
 <p>The consequence is structural, not incidental. The event logs are extracted on a schedule, so the agent reasons over a reconstruction that is already minutes or hours stale. And the moment of action leaves the system that understood the process entirely. Governance can only be a report written after the fact, never a gate at the instant the action is attempted. By the time a violation surfaces on a dashboard, the payment has cleared.</p>
@@ -57,7 +57,7 @@
 <p>Contrast the shape below the line: <strong>observe, decide, act, govern — closed inside one runtime, on live authoritative state.</strong> The system that sees the process is the system that acts on it, so policy can be a hard gate at the moment of action rather than a post-mortem on what already went wrong.</p>
 </div>
 
-<div class="section-label fade-in">THE RUNTIME THAT CAN ACTUALLY FIRE</div>
+<h2 class="section-label fade-in">The runtime that can actually fire</h2>
 <div class="fade-in">
 <p>Entroid models every process as a composition of five primitives on one semantic ontology, and — this is the part that matters — executes and governs them in a single runtime. That design is what gives the question an answer.</p>
 <ul>
@@ -71,7 +71,7 @@
 <p>This is the honest version of the word "autonomous." An agent is autonomous here <em>because</em> a single runtime enforces the limits it operates inside and can revoke its authority in one action — not because it has been let loose across four platforms that no one fully controls.</p>
 </div>
 
-<div class="section-label fade-in">CONSOLIDATION IS A GOVERNANCE DECISION</div>
+<h2 class="section-label fade-in">Consolidation is a governance decision</h2>
 <div class="fade-in">
 <p>Consolidation usually gets pitched to a CIO as procurement math — fewer contracts, fewer integrations, lower total cost. That undersells it badly. On one fabric, the reason to consolidate is that a single system enforced, executed, and recorded the action, which means a single owner can answer for it. Fewer vendors is the invoice. One accountable runtime is the point.</p>
 <p>Consider a payment-posting agent — illustrative, not a delivered result — that attempts to clear an invoice above its authorized limit. In the rented model, the threshold check lived in one tool, the execution in another, and the log in a third; establishing what was permitted, and precisely when, becomes forensic archaeology across vendors while the money has already moved. On the fabric, the entitlement limit is a hard gate in a Deterministic Workflow: the action simply never executes. If the policy itself was wrong, Intelligence Orchestration narrows the agent's authority immediately, and the immutable trail shows exactly what was allowed, by whom, and at what version of the process. One place enforced it. One place can change it. One place has to answer for it.</p>

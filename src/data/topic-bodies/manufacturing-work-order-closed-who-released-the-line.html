@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>The work order closed at 06:41. Created under the right role, approved by the right role, every procedure step signed with a timestamp, parts consumed, wrench time captured to the minute. It may be the best-governed object in your plant. <strong>Now pull the record of who decided the line was safe to run again.</strong> There isn't one — because in the maintenance stack's model of production, that decision does not exist.</p></div>
 
-<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<h2 class="section-label fade-in">Credit where it is due</h2>
 <div class="fade-in">
 <p>Be precise about what the maintenance and CMMS platforms got right, because it is substantial. They took the most chaotic artifact in industrial operations — the paper work order, the whiteboard backlog, the PM schedule that lived in one planner's head — and made it a governed digital object. Role-based permissions decide who can create, approve, execute, and close. Procedures attach to the order; each step completes with a name and a timestamp; the finished record doubles as compliance evidence. Asset histories accumulate. Meter- and condition-based triggers replace calendar guesswork. Anyone who has run a maintenance department on carbon-copy triplicate knows this was not an incremental improvement. It was a generational one.</p>
 <p>And within its object model, the governance is genuinely good — arguably tighter than what some production systems apply to their own transactions. Creation is permissioned. Approval is permissioned. Closure is permissioned. The lifecycle of the work order, <em>as an object</em>, is close to airtight.</p>
 <p>The problem is that phrase: as an object. The work order is governed as if it were a self-contained story with a beginning, a middle, and an end. On a real production line it is none of those things. It is the middle of a much larger event — and the stack that governs it so carefully has no model of the rest.</p>
 </div>
 
-<div class="section-label fade-in">'CLOSED' IS THE MIDDLE</div>
+<h2 class="section-label fade-in">'Closed' is the middle</h2>
 <div class="fade-in">
 <p>Walk through a composite scenario — illustrative, but it will be familiar. A bearing on a forming press begins to degrade partway through Tuesday's second shift. Vibration drifts. Nobody notices until Wednesday morning, when an operator flags chatter. A work order is raised, approved, scheduled, executed. Thursday, 06:41: closed. In the maintenance system, this is a complete, well-audited story.</p>
 <p>On the line, four other stories are just beginning, and none of them has a system of record:</p>
@@ -22,7 +22,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE DECISION WITH NO RUNTIME</div>
+<h2 class="section-label fade-in">The decision with no runtime</h2>
 <div class="fade-in">
 <p>What does the release-back-to-production decision actually look like today? A radio call. A nod across the floor. At best, a line in a shift log: <em>press 4 back up, 06:50</em>. Then reconciliation: the MES status flipped by hand, the QMS updated if someone remembers, the spreadsheet corrected at the next planning meeting. Four systems, one verbal decision, stitched together afterward by whoever happened to be standing there.</p>
 <p>Notice the asymmetry. The audit trail proves the wrench time in forensic detail — who turned which bolt, when, against which procedure revision. And it is silent on every decision that carried actual production risk: whether the suspect WIP was held, who cleared the asset, who authorized the restart, whether quality was in the room. The best-audited hour of the incident is the least consequential one.</p>
@@ -91,7 +91,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">COMPLETION AS A NODE, NOT AN ENDING</div>
+<h2 class="section-label fade-in">Completion as a node, not an ending</h2>
 <div class="fade-in">
 <p>Now invert the architecture. Entroid is a Composable Process Fabric: five primitives — Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class construct, Functions, and Connectors — running on a shared semantic ontology, on one runtime, with an immutable audit record emitted for every action. In ES Manufacturing, the production process is not documented by the system; it <em>is</em> the governed workflow executing on the fabric.</p>
 <p>That changes what maintenance completion is. It stops being the terminal state of a self-contained object and becomes a node in a cross-functional workflow spanning maintenance, production, quality, and planning — architecturally, by construction:</p>
@@ -107,7 +107,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT TO ASK AT THE NEXT REVIEW</div>
+<h2 class="section-label fade-in">What to ask at the next review</h2>
 <div class="fade-in">
 <p>If you run architecture or operations diligence, the maintenance–production seam is easy to probe. Five questions:</p>
 <ul>

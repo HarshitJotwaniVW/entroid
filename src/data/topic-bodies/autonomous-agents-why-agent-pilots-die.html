@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Your agent pilot didn't fail because the model was too dumb or the demo too weak. It died in a conference room where risk, audit, and security couldn't sign off on an autonomous actor whose actions can't be <strong>permissioned, change-controlled, and proven at the moment they execute</strong>. Every vendor prescribes more orchestration or more autonomy. That is a fix for the wrong disease.</p></div>
 
-<div class="section-label fade-in">THE STATISTIC EVERYONE CITES, THE CAUSE EVERYONE MISSES</div>
+<h2 class="section-label fade-in">The statistic everyone cites, the cause everyone misses</h2>
 <div class="fade-in">
 <p>By now you've seen the number in a dozen decks: the overwhelming majority of enterprise agentic initiatives never make it from pilot to production scale. The whole category has converged on the same graveyard statistic — and, remarkably, on the same explanation. The agentic-automation platforms say the answer is <em>more orchestration</em>: a smarter controller sequencing more software agents, scripted bots, and human approvers. The low-code agent builders and the multi-agent frameworks say the answer is <em>more autonomy</em>: give the agent more tools, more reach, more room to reason its way to the outcome.</p>
 <p>Both are answering a question no one at the sign-off table is asking. Orchestration and autonomy are throughput problems — how much work gets done, how fast, with how little human touch. But pilots don't stall on throughput. They stall on <strong>accountability</strong>. The pilot works in the demo precisely because the demo has no auditor in the room, no control owner who has to attest to it, no CISO who has to certify that an autonomous actor holding real credentials in a real system of record cannot be talked, tricked, or drifted into an out-of-policy action. More of an unaccountable thing is not a path to production. It is a bigger blast radius.</p>
 </div>
 
-<div class="section-label fade-in">THE ROOM WHERE PILOTS ACTUALLY DIE</div>
+<h2 class="section-label fade-in">The room where pilots actually die</h2>
 <div class="fade-in">
 <p>Walk the pilot forward to the gate it never clears. The sponsor is not the automation team; it's you — the CIO who owns the estate, the CISO who owns the attack surface, the CRO who owns the enterprise risk register. And the questions at that gate are not about accuracy. They are about <strong>authority and proof</strong>:</p>
 <ul>
@@ -19,13 +19,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">VELOCITY IS REAL — AND IT ISN'T THE GATE</div>
+<h2 class="section-label fade-in">Velocity is real — and it isn't the gate</h2>
 <div class="fade-in">
 <p>Let's be fair, because over-claiming here is dishonest. The proof points the category leads with are genuinely impressive, and some are genuinely earned. RPA-plus-agentic orchestration really does automate end-to-end work across legacy applications that were never built to integrate — that is hard, valuable engineering. Policy wrappers, PII masking, guardrail classifiers, agent-identity registries, and full observability tracing are real, useful operational controls. A deterministic flow backbone really does give you structure and debuggability over a raw agent loop. Human-in-the-loop escalation genuinely reduces risk. None of this is vaporware.</p>
 <p>But look at what the headline metrics actually measure: triage cut by a fraction, capacity multiplied, cycle times collapsed from days to minutes. Every one of those is a measure of <strong>velocity and volume</strong>. Not one of them answers whether the action taken was permitted, in policy, and provable. Those are the metrics that win the pilot review. They are not the metrics that clear the production gate — because the gate is owned by people whose job is not to celebrate speed but to certify that speed can't hurt you. You can win every efficiency argument and still lose the sign-off. Most pilots do exactly that.</p>
 </div>
 
-<div class="section-label fade-in">GOVERNANCE AROUND THE AGENT VS. GOVERNANCE IN THE AGENT</div>
+<h2 class="section-label fade-in">Governance around the agent vs. governance in the agent</h2>
 <div class="fade-in">
 <p>Here is the structural reason the gate stays closed, and it holds regardless of any vendor's roadmap. In the dominant pattern, the <strong>autonomous agent is the top-level actor</strong>, and governance is bolted on as a surrounding layer — an orchestrator deciding who runs when, a trust layer, a guardrail model scoring outputs, an identity registry, an observability trace. Every one of those can <em>watch</em> an action and <em>catch</em> it. But they all sit <em>outside</em> the place the action actually commits: a UI-driving bot, a stored-credential computer-use session, a raw tool, API, or MCP call, an agent-to-agent hop into another system. At that seam, there is no inline permission check. The out-of-policy or hijacked action is something the platform <strong>detects — after it has already happened</strong>.</p>
 <p>The most sophisticated version of this deserves specific credit. The closest competitor wraps probabilistic agents in a deterministic flow backbone and calls it audit by construction and governed orchestration, with a central control plane sequencing software agents, scripted bots, and human approvers. That is meaningfully more structured than a raw agent loop, and you should say so. But be precise about what the backbone is and isn't. It is <em>author-editable code</em> whose scope a developer can widen. Its orchestration coordinates <strong>who runs when</strong> — it does not, at each step, govern <strong>what that action is permitted to do or obligated to prove</strong>. And its reach into the system of record is still a driven UI or a raw tool call that the control plane sits <em>beside</em>, not <em>inside</em>. A control plane that conducts is not the same as a permission that executes. The auditor knows the difference even when the demo doesn't show it.</p>
@@ -92,7 +92,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">GOVERNED AUTONOMY BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Governed autonomy by construction</h2>
 <div class="fade-in">
 <p>Entroid inverts the hierarchy, and the inversion is the whole point. ES is a composable process fabric of five primitives on a shared semantic ontology, running on one runtime with an immutable per-action audit. An autonomous agent here is not the top-level actor with governance draped around it — it <em>is</em> an <strong>Atomic Agent</strong>: a permissioned, change-controlled primitive that executes a bounded unit of work <em>inside</em> a Deterministic Workflow, reaching external systems only through governed Connectors, the single primitive the runtime allows to touch the outside world.</p>
 <p>Because of that shape, the properties the sign-off gate demands are architectural, not aspirational:</p>
@@ -104,7 +104,7 @@
 <p>State this honestly: none of it means zero integration. ES runs <em>over</em> your existing estate through governed Connectors — the legacy systems don't vanish. What changes is where the permission lives. It moves from a layer beside the action to the path of the action itself. That is the difference between governance as a tax you pay to slow the agent down and governance as the property that lets you finally turn it on.</p>
 </div>
 
-<div class="section-label fade-in">THE POINT NO ROI SLIDE CAN MAKE</div>
+<h2 class="section-label fade-in">The point no ROI slide can make</h2>
 <div class="fade-in">
 <p>So reframe the graveyard statistic before your next steering committee does it for you. Pilots don't die because the models are too timid or the orchestration too thin. They die because an autonomous actor that cannot be permissioned, change-controlled, and proven at the point of execution is something a serious risk function is right to reject — and it should keep rejecting it, no matter how good the demo. The organizations that reach scale won't be the ones that added the most autonomy. They'll be the ones who made governance a property of how the agent executes rather than a net they hung around it. On that architecture, the sign-off that kills everyone else's pilots is passable <em>by construction</em> — and every illustrative day-to-minutes gain finally has somewhere durable to land. <em>(Every figure here is illustrative, not a delivered ES result.)</em></p>
 </div>

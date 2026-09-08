@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every process-mining vendor has arrived at the same revelation this year: AI cannot improve a process it does not understand, so feed it the process. They are right. They are also, every one of them, stopping exactly one step short of the step that decides whether any of this is safe. <strong>Context can make an agent better-informed. It cannot make an agent able to act, and it cannot make it safe to let act.</strong></p></div>
 
-<div class="section-label fade-in">THE NEW CONSENSUS</div>
+<h2 class="section-label fade-in">The new consensus</h2>
 <div class="fade-in">
 <p>Give the market credit for converging on something true. One market leader has built its entire agentic pitch on the claim that there is no enterprise AI without process intelligence, and shipped a context server whose only job is to pipe process context into whatever agent wants to reason over it. Another vendor positions process intelligence as the foundation on which agentic AI has to stand. A third argues that in a world where the models themselves are commoditizing, <em>"what surrounds the model wins"</em> — and is building an enterprise context layer to do the surrounding.</p>
 <p>Strip away the branding and all three are describing the same architecture: a system of record for how work <em>actually</em> flows, mined from your systems and exposed as high-fidelity context to an AI agent that reasons over it. This is a genuine advance over prompt-and-pray. Hand a model the real topology of your order-to-cash — the rework loops, the maverick approvals, the places where reality diverges from the diagram — and it stops hallucinating your business. The consensus is correct as far as it goes. Context is <strong>necessary</strong>.</p>
 </div>
 
-<div class="section-label fade-in">THE HALF-STEP EVERYONE TAKES</div>
+<h2 class="section-label fade-in">The half-step everyone takes</h2>
 <div class="fade-in">
 <p>Necessary is not sufficient — and the gap between the two is where enterprise risk lives. There are two things context can never do, no matter how rich it gets: it cannot <strong>act</strong>, and it cannot <strong>enforce</strong>.</p>
 <p>Follow the sequence to its end. The agent, well-briefed, decides to release the payment, raise the credit limit, adjust the vendor master, issue the refund. That decision has to <em>execute</em> somewhere. In every one of these architectures, it executes <em>outside</em> the intelligence layer — through whatever integration the agent can reach, against whatever system of record will accept the call. The process-intelligence platform observed the world, described it beautifully, recommended a move, and handed off. What happens after the handoff is out of its hands. And it learns what happened the same way it learned everything else: later, from the next batch of extracted event logs.</p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">OBSERVATION IS NOT ACTION</div>
+<h2 class="section-label fade-in">Observation is not action</h2>
 <div class="fade-in">
 <p>The distinction is not marketing; it is architecture. Process mining reconstructs the process from batch-extracted event logs — a photograph of the past, developed on a delay. It is an extraordinary photograph. But governance built on a photograph is, by construction, retrospective. You are always reacting to a picture of a moment that has already passed.</p>
 <p>The alternative is not a better photograph. It is to make the runtime that <em>executes</em> the process the same runtime that <em>governs</em> it — operating on live, authoritative state, at the moment of action, so the policy is a hard gate in the path rather than a line item in tomorrow's report.</p>
@@ -69,7 +69,7 @@
 </div>
 </div>
 
-<div class="section-label fade-in">WHERE GOVERNANCE ACTUALLY LIVES</div>
+<h2 class="section-label fade-in">Where governance actually lives</h2>
 <div class="fade-in">
 <p>Entroid is built as a composable process fabric: every process is modelled, executed and governed as a composition of five primitives on a shared Semantic Ontology, in one runtime. The distinction that matters for this argument is that the ontology here is an <strong>execution substrate</strong>, not a context feed — the same model the agent reasons over is the model the work runs on. That single fact moves the control from the report into the path:</p>
 <ul>
@@ -85,7 +85,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE QUESTION FOR THE BOARD</div>
+<h2 class="section-label fade-in">The question for the board</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable framing for anyone evaluating this category. Much of the market is selling you a materially better system of <em>observation</em> and calling it agentic AI. It is a real improvement, and it is not the thing you actually need to sleep at night. So ask every vendor one question, and refuse to accept a demo in place of an answer: <strong>at the moment your agent acts, what stops a non-compliant action from executing — a control that lives in the path, or a report you read afterward?</strong></p>
 <p>If the honest answer is a report, you have bought a smarter dashboard whispering advice to a third party's agent and auditing the wreckage after. The autonomous enterprise is not a smarter observer. It is a governed executor — one runtime that closes observe, decide, act and govern on live state, so policy is a hard gate at the instant of action rather than a footnote on what already went wrong. Context is the input. Control is the product.</p>

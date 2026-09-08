@@ -1,20 +1,20 @@
 <div class="hook fade-in"><p>Every data-quality program in the category shares one quiet design decision: <strong>the bad record is allowed to land first</strong>. Profile it after it arrives. Score it. Alert on the anomaly. Open the ticket. In any physical industry, that loop has a name — a cleanup crew — and you hire a cleanup crew only after you have accepted that the spill is going to happen.</p></div>
 
-<div class="section-label fade-in">WHAT DETECTION GENUINELY EARNED</div>
+<h2 class="section-label fade-in">What detection genuinely earned</h2>
 <div class="fade-in">
 <p>Start with what the data-quality and observability tools got right, because it is substantial. Profiling an estate at scale is real work: distributions, null rates, referential orphans, schema drift, volume and freshness anomalies learned from months of history rather than hand-written thresholds. Rolling those signals up into quality scores — by table, by data product, by domain — gave executives a view of rot that simply did not exist a decade ago. And the issue workflows that follow the alert — triage, route to the owning team, track to closure — imposed order on what used to be a tribal thread between whoever noticed and whoever remembered how the pipeline worked.</p>
 <p>The posture is also honest for the terrain it was built on. These tools sit beside an estate they do not control: hundreds of pipelines written by teams that have since reorganized, ingestion from sources you do not run, warehouses loaded by scripts nobody will claim. When you do not own the write, watching everything and flagging deviation quickly is the only move available, and the category's own case for itself — fewer incidents going unnoticed, faster time-to-detection, quality visible to the business — is directionally credible. Detection is a real discipline, practiced well.</p>
 <p>The question a CIO should ask is narrower and more uncomfortable: <em>why is the write something we can only watch?</em></p>
 </div>
 
-<div class="section-label fade-in">THE COST CURVE OF A SURVIVING RECORD</div>
+<h2 class="section-label fade-in">The cost curve of a surviving record</h2>
 <div class="fade-in">
 <p>The cost of a bad record is not a constant. It compounds with every hop the record survives.</p>
 <p>At the moment of the write, it is one wrong row, and the cost of refusing it is nearly zero. Then replication copies it into the lake and the read replicas. A join folds it into aggregates where it no longer looks wrong — it just makes the total wrong. A dashboard refresh turns it into a decision input. A feature pipeline feeds it to a model, where it stops being a record at all and becomes a weight. Somewhere in that window, an agent retrieves it as context and acts on it. Each hop multiplies the remediation bill: the fix is no longer <em>correct one row</em> but <em>find every table it touched, re-run every join, restate the aggregate, and explain the decision that was made on Tuesday</em>.</p>
 <p>Now place the detection loop on that timeline. The monitor fires on the next profiling pass or the next anomaly evaluation — after landing, usually after replication, often after the dashboard. That is not a criticism of any tool's latency; it is the definition of the pattern. A detector, by construction, observes what has already been committed. <strong>The flag arrives after the blast radius.</strong> Notice the asymmetry in what gets measured: the category optimizes time-to-detection, but the enterprise pays for time-in-circulation — and the second clock starts before the first one does.</p>
 </div>
 
-<div class="section-label fade-in">A MONITOR CANNOT REFUSE A WRITE</div>
+<h2 class="section-label fade-in">A monitor cannot refuse a write</h2>
 <div class="fade-in">
 <p>It is worth being precise about why this pattern cannot simply be tightened into prevention, because roadmaps promise exactly that. A tool that stands beside the platforms holding the data can only read what those platforms have committed. It has no standing in the write path. The pipeline does not ask its permission; the loading script does not know it exists. That is a structural property of sitting beside the estate, and it holds no matter how fast the monitors get.</p>
 <p>The partial exception proves the boundary. The stronger tools in the category do push checks upstream: validation embedded as pipeline tasks, tests a pipeline author adds before the load step. That is real, and better. But the check is volunteered per pipeline, by the team that writes the pipeline. The quality platform can verify the check exists; it cannot make the write conditional on it. Every other writer in the estate — the older pipeline, the manual load, the vendor feed, the one-off script — writes anyway. The rule and the write live in different systems, so the rule can be perfectly correct while the write proceeds.</p>
@@ -71,7 +71,7 @@
 <text x="599" y="269" font-size="9.5" fill="currentColor" opacity="0.85" text-anchor="middle">immutable per-action audit &#8212; every acceptance, every refusal</text>
 </svg></div>
 
-<div class="section-label fade-in">A RULE AT THE WRITE IS A DIFFERENT OBJECT</div>
+<h2 class="section-label fade-in">A rule at the write is a different object</h2>
 <div class="fade-in">
 <p>On Entroid's Composable Process Fabric, the geometry changes — and the change is architectural, not aspirational. The Semantic Ontology is not a catalog describing tables that live somewhere else; it is the governed model the runtime executes on. Business processes run as Deterministic Workflows against ontology entities, and a quality rule attached to an entity — schema conformance, referential validity, range constraints, required dimensions — is a <strong>gate inside the workflow performing the write</strong>. Validation is not a monitor beside the process. It is a step of the process, and the runtime does not execute the write without it. There is no second door for the record to slip through, because on the fabric there is no write path that bypasses the workflow.</p>
 <p>Take an illustrative flow — hypothetical by design, not a case study. A supplier invoice arrives for posting. One line carries a cost center that fails referential validity against the ontology, and a unit price outside the tolerance the rule defines. The workflow refuses the write at the gate. There is no bad record to replicate, because there is no record: the replicas, the joins, the dashboards, the feature pipelines, the agent's context window — none of them ever meet it. The refusal routes through an Atomic Agent to a human reviewer — human-in-the-loop is a first-class primitive, not an escalation bolt-on — who corrects the cost center or approves an explicit, attributable exception. And the refusal, exactly like an acceptance, lands in the immutable per-action audit.</p>
@@ -80,7 +80,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHERE DETECTION STILL BELONGS</div>
+<h2 class="section-label fade-in">Where detection still belongs</h2>
 <div class="fade-in">
 <p>None of this argues for turning the monitors off. Entroid runs over the existing estate through governed Connectors — the only primitive that touches external systems — and data that originates in platforms the fabric does not execute is still data you should observe. A detector is the honest instrument for writes you do not own. The indefensible position is accepting detection for writes you do own.</p>
 <p>So the CIO question is an inventory, not an ideology. Take last year's most expensive quality incidents and ask, for each one: <strong>who performed the write?</strong> Where the answer is a process your own teams run — a posting, a master-data update, an order intake — the monitor was a choice, not a necessity; that write could have been gated. Where the answer is a system genuinely outside your control, detection remains the right posture and the observability investment stands. As processes move onto the fabric, the second list shrinks toward the true edges of the estate — and quality stops being a score you watch and becomes a property the runtime guarantees, one refused record at a time.</p>

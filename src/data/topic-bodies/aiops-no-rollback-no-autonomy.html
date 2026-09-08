@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>A self-healing workflow fires. A manifest is autonomously edited. An agent, "with approval," runs the fix. Then the blast radius widens — and nothing pulls it back. <strong>Across the field, remediation is fire-and-forget: there is no health-check-gated auto-revert for the case where the corrective action is the thing that breaks you.</strong> That one missing control is the real reason autonomous operations still ships with a human on the keyboard.</p></div>
 
-<div class="section-label fade-in">THE HALF-LOOP EVERYONE SHIPS</div>
+<h2 class="section-label fade-in">The half-loop everyone ships</h2>
 <div class="fade-in">
 <p>Give the category its due. Machine-learning anomaly detection with seasonality-aware baselines genuinely catches degradations that static thresholds sail straight past. Event correlation genuinely collapses an alert storm into a handful of incidents worth a human's attention. Automated causal RCA genuinely compresses an investigation from tens of minutes of dashboard-hopping into a few. And the newest autonomous investigation agents genuinely produce cited, audit-ready root-cause narratives at a speed no on-call engineer can match. None of that is marketing vapor — it is real, hard-won capability, and pretending otherwise loses the argument with any serious reader.</p>
 <p>Then the loop stops. Detection, correlation, and diagnosis all happen <em>inside</em> the observability platform — the system that holds the evidence. The <strong>fix</strong> happens somewhere else: a runbook engine, a separate automation tool, a cloud provider's API, a change ticket routed to a human. The platform that knows exactly what went wrong is, architecturally, not the platform that changes the running system. It reaches across a tool boundary and asks another system to act.</p>
 <p>Dispatching a corrective action to a system you do not own, or drafting a fix for a human to merge and run elsewhere, is a hand-off — not remediation executed under change-control in the runtime that holds the evidence. Both approaches are genuinely advanced. But a hand-off has a property nobody puts on the datasheet: <strong>once it lands, the platform that ordered it can no longer take it back.</strong></p>
 </div>
 
-<div class="section-label fade-in">WHY THE HUMAN NEVER LEAVES THE KEYBOARD</div>
+<h2 class="section-label fade-in">Why the human never leaves the keyboard</h2>
 <div class="fade-in">
 <p>Look closely at how the most capable offerings frame autonomous remediation, and the same structural gap surfaces three different ways:</p>
 <ul>
@@ -21,7 +21,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ACROSS THE BOUNDARY, OR AROUND THE LOOP</div>
+<h2 class="section-label fade-in">Across the boundary, or around the loop</h2>
 <div class="scene-img-wrap fade-in">
 <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An observability platform detects, correlates and does RCA, then hands the fix across a dashed tool boundary to a separate runbook with no rollback, versus Entroid closing the loop in one runtime with a health-check-gated auto-revert">
 <defs>
@@ -79,7 +79,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">REMEDIATION AS A REVERSIBLE TRANSACTION</div>
+<h2 class="section-label fade-in">Remediation as a reversible transaction</h2>
 <div class="fade-in">
 <p>Entroid is built the other way around. It is a Composable Process Fabric — five primitives running on one runtime over a Semantic Ontology — and remediation is not a message fired at an external actuator. A corrective action <em>is</em> a <strong>Deterministic Workflow</strong>: the primitive whose defining property is that governance and rollback are inline, not bolted on afterward. Everything that touches your estate goes through <strong>Connectors</strong>, the only primitive that reaches external systems — so ES runs over your existing infrastructure through governed, recorded calls rather than replacing it. This is architecture, not aspiration.</p>
 <p>That changes what the word "remediate" means. When Sentinel investigates an incident and Sherlock produces the root-cause analysis, the corrective procedure they carry out is not a ticket handed to another tool — it is a governed workflow executing in the same runtime that holds the evidence. Architecturally, that workflow:</p>
@@ -95,7 +95,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY REVERSIBILITY BEATS PRE-APPROVAL</div>
+<h2 class="section-label fade-in">Why reversibility beats pre-approval</h2>
 <div class="fade-in">
 <p>Here is the strategic payoff, and it is larger than faster recovery. Pre-authored runbooks really do automate known fixes — but only known ones. The moment an incident fails to match a signature, the pre-approved path is useless and you are back to a human. That is the ceiling on every "automate the runbook" strategy: it can only act on failures someone already anticipated and scripted. Novelty breaks it by definition.</p>
 <p>Reversibility raises that ceiling. When a corrective action is a reversible transaction — execute, verify against the implicated signals, auto-revert on regression — the cost of being wrong drops from "prolonged outage" to "a brief, recorded, automatically-undone attempt." That is precisely the safety margin that lets a system act on a scenario it has <strong>never seen before</strong>, not merely replay a canned one. You stop betting that the fix is correct and start bounding the downside if it isn't. Bounded downside is what makes autonomy a governance decision instead of a gamble.</p>

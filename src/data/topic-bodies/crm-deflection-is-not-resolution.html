@@ -1,12 +1,12 @@
 <div class="hook fade-in">The service category deserves real credit: it killed deflection, the vanity metric that counted tickets a human never touched and called it success. In its place came something that sounds rigorous — resolution as a <em>verified answer</em> that stayed closed inside a no-follow-up window. But <strong>the tickets that dominate a real queue aren't questions. They're execution requests.</strong> Double-billed, credit me. Item arrived damaged, reship it. Cancel my plan. Those don't resolve when the case closes — they resolve when money moves or goods ship, in systems the support tool doesn't own.</div>
 
-<div class="section-label fade-in">Credit Where The Category Earned It</div>
+<h2 class="section-label fade-in">Credit where the category earned it</h2>
 <div class="fade-in">
 <p>Start by conceding what is genuinely better, because pretending otherwise loses an expert reader in the first minute. Deflection was a containment number — a proxy for cost avoided, indifferent to whether the customer's problem was actually solved. The category was right to retire it. Defining resolution as a verified answer that doesn't reopen is a real move toward measuring outcomes instead of avoidance.</p>
 <p>And the platforms doing this work are not toys. A service agent grounded in a <strong>unified customer record</strong> — full case history, entitlements, prior orders — genuinely outperforms a bolted-on bot hallucinating from a help-center index. It summarizes a case history in seconds, drafts the reply a rep would have typed, scores intent, suggests the next best action, and the strongest ones go further: they call external billing and order-management APIs to issue the credit or place the reship. That is real digital labor. The unified record reduces fragmentation; the 360 view is real; the rep-hours saved are real. All of it, conceded.</p>
 </div>
 
-<div class="section-label fade-in">Read The Queue, Not The Deck</div>
+<h2 class="section-label fade-in">Read the queue, not the deck</h2>
 <div class="fade-in">
 <p>Now look at what is actually in the queue. Strip out the pure-information tickets — the ones a good answer really does resolve — and what remains, the volume that defines cost and CSAT, is <strong>transactional</strong>. Each one is a request for a state change in a system of record <em>other than the case</em>:</p>
 <ul>
@@ -17,7 +17,7 @@
 <p>For these, "resolved" is not a property of the conversation at all. It is a committed write in another system. And that is exactly where the new metric quietly breaks.</p>
 </div>
 
-<div class="section-label fade-in">A No-Follow-Up Window Is The Proxy The Category Mocks</div>
+<h2 class="section-label fade-in">A no-follow-up window is the proxy the category mocks</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part. The category retired deflection for being a time-and-absence proxy — a ticket "contained" because nobody escalated. Then it defined resolution as a case that does not reopen inside a fixed window. That is the same proxy wearing a better suit. Both measure the <strong>absence of a complaint</strong>, not the <strong>presence of the outcome</strong>.</p>
 <p>Walk the failure. The refund posts on day nine, past the window, to the wrong ledger. The reship silently back-orders. The entitlement change half-applies — billing stops, access does not. None of these reopen the case in time. All of them count as resolved. The customer, meanwhile, is on hold with a second agent who cannot see that the first one's "resolution" never committed. A verified answer inside a window verifies that no one complained fast enough. <em>It does not verify that the money moved.</em></p>
@@ -26,7 +26,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">The Handoff Across The Boundary</div>
+<h2 class="section-label fade-in">The handoff across the boundary</h2>
 <div class="fade-in">
 <p>The strongest counter deserves a straight answer, not a strawman. The leading position is that one vendor owns the record, the data foundation, <em>and</em> the agentic layer, so its agent acts on trusted customer data and takes action across internal systems — billing, order management — and gets real work done. That is a genuinely strong, integrated argument, and it is true: those agents do call the billing API and the OMS API. This is not the old lie that "they can't touch billing." They can.</p>
 <p>The structural line is elsewhere, and it survives any roadmap. An agent acting on the case record and calling an external billing or order-management API is still operating <strong>across a boundary</strong>. The API returns success; the case flips to resolved; but the posting to the ledger, the pick-pack-ship, the provisioning commit all happen in systems the CRM reaches by integration — and the CRM's governance does not run at the moment of <em>that</em> action. "Autonomous resolution," mechanically, is an API handoff the platform must then <strong>poll and hope didn't half-complete</strong>. There is no single transaction spanning the case, the credit, and the ledger. If the reship fires and the credit call fails, nothing rolls the case back to open — you are left with two systems, two truths, and several audit logs stitched together after the fact by a correlation ID. Much of what is marketed as "acting across the whole workflow" is, on inspection, summarize the case, update the case, draft the email, suggest the next best action — plus a fan of tool calls into systems where the real governance lives somewhere else.</p>
@@ -98,7 +98,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">Terminal State = Committed State Change</div>
+<h2 class="section-label fade-in">Terminal state = committed state change</h2>
 <div class="fade-in">
 <p>This is the line the fabric is built to hold. In our architecture, case-to-resolution is not a conversation that ends in a handoff. It is <strong>one governed Deterministic Workflow</strong> running on the same fabric as CRM, orders, billing, and fulfillment — with Case Management, Experience and Care, and IVR &amp; Contact Center as steps in a single process, not islands connected by webhooks. The credit posting, the reship, and the entitlement change are <strong>steps in the resolution</strong>, executed by governed Connectors — the one primitive permitted to touch an external system — under approvals, entitlements, and segregation of duties enforced <em>inline</em>. Atomic Agents, with human-in-the-loop as a first-class checkpoint before the irreversible step, execute those steps rather than proposing them into a void.</p>
 <p>Because it is one workflow over one state, the case <strong>cannot read "resolved" unless the state change actually committed</strong>. If the credit fails to post, the step compensates and the case stays open — the terminal state is defined by the committed write, not by a quiet window. Take the three intents to their real terminal states:</p>
@@ -113,7 +113,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">Rewrite What 'Resolved' Means</div>
+<h2 class="section-label fade-in">Rewrite what 'resolved' means</h2>
 <div class="fade-in">
 <p>So change the definition before you change the vendor. Take these into the next review and watch the room reorganize:</p>
 <ul>

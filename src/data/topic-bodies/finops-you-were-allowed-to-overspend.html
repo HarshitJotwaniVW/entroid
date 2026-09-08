@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>Somewhere in a vendor deck built for your team sits a single number that has quietly organized your entire cloud-cost program: roughly a third of cloud spend is waste. It is offered as a problem the tooling will help you recover. Read it once more as the person who signs for the spend. <strong>That third is not an accident you can optimize your way out of — it is money the architecture was allowed to commit before anyone holding a budget could say no.</strong></p></div>
 
-<div class="section-label fade-in">THE FOUNDING NUMBER</div>
+<h2 class="section-label fade-in">The founding number</h2>
 <div class="fade-in">
 <p>Sit with what that figure actually is. The cloud-cost-management category quotes it — directionally, in double digits, give or take depending on whose survey you read — as the size of the prize. It is the reason the category exists: if a meaningful slice of every cloud invoice is provably wasteful, a discipline devoted to finding and clawing it back is easy to justify. I am not disputing the number. I am asking you to notice what it <em>concedes</em>.</p>
 <p>A third of spend reaching the bill as waste is not primarily a failure of vigilance. It is a statement about <strong>when control arrives</strong> — which is to say, after the resource already exists, already ran, and already metered. The waste is baked in because nothing stood between the provisioning action and the invoice. Every tool in the category then goes to work on the aftermath. That is not a criticism of their competence. It is a description of where they sit.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>Before the critique, the concession — because a CFO who has funded this tooling knows its worth and will stop reading if I pretend otherwise. Near-total cost allocation, showback and chargeback that finally make a business unit own its consumption, unit economics that put a real number on cost-per-customer and cost-per-transaction, rightsizing and commitment-purchase recommendations, and anomaly detection that catches a runaway spend before it becomes a headline — all of this is hard-won and genuinely valuable. A decade ago the cloud bill was a black box; the category professionalized cloud finance. Even the more advanced moves are real advances: cost surfaced inside the pull request, and automation that shuts down idle resources on a schedule.</p>
 <p>Here is the hinge underneath every one of those capabilities. They <strong>observe</strong> spend and <strong>recommend</strong> an action — rightsize this instance, buy that commitment, delete this idle resource — and then a human implements it in the console or a separate automation while the tool tracks it afterward. The governance on offer is a dashboard, a ticket, and a budget alert that fires <em>after</em> the money is already committed. It is an excellent rear-view mirror. It is still a mirror.</p>
 </div>
 
-<div class="section-label fade-in">RECOVERED WASTE IS STILL WASTE</div>
+<h2 class="section-label fade-in">Recovered waste is still waste</h2>
 <div class="fade-in">
 <p>The dashboards never draw the one distinction that matters to a P&amp;L, so draw it yourself. There are two kinds of waste, and they are not equally expensive.</p>
 <ul>
@@ -98,14 +98,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE STRONGEST GATE ON THE MARKET HAS ONE DOOR</div>
+<h2 class="section-label fade-in">The strongest gate on the market has one door</h2>
 <div class="fade-in">
 <p>To be scrupulously fair, one part of the category has moved closer to prevention than the rest, and it deserves the credit. The shift-left, pipeline-governance approach checks cost <em>before</em> deploy — in the delivery pipeline, at infrastructure-as-code plan time — and can flag or block a change that would blow the budget before it merges. That is genuinely the strongest governance story on the market, and a real advance over a dashboard that notices next week.</p>
 <p>Be precise about what it governs, though: exactly <strong>one way in</strong>. The pipeline is one door to the cloud. The console click is another. The raw API call is another. The autoscaler that provisions capacity at 3am to meet load is another — and none of them pass through the pipeline. You can tell the gate is porous from a feature these same tools ship right alongside it: a continuous "drift" or cleanup loop that hunts for resources which appeared outside the governed path. That loop is a quiet admission. If the gate caught everything, there would be nothing to clean up after.</p>
 <p>And there is a second limit, subtler and more durable than any roadmap will close: the check is a <em>cost estimate</em>. It answers "does this look expensive," not "is this person, in this cost center, authorized to commit this money right now." A dollar forecast is not a delegated-authority decision. Governing one door with an estimate is the best version of the pattern — and it is still the pattern.</p>
 </div>
 
-<div class="section-label fade-in">A BUDGET THAT CAN REFUSE</div>
+<h2 class="section-label fade-in">A budget that can refuse</h2>
 <div class="fade-in">
 <p>The alternative is not a faster detector or a smarter estimate. It is to move the control to <strong>the act of creation itself</strong>.</p>
 <p>Entroid runs enterprise processes as compositions of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — on one Semantic Ontology, in a single runtime, with an immutable per-action audit. Provisioning a cloud resource is one such action. On this fabric, that action routes through a Deterministic Workflow in which a budget, authority and policy check runs <em>inline</em>, before the resource can exist. The Semantic Ontology already models the owner, the cost center, and the budget envelope, so the gate is not asking "is this cheap." It is asking "is this authorized" — and it denies on <strong>authority, not on a forecast</strong>.</p>
@@ -114,7 +114,7 @@
 <p>For the CFO, the payoff is not a prettier savings report. It is that every allow and every deny lands in the immutable audit, giving <strong>board-grade assurance of a claim no rear-view tool can make</strong>: spend cannot exceed the authorized envelope, on any path. Not "we caught most of it." Cannot.</p>
 </div>
 
-<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<h2 class="section-label fade-in">Said precisely, not over-sold</h2>
 <div class="fade-in">
 <p>Two honest qualifications, because an expert reader will supply them if I don't. First, this is not a claim that Entroid floats above your estate with no integration. It reaches your cloud accounts, your billing, your identity and your ledger through governed Connectors — the one primitive licensed to touch external systems, with authentication, authorization and audit. The distinction from the cost-management tools is not integration versus none. It is <em>where the control sits</em>: at the provisioning action on the fabric, versus beside the cloud, reading the aftermath.</p>
 <p>Second, this is not a claim that the category's tools "cannot" see waste or that their visibility is worthless — you will still want cost allocation, unit economics and anomaly detection, and the best of them are excellent at it. The structural point is narrower and more durable than any feature race: observing spend and recommending a fix a human implements is a rear-view mirror, however fast the glass. A budget that can refuse the spend at the moment of spend is a control plane. One recovers money that already left. The other never lets it leave.</p>

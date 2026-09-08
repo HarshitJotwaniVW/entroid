@@ -1,9 +1,9 @@
 <div class="hook fade-in"><p>Test one hundred percent of transactions, not a sample. It is the most quoted line in modern audit analytics, and it earns the quote: reading a full ledger beats pulling forty items out of four million. <strong>But a full-population test is still a test. It runs on an extract, after the action already committed, and its coverage is capped by whatever data was pulled and how clean it was.</strong> The number that should keep a Chief Audit Executive honest is not how many rows you tested. It is how many rows the process itself governed and recorded as it ran.</p></div>
 
-<div class="section-label fade-in">THE ADVANCE IS REAL</div>
+<h2 class="section-label fade-in">The advance is real</h2>
 <div class="fade-in"><p>Start by conceding the ground fairly, because the audit-analytics vendors are right on the merits. Sampling carries an uncomfortable math problem that never fully goes away: a sample is an <em>inference</em> about a population, and a clean sample can never prove the dirty item was not the one you happened to miss. You test forty, you extrapolate, you sign, and you carry residual risk you cannot see. Full-population analytics removes that inference for every row it can reach. It surfaces duplicate payments, ineligible beneficiaries, split purchase orders, and suspicious vendor patterns across an entire ledger rather than a judgmental slice. Directionally, the category's claim holds: for the high-risk domains where these tools focus, scanning the whole extract is a genuine improvement over scanning a fraction of it. Anyone who argues otherwise is defending a weaker position than the one they think they hold.</p></div>
 
-<div class="section-label fade-in">THE TELL IS IN THE LAST WORD</div>
+<h2 class="section-label fade-in">The tell is in the last word</h2>
 <div class="fade-in"><p>The limit lives in the phrase itself. "Full-population <em>testing</em>" still ends in testing, and testing happens on data that has already been exported, staged, and transformed. That inherits two blind spots the coverage statistic cannot describe.</p>
 <ul>
 <li><strong>What was never pulled.</strong> Rows outside the connector's reach, a source system the extract job never touched, records quietly removed by a <code>WHERE</code> clause someone wrote months ago. A test that runs on the extract cannot see the population that did not make it into the extract, and it cannot vouch for a completeness it was never handed.</li>
@@ -13,7 +13,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">POPULATION-COMPLETE BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Population-complete by construction</h2>
 <div class="fade-in"><p>Here is the reframe. In a Composable Process Fabric, the control is not a test that runs beside the work. It is enforced inline by a <strong>Deterministic Workflow</strong> — the fixed, rule-governed routing where approval gates, segregation of duties, authority and entitlement limits, and thresholds actually live. A non-compliant action does not get flagged; it does not execute. And because every execution routes through that gate, every execution is written down: an immutable per-action record emitted as a <strong>byproduct of running</strong>, not collected afterward by a separate evidence exercise.</p>
 <p>That changes what "complete" means. The population is complete not because a query scanned an export, but because the process <em>wrote</em> the population as it happened. Completeness stops being a property of the extract and becomes a property of execution. There is no pipeline to vouch for, because there is no reconstruction — the evidence is the same event as the action.</p>
 <p>Consider a purchase order that would breach an approval threshold, or a payment to a vendor that fails a segregation-of-duties check. On an analytics-on-extract model, the PO posts, the payment clears, and the exception surfaces in next month's duplicate-payment run — after the money moved. On an inline-enforced fabric, the workflow refuses to route it. The breach never becomes a transaction, and the refusal itself is part of the record. Nothing was sampled, because nothing was reconstructed.</p>
@@ -72,11 +72,11 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE AUDIT READS STATE, IT DOES NOT RE-PERFORM</div>
+<h2 class="section-label fade-in">The audit reads state, it does not re-perform</h2>
 <div class="fade-in"><p>This is where the Assurance layer stops looking like a parallel machine. The Trust, Governance and Assurance modules sit <em>on top of the same running fabric</em>, not beside it. The <strong>Audits</strong> module reads enforced-control state and population-complete evidence directly, rather than re-performing tests on sampled or extracted data. The auditor is not rebuilding what happened from logs, config dumps and screenshots — they are reading what the process already proved, per action, across the whole population.</p>
 <p>And the control is expressed once. A single control, written against the semantic ontology and enforced once in the workflow, projects to any framework the enterprise has to answer to — SOX, ISO, NIST, SOC 2, DORA — without re-testing the same evidence five times for five frameworks. The evidence is bound to the action, continuous, and population-complete because it was never a collection exercise to begin with. It is what running left behind.</p></div>
 
-<div class="section-label fade-in">WHERE ANALYTICS-ON-EXTRACT STILL EARNS ITS KEEP</div>
+<h2 class="section-label fade-in">Where analytics-on-extract still earns its keep</h2>
 <div class="fade-in"><p>Now the honest boundary, because the argument is stronger for being fair. For the parts of the estate ES does not execute — legacy ERP, third-party ledgers, systems no one is re-platforming this decade — analytics-on-extract remains valuable and is often the only option available. ES itself reaches those systems only through governed <strong>Connectors</strong>, the single primitive that touches external estates, with authenticated, rate-limited, audited read and write. It does not pretend to enforce inline inside a system it does not run, and any vendor who tells you their platform needs zero integration is selling you the part that is not true.</p>
 <p>So the framing is not that analytics is obsolete. It is a division of labor. <em>Analytics is how you interrogate a population you did not govern.</em> By-construction completeness is what you get for the population you did. The strategic question for a CAE is not which technique wins a bake-off. It is how much of the enterprise you intend to keep proving after the fact, one extract at a time, versus how much you move onto a fabric that governs and evidences it as it runs — shrinking the surface that ever needs testing in the first place.</p></div>
 

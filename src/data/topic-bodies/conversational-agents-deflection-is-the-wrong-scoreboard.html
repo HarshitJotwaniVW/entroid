@@ -1,6 +1,6 @@
 <div class="hook fade-in">Your conversational-agent vendor reports a resolution rate, and it's probably a strong number. It's also the wrong number — and under per-resolution pricing, it's one the vendor's own agent <strong>defines, measures, and bills</strong>. Deflection, resolution rate, and CSAT grade what the agent <em>said</em> or <em>contained</em>, never whether the actions it took were correct, authorized, and compliant. One wrong authorized action can cost more than a thousand deflected tickets.</div>
 
-<div class="section-label fade-in">The Scoreboard You're Shown</div>
+<h2 class="section-label fade-in">The scoreboard you're shown</h2>
 <div class="fade-in">
 <p>Walk into any enterprise-AI buying review and the deck leads with three numbers: a headline resolution rate, a deflection percentage, and a CSAT score. Each is real. None of them measures what actually governs your enterprise.</p>
 <p>Deflection is a <strong>containment</strong> metric. It counts the conversations that never reached a human — a proxy for cost avoided, not for correctness delivered. A ticket can be "deflected" because the customer gave up, because the bot looped them into a help article, or because it confidently closed a case it never understood.</p>
@@ -8,14 +8,14 @@
 <p>CSAT measures how the conversation <em>felt</em>. All three are conversation-quality metrics. They answer one question — <em>did it converse and contain well?</em> — and stay silent on the only question a CISO, a controller, or a head of risk actually loses sleep over: <strong>when it acted, was the action correct, authorized to this caller, and compliant?</strong></p>
 </div>
 
-<div class="section-label fade-in">The Score You Don't Own</div>
+<h2 class="section-label fade-in">The score you don't own</h2>
 <div class="fade-in">
 <p>Now add the pricing model the category is converging on: pay for outcomes, not tokens. On its face this is the honest offer in the room. It aligns your spend with delivered value and takes model-consumption roulette off your plate. Credit where it's due — as a deal shape, it beats metering by the million tokens.</p>
 <p>Look at who holds each role, though. Under per-resolution or outcome pricing, the vendor's agent performs the work, then the vendor's system decides whether that work counts as a "resolution," reports the tally, and invoices against it. <strong>Judge, scorekeeper, and cashier — the same party.</strong> The definition of the billable event is authored by the entity billing for it.</p>
 <p>The incentive that creates isn't sinister; it's structural. Outcome pricing rewards <em>closing</em> and <em>containing</em>, and closing and containing can diverge from the correct cross-system outcome. A conversation marked resolved because the customer stopped replying is billable. So is a refund pushed to the wrong account, an entitlement granted to a caller who wasn't owed it, or a cancellation processed past the contractual window — each can be logged as "resolved." The scoreboard rewards the thing that is easiest to measure, and action integrity is not it.</p>
 </div>
 
-<div class="section-label fade-in">Where the Pattern Earns Its Place</div>
+<h2 class="section-label fade-in">Where the pattern earns its place</h2>
 <div class="fade-in">
 <p>Here the fair critique has to slow down, because the leading conversational-agent platforms are genuinely good at what they were built for. They resolve enormous volumes of real support work that used to burn human hours. The best of them ship guardrails that are a real improvement over a raw prompt, and their supervisory layers do catch a large share of bad actions before those actions land. Deterministic access control — deciding which systems an agent may reach at all — is a solved and serious capability. None of that is marketing vapor.</p>
 <p>The limit is architectural, and it survives any roadmap. These are <em>standalone</em> conversational agents — overwhelmingly support and contact-center point solutions — that sit <em>on top of</em> your systems and act by calling external APIs. Their protection against a wrong action takes one of two shapes. Either a second probabilistic model watches the first — which means the action can still fire and is, at best, <em>probably</em> caught — or governance is authored into the agent at design or compile time. Compiled governance is a real advance over prompt-level pleading. But <strong>governance authored into the agent is authored by the builder who can loosen it, and it is not an external runtime gate the agent must pass through at the moment of action.</strong></p>
@@ -25,7 +25,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">The Metric That Governs</div>
+<h2 class="section-label fade-in">The metric that governs</h2>
 <div class="fade-in">
 <p>So swap the scoreboard. The metric that governs an enterprise is not percent contained — it is <strong>action integrity</strong>: the share of agent-proposed actions that were gated against policy, permissioned to the invoking user's real entitlements, and written to an audit you control — and, the number that actually matters, <strong>zero non-compliant actions executed.</strong> Not "flagged." Not "caught downstream." Never executed.</p>
 <p>That is the difference between a dashboard and a ledger. One reports what the agent did after the fact. The other makes the non-compliant action structurally impossible and leaves proof.</p>
@@ -92,7 +92,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">A Ledger the Enterprise Owns</div>
+<h2 class="section-label fade-in">A ledger the enterprise owns</h2>
 <div class="fade-in">
 <p>This is the whole reason a conversational agent belongs <em>inside</em> a governed runtime rather than bolted on above your stack. In our architecture a conversational agent is not a separate product category — it is an <strong>Atomic Agent with a dialogue interface</strong>, a first-class primitive in the same fabric that runs every other enterprise process. That placement changes what every utterance must survive before it becomes an effect in the world.</p>
 <p>Each utterance becomes a proposed action, and the proposal is routed by <strong>Intelligence Orchestration</strong>, which binds it to the invoking identity's real entitlements — the agent inherits <em>the caller's</em> authority, not a service account's. The proposal then has to clear a <strong>Deterministic Workflow gate</strong> where the enterprise's own controls live inline: approval, segregation of duties, authority and threshold limits, and human-in-the-loop checkpoints placed <em>before</em> the irreversible step — not as an escalation reached after the agent gives up, and not a rubber stamp asked to confirm something already done. Only then does a governed <strong>Connector</strong> — the one primitive permitted to touch an external system — execute the write. And utterance to intent to gate to connector-call to system-effect is bound in an immutable, per-action record.</p>
@@ -101,7 +101,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">Rewrite the KPI</div>
+<h2 class="section-label fade-in">Rewrite the KPI</h2>
 <div class="fade-in">
 <p>So change the question the buying committee asks. The winning agent is not the one with the highest containment rate on a slide you can't audit. Take these into the next vendor review and watch the room reorganize:</p>
 <ul>

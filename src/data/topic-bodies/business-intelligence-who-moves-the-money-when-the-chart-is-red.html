@@ -1,19 +1,19 @@
 <div class="hook fade-in"><p>The sharpest positioning in analytics right now is a concession dressed as confidence: chart-generation is commoditized, so stop competing on it — the AI can draw anything, and the real moat is a <em>governed, accurate answer</em>. It is a good bet, and it is genuinely right. But it wins the argument over whether the number is <em>correct</em>, and <strong>no enterprise ever lost money because the chart was wrong. It lost money because a correct number sat red on a screen while someone got to it late — or acted on it in the wrong system.</strong></p></div>
 
-<div class="section-label fade-in">THE RIGHT BATTLE, HONESTLY</div>
+<h2 class="section-label fade-in">The right battle, honestly</h2>
 <div class="fade-in">
 <p>Concede the strong form of the argument first, because dismissing it is how you lose a serious reader. The leading analytics vendors have converged on a genuinely good instinct: in a world where any model can render a plausible-looking chart from a plain-English question, the differentiator is not the drawing — it is trust. So they ground the AI in a governed semantic layer, a single definition of what "revenue" or "churn" or "margin" actually means, and let the model answer against that truth rather than hallucinate one. <em>AI can draw the chart; we define the truth.</em> It is the most defensible sentence in the category, and it is correct.</p>
 <p>Give the rest of the modern stack its due while we are here. Self-service visual analytics genuinely democratized data — a domain leader answers her own question in seconds instead of queuing a week for an analyst. A trusted metrics layer genuinely keeps the answer accurate and consistent across the org. Proactive, natural-language insights delivered in the flow of work genuinely surface the anomaly a human would have scrolled past. And warehouse-native BI that can write a value back genuinely tightens the loop. None of this is vaporware. A hallucinated metric is worse than no metric, and the trust-first vendors are right to make accuracy the mountain they defend.</p>
 </div>
 
-<div class="section-label fade-in">WHERE THE MONEY ACTUALLY LEAKS</div>
+<h2 class="section-label fade-in">Where the money actually leaks</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part. All of that effort perfects the <strong>answer</strong> — and the loss event in an enterprise is almost never a wrong answer. It is the gap between a <em>correct</em> answer and a governed action taken on it.</p>
 <p>Play out the sentence in the headline. A margin chart goes red on a Tuesday. The number is perfect — trusted semantic layer, no hallucination, defensible to the board. Now: who moves the money? Somebody has to read the chart, believe it, decide, and then go <em>somewhere else</em> — the ERP, the billing system, the treasury console, the shipment queue — and execute the response. Issue the credit. Hold the shipment. Reallocate the budget. Between the red pixel and the executed action sits a human, a login to another system, and an amount of elapsed time nobody is measuring. That interval is where the money leaks. The accuracy of the chart does not shrink it by a minute.</p>
 <p>An enterprise does not pay for diagnosis. It pays for response. And a dashboard — however trustworthy, however conversational — is a diagnosis that stops one step short of the only step that changes the P&L.</p>
 </div>
 
-<div class="section-label fade-in">A RECOMMENDATION IS NOT AN AUTHORIZATION</div>
+<h2 class="section-label fade-in">A recommendation is not an authorization</h2>
 <div class="fade-in">
 <p>The most advanced vendors know this, which is why the category has pivoted from "dashboards" to "agentic analytics" — analytics that does not just show you the red, but analyzes, decides, and <em>acts</em>, with a human kept in control, all grounded in that trusted semantic layer. This is the right direction, and the trust-first grounding underneath it is real engineering, not marketing. Concede it cleanly.</p>
 <p>Then be precise about what the "act" actually is, because the word is doing more work than the architecture supports. In these systems the action takes one of two shapes. Either it is a <strong>recommendation delivered into the flow of work</strong> — a suggested next step dropped into a message, a ticket, an inbox, where a human still decides and still executes elsewhere. Or it is an <strong>agent acting inside a connected application</strong> — reaching across an integration to click the button in someone else's system. Both are genuinely useful. Neither gives the insight <em>authority</em>. In both cases the analytics platform still <em>observes a modeled copy</em> of the data and the business action still <strong>commits in a system the analytics tool sits beside</strong> — over a boundary, in another product's system of record, under that product's governance, not the insight's.</p>
@@ -78,14 +78,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT EXECUTION AUTHORITY ACTUALLY MEANS</div>
+<h2 class="section-label fade-in">What execution authority actually means</h2>
 <div class="fade-in">
 <p>Entroid is not a better dashboard. It is a Composable Process Fabric: every enterprise process is modeled, executed, <em>and</em> governed as a composition of five primitives — Deterministic Workflows with governance inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class control, Functions, and Connectors — on a single Semantic Ontology, in one runtime, with an immutable per-action audit. The Business Intelligence, Data Insider, and Command Center modules do not sit <em>beside</em> that runtime, reading a copy of it. They sit <strong>on</strong> it.</p>
 <p>That placement is the whole difference, and it is an architectural property of the design, not a benchmarked outcome. Because the insight is computed from <em>live process state</em> — the same running workflow and agent instances that do the work — it is not an observation of a modeled copy. It is a reading of the work itself. And because it lives on the fabric that executes, it can be given something a dashboard structurally cannot have: <strong>execution authority</strong>. When the chart goes red, Command Center can turn that trusted insight into a governed, audited <em>action</em> — not a recommendation handed off, but a Deterministic Workflow triggered on the same runtime, gated by the controls the enterprise already defined.</p>
 <p>The gates matter as much as the trigger, because "the analytics can act" without governance is exactly the recklessness the trust-first vendors are right to fear. Here the action passes through inline governance: an approval gate where a human must confirm, a threshold gate where anything above a limit escalates and anything below it commits automatically, a permission bound to who is asking. Consider — purely illustratively — a working-capital signal that crosses a tolerance: below the threshold the fabric releases the credit and records it; at or above it, the workflow pauses for a controller's approval before a cent moves. Every one of those actions writes an immutable per-action audit — what fired, on what state, under whose authority, against which control. The response and its governance are the same act, not two systems reconciled after the fact.</p>
 </div>
 
-<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<h2 class="section-label fade-in">Said precisely, not over-sold</h2>
 <div class="fade-in">
 <p>Two honest caveats, because a serious buyer will supply them if I don't.</p>
 <ul>
@@ -94,7 +94,7 @@
 </ul>
 </div>
 
-<div class="section-label fade-in">THE HALF THAT PAYS</div>
+<h2 class="section-label fade-in">The half that pays</h2>
 <div class="fade-in">
 <p>Reframe it for the room that signs the check. "AI can draw the chart; we define the truth" answers a real question — <em>is the number right?</em> — and answers it well. But the board is asking a second question the sentence quietly leaves open: <em>and when it's right and it's red, what happens next, how fast, and can we prove who decided?</em> Defining the truth is one half of the value. Acting on it, under governance, with an audit trail — that is the half that shows up in the quarter.</p>
 <p>The trust-first vendors picked the right mountain. Accuracy is worth defending. The limit is not their instinct; it is their <em>position</em> in the stack — beside the systems where the work runs, observing a copy, stopping at a recommendation. Move the insight onto the fabric that executes, and the red chart stops being a diagnosis a human carries to another room. It becomes the first step of a governed response that has already begun.</p>

@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>The best cost-governance story on the market is genuinely good, and it lives inside the pipeline. Spend is estimated the moment a change opens for review and checked again when the infrastructure-as-code plan is drawn — <strong>before a single resource is deployed</strong>. It is the closest the industry has come to stopping waste before it happens. It is also a gate on one path, and a cloud account has many paths to creation.</p></div>
 
-<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<h2 class="section-label fade-in">Credit where it is due</h2>
 <div class="fade-in">
 <p>Start by conceding what is real, because an expert reader will stop reading the moment you don't. For a decade the cloud-cost discipline has done hard, unglamorous, valuable work. The cost-visibility and allocation tools turned an opaque monthly bill into near-total allocation — showback and chargeback by team, by product, by unit of business. They surfaced idle and oversized resources, forecast spend, caught anomalies before they compounded, and produced rightsizing and commitment recommendations that have saved enterprises real money. The operating model around them professionalized cloud finance into a discipline with owners and rituals.</p>
 <p>Then the strongest of them did something better than a dashboard: they moved the cost conversation <em>left</em>, into the change review and the plan, so an expensive decision could be questioned before it shipped. That is not marketing. Governing cost before deploy is a genuine advance over a report you read after the money is gone, and it is the best governance posture the market currently offers. The rest of this argument is not that the pipeline gate is bad. It is that a gate on one path is structurally different from a gate on the act itself.</p>
 </div>
 
-<div class="section-label fade-in">ONE WAY IN</div>
+<h2 class="section-label fade-in">One way in</h2>
 <div class="fade-in">
 <p>Here is the problem, and it is structural — not a feature the next release will close. A pipeline is a <em>path</em>, not a <em>perimeter</em>. The gate lives on the disciplined path: the change that goes through source control, the plan, the review. It governs that path well. But that is not the only way a resource comes into existence:</p>
 <ul>
@@ -19,13 +19,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE ZERO-DRIFT TELL</div>
+<h2 class="section-label fade-in">The zero-drift tell</h2>
 <div class="fade-in">
 <p>You can read the shape of this gap in what the same tools ship to compensate for it. Alongside the pipeline gate runs a background reconciliation loop — a <em>zero-drift</em> cleanup that continuously scans live infrastructure for resources that diverged from policy and re-remediates them. Sit with what that quietly admits.</p>
 <p>If the gate were the perimeter, nothing could drift; there would be nothing to reconcile. A continuous cleanup loop exists <em>precisely because</em> resources keep appearing that never passed the gate. And a cleanup loop is, by construction, a rear-view mirror with a shorter delay: it notices after the resource exists and the money is already committed, then works to undo what should never have been created. Faster detection is worth having. It is not the same thing as prevention — and the vocabulary itself, <em>drift, reconcile, remediate,</em> concedes the difference for anyone listening closely.</p>
 </div>
 
-<div class="section-label fade-in">AN ESTIMATE IS NOT AN AUTHORITY</div>
+<h2 class="section-label fade-in">An estimate is not an authority</h2>
 <div class="fade-in">
 <p>There is a second, quieter limit even on the one path that <em>is</em> governed. The check is a dollar estimate weighed against a budget number: this plan looks like it will cost X, the budget says Y, proceed or warn. That is a forecast, and a forecast answers <em>how much.</em> Governance answers a different question entirely: <em>who is allowed.</em></p>
 <p>Does this actor have delegated authority to create this resource, against this cost center, with this much budget remaining, under these policies? A number compared to a threshold cannot answer that, because it never modeled the owner, the cost center, or the authority to begin with. It only ever priced the change. And most of these tools are careful, by design, not to block the deployment — governance without a stop is advice with excellent production values.</p>
@@ -71,14 +71,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">MOVE THE GATE TO THE ACT OF CREATION</div>
+<h2 class="section-label fade-in">Move the gate to the act of creation</h2>
 <div class="fade-in">
 <p>Entroid's answer is architectural, so let me state it as architecture rather than as an outcome. On a Composable Process Fabric, one primitive — the <strong>Connector</strong> — is the only thing that touches an external system. Nothing reaches the cloud except through a governed Connector. Every provisioning action, whatever its origin — a console click, a raw API call, an infrastructure-as-code plan, an autoscaler's request — resolves to a Connector call, and a <strong>Deterministic Workflow runs the budget, authority, and policy check inline</strong>, before the Connector is permitted to act.</p>
 <p>The consequence is the whole argument. The gate is no longer bound to a deployment channel; it is bound to the act of creation itself. Because there is only one way for anything to touch the cloud, there is only one gate, and every path routes through it by construction — not by convention, and not by remembering to wire each path up. An over-budget or non-compliant resource is not created and then cleaned up. It is <em>un-creatable</em>. There is no drift, because nothing bypasses the check in order to drift from it. The cleanup loop has nothing to reconcile because nothing slipped past.</p>
 <p>And the decision is an authority decision, not a forecast. The <strong>Semantic Ontology</strong> models owner, cost center, and budget, so the inline workflow evaluates whether <em>this actor</em> may create <em>this resource</em> against <em>this authority</em> — then writes the allow or the deny to an immutable, per-action audit. Every attempt, permitted or refused, leaves a durable line. This is a property of where the check sits in the runtime, not a claim about any particular deployment.</p>
 </div>
 
-<div class="section-label fade-in">AND THE FIX EXECUTES ITSELF</div>
+<h2 class="section-label fade-in">And the fix executes itself</h2>
 <div class="fade-in">
 <p>The mirror image matters as much as the gate. When the cost-visibility tools find waste, they produce a recommendation — rightsize this, reclaim that, commit to this — and the action becomes an engineer's ticket, implemented by hand in a console the tool cannot see into, then tracked after the fact. The insight is real; the loop between insight and action is a human and a queue. On the fabric, remediation runs as a <strong>governed, reversible, per-action-audited action in the same runtime</strong> that enforced the gate. Human-in-the-loop is a first-class step, so a person approves wherever policy demands one — the automation does not remove the human, it removes the ticket. Fin Ops operations toolkits surface utilization and congestion with AI recommendations, and Business Planning holds the budgets and investments, both on that same fabric — so the budget a plan sets is the same budget the gate enforces, not a figure copied into a second system that goes stale.</p>
 <p><em>None of this pretends to be free of the estate you already run.</em> The fabric does not replace your cloud, and it does not claim to need no integration — it governs the estate you have, through those same governed Connectors. The shift is not one more tool sitting beside the cloud, observing. It is moving the control point from <em>beside</em> the act of creation to <em>inside</em> it.</p>

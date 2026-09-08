@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Open your resource-management view and read the utilization number next to any senior engineer's name. It says she is at 92% this quarter. Now ask the harder question: how does the tool know? It knows because someone allocated her to three initiatives, because she filed timesheets that summed to a full week, and because her manager tagged her amber at the last review. Every one of those is a report <em>about</em> her work. <strong>Not one of them is her work. Utilization is an estimate the enterprise has agreed to treat as a fact.</strong></p></div>
 
-<div class="section-label fade-in">WHAT THE NUMBER ACTUALLY IS</div>
+<h2 class="section-label fade-in">What the number actually is</h2>
 <div class="fade-in">
 <p>Give the category its due first, because a resource-planning leader will stop reading the moment you strawman the tools they rely on. A single view of projects, tasks, roadmaps and people genuinely does reduce chaos — a portfolio run out of a dozen disconnected spreadsheets is worse in every measurable way. Capacity and demand planning genuinely help: modelling a pipeline of requested work against a supply of people forces the hard trade-offs to be named before they become fires. The best of the enterprise-PPM suites and work-management platforms have made this discipline accessible to organizations that never had it. None of that is in dispute.</p>
 <p>But look precisely at how the supply side of that model is produced. Capacity is assembled from three inputs: <strong>allocations</strong> — forward-looking commitments a resource manager types into a grid; <strong>timesheets</strong> — backward-looking self-reports of where hours supposedly went; and <strong>manager judgment</strong> — a periodic read on who is drowning and who has slack. Utilization is then computed as booked-or-reported hours over available hours. It is a clean percentage. It is also an inference assembled entirely from proxies, about people whose actual deliverable work is executing in systems the planning tool cannot see.</p>
 </div>
 
-<div class="section-label fade-in">THREE PROXIES, NONE OF THEM THE WORK</div>
+<h2 class="section-label fade-in">Three proxies, none of them the work</h2>
 <div class="fade-in">
 <p>The reason utilization is perennially wrong is not sloppy data hygiene. It is structural — each of the three inputs is a proxy that drifts from the truth in a predictable direction:</p>
 <ul>
@@ -17,7 +17,7 @@
 <p>Stack three lagging, subjective proxies on top of each other and you do not get a live picture of capacity. You get a model that is confidently precise and quietly wrong, and that stays wrong until the next re-planning cycle scrambles to true it up. The quarterly capacity rebalance is not a best practice. It is the interval at which the enterprise admits the estimate has drifted too far from reality to keep pretending.</p>
 </div>
 
-<div class="section-label fade-in">THE ESTIMATE HAS A PRICE</div>
+<h2 class="section-label fade-in">The estimate has a price</h2>
 <div class="fade-in">
 <p>This would be an academic quibble if the estimate were harmless. It is not. A capacity number that runs a few points hot hides the person who is actually underwater until they burn out or miss; a number that runs cold parks expensive specialists on a phantom bench while initiatives that need them wait in the demand queue. Neither error is visible in the tool, because the tool only knows what was entered. It surfaces at the portfolio review, as the same recurring conversation: why did this initiative slip when the plan showed headroom, and why are we re-cutting the resource plan again this quarter.</p>
 <p>That quarterly scramble is not a maturity failure to be trained away. It is the debt payment on running the enterprise off a model that has to be reconciled to reality after the fact. And it lands hardest exactly where the stakes are highest — the capital-intensive, cross-functional bets whose success depends on the scarcest people, the ones an estimate is least equipped to track in motion. The cost of a wrong utilization number is not the number. It is the decision made on it.</p>
@@ -25,7 +25,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE RIGHT DIAGNOSIS, ONLY HALF-CLOSED</div>
+<h2 class="section-label fade-in">The right diagnosis, only half-closed</h2>
 <div class="fade-in">
 <p>The sharpest players in this space have seen the problem clearly, and their answer deserves genuine credit. The strongest current move is to <strong>connect planning to delivery</strong> — to bridge the portfolio layer to the systems where work is actually executed and pull flow and throughput metrics back, so the plan can be trued against reality closer to continuously instead of once a quarter. That is the correct diagnosis. The value-stream-management vendors are right that the gap between the plan and the doing is where estimates go to die, and pulling real delivery signal across that gap genuinely narrows the staleness.</p>
 <p>But be precise about what that architecture is. Connecting a planning system to a delivery system with flow metrics is still <strong>two systems joined by measurement</strong>. The capacity model lives in one place; the deliverable work executes in another; the metrics observe the distance between them. A faster, richer integration shortens the lag and enriches the observation — it does not remove the second system, and it does not remove the human who still has to reconcile what the metrics say against what the plan assumed. Flow metrics <em>watch</em> the gap. They do not <em>close</em> it. Utilization computed from a live feed of a separate system is a fresher estimate. It is still an estimate.</p>
@@ -88,14 +88,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">CAPACITY IS READ, NOT ENTERED</div>
+<h2 class="section-label fade-in">Capacity is read, not entered</h2>
 <div class="fade-in">
 <p>The alternative is not a better estimate. It is to stop estimating. Entroid runs every enterprise process as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions and Connectors — on one Semantic Ontology, in a single runtime with an immutable per-action audit. In this model a project is not a card that <em>links</em> to work happening elsewhere. The project <strong>is</strong> the composition of primitives that deliver it, and that composition executes on the fabric itself.</p>
 <p>That single fact changes what capacity is. When the deliverable work runs as governed workflows and agents on the fabric, the fabric already holds the ground truth: which process instances are executing right now, which human steps are assigned and waiting on a person, what is queued behind them, what is blocked. The Workforce and PMO modules do not open a grid and ask a manager to estimate consumption — they read it. <strong>Utilization becomes a Function: a query over the set of live process instances currently drawing on a person, a team, or a skill.</strong> Not booked hours over available hours. Actual claim over actual capacity, computed from execution.</p>
 <p>Allocation inverts in the same motion. Beside the runtime, an allocation is a forecast a resource manager enters and defends later against timesheets. On the fabric, an allocation is a <strong>live claim on real, currently-observed capacity</strong> — it draws on the same running primitives the enterprise is actually operating. So when two initiatives reach for the same scarce engineer, the contention is visible at the moment of the claim, not when the actuals collide at the next review. This is an architectural property of computing capacity from live state, not a claimed outcome from any deployment — offered to illustrate how the mechanism behaves, not as a delivered result.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THIS DOES NOT CLAIM</div>
+<h2 class="section-label fade-in">What this does not claim</h2>
 <div class="fade-in">
 <p>Two caveats, because a resource leader will supply them if I don't. First, this is not a claim that Entroid sees the whole of a person's day. No system captures the thinking, the hallway decision, the meeting that never generated a ticket — and any tool that claims otherwise is selling you a fuller estimate, not a fact. The claim is narrower and therefore stronger: <em>for the deliverable work that constitutes the project</em>, capacity consumption is a byproduct of execution rather than a self-report. The share of an enterprise that runs on the fabric is the share whose capacity is read rather than guessed, and that share is a decision you make, not a limit of the design.</p>
 <p>Second, this is not a claim that ES floats free of your estate or needs zero integration. It reaches your HRIS, your delivery systems and your existing tools of record through governed Connectors — the single primitive licensed to touch the outside world, with authentication, authorization and audit inline. The distinction from the capacity-planning vendors is not integration versus none. It is that the work whose capacity you are counting executes on the same fabric as the plan that counts it — so there is no second system to reconcile, and no gap for a flow metric to watch.</p>

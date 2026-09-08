@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Picture a Thursday afternoon: the fire-suppression rough-in on level six fails inspection. Friday morning, the pay application covering that work clears review. The following week, the level is queued for turnover. No one acted in bad faith — the inspection lives in a field app, the money lives in an ERP, and <strong>nothing in the architecture connects the failure to the payment</strong>. That is not a process lapse. It is a design decision, made long ago, that most construction technology has quietly inherited.</p></div>
 
-<div class="section-label fade-in">WHAT FIELD CAPTURE ACTUALLY WON</div>
+<h2 class="section-label fade-in">What field capture actually won</h2>
 <div class="fade-in">
 <p>Start with what deserves credit, because it deserves a lot. The field-management apps took inspections, checklists, punch lists, and daily photos off clipboards and camera rolls and turned them into structured, timestamped, attributable records. That genuinely closed the gap between the field and the office — a gap that used to swallow entire disputes. A comprehensive visual and documentary record of the build has won real claims and saved contractors real money. Digital commissioning packages that once filled a shelf of binders are now searchable, versioned, and deliverable. None of that was easy, and none of it should be dismissed.</p>
 <p>But read the category's own framing carefully. The promise is <em>evidence</em>: capture everything, so that when a question arises months later you can replay the project and prove what happened, when, and on whose watch. Notice what that promise concedes. The dispute still arrives. The failed inspection still coexisted with the released payment. The record was built to win the argument after the fact — not to prevent the fact. That is the honest description of the architecture: a record rail, running parallel to a money rail, with human vigilance as the only bridge between them.</p>
 </div>
 
-<div class="section-label fade-in">TWO RAILS, ONE PROJECT</div>
+<h2 class="section-label fade-in">Two rails, one project</h2>
 <div class="fade-in">
 <p>Model the estate the way a CIO has to. Inspections and observations sit in a field platform. RFIs, submittals, and change events sit in a document or project-controls platform. The schedule of values, pay applications, retainage, and actual payments sit in an ERP — the GC's, and separately the subcontractor's, and separately the owner's. In that estate, a "hold" is not a state. It is a message. Someone flags the inspection, someone emails the project manager, someone remembers to tell accounting to short-pay the line — this billing cycle, and again next billing cycle, until the issue clears. The failed inspection and the SOV line that bills for that work live in different systems, owned by different parties; the connection between them is organizational memory, occasionally helped by an integration that syncs the record but never the consequence.</p>
 <p>To be fair, the controls suites do offer a second layer: configurable approval workflows, withholding flags, sign-off thresholds. That is genuine governance — of the <em>routing</em>. The document travels the approved path. But the withhold decision is still re-keyed into the payment system by hand, and enforcement lives on the document's journey, not in the money's execution. A safety stand-down makes the point starkly: the superintendent stops work with a word, and the billing cycle does not even know it happened. When the hold slips through a seam — and across three companies' systems, over enough months, it will — the industry's consolation is that at least it was documented.</p>
@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE HOLD, MODELED PROPERLY</div>
+<h2 class="section-label fade-in">The hold, modeled properly</h2>
 <div class="fade-in">
 <p>In ES ConstructOS, which runs on Entroid's Composable Process Fabric, a hold is a first-class workflow state with an explicit, governed lifecycle. These are architectural properties of the design — statements about where control executes, not claims about delivered outcomes:</p>
 <ul>
@@ -73,7 +73,7 @@
 <text x="400" y="316" text-anchor="middle" fill="currentColor" font-size="10" opacity="0.6">Immutable per-action audit: placed → scoped → contested → lifted</text>
 </svg></div>
 
-<div class="section-label fade-in">COMMISSIONING IS A GATE, NOT A BINDER</div>
+<h2 class="section-label fade-in">Commissioning is a gate, not a binder</h2>
 <div class="fade-in">
 <p>The capital-project-controls suites treat commissioning primarily as a documentation phase: assemble the handover package, index it, deliver it. The package matters — an owner who receives a complete, navigable turnover record is genuinely better off than one who receives boxes. But acceptance of that package should be the <em>event</em> that releases turnover and retainage, and in most estates it is not. Turnover is a meeting. Retainage release is an invoice negotiation, months later, argued from the binder.</p>
 <p>Architecturally, ES ConstructOS makes commissioning sign-off a governed human gate. Functions evaluate the gate's predicates — functional test results recorded and passing, punch items on the affected systems closed, required documents present in the package — and an authorized owner-side actor signs acceptance as a governed action in the runtime. The gate is wired to consequence: passing it advances the turnover state and makes the retainage-release workflow executable, inside the same governed process, with every step in the immutable per-action audit. Until it passes, the money and the turnover it should block stay blocked — by state, not by vigilance. Consider what that does to the classic closeout dispute. The argument over whether commissioning was actually complete when retainage went out cannot form, because release could not execute before completion. You should not have to prove, from a binder, what the process could never have paid.</p>
@@ -81,14 +81,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE MODULAR WHITE SPACE</div>
+<h2 class="section-label fade-in">The modular white space</h2>
 <div class="fade-in">
 <p>Here is where this stops being a quality argument and becomes a strategic one. Off-site and modular delivery moves the value event from the site to the factory. Modules leave the fabricator largely complete, and the billing curve is front-loaded to fund fabrication — the modular movement's own advocates say as much when making the case for the model. Which means <strong>factory acceptance is the payment-releasing event of the project</strong>. And look at who stands at that factory gate: the fabricator, the GC, the owner, and — because front-loaded billing means financing materials the lender cannot see on site — the lender, each with a separate system and a separate definition of "accepted."</p>
 <p>What governs that event today? Directionally, the category's answer is a checklist in a field-productivity app: inspect the module, photograph it, file the record. Then the invoice goes into one ERP, the draw request into another process, and the bill of sale and insurance certificates into an email thread. The record of acceptance and the consequence of acceptance travel on different rails, across four parties. That is not a criticism of any one vendor's roadmap — it is a property of the pattern. An estate architected as separate systems joined at document seams cannot make the acceptance event and the payment consequence the same governed transaction, because the pattern locates enforcement in the seams.</p>
 <p>Sketch the alternative — purely as an illustration, not a delivered outcome. A hypothetical bathroom-pod program on the fabric: each pod's factory acceptance is a governed gate in which a Function evaluates the pressure-test and QA data, the GC's inspector signs off as a first-class HITL action, and the presence of title-transfer and insurance documents is a checked predicate — one governed process spanning fabricator, GC, owner, and lender estates via Connectors. Passing acceptance is what makes the milestone line billable and the draw supportable, and the audit trail across all four parties is written per action as the process executes. Today, essentially no one governs that gate. It is the clearest white space in construction technology.</p>
 </div>
 
-<div class="section-label fade-in">THREE QUESTIONS FOR YOUR STACK</div>
+<h2 class="section-label fade-in">Three questions for your stack</h2>
 <div class="fade-in">
 <p>If you run technology for a builder, an owner, or a capital program, the test is mechanical, not philosophical:</p>
 <ul>

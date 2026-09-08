@@ -1,12 +1,12 @@
 <div class="hook fade-in">The category has a genuinely good story about the future of the SOC, and it goes like this: first humans run the response, then AI assists, then AI agents lead the investigation — always under human governance. It is a real advance, and the instinct to keep a person in charge is the right one. <strong>But look closely at what the human is actually governing: a recommendation, and a plan that will execute somewhere the platform does not control.</strong></div>
 
-<div class="section-label fade-in">THE MATURITY LADDER IS REAL</div>
+<h2 class="section-label fade-in">The maturity ladder is real</h2>
 <div class="fade-in">
 <p>Start with credit where it is due, because the advances here are not marketing. Modern correlation and risk-based alerting genuinely collapse alert volume and pull analysts out of the fatigue spiral that defined the last decade of security operations. Folding detection, orchestration, and user-behavior analytics into a single workspace genuinely ends the swivel-chair tax of pivoting across four consoles to understand one incident. Detection content that is verified and mapped to a shared threat framework is real engineering, not a feed. And prebuilt playbooks spanning hundreds of tools genuinely compress the minutes between an alert and an action.</p>
 <p>The agentic-SOC arc sits on top of all that. An AI agent triages the alert, gathers context, reconstructs the likely chain of events, and proposes a response — and a human approves before anything fires. Framed as a maturity model, it is honest about the destination: <em>agentic-led, human-governed.</em> Keeping a person in the loop before a containment action is a responsible default, not a limitation. I am not going to argue the instinct is wrong. I am going to argue that the architecture underneath it did not change.</p>
 </div>
 
-<div class="section-label fade-in">THE APPROVAL IS ON A PLAN, NOT AN ACTION</div>
+<h2 class="section-label fade-in">The approval is on a plan, not an action</h2>
 <div class="fade-in">
 <p>Follow the containment action through the stack and the seam appears. The playbook may run inside the analytics console — that is genuinely tidier than the old bolt-on orchestration layer — but the <strong>isolate-the-host</strong> step still dispatches out to the endpoint tool that owns the host. The <strong>revoke-the-token</strong> step calls the identity provider. The <strong>block-the-indicator</strong> step calls the firewall. The agent triages and recommends; the human approves; and then the platform hands the approved action to a system it integrates with but does not run.</p>
 <p>So ask what the human's click actually gates. It gates <em>dispatch</em>. The moment after approval, the action leaves the governed workspace and executes in a tool with its own state, its own permissions, its own failure modes, and — if you are lucky — its own separate audit trail. Governance was exercised over the alert and the playbook. It was not exercised over the executed response, because the executed response happened somewhere else. The loop is left open at exactly the point that matters most: the instant something changed in production.</p>
@@ -73,7 +73,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">TWO THINGS BOTH CALLED "HUMAN IN THE LOOP"</div>
+<h2 class="section-label fade-in">Two things both called "human in the loop"</h2>
 <div class="fade-in">
 <p>This is where the same phrase hides a real architectural difference. "Human in the loop" can mean two very different things.</p>
 <ul>
@@ -83,7 +83,7 @@
 <p>The difference is not how polite or capable the AI is upstream. It is whether the thing you governed is the thing that acted.</p>
 </div>
 
-<div class="section-label fade-in">WHEN THE RESPONSE RUNS ON ONE RUNTIME</div>
+<h2 class="section-label fade-in">When the response runs on one runtime</h2>
 <div class="fade-in">
 <p>Entroid is built so that the response is not a hand-off. A security response is a governed <strong>Deterministic Workflow</strong> that executes the containment inline — isolate the host, revoke the token, block the indicator, disable the account — with change-control and human-in-the-loop as first-class primitives rather than add-ons. The agent that investigates is an <strong>Atomic Agent</strong>: it can reason and recommend, but when it acts, it acts as a governed step in that workflow, pausing at the human checkpoint by construction rather than by policy.</p>
 <p>Be precise about what this is and is not. ES does not pretend to own your endpoint tool or your identity provider, and it does not ask you to tear them out. It reaches them through governed <strong>Connectors</strong> — the one primitive designed to touch external systems — running over the estate you already have. The difference is architectural, and it is about where the governance envelope sits:</p>
@@ -97,7 +97,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE QUESTION A CISO SHOULD ACTUALLY ASK</div>
+<h2 class="section-label fade-in">The question a CISO should actually ask</h2>
 <div class="fade-in">
 <p>Strip away the maturity ladders, the seat counts, and the story about how many playbooks ship in the box, and the board-level question is narrow: when a containment action fires in your environment at 3 a.m., <strong>what exactly did you govern?</strong> If the honest answer is that you governed an alert and approved a plan, then your governance stops one step short of the only thing a regulator or a post-incident review will care about — the action that actually changed the state of production, whether it succeeded, and whether it can be rolled back.</p>
 <p>The agentic-SOC vendors are right that autonomy without a human is reckless, and right that the analyst's day gets materially better when an agent does the triage. Concede all of it. The unfinished half is that approving a recommendation is not the same as governing an execution — and no amount of agent sophistication upstream changes what happens at the seam where the platform dispatches an action into a tool it does not run. Governance has to live where the action lives. On a composable process fabric, it does, because detection and response are steps in the same governed process rather than two systems shaking hands across a boundary.</p>

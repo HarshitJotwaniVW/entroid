@@ -1,12 +1,12 @@
 <div class="hook fade-in">Ask your software-asset team for their proudest number and they will show you a dashboard: dormant seats surfaced, unused licenses flagged, shelfware itemized down to the individual user. Now ask the question that number invites: <strong>how much of last quarter's identified savings did we actually collect?</strong> Watch how quickly the conversation turns to tickets, admins, and competing priorities. The gap between identified and realized is not a discipline problem — it is what an architecture without an executor necessarily produces.</div>
 
-<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<h2 class="section-label fade-in">Credit where it is due</h2>
 <div class="fade-in">
 <p>The identification machinery deserves respect. Discovering a modern software estate — agent and agentless scanning across devices, data centers, cloud accounts, and hundreds of SaaS tenants; normalization against vast product catalogs; deduplication into one coherent inventory — is difficult engineering, and the mature tools in this category do it well. Metering usage down to the individual user is real capability: who last opened the design suite, which seats have not authenticated in ninety days, which premium tier is quietly doing the work of a standard one. And reconciling entitlements against byzantine vendor licensing models is genuine expertise — expertise that has saved enterprises from real audit exposure and armed real renewal negotiations.</p>
 <p>So take the dashboard at its word. When it tells you, say, that four hundred seats of a collaboration platform are dormant, it is probably right. The finding is not the problem. <strong>Everything after the finding is the problem.</strong></p>
 </div>
 
-<div class="section-label fade-in">THE LIFE OF A RECLAMATION</div>
+<h2 class="section-label fade-in">The life of a reclamation</h2>
 <div class="fade-in">
 <p>Follow one flagged seat through the pipeline. The usage-metering layer flags it as dormant. The flag becomes a recommendation — perhaps a ranked optimization scenario with a currency figure attached. The recommendation becomes a ticket. The ticket routes to an administrator, because the tool that identified the seat does not administer the console that holds it: the actual reclaim happens in the SaaS vendor's own admin panel, or the identity provider, or a procurement portal. And that administrator has a day job. Incidents page. Onboarding deadlines arrive. Renewals escalate. A dormant seat does none of those things — <em>no one has ever been paged because a license stayed assigned</em> — so the reclamation ticket ages politely at the bottom of the queue.</p>
 <p>Some tickets do get worked. But the quarter ends, the scan runs again, and the same seats reappear — joined by new ones, because provisioning never paused while the backlog aged. The category has a name for the output of all this: identified savings. Some tools even offer a realized-savings view — which, examined closely, depends on a human executing the change somewhere else and a later scan observing that it happened. The identify-recommend-hope loop measures everything except the one step that collects the money.</p>
@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">A BACKLOG THAT REGENERATES IS A DIAGNOSIS</div>
+<h2 class="section-label fade-in">A backlog that regenerates is a diagnosis</h2>
 <div class="fade-in">
 <p>If this were a discipline problem, it would have been solved by now. Enterprises have run the discipline plays for a decade: tighter SLAs on reclamation tickets, quarterly cleanup sprints, chargeback to make business units feel the waste, a bigger dashboard with a bolder number. The backlog regenerates anyway. That regeneration is not a failure of effort. It is the signature of an architecture that separates three things that have to be one:</p>
 <ul>
@@ -26,7 +26,7 @@
 <p>The financial consequence is worth stating plainly, because the identified number does not stay on the dashboard. It migrates into business cases, into the tooling's own return-on-investment story, into renewal planning — treated, each time, as if identification were collection. By the category's own telling, a substantial share of enterprise software spend goes unused; what that telling rarely includes is the fraction of identified waste that was ever actually clawed back, verified, and kept back. <strong>A savings number that must be re-identified every quarter is not a pipeline. It is a standing measurement of the distance between insight and execution.</strong></p>
 </div>
 
-<div class="section-label fade-in">GIVE THE LOOP AN EXECUTOR</div>
+<h2 class="section-label fade-in">Give the loop an executor</h2>
 <div class="fade-in">
 <p>Now change the architecture instead of the dashboard. On a composable process fabric, a license or SaaS entitlement is not a row in an inventory that a scan keeps honest — it is a governed object, and its lifecycle actions (request, assign, reclaim, renew, retire) execute as governed workflows on the same runtime that holds the record. This is an architectural property, not a feature claim: when the only way an entitlement's state changes is through a governed action, record and reality cannot diverge, because the state change <em>is</em> the governed action. There is nothing to reconcile, because nothing changed outside the record.</p>
 <p>What does reclamation look like on that substrate? Illustratively — and honestly, because a heartless auto-kill would be worse than the backlog:</p>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT THE OWNER OF THE NUMBER SHOULD ASK</div>
+<h2 class="section-label fade-in">What the owner of the number should ask</h2>
 <div class="fade-in">
 <p>If you are the CIO or CFO who ultimately owns the savings figure, four questions cut through any optimization dashboard:</p>
 <ul>

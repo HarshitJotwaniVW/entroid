@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>Sit through any modern procurement demo and watch the "autonomous" agent work. It forecasts a supply disruption, prescribes an alternate source, drafts the purchase order, categorizes the spend, and flags the off-contract line. Then, at the one moment that decides whether your company is actually obligated to pay for something — the commit — it stops and waits for a human to click approve, or hands the transaction to the ERP to post. <strong>An agent that recommends a purchase is not an agent that makes one.</strong></p></div>
 
-<div class="section-label fade-in">READ THE VERBS</div>
+<h2 class="section-label fade-in">Read the verbs</h2>
 <div class="fade-in">
 <p>Every AI-native procurement vendor now ships an "agentic" or "autonomous" procurement story, and the pitch is genuinely impressive until you write down the verbs. The agent <em>predicts</em> demand and disruption. It <em>prescribes</em> an optimization. It <em>drafts</em> the PO and the RFx. It <em>categorizes</em> spend against the taxonomy. It <em>flags</em> the exception, <em>summarizes</em> the contract, <em>recommends</em> the supplier.</p>
 <p>Line those verbs up and the pattern is unmistakable: every one of them stops short of the act. Predict, prescribe, draft, categorize, flag — these are all things you do <em>to a record or a recommendation</em>. None of them is <strong>buy</strong>. The single verb that commits the enterprise — post the obligation, place the order, authorize the payment — is either missing from the demo or quietly delegated to a person or to another system. This is not a knock on the intelligence. The forecasting is often sharp; the draft is often nearly right. It is an observation about where the intelligence is architecturally <em>allowed to stop</em>.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE ADVISORY AGENT GENUINELY DOES</div>
+<h2 class="section-label fade-in">What the advisory agent genuinely does</h2>
 <div class="fade-in">
 <p>Give the category its due, because the value is real. A copilot that drafts a compliant PO and pre-fills categorization saves a requester real minutes and cuts keying errors. Spend-analytics engines surface savings and off-contract leakage no human would find by eye. An intake front door genuinely reduces maverick requests and gives one clean place to ask for something. Early warning of a disruption is worth money. Contract summarization makes a buyer meaningfully faster. None of this is theater.</p>
 <p>But notice what every one of those wins has in common. They <strong>record</strong> a request, <strong>route</strong> it for approval, <strong>analyze</strong> the spend, and <strong>recommend</strong> an action. The authoritative event — the posting that turns a draft into a commitment your CFO has to honor — happens somewhere else. The advisory layer is excellent at getting you to the edge of the decision. It is positioned to hand the decision off, not to make it.</p>
 </div>
 
-<div class="section-label fade-in">WHY THE COMMIT HOPS A BOUNDARY</div>
+<h2 class="section-label fade-in">Why the commit hops a boundary</h2>
 <div class="fade-in">
 <p>Here is the structural reason, and it holds regardless of any vendor's roadmap. The AI-native procurement agent — and the intake-to-pay orchestration layer it often rides on — sits <em>on top of</em> systems it does not own. The authoritative PO and the authoritative invoice post in the ERP or the ledger. The contract of record lives in a repository. The agent reaches into those systems from the outside, through an integration. So it can assemble everything right up to the boundary — the perfect draft, the right supplier, the clean categorization — but the moment that actually obligates the company has to cross into a system the agent does not govern.</p>
 <p>That boundary is why the controls are detective. When the enforcement that matters — three-way match, segregation of duties, a budget or authority threshold, on-contract pricing — lives in the system that posts, the agent's role collapses to <em>flagging</em> the violation after the fact and <em>routing</em> it to a human. It can tell you the PO was off-contract. It cannot make the off-contract PO impossible to commit, because it is not the thing doing the committing.</p>
@@ -21,7 +21,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">FLAG-AFTER VS ENFORCE-AT-THE-MOMENT</div>
+<h2 class="section-label fade-in">Flag-after vs enforce-at-the-moment</h2>
 <div class="fade-in">
 <p>The difference is easiest to see as a shape.</p>
 <div class="scene-img-wrap fade-in">
@@ -69,7 +69,7 @@
 <p>In the top row, governance is a report about a decision that already happened. In the bottom row, governance is a gate the decision has to pass through in order to happen at all. That is the whole argument, drawn.</p>
 </div>
 
-<div class="section-label fade-in">THE AGENT THAT CAN ACTUALLY POST</div>
+<h2 class="section-label fade-in">The agent that can actually post</h2>
 <div class="fade-in">
 <p>Entroid starts from a different place. Procurement is not a suite of intake forms, approval routing, and dashboards sitting beside the ERP — it is a governed workflow that <em>runs</em> the process, intake to sourcing to PR to PO to receipt to invoice to pay, on one fabric. Every step is modeled as a composition of five primitives, executed and governed in a single runtime. That is the architectural fact that lets a good recommendation become an authorized transaction instead of a draft in a queue.</p>
 <ul>
@@ -84,7 +84,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE QUESTION TO ASK THE DEMO</div>
+<h2 class="section-label fade-in">The question to ask the demo</h2>
 <div class="fade-in">
 <p>Next time a vendor shows you an autonomous procurement agent, ask one question: <strong>does it post, or does it recommend and hand off?</strong> Watch whether the commit crosses a boundary into a system the agent does not control, and whether the control that should have stopped a bad buy fires <em>before</em> the money is committed or <em>after</em>. The answer tells you which architecture you are actually buying.</p>
 <p>The distinction is not academic for a CxO. Advisory autonomy still leaves you paying for the human hop on every real decision, and still leaves your controls detective — catching the split PO, the off-contract line, the over-threshold commit after it has already posted. Governed autonomy is what lets you safely take the human out of the loop on the routine majority of transactions, because the control that made a human necessary is now enforced by the workflow itself. An agent's judgment is only as valuable as your ability to let it act on that judgment. If every good recommendation still needs a person to carry it across the boundary, you have automated the thinking and kept the bottleneck.</p>

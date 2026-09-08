@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>You ran the RFP. You bought the platform that topped the analyst grid for model governance. Your models are versioned, monitored, lineage-traced, and validated end to end. And you still cannot produce, on demand, a defensible answer to the one question a regulator, a customer, or a court will actually put to you: <strong>was this specific decision authorized?</strong> Because the thing you governed was the model. The thing they are challenging is the action it drove.</p></div>
 
-<div class="section-label fade-in">THE CERTIFICATE AND THE EVENT</div>
+<h2 class="section-label fade-in">The certificate and the event</h2>
 <div class="fade-in">
 <p>The certificate you paid for attests to the model. The event under scrutiny is the action. A regulator does not sanction a model card. A customer does not appeal a drift chart. A court does not adjudicate a feature store. The loan is denied. The claim is rejected. The account is frozen. The credit line is cut the week before a mortgage closes. That action — automated, consequential, taken <em>on</em> a prediction — is the highest-liability surface in your enterprise, and lifecycle model governance stops one step short of it.</p>
 <p>This is not a knock on the discipline. It is a boundary in the architecture. The platforms that win the governance category govern the <strong>model</strong> and the <strong>call</strong> to it. The exposure your office is accountable for lives in the <strong>decision</strong> — and the decision executes somewhere the model platform does not run.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE #1 RANKING ACTUALLY CERTIFIES</div>
+<h2 class="section-label fade-in">What the #1 ranking actually certifies</h2>
 <div class="fade-in">
 <p>Give the category its due, because over-claiming here is how you lose the expert in the room. The model-risk and AutoML vendors, and the universal AI platforms that say they "close the governance loop," earned those rankings on real capability. Feature stores, model registries, and end-to-end lineage genuinely make a model reproducible and auditable <em>as an artifact</em>. One-click serving really does compress deployment from months to hours. Drift and quality monitoring, and the newer agent-evaluation layers — judges that score accuracy, factuality, and cost — are real and valuable. And the most advanced AI gateways genuinely govern the model call itself: rate limits, guardrails, credential management, inference logging, applied even to agents running off-platform. That is sophisticated, and it is not vaporware.</p>
 <p>Here is the wedge. Everything in that paragraph governs the model and the call to it. The prediction is served, evaluated, and logged. But a served prediction is not a committed decision — and the platform's governance ends where the artifact ends.</p>
@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE PREDICTION BOUNDARY</div>
+<h2 class="section-label fade-in">The prediction boundary</h2>
 <div class="fade-in">
 <p>There is a line inside every ML architecture that audit programs rarely draw explicitly. Call it the <strong>prediction boundary</strong>. On one side, the model is trained, registered, deployed, served, and monitored — and, in the best designs, the inference request and any tool invocation are proxied through a gateway that rate-limits, guardrails, and captures the call. All of that is on the governed side. All of it is real.</p>
 <p>But that gateway, however advanced, is a governed <em>proxy in front of model-serving</em>. It governs the call and captures it. The business action the prediction drives — post the transaction, release the payment, freeze the account, deny the application — commits in a system of record the gateway sits <strong>beside, not inside</strong>. Between the served prediction and the committed action sits a seam: application code, a message queue, an RPA bot, a human clicking through a console. The model platform observes that seam at best; it does not govern it. And that seam is exactly where liability concentrates and where the decision-level audit trail goes quiet.</p>
@@ -62,7 +62,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHAT THE REGULATOR IS ACTUALLY ASKING</div>
+<h2 class="section-label fade-in">What the regulator is actually asking</h2>
 <div class="fade-in">
 <p>Reframe the word <em>governance</em>. In the model-platform vocabulary it means build-time and access-time control: who trained it, on what data, with what performance, served through which gate. In the vocabulary of the frameworks you answer to, governance means <strong>decision-time</strong> control. Read them closely and the pattern is unmistakable — every obligation attaches to the action, not the artifact.</p>
 <ul>
@@ -75,7 +75,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">MAKE THE ACTION THE UNIT OF GOVERNANCE</div>
+<h2 class="section-label fade-in">Make the action the unit of governance</h2>
 <div class="fade-in">
 <p>This is an architectural difference, not a feature you can bolt on. On a <strong>Composable Process Fabric</strong>, the model does not sit at the end of a pipeline as an endpoint the rest of the enterprise calls out to. It runs as a governed <strong>Function inside a Deterministic Workflow</strong>. The prediction is consumed, on the same runtime, by the very workflow step that acts on it — under inline controls: an approval gate, a threshold, a segregation-of-duties check, a human-in-the-loop hold that is first-class rather than bolted on. The action that commits — deny, release, freeze — passes through a governed <strong>Connector</strong>, the only primitive that touches an external system of record, and the whole event is written to an <strong>immutable per-action audit</strong> over a shared Semantic Ontology.</p>
 <p>That is why the difference is structural rather than incremental. The gateway pattern governs the call and captures it beautifully; the action still commits in a system the gateway sits beside. Here, model-to-action closes on <strong>one runtime</strong>. <em>"Was this decision permitted, controlled, and reversible?"</em> has a per-action answer — because the permission check and the action are the <em>same governed step</em>, not two systems you reconcile with a data pull after a complaint lands.</p>

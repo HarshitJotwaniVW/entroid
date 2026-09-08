@@ -1,16 +1,16 @@
 <div class="hook fade-in">They sold you a <strong>digital front door</strong> — an AI agent pitched as the single interface to your entire company. Walk through it and you find one room: the contact center. Everything the enterprise actually runs on — the approvals, the provisioning, the cases, the close — is down a hallway the agent was never built to enter.</div>
 
-<div class="section-label fade-in">The Front Door That Opens One Room</div>
+<h2 class="section-label fade-in">The front door that opens one room</h2>
 <div class="fade-in"><p>Start with the credit these products have earned, because it is real. The leading CX-agent vendors have built genuinely capable systems. Point one at a support queue and it resolves serious volume — order status, returns, exchanges, subscription questions — with a consistency and around-the-clock reach a human team cannot match. That is not marketing gloss; it is the strongest, most defensible thing in the category.</p>
 <p>The <em>positioning</em>, though, has quietly outrun the product. The pitch is no longer "a better support agent." It is the agent as <strong>the</strong> interface to the company, the digital front door, a platform that can "autonomously act across any business function." That is a claim about <strong>breadth</strong>. And breadth is exactly where the evidence thins.</p>
 <p>Read the proof offered for it. Every named win in the case studies is a support interaction: an order lookup, a return, an unboxing question, a subscription save. The reach figures are containment and deflection — how much of the support queue got handled without a human. Containment is a real and useful number. But it measures <em>depth in one channel</em>, not <em>span across the business</em>. "Any business function" turns out to be an aspiration underwritten entirely by contact-center evidence.</p></div>
 
-<div class="section-label fade-in">Where the Other Ninety Percent Lives</div>
+<h2 class="section-label fade-in">Where the other ninety percent lives</h2>
 <div class="fade-in"><p>Because most of an enterprise's work never touches a support ticket. A manager approving a capital request. A controller posting a journal entry at quarter-end. A buyer raising a purchase order and matching it to an invoice. An HR partner working a leave-of-absence case. IT provisioning a contractor's access on day one and revoking it on day ninety.</p>
 <p>These are conversations, too — a person asking the company to <em>do</em> something, and the company deciding whether it may. They just happen on the inside, and they carry more consequence than most support tickets ever will.</p>
 <p>This is the surface a support bot cannot see — not because it is badly built, but because it was architected for a different door. Its intents, its integrations, its very notion of "the customer," its guardrails: all of it was shaped by the contact center. The finance close, the procurement flow, the joiner-mover-leaver process are not harder support tickets. They are different processes, owned by different people, bound by different controls.</p></div>
 
-<div class="section-label fade-in">The Zoo You End Up Buying</div>
+<h2 class="section-label fade-in">The zoo you end up buying</h2>
 <div class="fade-in"><p>So what actually happens when a CIO tries to give the rest of the company a conversational surface? You buy another bot. A separate agent for HR, another for IT service management, another bolted onto the ERP, another for procurement. Each arrives as its own island — its own guardrails, its own connectors into the systems of record, its own audit log in its own format, its own private model of who is allowed to do what.</p>
 <ul>
 <li><strong>N guardrail models.</strong> Each vendor's "trust layer" is its own probabilistic wrapper or its own compiled policy. A control that holds in the support bot tells you nothing about the finance bot — they were authored separately, by different builders, to different rulebooks.</li>
@@ -86,7 +86,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">One Primitive, Every Process</div>
+<h2 class="section-label fade-in">One primitive, every process</h2>
 <div class="fade-in"><p>The alternative is not a bigger support bot. It is refusing to treat the conversational interface as a <em>channel</em> at all — and treating it as a <strong>primitive</strong>.</p>
 <p>In this architecture a conversational agent is an <strong>Atomic Agent</strong>: a first-class unit of work on the same Composable Process Fabric that runs every other process, not a product bolted on top of it. The Conversational Agents module gives a knowledge worker a dialogue interface into <em>any</em> process that has been modelled, executed and governed on that fabric. The IVR and contact-center module is the <em>same</em> primitive, pointed at customers over voice and chat. One thing, two surfaces.</p>
 <p>Which means the governance does not fork by department. Whatever a person says — customer or employee, refund or requisition — the proposed action passes through the same four things:</p>
@@ -97,7 +97,7 @@
 <li><strong>An immutable, per-action record</strong> of the whole chain, from utterance to system effect.</li>
 </ul></div>
 
-<div class="section-label fade-in">The Same Gate, Whoever's Asking</div>
+<h2 class="section-label fade-in">The same gate, whoever's asking</h2>
 <div class="fade-in"><p>Consider a customer asking a voice agent for a refund above the desk's auto-approve limit. The agent <em>proposes</em> the refund; the workflow gate checks the threshold and the caller's ownership of the account; over the limit, it pauses for a governed human approval before a cent moves; the connector executes against the order system; the audit binds the utterance to the action.</p>
 <p>Now consider a controller's analyst asking the same fabric, through its internal dialogue interface, to post a journal entry at quarter-end. The agent proposes the posting; the same class of gate enforces segregation of duties — the preparer cannot also be the approver — plus the analyst's entitlement and the amount threshold; a checkpoint routes to a named approver where policy demands; the connector writes to the ledger; the audit binds it.</p>
 <p>Different process, different system of record, different humans — <strong>identical governance</strong>. That is what one model instead of fifteen actually buys you.</p>
@@ -105,7 +105,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">The Question for the Buying Committee</div>
+<h2 class="section-label fade-in">The question for the buying committee</h2>
 <div class="fade-in"><p>So the executive question is not "which support agent has the highest resolution rate." It is: <strong>what is my conversational surface across the entire company — and is it one governance model, or one per department?</strong> A point solution can win the contact center outright and still leave you assembling a zoo everywhere else.</p>
 <p>Consolidation here is not a procurement convenience; it is a control decision. One fabric means one place where <em>how this enterprise is allowed to act</em> is defined, enforced and proven — for the customer at the front door and the knowledge worker three floors up, on precisely the same terms. A dozen bots means a dozen answers to that question, and no way to reconcile them when the auditor, or the incident, arrives.</p></div>
 

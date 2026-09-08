@@ -1,19 +1,19 @@
 <div class="hook fade-in"><p>The composability critique of monolithic MES is correct, and this essay will not walk it back: high-mix production changes faster than the systems that govern it, and the engineers closest to the work should own that change. So you composed — dozens of apps, built in days, by the people who actually run the line. <strong>But app velocity is not decision velocity.</strong> The next failed inline check will prove it, in exactly the time it takes three systems to agree that the line can restart.</p></div>
 
-<div class="section-label fade-in">THE PREMISE YOU GOT RIGHT</div>
+<h2 class="section-label fade-in">The premise you got right</h2>
 <div class="fade-in">
 <p>Give the composable-frontline platforms their due, because it is substantial. Digitizing frontline work genuinely beat paper: dynamic work instructions that adapt to the operator, digital logbooks that don't vanish into a binder, defect capture built by a process engineer in an afternoon instead of a services request queued for next quarter. Before them, MES/MOM genuinely brought order, routing, and electronic batch records to production. The cloud MES suites genuinely unified plant data with ERP context. The maintenance platforms genuinely turned work orders into governed, auditable objects. None of that is faint praise — it is the baseline this argument stands on.</p>
 <p>The composability argument against the monolith is also right. Rigidity is a real disease: when a line changes over faster than the change-request process of the system governing it, the system becomes the constraint. Incremental, app-based adoption authored by process engineers is a legitimate cure, and if this piece read as anti-no-code, it would be wrong. Entroid is itself a composable architecture — composition from primitives is the entire point of its design. The disagreement is not <em>whether</em> to compose. It is <em>what gets composed</em>.</p>
 </div>
 
-<div class="section-label fade-in">WHAT COMPOSABILITY ACTUALLY GOVERNS</div>
+<h2 class="section-label fade-in">What composability actually governs</h2>
 <div class="fade-in">
 <p>Look precisely at the layer the no-code frontline platforms govern: the <strong>authoring layer</strong>. Who may build an app. How apps are versioned. Which templates are blessed. How a revision is approved, and which records get reviewed by exception. This is real governance — of artifacts. Even the no-code-versus-low-code debate lives entirely at this layer: it is an argument about who authors, not about where decisions execute.</p>
 <p>Now read the pattern's flagship proof point architecturally: a growing count of apps <em>connected to</em> the ERP or the MES backbone. Every one of those apps is a new surface sitting beside systems of record the platform does not govern. The app captures the torque reading; the disposition of the assembly it measured lives in the quality system; the inventory status of the material lives in the ERP; the WIP state lives in the MES. Each new app that touches a governed object — a batch, a hold, a revision — adds a consistency obligation between the app's view of the world and the systems where consequences actually live.</p>
 <p>The Industry-4.0 backbone version of the same pattern is orchestration by bilateral integration: connect systems pairwise, synchronize state, call it a thread. Pairwise integration does not remove seams; it multiplies contracts. Every pair is a reconciliation agreement — and the party maintaining it is you.</p>
 </div>
 
-<div class="section-label fade-in">APP VELOCITY IS NOT DECISION VELOCITY</div>
+<h2 class="section-label fade-in">App velocity is not decision velocity</h2>
 <div class="fade-in">
 <p>Walk through an illustrative scenario — hypothetical, but recognizable to anyone who has run a plant. At 2 a.m., an inline check fails on a high-mix line. The composed app performs exactly as designed: it catches the out-of-spec result, flags the unit, creates the record. Ten seconds, flawless. Now the consequential part begins. The batch must go on hold. Suspect material must be quarantined. A disposition — use-as-is, rework, scrap — must be decided and executed. Then, and only then, does the line restart.</p>
 <p>So: in which system does the hold <em>execute</em>? The MES flags the WIP. The quality system opens the NCR. The ERP has to block the inventory before a planner ships suspect stock at 6 a.m. Three status flags in three systems — and the mechanism keeping them in agreement is a person: a quality engineer transcribing, a supervisor phoning planning, a checklist line that says "verify the ERP block" because of the time nobody did. The agreement is reconciled after the fact, and the audit trail of the decision is a join across three logs plus an email thread.</p>
@@ -21,7 +21,7 @@
 <p>Revision changes tell the same story at slower speed. Engineering cuts a new rev in the system of record — and how many of the dozens of composed apps embed the old rev in a work instruction, a spec limit, a template default? Keeping them consistent is not an authoring problem. It is a reconciliation problem, and it grows with every app you compose.</p>
 </div>
 
-<div class="section-label fade-in">GOVERNANCE AS HOMEWORK</div>
+<h2 class="section-label fade-in">Governance as homework</h2>
 <div class="fade-in">
 <p>The category, to its credit, is candid about this. Its own adoption guidance tells buyers to stand up a governance framework so that app proliferation does not collapse into a tangle of overlapping, drifting modules. Take the advice seriously — and read what it admits structurally. When governance lives outside the runtime — in a center of excellence, a naming convention, a review board, a policy document — every composed artifact adds surface the framework must chase. Surfaces scale with composition; a human framework scales, at best, with headcount and diligence.</p>
 <p>This is not a critique of any vendor's roadmap, and no roadmap escapes it. It is a property of the pattern: an architecture that composes artifacts <em>beside</em> systems of record leaves the cross-system consistency of consequential actions as the buyer's operational discipline. The warning about the app tangle is not a caveat in the fine print. It is the architecture describing itself — governance assigned as homework.</p>
@@ -81,7 +81,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">COMPOSE THE ACTION, NOT THE ARTIFACT</div>
+<h2 class="section-label fade-in">Compose the action, not the artifact</h2>
 <div class="fade-in">
 <p>Entroid's answer is architectural, and it should be judged as architecture. ES is a Composable Process Fabric: five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — composed on a shared semantic ontology, executing on one runtime, with an immutable audit record emitted per action. Two design decisions do most of the work in this argument.</p>
 <ul>
@@ -91,7 +91,7 @@
 <p>On that fabric, the manufacturing use case composes the governed process itself: the disposition, the hold/release, the rework release, the changeover approval, the material issue execute as one inline-gated, permissioned action spanning planning, production, quality, and logistics — with genealogy and per-action audit emitted as the action executes, not joined from logs afterward. The consequence for composability is the point of this essay: because governance is a property of the primitives, composing another workflow adds capability without adding a reconciliation surface. <strong>Composing more never composes more ungoverned seams.</strong> That is what changes when the thing you compose is the action, not an artifact beside it.</p>
 </div>
 
-<div class="section-label fade-in">FIVE QUESTIONS FOR YOUR STACK</div>
+<h2 class="section-label fade-in">Five questions for your stack</h2>
 <div class="fade-in">
 <p>You do not need a vendor evaluation to test this. You need one failed inline check and honest answers to five questions:</p>
 <ul>

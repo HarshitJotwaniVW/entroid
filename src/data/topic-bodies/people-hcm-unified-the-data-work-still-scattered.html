@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Your HR leaders can open any employee and see everything at once — pay, role, skills, tenure, reporting line — in a single record. That took a decade of consolidation to earn, and it is a real achievement. But watch what happens the moment that employee is hired, moved, or offboarded, and the same truth surfaces every time: <strong>you unified the record, not the work.</strong> The data now lives in one place. The work still fans out across five systems that have never met.</p></div>
 
-<div class="section-label fade-in">GIVE THE WIN ITS DUE</div>
+<h2 class="section-label fade-in">Give the win its due</h2>
 <div class="fade-in"><p>Start honest. For years, people data was scattered across a payroll system, a benefits system, a recruiting tool, a performance module, and a drift of spreadsheets. The HCM suites fixed that. Pulling HR — and increasingly finance — onto one system of record genuinely reduced fragmentation: one employee object, one org model, one authoritative place to ask who reports to whom and what they are paid. That is not marketing. It is a structural improvement, and buyers were right to pay for it.</p>
 <p>The layer built on top is real too, and it deserves to be named plainly rather than dismissed:</p>
 <ul>
@@ -10,7 +10,7 @@
 </ul>
 <p>None of this is what I want to challenge. Concede it fully — because the wedge is not that the suites did too little. It is that they unified the wrong noun.</p></div>
 
-<div class="section-label fade-in">UNIFIED VIEW VS UNIFIED EXECUTION</div>
+<h2 class="section-label fade-in">Unified view vs unified execution</h2>
 <div class="fade-in"><p><em>Single source of truth</em> is a claim about data. It says there is one authoritative record of the employee and one view everyone shares. Within the HR domain, that is true and valuable. But almost no people process lives inside the HR domain. Onboarding a new hire is not an HR event; it is an IT provisioning event — accounts, entitlements, a device — a finance event — payroll enrollment, cost-center allocation — a facilities event — badge, seat — and a manager event, all triggered by one hire. A reorg is a compensation change and an access change and a reporting-line change at once. A transfer touches every one of those systems. An offboarding is the same list run in reverse and under a clock, where a single missed step is a live security exposure.</p>
 <p>In each case the HR system does what a system of record does: it updates the record and generates tasks. Then it hands those tasks off — to a ticket queue, a provisioning tool, a payroll run — over an integration, and waits for a status flag to come back. The unified view shows you a tidy checklist. Underneath it, the work is executing in systems the HR platform can describe but not run. <strong>That is an integration story wearing a platform story's clothes.</strong></p></div>
 
@@ -84,17 +84,17 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">GOVERNANCE LIVES IN THE HANDOFF</div>
+<h2 class="section-label fade-in">Governance lives in the handoff</h2>
 <div class="fade-in"><p>For a CIO and a CISO, the handoff is not a UX detail — it is where control degrades. Each downstream system enforces its own entitlements and keeps its own log. The approval that actually matters — <em>should this person hold this access, at this level, given their new role</em> — is captured in one tool and executed in another. Segregation of duties across that seam becomes a reconciliation exercise. And the audit trail for <em>did onboarding grant exactly the right access and nothing more</em> does not exist as one object; it has to be reassembled after the fact by stitching timestamps out of systems that log differently.</p>
 <p>So the unified record buys you a clean answer to <strong>what is true</strong> and a murky answer to <strong>how it came to be true</strong>. For people processes — where the <em>how</em> is access, money, and compliance — that second gap is the expensive one.</p></div>
 
-<div class="section-label fade-in">THE ONE THAT GETS CLOSEST</div>
+<h2 class="section-label fade-in">The one that gets closest</h2>
 <div class="fade-in"><p>Be fair about the strongest counterexample. One class of workforce cloud natively combines HR and IT, and during onboarding it really does provision apps and devices — not merely assign a task to provision them. That is meaningfully more execution than a pure system of record, and anyone who has watched a new hire idle for three days waiting on a laptop understands why it sells.</p>
 <p>But look at the shape of it. That platform automates provisioning <em>within its own suite's domains</em> — the apps and devices it was built to manage. It is records plus a set of point automations, bounded by the vendor's own footprint. The moment the process reaches finance, facilities, procurement, or any function outside that footprint, you are back to integrations and handoffs. Unifying the record and automating provisioning inside one suite is a real improvement. It is still not the people process running as <strong>one governed workflow on the same fabric that also runs finance, facilities, and every other enterprise process</strong> — with one inline governance model and one audit across all of it.</p></div>
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ONE FABRIC, ONE PROCESS</div>
+<h2 class="section-label fade-in">One fabric, one process</h2>
 <div class="fade-in"><p>Entroid starts from a different primitive. It does not bolt a workflow feature onto an HR record; it models every enterprise process — people processes included — as a composition of five primitives on one shared fabric: <strong>Deterministic Workflows</strong> that carry governance inline (entitlements, approvals, segregation of duties, thresholds), <strong>Intelligence Orchestration</strong>, <strong>Atomic Agents</strong> with human-in-the-loop as a first-class step, <strong>Functions</strong>, and <strong>Connectors</strong> — the only primitive that touches an external system. The ES People modules — Workforce, Recruitment, Time and Leave, Compensation, Growth, Engagement — sit <em>on</em> that fabric, not beside it.</p>
 <p>What that changes is architectural, not cosmetic. A hire-to-onboard is not a record update plus a portal plus a fan-out of downstream tickets. It is one Deterministic Workflow that spans HR, IT provisioning, finance and payroll, facilities, and manager tasks — running on the same runtime as finance and every other process. The access grant, the device order, the payroll setup are steps <em>inside</em> that one workflow, executed as governed actions. Connectors reach into your existing estate to do the actual provisioning — so this is emphatically not a rip-and-replace or a zero-integration fantasy. The difference is that integration is demoted to a governed primitive inside one process, rather than being the substance of the process itself.</p>
 <p>Because the workflow <em>is</em> the record, the properties you used to reconstruct now hold by construction:</p>

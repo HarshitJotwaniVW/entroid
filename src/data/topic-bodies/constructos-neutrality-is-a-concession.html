@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>The document-control school's proudest design decisions — every party owns its workspace, no super-admin can rewrite history, transmittals are immutable — rest on one quiet premise: that the parties to a capital project will eventually be adversaries, and the record must be fair when they are. <strong>Neutrality is a concession, not an achievement.</strong> It optimizes the eventual dispute instead of preventing it. There is a stronger fairness available: not a neutral record of what each party did separately, but one governed action that all parties execute together.</p></div>
 
-<div class="section-label fade-in">CREDIT WHERE IT'S DUE</div>
+<h2 class="section-label fade-in">Credit where it's due</h2>
 <div class="fade-in">
 <p>Before the critique, the concession — because it is genuine. Construction ran on email chains, fax cover sheets, and transmittal logs kept in binders. The document platforms rescued the industry from that. A versioned, searchable, single home for RFIs, submittals, drawings, and daily logs is a real achievement, and a hard-won one. Mobile field capture closed the gap between the trailer and the office. And the neutral wing of this school deserves specific credit: party-owned workspaces and immutable transmittals made multi-party recordkeeping fair in a way the hub-and-spoke model never was. When one party's system is <em>the</em> system, everyone else is working in someone else's house — and the neutrality school's critique of that arrangement is correct.</p>
 <p>The dispute-winning value of a complete, timestamped record is also real. Documentation has saved contractors real money in real claims; a chronological record of who decided what, when, and who approved it is the difference between a settled argument and an expensive one. Configurable approval workflows with sign-off thresholds are a genuine second layer on top of the record — real governance of the routing.</p>
 <p>But hold the design brief up to the light. This is an architecture whose highest assurance mechanism is the quality of the record it can produce when parties disagree. Its fairness is fairness about what can be <em>proven</em>. An architecture whose proudest property is winning the argument has already conceded that the argument will happen.</p>
 </div>
 
-<div class="section-label fade-in">FOUR TRUST MODELS</div>
+<h2 class="section-label fade-in">Four trust models</h2>
 <div class="fade-in">
 <p>Strip the category's positioning away and construction collaboration reduces to a trust model: what must each party trust, about what, enforced by whom. There are four on offer.</p>
 <ul>
@@ -19,7 +19,7 @@
 <p>The first three are variations on one architecture: records first, action elsewhere. They differ only in where the record lives and who is trusted to keep it. The fourth changes the unit — from the record of the action to the action itself.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE ARCHIVE OPTIMIZES</div>
+<h2 class="section-label fade-in">What the archive optimizes</h2>
 <div class="fade-in">
 <p>Walk a change order through the records-first stack and watch where it actually executes. It is drafted in one system and routed for approval — and the routing is genuinely governed; thresholds that escalate larger changes to more senior sign-off are real controls. But look at what is being routed: a document. The approval is a signature chase across three companies' systems, and when the last signature lands, nothing has financially happened yet. The consequence is then re-keyed — into the owner's ERP, the GC's ERP, the subcontractor's accounting stack. One decision, three transcriptions, each transcription an independent chance to diverge. The authority check occurred as organizational choreography — someone, somewhere, confirmed the signer was allowed to sign — but it was never the execution path.</p>
 <p>The category's own advice completes the picture. Subcontractors are commonly counseled to keep their own parallel record of everything — their own logs, photos, and correspondence files — because the platform record belongs to the project, and you will want your own evidence when the argument comes. As advice, it is prudent. As architecture, it is an admission: the school that diagnosed fragmentation is prescribing it, one shadow record per party, doubled paperwork institutionalized as best practice. Three fair copies of the truth still require reconciliation, and reconciliation is where disputes are born.</p>
@@ -71,14 +71,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">SYMMETRY OF EXECUTION</div>
+<h2 class="section-label fade-in">Symmetry of execution</h2>
 <div class="fade-in">
 <p>Entroid's ConstructOS starts from the opposite premise: the governed unit of a capital project is the project action, not the document about it. It runs on a Composable Process Fabric — five primitives (Deterministic Workflows, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class state, Functions, and Connectors) on a shared Semantic Ontology, in one runtime, with an immutable per-action audit. These are architectural properties of the design, and the claims that follow are architectural claims, not case studies.</p>
 <p>On this fabric, a change order is not routed; it executes. The approval runs as a Deterministic Workflow whose governance is inline: the check against live delegated budget authority <em>is</em> the execution path. An approver without authority at that moment does not produce a rejected document — the action simply cannot execute. An approver with authority produces a completed action whose financial consequence updates the commitment in the same transaction, with nothing left to re-key. Illustratively — a description of the design, not a delivered outcome — a pay-application release on the same fabric is gated inline on lien-waiver status, verified progress, retention, and hold state; a safety hold or an unfinished commissioning sign-off is an enforced workflow state that blocks exactly the money and the turnover it should block.</p>
 <p>Symmetry is the point. Each party's authority binds at the moment of action, and permission symmetry means no party can amend another party's executed action. The shared audit is not neutral because nobody administers it; it is shared because all three parties wrote it, one governed action at a time. The record still exists — it is simply a byproduct of execution rather than the product.</p>
 </div>
 
-<div class="section-label fade-in">SOVEREIGNTY WITHOUT SHADOW COPIES</div>
+<h2 class="section-label fade-in">Sovereignty without shadow copies</h2>
 <div class="fade-in">
 <p>The instinctive CIO objection: this sounds like surrendering data to a common platform — the very thing neutral and bridged architectures were built to avoid. Architecturally, it is the opposite. Connectors are the only primitive in the fabric that touches external systems, and they are governed like everything else. The owner keeps its ERP. The GC keeps its ERP and its document management. The subcontractor keeps its accounting stack. What joins the fabric is not the file estate; it is the action.</p>
 <p>Notice what each older model spends to buy sovereignty. Bridged instances buy it with duplication: every party keeps everything, including copies of everyone else's records, and pays in perpetual reconciliation. Parallel subcontractor records buy it with doubled labor. Shared execution buys it with a boundary: your data stays in your estate, the decision executes on the rail, and the audit records the action — which no counterparty can alter after the fact. And to be equally honest in the other direction: this is not a zero-integration story. Connectors are integration, deliberately governed. The difference is what crosses the seam — governed actions carrying bound authority, rather than files awaiting transcription.</p>
@@ -86,7 +86,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE NETWORK EFFECT, FLIPPED</div>
+<h2 class="section-label fade-in">The network effect, flipped</h2>
 <div class="fade-in">
 <p>The category's network argument says value compounds as more parties work in the same environment — more documents in one place, more of the project resident in the platform. For an archive, that is true: an archive's gravity is storage. But a governed action layer does not need shared file residency. It needs to be the one place the decision executes. Its gravity is consequence: one executed decision retires the entire thread of correspondence that would otherwise exist about it — the routing, the re-keying, the follow-up, and eventually the claim.</p>
 <p>So the diligence question is not <em>where do our documents live?</em> It is: for each consequential action on this project — change-order approval, pay-application release, hold enforcement, turnover — <strong>where does it execute?</strong> If the answer is "in the seams between our systems, as routed paperwork," then the archive, however fair, is compensating for an execution layer that does not exist. Neutrality was the best fairness available when the unit of collaboration was the document. When the unit is the governed action, fairness gets an upgrade — from an argument both sides can cite to an action neither side needs to litigate.</p>

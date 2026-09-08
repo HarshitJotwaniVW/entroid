@@ -2,13 +2,13 @@
 <p>A camera on your plant floor sees a worker cross under a suspended load with no hard hat. Two hundred milliseconds later the model is certain, and a notification is already on its way to someone's phone. What happens in the next ninety seconds is the only thing an inspector or a plaintiff's counsel will care about — and it is the exact thing an edge safety-vision platform hands off to a second system it does not govern. <strong>The detection was never the safeguard. The enforced response is.</strong> <em>'We alerted someone'</em> describes a notification. It does not describe a control.</p>
 </div>
 
-<div class="section-label fade-in">CONCEDE WHAT THE CAMERAS GET RIGHT</div>
+<h2 class="section-label fade-in">Concede what the cameras get right</h2>
 <div class="fade-in">
 <p>Start by giving the cameras their due, because they earn it. Real-time detection of PPE gaps, falls, and restricted-zone entry, running on-device at the edge, means a hazard is seen the instant it appears — across far more of the floor than any human watch-stander could cover, and often without a single frame leaving the plant. That last point is an honest answer to the privacy objection, and it is backed by real security posture: on-edge inference, zero-retention options, recognized certifications. Confidence scores paired with human review are a pragmatic middle path, not a gimmick — they keep a person in the decision precisely where the model is unsure. This is a genuine democratization of a capability that used to demand a dedicated safety officer per line. None of what follows disputes any of it.</p>
 <p>But notice exactly what all of that governs. It governs the <em>read</em> — did the model see the hazard, how sure was it, where in the frame, has its accuracy drifted since deployment. Every certification, every confidence threshold, every grounded bounding box is an assurance about <strong>perception</strong>. And perception is where these platforms stop.</p>
 </div>
 
-<div class="section-label fade-in">THE LOOP ENDS AT THE ALERT</div>
+<h2 class="section-label fade-in">The loop ends at the alert</h2>
 <div class="fade-in">
 <p>What comes after the detection is, architecturally, a signal thrown over a wall. The strongest version in the category is a <em>'pre-programmed response'</em> — fire a relay, sound a horn, flash a strobe, POST a webhook — and the more common version is a notification to an operator, a dashboard, or a supervisor's phone. Both share a defining property: they are <strong>open-loop</strong>. The signal leaves the vision system, and nothing downstream is obliged to confirm that the hazard was abated, that the right person received it, or that anyone acted at all.</p>
 <p>That leaves you with three failure modes — and they are the very ones 'proactive safety' was sold to eliminate:</p>
@@ -106,13 +106,13 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHAT THE INQUIRY ACTUALLY ASKS</div>
+<h2 class="section-label fade-in">What the inquiry actually asks</h2>
 <div class="fade-in">
 <p>Walk it forward to the day it matters. After an incident, an inspector or a plaintiff's counsel does not ask whether your cameras were good. They ask a chain of questions about the <em>response</em>: was the hazard identified, what specific corrective action followed, on what timeline, who was accountable for it, and can you prove that action was <strong>enforced</strong> rather than merely suggested. A muted alert with a beautiful clip answers the first question and indicts you on the rest.</p>
 <p>That is the uncomfortable inversion at the center of detect-and-notify. Detection without a provable, enforced response does not just fail to help — it can <em>raise</em> your exposure, because you now hold a durable record establishing that the condition was known. The liability was never in the seeing. It lives entirely in the doing — on a timeline, under accountability — and the doing is exactly the part the vision platform leaves in a system it neither governs nor records.</p>
 </div>
 
-<div class="section-label fade-in">GOVERN THE RESPONSE, NOT JUST THE READ</div>
+<h2 class="section-label fade-in">Govern the response, not just the read</h2>
 <div class="fade-in">
 <p>The architectural fix is to stop treating the detection as the end of the loop and make it the first step of one. On a composable process fabric, the vision model runs as a governed <strong>Function</strong> inside a <strong>Deterministic Workflow</strong>. The detection is not thrown anywhere; it is consumed, on the same runtime, by a remediation process whose controls are enforced <em>inline</em>. That single move reframes every weak point of detect-and-notify:</p>
 <ul>

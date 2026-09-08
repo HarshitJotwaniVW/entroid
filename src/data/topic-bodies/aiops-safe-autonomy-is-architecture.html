@@ -1,19 +1,19 @@
 <div class="hook fade-in"><p>Ask the incident-tooling category whether you can trust AI to fix production, and you are handed a roadmap instead of an answer. Crawl, then walk, then run. <em>"AI is not a switch."</em> Aim, eventually, for something like a roughly even split of the work between humans and machines. <strong>It is reasonable-sounding advice that quietly relocates the entire question — from the architecture of the software to the maturity of your organization.</strong> The uncomfortable part is that your hesitation about autonomy is well-founded, just not for the reason the roadmap implies.</p></div>
 
-<div class="section-label fade-in">THE ROADMAP IS A CONFESSION</div>
+<h2 class="section-label fade-in">The roadmap is a confession</h2>
 <div class="fade-in">
 <p>Give the advice its due first, because it is sincere and partly right. Culture does matter. Trust in an autonomous system should be earned, not assumed, and no serious operator flips every remediation to fully automatic on a Tuesday afternoon. A staged rollout of delegation is prudent management. So far, no argument.</p>
 <p>But look at what the maturity model is actually encoding. When safety is described as an organizational milestone — a rung you reach after quarters of building confidence, with <em>"pre-approved plans for known scenarios"</em> as the guardrail — the guarantee is living in <strong>human discipline and curation</strong>, not in the runtime. Someone reviewed the scenario in advance. Someone decided this class of fix was safe enough to let run. As you climb the ladder, the platform's guarantees do not change; only your nerve does. That is not governance. That is courage, rationed over fiscal years. And it is the tell: if safety were a property of the system, you would not need three years to reach it — you would configure it on the first afternoon.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>None of this is a claim that the tools are weak. They are, in fact, genuinely good at the hard cognitive work of an incident, and pretending otherwise is the fastest way to lose a reader who runs one of these platforms every day.</p>
 <p>Machine-learned anomaly detection with seasonality-aware baselines catches degradations that static thresholds sail right past. Event correlation really does collapse an alert storm into a single actionable signal. Automated causal root-cause analysis really does compress an investigation from tens of minutes of dashboard archaeology down to a few. An autonomous investigation agent really can produce an audit-ready, cited root-cause narrative faster than a human on-call could assemble one. And pre-authored runbooks really do automate the known fixes. This is not vapor; it is arriving, and it is useful.</p>
 <p>Two positions in the category deserve to be named by their shape, because they are the most advanced. There is the <strong>causal-AI observability vendor</strong> whose automation genuinely <em>executes</em> — by dispatching corrective actions out to external systems. And there is the <strong>agentic-SRE</strong> that genuinely investigates on its own and then <em>proposes a fix</em> for a human to merge and run. Both are real advances over the pager-and-prayer status quo. Now watch the one thing the demo never lingers on: where the fix actually executes.</p>
 </div>
 
-<div class="section-label fade-in">APPROVING THE PLAN IS NOT GOVERNING THE ACTION</div>
+<h2 class="section-label fade-in">Approving the plan is not governing the action</h2>
 <div class="fade-in">
 <p>Strip the marketing away and "governed autonomy," as the category ships it, comes in two shapes. In the first, an approval gate sits on the <strong>plan</strong>: a human clicks approve on a proposed remediation, which is then dispatched to a runbook, an automation engine, a cloud API, or a ticket — and runs there. In the second, the agent proposes and a human merges the change and runs it somewhere else. Both are the same move architecturally: a hand-off across a tool boundary.</p>
 <p>The structural problem is not the click. The click is fine. The problem is what the click governs. An approval on the plan is a checkpoint on <em>intent</em>. The instant the action crosses the boundary into the system that actually owns the change, the observability platform's guarantees do not travel with it. Blast-radius limits, segregation of duties, an unbreakable tie between the approval and the effect it authorized, an automatic reversal if the change goes wrong in flight — none of that is enforced on the far side of the boundary, because the platform does not execute there. It <strong>dispatches</strong>. The evidence lives in one system; the change happens in another; and there is no inline change-control or rollback where the two are joined. A phrase like <em>"governed, safe, autonomous action with human oversight"</em> describes the plan beautifully. It does not describe the runtime the change lands in.</p>
@@ -100,7 +100,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">GOVERNANCE THAT LIVES INSIDE THE ACTION</div>
+<h2 class="section-label fade-in">Governance that lives inside the action</h2>
 <div class="fade-in">
 <p>The alternative is not more autonomy with less oversight. It is putting the oversight <strong>inside the action</strong>. On Entroid, a remediation is not a plan that gets dispatched; it is a <strong>Deterministic Workflow</strong> running on one runtime, and its governance is enforced inline — evaluated by the platform in the path of execution, before the corrective action fires, rather than curated by a human in advance. This is an architectural property of the design, not a feature you switch on. Walk the policy through concretely — illustratively, since these are design mechanics, not a customer result:</p>
 <ul>
@@ -112,7 +112,7 @@
 <p>One honest qualifier, because over-claiming here would undo the whole argument: ES does not pretend it needs no integration. The <strong>Connector</strong> is the only primitive that touches the external estate, and ES runs over your existing systems through those governed Connectors. The difference is not that there is no external system — it is <em>where the governance sits</em>. It sits on the ES side of the Connector, inline, before the effect, rather than stranded behind a boundary in the tool that runs the script. That is what lets the closed-loop automation in the Command Center and the auto-RCA-to-corrective-procedure in the incident modules be actions under change-control instead of dispatches into the dark.</p>
 </div>
 
-<div class="section-label fade-in">AVAILABLE ON DAY ONE, NOT AT STAGE FOUR</div>
+<h2 class="section-label fade-in">Available on day one, not at stage four</h2>
 <div class="fade-in">
 <p>Here is what changes when the guardrails are native to the action: <strong>delegating remediation stops meaning losing control.</strong> You do not earn the right to autonomy by climbing a cultural ladder for three years. You get governed autonomy as a design property from the start, and you widen the auto-execute envelope by editing policy — not by growing braver.</p>
 <p>The maturity journey inverts. Instead of humans slowly ceding control to software they have learned, quarter by quarter, to trust, the runtime holds the guarantees from day one and the human decides — in code — how wide the low-risk lane runs and exactly where the gates stand. Trust is no longer a feeling you accumulate through incident-free weeks. It is a policy you can read, diff, review, and audit. And because detect, RCA, remediate, and verify all happen in one runtime with no queue and no boundary to hand across, the elapsed time to a <em>verified</em> resolution is not padded by the wait for a person to pick up the plan and go run it somewhere else. That collapse in time-to-verified-resolution is a consequence of the topology, not a number we are asking you to take on faith.</p>
@@ -120,7 +120,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">"KEEP A HUMAN IN CHARGE" IS AN ADMISSION</div>
+<h2 class="section-label fade-in">"Keep a human in charge" is an admission</h2>
 <div class="fade-in">
 <p>Reread the category's most repeated piece of advice with this lens. <em>Keep a human in the loop. Keep a human in charge.</em> It is delivered as reverence for human judgment, and it is really something else: the platform cannot enforce its own guardrails, so a human has to <strong>be</strong> the guardrail. "Human oversight" is doing load-bearing structural work precisely because nothing in the architecture can. That is why the advice always arrives bundled with the maturity model — when safety is a person's vigilance, the only way to scale it is to grow the person's confidence slowly.</p>
 <p>Move the guardrails into the action and the human is promoted, not removed. Human-in-the-loop becomes a first-class primitive, placed deliberately where judgment genuinely belongs — the irreversible step, the high-blast-radius production change, the entitlement above a sensitive threshold — instead of a dead end the software hits because it ran out of permission to act. The person makes fewer decisions and better ones, on the exceptions that actually merit a human, while the routine, low-risk remediations execute under the same governance the sensitive ones do. That is the whole difference between a checkpoint by design and a bottleneck by necessity.</p>

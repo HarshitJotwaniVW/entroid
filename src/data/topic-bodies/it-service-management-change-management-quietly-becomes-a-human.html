@@ -2,19 +2,19 @@
 <p>Your change process is a masterpiece of governance — right up until the moment something actually changes. The request is raised, the risk auto-scored, the change advisory board notified, the approval captured with a name and a timestamp. Then a human opens a different console and runs the command that can take production down. <strong>Every control you built fires before the change; not one of them is present at the moment the change commits.</strong></p>
 </div>
 
-<div class="section-label fade-in">THE PAPERWORK IS AUTOMATED. THE CHANGE IS NOT.</div>
+<h2 class="section-label fade-in">The paperwork is automated. the change is not.</h2>
 <div class="fade-in">
 <p>Change is the one ITSM discipline where the stakes are unambiguous: a botched change is the leading cause of self-inflicted outages. So it is worth being precise about what "change automation" actually automates today. It automates the request form. It automates the risk classification. It automates the routing to the right approvers and the assembly of the CAB agenda. It automates the notifications, the state transitions, and the closure record.</p>
 <p>What it does not automate — what it structurally cannot reach — is the implementation. The instant a schema migrates, a firewall rule flips, a load balancer is repointed, or a config is pushed, that action happens in <em>another system</em>, executed by an engineer or by a script the engineer kicks off. The change tool's role at that moment is to hold a field that reads "In Progress," and later, "Implemented." It is a system of record narrating an event it is not performing.</p>
 </div>
 
-<div class="section-label fade-in">FIRST, WHAT THE PLATFORMS GET RIGHT</div>
+<h2 class="section-label fade-in">First, what the platforms get right</h2>
 <div class="fade-in">
 <p>Let me concede the real ground before I contest any of it, because pretending these gains don't exist would insult the reader. A single unified service-management platform genuinely beats a drawer full of siloed tools — one data model spanning incidents, problems, changes and assets is a real architectural advantage. ITIL-aligned change discipline is not bureaucracy for its own sake; the separation of request, assessment, authorization and review has prevented countless bad changes. Automated risk scoring genuinely triages the trivial from the dangerous. A well-maintained CMDB genuinely sharpens impact analysis — <em>what else touches this configuration item</em>.</p>
 <p>And the newer generation of tooling does more than paperwork: it drafts implementation plans, suggests rollback steps, detects collisions in the change calendar, and even fires last-mile automation for routine, pre-approved changes. These are real gains. None of them is the thing I am about to argue.</p>
 </div>
 
-<div class="section-label fade-in">THE GAP LIVES BETWEEN 'APPROVED' AND 'IMPLEMENTED'</div>
+<h2 class="section-label fade-in">The gap lives between 'approved' and 'implemented'</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part. Every control in a mature change process is applied to the <em>paperwork</em>, and the paperwork is only a proxy for the change. The approval authorizes a described intention. Segregation of duties is enforced on who can move the ticket — not necessarily on who runs the command. The risk score assesses a plan, not the executed action. Between the state "Approved" and the state "Implemented" sits a human in a separate console doing the actual, irreversible work, and in that interval the platform is blind.</p>
 <p>It cannot verify that the implemented change matches the approved one. It cannot guarantee the person executing is not the person who approved. It cannot ensure the rollback attached to the ticket is the rollback that will actually run. It records the outcome the engineer reports. The governance and the risk are separated in time and in system: the controls sit upstream, the danger sits downstream, and the boundary between them is precisely where outages are born.</p>
@@ -86,7 +86,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">'LAST-MILE AUTOMATION' MOVES THE GAP, IT DOESN'T CLOSE IT</div>
+<h2 class="section-label fade-in">'Last-mile automation' moves the gap, it doesn't close it</h2>
 <div class="fade-in">
 <p>The obvious rebuttal: modern platforms <em>do</em> execute. They ship workflow engines and fire last-mile automation — a script, a bot, an integration that reaches into the target system and makes the change. True, and worth taking seriously. But look at the architecture, not the demo.</p>
 <p>A workflow that routes a change ticket, and a bot that drives another system's API or UI as a "last mile," is orchestration <em>across</em> systems the platform does not own. The tool sends an instruction over a boundary and waits for a return code. The governance still lives on one side of that boundary — the ticket — and the execution lives on the other — the target system. If the automation half-completes, the platform knows what the script told it, not what actually became true of the configuration item. The control point and the action point remain two different places joined by a hopeful integration. That holds no matter how sophisticated the roadmap becomes, because it is a property of being a <strong>system of record beside the systems of action</strong> — not a limitation of any one release.</p>
@@ -94,7 +94,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHEN THE GATE AND THE CHANGE ARE ONE ACTION</div>
+<h2 class="section-label fade-in">When the gate and the change are one action</h2>
 <div class="fade-in">
 <p>Entroid starts from a different premise: the change is not a ticket that describes work happening elsewhere — it <em>is</em> the work, modeled and executed as a governed process on one fabric. A change in ES is a Deterministic Workflow composed from five primitives, where the controls are not fields on a form but gates compiled into the execution path itself:</p>
 <ul>
@@ -107,7 +107,7 @@
 <p>State this at the right altitude: it is a property of the design, not a benchmarked outcome. Because governance is enforced inline rather than as a review step, every action lands in an immutable, per-action audit as a <em>byproduct of executing</em> — not as a report an engineer types in afterward.</p>
 </div>
 
-<div class="section-label fade-in">ROLLBACK AS A COMPILED PATH — AND A CMDB THAT'S TRUE BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Rollback as a compiled path — and a CMDB that's true by construction</h2>
 <div class="fade-in">
 <p>Two consequences matter most to a change and release audience.</p>
 <p><strong>Rollback stops being a paragraph and becomes part of the path.</strong> Because the change runs as a Deterministic Workflow, compensation is composed into the same workflow as the forward action. If a step fails or a post-change check trips, the fabric runs the compensating path as a governed action — recorded, gated, and reversible on the same terms as the change — rather than a 2 a.m. improvisation against a runbook nobody has validated this quarter.</p>

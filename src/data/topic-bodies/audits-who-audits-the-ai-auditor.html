@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>An AI agent now queries your logs, tests your controls, and "validates" your evidence — and its verdict lands in the audit file as if it were settled fact. Before you accept that, ask the question the pitch skips: <strong>who audits the AI auditor?</strong> You have not closed an attestation gap. You have opened a deeper one — a non-deterministic actor whose own conclusions now need proving, with no guarantee they can be reproduced or explained.</p></div>
 
-<div class="section-label fade-in">THE AGENTIC ASSURANCE PITCH</div>
+<h2 class="section-label fade-in">The agentic assurance pitch</h2>
 <div class="fade-in">
 <p>The message from the agentic-GRC and AI-audit vendors is seductive, and parts of it are true. AI agents that "proactively execute across the audit lifecycle." AI-driven testing that "automatically validates evidence." Continuous assurance at population scale instead of a quarterly sample. Let's concede the real ground first, because over-claiming against it would be dishonest: for triage, anomaly surfacing, narrative drafting, and clustering exceptions, a capable model earns its keep. Pointing a human at the two hundred transactions worth a second look out of two million is genuine toil reduction. That is not in dispute.</p>
 <p>The sleight of hand is what happens next. The pitch quietly promotes the model from <em>analyst</em> to <em>authority</em>. The moment an agent's output becomes the attestation — "evidence validated," "control effective" — the model has stopped assisting the auditor and started <strong>being</strong> the auditor. And an auditor, of all functions, is the one role you cannot fill with a black box whose reasoning you take on faith.</p>
 </div>
 
-<div class="section-label fade-in">INFERENCE IS NOT CONTROL</div>
+<h2 class="section-label fade-in">Inference is not control</h2>
 <div class="fade-in">
 <p>Underneath the marketing sit two very different verbs, and the entire argument turns on the gap between them.</p>
 <p>An AI reads logs, config snapshots, ticket histories, and access records, and <strong>infers</strong> what probably happened — then scores whether a control "appears" to have operated. That is reconstruction: an educated guess about the past, assembled from whatever telemetry the underlying systems happened to emit. A control, properly built, does something categorically different. It makes the non-compliant action <strong>impossible to execute in the first place.</strong></p>
@@ -15,14 +15,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">REPRODUCIBILITY IS THE AUDIT'S FIRST PRINCIPLE</div>
+<h2 class="section-label fade-in">Reproducibility is the audit's first principle</h2>
 <div class="fade-in">
 <p>Strip an audit down to its foundation and you find a single non-negotiable property: an audit conclusion must be <strong>reproducible and explainable</strong>. Same evidence, same method, same answer — and a chain any reviewer, regulator, or successor auditor can retrace step by step. That is what makes an opinion an opinion rather than an assertion.</p>
 <p>A non-deterministic model offers no such guarantee by construction. Run it twice and the reasoning path — sometimes the verdict itself — can differ. Change the prompt and the boundary of "validated" quietly moves. So the day you let an agent render assurance, you owe your regulator two audits instead of one: the audit of the controls, and the audit of the machine that judged them — its prompt scaffolding, its model version, its training lineage, its failure modes, its silent drift over time.</p>
 <p>How is that second audit performed today? Almost always by a human spot-checking a sample of the agent's work — which reintroduces the exact sampling and after-the-fact attestation the AI was sold to eliminate. The regress does not close. <em>It moves up one level and gets harder to see.</em> You have not removed the human judgment and the sampling risk; you have hidden them behind a confident interface.</p>
 </div>
 
-<div class="section-label fade-in">BESIDE THE WORK vs. BEING THE WORK</div>
+<h2 class="section-label fade-in">Beside the work vs. being the work</h2>
 <div class="scene-img-wrap fade-in">
 <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
 <defs><marker id="aaha" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" stroke="none"/></marker></defs>
@@ -68,7 +68,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">MAKE THE CONTROL THE PROCESS</div>
+<h2 class="section-label fade-in">Make the control the process</h2>
 <div class="fade-in">
 <p>There is a way out of the regress, but it is architectural, not procedural. You do not fix a probabilistic validator by adding a smarter validator on top. You remove the need to validate after the fact at all — by making the control the executing process itself.</p>
 <p>In a Composable Process Fabric, every enterprise process is modelled, executed, and governed as a composition of five primitives on one shared ontology, in a single runtime. Governance is not a report generated <em>beside</em> the work; it is enforced <strong>inline by Deterministic Workflows as the work runs</strong> — approval gates, segregation of duties, authority and threshold limits, human-in-the-loop checkpoints. Consider a purchase order that would breach an approval threshold. It is not flagged for later review and reconstruction. It cannot route to completion until the required approval exists. The non-compliant state is unreachable by design.</p>
@@ -80,7 +80,7 @@
 <p>And because a control is expressed once against the ontology, a single enforcement projects to any framework — SOX, ISO, NIST, SOC 2, DORA — without re-testing the same control per regime. You are not maintaining parallel evidence exercises; you are reading one running system from different regulatory angles.</p>
 </div>
 
-<div class="section-label fade-in">AI, BOUNDED — NOT TRUSTED</div>
+<h2 class="section-label fade-in">AI, bounded — not trusted</h2>
 <div class="fade-in">
 <p>Read none of this as an argument against AI in the enterprise. Entroid runs AI at the leaf: <strong>Atomic Agents</strong> execute bounded units of work, and <strong>Intelligence Orchestration</strong> applies runtime judgment to choose a path. The difference is not <em>whether</em> there is AI. It is <em>where the AI sits relative to the guardrail.</em></p>
 <p>ES's agents are governed inline by the same deterministic gates as any other actor — the same approval, SoD, threshold, and human-in-the-loop checkpoints, carrying the same per-action immutable record. An ES agent that proposes a non-compliant action is not trusted, monitored, and reviewed after the fact. It is <strong>refused at the gate</strong>, because the gate is deterministic and sits in the execution path, not beside it. The AI is bounded by the control; the AI is never permitted to be the control.</p>

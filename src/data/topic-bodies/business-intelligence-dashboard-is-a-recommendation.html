@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>Strip away the color palette, the smart layout, the animated tooltips, and a dashboard reduces to a single sentence: <strong>here is what happened, and here is what you might do about it.</strong> That is a recommendation. However beautiful, however trusted, it ends where every recommendation ends — at a human who now has to go somewhere else to act on it.</p></div>
 
-<div class="section-label fade-in">THE SENTENCE UNDER THE CHART</div>
+<h2 class="section-label fade-in">The sentence under the chart</h2>
 <div class="fade-in">
 <p>A dashboard, a threshold alert, a natural-language answer, an "AI insight" that flags a churn risk or a margin leak the night before your review — architecturally, these are the same object wearing different clothes. Each one <em>observes</em> data, <em>summarizes</em> it, and <em>suggests</em> a response. The most advanced versions phrase the suggestion in plain English and push it into your flow of work before you thought to ask for it. That is a genuine advance in ergonomics. It is not a change in category.</p>
 <p>Because the object's boundary is fixed. It stops at telling. The <em>doing</em> happens elsewhere — in the system that actually runs the process — performed by a person who read the chart, formed a judgment, and swiveled to a different screen to execute it. The analytics produced conviction. It never produced an action.</p>
 </div>
 
-<div class="section-label fade-in">FIRST, WHAT THE CATEGORY GETS RIGHT</div>
+<h2 class="section-label fade-in">First, what the category gets right</h2>
 <div class="fade-in">
 <p>None of this is a knock on the discipline. Modern visual analytics and self-service genuinely democratized data — they put a query in the hands of a domain leader who used to file a ticket and wait a week. A trusted semantic or metrics layer genuinely grounds AI, so a natural-language answer computes against one governed definition of "revenue" instead of hallucinating a plausible-sounding one. Proactive insights delivered in the flow of work genuinely surface the anomaly a busy human would have scrolled past. And warehouse-native analytics with write-back genuinely tightens the loop compared with exporting a CSV and emailing it around.</p>
 <p>The most serious voices in the category lead with a trust-first instinct — roughly, <em>the machine can draw the chart, but we define the truth.</em> That instinct is correct, and it is hard-won engineering discipline, not marketing. Grounding an answer in a governed model is the right defense against confident nonsense. Concede all of it plainly, because the argument that follows does not depend on any of it being wrong.</p>
 </div>
 
-<div class="section-label fade-in">WHERE THE LINE ACTUALLY STOPS</div>
+<h2 class="section-label fade-in">Where the line actually stops</h2>
 <div class="fade-in">
 <p>The frontier of the category now calls itself <strong>agentic</strong>: analytics that "closes the insight-to-action last mile," agents that analyze, decide, and act while keeping a human in control. Look closely at what <em>act</em> resolves to, and it is one of two things. Either the recommendation is delivered into the flow of work for a person to carry out — the human <em>is</em> the last mile — or an agent takes an action inside a connected application it reaches through an integration.</p>
 <p>Both are real. Neither changes the architecture. In the second case especially, the action commits in a system the analytics tool <em>sits beside</em> and reaches into from the outside. The analytics observed a modeled copy of the data, reasoned about it, and then handed a verdict across a boundary to something else that does the work. The authority over the business action — who may approve it, under what threshold, and where it is recorded — lives in that other system, not in the insight. The insight is still, structurally, a recommendation. It has no governed execution authority of its own.</p>
@@ -85,14 +85,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">DECISION-SUPPORT VS DECISION-EXECUTION</div>
+<h2 class="section-label fade-in">Decision-support vs decision-execution</h2>
 <div class="fade-in">
 <p>That is the whole argument in five words. BI is <strong>decision-support</strong>: it makes a human's decision better and faster, and then it waits. The interesting question is what happens if the insight itself carried authority — if a crossed threshold were not a red tile someone has to notice, but a governed action the system is permitted to take.</p>
 <p>That is an architectural property, not a feature you bolt onto a chart. It only holds if the analytics and the work run on the <em>same</em> fabric. Entroid is built that way: a Composable Process Fabric of five primitives — Deterministic Workflows with governance <em>inline</em>, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class step, Functions, and Connectors as the only primitive that touches external systems — over a Semantic Ontology, on one runtime, with an immutable per-action audit. Business Intelligence, Command Center, and Data Insider are modules that sit <em>on</em> that fabric rather than beside it.</p>
 <p>Because they share the runtime with the processes they measure, an insight is not computed from last night's copy — it is computed from live process state. And Command Center is what closes the loop. A threshold crossed, an anomaly detected, a target missed does not render a recommendation for someone to relay. By the architecture, it can trigger a governed Deterministic Workflow that executes the action, pauses at the approval and threshold gates where a human must sign, and writes an immutable record of exactly what was done, under which policy, on whose authority. This is a property of the design — state it as such, not as a delivered result.</p>
 </div>
 
-<div class="section-label fade-in">WHY "LIVE STATE" IS THE HINGE</div>
+<h2 class="section-label fade-in">Why "live state" is the hinge</h2>
 <div class="fade-in">
 <p>It would be easy to hear "live state" as a speed claim — a fresher copy, a shorter batch window. It is not. The hinge is <em>location</em>. The observe-and-recommend model reads a modeled reflection of the business and, at its most advanced, pushes a value back across an edge into the real system. Governance of the actual business action never belonged to the analytics, because the action was always going to commit somewhere else.</p>
 <ul><li><strong>Observe-and-recommend:</strong> reads a copy, produces a finding, hands it across a boundary — approval, execution, and the audit trail live in whatever system finally does the work.</li><li><strong>Execution fabric:</strong> the insight and the workflow are the same runtime, so the control that fires the action <em>is</em> the executing process — approval, execution, and the record are one governed event.</li></ul>
@@ -101,7 +101,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT CHANGES FOR THE ENTERPRISE</div>
+<h2 class="section-label fade-in">What changes for the enterprise</h2>
 <div class="fade-in">
 <p>For a CxO, the buying question quietly changes. It stops being "which tool tells the truth most beautifully" and becomes "when the truth is known, what happens next — automatically, and under whose governance?" On the observe-and-recommend model, the honest answer is always the same: a human notices, a human decides, a human acts in another tool, and the audit trail is whatever those tools happened to log along the way. The analytics did its job the moment the chart rendered.</p>
 <p>On an execution fabric, the answer is different in kind. The insight acts within the rails you set, stops for the approvals you require, and leaves exactly one immutable record per action — same data, same models, same trusted semantics you already believe in, with the verb moved from the human to the governed runtime. You keep the trust-first instinct that grounds the answer. You add the one thing a dashboard structurally cannot have: authority over what happens after it is right.</p>

@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>A defect scrolls past the camera. The model fires. A bit flips in a PLC tag, a solenoid kicks, the part drops into a reject bin. The vendor calls this a <strong>closed loop</strong>. It isn't one. It's two open loops stitched together by a single value on a wire — and the seam is exactly where accountability leaks out.</p></div>
 
-<div class="section-label fade-in">WHAT "CLOSED" MEANS ON THE FLOOR</div>
+<h2 class="section-label fade-in">What "closed" means on the floor</h2>
 <div class="fade-in">
 <p>Give the category its due, because the engineering is real. The newest manufacturing computer-vision platforms are genuinely more end-to-end than a bare detector that returns a bounding box and stops. They don't just classify — they write the detection into a PLC tag over an industrial protocol, or pipe extracted fields straight into an MES, an ERP, or an RPA bot. That is a legitimate step past "here's a dashboard, watch it yourself."</p>
 <p>And the surrounding capabilities deserve the same honesty. <strong>Expert-guided labeling and rapid model training have genuinely put computer vision within reach</strong> — a line engineer can stand up a defect model without a research team. Pixel-level grounding and source citations make the <em>read</em> verifiable and materially cut confidently-wrong reads: you can see the pixels the model keyed on. Confidence scores plus human-in-the-loop review are a real, pragmatic middle path, not a fig leaf. And edge deployment with SOC 2, HIPAA, and zero-data-retention postures is real assurance for real security teams.</p>
 <p>All of that is true, and none of it is the point. Because every one of those strengths governs the <strong>model</strong> and the <strong>read</strong> — accuracy, drift, provenance of the pixel, the perimeter around the endpoint. "Closing the loop," though, is a claim about the <strong>action</strong>. And the action is precisely where this architecture quietly hands off.</p>
 </div>
 
-<div class="section-label fade-in">NO POLICY CROSSES THE WIRE</div>
+<h2 class="section-label fade-in">No policy crosses the wire</h2>
 <div class="fade-in">
 <p>When a detection becomes a tag value on OPC-UA, Modbus, or EtherNet/IP — or a structured record dropped into an MES queue for an RPA bot to pick up — what travels across that wire is <strong>data, not decision authority</strong>. A boolean. A class label. A confidence float. The logic that decides what to <em>do</em> with it lives somewhere else entirely.</p>
 <p>Consider what "what to do with it" actually contains: the acceptance threshold for <em>this</em> product and <em>this</em> customer's spec; whether the current batch is under a quality hold; who is allowed to override a disposition; whether a borderline score should pause for a human rather than actuate. That logic is authored by different people — controls engineers in ladder logic, integrators in MES workflows — on a different release cycle, in a different tool, under a different change process. The vision platform governs the model. The second system governs nothing about the detection; it simply reacts to a value it received.</p>
@@ -16,7 +16,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE SPLIT-BRAIN AUDIT</div>
+<h2 class="section-label fade-in">The split-brain audit</h2>
 <div class="fade-in">
 <p>Now trace the evidence, because this is where a CISO or a quality director should get uncomfortable. Two systems act, so two systems log — and they log different halves of the same event.</p>
 <p>The vision platform records <strong>what the camera saw</strong>: the image, the score, the grounding overlay, the model version. The PLC historian or MES records <strong>what the actuator did</strong>: reject arm energized, batch dispositioned, reject counter incremented. Two logs. Two clocks. Two identity models. No cryptographic binding between the "saw" and the "did."</p>
@@ -81,7 +81,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">ONE DEFECT, TWO ARCHITECTURES</div>
+<h2 class="section-label fade-in">One defect, two architectures</h2>
 <div class="fade-in">
 <p>Make it concrete. Picture a hypothetical seal-weld inspection on a packaging line — illustrative, not a delivered deployment. A borderline weld comes through.</p>
 <p><strong>The endpoint pattern.</strong> The model returns "defect, high confidence" and writes it to a data block. Ladder logic reads the tag and energizes a reject solenoid. The part diverts. What never happened: no reason code was bound to the disposition; no segregation of duties was enforced, so the same identity that runs the line is the one who could later clear anything; no gate held the borderline score for a quality inspector; and no single record ties the pixel evidence to the actuation. If the acceptance threshold was wrong for this customer's spec, nobody authored that as reviewable policy — it's buried in ladder logic that the vision team never sees and the auditor can't read.</p>
@@ -91,7 +91,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHERE THE LOOP ACTUALLY CLOSES</div>
+<h2 class="section-label fade-in">Where the loop actually closes</h2>
 <div class="fade-in">
 <p>Here's the uncomfortable part for anyone about to sign a manufacturing-vision contract on the strength of a slick "closed loop" demo: <strong>you are not choosing between a good detector and a bad one.</strong> The read may be excellent. Demand the grounding, demand the confidence scoring, demand the edge security certifications — those are table stakes and the leaders deliver them. The real question is architectural, and the demo won't answer it: <em>where do the decision and the action live, relative to the governance?</em></p>
 <p>In the detect-and-write-back pattern, the loop closes inside a second system that acts on a value it cannot govern, and reports its half of the story into a separate log. In ES, the loop closes inside the workflow itself. Five primitives carry it: Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with HITL first-class, Functions (where your vision model lives), and Connectors (the only primitive that ever touches the PLC or MES) — all on a Semantic Ontology, one runtime, one immutable per-action audit.</p>

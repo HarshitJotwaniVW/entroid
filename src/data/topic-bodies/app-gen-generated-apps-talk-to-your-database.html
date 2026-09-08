@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>A generated app is a beautiful thing until you ask one plain question: what is it allowed to touch? The honest answer is <strong>everything it can reach</strong> — because a prompt-to-app tool hands you a self-contained artifact with its own secrets, its own connection strings, and its own direct line to your database. Multiply that by every app your teams will generate this quarter, and you have not shipped software faster. You have manufactured attack surface faster.</p></div>
 
-<div class="section-label fade-in">THE TELL IS IN THE HEADLINE METRIC</div>
+<h2 class="section-label fade-in">The tell is in the headline metric</h2>
 <div class="fade-in">
 <p>The most security-forward builders in this category advertise, as a point of pride, that they block a large volume of insecure deployments and catch near-miss credential leaks before anything ships. Read that number the other way. To have <em>blocked</em> that many, the generator first had to <em>produce</em> that many. A high count of caught leaks is not only a testament to the filter — it is a confession about the shape of the output.</p>
 <p>Every one of those near-misses was an artifact that wanted to embed a key and dial a system directly. The scanner is impressive precisely because the underlying pattern keeps trying to do the dangerous thing. When your proudest safety statistic is <strong>how often the generator almost leaked a credential</strong>, the interesting question is not how good the catcher is. It is why the artifact keeps holding the key at all.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE BUILDERS ACTUALLY GOT RIGHT</div>
+<h2 class="section-label fade-in">What the builders actually got right</h2>
 <div class="fade-in">
 <p>Let me concede the real wins first, because over-claiming here loses the argument. Prompt-to-app genuinely collapses idea-to-working-software from weeks to hours — that is not marketing, it is a real change in tempo, and it deserves respect. Always-on scanning that runs on every single generation, with nothing to opt into, is categorically better than a security policy nobody reads. Some platforms go further and abstract credentials into a managed vault or proxy so the secret is never pasted into source — real, meaningful progress.</p>
 <p>And the sharpest of them reframe safety as <em>architecture, not procedure</em>: build-time permissions where editing, approving, and publishing are separate, server-side rights, so the unsafe action simply isn't available in the interface. That is genuinely smart, and it is real. I won't pretend otherwise.</p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">EACH APP IS ITS OWN ISLAND OF CONNECTIONS</div>
+<h2 class="section-label fade-in">Each app is its own island of connections</h2>
 <div class="fade-in">
 <p>Here is the structural fact that survives every roadmap. A generated app is an island. It holds — or reaches for — its own credentials. It opens its own connection to the database. It calls the same three APIs the last four apps called, each with its own copy of the auth, its own retry logic, its own private notion of what "allowed" means. Even where credentials are cleanly abstracted per app, you still get <strong>one connection island per generated app</strong>. The vault removed the plaintext secret. It did not remove the island.</p>
 <p>Now do the arithmetic every CISO already feels in their stomach. Ten apps, ten integration surfaces. A hundred apps, a hundred. Each one is a place a key can leak, a scope can be over-granted, a socket can be left open, a dependency can quietly rot. Attack surface and integration cost do not grow with the <em>value</em> you generate — they grow with the <em>number of artifacts</em> you generate, linearly, forever. Speed of generation becomes speed of sprawl.</p>
@@ -26,7 +26,7 @@
 </ul>
 </div>
 
-<div class="section-label fade-in">DETECTIVE AFTER THE FACT VS. NOTHING TO DETECT</div>
+<h2 class="section-label fade-in">Detective after the fact vs. nothing to detect</h2>
 <div class="fade-in">
 <p>A scanner is a detective control. It looks at what was produced and decides, probabilistically, whether it is safe. Even an excellent scanner shares one unavoidable weakness: it can only catch the failure modes it can recognize. The leaked key sitting in a config file, yes. But the novel exfiltration path, the credential assembled at runtime from three innocuous fragments, the obfuscated string the classifier hasn't been trained on — those are exactly the cases a pattern filter is built to miss. You are betting your data boundary on the coverage of a model, forever, against an adversary who only has to be creative once.</p>
 <p>Contrast the preventive posture. There is <strong>no key in the artifact to leak, because the artifact never holds a key.</strong> Not "the scanner caught the key." No key. That is not a better filter over the same sprawl — it is the deletion of the thing the filter exists to find. When the dangerous capability is not present in the output at all, you stop running a coverage race against every future leak pattern. You have removed the entire class of failure, not improved your odds against it.</p>
@@ -94,14 +94,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">ONE GOVERNED BOUNDARY, NOT N ISLANDS</div>
+<h2 class="section-label fade-in">One governed boundary, not N islands</h2>
 <div class="fade-in">
 <p>This is an architectural decision, and it is the entire wedge. On a composable process fabric, exactly one of the five primitives is permitted to touch an external system: the <strong>Connector</strong>. Deterministic Workflows carry governance inline. Intelligence Orchestration reasons. Atomic Agents act, with human-in-the-loop as a first-class primitive rather than a bolt-on. Functions compute. None of them opens a socket to your database. Every external call — every read, every write, every API hit — is brokered through the Connector boundary, permissioned there, and recorded there in an immutable, per-action audit.</p>
 <p>So when generation produces a process on this fabric, it does not emit an app that then needs a data connection bolted on and secured. There is no secret in the artifact, because the artifact does not hold the connection — the fabric does, governed centrally and shared across every process. Generate ten processes or ten thousand, and there is still <strong>one governed boundary to your systems of record</strong>, not ten thousand islands each re-implementing auth in a slightly different way.</p>
 <p>Be clear about what this is not: it is not zero integration. The fabric runs over your existing estate, and it reaches that estate <em>through</em> those Connectors — that work is real. The difference is that integration is solved once, at one boundary, rather than re-solved and re-secured inside every artifact you produce. A scanner is a probabilistic filter over sprawl. A single connector boundary removes the sprawl the filter was built to police.</p>
 </div>
 
-<div class="section-label fade-in">WHAT "PRODUCTION-READY" SHOULD ACTUALLY CERTIFY</div>
+<h2 class="section-label fade-in">What "production-ready" should actually certify</h2>
 <div class="fade-in">
 <p>"Production-ready" ought to be a claim about governance, not merely about the build. When the output is a separate app, the phrase can only ever certify that the code compiles and deploys — the runtime actions it takes against your data are, by construction, a problem someone secures later, per artifact, in perpetuity. When the output is a governed process, "production-ready" means the actions it takes are permissioned and audited the instant it runs, because the connection boundary and the audit are <em>part of the output</em>, not a wrapper you add afterward.</p>
 <p>The builders were right that speed matters and that safety belongs in the architecture rather than in a policy document. They drew that boundary around who may <em>author and ship</em> the app. The remaining move is to draw it around what the app <em>does</em> — and that requires the generated thing to be a process on the governed runtime, not an island beside it.</p>

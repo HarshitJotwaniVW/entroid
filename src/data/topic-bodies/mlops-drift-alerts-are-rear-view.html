@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>A drift alert is a confession. It tells you that somewhere in the last hour, day, or week, a model's predictions moved far enough from reality that a threshold tripped — which means every decision built on those predictions has <em>already shipped</em>, already committed, already moved money. Monitoring is a rear-view mirror: indispensable for seeing where you have been, useless for stopping the crash you are already in. <strong>Governance that matters has to be a circuit breaker — able to stop a single out-of-policy action at the instant it tries to execute, not describe it after it has.</strong></p></div>
 
-<div class="section-label fade-in">THE MEASUREMENT IS REAL. THE TIMING IS NOT.</div>
+<h2 class="section-label fade-in">The measurement is real. the timing is not.</h2>
 <div class="fade-in">
 <p>Start with what the ML and MLOps platforms genuinely got right, because the argument only holds if we are honest about their strengths. Feature stores, model registries, and end-to-end lineage make a model reproducible and auditable <em>as an artifact</em> — you can say exactly which data, which code, and which weights produced a given version. One-click serving really does compress weeks of deployment into an afternoon. Drift and data-quality monitoring surface degradation you would otherwise discover through angry customers. Agent evaluation is real engineering: LLM-as-judge harnesses that score accuracy, factuality, and cost against a rubric are a legitimate way to catch regressions before they spread.</p>
 <p>And the newest entrants go further than any of that. The most advanced AI gateways govern the <strong>call</strong> itself — they sit as a governed proxy in front of model serving, enforcing rate limits, guardrails, credential management, and inference logging on every request, even for agents running off-platform. That is not marketing; it is a real and difficult capability. But notice precisely what it governs. It governs how the agent <em>calls</em> the model and <em>invokes</em> a tool, and it captures that call. The business action the prediction drives — post the transaction, release the payment, change the plan — still commits in a system of record the gateway sits <em>beside</em>, not inside. Every one of these mechanisms watches the model and the call to it. None of them stands between the prediction and the irreversible act taken on it.</p>
 </div>
 
-<div class="section-label fade-in">THREE WAYS TO WATCH, ZERO WAYS TO STOP</div>
+<h2 class="section-label fade-in">Three ways to watch, zero ways to stop</h2>
 <div class="fade-in">
 <p>Look closely at how the category actually enforces, and the same architectural shape appears three times — each detective, each probabilistic, none able to veto a single action in flight.</p>
 <ul>
@@ -19,7 +19,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">DETECTIVE VERSUS PREVENTIVE</div>
+<h2 class="section-label fade-in">Detective versus preventive</h2>
 <div class="fade-in">
 <p>The distinction that matters to a CISO or a controller is not "how good is the model" but "what can this control <em>do</em> to one bad action, right now." Detective controls observe and report; preventive controls stop. A rear-view mirror is a detective control. A circuit breaker is a preventive one. You want the model monitored <em>and</em> the action gated — but do not mistake the first for the second.</p>
 <table>
@@ -93,20 +93,20 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE MODEL IS A FUNCTION, NOT AN ENDPOINT</div>
+<h2 class="section-label fade-in">The model is a function, not an endpoint</h2>
 <div class="fade-in">
 <p>Everything above follows from one architectural choice: whether the model is an endpoint your process calls out to, or a step <em>inside</em> the process itself. In Entroid it is the latter. A model runs as a governed <strong>Function</strong> on the Composable Process Fabric — the same runtime that executes the work, not a service beside it. Its prediction is consumed by a <strong>Deterministic Workflow</strong>, and the workflow acts on that prediction under controls that are inline by construction: allow, deny, step-up to stronger authentication, or require human approval before anything commits. Because the workflow is deterministic, the control is a <em>rule</em> evaluated at the point of action — not a second probabilistic model grading the first, and not a sample. It fires for 100% of actions because it <em>is</em> the action's gate.</p>
 <p>When a decision genuinely needs judgment, human-in-the-loop is a first-class primitive, not a fallback path: an <strong>Atomic Agent</strong> can pause the workflow and hold the action for a named approver, and the pause is part of the design, not an exception to it. Crucially, <strong>Connectors</strong> are the <em>only</em> primitive that touches an external system — so the commit itself happens through a governed edge the runtime controls, and the act of committing is permissioned and written to an <strong>immutable per-action audit</strong>. The prediction and the action it drove close on one runtime, described by a shared <strong>Semantic Ontology</strong>. This is an architectural property of the fabric, not a benchmark result: the gate can refuse an action because it sits <em>in</em> the path the action must travel, not beside it.</p>
 </div>
 
-<div class="section-label fade-in">WALKTHROUGH: BLOCK THE $4,000 UNAUTHORIZED REFUND</div>
+<h2 class="section-label fade-in">Walkthrough: block the $4,000 unauthorized refund</h2>
 <div class="fade-in">
 <p>Consider — illustratively, as a way to see the mechanism, not as a delivered outcome — a refund-adjudication model that scores an incoming case and predicts <em>approve full refund, $4,000</em>. The prediction is wrong for this case: the customer is outside policy and the amount exceeds the agent's authority.</p>
 <p><strong>In the endpoint world:</strong> the model is served. The gateway dutifully logs the inference call and enforces its guardrails on that call. The evaluation harness may score this output — or may not, if the case fell outside the sample. The prediction then flows to the order-management system, where the refund <em>posts</em>. Two days later, a drift alert notes elevated approval rates in that customer segment. Every control did its job. The $4,000 is gone.</p>
 <p><strong>In Entroid:</strong> the same model runs as a Function, and its prediction enters a Deterministic Workflow before any money moves. An inline control evaluates the action deterministically: a refund above the threshold, outside the requesting agent's authority, triggers a segregation-of-duties check and a step-up. The Atomic Agent pauses and routes the case to a human approver. If policy denies it, the Connector never commits — the side-effect does not happen. If it is approved, that approval, its approver, and the policy path are written to the immutable per-action audit. Whichever branch executes, the decision to <em>act</em> was governed at the instant of action, for this one case, not inferred from a window afterward.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THIS DOES NOT CLAIM</div>
+<h2 class="section-label fade-in">What this does not claim</h2>
 <div class="fade-in">
 <p>Over-claiming here would be the fastest way to lose a reader who has actually run these systems, so be precise about the boundaries. This does not make monitoring obsolete — drift, data-quality, and evaluation signals remain the right way to manage model <em>health</em> and decide when to retrain, and you should keep them. It does not mean Entroid replaces your estate with no integration; the fabric runs <em>over</em> existing systems through governed Connectors, which is real work, not magic. And it does not claim ES is the only design that can block an action in principle.</p>
 <p>The claim is narrower and sharper than any of those: the enforcement point moves. The category governs the <em>model</em> and the <em>call</em> to it — served, evaluated, logged, and, at the frontier, proxied and rate-limited — while the <em>action</em> taken on the prediction executes in a system the platform sits beside. ES governs that action inline, as a step in a deterministic workflow, because the model is a Function within the executing process rather than an endpoint the process calls out to. Detective controls tell you a decision was wrong. A preventive control keeps the wrong decision from becoming an event.</p>

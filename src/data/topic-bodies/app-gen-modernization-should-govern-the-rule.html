@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>Every legacy-modernization pitch ends on the same reassuring line: <strong>every business rule is preserved</strong>. The COBOL becomes cloud-native code; the .NET monolith becomes tidy services; nothing is lost. It is true — and it is the wrong finish line. A rule preserved <em>as code</em> lands in a silo exactly as ungoverned and unauditable as the mainframe you spent eighteen months escaping. You modernized the language. You did not modernize the liability.</p></div>
 
-<div class="section-label fade-in">THE PART THEY GET RIGHT</div>
+<h2 class="section-label fade-in">The part they get right</h2>
 <div class="fade-in">
 <p>Start with the concession, because it is real. The autonomous-coding-agent vendors genuinely do migrate a mainframe or a .NET estate in a fraction of the time a hand-rewrite would take — directionally, weeks where the traditional program budgeted quarters. The lifecycle-modernization vendors run a disciplined assess-transform-containerize path that gets a decades-old system off hardware nobody wants to insure anymore. And the best of these tools export to <strong>standard, non-proprietary code</strong> — no lock-in, an artifact your own engineers can read and own. Some scan that output for vulnerabilities automatically, which beats opt-in security policy every time.</p>
 <p>None of that is marketing fluff. Getting a business off a dying runtime <em>fast</em>, with the logic intact and no vendor handcuffs, is a hard problem solved well. If your only question is "can we get off the mainframe," these tools answer it. But that is a smaller question than the one the person signing the audit attestation is actually asking.</p>
 </div>
 
-<div class="section-label fade-in">WHAT "PRESERVED" QUIETLY OMITS</div>
+<h2 class="section-label fade-in">What "preserved" quietly omits</h2>
 <div class="fade-in">
 <p>Consider what "preserved" means at the level of a single rule — say, the logic that authorizes a credit-limit override, calculates a loss reserve, or releases a shipment. On the mainframe, that rule lived inside a procedure almost nobody could read, was changed through a ticket almost nobody could trace, and produced actions almost nobody could reconstruct after the fact. Those three properties — <strong>unreadable, untraceable, unauditable</strong> — were the actual problem.</p>
 <p>Migrate the rule one-to-one and you fix exactly one of them. The code becomes readable. That is worth something. But the change path is still a code push traced only in commit history, and the <em>action the rule takes at runtime</em> — against your ledger, your policy system, your inventory — is still governed by nothing. "Production-ready" is a statement about the code compiling and deploying cleanly. It says nothing about whether the business action the running rule executes is permissioned, constrained, or recorded. You have translated the rule into a language you can read while leaving it exactly as ungovernable as it was in the original.</p>
 </div>
 
-<div class="section-label fade-in">THE BILL ARRIVES ON DAY ONE</div>
+<h2 class="section-label fade-in">The bill arrives on day one</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part for anyone framing modernization as an ROI story. A migrated silo <strong>re-incurs the full integration, security, and audit bill the moment it goes live</strong> — and that bill is rarely on the migration business case.</p>
 <ul>
@@ -102,7 +102,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE REAL DELIVERABLE IS A RULE YOU CAN PROVE, CHANGE, AND AUDIT</div>
+<h2 class="section-label fade-in">The real deliverable is a rule you can prove, change, and audit</h2>
 <div class="fade-in">
 <p>Step back and ask what the rule owner — the CRO, the controller, the CISO who inherits this thing — actually needs from modernization. It was never "fewer lines of legacy." Count the three things a governed rule must let you do:</p>
 <ul>
@@ -113,7 +113,7 @@
 <p>One-to-one code migration delivers none of these. It faithfully relocates the audit gap into a shinier stack. The rule is now written in a modern language and is precisely as opaque to the auditor as the day it ran on the mainframe. You have paid to run the same ungoverned logic on faster hardware.</p>
 </div>
 
-<div class="section-label fade-in">MODERNIZE INTO A GOVERNED PROCESS, NOT A REPO</div>
+<h2 class="section-label fade-in">Modernize into a governed process, not a repo</h2>
 <div class="fade-in">
 <p>This is the architectural difference, and it is a property of where the output lands — not a claim about speed. Entroid's <strong>Modernize</strong> toolkit turns legacy code into a modern system with every business rule preserved, like the others. But the output is not a repo you then have to integrate, secure, govern, and maintain as another silo. Each preserved rule becomes a <strong>step in a Deterministic Workflow on the fabric</strong>, mapped to a shared Semantic Ontology so it speaks the same language as every other process in the enterprise.</p>
 <p>Because that step runs on the fabric, its properties are structural, not add-ons. Governance is <em>inline</em> in the workflow rather than a wrapper bolted on afterward. The only thing that touches your systems of record is a governed <strong>Connector</strong> — the single primitive licensed to reach outside — so the rule's runtime action is permissioned by construction, not by convention. Every action it takes writes an <strong>immutable, per-action audit entry</strong> automatically, which is what makes "prove" and "audit" free instead of a project. Where a rule needs judgment, an Atomic Agent can be composed in with human-in-the-loop as a first-class step, so the pause-before-commit is part of the process, not a hope. These are architectural characteristics of the design; any specific rule or scenario here is illustrative, not a delivered result.</p>

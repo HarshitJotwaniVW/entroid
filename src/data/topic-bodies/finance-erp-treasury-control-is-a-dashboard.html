@@ -2,20 +2,20 @@
   <p>Ask any treasury vendor to name their control story and they'll point you to a pillar on the slide: <strong>"Control &amp; Comply."</strong> It's a dashboard. It shows you limits consumed, exceptions flagged, policy breaches surfaced — in beautiful, real-time detail, moments after the payment has already left the building. That is not control. That is a very fast rear-view mirror. Real control is a gate at the payment, and a gate only counts when it can stop the money.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE PAYMENT FACTORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the payment factory its due</h2>
 <div class="fade-in">
   <p>Start with what the modern treasury suites genuinely got right, because it's a lot. The centralized <strong>payment factory</strong> is one of the more consequential pieces of enterprise plumbing built in the last two decades. Collapsing dozens of subsidiaries, bank portals, and file formats into a single corporate-to-bank channel eliminated a sprawl of manual host-to-host connections and idiosyncratic bank tokens. Standardized payment formats and one connectivity layer to a wide set of banking partners took real operational risk off the table.</p>
   <p>The cash dashboards are equally real. In-memory position keeping beats overnight batch aggregates — a treasurer who can see a same-day global cash position, drill from group to bank account to individual flow, and layer predictive analytics over it is doing something their predecessor with a spreadsheet and a fax machine simply could not. Machine-assisted cash application that clears open receivables against incoming bank statements, and matching engines that pair intercompany flows, cut genuine hours of manual reconciliation. And the newest finance agents draft payment timing, propose netting, and route approvals competently. <em>None of this is marketing vapor.</em> Concede it fully, because the wedge isn't that these tools are weak. The wedge is <strong>where in the sequence they sit.</strong></p>
 </div>
 
-<div class="section-label fade-in">"CONTROL AND COMPLY" IS A TENSE, NOT A CONTROL</div>
+<h2 class="section-label fade-in">"Control and comply" is a tense, not a control</h2>
 <div class="fade-in">
   <p>Look closely at how "control and comply" is actually architected in a payment-factory-plus-dashboard model, and a structural pattern emerges that no roadmap changes: <strong>the control is a report, and the report describes the past.</strong></p>
   <p>The payment is assembled, approved through a workflow, and released to the bank. The transaction posts to the ledger. <em>Then</em> the limit consumption updates. <em>Then</em> the policy engine evaluates whether that release breached a counterparty cap or a signatory threshold. <em>Then</em> the exception lights up on someone's screen. The bank statement returns the next cycle, and a periodic reconciliation confirms — after the fact — that what left matches what was authorized. Every one of those checks is real work, competently done. But it is <strong>detective</strong>, not <strong>preventive</strong>. It tells you a rule was broken; it does not stop the rule from being broken.</p>
   <p>This is the structural line worth drawing carefully. Limits enforced as visibility are limits you can exceed and then see. Dual authorization enforced as a workflow status is an approval that gates the <em>release step</em> but sits inside the same system that treats posting as the primary event and control as commentary on it. Continuous cash visibility is visibility into positions — a live picture of what already happened — not authority over what happens next. Even the sharpest predictive analytics forecast the risk; they do not hold the door. When the pitch is "see the risk faster," read the quiet admission inside it: the risk has already materialized. You are being sold a shorter delay between the mistake and the knowledge of the mistake.</p>
 </div>
 
-<div class="section-label fade-in">AND THE AGENT INHERITS THE ARCHITECTURE</div>
+<h2 class="section-label fade-in">And the agent inherits the architecture</h2>
 <div class="fade-in">
   <p>The agent layer is where this gets subtly more dangerous, not less. A payments agent that "optimizes timing and enforces approval workflows" sounds like control moving upstream. But an agent enforcing an approval workflow is still routing a request through a status machine that lives beside the ledger. It can <em>recommend</em>, <em>route</em>, and <em>flag</em> — and when it's wrong, the failure mode is the same as the human one: the payment posts, and the control catches up. Bolting an intelligent actor onto an after-the-fact control model gives you a faster after-the-fact control model. The intelligence is real. The <strong>position of the intelligence in the execution path</strong> is the problem. It advises the gate; it is not the gate.</p>
 </div>
@@ -81,7 +81,7 @@
   </svg>
 </div>
 
-<div class="section-label fade-in">CONTROL IS A GATE, NOT A PILLAR</div>
+<h2 class="section-label fade-in">Control is a gate, not a pillar</h2>
 <div class="fade-in">
   <p>Entroid inverts the sequence, and the inversion is architectural, not aspirational. In ES, a treasury process — a payment run, an FX deal, an intercompany settlement, a bank reconciliation — is not a transaction that posts and then gets reported on. It is a single governed <strong>Deterministic Workflow</strong> executing on one runtime, and the controls are steps <em>inside</em> that workflow, not a dashboard beside it.</p>
   <p>Concretely, the five primitives do specific jobs here:</p>
@@ -94,7 +94,7 @@
   <p>Every step writes an <strong>immutable, per-action audit</strong> record as a property of execution — not a log assembled afterward to reconstruct what the dashboard already showed.</p>
 </div>
 
-<div class="section-label fade-in">THE PAYMENT RUN, RE-ARCHITECTED</div>
+<h2 class="section-label fade-in">The payment run, re-architected</h2>
 <div class="fade-in">
   <p>Make it concrete — and note this is <em>illustrative of how the architecture behaves,</em> not a claim about a delivered result. A treasury analyst kicks off a cross-border payment run: two hundred vendor payments, several currencies, one of them a large settlement to a counterparty whose remaining daily limit is thin and whose FX exposure sits near a policy ceiling.</p>
   <p>In the payment-factory-plus-dashboard world, the run assembles, the approvals route, the file releases to the bank, and the money moves. The limit breach on that one large payment surfaces on the compliance dashboard afterward; the FX policy exception is flagged for review; the bank statement confirms the settlement on the next reconciliation cycle. Everyone sees the problem quickly. Everyone sees it <em>after the wire is gone.</em></p>
@@ -103,7 +103,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT THIS CHANGES FOR THE FUNCTION</div>
+<h2 class="section-label fade-in">What this changes for the function</h2>
 <div class="fade-in">
   <p>The consequence for a treasurer or CFO isn't a prettier cockpit. It's that the two questions that keep treasury leaders awake — <em>can a payment leave that shouldn't?</em> and <em>do I actually know my position right now?</em> — stop being answered by monitoring and start being answered by construction. Bank reconciliation stops being a periodic batch that certifies the past and becomes a continuous property of a process where the outbound instruction and its authorization were the same governed step. Segregation of duties stops being an access-control matrix audited quarterly and becomes an enforced condition of execution that produces its own evidence.</p>
   <p>Be honest about the boundary, because over-claiming here is how you lose a treasury audience that has integrated more systems than anyone. ES does not pretend the bank connectivity vanishes or that integration is free — it runs over your existing banking and ERP estate <em>through governed Connectors,</em> which is work. What changes is not the existence of integration but its <strong>governance posture</strong>: the connection point to the outside world is the one place control is enforced, and it is enforced before the money moves rather than reported after it did.</p>

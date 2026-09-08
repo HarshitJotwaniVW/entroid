@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every dashboard carries a quiet timestamp: <em>data as of 09:41</em>. It is the most honest line on the screen. It admits that the insight is true about a photograph — and that the enterprise it describes has kept moving ever since. <strong>Analytics on a copy is always one sync behind the decision.</strong> The finding is about a snapshot; the choice is about now; and in the space between them sit drift and a human.</p></div>
 
-<div class="section-label fade-in">THE COPY IS THE ARCHITECTURE, NOT A DETAIL</div>
+<h2 class="section-label fade-in">The copy is the architecture, not a detail</h2>
 <div class="fade-in">
 <p>Strip away the interface differences and every mainstream analytics tool shares one foundational move: it does not read the systems where work happens. It reads a <strong>copy</strong> of them. Data is extracted from the operational estate, modeled and conformed, and landed in a warehouse or lakehouse that the analytics engine queries. That store is refreshed on a cadence — nightly, hourly, by micro-batch, by stream. Whatever the interface on top — a drag-and-drop visual canvas, a natural-language question box, a governed metrics layer, an agent that reasons over your data — it is querying a modeled replica of the truth, not the truth in motion.</p>
 <p>This separation is deliberate, and for the job of <em>observing</em>, it is correct. You do not want your analytics hammering the transactional systems that are trying to take orders and post entries. You want the data indexed, historized, joined across sources, and shaped for fast aggregation. The copy is not an accident of legacy plumbing — the copy <em>is the product</em>. The whole discipline of business intelligence is the discipline of building an excellent place to look at data that lives somewhere else.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS FULL DUE</div>
+<h2 class="section-label fade-in">Give the category its full due</h2>
 <div class="fade-in">
 <p>Over-claiming here is the fastest way to lose a serious reader, so be precise about what this architecture does genuinely well. These are strong systems solving real problems.</p>
 <ul>
@@ -18,7 +18,7 @@
 <p>None of this is a straw man. But interrogate the one thing all of it has in common: every capability on that list <strong>observes a copy and stops at a recommendation</strong>. The insight is delivered to a human — or to an agent acting in a connected application — who must then go act somewhere else. However fast, however trusted, the analytics never touches the work.</p>
 </div>
 
-<div class="section-label fade-in">FRESHNESS IS NOT IDENTITY</div>
+<h2 class="section-label fade-in">Freshness is not identity</h2>
 <div class="fade-in">
 <p>The obvious objection arrives here: <em>real-time BI.</em> Change-data-capture, streaming pipelines, sub-second dashboards, live query against a warehouse that is never more than moments behind. The freshness gap, the argument goes, is closing to nothing.</p>
 <p>Concede it plainly — those techniques genuinely narrow the time lag, and a live aggregate beats an overnight roll-up every time. But they optimize the wrong axis. Drive the refresh latency all the way to zero and you still have <strong>two objects</strong>: the analytical copy the insight was computed on, and the live object the business actually runs on. They are joined by a pipeline, not by identity. The insight holds a handle on the copy. It holds no handle on the live object at all.</p>
@@ -30,7 +30,7 @@
 <p>So the decision commits against a moving target the insight never touched. By the time the finding on the snapshot becomes an act on the live system, the live system has moved on — the credit was already issued, the inventory already shipped, the customer already churned. The insight was true. It was just true about a moment that has passed.</p>
 </div>
 
-<div class="section-label fade-in">THE TRUST-FIRST PITCH GETS THE GROUND RIGHT — AND THE GROUND WRONG</div>
+<h2 class="section-label fade-in">The trust-first pitch gets the ground right — and the ground wrong</h2>
 <div class="fade-in">
 <p>The sharpest position in the category has seen part of this clearly. It reframes analytics as <em>agentic</em> — agents that analyze, decide, and act while keeping humans in control — and it grounds all of it in a trusted semantic layer. Its slogan is close to perfect: the AI can draw any chart, so the differentiator is not the picture but the <strong>truth underneath it</strong>. Define the metrics, govern the meaning, and the answer becomes trustworthy.</p>
 <p>Concede the instinct fully, because it is right and it is valuable. Trust-first is the correct battle. A governed semantic layer really does ground the model so the answer is accurate instead of hallucinated. But be exact about <em>what</em> is being grounded: a model of the data, built for the purpose of querying it. The truth it defines is the truth of the <strong>answer</strong> — computed, still, on a copy. And the "action" it delivers is a recommendation dropped into the flow of work, or an agent operating inside a connected application. The insight has no governed authority over the business action itself, which commits in a system the analytics tool sits <em>beside</em>. You end up with the most trustworthy possible answer, about a snapshot, handed to someone else to carry out. Defining the truth is genuinely half the problem. It is not the acting half.</p>
@@ -115,14 +115,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">COMPUTE THE INSIGHT ON THE OBJECT THE WORK RUNS ON</div>
+<h2 class="section-label fade-in">Compute the insight on the object the work runs on</h2>
 <div class="fade-in">
 <p>The alternative is not a faster copy. It is not having a copy. Entroid computes the insight from <strong>live process state</strong> — the same governed objects the work executes on, expressed once on a shared Semantic Ontology, in one runtime. There is no extract-transform-load stage feeding a separate analytical store, because there is no separate store: the analytics reads the very objects the Deterministic Workflows act on. The number and the process are the same thing seen two ways.</p>
 <p>Because of that, the finding and the action share an <strong>identity</strong>, not a pipeline. The threshold measured on an order object is wired to a governed workflow that acts on <em>that same order object</em>. When the signal fires — a margin crossing, an anomaly, a target missed — Command Center turns it into a governed, audited action on the spot, rather than a card in someone's queue. The action passes through inline gates first — an approval, a threshold, a segregation-of-duties check, with a human in the loop as a first-class step where the design calls for one — and every action it takes leaves an immutable, per-action audit record. Analytics stops being decision-support a person must relay and becomes decision-execution the fabric performs under governance.</p>
 <p>That is why both gaps close, and it closes them for a structural reason rather than a performance one. There is <strong>no copy to sync</strong>, because the insight is computed on the live object. There is <strong>no last mile</strong>, because the action commits on the very state the insight was computed from. The snapshot-versus-now problem does not get smaller; it stops existing.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THIS DOES NOT CLAIM</div>
+<h2 class="section-label fade-in">What this does not claim</h2>
 <div class="fade-in">
 <p>Be honest about the boundary, because the credible version of this argument is narrower than the hype version. ES does not make integration vanish. It runs over your existing estate through governed Connectors — the only primitive that touches an external system — and wiring the estate to the fabric is real work, not a switch you flip. The claim is not that the wires disappear. The claim is about <em>where the insight and the action live</em>: two objects joined by a pipeline in the copy model, one governed object on one runtime in the fabric model.</p>
 <p>And to keep this distinct from a related idea: this is not process mining either. Reconstructing what happened from a batch event log is yet another copy — a historized one, read after the fact. The point here is the opposite of after-the-fact. It is live process state, <em>now</em>, with the authority to act on itself. As an illustrative matter of the architecture — not a delivered result — a margin threshold crossing on a live order can trigger a governed hold on that same order, under approval and audit: the object the number was measured on is the object the action commits to, with no window in between for the state to drift. That is a property of the design, not a case study.</p>

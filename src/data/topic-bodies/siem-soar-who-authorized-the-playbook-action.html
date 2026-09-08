@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>At 02:14 the playbook fired. In under a minute it disabled fourteen accounts, blocked a range at the perimeter, and quarantined nine endpoints — exactly as designed. The run history is immaculate: every step green, every call logged. Now answer the question your regulator will actually ask. <strong>Not "did the playbook run?" but "who authorized this action, against this asset, and where is the single record that binds the two?"</strong> The run history cannot tell you — it was never built to.</p></div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>Start by conceding what is genuinely won. Modern correlation and risk-based alerting have real teeth: they collapse a flood of raw signals into a ranked handful and end the analyst fatigue that static thresholds manufactured for a decade. Unifying detection, orchestration, and user-and-entity analytics in one workspace genuinely kills the swivel-chair between four consoles. Verified, framework-mapped detection content is a real asset, not a slide. Prebuilt playbooks spanning hundreds of connected tools genuinely compress response from hours of manual clicking to seconds. And keeping a human in the loop before a response fires is a responsible default, not a weakness. None of this is vapor.</p>
 <p>But notice what every one of those wins is <em>about</em>. Correlation, alerting, framework-mapped content, orchestration — they <strong>detect, correlate, alert, and dispatch a playbook</strong>. The containment itself — the account you disable, the range you block, the host you quarantine — executes somewhere else, in a tool the platform integrates with but does not own. The governance you bought lands on the alert and the playbook. The executed change lands in a different system entirely. That gap is where this argument lives.</p>
 </div>
 
-<div class="section-label fade-in">THE IDENTITY THAT RAN THE RESPONSE</div>
+<h2 class="section-label fade-in">The identity that ran the response</h2>
 <div class="fade-in">
 <p>Follow the disable action down to the metal. When the playbook reaches into your identity provider to switch off an account, it has to authenticate as something. It does not authenticate as the responder handling the incident. It authenticates as a <strong>service account — a shared automation identity</strong> the platform holds. And that identity has an unavoidable property: to be able to disable <em>any</em> account, block <em>any</em> range, and isolate <em>any</em> host on demand, it must be standing and broadly privileged. It is, structurally, authorized to everything and attributable to no one.</p>
 <p>This is the quiet flaw underneath the "automation rules assign playbooks to detections" pitch. That binding is real and useful — but it binds a <em>playbook</em> to a <em>signal</em>. It does not bind an <em>authorized responder</em> to an <em>executed action</em>. So at the moment of containment there is no inline check that this responder was permitted to take this action against this asset; no segregation of duties, because the automation identity that can contain one thing can contain everything; and no single record tying the trigger to the change it caused. The run-history log will faithfully tell you that step seven returned success. It will not tell you that anyone was authorized. <strong>A log of steps is not an authorization of an action.</strong></p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">DISPATCHED, OR GOVERNED</div>
+<h2 class="section-label fade-in">Dispatched, or governed</h2>
 <div class="scene-img-wrap fade-in">
 <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A SIEM/SOAR platform detects, correlates and alerts, then dispatches a playbook across a dashed tool boundary to separate EDR, firewall and IAM tools under one shared service credential with only a run-history log, versus Entroid where detection feeds a governed Deterministic Workflow that permissions the response to the responder, gates it with change-control, executes containment inline through a Connector, and writes one immutable per-action audit binding trigger to responder to action on a single runtime">
 <defs>
@@ -75,7 +75,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE AGENTIC SOC DOESN'T CLOSE THE GAP</div>
+<h2 class="section-label fade-in">The agentic SOC doesn't close the gap</h2>
 <div class="fade-in">
 <p>Give the frontier its due as well. The agentic-SOC arc — human-driven, then AI-assisted, then agentic-led but human-governed — is genuinely advanced, and the instinct to keep a human governing the machine is exactly right. Native orchestration whose playbooks run <em>inside</em> the detection console is real progress: one workspace, no swivel-chair, faster hands. Concede all of it.</p>
 <p>Then look precisely at what the approval governs. Whether a human runs the playbook, or an agent triages the incident, recommends a response, and a human approves it, the decision being made is <strong>"run this playbook."</strong> That is a judgment about the <em>trigger</em> — the alert and the workflow. The containment still dispatches <em>out</em>, across a tool boundary, to the endpoint, firewall, or identity system that actually performs it, carried by the same shared automation identity as before. Putting a capable agent in front makes the triage faster and the recommendation sharper. It does not change <em>where</em> the action executes, <em>what</em> identity carries it, or whether a per-action authorization and a bound record exist on the far side of the boundary.</p>
@@ -84,7 +84,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE RESPONSE AS A GOVERNED ACTION</div>
+<h2 class="section-label fade-in">The response as a governed action</h2>
 <div class="fade-in">
 <p>Entroid is built from the other side of the boundary. It is a Composable Process Fabric — five primitives on one runtime over a Semantic Ontology — and a security response is not a message fired at an external actuator. It <em>is</em> a <strong>Deterministic Workflow</strong> that executes the containment inline: isolate the host, revoke the token, block the indicator, disable the account. This is not a claim to need zero integration — quite the opposite. <strong>Connectors</strong> are the only primitive that touches external systems, so ES runs over your existing endpoint, firewall, and identity estate. The difference is that it reaches them through governed, recorded calls that execute under the fabric's control, not fire-and-forget dispatches into tools it cannot govern.</p>
 <p>Three architectural properties turn "the playbook ran" into "this authorized action was taken, and here is the proof":</p>

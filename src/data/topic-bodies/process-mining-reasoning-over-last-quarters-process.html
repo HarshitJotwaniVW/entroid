@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Your process-intelligence agent has never actually seen your process. It has seen a <strong>reconstruction</strong> of it — event logs pulled in a batch window, stitched into a model, reconciled against systems that have already moved on. By the time the agent reasons, it is reasoning over last quarter's process, not this morning's. The distance between those two is precisely where governance fails and money leaks.</p></div>
 
-<div class="section-label fade-in">CONTEXT IS A COPY</div>
+<h2 class="section-label fade-in">Context is a copy</h2>
 <div class="fade-in">
 <p>Every process-mining and process-intelligence platform begins with the same architectural move, and it is worth naming plainly: <strong>it does not run your process. It reconstructs one.</strong> Events are extracted from your ERP, CRM, ITSM stack and a dozen ledgers; mapped to case IDs and activities; joined, modeled, and rendered as a graph you can query. The output is a mirror of what your systems of record already did.</p>
 <p>A mirror is useful. It is also, structurally, three things a live system is not:</p>
@@ -11,13 +11,13 @@
 </ul>
 </div>
 
-<div class="section-label fade-in">"ZERO-COPY" IS STILL A COPY</div>
+<h2 class="section-label fade-in">"Zero-copy" is still a copy</h2>
 <div class="fade-in">
 <p>The category leader markets its context model as process data extracted from every underlying system, and touts zero-copy access with roughly ten-times-faster extraction. Give the engineering its due — faster, cheaper extraction is real work, and pushing computation to where the data lives is smart. But look at what the claim actually addresses. Zero-copy describes <em>where the bytes physically sit</em>. It does not change what the representation <em>is</em>.</p>
 <p>The architecture underneath is unchanged: extract, then model, then reason. A faster copy is still a copy. A cheaper mirror is still a mirror. The freshness ceiling is set by the pull, not by the query — and no amount of extraction speed collapses the gap between "the process as last mined" and "the process as it is executing right now."</p>
 </div>
 
-<div class="section-label fade-in">A PROBABILISTIC AGENT ON A STALE MEMORY</div>
+<h2 class="section-label fade-in">A probabilistic agent on a stale memory</h2>
 <div class="fade-in">
 <p>Now put an agent on top of the mirror. One leading vendor is refreshingly candid here: it describes its own agents as probabilistic and warns they can carry <strong>"major operational blindspots."</strong> Read that with an architect’s eye. You are stacking two independent sources of error — the <em>model</em> may be stale, and the <em>reasoner</em> may be wrong — and then asking the result to inform decisions about live operations.</p>
 <p>Worse, the agent acts <em>elsewhere</em>. In this pattern the intelligence observes and recommends, then hands the decision to some other system to execute. Even when the recommendation is correct, there is a seam between deciding and acting — and in that seam, state changes, policy is not enforced, and no one is holding the gate at the moment it matters.</p>
@@ -26,7 +26,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">RUN THE PROCESS, DON'T MIRROR IT</div>
+<h2 class="section-label fade-in">Run the process, don't mirror it</h2>
 <div class="scene-img-wrap fade-in"><svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif">
   <defs>
     <marker id="es-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -71,7 +71,7 @@
 <p>Connectors are the only primitive that touch external systems, and they are governed, bidirectional read/write against your systems of record — not a one-way extraction pipe. So context is not something ES collects on a schedule. It is native, by construction. There is no mine-model-reconcile pipeline because there is nothing to reconcile: you are never comparing a mirror to reality, you are operating on the authoritative state itself.</p>
 </div>
 
-<div class="section-label fade-in">POLICY AS A GATE, NOT A REPORT</div>
+<h2 class="section-label fade-in">Policy as a gate, not a report</h2>
 <div class="fade-in">
 <p>Because ES <em>is</em> the system of action, governance stops being an after-the-fact finding and becomes a hard constraint at the point of execution. It lives inside deterministic workflows — approval gates, segregation of duties, authority and entitlement limits, thresholds, human-in-the-loop checkpoints — enforced inline. A non-compliant action is not flagged after it clears. It is <strong>impossible to take</strong>, because the runtime will not route past the gate. Intelligence Orchestration chooses the path and owns agent authority; Atomic Agents do the bounded work with human-in-the-loop as a first-class property; every decision is bound to an immutable, per-action audit trail.</p>
 <p>Make it concrete. Consider a payment-posting agent — illustrative, not a delivered result. In a mining stack, it reasons over a reconstructed view of yesterday's ledger, recommends a release, and the release executes in another system where the balance may already have changed. On a system of action, that same agent reads live ledger state through a governed connector, the deterministic workflow holds the authority-limit gate, and the payment either clears policy at the instant it posts or it never posts at all. Same intent; a categorically different guarantee.</p>
@@ -79,7 +79,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE ARCHITECT'S TEST</div>
+<h2 class="section-label fade-in">The architect's test</h2>
 <div class="fade-in">
 <p>Strip the marketing and put three questions to any vendor selling you an "agentic" process capability:</p>
 <ul>

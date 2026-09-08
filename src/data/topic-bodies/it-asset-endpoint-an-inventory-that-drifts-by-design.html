@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every tool in this category opens with the same confession: <strong>the estate must be discovered.</strong> Agents crawl the network, scanners sweep subnets, connectors poll cloud and SaaS APIs — because assets are created, moved, and retired in a dozen consoles the inventory does not control. Discovery is the admission that record and reality are two different systems. Everything that follows — normalization, deduplication, reconciliation — is the apparatus for re-synchronizing them, forever.</p></div>
 
-<div class="section-label fade-in">THE FOUNDING CONFESSION</div>
+<h2 class="section-label fade-in">The founding confession</h2>
 <div class="fade-in">
 <p>The category's founding creed is that you cannot manage what you cannot see. Take it seriously — it is true, and it is doing more work than it appears to. Ask <em>why</em> the estate cannot be seen without a discovery apparatus, and the answer turns out to be the architecture of the entire market: assets are born, modified, and retired somewhere else. An engineer provisions a cloud instance from a console the asset tool has never met. A department head adds twenty seats to a SaaS product on a corporate card. Procurement signs an agreement whose entitlements live in a PDF. A laptop ships, is imaged, is handed to a contractor, and comes back carrying software nobody requested. None of these events consulted the inventory first. The inventory finds out later — by crawling, sweeping, and polling.</p>
 <p>This is not an implementation gap the next release will close. It is the design premise. These platforms were built for a world in which the record could never be present at the moment of change, and so they became superb at the only thing left: catching up. The category's own language gives it away. Continuous scanning as the foundation. Normalization against vast catalogs. A single, continuously refreshed source of asset truth — where <em>continuously refreshed</em> is the quiet concession that the truth keeps moving and the record keeps chasing it, with freshness measured in scan cycles.</p>
 </div>
 
-<div class="section-label fade-in">CREDIT WHERE IT IS DUE</div>
+<h2 class="section-label fade-in">Credit where it is due</h2>
 <div class="fade-in">
 <p>Be fair about what this engineering has achieved, because it is substantial and it is hard.</p>
 <ul>
@@ -18,7 +18,7 @@
 <p>If your estate must be reconstructed from the outside, these are the teams you want reconstructing it. The open question is whether reconstruction is the right architecture at all.</p>
 </div>
 
-<div class="section-label fade-in">FASTER RECONCILIATION IS STILL RECONCILIATION</div>
+<h2 class="section-label fade-in">Faster reconciliation is still reconciliation</h2>
 <div class="fade-in">
 <p>Look at the shape of the loop rather than its speed. Change happens outside; a scan detects it; normalization cleans it; reconciliation computes a position; a report describes it; a recommendation proposes a fix; a human executes the fix in some other console — and change happens outside again. Shrink the scan cycle from weeks to hours to near-real-time and you have made the loop faster. You have not changed its shape. <strong>Faster reconciliation is still reconciliation.</strong></p>
 <p>Every artifact the category produces carries the same signature. The inventory is a snapshot kept honest by re-scanning. The license position is a report computed after the installs already happened. The reclamation is a recommendation an admin implements somewhere the tool does not govern. Between the change and the record there is always an interval, and in that interval the estate runs ungoverned — unlicensed software installed, an orphaned entitlement still billing, a cloud resource nobody owns. That interval is not process waste to be optimized away. It is what the architecture produces.</p>
@@ -27,7 +27,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ACCURACY BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Accuracy by construction</h2>
 <div class="fade-in">
 <p>There is a structurally different answer, and it begins by relocating the record. On a composable process fabric, an IT asset — a license, a device, a cloud resource, a SaaS entitlement — is a <strong>governed object on a semantic ontology</strong>, and its lifecycle actions are not tickets about the asset or scans of the asset. Request, provision, assign, patch, reclaim, renew, retire execute as deterministic workflows on the same fabric that holds the record: governance enforced inline before the action commits, permissions evaluated per action, human approval a first-class step wherever policy demands one, and every touch of an external system made through a governed Connector — the only primitive that reaches outside.</p>
 <p>The consequence is architectural, not aspirational: <strong>the record updates because the action executed.</strong> There is no scan-and-reconcile loop for governed actions, because nothing changed outside the record — the state change and the record's update are the same event. Record and reality cannot diverge on those paths; not because a scanner is fast, but because there is no gap for divergence to enter. Accuracy stops being a scan cadence and becomes a property of the architecture. And because every lifecycle transition writes an immutable per-action audit entry — who requested, which gate evaluated, who approved, what the Connector did — the license position for governed entitlements is not a reconstruction of the past. It is the current state of the actions that produced it.</p>
@@ -122,7 +122,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE HONEST SCOPE</div>
+<h2 class="section-label fade-in">The honest scope</h2>
 <div class="fade-in">
 <p>Now the honest boundary, because over-claiming here is how vendors lose expert readers. This does not mean integration disappears — Connectors are precisely the integration surface, governed and audited rather than ad hoc. And by-construction accuracy applies to the lifecycle actions that run on the fabric. On day one, in any real enterprise, that is a subset of the estate.</p>
 <p>So the strategic argument is not that scanning dies tomorrow. It is: <strong>narrow the ungoverned paths.</strong> Route the highest-drift, highest-cost lifecycle actions through governed workflows first — SaaS entitlement grants and reclamations, cloud provisioning, license assignment, joiner-mover-leaver flows. Every action migrated is a path on which drift can no longer originate. Discovery does not die; it demotes. It stops being the architecture of truth and becomes an exception detector on a shrinking perimeter — and on that perimeter, a scan that finds a change no governed action produced is no longer routine noise to reconcile. It is a signal: shadow IT, a bypassed path, an incident. That is a far better use of a scanner than feeding a treadmill.</p>
@@ -130,7 +130,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ONE QUESTION SORTS THE CATEGORY</div>
+<h2 class="section-label fade-in">One question sorts the category</h2>
 <div class="fade-in">
 <p>Strip away the dashboards and the catalogs, and one question sorts every platform in this market: <strong>does the record update because the action executed, or because a scan noticed?</strong> Everything else follows from the answer.</p>
 <ul>

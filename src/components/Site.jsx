@@ -1685,7 +1685,7 @@ export const UseCaseDetail = ({ slug }) => {
   const related = [1, 2, 3].map((k) => all[(idx + k) % all.length])
   return (
     <>
-      <header className="phero phero--gradient">
+      <header className="phero phero--gradient phero--compact">
         <div className="container phero__inner">
           <Reveal as="p" className="phero__eyebrow"><Link href="/use-cases">Use Cases</Link> · {u.theme}</Reveal>
           <Reveal as="h1" className="phero__headline" delay={120} eager>{u.title}</Reveal>
@@ -1747,7 +1747,7 @@ export const UseCaseDetail = ({ slug }) => {
             <p className="section__label"><b>Related</b></p>
             <h2 className="section__heading">More use cases</h2>
           </Reveal>
-          <Reveal as="div" variant="fade" className="uccards stagger">
+          <Reveal as="div" variant="fade" className="uccards uccards--three stagger">
             {related.map((r) => (
               <Link href={`/use-cases/${r.slug}`} key={r.slug} className="uc uc--link">
                 <p className="uc__theme">{r.theme}</p>

@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Your incident dashboard is a stopwatch that stops halfway. It clocks how fast you <strong>learn</strong> something is broken — detection in seconds, correlation across the storm, root cause narrated in minutes — then goes quiet for the part that actually drains money: the hand-off to the fix. Optimize time-to-know while time-to-fix stays manual, and you leave most of the wall clock, and most of the downtime bill, untouched.</p></div>
 
-<div class="section-label fade-in">DECOMPOSE THE INCIDENT CLOCK</div>
+<h2 class="section-label fade-in">Decompose the incident clock</h2>
 <div class="fade-in">
 <p>MTTR is sold as a single number, but every incident is really two clocks running back to back. The first is <strong>time-to-know</strong>: the platform sees the anomaly, folds a thousand alerts into one, and tells you what broke and probably why. The second is <strong>time-to-fix</strong>: someone gets paged, drops what they were doing, finds the right runbook, chases a change approval, runs the procedure, then watches to confirm it actually helped rather than making things worse. The vendor slide shows you the first clock. Your customers feel the second.</p>
 <p>Break a real incident into its phases and the asymmetry is impossible to miss:</p>
@@ -15,7 +15,7 @@
 <p>The first four phases are where the industry has poured a decade of engineering, and it shows. The last two — repair and recovery — are where the hours and the dollars actually accrue, and they are precisely the phases most platforms don't touch, because touching them means executing change against systems the platform doesn't own.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE VENDORS THEIR DUE</div>
+<h2 class="section-label fade-in">Give the vendors their due</h2>
 <div class="fade-in">
 <p>None of this lands as honest critique if you pretend the front half is easy or fake. It isn't. Machine-learning anomaly detection with seasonality-aware baselines catches degradations that static thresholds sail straight past — the slow memory creep, the Tuesday-only traffic shape, the metric that reads "fine" in absolute terms but is wrong for this hour. Event correlation genuinely tames alert storms, turning a screenful of symptoms into a single incident. Automated causal RCA really does compress investigation from tens of minutes of dashboard archaeology down to a few. And the newest agentic-SRE tools go further still: they investigate autonomously and produce audit-ready, cited root-cause write-ups fast enough to change how a war room runs.</p>
 <p>Concede all of it. Then read the fine print on the promise. The anomaly-detection pitch is to catch the problem before it fully lands — and it ends by <em>prompting you with suggested next steps</em>. The correlation platform's headline recovery metric, examined closely, is compressed triage and notification, not a restored system. The on-call vendor argues that recovery speed beats shipping speed — then ships you better ways to <em>notify a human</em> about the recovery. Each is excellent at getting a person to the fix faster. None of them is the fix.</p>
@@ -83,13 +83,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE HAND-OFF IS THE TAX</div>
+<h2 class="section-label fade-in">The hand-off is the tax</h2>
 <div class="fade-in">
 <p>Here is the structural line, and it holds regardless of anyone's roadmap. The moment a platform decides what to do, it has to reach a system it does not own to actually do it — a runbook engine, an automation tool, a cloud control-plane API, a ticket for a human. Even the offerings that market themselves as "closed-loop" or "agentic" close the loop by <strong>dispatching across that boundary</strong>. The causal-AI observability platform executes by handing a corrective action to an external system. The agentic SRE investigates brilliantly and then <em>proposes a fix for a human to merge and run elsewhere</em>.</p>
 <p>Both are genuinely advanced, and both stop at the same wall. Dispatching an action to a system you don't control, or proposing a change a human runs somewhere else, is a hand-off — not remediation executed under inline change-control and rollback in the runtime that holds the evidence. And that boundary is where the expensive, invisible work lives: the context switch, the "who can approve this at 2 a.m.," the paste of the wrong environment's variable, the fix that half-works and now needs an un-fix nobody staged. The diagnosis was instant. The resolution waited on a relay race between tools that don't share memory of the incident.</p>
 </div>
 
-<div class="section-label fade-in">THE CFO ISN'T PAYING FOR FEWER ALERTS</div>
+<h2 class="section-label fade-in">The CFO isn't paying for fewer alerts</h2>
 <div class="fade-in">
 <p>Translate the two clocks into money and the priorities invert. For a revenue-critical system, downtime is billed by the minute — in lost transactions, SLA credits, idled staff, and a reputational tail that never fits on a dashboard. Shaving detection from ninety seconds to nine is real engineering, but on the invoice it rounds to nothing next to the forty-five minutes the incident spent waiting on an approval and a careful hand-run procedure. You can drive mean-time-to-acknowledge toward zero and cut alert volume by whatever noise-reduction figure the category likes to quote, and the downtime bill barely moves — because the meter runs until the system is <em>verified healthy</em>, not until someone knows why it's sick.</p>
 <p>That's the uncomfortable part for a buyer sold on the front half: the metrics that improved are not the metrics that cost you. Faster knowing is a prerequisite. Faster <em>fixing</em> is the payout — and it's the half almost nobody is selling.</p>
@@ -97,14 +97,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">CLOSE THE LOOP IN ONE RUNTIME</div>
+<h2 class="section-label fade-in">Close the loop in one runtime</h2>
 <div class="fade-in">
 <p>Entroid is built to erase the boundary, not to relay across it faster. It is a composable process fabric with five primitives on a shared semantic ontology: <strong>Deterministic Workflows</strong> that carry governance and rollback inline, <strong>Intelligence Orchestration</strong> for reasoning, <strong>Atomic Agents</strong> with human-in-the-loop as a first-class control, <strong>Functions</strong> for deterministic logic, and <strong>Connectors</strong> — the only primitive that touches an external system. Because detection, RCA, and remediation all execute on that one fabric, the fix runs in the same runtime that holds the evidence.</p>
 <p>Architecturally, that changes what "closed-loop" means. Command Center's insights and Sherlock's automated RCA don't terminate in a suggestion or a ticket; they hand into a governed Deterministic Workflow that executes the corrective procedure through a Connector — passing an inline change-control gate before it acts, and backed by a health-check-gated rollback that reverses the action automatically if the system doesn't return to health. Every step writes an immutable, per-action record. Nothing crosses a tool boundary, because there is no second tool. Where a human decision should own the call, the human-in-the-loop gate is part of the workflow — not a chat message hoping someone reads it in time.</p>
 <p>Be precise about what this is <em>not</em>: it is not magic that skips integration. ES runs over your existing estate through governed Connectors — the same estate you already operate. The difference isn't that external systems disappear; it's that reaching them is a governed primitive inside one runtime rather than a hand-off to a tool with no memory of the incident. So the illustrative shape of a resolution — hypothetically, a saturated node drained and traffic rerouted, or a bad config rolled forward and then automatically reversed when a health check fails — happens under change-control, with rollback staged before the action runs, and a full per-action trail behind it. That is an architectural property of the design, not a delivered demo result.</p>
 </div>
 
-<div class="section-label fade-in">MEASURE THE HALF THAT COSTS YOU</div>
+<h2 class="section-label fade-in">Measure the half that costs you</h2>
 <div class="fade-in">
 <p>If the argument holds, so must the scorecard. Fewer alerts is a hygiene metric; it tells you the front half is working. The metrics that map to the downtime bill are <strong>mean-time-to-verified-resolution</strong> — the clock that stops only when the system is confirmed healthy, rollback included — and <strong>auto-remediation rate</strong>: the share of incidents resolved by a governed workflow with no human relay in the critical path. Optimize those, and you are finally optimizing the half of MTTR that was actually expensive.</p>
 <p>So ask your incumbent where its recovery number stops counting. If it stops at "notified," or "root cause identified," or "action dispatched," you now know which half of the clock you bought.</p>

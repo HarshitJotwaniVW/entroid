@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>Open any portfolio review and follow one green dot back to where it was born. It does not come from the work. It comes from a person — a delivery lead reconciling a spreadsheet, a project manager clearing a field before the standup — who decided the number and typed <strong>70%, amber, on track</strong>. Every status you have ever read in a project tool is an assertion, made by someone with an incentive, about work happening somewhere else.</p></div>
 
-<div class="section-label fade-in">THE TELL</div>
+<h2 class="section-label fade-in">The tell</h2>
 <div class="fade-in">
 <p>Here is the mechanism, stripped of ceremony. A project-management platform holds a <em>model</em> of your project: a task list, a percent-complete on each task, a RAG color rolled up to the program, a roadmap, a portfolio view. None of those fields fill themselves. Someone updates them. The percent-complete is a human estimate. The color is a human judgment. The word <em>actual</em> in your actuals-versus-plan is, at the point of entry, a claim.</p>
 <p>We rarely say this out loud because the tooling is polished enough to look like instrumentation. A clean burndown, a tidy Gantt, an executive rollup that refreshes on a schedule — it all <em>presents</em> like telemetry. But telemetry reads a sensor. This reads a person. The refresh is real; the number underneath it is opinion rendered as data.</p>
 </div>
 
-<div class="section-label fade-in">WHY THE SURPRISE IS STRUCTURAL</div>
+<h2 class="section-label fade-in">Why the surprise is structural</h2>
 <div class="fade-in">
 <p>This is why status surprises arrive late and land hard. The tool cannot warn you that a workstream is three weeks behind, because the tool never held the workstream. It held a <em>field describing</em> the workstream — and that field is only as current, as honest, and as calibrated as the last person who touched it.</p>
 <p>Consider the incentives, illustratively. The engineer who is quietly stuck reports amber, not red, because red invites scrutiny. The vendor pegs 70% because 70% is defensible and 50% is a conversation. The program lead smooths the rollup because a wall of amber reads as a management failure. No one is lying. Everyone is rounding toward comfort. And the platform faithfully aggregates every rounded number into a portfolio that looks precise and is, underneath, a stack of hopeful estimates reconciled once a fortnight at review. The gap between reported and real does not surface in the tool. It surfaces in the slip.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE TOOLS GET RIGHT</div>
+<h2 class="section-label fade-in">What the tools get right</h2>
 <div class="fade-in">
 <p>None of this makes the category worthless — the opposite. Be honest about what these platforms genuinely earn:</p>
 <ul>
@@ -24,7 +24,7 @@
 <p>Take all of that as real. The wedge is not that these capabilities are weak. It is what they are capabilities <em>for</em>. Every one of them observes, organizes, or predicts work that executes somewhere else. The unified view is a unified view of reported state. The capacity plan is built on estimated allocation. The flow metric measures a stream the tool watches but does not run. The copilot summarizes fields a human filled in. Improve any of them and you get a better <em>picture</em> of the work. You do not get the work.</p>
 </div>
 
-<div class="section-label fade-in">THE RIGHT DIAGNOSIS, HALF-EXECUTED</div>
+<h2 class="section-label fade-in">The right diagnosis, half-executed</h2>
 <div class="fade-in">
 <p>The sharpest move in the category gets the diagnosis right. The strongest of the strategic-portfolio vendors have seen exactly this gap and moved to close it: connect the planning system to the delivery system, pull flow metrics off the actual delivery pipelines, and track strategy-to-delivery end to end so the roadmap and the real work stop drifting apart. That is the correct problem to be solving, and it is genuinely valuable. Concede it plainly.</p>
 <p>Then be equally precise about what the move <em>is</em>. Connecting a planning system to a delivery system with metrics is still two systems joined by measurement. The plan lives in one place. The work executes in another. The flow metrics run along the wire between them, reporting the size of the gap. That is a better bridge over the gap — a real improvement — but it is a bridge, and a bridge presumes two banks. Status is still assembled: partly from fields a human maintains, partly from signals read off a delivery system the planning layer can observe but not govern. Measurement narrows the surprise. It does not remove the seam.</p>
@@ -91,14 +91,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHEN THE PROCESS WRITES THE STATUS</div>
+<h2 class="section-label fade-in">When the process writes the status</h2>
 <div class="fade-in">
 <p>There is a different architecture, and it begins by refusing the seam. Entroid is a composable process fabric: a small set of primitives — deterministic workflows with governance <em>inline</em>, intelligence orchestration, atomic agents with humans-in-the-loop as a first-class step, functions, and connectors as the only primitive that reaches into external systems — running on one runtime over a shared semantic ontology, with an immutable, per-action audit. The PMO capabilities — programs, projects, tasks, trackers, meetings — sit <em>on</em> that fabric rather than beside it.</p>
 <p>The consequence is the whole argument. In this model a project is not a record that <em>describes</em> the delivery work. The project <em>is</em> the delivery work — a composition of deterministic workflows that actually execute the thing being delivered. Because those workflows run on the fabric, status is not a field anyone maintains. It is a query over what has executed. Percent-complete is the proportion of the composition that has actually run. The RAG color is computed from live execution against its governed path. Resource utilization is read from live capacity as work consumes it, not estimated in a planning grid. Portfolio value is computed from delivery in flight, not reconciled from submitted actuals at the quarterly review.</p>
 <p>Two honesties keep this credible. First, this is an <em>architectural</em> property of the design, not an outcome I am claiming for any named deployment — the point is what the structure makes true, not a metric to wave around. Second, the fabric does not pretend your estate does not exist. It runs over that estate through governed connectors, so the systems of record you already depend on stay in the loop. The difference is that the deliverable work now <em>executes on</em> the fabric instead of being described to it.</p>
 </div>
 
-<div class="section-label fade-in">WHAT CHANGES IN THE REVIEW</div>
+<h2 class="section-label fade-in">What changes in the review</h2>
 <div class="fade-in">
 <p>Play it forward to the meeting that started this. When a project is a running composition rather than a reported record, the number in the portfolio review is true because the process wrote it — not because a manager cleared a field before the standup. There is no reconciliation step, because there is nothing to reconcile: the executed work and the reported status are the same object, read two ways. There is no incentive to round, because no one is asked to author the number. And when something is behind, the fabric knows the moment the workflow does — not three weeks later, when the slip becomes undeniable and the color finally turns.</p>
 <p>That is the difference between a tool that <em>tracks</em> your projects and a fabric that <em>runs</em> them. One gives you a faster, prettier, better-forecast picture of work happening elsewhere. The other makes status a byproduct of the work itself, on one runtime, under one audit. For a PMO that has spent years managing the distance between what the dashboard says and what is actually true, closing that distance is the entire product.</p>

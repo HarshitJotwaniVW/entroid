@@ -1,11 +1,11 @@
 <div class="hook fade-in">To understand how work actually happens inside your company, some vendors will ask you to install software on your employees' machines that records their clicks, their keystrokes, and their screens. They call it task mining. <strong>It is the clearest possible admission that they don't own the work — only the ability to watch the people doing it.</strong></div>
 
-  <div class="section-label fade-in">The Tell</div>
+  <h2 class="section-label fade-in">The tell</h2>
   <div class="fade-in"><p>Listen to how these products are sold, and the architecture gives itself away. One vendor pairs process mining with desktop task mining it describes as <em>"full-spectrum"</em> visibility, and frames its mission around connecting people to processes. Another offers desktop task and click discovery alongside its process graph. The rest of the category carries versions of the same capability.</p>
 <p>Now notice what always travels with it: a heavy wrapper of reassurance. Privacy-first. Anonymization. PII masking. You control what's collected. Configurable consent. Works-council-friendly deployment.</p>
 <p><strong>That reassurance is the tell.</strong> A product that measures machine-to-machine transactions doesn't need a privacy manifesto. A product that records what a named employee typed at 2:47pm does. The compliance scaffolding isn't a feature bolted on for trust — it's a confession about what the tool fundamentally <em>is</em>.</p></div>
 
-  <div class="section-label fade-in">Why They Have to Watch</div>
+  <h2 class="section-label fade-in">Why they have to watch</h2>
   <div class="fade-in"><p>The surveillance isn't a design choice. It's forced by where these tools sit. Process mining reconstructs a process <em>after the fact</em> from event logs batch-extracted out of your ERP, CRM and ticketing systems. Those logs contain only the transactions the systems of record chose to write down.</p>
 <p>They do not contain the work <em>between</em> the systems: the spreadsheet someone maintains on the side, the email that authorizes an exception, the copy-paste from one screen into another, the swivel-chair reconciliation that never touches a database. That un-logged work is exactly where cost, risk and delay accumulate — and it leaves no trace in the logs.</p>
 <p>So to see it, task mining instruments the only sensor left: the human. It records the desktop because the desktop is where the invisible work happens. This is <strong>reconstruction by surveillance</strong> — inferring the shape of a process you don't run by watching the people who run it by hand.</p>
@@ -52,13 +52,13 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <div class="section-label fade-in">Auditable by Construction</div>
+  <h2 class="section-label fade-in">Auditable by construction</h2>
   <div class="fade-in"><p>There is a different answer to <em>"how does work actually happen here"</em> — and it requires a camera on no one. Run the work on governed rails.</p>
 <p>In Entroid a process isn't observed from the outside; it <strong>executes inside the fabric</strong> as a composition of five primitives. Deterministic Workflows sequence the steps and enforce the rules. Atomic Agents perform the bounded unit of work at each leaf. Functions expose the calculations and business logic. Connectors are the only primitive that touches an external system, and they do it under authentication, authorization, rate limits and audit. Intelligence Orchestration chooses the path at runtime and owns which agent is permitted to do what.</p>
 <p>Because the work runs <em>here</em>, structure isn't reconstructed after the fact — it is the native exhaust of execution. Every step is captured as authoritative execution data at the moment it happens and bound into an immutable, per-action audit trail. You don't infer who approved an exception from a screen recording; the approval was a governed gate in the workflow, and it either cleared inside its authority limit or it could not happen at all.</p>
 <p><em>Consider a payment-posting agent that clears an incoming remittance.</em> In the observe-only model, you'd learn how the work is done by recording the clerk's screen. In a governed runtime, the agent posts inside a Deterministic Workflow: the segregation-of-duties check, the threshold that forces a human approval above a limit, the Connector write to the ledger — each is a discrete step, each is timestamped, each is bound to the decision that authorized it. The record isn't <em>captured from</em> the employee. It <strong>is</strong> the work.</p></div>
 
-  <div class="section-label fade-in">Watching the Work, Not the Worker</div>
+  <h2 class="section-label fade-in">Watching the work, not the worker</h2>
   <div class="fade-in"><p>For a COO, CHRO or data-protection officer, this is the distinction that matters: auditable-by-construction is not surveillance under a nicer name — and the difference is the entire point.</p>
 <p>Task mining collects <strong>behavioral data about a person on a machine</strong>: keystrokes, mouse paths, application dwell time, screen content. That is employee personal data. It's why the tools ship with consent flows, and why works councils fight over them.</p>
 <p>A governed workflow captures the <strong>process, not the person</strong>: which step ran, which rule fired, which approval cleared, what an agent decided and why. Human-in-the-loop is a first-class property of the runtime — the agent pauses, surfaces its reasoning, takes the human's feedback, and resumes — and that exchange becomes part of the process record, not a recording of someone's desktop.</p>
@@ -71,7 +71,7 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <div class="section-label fade-in">The Question Under the Question</div>
+  <h2 class="section-label fade-in">The question under the question</h2>
   <div class="fade-in"><p>"What are my people doing?" is the question task mining answers. It's the wrong question. The right one is: <strong>why is my process not owned by a system that can execute and govern it?</strong></p>
 <p>Task mining is a flashlight for a building with no wiring. It's indispensable while you're feeling along the walls in the dark — and it becomes pointless the moment the lights come on. Once work runs on a governed fabric, you already hold the blueprint <em>and</em> the live telemetry. There is nothing left to reconstruct, because nothing was ever un-owned.</p>
 <p>So the executive choice isn't "which task-mining tool has the best privacy controls." It's more fundamental: are you buying a sharper instrument for observing the chaos, or a runtime that removes the reason the chaos was invisible in the first place?</p></div>

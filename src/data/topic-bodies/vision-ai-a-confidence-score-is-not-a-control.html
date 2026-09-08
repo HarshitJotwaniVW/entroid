@@ -1,10 +1,10 @@
 <div class="hook fade-in"><p>Every vision vendor will sell you accuracy. Ask them where the <strong>threshold</strong> lives — the number that decides whether a detection auto-acts or stops for a human — and the answer is almost always the same: <em>"Set that in your application."</em> In one sentence, the most consequential control in the entire pipeline gets pushed off the model, out of governance, and into a constant somewhere in downstream code. Unversioned. Unapproved. Unaudited.</p></div>
 
-<div class="section-label fade-in">WHERE THE REAL CONTROL LIVES</div>
+<h2 class="section-label fade-in">Where the real control lives</h2>
 <div class="fade-in"><p>A confidence score is a probability, not a decision. The model tells you it is 0.83 sure the weld is cracked, 0.91 sure the field reads "$48,200," 0.74 sure the figure on the platform edge is inside the exclusion zone. Nothing has happened yet. The <strong>decision</strong> happens at the threshold — the line where "likely enough" becomes "act on it." Above the line, the system moves on its own. Below it, a human should look.</p>
 <p>That line is the single most sensitive control surface in any detection pipeline, because it encodes your entire risk appetite: the cost of a false accept weighed against the cost of a false reject, the regulatory posture of the process, how much being wrong actually costs. Move it two points and you change how much of your quality operation runs without a human in it. And in the prevailing architecture, that line is a number in someone else's code.</p></div>
 
-<div class="section-label fade-in">WHAT THE CATEGORY GETS RIGHT</div>
+<h2 class="section-label fade-in">What the category gets right</h2>
 <div class="fade-in"><p>Give the computer-vision platforms their due, because the wedge here is not that they are unserious — it is that they are seriously good at a narrower problem than the enterprise actually has. Several strengths are real:</p>
 <ul>
 <li><strong>Expert-guided labeling and rapid training</strong> genuinely put computer vision within reach — a domain team can stand up a defect or document model without a research lab.</li>
@@ -16,11 +16,11 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE MAGIC NUMBER PROBLEM</div>
+<h2 class="section-label fade-in">The magic number problem</h2>
 <div class="fade-in"><p>Return a score and delegate the cutoff, and you have quietly relocated your most important control to the worst possible place. The threshold ends up as a literal in an app, a value in a YAML file, a field in a bot's configuration screen. It has no version history. It has no named approver. It has no audit trail that ties a specific decision to the specific cutoff that was in force when the machine made it. When an auditor asks <em>who authorized the system to auto-approve at 0.80, when it moved to 0.72, and on whose sign-off</em>, there is no answer inside the system that actually took the action — at best there is a <code>git blame</code> in a downstream repo and a memory of a Slack thread.</p>
 <p>To be fair, some platforms go further than a bare detector. They "close the loop" — writing the detection into a PLC tag, or piping the extracted fields into an MES, an ERP, or an RPA bot that posts the record. Concede the point honestly: that is genuinely more end-to-end than returning a JSON payload and walking away. But be precise about what closed. The decision-and-action logic was authored <strong>separately</strong> — in a different tool, by a different team, on a different release cadence. No policy travels across that wire; only a value does. And you inherit a <strong>split-brain audit</strong>: one record of what the camera saw, a second record of what the downstream system did, and a human somewhere reconciling the two by hand when something goes wrong.</p></div>
 
-<div class="section-label fade-in">WHEN THE CONTROL MOVES ITSELF</div>
+<h2 class="section-label fade-in">When the control moves itself</h2>
 <div class="fade-in"><p>Now the sharper version. Part of the market advertises models that <strong>adjust their thresholds dynamically</strong> — the accept/reject boundary drifts on its own as the data shifts, sold as "self-tuning quality." Read that as a controls engineer would: a control is silently changing its own set point, with no approval step and no rollback. Under an audited quality regime — regulated manufacturing, validated systems, anything where you must prove the control was in a known state — this is not a feature, it is a finding waiting to happen. You cannot demonstrate the control was validated <em>at the moment of the decision</em> if the control is free to move between decisions without a trace.</p>
 <p>Illustratively — and this is hypothetical, not a claim about any deployment — picture a regulated line where the reject threshold drifts down overnight to chase a yield target. The next morning, borderline units that should have quarantined shipped instead, and there is no versioned record of what the boundary was when each one passed. The math was defensible. The <em>governance</em> was absent. That gap is structural, and it survives any vendor roadmap, because the threshold was never modeled as a governed object in the first place.</p></div>
 
@@ -69,7 +69,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">A THRESHOLD IS A POLICY OBJECT</div>
+<h2 class="section-label fade-in">A threshold is a policy object</h2>
 <div class="fade-in"><p>The fix is not a better number. It is treating the number as what it has always been — a control — and governing it like one. On a composable process fabric, the threshold is not a literal in downstream code. It is a <strong>versioned policy object bound to the Semantic Ontology</strong>, expressed against a business concept the enterprise already agrees on ("invoice-approval confidence," "reject-and-quarantine confidence"), and enforced inline by the Deterministic Workflow that actually takes the action. Three architectural properties follow directly from that design:</p>
 <ul>
 <li><strong>Versioned and approver-gated.</strong> Changing the cutoff is not editing a config value — it is a change to a governed object that runs through approval with segregation of duties. The person tuning the model is not the person who unilaterally lowers the bar for auto-action.</li>
@@ -78,7 +78,7 @@
 </ul>
 <p>A self-adjusting threshold, in this frame, isn't forbidden — it's <em>governed</em>. An adjustment becomes a proposed, approved, versioned event with a rollback point, not a silent drift. The intelligence can still recommend; the control still changes only under authority.</p></div>
 
-<div class="section-label fade-in">DETECTION TO GOVERNED ACTION</div>
+<h2 class="section-label fade-in">Detection to governed action</h2>
 <div class="fade-in"><p>Step back to the shape of the whole thing. The computer-vision platforms label, train, deploy, and serve a model that <strong>returns a detection</strong>, then hand that detection to a separate system that acts on it without inline oversight. Entroid runs the vision model as a governed <strong>Function inside the executing process</strong>. The detection is consumed by a Deterministic Workflow that acts on it under inline controls, and the action reaches your real systems through a governed Connector — the one primitive that touches the outside world, running over your existing estate. This is emphatically <em>not</em> a claim of zero integration; it is a claim about <em>where the governance sits</em> relative to the wire.</p>
 <p>So the loop closes on one runtime, as one accountable transaction: <strong>detect → decide → act → audit</strong>. Illustratively and hypothetically — a high-confidence defect triggers a governed quarantine-and-rework workflow rather than a signal into a PLC that reworks blind; a high-confidence invoice field feeds a governed posting with segregation of duties rather than an extraction dropped into a bot that books it unchecked. In both, the confidence gate, the human fallback, the action, and the record are the same governed transaction — not a signal thrown over a wall into a system that acts without oversight.</p></div>
 

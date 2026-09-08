@@ -1,6 +1,6 @@
 <div class="hook fade-in">Somewhere in your estate right now, a column wears a sensitivity label that the engine reading it has never heard of. The modern governance stack runs on tags — a classification applied in a catalog, a label stamped on a column, a policy propagated along a lineage graph so every downstream asset knows the rules. But knowing the rules is not obeying them. <strong>A policy tag is a suggestion. A gate is a control.</strong></div>
 
-<div class="section-label fade-in">WHAT THE TAG STACK GENUINELY SOLVED</div>
+<h2 class="section-label fade-in">What the tag stack genuinely solved</h2>
 <div class="fade-in">
 <p>Credit first, because the category earned it. A decade ago the honest answer to "where is our sensitive data?" was a shrug and a spreadsheet. The data catalogs and metadata platforms fixed that, and fixing it was hard:</p>
 <ul>
@@ -12,7 +12,7 @@
 <p>And at the far end of the category, the strongest architecture goes beyond description altogether: the query-time access-control vendors enforce policy in the read path of the platforms they front — attribute-based policy, row- and column-level security, dynamic masking, every query authorized and logged. That is enforcement, not documentation, and it deserves to be respected as such. Hold that thought; its boundary turns out to be the most instructive fact in this entire category.</p>
 </div>
 
-<div class="section-label fade-in">KNOWING THE RULES IS NOT OBEYING THEM</div>
+<h2 class="section-label fade-in">Knowing the rules is not obeying them</h2>
 <div class="fade-in">
 <p>Now look mechanically at what a policy tag is. It is a row in a metadata store. It asserts that a classification applies to an asset and that a policy <em>should</em> govern it. It does not govern anything. Between the tag and the behavior of any engine that touches the data stands an integration: a connector that pushes the label down, an enforcement hook inside the engine that consumes it, and a decision — made system by system, budget cycle by budget cycle — to wire the two together and keep them wired.</p>
 <p>The propagation pitch makes this sharper, not softer. "Tag once and it propagates along lineage to every downstream asset" is the category's proudest line, and read carefully, it describes the problem. What propagates is the <strong>description</strong> of the rule. Every hop along the lineage graph delivers the tag to another asset in another engine, and each of those engines must independently choose to honor it. Propagation multiplies the number of places the rule is <em>known</em>. It does not add a single place where the rule is <em>enforced</em>.</p>
@@ -27,7 +27,7 @@
 <p>None of these are implementation bugs that a better rollout fixes. They are the structural consequence of governing from <em>beside</em> the estate. Enforcement that depends on every downstream engine choosing to comply is not enforcement. It is well-organized advice.</p>
 </div>
 
-<div class="section-label fade-in">THE STRONGEST CASE — AND WHERE IT ENDS</div>
+<h2 class="section-label fade-in">The strongest case — and where it ends</h2>
 <div class="fade-in">
 <p>Intellectual honesty requires taking the best version of the counterargument seriously. The query-time access-control pattern is not tag-and-hope: it sits in the read path of the data platforms it integrates with and enforces there. Attribute-based policy replaces role explosion, masking happens dynamically, the query is authorized before rows return, and the log is complete. Inside that perimeter, policy is not a suggestion — this is the one architecture in the category where policy <em>is</em> enforcement.</p>
 <p>So be precise about the perimeter, because the boundary is structural, not a roadmap gap. The pattern governs the data <strong>read</strong>, at the door of the platforms it fronts. Three limits follow from the design itself:</p>
@@ -40,7 +40,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHEN THE MODEL IS THE RUNTIME</div>
+<h2 class="section-label fade-in">When the model is the runtime</h2>
 <div class="scene-img-wrap fade-in"><svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: a catalog beside the estate crawls stores, applies tags, and sends dashed advice arrows to engines that may or may not honor them, while exports leave the perimeter. Right: on Entroid, every data action passes an inline entitlement, quality, and residency gate on the process fabric and emits an immutable per-action record.">
 <defs>
 <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
@@ -113,7 +113,7 @@
 <p>Scope this claim honestly, because over-claiming is how the governance category got here. ES does not require pretending your estate away, and it is not integration-free: it runs over the existing estate through Connectors — the only primitive permitted to touch external systems. That restriction is the point. In the tag model, every integration is a place where enforcement can quietly fail to happen. In the fabric model, the external touchpoint is itself a governed primitive: whatever crosses it is subject to the same inline gate and the same per-action record as everything else. The claim is architectural, not magical — governance is a property of where the action runs, and the design moves the action onto governed ground.</p>
 </div>
 
-<div class="section-label fade-in">AN ENTITLEMENT GATE, ILLUSTRATED</div>
+<h2 class="section-label fade-in">An entitlement gate, illustrated</h2>
 <div class="fade-in">
 <p>A worked example — illustrative by design, not drawn from any deployment. A regional lender runs a retention program: an analyst asks an AI assistant to pull compensation detail for branch staff, build a flight-risk model, and stage salary adjustments for the top decile. A sensitive read, followed by a consequential write.</p>
 <p>In the tag stack, the compensation column is labeled restricted in the catalog, and the label has propagated to the warehouse — where, if a query-time gate is in place, the analyst's direct query genuinely comes back masked. Controlled, so far. But the assistant does not query the warehouse as the analyst; it calls an HR API through a service account provisioned two years ago with broad scope. The extract lands in a notebook, the model scores in a file, and the adjustments are staged in the HR system by a workflow tool whose permissions no catalog has ever seen. Every tag along that path was accurate. Not one of them was consulted.</p>
@@ -122,7 +122,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">NAME THE ENFORCEMENT POINT</div>
+<h2 class="section-label fade-in">Name the enforcement point</h2>
 <div class="fade-in">
 <p>Here is the test to put to your governance stack, and it asks for one sentence per policy: <strong>name the enforcement point.</strong> Not the tag, not the label, not the propagation path — the specific gate, in the execution path, that refuses the out-of-policy action. For some read paths behind a query-time gate, you will have a real answer, and you should keep it. For everything else, the answer will be a description of where the rule is written down. That is a different thing.</p>
 <p>Then ask the two follow-ups. <strong>What happens at the seam?</strong> When the data is exported, copied, cached, or placed in an agent's context, name the control that survives the crossing. And <strong>who governs the action?</strong> When the governed read feeds a posting, an approval, a record change, name the gate standing in front of that. If the honest answer is "a different system, with its own permissions, that our governance stack has never met," then what you have is a well-documented estate and an ungoverned enterprise. The documentation is worth keeping. It is just not the control.</p>

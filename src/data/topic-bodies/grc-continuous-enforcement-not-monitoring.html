@@ -2,7 +2,7 @@
 <p>Continuous monitoring is a smarter flashlight. It sweeps your process outputs faster, samples less, and shrinks the gap between a control breaking and someone noticing it broke. But read the category's own verbs closely — <strong>it flags, it detects, it rolls back, it initiates remediation</strong>. Every one of those words quietly concedes the same fact: the non-compliant action already ran. You are getting faster at handling a breach that already happened.</p>
 </div>
 
-<div class="section-label fade-in">THE VERBS GIVE IT AWAY</div>
+<h2 class="section-label fade-in">The verbs give it away</h2>
 <div class="fade-in">
 <p>The most sophisticated "continuous compliance" pitch on the market has a tense problem — a grammatical one that turns out to be architectural. Read the promises as engineering specifications rather than slogans. "Near-real-time drift detection." A "predictive health indicator" that flags a likely breach and initiates remediation. "24/7 assurance" that catches a configuration change and rolls it back. Strip the adjectives and every one describes the same loop: <em>observe state, compare it to policy, react.</em> The word "continuous" only tells you how often the loop spins. It says nothing about whether the action it is watching has already committed. The verbs settle that question for us:</p>
 <ul>
@@ -14,7 +14,7 @@
 <p>Faster is better; nobody sensible argues otherwise. But the event these systems keep getting faster at handling is, by their own description, a breach that has already occurred.</p>
 </div>
 
-<div class="section-label fade-in">WHAT MONITORING ACTUALLY BUYS YOU</div>
+<h2 class="section-label fade-in">What monitoring actually buys you</h2>
 <div class="fade-in">
 <p>I won't wave this away, because the value is real and controls people can smell a strawman from across the room. Reading full populations instead of sampling is strictly, unambiguously better than pulling a couple dozen transactions and extrapolating to the rest. Compressing the drift window from a quarter down to minutes is a large, defensible reduction in risk exposure. Auto-collecting evidence across the estate — logs, configurations, control states pulled by connector rather than chased by a human with a screenshot tool — removes an enormous amount of manual toil, and the automation vendors are directionally right that the large majority of evidence can be gathered without a person in the loop, even as they concede that anything a connector can't reach still gets uploaded by hand.</p>
 <p>Continuous control monitoring is a genuine maturity gain over annual, sample-based testing reconstructed from memory. None of that is marketing air. So the honest critique is <em>not</em> that monitoring is weak. It is that monitoring — however continuous — is architecturally a <strong>detective</strong> control, and a detective control's entire job is to observe a window it can make small but can never make zero.</p>
@@ -76,7 +76,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">A FLASHLIGHT, OR A LIGHT SWITCH</div>
+<h2 class="section-label fade-in">A flashlight, or a light switch</h2>
 <div class="fade-in">
 <p>Here is the move the detection framing quietly skips: instead of watching for the non-compliant action, make it <strong>unable to run</strong>. In a composable process fabric, every process is modeled, executed, and governed as one composition of primitives on a single runtime. The primitive that routes and sequences the work — the deterministic workflow — is the same primitive that enforces the control. Approval gates, segregation-of-duties, entitlement and authority limits, monetary thresholds, mandatory human-in-the-loop checkpoints: these are not policies filed in an adjacent system to be tested next quarter. They are conditions on execution. The Governance, Risk, and Compliance modules sit <em>on top of</em> that same running fabric rather than beside it, so the policy that defines a control and the step that performs the work are not two systems that have to be reconciled after the fact.</p>
 <p>This does not mean tearing out your estate. Governed connectors still read from and write to the ERP, ledger, HR, and ITSM systems you already run — the fabric operates over the existing landscape, not instead of it. What changes is <em>where the decision lives</em>: in the workflow step, not in a downstream system reading the aftermath.</p>
@@ -84,7 +84,7 @@
 <p>One precision, because the category tends to overclaim here and I won't. This is not "only one platform can ever block anything before it runs." Narrow pre-execution blocks do exist — some tools staple one onto specific AI-agent actions riding a third-party runtime, contingent on first discovering that action. The architectural distinction is that here, deterministic inline enforcement is a <strong>native property of the fabric across every process</strong>, not an agent-specific sensor bolted onto someone else's execution — and every action the gate allows carries its own provable record. A bouncer at one door is not the same thing as a rule the building is built around.</p>
 </div>
 
-<div class="section-label fade-in">EVIDENCE STOPS BEING A PROJECT</div>
+<h2 class="section-label fade-in">Evidence stops being a project</h2>
 <div class="fade-in">
 <p>Because the control is the executing step, the proof of it is a byproduct of running rather than a parallel collection exercise. Every action that clears a gate emits an immutable, per-action record at the moment it executes — who acted, on what, against which policy, with which decision — bound to the action itself. That record is population-complete by construction, not sampled: there is no "select a representative subset" step, because every action that ran, ran through the gate. And because the control is expressed once against a shared semantic ontology, that single enforcement projects onto SOX, ISO, NIST, SOC 2, or DORA without being re-implemented per framework. <strong>Enforce once, attest everywhere.</strong></p>
 <p>Even the risk register stops being a document someone maintains on the side — KRIs and heat-maps are computed from live process state rather than re-keyed after the quarter closes. The audit request inverts. Instead of "go collect evidence to prove the control operated across the period," the evidence already exists, because the action was never permitted to execute without satisfying the control.</p>
@@ -92,7 +92,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE CO-LOCATION QUESTION</div>
+<h2 class="section-label fade-in">The co-location question</h2>
 <div class="fade-in">
 <p>The strongest objection deserves a straight answer, not a dodge. One genuinely good design co-locates a governance application on the same shared data model as the operational system where the work happens — risk and control living beside the work, on one platform, instead of stranded in a siloed GRC island reached by a nightly export. That really does beat disconnected GRC: same data, less integration lag, a tighter loop between what happened and what governance sees. Concede it without flinching.</p>
 <p>The distinction is not about any product's internals — it is about a pattern. A shared data model that <em>observes</em> the work is still observing. The governance application reads the operational records, evaluates them, and forms an attestation, which means the operational action executed under its own logic first and governance rendered a judgment about it afterward. Co-location shrinks the distance between action and observation to nearly nothing, which is exactly why it is a good design. But "nearly nothing" is still a detection window, and observing an action remains categorically different from <strong>being the step that performs it</strong>. When the control is the executing workflow gate, there is no second system forming a view of the first. The governed step and the operational step are one step. There is nothing left to reconcile because there was never a gap to open.</p>

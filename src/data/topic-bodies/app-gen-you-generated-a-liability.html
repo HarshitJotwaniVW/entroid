@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>An AI builder just turned your prompt into a working application in an afternoon. That part is real, and it is genuinely impressive. But look closely at what actually landed in your estate: not a governed capability, but a <strong>new, ungoverned artifact</strong> — an app, a service, a repo — that now has to be integrated, secured at runtime, audited, and maintained by someone with a name. You did not generate software. You generated work, and a liability to go with it.</p></div>
 
-<div class="section-label fade-in">THE UNIT OF VALUE IS THE SAME EVERYWHERE</div>
+<h2 class="section-label fade-in">The unit of value is the same everywhere</h2>
 <div class="fade-in">
 <p>Walk the whole category — the vibe-coding prompt-to-app tools, the design-to-code builders, the autonomous coding agents, the legacy-modernization vendors — and you find something they never say out loud: they all ship the <em>same</em> unit of value. Different inputs, different marketing, one deliverable. An artifact.</p>
 <p>And several of the things they do are genuinely good. Be honest about that before you critique it:</p>
@@ -13,7 +13,7 @@
 <p>Now notice what all four have in common. Every one of them describes the <em>artifact</em> — how fast it was produced, how portable it is, how safely it was built. None of them describes what the running artifact is allowed to <em>do</em>. The moment that app exists, it exists outside any runtime you govern. The speed was front-loaded. The liability was back-loaded onto you.</p>
 </div>
 
-<div class="section-label fade-in">WHAT "PRODUCTION-READY" ACTUALLY CLAIMS</div>
+<h2 class="section-label fade-in">What "production-ready" actually claims</h2>
 <div class="fade-in">
 <p>"Production-ready" is the most quietly loaded phrase in the category. One class of builder asserts it and never defines it — so let us define it for them.</p>
 <p>Production-ready is a statement about the <strong>code</strong>. It compiles. It passes the checks. It deploys. It serves traffic without falling over. Every one of those is a property of the artifact. Not one of them is a property of the business <em>action</em> the app takes when it posts a journal entry, approves a payment, edits a customer record, or releases a shipment against your systems of record.</p>
@@ -22,14 +22,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">GOVERNANCE THROUGH ARCHITECTURE — AND ITS EDGE</div>
+<h2 class="section-label fade-in">Governance through architecture — and its edge</h2>
 <div class="fade-in">
 <p>The most sophisticated answer in the category deserves a fair hearing, because it is the right instinct. It reframes governance as <em>architecture, not procedure</em>: system-level constraints where the unsafe action simply is not available, with editing, approving, and publishing modeled as separate, server-side permissions. That is genuinely smart, and it is real. It is strictly better than stapling a policy PDF to a build pipeline and hoping.</p>
 <p>But be precise about the <em>edge</em> of what it governs. Those constraints govern the <strong>build, edit, and publish lifecycle of the generated app</strong> — who is allowed to change the code, and who is allowed to ship it. They do not govern the business actions the running app takes against your systems of record once it is live. The generated app is still a separate artifact; the instant it deploys, its runtime behavior lives outside the permission model that produced it.</p>
 <p>Governing who authored and shipped the code is not the same as governing what the code does at two in the morning against your ledger. Both matter. They are not the same control, and only one of them is the one your auditor will ask about.</p>
 </div>
 
-<div class="section-label fade-in">THE GOVERNANCE-READINESS BAR</div>
+<h2 class="section-label fade-in">The governance-readiness bar</h2>
 <div class="fade-in">
 <p>So set an explicit bar. Before any generated capability is allowed to touch a system of record, six things have to be true. Call it <strong>governance-readiness</strong>:</p>
 <ul>
@@ -43,7 +43,7 @@
 <p>Generate-an-app clears none of these by construction. Every rung becomes a downstream project you now own: wire the SSO, model the roles, instrument the logging, insert the approval step, stand up the audit store, plan the teardown. The artifact arrived in an afternoon. The readiness did not arrive at all. This is why the category quietly concedes that a meaningful share of what it generates becomes <em>shadow IT</em> the moment it ships — ungoverned capability, live in production, that nobody signed up to operate.</p>
 </div>
 
-<div class="section-label fade-in">INVERT THE UNIT</div>
+<h2 class="section-label fade-in">Invert the unit</h2>
 <div class="fade-in">
 <p>The fix is not a better artifact. It is a different <em>unit</em>. Change what gets generated.</p>
 <div class="scene-img-wrap fade-in"><svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generating an app produces a new artifact that becomes a silo you must govern yourself, versus generating a governed process on one fabric where governance is built in">
@@ -88,7 +88,7 @@
 <p>Be equally honest here: this is not zero integration, and anyone who tells you it is has learned nothing from the artifact trap. The generated process runs <em>over</em> your existing estate through governed Connectors; the systems of record stay yours. What changes is <strong>where the governance lives</strong> — inside the generated process, enforced on the actions it executes — rather than stapled to an artifact after it has already shipped.</p>
 </div>
 
-<div class="section-label fade-in">WHAT CHANGES WHEN THE PROCESS IS THE DELIVERABLE</div>
+<h2 class="section-label fade-in">What changes when the process is the deliverable</h2>
 <div class="fade-in">
 <p>Invert the unit and the loaded phrase finally means something. "Production-ready" stops meaning <em>the code compiles and deploys</em> and starts meaning <strong>the business action is governed the moment it exists</strong>. There is no separate silo to integrate, no runtime to secure after the fact, no audit trail to reconstruct from logs — because the thing that was generated <em>is</em> the governed runtime.</p>
 <p>You did not receive an artifact to go operate, secure, and eventually apologize for. You received an operable, governed capability. The speed the category is right to celebrate is still there. The liability it quietly hands you is not.</p>

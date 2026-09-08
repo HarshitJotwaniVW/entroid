@@ -1,14 +1,14 @@
 <div class="hook fade-in"><p>The most sophisticated pitch in portfolio management has finally named the real failure: the distance between what leadership decided and what actually shipped. Its remedy is to connect the planning system to the delivery system and measure the flow between them. That is the correct diagnosis. It is also, quietly, an admission — <strong>the moment you build a bridge, you have conceded there are two islands.</strong></p></div>
 
-<div class="section-label fade-in">THE DIAGNOSIS IS RIGHT</div>
+<h2 class="section-label fade-in">The diagnosis is right</h2>
 <div class="fade-in"><p>Start by giving the category its due, because the critique only matters if the strengths are real. A unified view of projects, tasks, and roadmaps genuinely reduces chaos compared with a dozen scattered spreadsheets and a standing status meeting. Capacity and resource planning genuinely help a portfolio leader balance demand against a finite bench. Value-stream and flow metrics genuinely expose where work stalls between the plan and the release. And the AI copilots layered on top genuinely save time — they summarize status, forecast risk, and draft the update no one wants to write.</p>
 <p>The strongest move in the field goes further than any of these features. It correctly locates the wound: not in scheduling, not in reporting, but in the <em>seam between strategic intent and delivered outcome</em>. Its answer is to wire portfolio management to value-stream management, instrument the flow with metrics, and let an executive trace a funded objective all the way to a shipped increment. As a diagnosis of what is broken in the enterprise, that is close to exactly right. Most vendors are still selling a nicer place to store the plan. This one has noticed that the plan and the work have drifted apart, and has set out to reconnect them.</p></div>
 
-<div class="section-label fade-in">BUT A BRIDGE CONCEDES TWO ISLANDS</div>
+<h2 class="section-label fade-in">But a bridge concedes two islands</h2>
 <div class="fade-in"><p>Here is the uncomfortable part, and it is structural rather than a knock on any one product. <strong>Connecting a planning system to a delivery system is still two systems, joined by measurement and human updates.</strong> The plan lives in one tool. The deliverable work executes in another — the delivery platforms, the pipelines, the ticketing systems, the line-of-business applications where the actual output is produced. Flow metrics stretch across the gap between them and <em>observe</em> it. They do not remove it.</p>
 <p>Naming the bridge is the tell. You only build a bridge across water you have accepted you cannot drain. The metric that reports how long an item took to cross from planning to delivery is genuine, useful signal — and it exists precisely because planning and delivery are two places. The better the instrumentation gets, the more precisely it describes a distance that remains. That is progress in measuring the problem, not in dissolving it.</p></div>
 
-<div class="section-label fade-in">EVERYTHING EXPENSIVE LIVES ON THE BRIDGE</div>
+<h2 class="section-label fade-in">Everything expensive lives on the bridge</h2>
 <div class="fade-in"><p>Once you accept two systems of record, a predictable set of costs takes up residence in the span between them. None of these are failures of effort or product quality. They are what a bridge <em>is</em>.</p>
 <ul>
 <li><strong>Status is a manual update.</strong> Someone reads the state of the real work in the delivery system and re-enters it as percent-complete or a RAG color in the plan. The readout is a human keystroke, and it is only as fresh and as honest as the person typing it.</li>
@@ -76,11 +76,11 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY THE SEAM IS STRUCTURAL, NOT A ROADMAP GAP</div>
+<h2 class="section-label fade-in">Why the seam is structural, not a roadmap gap</h2>
 <div class="fade-in"><p>It would be lazy to argue that the leaders simply have not finished the work — that one more release, one more connector, one more model closes the gap. That is not the shape of the problem. The gap is not a missing feature; it is the direct consequence of an architecture with <strong>two runtimes</strong>. A planning system executes its own logic — the schedules, the roll-ups, the approvals. A delivery system executes the real output. As long as those are two runtimes, integration can only pass information between them. It cannot make one be the other.</p>
 <p>This is why the critique survives any roadmap. However good the bridge becomes — richer metrics, tighter sync, smarter forecasting — it remains a description of two systems staying loosely in agreement. The plan is never the thing that runs; it is the thing the running work is compared against. Perfect integration is still integration, and integration is the word we use for the seam we have agreed to live with.</p></div>
 
-<div class="section-label fade-in">ONE FABRIC, SO THERE IS NOTHING TO CONNECT</div>
+<h2 class="section-label fade-in">One fabric, so there is nothing to connect</h2>
 <div class="fade-in"><p>Entroid is built on the opposite premise: not two runtimes bridged, but one. It is a composable process fabric with five primitives — deterministic workflows with governance inline, intelligence orchestration, atomic agents with human-in-the-loop as a first-class step, functions, and connectors — over a shared semantic ontology, on one runtime, with an immutable per-action audit. The PMO modules — programs, projects, tasks, trackers, meetings — sit <em>on</em> that fabric rather than beside it.</p>
 <p>The architectural consequence is the whole argument. In ES, a project's deliverable work executes <strong>as governed workflows on the same fabric as the plan</strong>. The project is not a record that points at the work; the project <em>is</em> the composition of primitives that deliver it. Because strategy, programs, and projects are built from the same primitives that carry out the delivery, there is no plan-versus-delivery boundary for a bridge to span. Follow that through to what it does to the costs that lived on the bridge:</p>
 <ul>
@@ -90,7 +90,7 @@
 </ul>
 <p>These are properties of the design, not claims about a customer's quarter. State them as architecture: when the deliverable work and the plan share one runtime, drift has nowhere to accumulate and reconciliation has nothing to reconcile, because there are not two states to bring back into agreement.</p></div>
 
-<div class="section-label fade-in">THE HONEST BOUNDARY</div>
+<h2 class="section-label fade-in">The honest boundary</h2>
 <div class="fade-in"><p>The one thing this argument must not become is the very over-claim it critiques. ES does not pretend your estate disappears, and it is not a rip-and-replace fantasy where every existing system is thrown away. It runs over the enterprise you already have — through governed connectors, the only primitive that touches external systems. That is a real dependency, stated plainly.</p>
 <p>But notice the difference in <em>kind</em>. A bridge syncs status between two systems of record, each executing its own logic, and leaves you managing the agreement between them. A governed connector brings an external system into <strong>one runtime under inline governance and one audit</strong>, so the external step becomes part of the composition that runs rather than a second island to reconcile against. Consider it illustratively: a portfolio review where the numbers on the screen are computed from work still executing, rather than typed in the night before — not because the tool tried harder, but because the work and the view are the same system. That is a hypothetical of the architecture, not a delivered result. The claim is about where the work runs, and therefore where the truth lives.</p></div>
 

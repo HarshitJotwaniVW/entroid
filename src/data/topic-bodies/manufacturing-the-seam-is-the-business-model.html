@@ -1,19 +1,19 @@
 <div class="hook fade-in">Before your next platform evaluation, skip the keynote and read the price list for everything sold <em>around</em> the software: an integrator channel to build and maintain the connections between MES, ERP, and quality systems; a certification curriculum to operate them; a standing webinar cadence to absorb each release's integration changes; and — most telling of all — product features whose entire purpose is to notify you when a message between two systems fails to arrive. <strong>The seams between planning, production, quality, and logistics are not a side effect. They are a monetized layer — and you fund it twice.</strong></div>
 
-<div class="section-label fade-in">FIRST, THE CREDIT</div>
+<h2 class="section-label fade-in">First, the credit</h2>
 <div class="fade-in">
 <p>Be fair to the category before auditing it. Digitizing frontline work genuinely beat paper: dynamic work instructions, digital logbooks, and no-code apps built by the engineers closest to the work are real wins, not vendor theater. MES and MOM genuinely brought order, routing, and electronic batch records to production. The cloud MES suites genuinely unified plant data with ERP context. The maintenance platforms turned work orders into governed, auditable objects. And the composability critique of monolithic MES is correct — rigidity is a real disease, and incremental, app-based adoption is a legitimate cure.</p>
 <p>Nothing in this argument disputes those wins. This argument is about what the industry built <em>on top of</em> what it never fixed — and who pays for it.</p>
 </div>
 
-<div class="section-label fade-in">READ THE CATALOG, NOT THE KEYNOTE</div>
+<h2 class="section-label fade-in">Read the catalog, not the keynote</h2>
 <div class="fade-in">
 <p>Every observation that follows comes from the category's own public materials — the partner pages, the training catalogs, the release notes. Look at what is actually for sale around the software. A partner ecosystem whose flagship service line is building and maintaining the connections between the MES, the ERP, and the quality system. A certification track, courses deep, much of whose subject matter is the care and feeding of those connections. Release notes that enumerate the manual activities required to keep integrations working after each upgrade. And product features — marketed as capabilities — whose function is to alert you when a cross-system message fails.</p>
 <p>Read that last one again, because it is the confession written in product. A one-off defect gets a bug fix. A permanent operating condition gets a feature. When a vendor ships a notification for failed cross-system messages, the failure has been accepted as a standing property of the architecture — and given a user interface instead of a resolution.</p>
 <p>Even the category's most credible modernization — no-code applications composed incrementally by the process engineers themselves, positioned explicitly against monolithic MES — governs the <strong>authoring</strong> layer: who builds apps, how they are versioned, templated, and promoted. That is real progress, and it deserves the credit it gets. But each new app "connected to" the ERP is one more surface where a hold, a disposition, or a revision change must be kept consistent with systems the platform does not govern. The vendors' own adoption guidance says as much: it advises buyers to stand up a governance framework so the growing app portfolio doesn't tangle into sprawl. Governance is assigned to you as homework. So is the seam.</p>
 </div>
 
-<div class="section-label fade-in">THE INVOICE YOU PAY TWICE</div>
+<h2 class="section-label fade-in">The invoice you pay twice</h2>
 <div class="fade-in">
 <p>The first payment is visible. Licenses. Integration projects. Integrator retainers. Certification seats. The upgrade tax, paid every time an interface changes and the mappings must be rebuilt. A CFO can find these numbers, even scattered as they are across IT and operations budgets.</p>
 <p>The second payment hides in plain sight: reconciliation labor and decision latency. Consider a purely illustrative afternoon on any stitched stack. A lot fails inspection mid-shift. The MES flags the WIP. Quality opens a nonconformance in the QMS. The ERP, meanwhile, still shows the inventory as available until someone blocks it — and planning will consume that lot into tomorrow's schedule unless someone intervenes. The disposition — the one decision that actually matters — executes as people ferrying a status across three systems, followed by a reconciliation to confirm the flags agree. Multiply that by every hold, every rework release, every changeover approval, every expedite, every shift, every plant.</p>
@@ -22,7 +22,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY THE TCO SLIDE IS SILENT</div>
+<h2 class="section-label fade-in">Why the TCO slide is silent</h2>
 <div class="fade-in">
 <p>The cloud generation of manufacturing software claims lower total cost of ownership, and directionally, for what it prices, the claim is fair: someone else patches the servers, upgrades arrive managed, capacity scales without capital requests. But notice what the TCO story counts — hosting economics — and what it never prices: the seam costs. Integration builds sit in the IT project budget. Integrator retainers sit in services OpEx. Reconciliation sits in plant indirect labor. Latency sits in scrap, expedite, and inventory. Four budget lines, four owners, no single number — and a cost with no single number survives every cost-reduction program ever run against it.</p>
 <p>There is a structural reason the number never gets assembled for you. An ecosystem that earns revenue on the connections — building them, certifying operators for them, billing when they break — has no commercial incentive to price the seam as a cost. That is not an accusation of bad faith. It is an observation about alignment: <strong>the revenue follows the seams, so the seams persist.</strong></p>
@@ -94,7 +94,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">FEWER SEAMS, NOT CHEAPER SEAMS</div>
+<h2 class="section-label fade-in">Fewer seams, not cheaper seams</h2>
 <div class="fade-in">
 <p>The alternative to expensive seams is not cheaper seam management. It is an architecture in which the consequential action does not cross a seam at all.</p>
 <p>Entroid is built as a Composable Process Fabric: five primitives — Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class construct, Functions, and Connectors — composed on a shared semantic ontology and executed on one runtime, with an immutable audit record emitted for every action. On that fabric, the production process is not documented by the system; it <strong>is</strong> the governed, executing workflow. A quality disposition, a hold and release, a rework release, a changeover approval executes as a single inline-gated, permissioned action that spans planning, production, quality, and logistics on the same runtime. There is no reconciliation step, because the architecture never produces the artifact that needs reconciling: the hold is not three status flags to be synchronized after the fact — it is one action whose effects are one state, with genealogy and per-action audit generated by construction rather than joined from logs afterward.</p>
@@ -103,7 +103,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THREE QUESTIONS FOR YOUR NEXT VENDOR REVIEW</div>
+<h2 class="section-label fade-in">Three questions for your next vendor review</h2>
 <div class="fade-in">
 <p>You do not need an architecture debate to test this argument. You need three questions in the next quarterly business review.</p>
 <ul>

@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Open any cloud-cost platform, find the feature it calls a <strong>budget</strong>, and read what it actually does. It emails you at 50% of a number you set. Again at 75%. At 90%. And once more at 100% — by which point the money that last alert describes is already gone. That is not a budget. A budget is a limit that cannot be exceeded. What these tools ship is a <strong>countdown timer</strong>: an increasingly urgent notification narrating a transaction it has no power to stop.</p></div>
 
-<div class="section-label fade-in">THE WORD DOING THE WORK</div>
+<h2 class="section-label fade-in">The word doing the work</h2>
 <div class="fade-in">
 <p>Give the category its due first, because it has earned most of it. The cost-visibility and allocation tools solved a genuinely hard problem — taking a firehose of billing and usage telemetry and turning it into near-total allocation, every dollar mapped to a team, a service, a unit of output. Showback and chargeback made cloud spend legible to finance for the first time. Unit-economics views tie cost to the thing the business actually sells. Rightsizing and commitment-purchase recommendations routinely surface real money. Anomaly detection catches the runaway job before it bills all weekend. And the shift-left vendors did something harder still — they pushed a cost estimate into the pull request so an engineer sees the price of a change before it merges. None of that is fake, and most of it was hard-won.</p>
 <p>But look closely at the one feature nearly every one of these tools calls a "budget," because the label is carrying more weight than the mechanism can bear. In a household or a general ledger, a budget is an <em>authority</em> — an envelope you are permitted to spend inside and not beyond. In a cloud-cost tool, "budget" names a <em>threshold on a chart</em>: a number that, when your observed spend crosses it, triggers a message. The two words are spelled the same and do opposite things. One refuses. The other reports.</p>
 </div>
 
-<div class="section-label fade-in">A COUNTDOWN, NOT A CONTROL</div>
+<h2 class="section-label fade-in">A countdown, not a control</h2>
 <div class="fade-in">
 <p>The reason this is a countdown and not a control is structural — not a gap a better dashboard closes. Every one of these signals is computed <em>on spend that has already happened.</em></p>
 <ul>
@@ -63,14 +63,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">A GATE AT THE MOMENT OF CREATION</div>
+<h2 class="section-label fade-in">A gate at the moment of creation</h2>
 <div class="fade-in">
 <p>Entroid puts the check in a different place — not a smarter alert, but a different location in the architecture for the decision to live. Provisioning a resource is not an event ES observes after your cloud reports it. It is an <strong>action that executes inside a Deterministic Workflow</strong>, and in ES a Deterministic Workflow enforces governance <em>inline</em>: a budget, authority, and policy check evaluated as a precondition of the act of creation itself.</p>
 <p>Because only one primitive — the <strong>Connector</strong> — ever touches the external cloud, and it acts only after the inline check passes, an over-budget or non-compliant resource simply never gets created. Not created-then-flagged. Not created-then-swept-up by a cleanup loop. Un-created. The budget here is not a line on a chart; it is a <strong>Business Planning</strong> envelope with an owner, modeled in the Semantic Ontology alongside cost-center and policy, and enforced at the provisioning action. And every evaluation — every allow and every deny — is written to the immutable, per-action audit as the gate fires, not reconstructed at month-end.</p>
 <p>State that at the right altitude, without the hype the category rightly gets criticized for. This is an <em>architectural</em> property of where the check sits — a claim about design, not a promised percentage, and not a claim that ES floats above your estate. It runs over your existing cloud through governed Connectors; integration does not vanish. The point is narrower and sharper: the control fires at the moment of creation instead of in a report that sweeps the bill afterward.</p>
 </div>
 
-<div class="section-label fade-in">DENY ON AUTHORITY, NOT JUST A FORECAST</div>
+<h2 class="section-label fade-in">Deny on authority, not just a forecast</h2>
 <div class="fade-in">
 <p>Here is the part a dollar estimate structurally cannot reach. A cost forecast can only ever ask one question — <em>how much will this cost?</em> — and a number is not a decision. A gate at the provisioning action asks two, and both can refuse:</p>
 <ul>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">UN-CREATABLE VS UNDONE</div>
+<h2 class="section-label fade-in">Un-creatable vs undone</h2>
 <div class="fade-in">
 <p>Collapse the timing and the economics change shape. Waste that is <em>prevented</em> at the provisioning action has a remediation cost of zero and never reaches the invoice. Waste that is <em>recovered</em> — detected on a dashboard, ticketed, rightsized or reclaimed by an engineer next sprint — is a slower, weaker outcome that regenerates the moment the next unchecked resource spins up. Much of the recovery industry exists to claw back money a gate would never have let leave.</p>
 <p>For a CFO that reframes the buying question entirely. It is not "how fast does the platform detect the overspend" — detection speed only measures how good your rear-view mirror is. It is "can the budget say no at the moment of spend," which is the only version of a budget that behaves like the word implies. For a CIO or an architect it reframes the control model: you stop buying an ever-smarter detector to chase resources after they exist, and move the decision onto the path so there is nothing to chase. And when remediation <em>is</em> warranted — a real rightsizing or reclaim — ES runs it as a governed, reversible, per-action-audited action in the same runtime, with human-in-the-loop as a first-class checkpoint, rather than a recommendation that rots in a backlog.</p>

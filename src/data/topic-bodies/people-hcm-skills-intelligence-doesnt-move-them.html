@@ -2,13 +2,13 @@
   <p>You built the skills map. In near real time you can see who holds which capabilities, who has the adjacency to step into the open role, who is one learning path away, and where you should hire rather than reach inside. That is a genuine achievement — and it is also, quietly, where the value proposition stops. <strong>Knowing who could move is not the same as moving them.</strong></p>
 </div>
 
-<div class="section-label fade-in">THE MAP IS REAL</div>
+<h2 class="section-label fade-in">The map is real</h2>
 <div class="fade-in">
   <p>Start by giving the skills-based strategy its due, because it earned it. The shift from a rigid job architecture to skills-as-currency was real progress. A live inventory of capabilities across the workforce, a match score against an open requisition, a recommended learning path that turns a gap into a route — these are hard problems, and the category solved a meaningful part of them. For a talent leader trying to cut external hiring, shorten time-to-fill, and retain people by showing them somewhere to go, that visibility genuinely matters.</p>
   <p>So this is not a piece about how the map is wrong. The map is right. The signals are useful. The intelligence, in many cases, is excellent. The argument is narrower and sharper than "the technology disappoints": <strong>the map's value proposition ends at the edge of knowing</strong> — and the thing you actually care about, the person landing in the new role, begins on the far side of that edge.</p>
 </div>
 
-<div class="section-label fade-in">WHERE THE MAP STOPS</div>
+<h2 class="section-label fade-in">Where the map stops</h2>
 <div class="fade-in">
   <p>Watch what happens the moment a recommendation appears. The system surfaces a strong internal match and says, in effect, <em>consider redeploying this person</em>. Everything after that word "consider" is a manual, cross-system project:</p>
   <ul>
@@ -106,13 +106,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHY "SEE THE SKILLS" AND "MOVE THE PERSON" LIVE APART</div>
+<h2 class="section-label fade-in">Why "see the skills" and "move the person" live apart</h2>
 <div class="fade-in">
   <p>Here is the part worth being precise about, because it is structural, not a defect a better model will one day patch. The skills graph sits <em>on top of</em> a system of record for people data. Its job — its architecture — is to know and to recommend. "Unified," in that world, means unified <strong>data</strong> and a unified <strong>view</strong> within the HR domain: one place to see capabilities, history, and matches. That is real and useful. But the moment a recommendation must become an action in the comp system, the access layer, the learning platform, and the org chart, it crosses out of the domain that produced it — as a handoff. The record was unified. The work was not.</p>
   <p>And credit where it is due to the most capable version of this pattern. The closest thing to execution today is the workforce cloud that natively spans HR and IT and can provision applications and devices as someone is onboarded. That is genuinely more than a record update — it is real automation, and a pure system of record cannot claim it. But provisioning inside one suite's own two domains is still records-plus-point-automations bolted to the record. A redeployment does not respect suite boundaries: it reaches into learning, compensation, access governance, facilities, payroll, and a manager's queue at once. Automating the slice that happens to sit inside the suite, and handing off the rest, is not the same as running the whole process as one governed thing. The line isn't "they can't automate anything." The line is that <strong>the automation stops at the suite's own fences, and the people process doesn't.</strong></p>
 </div>
 
-<div class="section-label fade-in">FROM RECOMMENDATION TO GOVERNED ACTION</div>
+<h2 class="section-label fade-in">From recommendation to governed action</h2>
 <div class="fade-in">
   <p>Entroid closes the gap by moving the target. On a Composable Process Fabric, talent mobility is not a recommendation that kicks off a project. It is modelled, executed, and governed as one thing — a Deterministic Workflow composed from five primitives, running in a single runtime:</p>
   <ul>
@@ -128,7 +128,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT CHANGES FOR THE TALENT LEADER</div>
+<h2 class="section-label fade-in">What changes for the talent leader</h2>
 <div class="fade-in">
   <p>The strategic point is not "our AI is smarter." The intelligence can be identical. What changes is that the recommendation and the redeployment live on the same fabric under the same governance, so the cost and latency of actually moving someone collapse — and the cost and latency of moving people is precisely what has been capping the return on every skills investment.</p>
   <p>Consider, purely illustratively, a support engineer whose capability profile flags her as a strong adjacency for an open solutions-architect role. In the map-only world, that insight becomes a memo and a to-do list: someone opens the req, someone drafts the comp change and chases sign-off, someone requests the new access, someone enrolls her in the bridge learning path, and the calendar does the rest. In the fabric world, that same match enters a governed workflow: the entitlement and segregation-of-duties checks run inline at the gate, the comp adjustment clears its threshold with the right approval, Connectors provision the access and enroll the path, the reporting line updates — and every one of those actions lands in a single per-action audit. This is an architectural illustration of how the design behaves, not a reported deployment or a promised result — but it is what "one governed workflow" actually means in motion.</p>

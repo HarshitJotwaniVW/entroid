@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Bring your best conversational-AI vendor into a control review and pick a single action it took last quarter — a refund released, a credit posted, an account reopened. Then ask three plain questions: which spoken sentence triggered it, under whose authority it ran, and which control decided to let it through. What comes back is a transcript, a reasoning trace, a per-agent policy log, or a quality score on a sampled call. <strong>Every one of those describes what was said or what the model thought. None of them records what was done — or why it was allowed to happen.</strong></p></div>
 
-<div class="section-label fade-in">THE QUESTION IN THE ROOM</div>
+<h2 class="section-label fade-in">The question in the room</h2>
 <div class="fade-in">
 <p>An examiner — internal audit, a regulator, a disputing customer's counsel — does not reconstruct a conversation. They reconstruct a <em>chain</em>. For one action, five links have to hold: the <strong>trigger</strong> (which input initiated it), the <strong>authority</strong> (whose identity and entitlements it ran under), the <strong>control</strong> (which gate evaluated it and what it decided), the <strong>effect</strong> (what actually changed in the system of record), and <strong>integrity</strong> (that the record is complete and has not been edited after the fact). Provenance is that chain, intact and replayable. Everything else is a story <em>about</em> the chain.</p>
 <p>Here is the uncomfortable part. Most conversational-AI platforms were never built to produce that chain. They were built to converse, contain, and resolve — and to be measured on exactly that. So when the question turns from "did it resolve?" to "can you prove what it did?", the artifacts they hand you were engineered to answer a different question entirely. They are not lying to you. They are showing you the only evidence their architecture knows how to keep.</p>
 </div>
 
-<div class="section-label fade-in">FOUR ARTIFACTS, ONE BROKEN CHAIN</div>
+<h2 class="section-label fade-in">Four artifacts, one broken chain</h2>
 <div class="fade-in">
 <p>Walk the artifacts one at a time, and give each its due before naming where it breaks the chain — because each is genuinely good at something, just not at this.</p>
 <ul>
@@ -20,7 +20,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">EXPLAINABILITY OF THE MODEL VS. PROVENANCE OF THE ACTION</div>
+<h2 class="section-label fade-in">Explainability of the model vs. provenance of the action</h2>
 <div class="fade-in">
 <p>This is the distinction the category blurs, and it is worth making sharp. <strong>Explainability is a claim about the model:</strong> here is a plausible account of why the system produced this output. It is model-centric, probabilistic, and reconstructed after the fact. <strong>Provenance is a claim about the action:</strong> here is the input that triggered it, the identity that authorized it, the control that permitted it, and the effect it produced — recorded as it happened, immutable, replayable.</p>
 <p>Explainability helps you improve the model. Provenance lets you stand behind the action when someone with subpoena power asks you to. Regulated action needs provenance, not explainability. The strongest audit story in this market today is, on inspection, an explainability story wearing an audit vest — traceable reasoning steps and traceable config, made visible per agent. Impressive engineering. Just not a record of which utterance became which authorized effect.</p>
@@ -82,7 +82,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">VOICE: WHERE THE EVIDENCE EVAPORATES</div>
+<h2 class="section-label fade-in">Voice: where the evidence evaporates</h2>
 <div class="fade-in">
 <p>Voice is where the gap stops being an inconvenience and becomes unrecoverable, because the trigger itself is ephemeral. The utterance is a pressure wave that exists for a second and is gone. If it is not bound to the action <em>at the instant the action is proposed</em>, there is nothing to reconstruct from later. The audio may be transcribed lossily, retained in part, or not retained at all — and the action fired through an external API the platform could not gate as it happened.</p>
 <p>Forensics on a partial recording is not provenance; it is guesswork with a waveform attached. And the actions voice agents are increasingly trusted with — moving money, changing entitlements, releasing goods — are precisely the irreversible ones where "we will reconstruct it later" is not a plan. You cannot un-wire a transfer with a good reasoning trace.</p>
@@ -90,7 +90,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT A BOUND TRAIL ACTUALLY IS</div>
+<h2 class="section-label fade-in">What a bound trail actually is</h2>
 <div class="fade-in">
 <p>The architectural difference is not a better logger. In Entroid a conversational agent is not a standalone product sitting on top of your systems; it is an <strong>Atomic Agent</strong> — a first-class primitive — executing inside one governed runtime. The audit is a byproduct of how execution works, not a report assembled afterward. Walk the same five links:</p>
 <ul>
@@ -102,7 +102,7 @@
 <p>None of this pretends ES avoids integration. It executes over your existing systems, through governed Connectors. The difference is that those touchpoints sit <em>inside</em> the governed path rather than hanging off the side of it — which is exactly why the trail can bind an utterance to an authorized effect instead of narrating one.</p>
 </div>
 
-<div class="section-label fade-in">THE STANDARD THAT MATTERS</div>
+<h2 class="section-label fade-in">The standard that matters</h2>
 <div class="fade-in">
 <p>When the question moves from "does it converse and resolve well?" to "can it be trusted to <em>act</em> — correctly, authorized to the caller's real entitlements, provably, every time, across any enterprise process and not just the support queue?" — a transcript, a reasoning trace, and a sampled score are all fluent answers to the wrong question. The right answer is not something you generate on demand when an examiner arrives. It is a chain that was already there, because the action could not have executed any other way.</p>
 </div>

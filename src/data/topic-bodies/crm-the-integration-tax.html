@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Count the connectors. The number is meant to impress — a library of prebuilt agent actions quoted in the hundreds of thousands, an open standard so anything plugs into anything, "connect once and relay requests to external systems." It is sold as openness, as customer choice, as freedom from lock-in. But a connector mesh that large is not a feature. It is a confession: <strong>the customer lifecycle already spans systems that must call each other</strong>, and every call is latency, a partial failure, state drift, and one more governance boundary nobody owns end to end.</p></div>
 
-<div class="section-label fade-in">THE OPENNESS IS REAL — START THERE</div>
+<h2 class="section-label fade-in">The openness is real — start there</h2>
 <div class="fade-in">
 <p>Concede the strong version first, because an expert reader will stop reading the moment you don't. A unified customer record and a 360 view genuinely reduce fragmentation — one place where the contact, the deal, the case, and the campaign finally agree on who this customer is. Pipeline management and activity logging genuinely run a sales org. An agent grounded in trusted CRM data really is better than a bolted-on bot: it drafts the outreach, scores the lead, summarizes the case history, and it does so on a record it can be reasonably sure is current. And not having to hand-build the connective tissue between your systems is a real relief — the shared-context pitch, the open-standard action catalog, the "relay to any external system" promise all address pain that is genuinely expensive.</p>
 <p>So this is not an argument that the agentic-CRM platforms are weak. The closest competitor makes a sharp claim: because it owns the record, the data foundation, <em>and</em> the agentic layer, its agents act on trusted data and get real work done. That is a coherent, integrated position, and it is better than most of the market. The disagreement is narrower and more structural — and it is exactly the thing the connector count reveals.</p>
 </div>
 
-<div class="section-label fade-in">A CONNECTOR IS A SEAM WITH GOOD MARKETING</div>
+<h2 class="section-label fade-in">A connector is a seam with good marketing</h2>
 <div class="fade-in">
 <p>Here is the reframe. The size of the action catalog and the breadth of the connector library are quoted as evidence of power. Read them the other way: <strong>a platform needs a hundred thousand relays because a hundred thousand things live outside it.</strong> Every connector in that catalog exists because a step of the customer lifecycle executes in a system the CRM does not run. The count is not a measure of reach. It is a census of the boundaries the vendor has to cross — and each crossing is a place where its data, its rules, its permissions, and its audit trail stop being in force.</p>
 <p>Notice how the promise is scoped. "Same data, same rules, same permissions, same audit trails" is a claim made <em>per application</em> — true inside each app the vendor owns, and re-asserted at every hop. But a customer lifecycle is not a single app. A quote-to-cash flow crosses the CRM, the order system, the billing engine, and the fulfillment or provisioning platform — four systems whose state is reconciled <em>after the fact</em>. "Consistent across all of them" is not a property the architecture provides; it is a batch job that runs later and hopes to agree. The single pane of glass makes four systems feel like one. They are not one. They are a coordinator narrating three systems it does not own.</p>
@@ -67,7 +67,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WATCH ONE ORDER CROSS FOUR SYSTEMS</div>
+<h2 class="section-label fade-in">Watch one order cross four systems</h2>
 <div class="fade-in">
 <p>Take a customer who upgrades a plan — one action, from the customer's point of view. Behind the pane of glass, that action becomes a relay chain. The CRM writes the opportunity as closed-won and fires the agent action. The agent relays a request to the order system to create the order. The order system relays to billing to rate and invoice. Billing relays to the provisioning platform to actually turn the service on. Four commits, four systems, four moments where the thing can be true in one place and not yet true — or never true — in the next.</p>
 <p>Every relay in that chain is a documented failure mode, not a hypothetical:</p>
@@ -81,7 +81,7 @@
 <p>None of these is a bug in a specific product. They are the ambient physics of coordinating systems that each hold their own truth and commit on their own terms. The connector is where the vendor's guarantee ends and the estate's uncertainty begins.</p>
 </div>
 
-<div class="section-label fade-in">THE AUDIT TRAIL THAT ISN'T ONE</div>
+<h2 class="section-label fade-in">The audit trail that isn't one</h2>
 <div class="fade-in">
 <p>Now ask the question a CISO or an auditor eventually asks: <em>show me the full history of that upgrade.</em> On a connector-mesh architecture, there is no single answer object. There is the CRM's activity log, the order system's transaction log, billing's ledger, and provisioning's event stream — four logs, four clocks, four schemas, four identifiers for the same customer. "Same audit trails" was true inside each app and false across the lifecycle. To reconstruct what happened you run a <strong>reconciliation project</strong>: join the logs on keys that don't quite match, infer causality from timestamps that don't quite align, and produce a narrative that is a reasonable guess rather than a record of what occurred.</p>
 <p>That is the integration tax in its purest form. It is not paid once at build time; it is paid forever — every incident review, every dispute, every regulator request, every "who changed this and were they allowed to" becomes a stitching exercise across systems that were never designed to tell one story. The multi-agent orchestrator and the shared-context layer reduce how much connective tissue <em>you</em> hand-build. They do not remove the seams. They move them behind an abstraction, where they are harder to see and exactly as consequential when one of them tears.</p>
@@ -89,7 +89,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHEN THERE'S NOTHING INTERNAL TO CONNECT</div>
+<h2 class="section-label fade-in">When there's nothing internal to connect</h2>
 <div class="fade-in">
 <p>Entroid attacks the tax at its root, which is architectural, not clever. The customer lifecycle — order-to-fulfill, quote-to-cash, case-to-resolution, onboarding, renewal — is modeled as <strong>one governed Deterministic Workflow on one runtime</strong>, spanning what used to be CRM, order, billing, fulfillment, and support. The Customers modules (CRM, Orders, Catalog, Subscribers, Contact Center, Case Management, Campaigns) are not separate systems relaying to each other; they are compositions on the same fabric, over a shared Semantic Ontology. Because the model is shared, there is no context to <em>sync</em> — the drift-and-reconcile loop has nothing to loop over.</p>
 <p>The consequences follow directly from the primitives, and they are properties of the design rather than outcomes claimed for a customer:</p>
@@ -102,7 +102,7 @@
 <p>Be precise about the boundary, because over-claiming here would be the same sin. ES does not eliminate integration. Genuinely external systems of record — a partner's platform, a regulator's gateway, a system the enterprise does not own — are still reached through governed Connectors, and that is real work. The claim is narrower and defensible: <strong>no internal seams, and one governance-and-audit plane across the lifecycle.</strong> The connector count stops being the product because most of what a mesh architecture connects is internal — steps of one process that never needed to be separate systems calling each other in the first place.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE CIO IS ACTUALLY BUYING</div>
+<h2 class="section-label fade-in">What the CIO is actually buying</h2>
 <div class="fade-in">
 <p>So weigh the two purchases honestly. One is a superbly integrated system of record with a large, open agentic layer that acts on trusted CRM data and relays the rest — and inherits a reconciliation tax that scales with the connector count and never fully retires. The other runs the lifecycle as one governed workflow, pays the integration cost only at the genuine external edge, and gives you a single audit spine for the whole customer journey. The first optimizes the seams. The second removes the ones that didn't need to exist. For a CIO staring at the total cost of ownership of a mesh — the retries, the reconciliation jobs, the incident forensics, the "which log is right" meetings — that difference is not philosophical. It is the line item that never stops growing.</p>
 </div>

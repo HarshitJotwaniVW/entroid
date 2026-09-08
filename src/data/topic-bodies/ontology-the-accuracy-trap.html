@@ -1,17 +1,17 @@
 <div class="hook fade-in"><p>Every platform in this category opens with the same slide: a benchmark. Better text-to-SQL. Fewer hallucinations. A multiple on retrieval precision. Higher answer-correctness. It is an impressive number, and it is measuring the wrong thing. <strong>Every one of those metrics scores what an AI says about your data — not whether the action it then takes was allowed, reversible, and logged.</strong></p></div>
 
-<div class="section-label fade-in">ACCURACY IS REAL — AND NECESSARY</div>
+<h2 class="section-label fade-in">Accuracy is real — and necessary</h2>
 <div class="fade-in"><p>Start with what the category gets right, because dismissing it is the fastest way to lose a technical reader. The benchmarks the category advertises are measuring something that genuinely matters. When a semantic layer maps ambiguous business language to the correct tables, text-to-SQL really does get more reliable. When a knowledge graph constrains what a model may retrieve, graph-augmented generation really does cut hallucination. When a governance catalog feeds an agent well-described, permissioned context, the agent's answers really do improve. Grounding works. An AI handed a faithful model of your enterprise says truer things than one guessing from raw tables.</p>
 <p>So this is not an argument against accuracy. Accuracy is necessary. The trap is believing it is <em>sufficient</em> — that once the answer is correct, the hard part is over. For an enterprise, the answer is where the hard part begins.</p></div>
 
-<div class="section-label fade-in">THE WORD NO BENCHMARK MEASURES</div>
+<h2 class="section-label fade-in">The word no benchmark measures</h2>
 <div class="fade-in"><p>Every accuracy metric shares one hidden assumption: that the unit of value is a <strong>statement</strong>. Is the SQL right? Is the summary faithful? Is the retrieved fact grounded? These are all questions about what the system <em>says</em>. None of them ask what the system <em>does</em> — and in an enterprise, work is not saying. Work is releasing the credit hold, posting the journal entry, approving the payment, adjusting the entitlement, moving the money.</p>
 <p>Consider a credit-release step. An agent is asked whether a customer's hold should be lifted. It reads the payment history, the aging report, the account notes, and answers: "Release the hold — the customer is in good standing." Suppose the answer is not merely plausible but <em>correct</em>, scoring a perfect mark on every accuracy benchmark you own. Now watch what the number did not check. It did not check that lifting a hold above a certain exposure requires a second approver. It did not check that the agent's authority limit stops well below this customer's balance. It did not check that a dispute flag on the account changes who is permitted to act at all. It did not check whether the release could be reversed if wrong, or whether anyone could later prove who released it, and on what basis.</p>
 <p>The statement was accurate. The action was unauthorized, over-limit, and — the part that ends careers — irreversible and unattributable. A more accurate answer did not make that action safer. It made it arrive faster, and with more confidence.</p></div>
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHERE THE ANSWER LEAVES YOUR CONTROL</div>
+<h2 class="section-label fade-in">Where the answer leaves your control</h2>
 <div class="fade-in"><p>This is not a tuning problem you fix with a better model. It is structural, and it follows from where the model lives. In the dominant pattern, the model of the enterprise — the ontology, the semantic layer, the graph, the catalog — sits <em>beside</em> the systems where work actually runs. Something else consumes it: a BI tool, a bespoke application, an external agent. The model describes; a separate execution layer acts. Governance encoded in the model becomes metadata the downstream actor is free to ignore, and lineage has to be reconstructed after the fact from logs never designed to prove intent.</p></div>
 
 <div class="scene-img-wrap fade-in">
@@ -71,7 +71,7 @@
 
 <div class="fade-in"><p>Even the operational-ontology pattern — the one that genuinely does execute, and deserves credit for it — pays a version of this tax. It executes by ingesting a full-fidelity copy of the enterprise into a proprietary twin and writing results back. That means a second operating plane you must keep reconciled with the real one, and a hard boundary at the write-back edge. <strong>In any architecture where the model lives beside the runtime, control stops at that edge.</strong> Whatever discipline held inside the twin, the act of pushing the change into the system of record is the moment enforcement becomes someone else's problem. And the field's most honest response to this — a mandatory human review gate on every action — is an admission, not a solution: if the architecture could guarantee the action was legitimate, it would not need a person to catch it on the way out.</p></div>
 
-<div class="section-label fade-in">FROM A CORRECT ANSWER TO A GOVERNED ACTION</div>
+<h2 class="section-label fade-in">From a correct answer to a governed action</h2>
 <div class="fade-in"><p>The fix is not a better answer. It is to make the model the enterprise <em>runs on</em>, not a model something else reads. When the ontology is the live operational substrate — the same governed model that defines the objects is the one processes execute against — the say-versus-do gap closes because there is no handoff across which to lose it. Entroid is built this way: every process is composed, executed, and governed as five primitives against one ontology, in one runtime.</p>
 <ul>
 <li><strong>Controls live in the model, not beside it.</strong> Approval gates, segregation of duties, authority limits, thresholds, and human-in-the-loop checkpoints are enforced inline by Deterministic Workflows composed directly against ontology objects — so an object's lifecycle state <em>is</em> the process. The over-limit credit release is not flagged after it happens; it cannot transition, because the transition itself is the control.</li>
@@ -81,7 +81,7 @@
 </ul>
 <p>Run the credit-release step on that substrate and the correct answer meets a wall exactly where it should. The release requiring a second approver pauses for one. The amount over the agent's authority never executes. The dispute flag reroutes the decision. And every step — including the reasoning the agent surfaced before it acted — is written to a trail no one can quietly edit. The answer was accurate <em>and</em> the action was legitimate, and you can demonstrate both.</p></div>
 
-<div class="section-label fade-in">THE QUESTION A BOARD SHOULD ASK</div>
+<h2 class="section-label fade-in">The question a board should ask</h2>
 <div class="fade-in"><p>When the next platform opens with its accuracy chart, the sharp response is not to challenge the number. Assume it is true. Then ask the question the number cannot answer: <strong>when this system is wrong — and every system eventually is — what does it do, and what stops it?</strong></p>
 <p>An accuracy benchmark is a claim about the best case. Governance is a claim about the worst case, and the enterprise is priced on its worst cases: the unauthorized transfer, the control that existed on paper but not in the code path, the action no one can attribute. Fewer hallucinations lowers the odds of a wrong answer. It does nothing about a wrong <em>action</em> — and only a model that executes and governs the process can convert a right answer into an action that was allowed, bounded, reversible, and logged.</p></div>
 

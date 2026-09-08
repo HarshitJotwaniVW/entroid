@@ -2,7 +2,7 @@
   <p>Your AIOps platform can tell you, inside of two minutes, that last night's deploy spiked p99 latency on the checkout service, which node is implicated, and which of the last four commits is to blame. Then it opens a ticket. <strong>The diagnosis lives in one system and the fix executes in another — and the seam between them is where your MTTR actually goes to die.</strong></p>
 </div>
 
-<div class="section-label fade-in">WHAT THE CATEGORY GETS GENUINELY RIGHT</div>
+<h2 class="section-label fade-in">What the category gets genuinely right</h2>
 <div class="fade-in">
   <p>Start with the concession, because an expert reader will stop trusting you the moment you pretend the incumbents are bad at their jobs. They are not. The detection-to-diagnosis half of the incident loop is, for practical purposes, a solved problem — and solving it was hard.</p>
   <ul>
@@ -17,7 +17,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE SEAM NOBODY PUTS ON THE SLIDE</div>
+<h2 class="section-label fade-in">The seam nobody puts on the slide</h2>
 <div class="fade-in">
   <p>Here is the structural fact underneath every "closed-loop" and "agentic" claim on the market: <strong>detection and RCA happen inside the observability platform, and the corrective action executes somewhere else.</strong> The evidence is gathered in one runtime; the change lands in a separate runbook, an automation engine, a cloud control-plane API, or a ticket that a human eventually works. What is marketed as a closed loop is, architecturally, an <em>orchestration hand-off across a tool boundary</em>.</p>
   <p>Look at the two most advanced positions in the category, because they are the ones worth taking seriously. The causal-AI observability vendor that brands itself as a "control plane for autonomous operations" does compute a rigorous root cause — and then its automation "executes" by dispatching to an <em>external</em> ticketing, repository, or cloud API. The event-correlation AIOps layer that sits on top of your monitoring and ITSM stack claims to "close the loop end-to-end" by "executing actions directly in connected systems" — connected being the operative word, because the system where the action runs is not the system that did the diagnosis. And the agentic-SRE that investigates autonomously is the most honest of the three: it <em>proposes</em> a fix for a human to merge and run. That is an explicit hand-off, plainly labeled.</p>
@@ -81,7 +81,7 @@
   </svg>
 </div>
 
-<div class="section-label fade-in">WHY A HAND-OFF COSTS MORE THAN IT LOOKS</div>
+<h2 class="section-label fade-in">Why a hand-off costs more than it looks</h2>
 <div class="fade-in">
   <p>Every time the loop crosses a tool boundary, three things have to be re-stitched into the receiving system — and each stitch is a place the loop can silently come apart.</p>
   <ul>
@@ -94,7 +94,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ONE INCIDENT, TWO ARCHITECTURES</div>
+<h2 class="section-label fade-in">One incident, two architectures</h2>
 <div class="fade-in">
   <p>Take the incident every SRE knows: a deploy ships, p99 latency on checkout climbs past the error budget, the anomaly fires. Both architectures diagnose it well. Watch where they diverge.</p>
   <p><strong>Across the seam.</strong> Detect, correlate, RCA — clean and fast, commit identified. Then the loop hands off: open a change record, or invoke a rollback runbook in the deployment tool, or call the cloud API to shift traffic, or page a human to do it. Whoever or whatever now runs the change does so without the incident's evidence attached, without a gate that understands the error budget, and without an owner watching whether the rollback itself behaves. If the rollback misfires, that is another hand-off. Verification is a human refreshing a dashboard. The loop was "closed" the way a relay race is closed — by throwing the baton.</p>
@@ -102,7 +102,7 @@
   <p>Change the failure and the shape holds. <strong>Disk at max:</strong> the workflow reclaims space or grows the volume via a Connector, verifies headroom returned, and reverses if the mount misbehaves. <strong>Failing instance:</strong> cordon, drain, replace, confirm healthy — each step under the same change-control gate, on the same live state, in the same runtime. Not "detected here, fixed there." Detected, fixed, and verified in one place.</p>
 </div>
 
-<div class="section-label fade-in">OWNING THE CHANGE IS AN ARCHITECTURE, NOT A FEATURE</div>
+<h2 class="section-label fade-in">Owning the change is an architecture, not a feature</h2>
 <div class="fade-in">
   <p>You cannot bolt this on. The reason the loop closes is that remediation is <em>composed on the same fabric as the diagnosis</em> — Entroid is a Composable Process Fabric with five primitives on a shared Semantic Ontology: Deterministic Workflows that carry governance and rollback inline, Intelligence Orchestration, Atomic Agents with HITL as a first-class construct, Functions, and Connectors as the <em>only</em> primitive that reaches into external systems. Sentinel investigates and remediates; Sherlock does auto-RCA and executes the corrective procedure; Command Center closes the loop with governed automation.</p>
   <p>Be precise about what that does and does not claim. It does <strong>not</strong> claim zero integration — ES runs <em>over</em> your existing estate, reaching every system through governed Connectors, so this is neither a rip-and-replace nor a fantasy of a greenfield world. What it claims is architectural: because detect, RCA, remediate, verify, and roll back are composed as one thing in one runtime, the change-control gate and the rollback live <em>inline, where the evidence is</em> — not downstream in a tool the diagnosing system merely dispatches to. That is a property of the design, not a milestone on a roadmap. The seam is not narrowed. It is not there to narrow.</p>

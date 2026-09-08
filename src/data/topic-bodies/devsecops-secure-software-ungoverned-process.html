@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>Your application-security program did everything the industry asked of it. Vulnerabilities are caught in the pull request, dependencies are inventoried, images are signed, pipelines are gated, and your posture has never been more visible. Yet the risk most likely to put your name in an incident report has quietly moved: it is no longer the unpatched library. <strong>It is the authorized-looking action that no policy ever gated.</strong></p></div>
 
-<div class="section-label fade-in">THE PROGRAM WORKED</div>
+<h2 class="section-label fade-in">The program worked</h2>
 <div class="fade-in">
 <p>Start with what is true, because it matters. Shift-left worked. Finding the vulnerable dependency in the pull request instead of in production is cheaper, faster, and real — the economics are not marketing. Modern scanning across source, dependencies, containers, and infrastructure-as-code, prioritized by what is actually reachable and running, has genuinely cut the noise that once buried security teams. Signed artifacts, software bills of materials, and build provenance harden the supply chain against attack patterns that have actually hit real enterprises. Policy-as-code in the pipeline genuinely blocks bad builds before they exist. And the most runtime-oriented tools in the category do enforce at execution: admission control that refuses a non-compliant workload is enforcement, not posture. Immutability enforcement that pins a workload to the exact image you built is enforcement, not posture.</p>
 <p>None of this is wasted budget. It is hard, valuable security work, and nothing in this argument says to do less of it.</p>
 <p>But notice what every one of those controls has in common. They govern the artifact, the pipeline, and the workload's integrity. They prove the code that shipped was clean and that the image running is the one you built. Then the application executes — and the business actions it takes, the payment it releases, the record it changes, the data it exports, are governed by whatever the application happens to do. Not by the pipeline that shipped it.</p>
 </div>
 
-<div class="section-label fade-in">THE RISK THAT MOVED</div>
+<h2 class="section-label fade-in">The risk that moved</h2>
 <div class="fade-in">
 <p>Read the incident patterns that now dominate loss reports across industries and a shape emerges: the breach that hurts is decreasingly the exploited CVE and increasingly the authorized-looking action.</p>
 <p><em>Business-logic abuse</em>: the application behaving exactly as built, doing something the business never intended. A refund flow invoked at a scale nobody imagined. A workflow that pays the wrong party because an approval path had a gap no scanner classifies as a weakness — because it is not one. It compiles. It passes tests. It is simply wrong conduct. <em>Authorized-credential misuse</em>: a valid session, a legitimate token, an insider or an attacker who logged in rather than broke in, doing invalid things with valid access. And now the AI feature: the assistant that retrieves, summarizes, and exports — through an integration you built on purpose — data it should never have moved.</p>
@@ -15,7 +15,7 @@
 <p>Which is why the question a security leader should sit with is no longer <em>"is our software secure?"</em> You have spent a decade earning a yes. The question is <em>"is what our software does governed?"</em> — and in most enterprises the honest answer is: only by the application code itself.</p>
 </div>
 
-<div class="section-label fade-in">TWO STRONG ANSWERS, ONE SHARED SILENCE</div>
+<h2 class="section-label fade-in">Two strong answers, one shared silence</h2>
 <div class="fade-in">
 <p>The category is not naive about governance. Two architectural patterns come closest to an answer, and both deserve precise credit before precise critique.</p>
 <p>The first is the pipeline-governance pattern: a single platform where security policy is code, enforced in the pipeline — gating the merge, the build, the deployment. Concede the substance: the pipeline is genuinely governed. Policy is versioned, enforcement is automatic, exceptions are visible. But be precise about the object of that governance. It governs the <strong>delivery</strong> of code. The moment the artifact is deployed, the platform's writ ends, and the running application's business actions answer to nothing it shipped. Delivery governance is real governance — of delivery.</p>
@@ -78,13 +78,13 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE SCOREBOARD MEASURES THE WRONG SURFACE</div>
+<h2 class="section-label fade-in">The scoreboard measures the wrong surface</h2>
 <div class="fade-in">
 <p>Now reread your own security metrics through that lens. Vulnerabilities found earlier in the lifecycle. Remediation cycle times trending down. Fewer critical findings reaching production. Scan coverage across repositories approaching complete. Every one of those numbers is worth having — and every one of them measures the same surface: the artifact, and the pipeline that produced it. Not one measures whether the actions your software executed last quarter were authorized, within policy, and provable to an auditor or a regulator.</p>
 <p>The category's own narrative — security built in, not bolted on — is true, of code. The sentence simply stops before runtime conduct. And so the residual risk relocates to a layer the appsec stack implicitly assumes someone else owns. Ask who, specifically: the application teams? Identity? The business owner of the process? In most enterprises the honest answer is that action-level governance has no owner at all. It is an emergent property of whatever the application was written to do.</p>
 </div>
 
-<div class="section-label fade-in">GOVERNED BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Governed by construction</h2>
 <div class="fade-in">
 <p>There is a structural way out, and it begins by changing what the "application" is. Entroid is built as a Composable Process Fabric: business processes are not opaque code you scan and then trust, but compositions of five governed primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — running on one runtime over a shared semantic ontology. The consequence is architectural, and it is the entire point: <strong>when a process is composed from governed primitives, action-level governance is not a control you add. It is a property of how the software is built.</strong></p>
 <ul>
@@ -99,7 +99,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE QUESTION TO CARRY INTO YOUR NEXT REVIEW</div>
+<h2 class="section-label fade-in">The question to carry into your next review</h2>
 <div class="fade-in">
 <p>At your next application-security review, ask a different question. Not how many vulnerabilities were found, or how fast they closed, or what fraction of repositories is covered. Pick your three highest-consequence business actions — the payment release, the customer-record change, the bulk data export — and ask: at the moment of execution, what checks whether this action is authorized and in policy? And what proof exists afterward that it was?</p>
 <p>If the answer is "the application logic" and "the application logs," you have located the moved risk. Secure software was the prerequisite. Governed conduct is the job — and it belongs to whoever decides how the enterprise's processes are built.</p>

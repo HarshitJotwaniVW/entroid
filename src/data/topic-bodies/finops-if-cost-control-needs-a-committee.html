@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Ask a cloud-cost vendor how it actually stops waste, and listen for the org chart in the answer. What you'll hear is a monthly meeting, an internal billing ritual, and a small team of specialists whose entire job is to talk everyone else into acting on the dashboard. <strong>If cost control needs a standing committee to function, the tool isn't enforcing anything — the committee is, one act of persuasion at a time.</strong></p></div>
 
-<div class="section-label fade-in">READ THE OPERATING MODEL, NOT THE DASHBOARD</div>
+<h2 class="section-label fade-in">Read the operating model, not the dashboard</h2>
 <div class="fade-in">
 <p>Strip the branding off the leading cost-visibility and allocation platforms and the operating model they recommend is strikingly uniform. Stand up a Cloud Center of Excellence — a dedicated team to own the discipline. Run a recurring cloud business review — a standing meeting where spend is walked line by line. Switch on <em>showback</em> so every team can see its bill, then graduate to <em>chargeback</em> so every team is made to carry it. The category's own maturity guidance treats this social machinery as the destination: the tooling shows you the waste, and the operating model is how the waste gets acted on.</p>
 <p>Read that sequence again, because it is a confession. A dedicated team, a recurring meeting, and an internal billing ceremony are not features of a control. They are the labor that exists <em>because</em> there is no control. The dashboard flags an idle resource; a human still has to be convinced to delete it. The optimizer recommends a smaller instance; a human still has to be chased into resizing it. Showback, in the category's own framing, is purely informational — it shows, it does not stop. Chargeback adds "teeth" by billing the team next month, which is to say: after the money is spent, unrecoverably, you assign the blame. When a platform's headline weapon against waste is a well-run meeting, the platform has told you where enforcement actually lives — and it isn't in the software.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>This is not a swipe at the engineering, which is genuinely hard-won. Pulling messy, multi-account billing into one coherent picture is real work. Near-total cost allocation, unit economics that tie spend to a customer or a feature, showback and chargeback as a language finance and engineering can finally share — these professionalized cloud finance, and they were not easy to build. Rightsizing and commitment recommendations save real money. Spend-anomaly detection catches the runaway before it compounds. And the sharper moves in the category are advances, not marketing: catching a cost estimate inside the pull request, shutting idle resources down on a schedule. Credit where it's due — the discipline exists because these tools made spend legible.</p>
 <p>Here is the wedge, and it survives every roadmap. All of it <strong>observes</strong> spend and <strong>recommends</strong> an action a human then implements somewhere else — in the console, in a script, in a ticket the platform tracks after the fact. Governance, in this world, is a dashboard, a work item, and a budget alert that fires <em>after</em> the money is already committed. The category's own surveys keep putting wasted cloud spend at a large fraction of the bill, year after year, despite better dashboards every year — because a better rear-view mirror never touched the steering wheel. Nothing in the stack gates the provisioning action itself. So the missing gate gets rebuilt out of people: the CCoE, the business review, the chargeback show. The org-process tax is the shape of the absent control.</p>
@@ -14,13 +14,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE STRONGEST GOVERNANCE STORY STILL HAS ONE DOOR</div>
+<h2 class="section-label fade-in">The strongest governance story still has one door</h2>
 <div class="fade-in">
 <p>Be fair about the exception. One part of the market does govern before the money commits: the shift-left, pipeline-and-plan-time approach that checks projected cost inside the delivery pipeline and at infrastructure-as-code plan time, before anything deploys. Concede it plainly — that is the strongest cost-governance story on the market, and it is a real advance over billing you read next month.</p>
 <p>Now be precise, structurally, in a way no roadmap changes. It governs exactly <strong>one way in</strong>. A console click provisions a resource without ever touching the pipeline. A raw API call does too. So does the autoscaler, at three in the morning, answering demand no reviewer is awake for. The tell is in the product itself: these tools ship a "zero-drift" cleanup loop that continuously hunts down and reclaims what appeared outside the pipeline — a feature that quietly concedes the gate gets bypassed on every other path, and reframes the bypass as janitorial work done after the fact. And even on the one governed path, the check is a <em>dollar estimate</em> — a forecast that can be wrong, waved through, or simply beaten by reality. An estimate is not a decision. It never asks the only question that governs money: is <em>this</em> person <em>authorized</em> to commit <em>this</em> budget for <em>this</em> cost center? A number in a diff can't answer that. Authority can.</p>
 </div>
 
-<div class="section-label fade-in">WHEN THE BUDGET OWNER'S AUTHORITY IS THE GATE</div>
+<h2 class="section-label fade-in">When the budget owner's authority is the gate</h2>
 <div class="fade-in">
 <p>Entroid is a Composable Process Fabric: every enterprise process is modeled, executed, <em>and</em> governed as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — over one Semantic Ontology, in a single runtime, with an immutable per-action audit. Cloud cost isn't a report generated beside that runtime. It is a policy enforced <strong>inside</strong> it, at the act of creation.</p>
 <p>Architecturally, this moves the control to where the spend is actually committed. A provisioning request — from a console, a raw API call, or an infrastructure-as-code plan — is a Connector action, and Connectors are the only primitive that touches an external system. That action routes through a Deterministic Workflow whose budget, authority, and policy check runs <em>inline</em>, before creation. Because the gate is bound to the act of creation rather than to one pathway into it, there is no side door: the same check stands in front of every path. And it denies on <strong>authority</strong>, not on a forecast. The Semantic Ontology models owner, cost center, and budget as first-class facts, so the workflow can ask whether this identity holds delegated authority to commit this spend — and an over-budget or non-compliant resource is, as a property of the design, <em>un-creatable</em>. Illustratively: a request that would breach a cost center's remaining budget is refused at submission, not surfaced in next month's showback.</p>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT A REAL CONTROL DISSOLVES</div>
+<h2 class="section-label fade-in">What a real control dissolves</h2>
 <div class="fade-in">
 <p>For the CFO and CIO, the payoff isn't a prettier dashboard — it's the disappearance of an entire category of overhead you have quietly accepted as the cost of cloud. Encode budget-owner authority as policy at the provisioning action and the social apparatus loses its reason to exist:</p>
 <ul>

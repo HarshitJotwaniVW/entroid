@@ -2,7 +2,7 @@
   <p>Ask a SOAR platform what makes it powerful and it answers with a number: hundreds of third-party tools integrated, thousands of prebuilt actions, one playbook to orchestrate them all. Read as marketing, that number is a breadth flex. Read as architecture, it is a confession. <strong>A platform that has to reach hundreds of other tools to respond is telling you precisely where the response does not happen — inside itself.</strong></p>
 </div>
 
-<div class="section-label fade-in">WHAT THE SIEM/SOAR LEADERS GET RIGHT</div>
+<h2 class="section-label fade-in">What the SIEM/SOAR leaders get right</h2>
 <div class="fade-in">
   <p>Lead with the concession, because a CISO stops reading the moment you pretend the incumbents are bad at their jobs. They are not — the detection side of this category is genuinely, hard-won good, and the argument that follows only works if we are honest about that first.</p>
   <ul>
@@ -17,7 +17,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">READ THE INTEGRATION COUNT AS A CONFESSION</div>
+<h2 class="section-label fade-in">Read the integration count as a confession</h2>
 <div class="fade-in">
   <p>Here is the structural fact underneath every "orchestrate hundreds of tools with thousands of automated actions" headline: <strong>the SIEM detects, correlates and alerts, and the SOAR playbook orchestrates a response that executes somewhere else.</strong> Isolating the host happens inside the endpoint tool. Revoking the token happens inside identity. Blocking the indicator happens inside the firewall. The playbook fires the requests and records that it fired them. Breadth of integration is not a measure of how much the platform can do — it is a map of everywhere the doing actually lives, and none of those places is the platform.</p>
   <p>Be precise about the strongest version of the counter-argument, because it earns precision. Yes, the native-SOAR playbook runs <em>inside</em> the SIEM console — the logic is co-located with the detection. And yes, the agentic tier will triage the alert and recommend the action autonomously before a human approves it. Both are real advances. But follow the action one step past the demo: the playbook running inside the console still <em>dispatches</em> the containment out to the endpoint, firewall or identity tool that performs it, and the agent still triages and recommends while a human approves — and then a <em>separate</em> tool acts. The intelligence moved inside. The execution did not. Governance, in this pattern, is over the alert and over the playbook definition — not over the executed change, with a per-action record of what actually happened in the estate.</p>
@@ -92,7 +92,7 @@
   </svg>
 </div>
 
-<div class="section-label fade-in">ONE CONTAINMENT, TWO ARCHITECTURES</div>
+<h2 class="section-label fade-in">One containment, two architectures</h2>
 <div class="fade-in">
   <p>Walk the containment every responder knows: a workstation is confirmed compromised, and you need to isolate the host, revoke the user's live session token, disable the account and block the command-and-control indicator. Both architectures detect and decide well. Watch where they physically diverge — and where the state change actually happens.</p>
   <p><strong>As an orchestrated dispatch.</strong> The playbook fans out. It calls the endpoint tool's API to network-isolate the host; the state change happens <em>inside the EDR's</em> control plane. It calls identity to revoke the token and disable the account; that change happens <em>inside the IAM</em>. It calls the firewall to block the indicator; that change happens <em>inside the firewall</em>. It opens a ticket for the record. Four systems, four control planes, four independent success-or-failure states — and the SOAR knows only what each API returned: a 200, a timeout, a partial. If identity revoked the token but the endpoint isolation silently failed, the platform believes it "contained" a host that is still on the network. And the evidence of what happened is now scattered across the EDR console log, the IAM audit trail, the firewall change record and the SOAR run history. <strong>The audit fractures across four tools' logs, and no single record reconciles them.</strong> Here, "contained" means the requests were sent.</p>
@@ -101,7 +101,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT THE DISPATCH ACTUALLY COSTS</div>
+<h2 class="section-label fade-in">What the dispatch actually costs</h2>
 <div class="fade-in">
   <p>Every time the response crosses a tool boundary, something the platform needs to guarantee has to be re-established in a system it does not own — and each one is a place the loop quietly comes apart.</p>
   <ul>
@@ -112,7 +112,7 @@
   <p>None of this makes SOAR useless — orchestration is genuinely faster than a human doing the same clicks, and for known, low-risk fixes that speed is the point. But it does mean the word "contained" is carrying more weight than the architecture supports. The platform governed the <em>alert</em> and the <em>playbook</em>. The change — the thing that actually stops the breach — ran in tools it can only ask.</p>
 </div>
 
-<div class="section-label fade-in">EXECUTION IS AN ARCHITECTURE, NOT AN INTEGRATION COUNT</div>
+<h2 class="section-label fade-in">Execution is an architecture, not an integration count</h2>
 <div class="fade-in">
   <p>This is why the difference cannot be bolted onto an orchestration layer — it is a property of <em>where the response is composed</em>. Entroid is a Composable Process Fabric: five primitives on a shared Semantic Ontology — Deterministic Workflows that carry change-control and rollback inline, Intelligence Orchestration, Atomic Agents with HITL as a first-class construct, Functions, and Connectors as the <em>only</em> primitive that reaches external systems — all on one runtime with an immutable per-action audit. ES SIEM &amp; SOAR detects and responds; Sentinel investigates and remediates; Sherlock reasons over the estate. A security response here is a governed Deterministic Workflow that <em>executes</em> the containment — isolate, revoke, block, disable — as one change-controlled action with a per-action record.</p>
   <p>Be exact about what that does and does not claim, because over-claiming is how you lose this reader. It does <strong>not</strong> claim zero integration. ES still reaches the endpoint, the firewall and the identity provider through Connectors — it runs <em>over</em> the estate you already own, rather than replacing it. The difference is not that ES avoids the tools of execution. It is that the <em>response itself</em> — the decision, the change-control gate, the sequencing, the verification, the reversal and the audit — is a single governed object on one runtime, instead of an orchestration script whose governance stops at the dispatch and whose evidence scatters across the tools it calls. Detection feeds a governed response, closed-loop, on one fabric. That is an architectural property of the design — not a demo, and not a milestone on a roadmap.</p>

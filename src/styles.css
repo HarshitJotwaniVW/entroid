@@ -190,7 +190,11 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 12px var(--gutter);
+  /* Vertical only. The horizontal inset belongs to the `.container` inside,
+     so the logo lines up with the page column; applying a gutter here as well
+     put the bar one gutter left of the content on anything wider than the
+     1440px column. */
+  padding: 12px 0;
   /* Transparent at rest, so the hero photograph runs right through it. */
   background: transparent;
   transition:
@@ -215,7 +219,7 @@ textarea {
   align-items: center;
   gap: 24px;
   height: 52px;
-  padding: 0;
+  /* Padding intentionally not reset — it takes `.container`'s gutter. */
 }
 
 .nav__brand {
@@ -4876,10 +4880,13 @@ a.navcard:hover .navcard__icon {
 
 /* ── Industry journey (end-to-end, on the shared SolutionPage) ── */
 .journeyx {
+  /* The connecting arrows span exactly this, so it is a variable rather than
+     a number repeated in two places that would drift apart. */
+  --journey-gap: 16px;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  gap: var(--journey-gap);
 }
 
 @media (max-width: 1040px) {
@@ -4914,16 +4921,17 @@ a.navcard:hover .navcard__icon {
     content: '';
     position: absolute;
     top: 50%;
+    /* Fills the gap exactly, so the glyph centres between the two cards
+       instead of straddling the card's right edge. */
     left: 100%;
-    width: 16px;
-    height: 16px;
-    margin-top: -8px;
+    width: var(--journey-gap);
+    height: 12px;
+    margin-top: -6px;
     /* A chevron, in the muted ink the rest of the meta uses. */
     background: currentColor;
     color: #b9bfd0;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
-    transform: translateX(-50%);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
   }
 }
 
@@ -6461,6 +6469,8 @@ a.navcard:hover .navcard__icon {
   max-width: 720px;
 }
 
+/* The buttons centre with everything else. Only the use-case detail hero
+   carries a CTA row in this variant; the listing heroes have none. */
 .phero--compact .phero__ctas {
   justify-content: center;
 }

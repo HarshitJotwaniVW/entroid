@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>A conversational agent gives a wrong answer, and a customer is briefly annoyed. A conversational agent takes a wrong <em>action</em> — a refund above the limit, a change to an account the caller does not own, an approval that quietly violates segregation of duties — and you have a control failure with your name on it. The industry keeps optimizing for the first failure. The second one is the one that ends up in front of your regulator. The question that separates them is three words long: <strong>authorized to whom?</strong></p></div>
 
-<div class="section-label fade-in">THE WRONG-ANSWER FALLACY</div>
+<h2 class="section-label fade-in">The wrong-answer fallacy</h2>
 <div class="fade-in">
 <p>Almost every number the category markets grades the same thing: what the agent <em>said</em>, or what it managed to contain. Headline resolution-rate figures. Deflection. CSAT. Per-resolution and outcome-based pricing that literally bills you for containment. Give the field its due here — these agents genuinely resolve large volumes of real support work, and that is not a small achievement. But read the metrics honestly. Every one of them answers <em>"did it converse and resolve well?"</em> None of them answers <em>"was it allowed to do that — for this specific caller, at this specific moment?"</em></p>
 <p>Those are different kinds of question. A wrong answer is a <strong>quality</strong> problem, and quality problems can be averaged away; a 3% error rate is a rounding note. An unauthorized action is a <strong>control</strong> problem, and controls are not graded on averages — one un-permissioned write to the wrong account is not diluted by the thousand correct ones around it. The category's own safety research keeps arriving at an uncomfortable pair of findings: <em>most</em> failed autonomous actions had a safeguard in place beforehand, and a <em>majority</em> of them executed a consequential action anyway. Safeguards were present. The action still fired. That gap is the whole subject of this piece.</p>
 </div>
 
-<div class="section-label fade-in">WHOSE CREDENTIALS JUST ACTED?</div>
+<h2 class="section-label fade-in">Whose credentials just acted?</h2>
 <div class="fade-in">
 <p>There is an architectural tell underneath the whole standalone-agent pattern, and it shows up the instant the agent stops talking and starts doing. A standalone conversational agent sits <em>on top of</em> your systems and "takes action" by calling an external API. That call is authenticated as the <strong>agent</strong> — a service account, provisioned once at integration time with a broad, static grant so it can serve everyone who ever calls in.</p>
 <p>So when the agent issues a refund or edits an account, the system of record does not see the caller. It sees the service account. The action inherits the <em>union</em> of everything that account is allowed to do — not the <em>intersection</em> of what this particular caller is entitled to. The person on the voice line may be entitled to nothing more than reading their own balance; the credential behind the agent can write to every account in the book. Nothing on that path narrows the second down to the first at the moment of action. That is the load-bearing gap in one sentence: <strong>the identity that reasoned about whether to act is never the identity the action gets checked against.</strong></p>
@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ACCESS CONTROL IS NOT AUTHORIZATION</div>
+<h2 class="section-label fade-in">Access control is not authorization</h2>
 <div class="fade-in">
 <p>The systems-of-record camp has a real answer to this, and it deserves to be stated at full strength before it is tested. They will tell you the agent "takes action using your systems," that it "integrates with your CRM and your order-management system," and that "deterministic access ensures it adheres to your access controls." Credit where it is due: deterministic <em>access</em> to a system of record is real, and it matters. It is meaningfully better than an agent improvising REST calls against whatever it can reach — the connection is authenticated, the surface is scoped, and the agent can only touch systems it was explicitly granted.</p>
 <p>Now be precise about what that claim is, because the whole argument turns on it. Deterministic <strong>access</strong> is an <em>access-control</em> claim: <em>which</em> systems, <em>which</em> endpoints the agent is permitted to touch. It is not a per-action <strong>authorization</strong> claim: may <em>this</em> caller cause <em>this</em> effect, within <em>this</em> limit, right now. Coarse access says the agent may call the refund endpoint. It says nothing about whether <em>this</em> refund is within <em>this</em> caller's authority, clears the segregation-of-duties rule, or sits below the threshold that would demand a second approver. Access is a door — open or closed, decided once. Authorization is a judgment made fresh, per action, against a specific identity's entitlements. A standing scope structurally <em>cannot</em> make that judgment, because the things being authorized — the amount, the counterparty, whether the caller even owns the account — are not known until the action is proposed.</p>
@@ -63,13 +63,13 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">SCOPING IS A CONVERSATION, NOT A GATE</div>
+<h2 class="section-label fade-in">Scoping is a conversation, not a gate</h2>
 <div class="fade-in">
 <p>The give-your-agent-system-access playbook has a more disciplined answer, and it too is a real improvement on ungoverned prompting: you "scope" the agent, start it read-only, then graduate it to write access in phases as trust is earned. The compiled-governance camp goes further still, authoring guardrails <em>into</em> the agent at design or build time so the rules travel with the artifact. Both are better than an agent improvising. But look closely at where the governance actually <em>lives</em>.</p>
 <p>Scoping is a planning conversation and a phased rollout — a decision the builder makes, before runtime, about what the agent is generally permitted to do. Governance compiled into the agent is authored by the builder, and what the builder authors the builder can loosen; a threshold set in one build is a threshold someone can raise in the next build. Neither is an external gate the agent must pass <em>through</em> at the instant of action, evaluated against the actual caller and the actual amount. This limit is not a knock on any one product's roadmap — it is structural, and it stays true no matter what ships next. Design-time and compile-time governance is a property of the <em>artifact</em>. Runtime authorization is a property of the <em>path</em>. <strong>If the check lives inside the thing being checked, the thing being checked ultimately defines the check.</strong></p>
 </div>
 
-<div class="section-label fade-in">THE ATTACK SURFACE NOBODY CHECKS</div>
+<h2 class="section-label fade-in">The attack surface nobody checks</h2>
 <div class="fade-in">
 <p>Make it concrete on the regulated processes the category itself likes to name — refunds, subscription and account changes, prior authorization, mortgage origination, KYC. Two failure modes, neither exotic.</p>
 <p>The first is <strong>identity mis-resolution.</strong> A voice agent resolves the caller to an account from imperfect signals — a name, a partial number, a knowledge-based answer that a determined caller can often supply — and then acts on that resolution. If the resolution is wrong, every downstream action is authorized against the wrong person, and the system of record has no way to notice, because the write arrives on the agent's service credentials, not the caller's identity. The second is <strong>social engineering.</strong> A caller talks a helpful, resolution-optimized agent into a perfectly well-formed request: raise the limit, move the payment date, add an authorized user, approve the exception. The agent is <em>built</em> to resolve. Nothing on its path asks the one question that would stop it: <em>is this caller, resolved to this identity, actually entitled to cause this effect, within this limit, without a second approver?</em></p>
@@ -78,7 +78,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">AUTHORIZED TO WHOM — THE MECHANICS</div>
+<h2 class="section-label fade-in">Authorized to whom — the mechanics</h2>
 <div class="fade-in">
 <p>Here is where the architecture, not the marketing, has to answer. In the Entroid fabric, a conversational agent is not a bolt-on wired onto your systems — it is an <strong>Atomic Agent with a dialogue interface</strong>, a first-class primitive executing inside one governed runtime. That single fact relocates <em>where authorization happens</em>, and everything follows from it:</p>
 <ul>

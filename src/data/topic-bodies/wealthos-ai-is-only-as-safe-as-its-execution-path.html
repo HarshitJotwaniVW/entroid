@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>The wealth stack has converged on a single sentence: <strong>“AI is only as good as your data.”</strong> The portfolio-aggregation and reporting platforms say it, the connected advisor-tech suites say it, the wealth core platforms say it as a warning about data readiness. They are right. They have also stopped halfway through the sentence — and the half they left off is the half where the AI actually does something.</p></div>
 
-<div class="section-label fade-in">THE CHORUS IS RIGHT — AS FAR AS IT GOES</div>
+<h2 class="section-label fade-in">The chorus is right — as far as it goes</h2>
 <div class="fade-in">
 <p>Give the category its due, because the concession matters. Consolidating positions across custodians, fund portals, and held-away assets was real, hard engineering; it rescued an industry from spreadsheets and PDF statements, and anyone who ran operations through that era does not romanticize it. Performance calculation, billing computation, and proposal generation professionalized advisory operations. Document-AI that extracts capital-call notices and K-1s removes genuinely brutal manual work, and KYC screening feeds surface risk that manual review would miss. The posture the category now recommends for AI — grounded in clean, governed, permission-aware data, with a human in the loop — is a responsible posture. Clean data is a real precondition. An agent reasoning over stale positions or mis-mapped legal entities is dangerous no matter what controls sit downstream of it.</p>
 <p>So take the chorus seriously. Then read it precisely. “Governed,” in a data platform, means governed <em>data</em>: quality, permissions, lineage — traceability of what is known and what is reported. That is real governance, and it is the prerequisite for everything else. But it is a different claim from governing what an AI is allowed to <em>do</em> — and, read carefully, the category’s own language does not make that second claim. The governed-operations ground is unclaimed.</p>
 </div>
 
-<div class="section-label fade-in">ARCHITECTURE DECIDES WHERE THE SENTENCE ENDS</div>
+<h2 class="section-label fade-in">Architecture decides where the sentence ends</h2>
 <div class="fade-in">
 <p>Why does every vendor’s sentence stop at data? Not timidity. Architecture. The aggregation-and-reporting platforms sit downstream of the custodian by design: they ingest custodial and fund-portal files after trades settle, after accounts open, after fees post. Their entire value proposition is built on the read path — consolidate what happened, reconcile it, calculate on it, report it. That position in the stack is exactly what made them indispensable. It is also a hard ceiling on what their AI can be.</p>
 <p>An AI embedded in a read-path architecture can read, summarize, extract, flag, and recommend. It cannot execute, because the platform it lives in does not execute. “AI-readiness,” preached from that seat, can only mean data readiness — the only readiness the architecture is positioned to deliver. Even the most ambitious pattern in the category, the engine that ranks next-best actions for each household with human oversight, terminates in a queue: a list of things an advisor should now go do, in custodian portals and trading systems the platform reads from but does not govern. The insight is delivered. The action is homework.</p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE HALF OF THE SENTENCE WHERE SOMETHING HAPPENS</div>
+<h2 class="section-label fade-in">The half of the sentence where something happens</h2>
 <div class="fade-in">
 <p>Trace what happens after the recommendation, because that path is where the risk actually lives. An advisor accepts a suggestion — update a fee schedule, release a rebalance for a drifted household, open an account for a new entity, pay a capital call. Now the operations begin: re-key into the custodian portal, the trading system, the billing engine, the CRM. Each destination checks its own entitlements, to the extent it checks them at all. Suitability and KYC obligations are confirmed by whoever remembers to confirm them, wherever that system’s screen happens to ask. And compliance meets the action the way it always has: afterward, as surveillance — sampling exceptions from a book that has already changed.</p>
 <p>In the insight era, this held together, because the human <em>was</em> the execution path. The advisor’s judgment, licensing, and healthy fear of the compliance team were the control layer. The agentic era breaks that arrangement in one of two ways. Either agents generate recommendations faster than humans can re-key them — and the queue becomes the bottleneck, which is how AI programs stall; the industry’s own commentary concedes, directionally, that most analytics pilots never survive contact with production. Or, worse, someone wires an agent into the seams directly — screen automation against a custodian portal, a standing service-account key into a trading interface — and the agent inherits the governance of that path: broad persistent permissions, no inline suitability gate, and an audit trail scattered across systems that never heard of the agent.</p>
@@ -105,7 +105,7 @@
 <text x="400" y="280" font-size="9.5" fill="currentColor" text-anchor="middle" opacity="0.85">Immutable per-action audit — who invoked · which gates evaluated · who approved · what committed</text>
 </svg></div>
 
-<div class="section-label fade-in">GOVERNING THE WRITE, BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Governing the write, by construction</h2>
 <div class="fade-in">
 <p>The complete sentence — AI is only as good as its data <em>and</em> only as safe as its execution path — demands a different architecture, and the difference is structural, not cosmetic. Entroid is a Composable Process Fabric: five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — running on a shared Semantic Ontology, in one runtime, with an immutable per-action audit. ES WealthOS runs on that fabric, and its governed unit is not the dataset. It is the wealth-operations action itself. Architecturally, that means:</p>
 <ul>
@@ -121,7 +121,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">FIVE QUESTIONS THAT SORT THE CATEGORY</div>
+<h2 class="section-label fade-in">Five questions that sort the category</h2>
 <div class="fade-in">
 <p>For a CIO evaluating agentic-AI claims in wealth operations, the data questions are table stakes — every serious vendor now answers them well. The sorting questions are about the write:</p>
 <ul>
@@ -134,7 +134,7 @@
 <p>A platform whose honest answers are “downstream,” “a service account,” “afterward,” and “we assemble it” can still be an excellent insight platform. It is not an execution-governance platform, and no amount of data readiness will make it one.</p>
 </div>
 
-<div class="section-label fade-in">READINESS, REDEFINED</div>
+<h2 class="section-label fade-in">Readiness, redefined</h2>
 <div class="fade-in">
 <p>The data-readiness chorus prepared this industry for the insight era, and it did that job well — the reporting is cleaner, the extraction is faster, the recommendations are sharper. But the agentic era does not ask whether your AI knows enough to recommend. It asks whether there is anywhere governed for it to act. Data governance decides what your AI knows. Execution governance decides what it is allowed to do. To your clients, and to your examiner, the second one is the control.</p>
 </div>

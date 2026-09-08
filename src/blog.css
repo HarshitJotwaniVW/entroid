@@ -178,7 +178,11 @@ html.dark .blog-article .hero-img {
 .blog-article article {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 2.5rem max(1.25rem, 3vw) 5rem;
+  /* The same max-width and the same gutter as `.container.bpost__heroInner`
+     above it, so the title and the first paragraph share a left edge. The
+     article used to take `max(1.25rem, 3vw)`, which is wider than the site
+     gutter at every viewport and pushed the body in by ~11px. */
+  padding: 2.5rem var(--gutter) 5rem;
   position: relative;
   font-size: 18px;
   line-height: 1.8;
@@ -186,23 +190,23 @@ html.dark .blog-article .hero-img {
   font-family: var(--font);
 }
 
-/* Section headings */
+/* Section headings. These are real <h2>s and are set like headings — the
+   tracked-out micro-caps with a rule beside them read as an eyebrow label,
+   which is what they used to be. */
 .blog-article .section-label {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 3.5rem 0 1.5rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
+  margin: 3.2rem 0 1.1rem;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--t1);
   font-weight: 600;
 }
-.blog-article .section-label::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
+
+/* The first heading follows the opening paragraph, so it needs less air above
+   it than the ones that break up the body. */
+.blog-article .section-label:first-of-type {
+  margin-top: 2.4rem;
 }
 
 /* Paragraphs */
@@ -292,14 +296,16 @@ html.dark .blog-article .scene-img-wrap img { opacity: 0.65; filter: saturate(0.
   backdrop-filter: blur(10px);
   box-shadow: var(--card-shadow);
 }
+/* The accent rule runs down the left edge, the way a pull-quote is marked,
+   rather than capping the card at the top. */
 .blog-article .closing::before {
   content: '';
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gradient-from), var(--gradient-via), var(--gradient-to));
+  width: 3px;
+  background: linear-gradient(180deg, var(--gradient-from), var(--gradient-via), var(--gradient-to));
 }
 .blog-article .closing blockquote {
   font-size: 1.25rem;
@@ -310,62 +316,89 @@ html.dark .blog-article .scene-img-wrap img { opacity: 0.65; filter: saturate(0.
   padding-left: 2rem;
   position: relative;
 }
+/* A real left double quotation mark (U+201C). This was a straight ASCII
+   quote, which Georgia draws as two upright ticks — the pair of vertical bars
+   in the card rather than an opening quote. */
 .blog-article .closing blockquote::before {
-  content: '"';
-  font-size: 4rem;
+  content: '\201C';
+  font-size: 3.4rem;
   color: var(--accent);
-  opacity: 0.3;
+  opacity: 0.28;
   position: absolute;
-  top: -0.5rem;
+  top: -0.35rem;
   left: 0;
-  font-family: Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   line-height: 1;
 }
 
-/* CTA */
+/* CTA — the same closing band every other page ends on (`.pcta`): the deep
+   plum plate with the infinity motif, a white heading, and a white pill with
+   an ink arrow badge. The article markup is fixed (an <a class="cta-btn"> with
+   a bare <svg> inside), so the badge is built from that svg rather than the
+   `.btn__arrow` span the React buttons use. */
 .blog-article .cta-section {
   margin-top: 4rem;
-  padding: 3rem;
-  background: var(--bg2);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  padding: clamp(2.4rem, 5vw, 3.4rem) 2rem;
+  background-color: #281647;
+  background-image: url('/patterns/infinity-pattern.svg');
+  background-repeat: repeat;
+  background-size: 170px 170px;
+  border: 0;
+  border-radius: clamp(20px, 2.4vw, 32px);
   text-align: center;
-  box-shadow: var(--card-shadow);
+  box-shadow: none;
 }
 .blog-article .cta-section h3 {
-  font-size: 1.3rem;
-  color: var(--t1);
-  font-weight: 700;
-  margin-bottom: 0.8rem;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  margin-bottom: 0.7rem;
 }
 .blog-article .cta-section p {
-  font-size: 0.85rem;
-  color: var(--t3);
-  margin-bottom: 1.8rem;
-  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #aeb6c6;
+  max-width: 34rem;
+  margin: 0 auto 1.6rem;
+  font-weight: 400;
 }
 .blog-article .cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 2rem;
-  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-via));
-  color: #fff;
+  gap: 0.9rem;
+  /* Tight on the right, where the badge sits inset into the pill's end. */
+  padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+  background: #fff;
+  color: #0a0f1f;
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
+  font-size: 0.85rem;
+  letter-spacing: 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 999px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 24px rgba(var(--accent-r), 0.25);
+  transition: transform .12s ease, box-shadow .2s;
+  box-shadow: 0 6px 20px rgba(10, 15, 31, .18);
 }
 .blog-article .cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 36px rgba(var(--accent-r), 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(10, 15, 31, .24);
 }
-.blog-article .cta-btn svg { width: 16px; height: 16px; }
+.blog-article .cta-btn svg {
+  box-sizing: border-box;
+  width: 34px;
+  height: 34px;
+  padding: 10px;
+  flex: none;
+  border-radius: 999px;
+  background: #0a0f1f;
+  color: #fff;
+  transition: transform .18s ease;
+}
+.blog-article .cta-btn:hover svg {
+  transform: translateX(3px);
+}
 
 /* Divider */
 .blog-article .divider {
@@ -484,7 +517,7 @@ html.dark .blog-article .scene-img-wrap img { opacity: 0.65; filter: saturate(0.
 /* Responsive */
 @media (max-width: 768px) {
   .blog-article article {
-    padding: 3rem 1.5rem 4rem;
+    padding: 3rem var(--gutter) 4rem;
     font-size: 16px;
   }
   .blog-article .hero { min-height: 70vh; }

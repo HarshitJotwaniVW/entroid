@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Every SOX "efficiency cycle" sells the same win: a faster, tidier certification season. Here is the uncomfortable part. Even the strongest published self-use cases still leave <strong>a large share of a controls team's year living inside SOX</strong> — and a permanent quarterly cadence that never reaches zero. That residual is not slack to be optimized away. It is the signature of an architecture that <em>proves</em> compliance after the action instead of <em>enforcing</em> it during.</p></div>
 
-<div class="section-label fade-in">THE PITCH, FAIRLY STATED</div>
+<h2 class="section-label fade-in">The pitch, fairly stated</h2>
 <div class="fade-in">
 <p>Give the category its due, because the gains are genuine. The SOX-testing and connected-reporting vendors have made real progress on the mechanics of assurance. Automating the testing process cuts the manual toil that used to swallow a controls team's evenings. Full-population analytics beats quarterly sampling — testing every transaction instead of forty of them is a categorical improvement, not a marketing line. Continuous control certification really does shorten the window between when a control breaks and when someone notices. And connected reporting collapses the copy-paste chain between the workpaper, the narrative, and the certification.</p>
 <p>A CFO who has lived through a manual close appreciates all of it. If the alternative is binders, sampled tests, and a scramble to reconcile evidence the week before the sub-certifications are due, then automating the proving is obviously worth buying. None of what follows disputes that. The question is not whether these tools make SOX <em>faster</em>. It is why, after all that acceleration, so much of the year is still gone.</p>
 </div>
 
-<div class="section-label fade-in">THE RESIDUAL IS THE TELL</div>
+<h2 class="section-label fade-in">The residual is the tell</h2>
 <div class="fade-in">
 <p>Read the reduction stories closely — including the celebrated "platform running its own compliance on its own platform" case — and the same shape appears every time. A large reduction in effort. A meaningful cut in cycle time. And then a floor. The testing shrinks but does not vanish. The quarterly cadence compresses but stays quarterly. The attestation gets easier to assemble but still has to be assembled, quarter after quarter, forever.</p>
 <p>The advocates present that floor as an achievement, and directionally it is. But look at what it actually proves: <strong>the model cannot reach zero.</strong> A residual testing-and-attestation cost is not an implementation gap you close next year with a better connector. It is structural. It exists because the control is <em>documented and tested</em> rather than <em>enforced inline</em>. As long as the control lives beside the ledger instead of inside it, you are obligated to keep pulling evidence, sampling or scanning populations, re-performing tests, and signing that the tests held — every period, in perpetuity. You are not certifying that a bad action was impossible. You are certifying that you looked, after the fact, and did not find one.</p>
@@ -15,7 +15,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHERE THE CONTROL ACTUALLY LIVES</div>
+<h2 class="section-label fade-in">Where the control actually lives</h2>
 <div class="fade-in">
 <p>Step back to the architecture, because that is where the floor is set. The connected-risk platforms, the audit-automation tools, and the continuous-certification suites are all, at heart, <strong>systems of record for governance that sit beside the operational systems where the work runs</strong>. They map controls to frameworks, run the assessments, collect the evidence, test or monitor, and produce a point-in-time report. The design is a spectator with excellent instrumentation.</p>
 <p>Concede the strongest version of the opposing case honestly. The ITSM-adjacent approach — co-locating a governance app on the same shared data model as the operational app — is a real and respectable design. Putting risk on the same platform where work happens genuinely beats siloed GRC, because at least the observer and the observed share one source of truth instead of two reconciled ones. That is a legitimate advance and worth acknowledging. But it does not change the structural fact. A shared data model that <em>observes</em> the executing work is still not the control that <em>is</em> the executing action. Watching the ledger from the next seat over, however good the view, still means the entry commits first and gets judged second.</p>
@@ -77,7 +77,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">WHEN THE CONTROL IS THE PROCESS</div>
+<h2 class="section-label fade-in">When the control is the process</h2>
 <div class="fade-in">
 <p>Entroid moves the control from the seat beside the ledger into the path the action must travel. On a Composable Process Fabric, every process is modelled, <em>executed</em>, and <em>governed</em> as one composition on a shared ontology, in a single runtime. The primitive that matters here is the <strong>Deterministic Workflow</strong>: fixed, rule-governed routing where the ICFR controls are enforced <em>inline</em> — segregation of duties, approval and authority limits, journal-entry gates, thresholds, human-in-the-loop checkpoints — as the process runs.</p>
 <p>Consider a manual journal entry that would breach segregation of duties, or a posting that exceeds a preparer's authority limit. In a system-of-record model, that entry commits and is flagged in a later test cycle. On the fabric, the gate is the workflow itself: the non-compliant entry <strong>cannot post</strong>. It is refused at execution, not detected at quarter-end. That is an architectural property of how the process is built, not a measured outcome or a demo result — it is what "the control is the executing action" means in practice.</p>
@@ -86,13 +86,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">FROM SEASON TO STATE</div>
+<h2 class="section-label fade-in">From season to state</h2>
 <div class="fade-in">
 <p>This is where the quarterly cadence dissolves. The Audits and Compliance modules sit on top of the <em>same running fabric</em>, not a parallel repository. Operating effectiveness is computed from live process state, so it is expressed as a continuous, provable condition rather than a periodic verdict. A control is enforced <strong>once</strong> in the workflow, written against the ontology, and then projected to whatever framework the obligation names — SOX, ISO, NIST, SOC 2, DORA — instead of being re-documented and re-tested per framework, per quarter.</p>
 <p>Be honest about what does <em>not</em> disappear. External audit does not vanish. Management's and the external auditor's certification obligations still exist; regulators still require sign-off, and independence still matters. What changes is the nature of the thing being certified. Instead of standing up a sampled test campaign every quarter to reconstruct whether controls operated, you are attesting to an operating-effectiveness state that is <strong>provable continuously</strong> — because the control could not have been bypassed and the record proving it is already there, for the full population, tied to each action. The auditor's work shifts from re-performing your tests to relying on enforcement they can inspect.</p>
 </div>
 
-<div class="section-label fade-in">WHAT A CFO ACTUALLY BUYS</div>
+<h2 class="section-label fade-in">What a CFO actually buys</h2>
 <div class="fade-in">
 <p>The efficiency-cycle pitch offers a better quarter. It compresses the season, tidies the workpapers, and hands time back at the margin. That is worth having if the control must live beside the ledger. But it accepts the season as permanent and negotiates its length.</p>
 <p>The architectural move is different in kind. When the control <em>is</em> the process and the evidence is the exhaust of running it, certification stops being a recurring project on the calendar and becomes a property of the system you already operate. <strong>You do not accelerate SOX season. You delete it as an event</strong> — and reassign the large share of the year it used to consume. For a controller weighing a faster close against a fundamentally quieter one, that is the distinction that actually reaches the P&L.</p>

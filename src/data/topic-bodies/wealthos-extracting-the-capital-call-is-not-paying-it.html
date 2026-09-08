@@ -1,13 +1,13 @@
 <div class="hook fade-in">A mis-keyed public-market trade can be broken, rebooked, and made whole. A private-market subscription cannot. Once the documents are executed and the wire funds the call, the client owns that commitment for the life of the fund — through every capital call still to come. <strong>In private markets, a process failure is not an error to correct. It is a position to live with.</strong></div>
 
-<div class="section-label fade-in">THE RACE AT THE DATA LAYER</div>
+<h2 class="section-label fade-in">The race at the data layer</h2>
 <div class="fade-in">
 <p>Credit first, because it is deserved. The alternatives buildout in wealth technology is real engineering against a genuinely ugly problem. Capital-call notices arrive as PDFs in hundreds of formats from hundreds of fund administrators. K-1s land late, inconsistent, and hostile to automation. Private positions do not flow through custodial data feeds the way listed securities do. The portfolio-data platforms that taught document AI to extract those notices — with analyst validation behind the model — removed some of the most brutal manual work in advisory operations. Normalized private-asset records made consolidated reporting across a client's whole book possible at all. Model-driven sleeves brought discipline to operations that used to run on spreadsheets and memory.</p>
 <p>And the thesis beneath that work — AI is only as good as the data it stands on, so govern the data — is correct as far as it goes. Extraction accuracy, analyst-validated quality, permission-aware access: for the data layer, that is real governance, honestly claimed.</p>
 <p>But look at what all of it governs. The document. The record. The report. What the firm <em>knows</em> about its alternatives book. Not the subscription that puts a client into a fund. Not the eligibility check that should precede it. Not the wire that funds the call. The race is being run — and won — at the data layer, while the consequential actions execute somewhere else entirely.</p>
 </div>
 
-<div class="section-label fade-in">WHAT IRREVERSIBLE ACTUALLY MEANS</div>
+<h2 class="section-label fade-in">What irreversible actually means</h2>
 <div class="fade-in">
 <p>Public-markets operations grew up with a safety net private markets never had. A bad trade can usually be cancelled and corrected. An erroneous fee can be reversed and rebated. A wrong report can be restated. Liquid operations are forgiving because nearly everything has an undo path — which is precisely why the industry learned to tolerate after-the-fact review as its compliance posture. Catch it in surveillance, fix it, move on.</p>
 <p>Private markets remove the undo. An unsuitable subscription is locked up for years; for most clients there is no practical exit, and transfers typically require the fund's consent. A missed capital call is not an inconvenience — the consequences are written into the fund agreement itself, escalating from penalty interest toward dilution or, in the extreme, forfeiture of the position. None of this is a horror story invented to sell software. It is the standard mechanics of the asset class.</p>
@@ -15,7 +15,7 @@
 <p>And the direction of travel compounds the stakes. The entire category is riding the same narrative — more advisors allocating to private markets, more clients qualifying, more capital calls in flight at any moment. Every unit of that growth multiplies the number of irreversible actions crossing the seams.</p>
 </div>
 
-<div class="section-label fade-in">THE SEAM WHERE THE MONEY MOVES</div>
+<h2 class="section-label fade-in">The seam where the money moves</h2>
 <div class="fade-in">
 <p>Walk the path a capital call actually travels — an illustrative composite, but recognizable to anyone who runs this operation. The notice arrives and is extracted, validated, and posted to the reporting platform. So far, genuinely governed. Then the action begins. Someone confirms the client is still eligible and not over-concentrated — often against a policy that lives in a PDF and data that lives in another system. The subscription executes through a fund administrator's portal or a counsel-managed process. Treasury keys the wire into a custodian's or bank's interface. Three or four systems; each handoff re-keyed; each governed by its own logins and none by the platform that governs the data. Compliance meets the completed action in the next surveillance cycle — after the money moved.</p>
 <p>Hold the category's two loudest claims against that path. The first, from the alts-data specialists: AI extraction plus analyst-validated quality reduces the risk of bad <em>data</em> about alternatives. True, and worth paying for. But extraction accuracy is not an eligibility gate. A flawlessly normalized record of an unsuitable subscription is still an unsuitable subscription — now beautifully reported.</p>
@@ -94,7 +94,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE GATE FIRES BEFORE THE WIRE</div>
+<h2 class="section-label fade-in">The gate fires before the wire</h2>
 <div class="fade-in">
 <p>Entroid's WealthOS treats the alternatives <em>operation</em> — not the alternatives record — as the governed unit. It runs on a Composable Process Fabric: five primitives on a shared semantic ontology, one runtime, an immutable per-action audit. What that architecture means for this exact flow:</p>
 <ul>
@@ -106,7 +106,7 @@
 <p>Two boundaries, stated plainly. First, none of this is investment judgment. ES holds no view on whether any private fund belongs in any portfolio — suitability policy is the firm's to define and the advisor's to apply. The architectural guarantee is narrower and harder: whatever your policy says, it executed inline, at the action, before the money moved, and the record proves it. Second, ES does not replace the fund administrator, the custodian, or the extraction layer. It runs over the existing estate through governed Connectors. The strongest configuration is the pairing — the category's governed data feeding a governed action.</p>
 </div>
 
-<div class="section-label fade-in">ONE CHAIN FROM NOTICE TO INSTRUCTION</div>
+<h2 class="section-label fade-in">One chain from notice to instruction</h2>
 <div class="fade-in">
 <p>Now run the examiner's question through both architectures: <em>show me this client was eligible on the date they subscribed, who approved the funding wire, and that the amount matched the notice.</em></p>
 <p>In the seam architecture, that answer is an assembly project — portal logs from the administrator, wire records from the bank, an approval email if one exists, a suitability assessment from wherever it lives, stitched into a narrative that says <em>we believe the gate fired</em>. In an inline architecture, the answer is a query. The per-action audit already chains notice to gate to approval to instruction, because that chain <em>was</em> the execution path. Evidence is not collected after the fact; it is what execution leaves behind.</p>

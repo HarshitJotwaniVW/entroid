@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>At 2:14 on a Tuesday afternoon, an in-process inspection fails and lot 4471 goes on hold. By 2:19, the stockroom has issued material against it, the scheduler has kept its downstream operation slotted, and a pallet from the same lot is shrink-wrapped at the dock. No system malfunctioned. Every system did exactly what it was designed to do — <strong>because in the incumbent stack, a hold is a record of an intention, not the execution of one.</strong></p></div>
 
-<div class="section-label fade-in">THE FIVE MINUTES AFTER DETECTION</div>
+<h2 class="section-label fade-in">The five minutes after detection</h2>
 <div class="fade-in">
 <p>The scene is illustrative. The mechanics are not. Trace what "putting a lot on hold" actually requires in a typical manufacturing estate — an MES or MOM layer running production, a QMS holding the quality record, an ERP owning inventory and orders, and a frontline app layer capturing work.</p>
 <p>The inspection fails in the app or the MES quality module. Now the hold must be assembled. The MES flips a status flag on the lot. Someone opens an NCR in the QMS — a different system, a different login, a different data model. Someone places an inventory block in the ERP so material stops issuing and the lot cannot ship. The planner — who lives in none of these systems at the granularity that matters — updates the spreadsheet that actually drives tomorrow's sequence. The warehouse gets an email, or a shout across the floor.</p>
@@ -8,13 +8,13 @@
 <p>That window is not an implementation defect your integrator failed to close. It is the architecture.</p>
 </div>
 
-<div class="section-label fade-in">WHAT THE STACK GENUINELY SOLVED</div>
+<h2 class="section-label fade-in">What the stack genuinely solved</h2>
 <div class="fade-in">
 <p>Be fair about what this stack achieved, because the critique only lands if the credit does. Digitizing frontline work genuinely beat paper: dynamic work instructions, digital logbooks, and no-code apps built by the engineers closest to the work are real wins that pulled decades of tribal knowledge out of binders. MES and MOM genuinely brought order to production — routing, dispatching, electronic batch records, genealogy. The cloud MES suites genuinely unified plant data with ERP context, and the maintenance platforms turned work orders into governed, auditable objects instead of clipboard folklore. And the composability argument the newer platforms make against monolithic MES is correct: rigidity is a real disease, and letting process engineers assemble what they need incrementally is a legitimate cure.</p>
 <p>But look at where each achievement sits. Every one of them digitizes the <strong>record</strong> of production, or the <strong>authoring</strong> of the tools that capture the record. The smart-manufacturing suites answer the recall scenario with the ability to locate and isolate affected product — and fast genealogy is genuinely valuable. Locating, however, is not holding. The portfolio architectures describe closed-loop quality, and the loop is real — but it closes by relay across separately licensed modules, and every handoff is a boundary. The composable-frontline platforms put checks inline in the work instruction, so the app records the failure at the exact moment it happens — and recording the failure is not acting on it. In all three, at the moment of decision, the consequential action leaves the platform and enters the seams.</p>
 </div>
 
-<div class="section-label fade-in">WHY THE SEAM SURVIVES EVERY ROADMAP</div>
+<h2 class="section-label fade-in">Why the seam survives every roadmap</h2>
 <div class="fade-in">
 <p>This is a structural claim, not a product review, and it is worth being precise about why no release cycle closes it. In the incumbent pattern, three systems of record each own a fragment of the hold's meaning: the MES owns lot status, the QMS owns the quality object, the ERP owns inventory and order state. There is no shared referent — "the lot" in one system and "the lot" in another are reconciled identities, not the same object. Integration middleware synchronizes state between them after each system commits its own transaction, which means the hold is eventually consistent by construction. A hold that is eventually consistent is, for the duration of the window, not a hold.</p>
 <p>The composability movement deserves particular precision here, because its diagnosis is right — and Entroid agrees with it. ES is itself composable; that is the point of building on primitives. But the incumbent version of composability governs the <strong>authoring layer</strong>: who builds apps, how they are versioned, templated, promoted. Each app "connected to" the ERP is a new surface where a hold, a disposition, or a revision change must be kept consistent with systems the platform does not govern. The category's own adoption guidance tells customers to stand up governance frameworks so the app portfolio does not tangle into sprawl — an honest admission that governance is left as homework. Composing more apps composes more seams. The disease was never only that MES was monolithic. The disease is that the consequential action is a distributed transaction with no coordinator — except a human, walking the decision from screen to screen.</p>
@@ -73,7 +73,7 @@
 <text x="600" y="284" text-anchor="middle" font-size="9" fill="currentColor" fill-opacity="0.5">governed connectors propagate the executed decision to the estate</text>
 </svg></div>
 
-<div class="section-label fade-in">THE HOLD AS ONE GOVERNED ACTION</div>
+<h2 class="section-label fade-in">The hold as one governed action</h2>
 <div class="fade-in">
 <p>Entroid's manufacturing use case — integrated execution across planning, production, quality and logistics — starts from a different premise: the production process is not documented by the system; <strong>the process is the governed executing workflow</strong>. Five primitives compose it — Deterministic Workflows with governance enforced inline, Intelligence Orchestration, Atomic Agents with human-in-the-loop as a first-class construct, Functions, and Connectors, the only primitive that touches external systems — all on a Semantic Ontology, one runtime, with immutable per-action audit.</p>
 <p>Run the same chain on that architecture. The inspection result lands as an event in the executing workflow — not in an app that must notify a system that must notify another. The workflow transitions the lot's state on the Semantic Ontology, where lot, order, schedule slot, and shipment are one referent, not four reconciled identities. Because material issue is itself an action on the same runtime, blocking it is not a flag another system may or may not consult — the issuing step simply cannot proceed, by construction. The schedule slot freezes for the same reason. Disposition routes to the authorized role as a permissioned, inline-gated step — a human decision, but one that executes <em>inside</em> the governed workflow rather than beside it. Release is gated on that disposition; it cannot occur without it, because "release" is a state transition in the same action, not a status three systems must eventually come to agree on. And the audit trail is not assembled afterward from logs — every action emits its immutable audit record as a property of execution. One trail, because one action.</p>
@@ -82,7 +82,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">QUESTIONS FOR YOUR OWN STACK</div>
+<h2 class="section-label fade-in">Questions for your own stack</h2>
 <div class="fade-in">
 <p>You do not need a vendor evaluation to test this argument. Ask four questions of your current estate — or of any platform proposing to modernize it.</p>
 <ul>

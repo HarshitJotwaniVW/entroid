@@ -1,32 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Reveal, revealOnScroll } from './Reveal'
+import { Reveal } from './Reveal'
 import { BlogCard } from './BlogCard'
 import { useBlogMode } from './useBlogMode'
 
-/* Post bodies arrive as raw HTML, so they can't be wrapped in <Reveal>.
-   Instead, tag every top-level block in the article and reveal each as it
-   scrolls in — same look, applied after the markup is injected. */
-const useRevealChildren = (key) => {
-  const ref = useRef(null)
-  useEffect(() => {
-    const root = ref.current
-    if (!root) return
-    const cleanups = Array.from(root.children).map((k) => {
-      k.classList.add('reveal')
-      return revealOnScroll(k)
-    })
-    return () => cleanups.forEach((fn) => fn())
-  }, [key])
-  return ref
-}
+/* The article body is read, not browsed: animating each block in as it scrolls
+   put a stutter between the reader and the next paragraph. The body renders
+   plainly; only the page furniture above it still animates in. */
 
 /* ── Blog post (/resources/blogs/:slug) ────────────────────────── */
 export const BlogPostView = ({ meta, body, related = [] }) => {
   useBlogMode()
-  const articleRef = useRevealChildren(body)
 
   return (
     <>
@@ -62,7 +47,7 @@ export const BlogPostView = ({ meta, body, related = [] }) => {
 
       <div className="blog-article">
         {body
-          ? <article ref={articleRef} dangerouslySetInnerHTML={{ __html: body }} />
+          ? <article dangerouslySetInnerHTML={{ __html: body }} />
           : <article className="blog-loading"><p>Loading…</p></article>}
       </div>
 

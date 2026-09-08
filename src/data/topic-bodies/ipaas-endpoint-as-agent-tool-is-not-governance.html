@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>The category's big 2025-26 idea is seductive in its simplicity: take every integration you already own and expose it as a tool an agent can call. <strong>One switch, and your whole estate becomes "AI-ready."</strong> It is a real capability, and it will demo beautifully. It is also not an architecture — it is improvisation with a very short memory.</p></div>
 
-<div class="section-label fade-in">THE PIVOT, FAIRLY STATED</div>
+<h2 class="section-label fade-in">The pivot, fairly stated</h2>
 <div class="fade-in">
 <p>Give the incumbents their due. Prebuilt connector libraries and API-led connectivity genuinely compress integration timelines and make reuse real. A design-time control plane with rulesets over the whole API estate is valuable governance that many enterprises simply lack. Low-code recipes let business teams automate without waiting in a platform-team queue. And the newest layer is the most impressive of all: an agent control plane that discovers your APIs, applies delegated identity and policy to each call, adds guardrails, and turns those APIs into tools an agent can invoke — some vendors going as far as "guided determinism" and "governance by design" across the API lifecycle.</p>
 <p>That is genuinely advanced engineering, and the pitch writes itself: <em>your existing integrations become AI-ready tools out of the box, with zero rework.</em> Concede all of it. Then read the sentence for what it actually governs. It governs the <strong>call</strong> — which API or agent may be invoked, under what identity, with what policy, logged at the gateway. It says nothing about the <strong>process</strong>.</p>
 </div>
 
-<div class="section-label fade-in">WHERE THE PROCESS ACTUALLY LIVES</div>
+<h2 class="section-label fade-in">Where the process actually lives</h2>
 <div class="fade-in">
 <p>When you expose a hundred endpoints as agent tools, you have not built a process. You have handed a language model a drawer full of instruments and asked it to perform surgery from memory. The "workflow" is whatever sequence of tool calls the model improvises inside its context window <em>this run</em>. That has three structural consequences no roadmap edits away:</p>
 <ul>
@@ -16,7 +16,7 @@
 </ul>
 </div>
 
-<div class="section-label fade-in">THE MATH OF A TOOL MESH</div>
+<h2 class="section-label fade-in">The math of a tool mesh</h2>
 <div class="fade-in">
 <p>The failure is not only conceptual; it shows up in the token budget. Every tool an agent can call has to be described to the model — name, purpose, parameters, types — and those schemas are <em>resident</em> cost, paid on every turn before any work happens. A serious estate exposed this way pushes tool definitions into the tens of thousands of tokens, crowding the very context you need for reasoning and for holding state. The I/O surface grows with your integration catalog, which is exactly backwards: <strong>the more capable you make the agent, the less room it has to think.</strong></p>
 <p>Then come the silent limits. Many agent clients cap how many tools they will register at once — and tools past the cap don't error, they simply aren't there. Selection degrades well before any hard cap: give a model dozens of near-identical tools and it reaches for the plausible one, not the right one. And the blast radius is the whole mesh — any exposed tool is reachable inside any improvised chain, so your practical authorization boundary collapses to "everything we connected," fenced only by per-call policy and the model's judgment in the moment.</p>
@@ -24,7 +24,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE COMPOSITE-TOOL TELL</div>
+<h2 class="section-label fade-in">The composite-tool tell</h2>
 <div class="fade-in">
 <p>Here is the tell — and it comes from inside the category. The more honest AI-ready platforms already warn that tool sprawl bloats context, and their recommended fix is to hand-roll <em>composite tools</em>: bundle several calls behind one tool so the model sees fewer instruments. Read that fix for what it is. A composite tool is a sequence of steps with branching and error handling — a workflow — smuggled into a tool definition at the integration layer, with no durable state, no inline authorization on each action, and no per-action audit. You have rediscovered that you need a process. You have just rebuilt it in the one place designed to hold none of the things a process requires.</p>
 <p>That is the crux. The pattern doesn't fail because the engineering is weak — it is often excellent. It fails because it puts the process where a process cannot be governed: dispersed across the endpoints being glued, or evaporating inside a context window. <strong>Exposing every endpoint as a tool moves the improvisation closer to your data. It does not turn improvisation into an architecture.</strong></p>
@@ -100,14 +100,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE +1: THE AGENT IS A STEP THE PROCESS CALLS</div>
+<h2 class="section-label fade-in">The +1: the agent is a step the process calls</h2>
 <div class="fade-in">
 <p>Entroid inverts the relationship. The agent is not the thing that holds the process; the agent is a step the process <em>calls</em>. On a Composable Process Fabric, the business process is the first-class runtime object — with durable, governed state — running on one runtime. Within it, <strong>Intelligence Orchestration</strong> and <strong>Atomic Agents</strong> are composable primitives the process invokes exactly where judgment is needed, with human-in-the-loop as a first-class step rather than a bolted-on approval. The agent gets its flexibility at the edge; the spine stays deterministic.</p>
 <p>Crucially, the model never holds a drawer of raw tools. <strong>Connectors</strong> are the only primitive that touches external systems — a governed, typed, audited I/O boundary, not an open mesh. A <strong>Semantic Ontology</strong> gives every input and output typed business meaning, so a step operates on <em>a refund against this order in this state</em>, not on an opaque API blob. Authorization is enforced <strong>inline at the action</strong>, where <strong>Deterministic Workflows</strong> hold the durable state — and every business action lands in one immutable, per-action audit. Architecturally, that is what "governed" has to mean: the control is on the action and its state, not merely on the call. These are properties of the design, not features layered on after the fact.</p>
 <p>And to be plain about scope, because over-claiming is how you lose an expert reader: ES is not integration you get to skip. It runs over your existing estate through those governed Connectors. The difference is not fewer systems — it is <em>where the process lives</em>. On this fabric it lives as one durable, governed object. In the tool-mesh model it lives in the endpoints, or nowhere.</p>
 </div>
 
-<div class="section-label fade-in">WHAT TO ASK BEFORE YOU WIRE IT UP</div>
+<h2 class="section-label fade-in">What to ask before you wire it up</h2>
 <div class="fade-in">
 <p>The decision is not "should agents call our systems" — they should. It is <em>where the process and its guarantees reside</em>. Four questions separate an architecture from a demo:</p>
 <ul>

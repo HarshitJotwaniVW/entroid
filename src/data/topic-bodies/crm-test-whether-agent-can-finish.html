@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>There is a quiet tell in every agent evaluation deck: a benchmark for whether the agent can <em>finish</em> the job across a full conversation. Read that literally. <strong>If reliability is something you have to test for, the procedure the agent depends on lives nowhere durable — it is being reconstructed, turn by turn, inside a language model's context window.</strong> A score that says "succeeds most of the time" is not a guarantee. It is a confession about where the process actually runs.</p></div>
 
-<div class="section-label fade-in">THE BENCHMARK IS THE CONFESSION</div>
+<h2 class="section-label fade-in">The benchmark is the confession</h2>
 <div class="fade-in">
 <p>Give the category its due first. When an autonomous-service vendor publishes its own multi-turn benchmark, that is intellectually honest — most marketing hides the hard number. And the number is genuinely impressive in one column: on a <em>single</em> tool call, given clean state and a clear instruction, these systems are close to flawless. Modern models pick the right function and fill the arguments extremely well.</p>
 <p>Then look at the other column, the one that matters to a CIO: full-conversation success — completing the entire multi-step procedure end to end — lands at a <em>fraction</em> of the single-call figure. Directionally, near-perfect per call, and a minority of full runs. That gap is not a rounding error the next model release will close. It is the entire architecture of the problem, printed on the vendor's own slide.</p>
 <p>The claim these platforms make on top of that number — "autonomous resolution, no scripts required" — is precisely what the gap contradicts. A procedure with no script and no runtime home does not disappear; it just gets re-derived, badly, on every turn.</p>
 </div>
 
-<div class="section-label fade-in">WHY ACCURACY COMPOUNDS THE WRONG WAY</div>
+<h2 class="section-label fade-in">Why accuracy compounds the wrong way</h2>
 <div class="fade-in">
 <p>Here is the mechanism, and it is not mysterious. A real customer process — validate the entitlement, reserve the resource, provision the service, post the invoice, resolve the case — is a stateful sequence spanning several systems. If that sequence lives in no runtime, the only place left to hold it is the model's context. So on <em>every</em> turn the agent must silently re-answer three questions from the transcript alone: which step am I on, what is now valid next, and what has already changed in the outside world.</p>
 <p>Get any of those wrong and you get the exact failure modes the benchmark measures: <strong>wrong sequence</strong> (bill before provision), <strong>lost context</strong> (re-run a step whose side effect already fired), <strong>invalid branch</strong> (take a path the customer's plan doesn't allow). Now do the arithmetic. Suppose each of those per-turn decisions is right 95% of the time — excellent for a language model. Over a fifteen-turn procedure, end-to-end correctness is 0.95 raised to the fifteenth: below fifty percent. High single-call accuracy and low full-run accuracy are not in tension. One <em>causes</em> the other the moment the procedure has to be reassembled at each step.</p>
@@ -16,14 +16,14 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">"NARROW THE SCOPE" IS THE SAME ADMISSION</div>
+<h2 class="section-label fade-in">"Narrow the scope" is the same admission</h2>
 <div class="fade-in">
 <p>The broad-suite response is a multi-agent orchestrator: decompose the work, hand each sub-agent a narrow scope, and narrower scope means fewer hallucinations. As engineering, this is sound — constraining what an agent may attempt does reduce error, and a well-bounded agent is safer than an open-ended one.</p>
 <p>But look at what the move concedes. You shrink what the agent is <em>allowed</em> to attempt because there is nowhere that can <em>enforce</em> what it should attempt. Scoping is a way of managing a symptom of the same disease: the procedure isn't held anywhere with authority over it, so you make the blast radius small enough that reconstruction usually survives. "Usually" is doing an enormous amount of load-bearing work in a sentence about a customer's order.</p>
 <p>Reliability arrived at by scoping-and-tuning is a property of a test harness. It has to be re-earned every time the model, the prompt, the tool set, or the process changes. That is test-and-pray dressed as architecture.</p>
 </div>
 
-<div class="section-label fade-in">PUT THE PROCEDURE IN THE RUNTIME</div>
+<h2 class="section-label fade-in">Put the procedure in the runtime</h2>
 <div class="fade-in">
 <p>Entroid draws the line differently, at the level of where the procedure lives. In the fabric, the customer process — order-to-fulfill, quote-to-cash, case-to-resolution, onboarding, renewal — is one <strong>Deterministic Workflow</strong>. The workflow, not the model, owns the state machine: the set of legal states, the transitions between them, the guardrails on each transition, and the compensation boundary if something downstream fails. Governance is <em>inline</em> — approvals, entitlements, and separation-of-duties are conditions on the transitions themselves, not a review that happens afterward.</p>
 <p>The <strong>Atomic Agents</strong> in that workflow do only what agents are actually good at: language and judgment. They read intent, draft a reply, propose the next action. They are participants in a durable, governed workflow — not autonomous actors whose output gets reconciled later. <strong>Intelligence Orchestration</strong> handles the reasoning; the fabric owns the state and the transitions; <strong>Connectors</strong> — the only primitive that touches an external system — carry the fulfillment out to order, billing, provisioning, and support. Human-in-the-loop is first-class, a modeled pause in the state machine, not an escape hatch bolted on when the demo gets scary.</p>
@@ -103,7 +103,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE PART THE BENCHMARK CAN'T SCORE — A RESUMABLE FAILURE</div>
+<h2 class="section-label fade-in">The part the benchmark can't score — a resumable failure</h2>
 <div class="fade-in">
 <p>Consider — illustratively, not as a delivered result — a service change midway through: validate the customer's entitlement, reserve capacity, provision the new service through a Connector, post the invoice, resolve the case. At step three, the provisioning system times out.</p>
 <p>In the reconstruct model, this is the dangerous moment. The reservation already happened; the provisioning may have half-happened; the conversation is mid-turn; and the agent has to <em>notice</em> the partial state from the transcript and reason its way to an unwind. Sometimes it does. That "sometimes" is the collapse the benchmark is measuring, expressed as a stranded customer with a reserved-but-not-provisioned service and no invoice.</p>
@@ -112,7 +112,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">RELIABILITY IS A PROPERTY, NOT A SCORE</div>
+<h2 class="section-label fade-in">Reliability is a property, not a score</h2>
 <div class="fade-in">
 <p>Be precise about the claim, because over-claiming is the fastest way to lose a technical reader. ES does not abolish model error. An Atomic Agent can still misread a customer, propose the wrong thing, or draft a poor reply. The difference is what a slip <em>becomes</em>. When the runtime — not the model's memory — owns the procedure, a bad proposal is a rejected transition or a HITL pause, not a silently half-finished order. The model's error is contained by the state machine instead of propagated by it.</p>
 <p>Concede the strongest opposing position squarely: owning the customer record, the data foundation, <em>and</em> the agentic layer is a genuinely powerful, integrated design, and an agent acting on trusted customer data does real work. But acknowledge exactly where it acts. It acts on the record, and inside the vendor's own applications. The order still fulfills, the service still provisions, and the invoice still posts in <em>other</em> systems reached by integration — and at that moment of cross-system action, the CRM's governance is not the thing running. The record is one place; the fulfillment is another; the procedure that must hold them together has, again, no single runtime home.</p>

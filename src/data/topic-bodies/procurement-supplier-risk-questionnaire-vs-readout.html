@@ -1,12 +1,12 @@
 <div class='hook fade-in'><p>Your supplier scorecard is a <strong>photograph of a supplier who has already moved on</strong>. By the time the quarterly re-score posts or the annual risk questionnaire comes back attested, the late deliveries, the quality escapes, and the disputed invoices have already flowed through your purchase orders. You are managing this quarter's spend against last quarter's supplier.</p></div>
 
-<div class='section-label fade-in'>WHAT THE 360 VIEW GETS RIGHT</div>
+<h2 class='section-label fade-in'>What the 360 view gets right</h2>
 <div class='fade-in'>
 <p>Start with the concession, because it is real. Before supplier-management modules existed, supplier truth was scattered — a master record in the ERP, insurance certificates in an inbox, certifications on a shared drive, performance in a spreadsheet a category manager guarded privately. The supplier-management and supplier-risk platforms fixed a genuine problem. They centralize supplier master data, standardize onboarding and due diligence, and give procurement a single 360-degree profile with a defensible trail for <em>why</em> a supplier was approved.</p>
 <p>The stronger offerings go further, pulling third-party signals — financial health, sanctions and watchlists, ESG posture, cyber exposure — into that profile and re-scoring on a cadence. A buyer working from a consolidated 360 view and a disciplined re-score rhythm is materially better off than one working from tribal knowledge and gut feel. Do not let anyone tell you the scorecard is worthless. It is not. It is just <strong>lagging by construction</strong>.</p>
 </div>
 
-<div class='section-label fade-in'>THE CEILING IS THE REFRESH CADENCE</div>
+<h2 class='section-label fade-in'>The ceiling is the refresh cadence</h2>
 <div class='fade-in'>
 <p>Every one of these instruments — questionnaire, scorecard, 360 profile — shares a single property: it is refreshed on a cadence. Quarterly re-score. Annual re-attestation. An event-triggered review when someone remembers to trigger it. That cadence <em>is</em> the resolution of your picture, and between refreshes you are flying on a document that is quietly going stale.</p>
 <p>A questionnaire tells you what a supplier attested on the day they filled it in. A scorecard aggregates what already happened over the period that just closed. A third-party feed updates when its provider updates. And the signals that decay fastest are exactly the ones a periodic re-score smooths over:</p>
@@ -19,7 +19,7 @@
 <p>By the time any of these is visible in the score, the transactions that carried the problem have already posted. You can shorten the cadence, of course. But shortening it only samples the same lagging reality more often; it never crosses the line into the present. The ceiling is not a tuning knob — it is structural, set by the fact that the score is computed <em>about</em> the process from the outside rather than <em>by</em> the process from within.</p>
 </div>
 
-<div class='section-label fade-in'>ATTESTATION IS NOT DELIVERY</div>
+<h2 class='section-label fade-in'>Attestation is not delivery</h2>
 <div class='fade-in'>
 <p>Here is the architectural root of the lag. In a suite world, the supplier-management module is a <em>system of supplier record</em> that sits beside the systems where procurement actually executes. The delivery signals are not generated in that module. They are generated in receiving when a goods receipt posts, in accounts payable when an invoice matches or fails to, in the ledger, in the contract's price terms — at the moment of the transaction. The supplier module then <strong>extracts those events, aggregates them, and reports them back</strong> after the fact, on a cadence, as a rollup. The control is detective: the scorecard flags a supplier who has already underperformed on transactions that have already cleared.</p>
 <p>The procurement-orchestration and intake-to-pay layer improves the front of this, and it deserves credit. One front door for requests, coordinated routing across the ERP and the source-to-pay suites — that genuinely cuts maverick buying and gives buyers a single pane of glass. Concede it plainly. But that layer <strong>orchestrates and reports across systems it does not own</strong>. A supplier standing assembled from data it pulls out of those systems of record is still a periodic rollup of what already happened somewhere else. Coordinating a view across the stack is not the same as the delivery event being a native fact of the process as it runs.</p>
@@ -96,7 +96,7 @@
 </svg>
 </div>
 
-<div class='section-label fade-in'>A READOUT, NOT A RE-SCORE</div>
+<h2 class='section-label fade-in'>A readout, not a re-score</h2>
 <div class='fade-in'>
 <p>Entroid computes supplier standing from live process state — and it can do so because, architecturally, the procurement process <em>is</em> the executing workflow, not a set of records beside the executing systems. Source-to-pay in ES runs as one governed workflow on a Composable Process Fabric: intake to sourcing to PR to PO to receipt to invoice to pay, modelled from five primitives, in one runtime, over a Semantic Ontology, with an immutable per-action audit.</p>
 <p>That Ontology binds every executing action to the supplier entity it touches. So a late goods receipt, a failed quality check, a raised dispute, a three-way-match variance, a price that drifted off the contracted term are not events to be harvested later and re-scored next quarter. They are <strong>facts of the running workflow, attributed to the vendor as they occur</strong>. The Risks and Vendors modules read supplier performance and risk off that live state. Supplier standing becomes a continuous readout of actual delivery instead of a survey response or a quarterly aggregate.</p>
@@ -104,7 +104,7 @@
 <p>Be clear about what this is and is not. It is a property of the architecture, illustratively described — not a claimed customer result. And it does not mean zero integration: ES runs over your existing estate, with governed Connectors as the only primitive that touches the ERP or ledger, posting authoritatively there. The difference is not that ES ignores your systems of record — it is that the delivery signal is born inside the governed process rather than reconstructed from it afterward.</p>
 </div>
 
-<div class='section-label fade-in'>THE READOUT CAN ACT, NOT JUST SHOW</div>
+<h2 class='section-label fade-in'>The readout can act, not just show</h2>
 <div class='fade-in'>
 <p>A live readout would be a better dashboard even if it did nothing else. But governance in ES is enforced inline by Deterministic Workflows — 3-way match, segregation of duties, budget and authority thresholds, approval gates — so supplier standing becomes a <strong>control surface, not just a report</strong>. Illustratively: if a supplier crosses a defined risk threshold, the next action against it can be gated at the moment it is attempted. A new PO to a suspended supplier, or an over-threshold commitment to one whose delivery reliability just fell below the bar, does not route quietly for someone to catch later — it <strong>cannot execute</strong>.</p>
 <p>That is the line between detective and preventive. A scorecard flags after the transaction posts; an inline gate enforces before it does. The supplier readout stops being something you review in a monthly business review and becomes a condition the process honors on every action.</p>
@@ -112,7 +112,7 @@
 
 <div class='divider fade-in'><span class='divider-dot'></span></div>
 
-<div class='section-label fade-in'>WHAT CHANGES FOR THE CPO</div>
+<h2 class='section-label fade-in'>What changes for the CPO</h2>
 <div class='fade-in'>
 <p>For a chief procurement officer, this is the shift from managing suppliers <em>by document</em> to managing them <em>by signal</em>. You stop asking 'when did we last re-score them?' and start operating on 'what is the process showing right now?' Supplier risk stops being a form a vendor fills in and becomes a live property of how they actually deliver. And because every action carries its own immutable record, supplier standing is explainable down to the events that moved it — no reconstruction, no arguing about which spreadsheet is current.</p>
 <p>The scorecard was the best you could do when supplier truth lived in systems the process could only report on. When the process itself is the system, the quarterly re-score stops being the frontier — and starts looking like a workaround for an architecture that never had the live state to begin with.</p>

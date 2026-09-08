@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Your risk register is the most authoritative document in the building and, on the day it publishes, one of the least current. It is refreshed by asking owners to re-score risks they half-remember, mailing out surveys, and rolling human judgment into a tidy grid. The board reads it as a live picture of exposure. <strong>It is a periodically-attested snapshot — stale the moment it prints, and blind to anything nobody thought to instrument.</strong></p></div>
 
-<div class="section-label fade-in">"PROACTIVE" IS WEARING A COSTUME</div>
+<h2 class="section-label fade-in">"Proactive" is wearing a costume</h2>
 <div class="fade-in">
 <p>The category's promise is that you can <em>manage risk proactively</em>. Interrogate the mechanism, not the marketing. In the legacy GRC suites and the connected-risk platforms, "proactive" resolves to KRIs refreshed by sending update-requests to risk owners, floating KRI surveys, and setting a threshold that trips an alert when a number crosses a line. That is a useful discipline. It is also, structurally, a lagging indicator with better UI.</p>
 <p>An early-warning threshold on a survey-fed number cannot see anything the survey did not ask about, and cannot know anything until the next response arrives. You do not make a poll proactive by coloring it amber sooner. <strong>Proactivity is a property of the data source, not the alert logic.</strong> A faster-tripping threshold on a quarterly input is still a quarterly input.</p>
 </div>
 
-<div class="section-label fade-in">WHAT A REGISTER ACTUALLY IS</div>
+<h2 class="section-label fade-in">What a register actually is</h2>
 <div class="fade-in">
 <p>A register is a document <em>about</em> your business, maintained <em>beside</em> the systems where the business actually runs. Its entries are human abstractions — "supplier concentration," "unauthorized change," "revenue leakage" — scored on a cadence and rolled into a heatmap. Between refreshes, it does not know what happened. It knows what its last set of respondents believed, on the day they answered. That produces two failure modes no amount of dashboard polish removes:</p>
 <ul>
@@ -17,7 +17,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>Be honest about what the competing approaches got right, because over-claiming here is the fastest way to lose a risk reader. The audit-analytics vendors moved the profession from sampling toward full-population testing — reading whole datasets instead of a handful of transactions — and that genuinely is better; a risk read across the population beats one inferred from twenty-five items. Continuous-monitoring approaches genuinely shorten the window between an event and its detection. A faster dataset refresh genuinely narrows the lag. Siloed, annual, spreadsheet-bound risk is worse than all of them, and these vendors deserve credit for making that case.</p>
 <p>But notice the verb they all share: they <strong>poll</strong>. However fast the refresh, a scheduled read of an external system <em>after</em> the fact is still a read after the fact. The most candid vendors concede it themselves — a rapid dataset refresh still means the register is polling live systems on an interval, not being the live system. Refreshing more often shrinks the drift window. It does not change the <em>kind</em> of thing you are looking at: a detection, arriving after the action already committed.</p>
@@ -75,14 +75,14 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">RISK AS A READOUT, NOT A RE-SCORING</div>
+<h2 class="section-label fade-in">Risk as a readout, not a re-scoring</h2>
 <div class="fade-in">
 <p>The alternative is not a faster register. It is not a register at all. Entroid models, executes, <em>and</em> governs every enterprise process as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — on a single Semantic Ontology, in one runtime. Because the process actually runs on the fabric, its live state <strong>is</strong> the data. There is no separate artifact to poll.</p>
 <p>On top of that same running fabric sits the Risks module — register, KRIs, heat-maps, mitigation. It does not email owners for a score. It <strong>computes exposure from the state of every in-flight process</strong>, with the ontology binding each executing action to the risks and controls it touches. A KRI stops being a number someone typed last quarter and becomes a function of what is executing right now. The heatmap is not attested; it is <em>read</em>.</p>
 <p>Consider a concentration limit on a single supplier, or an approval authority that should never be exceeded. On a register, the fact that exposure crept past the limit surfaces when someone re-scores next cycle — after commitments are already booked. On the fabric, the exposure is a continuous readout because every purchase order, commitment, and change flows through the same governed workflows. And where a Deterministic Workflow enforces that limit inline, the breaching commitment cannot be booked in the first place — the control is the executing step, not a monitor watching from the side. The record of that decision is emitted as a byproduct of running, bound to the action, not reconstructed later for a report.</p>
 </div>
 
-<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<h2 class="section-label fade-in">Said precisely, not over-sold</h2>
 <div class="fade-in">
 <p>Two honest caveats, because a controls reader will supply them if you don't. First, this is not a claim that only one architecture can ever block anything before execution; some tools bolt a narrow pre-execution check onto specific agent actions riding on someone else's runtime. The structural difference is that here, inline deterministic enforcement is a <strong>native property of the fabric across every process</strong> — expressed once against the ontology and projectable to any framework you must answer to — rather than a discovery-dependent sensor on one surface.</p>
 <p>Second, this is not a claim that ES floats free of your estate. It reaches your ERP, ledger, ITSM, cloud, and HR systems through governed Connectors — the one primitive licensed to touch the outside world. The distinction from the connected-risk and control-harmonization platforms is not integration versus none. It is that co-locating a governance application beside the operational system, on a shared data model that <em>observes</em> the work, is not the same as the control <em>being</em> the executing action. A shared model that watches still watches after; the risk it reports is still, in the end, a poll.</p>
@@ -90,7 +90,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE BOARD-GRADE DIFFERENCE</div>
+<h2 class="section-label fade-in">The board-grade difference</h2>
 <div class="fade-in">
 <p>Reframe it for the room that matters. A board is not really asking "what was our posture last quarter." It is asking "what is our exposure, now — and can we trust the number." A register answers the first question and quietly hopes nobody presses the second. A live readout answers both, because it was never a separate document to refresh: it is <strong>current by construction</strong>, not by diligence. Omission shrinks in the same move — you are no longer limited to the risks someone remembered to instrument, because every process on the fabric is already instrumented by virtue of running there.</p>
 <p>In a volatile decade, a register cannot help but lag; there is always a gap between the process and the picture, and the gap is where the surprises live. A readout cannot lag, because there is no gap to close. The process and the picture are the same object, observed at the same instant.</p>

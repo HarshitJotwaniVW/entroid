@@ -1,14 +1,14 @@
 <div class="hook fade-in"><p>Your HCM vendor has shipped real governance: an agent that acts on people data, a system of record for what that agent did, guardrails that stop it from crossing a policy line. It is genuine, and it is bounded. <strong>The boundary is the HR domain — and no real people process stays inside the HR domain.</strong> The moment onboarding reaches for a system login, a first paycheck, or a building badge, the agent that was governing a second ago has no authority at all.</p></div>
 
-<div class="section-label fade-in">THE GOVERNANCE IS REAL</div>
+<h2 class="section-label fade-in">The governance is real</h2>
 <div class="fade-in"><p>Start by conceding what deserves conceding, because an expert reader will stop listening otherwise. The leading HR platforms have moved past copilots that only answer questions. They now pair agents with entitlements over people data, approval routing on org changes, human-in-the-loop checkpoints on sensitive edits, and a record of what the agent touched — an "agent system of record," in the category's own language. That is not marketing veneer. An agent that can adjust compensation, alter a reporting line, or reclassify a worker is exactly the kind of actor that <em>should</em> be permissioned, gated, and logged.</p>
 <p>For a CISO evaluating agentic AI inside a suite of record, this is the right instinct. If software is going to take autonomous action on employee data, it needs to carry an identity, respect segregation of duties, and leave evidence. The HCM leaders built that. The question is not whether the governance is real. The question is <strong>how far it reaches</strong>.</p></div>
 
-<div class="section-label fade-in">WHERE THE BOUNDARY IS DRAWN</div>
+<h2 class="section-label fade-in">Where the boundary is drawn</h2>
 <div class="fade-in"><p>Every one of those controls is scoped to the HR data domain. The agent's entitlements are HR entitlements. Its approvals are HR approvals. Its audit is an HR audit. Everything it governs is an action on the records, workflows, and org structure that the suite itself owns and executes. That is internally coherent — you can only govern what you can execute, and a system of record executes writes to its own tables.</p>
 <p>The unstated assumption underneath the whole design is that <em>the people process lives where the people data lives.</em> It doesn't. A hire-to-onboard spans IT provisioning, payroll, and facilities. A transfer spans access changes, comp, and reporting lines across systems. An offboarding is almost entirely a de-provisioning problem in domains the HR suite never touches. The data is unified and the view is unified — but the <strong>work</strong> is federated across systems that answer to different authorities. Governance drawn around the HR domain governs the paperwork of the process, not the process.</p></div>
 
-<div class="section-label fade-in">TRACE ONE ACTION ACROSS THE SEAM</div>
+<h2 class="section-label fade-in">Trace one action across the seam</h2>
 <div class="fade-in"><p>Make it concrete. An agent runs an onboarding. It creates the worker, assigns the position, routes the approvals — all inside the suite, all genuinely governed. Then comes step N: <em>provision access to the engineering systems.</em> Watch what happens to the governance at that exact step.</p>
 <ul>
 <li><strong>Authority mismatch.</strong> The agent's entitlements are scoped to HR objects. Granting an entitlement in an identity or access system is a privileged act in a <em>different</em> authority domain. The HR agent cannot hold that privilege — so it does not perform the action. It emits a request. Something on the far side performs the grant, under a different identity, a different approval model, and a different set of guardrails, or none.</li>
@@ -93,11 +93,11 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE CLOSEST COUNTEREXAMPLE</div>
+<h2 class="section-label fade-in">The closest counterexample</h2>
 <div class="fade-in"><p>Be fair about the hardest case. One class of platform natively spans HR and IT: it provisions applications and devices during onboarding <em>inside its own suite</em>. That is genuinely more execution than a pure system of record. The laptop, the login, the app access are not checklist items waiting for a downstream team — they actually happen, automatically, as onboarding runs. Credit where it is due: this really does close more of the onboarding seam than a records-plus-portal architecture, and any honest comparison has to say so.</p>
 <p>Now look at the <em>shape</em> of that win. The provisioning is automated because the vendor owns both domains — HR and IT are both inside one catalog. Push the same process one step past that catalog and the seam reopens exactly as before: the payroll instruction into a treasury system it doesn't own, the desk in a facilities system outside its scope, the entitlement in a line-of-business application that isn't in its app store. <strong>Unifying the record and bundling point automations inside a suite's own domains produces a bigger domain — not a domainless process.</strong> The seam didn't vanish. It moved to the edge of the suite, wherever that edge happens to fall.</p></div>
 
-<div class="section-label fade-in">GOVERNANCE THAT FOLLOWS THE PROCESS</div>
+<h2 class="section-label fade-in">Governance that follows the process</h2>
 <div class="fade-in"><p>Entroid attacks this at the layer where it is actually a problem: the runtime. It does not offer a better system of record with a better agent bolted on. It models the people process as one <strong>Deterministic Workflow</strong> on a single runtime, where every step — the HR write, the access grant, the payroll setup, the device order — is a primitive on the <em>same</em> fabric that runs finance, facilities, and every other enterprise process. Concretely:</p>
 <ul>
 <li><strong>The agent is a governed primitive, not a suite feature.</strong> It is an Atomic Agent, first-class in the fabric, with human-in-the-loop as a native control. When it executes a step, the Deterministic Workflow enforces entitlements, approvals, segregation of duties, and thresholds <em>inline, at the moment of action</em> — and it does so identically whether the step lands in HR, IT, finance, or facilities. Governance is a property of the runtime, not of a domain.</li>
@@ -108,7 +108,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHAT A CIO SHOULD ACTUALLY ASK</div>
+<h2 class="section-label fade-in">What a CIO should actually ask</h2>
 <div class="fade-in"><p>Change the buying question. "Does the HR agent have guardrails?" gets a yes, and it is an honest yes — so it tells you nothing. The question that separates a system of record from a process fabric is: <strong>when a people-process step crosses out of the HR domain, who holds the authority, and where is the audit?</strong> Three concrete probes:</p>
 <ul>
 <li><strong>Does the same governance gate apply to the access grant as to the org-chart edit</strong> — or only to the HR-side decision to request it?</li>

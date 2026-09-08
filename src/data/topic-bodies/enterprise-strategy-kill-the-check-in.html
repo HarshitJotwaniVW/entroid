@@ -1,19 +1,19 @@
 <div class="hook fade-in"><p>Open any OKR platform and find the number that reports how the strategy is going. Now trace where that number came from. It was typed in by the person being measured, or nudged along a confidence slider, or set to a color in a status meeting, or pulled on a schedule from a system somewhere else. <strong>Every one of those is a report about the work, produced beside the work — and a report can read green long after the process underneath it has started to fail.</strong></p></div>
 
-<div class="section-label fade-in">FOUR WAYS TO SAY "PROBABLY FINE"</div>
+<h2 class="section-label fade-in">Four ways to say "probably fine"</h2>
 <div class="fade-in">
 <p>Strip the branding off the leading strategy-execution and OKR-tracking tools and, without exception, they measure progress through some combination of four instruments: a self-reported check-in, a confidence score, a Red/Amber/Green status, and a metric polled from an external system on a cadence. The more advanced platforms roll those same inputs into a single proprietary health score. Different interfaces, one substrate. Each instrument is an assertion — entered by a human or fetched by a connector — that is then reconciled against reality by someone updating a field.</p>
 <p>Hold onto that last step, because it is the whole story. The number and the work are <em>two separate artifacts</em>. Keeping them in agreement is a standing chore, and the chore is assigned to the very people whose performance the number grades. An automated roll-up from project inputs and a patented health score feel like an escape from this — but an input is still data the work exported, and a health score is still a computation over reports <em>about</em> the work, not over the work itself.</p>
 <p>The category concedes the shape of the problem in its own research: only a small minority of day-to-day work, by its own telling, is ever genuinely linked to strategic priorities. The response was a better linkage layer, a tighter operating cadence, a smarter reminder. The sharpest vendors even coined a metric for how long a pivot takes to reach the work — an honest, useful admission — and then shipped a linkage layer that still leaves a human to close the gap. The gap was never the point of failure. The <em>reconciliation</em> was.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE CATEGORY ITS DUE</div>
+<h2 class="section-label fade-in">Give the category its due</h2>
 <div class="fade-in">
 <p>Be precise about what these approaches got right, because over-claiming here is the fastest way to lose a strategy reader. An operating rhythm — a weekly cadence, a disciplined review — genuinely does improve execution; teams that meet the number regularly beat teams that rediscover it quarterly. Alignment maps genuinely do aid shared context, giving a distributed organization one picture of how a team's objective ladders to the corporate one. And a real-time metric integration genuinely does beat a human retyping a figure from a spreadsheet: pulling a value automatically is faster, less error-prone, and less gameable than manual entry. An assistant that drafts the objectives and preps the review genuinely saves hours.</p>
 <p>All true. And all beside the point that decides whether the number can be trusted. Notice the verb every one of these tools shares when it fills a key result: it <strong>reads</strong>. However fast the refresh, a real-time read of a <em>separate system of record</em> is still a read across a boundary, of a value the other system already finished producing. "Live data" here means the interval got small. It does not mean the number is the work.</p>
 </div>
 
-<div class="section-label fade-in">THE STALENESS WINDOW AND THE SANDBAG</div>
+<h2 class="section-label fade-in">The staleness window and the sandbag</h2>
 <div class="fade-in">
 <p>Two failure modes survive no matter how polished the dashboard gets, because they are properties of the substrate, not the UI.</p>
 <ul>
@@ -74,7 +74,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">WHEN THE NUMBER IS COMPUTED, NOT REPORTED</div>
+<h2 class="section-label fade-in">When the number is computed, not reported</h2>
 <div class="fade-in">
 <p>Entroid models, executes <em>and</em> governs every enterprise process as a composition of five primitives — Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, and Connectors — on a single Semantic Ontology, in one runtime. The OKRs module does not sit beside that runtime. It sits <strong>on</strong> it, reading the same ontology the operations run on.</p>
 <p>So a key result is defined as a Function — a query — over the live state of the Deterministic-Workflow and Atomic-Agent process instances that actually produce the outcome. Where a single query is too blunt, Intelligence Orchestration derives a composite signal across those instances. This is an architectural property of where the number lives, not a measured result: because the query runs against the same executing state, progress is emitted <em>by</em> the work rather than typed in about it. There is no check-in to submit, because there is nothing to check in.</p>
@@ -82,7 +82,7 @@
 <p>And because that same fabric makes the cascade an <em>enforced dependency</em> rather than a picture, a re-plan at the strategy tier propagates into the operating plans and into the running workflows and agents beneath them. Change the intent and you change the work — not a diagram somebody must re-key before the next review.</p>
 </div>
 
-<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<h2 class="section-label fade-in">Said precisely, not over-sold</h2>
 <div class="fade-in">
 <p>Two honest caveats, because a technical reader will supply them if you don't. First, this is <strong>not</strong> a claim that the tracking tools can't pull live data or ship write-back "agents" — the newest ones do both, and the roadmaps only push further. The distinction is narrower and sturdier than any feature race: a real-time read of a separate system of record is not the same as a key result that is a query over the same running process, and an agent that acts inside the planning tool still hops a system boundary to reach operations. A faster read across a boundary is still across a boundary. Roadmaps close feature gaps; they do not dissolve a seam between two systems. Architecture does.</p>
 <p>Second, this is not a claim that ES floats free of your estate. It reaches your ERP, delivery systems, CRM, ledger, and HR platforms through governed Connectors — the one primitive licensed to touch the outside world, with authentication, authorization, and audit. The difference from the polled-metric model is not integration versus none. It is <em>where the number is computed</em>: inside the runtime that performs the work, versus fetched across a boundary into a field that merely describes it.</p>
@@ -90,7 +90,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">THE NUMBER A BOARD CAN ACTUALLY TRUST</div>
+<h2 class="section-label fade-in">The number a board can actually trust</h2>
 <div class="fade-in">
 <p>Reframe it for the room that matters. A CEO is not really asking "what did the team report last week." They are asking "where are we, right now — and can I trust the number enough to bet on it." The check-in model answers the first question and quietly hopes nobody presses the second, because pressing it exposes the staleness window and the sandbag underneath. A computed key result answers both, because it was never a separate artifact to keep honest: it is <strong>true by construction, not by diligence</strong>.</p>
 <p>The reconciliation tax — the standing cost of keeping intent and execution in agreement by hand — is not reduced on this architecture. It is removed, because intent and execution stopped being two copies to reconcile. Strategy execution stops being a tracking exercise and becomes literal: not a discipline your people perform on top of the work, but a property of how the work runs.</p>

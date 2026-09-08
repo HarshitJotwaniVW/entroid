@@ -1,18 +1,18 @@
 <div class="hook fade-in"><p>The health score for your largest account is green. The renewal is ninety days out and the model is confident. What the score cannot see is the failed provisioning step from Tuesday, the invoice now forty days past terms, and the support case that quietly breached its SLA this morning — because none of those live in the system that computes the score. By the time engagement drops far enough to turn the number amber, the customer has already decided. <strong>A score that can only recommend is a dashboard with a forecast bolted on.</strong></p></div>
 
-<div class="section-label fade-in">THE SCORE IS AN INFERENCE ABOUT THE PAST</div>
+<h2 class="section-label fade-in">The score is an inference about the past</h2>
 <div class="fade-in">
 <p>Look closely at how customer health is actually computed across the field today. The agentic-CRM platforms and the customer-success suites all converge on the same shape: churn prediction, lead and health scoring, "next best action," "best time to contact," similarity and look-alike recommendations. They differ in polish, but two properties are common to all of them.</p>
 <p>First, they score on <strong>proxies</strong> — email opens, login frequency, deal stage, activity volume, firmographics — assembled on top of a downstream copy of customer data marketed as a 360 view. Second, and more decisive, they <em>stop at a recommendation</em>. The output is a ranked list and a suggested play. A human then leaves the scoring tool, opens another system, and performs the actual work — issues the credit, changes the subscription, expedites the case. The intelligence and the action are two objects, joined by a person walking between two screens. The 360 is real, and the ranking is useful, but the artifact that predicts the risk has no authority to do anything about it.</p>
 </div>
 
-<div class="section-label fade-in">GIVE THE MODEL ITS DUE</div>
+<h2 class="section-label fade-in">Give the model its due</h2>
 <div class="fade-in">
 <p>Be fair about what these approaches get right, because over-claiming here is the fastest way to lose an expert reader. A unified customer record and a genuine 360 view really do reduce fragmentation — one place to see the contact, the deals, the open cases beats five tabs and a guess. Scoring really does focus a rep's day; a model trained on a good data foundation surfaces an at-risk account earlier than gut feel, and pointed attention is worth money. AI that drafts the save-play email, summarizes a sprawling case history, and scores an expansion genuinely saves hours. And an agent grounded in trusted CRM data really is better than a bolted-on bot answering from nothing.</p>
 <p>So the wedge is <strong>not accuracy</strong>, and it is not that the model is crude. A sharper model on the same inputs is still the same kind of thing: a well-calibrated guess about the past, delivered as advice. The problem is upstream of the math — it is <em>what the model can see</em>, and <em>what it is allowed to do</em>.</p>
 </div>
 
-<div class="section-label fade-in">THE SIGNALS THAT PREDICT CHURN LIVE WHERE THE RECORD ISN'T</div>
+<h2 class="section-label fade-in">The signals that predict churn live where the record isn't</h2>
 <div class="fade-in">
 <p>Here is the uncomfortable part for anyone selling health-from-a-360. Engagement <em>correlates</em> with churn. Process friction <em>causes</em> it. And the signals that actually cause a customer to leave — or to expand — live in process state that a system of record plus an activity log structurally never holds:</p>
 <ul>
@@ -93,13 +93,13 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">HEALTH AS A FUNCTION, NOT A FORECAST</div>
+<h2 class="section-label fade-in">Health as a function, not a forecast</h2>
 <div class="fade-in">
 <p>Entroid runs the customer lifecycle as one governed process on a single fabric — five primitives (Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, Connectors) over a Semantic Ontology, in one runtime, with an immutable per-action audit. The Customers modules — CRM, Orders, Subscribers, IVR &amp; Contact Center, Case Management, billing — are not separate systems stitched together after the fact; they are modules on the same fabric that executes the work.</p>
 <p>That changes what a health score <em>is</em>. Because provisioning, billing, support, and metering run on the fabric, their live state <strong>is</strong> the data — there is no synced copy to score against. Intelligence Orchestration reads that state directly off the Semantic Ontology, and health becomes a <strong>Function</strong>: a query over live process state — invoice aging computed from the running billing object, SLA position from the live case, consumption from the actual meter — recomputed the instant any of them moves. This is an architectural property of computing health from the running process, not a claimed result from any deployment. Health stops being a weekly gauge and becomes a live readout of the customer's actual condition.</p>
 </div>
 
-<div class="section-label fade-in">FROM SIGNAL TO GOVERNED REMEDIATION</div>
+<h2 class="section-label fade-in">From signal to governed remediation</h2>
 <div class="fade-in">
 <p>The readout is necessary but not sufficient. The real shift is that on the fabric, the signal has <strong>authority</strong>. A health trigger does not open a task for a human to go act elsewhere — it starts a governed Deterministic Workflow, with Atomic Agents executing the remediation and governance running <em>inline</em>: approvals, entitlements, separation of duties, all against the live subscriber object, all captured in one per-action audit entry. Each of the signals a record-plus-activity-log cannot hold maps to a governed trigger. Illustratively:</p>
 <ul>
@@ -114,7 +114,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">SAID PRECISELY, NOT OVER-SOLD</div>
+<h2 class="section-label fade-in">Said precisely, not over-sold</h2>
 <div class="fade-in">
 <p>Two honest caveats, because a skeptical architect will supply them if you don't. First, some of these signals only become visible if the fulfillment, billing, and support processes actually run on the fabric — or are reached through governed Connectors, the one primitive licensed to touch external systems, with authentication, authorization, and audit. Entroid does not float free of your estate, and the promise is not zero integration. That dependency <em>is the point</em>: health that reflects fulfillment friction and invoice aging requires the fulfillment and billing state, and there is no shortcut around running or governing the processes that produce it.</p>
 <p>Second, the strongest position in the category deserves a straight concession. When a vendor owns the record, the data foundation, and the agentic layer, its claim that agents "act on trusted CRM data and get real work done" is genuinely strong — grounding beats a bolted-on bot, and no honest reader should pretend otherwise. But draw the structural line, not a product limit: an agent acting on the CRM record and inside that vendor's own apps is still operating on the <strong>system of record</strong>. When the play requires that the credit actually post, the subscription actually change, or the service actually reprovision, those still execute in other systems reached by integration — where the CRM's governance does not run at the moment of action. The recommendation and the remediation remain two objects, joined by a handoff across a boundary. The difference is not that one platform is smarter. It is where the action lands, and whether the governance is there when it does.</p>

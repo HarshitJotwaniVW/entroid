@@ -1,13 +1,13 @@
 <div class="hook fade-in"><p>A regulatory exam does not open with your compliance philosophy. It opens with a specific fee, on a specific account, in a specific quarter — and three questions: <strong>who was entitled to take that action, what check ran before it executed, and who approved it?</strong> Most of the wealth stack was built to answer a different question entirely: what did we know, and what did we report. The distance between those two questions is where exams get uncomfortable.</p></div>
 
-<div class="section-label fade-in">THE HONEST BASELINE</div>
+<h2 class="section-label fade-in">The honest baseline</h2>
 <div class="fade-in">
 <p>Start with what the wealth stack got right, because it is substantial. Consolidating positions across custodians and fund portals rescued this industry from spreadsheets and monthly statements; the aggregation layer is real, hard engineering, and it earned its place. Performance calculation, billing computation, and proposal generation professionalized advisory operations. Document AI that extracts capital calls and K-1s removes genuinely brutal manual work, and KYC screening feeds surface risk that human review would miss. The posture the leading platforms describe — AI grounded in clean, governed, permission-aware data, with humans in the loop — is a responsible posture. Their thesis that AI is only as good as its data is correct as far as it goes.</p>
 <p>The compliance modules deserve the same honesty. Centralized books-and-records archives, communication capture, timestamped marketing approvals, surveillance alerts routed to a review queue — all of it beats the shared-drive-and-prayer model of exam response by a wide margin. If your compliance team is still assembling evidence by hand, that tooling is worth having. Nothing that follows argues otherwise.</p>
 <p>But read the category's compliance language closely and notice what it actually promises: <em>evidence, organized</em>. Readiness, meaning the proof of what happened can be produced quickly. That is a claim about the record. It is not a claim about the action.</p>
 </div>
 
-<div class="section-label fade-in">THREE QUESTIONS, ONE GRAMMAR</div>
+<h2 class="section-label fade-in">Three questions, one grammar</h2>
 <div class="fade-in">
 <p>Sit through a fee-billing sweep and the shape of the questioning becomes clear fast. The examiner does not ask for a philosophy. They pick accounts and trace fees: this advisory fee, this household, this quarter. When the applied rate and the client agreement diverge, the follow-up is never <em>where is the document?</em> The document is the easy part. The follow-up is: who changed the fee schedule, what validated the change against the agreement in force before the sweep executed, and who approved the exception.</p>
 <p>Suitability obligations run the same way. The proposal that generated the allocation is background. The live question is what stood between recommendation and trade: what checked this rebalance against this client's profile and restrictions before the release went to trading — and if a human overrode a flag, whose name is on the override. Books-and-records is broader still: the obligation covers the business <em>as transacted</em>, which means the chain of authority behind the transaction, not merely the artifacts describing it.</p>
@@ -20,7 +20,7 @@
 <p>Every one of these is a question about execution. None of them is a question about information.</p>
 </div>
 
-<div class="section-label fade-in">WHY THE ARCHIVE FALLS SILENT</div>
+<h2 class="section-label fade-in">Why the archive falls silent</h2>
 <div class="fade-in">
 <p>Here is the structural problem, and it holds regardless of any vendor's roadmap. In the prevailing architecture, the consequential action executes <em>downstream</em> of the platform that holds the evidence. The fee change is keyed into a billing engine. The rebalance releases through a trading system. The account opens in a custodian portal. The distribution request crosses a service team and gets keyed again. The portfolio-aggregation platforms and advisor-tech suites read the results back across those seams and archive what they see.</p>
 <p>That geometry dictates the compliance story. A system that learns about actions by ingesting their results can prove — sometimes beautifully — what happened. It cannot have run the check before the action, because <em>before</em> happened somewhere else, in a system it reads from but does not govern. So compliance becomes reconstruction: assemble proof, after the fact, that actions which ran across ungoverned seams were proper. Point-in-time archiving, genuinely valuable for what it does, answers <em>what did the book look like on this date</em> and <em>what did we report</em>. It audits the data. The decision-to-action chain — the thing the examiner is tracing — ran outside the frame.</p>
@@ -83,7 +83,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">ANSWERED BY CONSTRUCTION</div>
+<h2 class="section-label fade-in">Answered by construction</h2>
 <div class="fade-in">
 <p>Entroid's WealthOS starts from the other end: the operations action — not the report about it — is the governed unit. On the Composable Process Fabric, a fee change, an account opening, a rebalance release, a distribution request each execute as a Deterministic Workflow in one runtime. That single architectural decision changes what the audit record <em>is</em>.</p>
 <ul>
@@ -96,7 +96,7 @@
 <p>One boundary, stated plainly: ES governs the operations process. It is a process platform, not an investment advisor — it makes no recommendations, holds no view on portfolios, and nothing here is a claim about investment outcomes. The governed unit is the action and its authority chain, full stop.</p>
 </div>
 
-<div class="section-label fade-in">WHAT CHANGES FOR THE BUYER</div>
+<h2 class="section-label fade-in">What changes for the buyer</h2>
 <div class="fade-in">
 <p>Fee billing, supervision, and books-and-records have recurred on published examination priorities for years running — directionally, that is where the questioning concentrates. So put this distinction to work in your next platform evaluation. Do not ask to see the archive; every serious vendor has one, and the demonstrations are polished. Pick one consequential action — a fee change, a rebalance release, a distribution — and ask two questions. Where does the compliance check run relative to the commit? And where does the approver's name land — on the action itself, or in a workflow tool beside it?</p>
 <p>If the answer involves a downstream system, an overnight feed, and a surveillance report, you are looking at evidence tooling. It is worth having; it beats manual assembly decisively. But know what it is: proof, reconstructed, of actions that ran ungoverned. The alternative is an architecture where producing the proof and executing the action are the same event — where the examiner's three questions are answered before they are asked, because answering them is how the action ran in the first place.</p>

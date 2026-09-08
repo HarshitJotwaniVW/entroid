@@ -1,12 +1,12 @@
 <div class="hook fade-in"><p>Your service desk can tell you precisely where a request sits, who owns it, how long it has aged, and which SLA clock is about to breach. What it cannot tell you is whether the access was actually granted, the service actually came back, or the change actually shipped — because none of that executed inside the tool. <strong>The ticket is a record of work happening somewhere else.</strong> Even on the platform sold as the single place where all IT work runs, the platform is tracking the work. It is not doing the work.</p></div>
 
-<div class="section-label fade-in">THE PART THAT'S TRUE</div>
+<h2 class="section-label fade-in">The part that's true</h2>
 <div class="fade-in">
 <p>Start with the concession, because it is earned. Collapsing a drawer of stitched point tools into one service-management platform — one data model, one workflow engine, one console — genuinely beats the alternative. A shared schema means an incident, its affected service, and its change record actually reference the same objects instead of three systems guessing at each other. ITIL-aligned incident, problem, and change discipline is real operational value, not ceremony. GenAI that summarizes a noisy thread, drafts a resolution note, or deflects a password reset really does hand agents their afternoon back. A well-tended CMDB really does sharpen impact analysis. And last-mile RPA really does take some manual clicks off a human's plate.</p>
 <p>So the single-platform story is not the illusion. Consolidation is a real architectural win, and anyone selling you back a pile of integrations should be resisted. The illusion is one quiet substitution buried in the pitch — the verb. "The platform where IT work <em>runs</em>" swaps <em>runs</em> for <em>records</em>, and once you see the swap, you cannot unsee it.</p>
 </div>
 
-<div class="section-label fade-in">READ THE AUTOMATION VERBS</div>
+<h2 class="section-label fade-in">Read the automation verbs</h2>
 <div class="fade-in">
 <p>Look at what the automation in a system of record actually does, verb by verb. It <strong>routes</strong> the ticket to a queue. It <strong>assigns</strong> it to a group. It <strong>annotates</strong> it with an enrichment. It <strong>escalates</strong> on a timer, <strong>notifies</strong> a watcher, and <strong>flips</strong> a status field. Every one of those verbs operates on the record. Not one of them changes the state of the world the record describes.</p>
 <ul>
@@ -17,7 +17,7 @@
 <p>That last verb is where the marketing lives, so it deserves the scrutiny. When the platform "resolves" a request by firing automation, it is orchestrating <em>across</em> a system it does not own — puppeteering another product's UI or API as a bolted-on last mile. The fulfillment engine is not the platform. The platform is the dispatcher standing next to it, holding the clipboard.</p>
 </div>
 
-<div class="section-label fade-in">WHERE 'RESOLVED' ACTUALLY HAPPENS</div>
+<h2 class="section-label fade-in">Where 'resolved' actually happens</h2>
 <div class="fade-in">
 <p>Make it concrete. A new joiner needs access to a finance application. The request is captured cleanly, approved by the right manager, routed to the fulfillment group — and then one of two things happens. Either a human opens the identity system in another tab and adds the group by hand, or a script the platform triggers logs into that identity system and does the clicking. When the group membership takes effect, it takes effect <em>there</em>, in a system the service desk does not govern. Only afterward does the ticket flip to Resolved.</p>
 <p>Notice what "Resolved" means in that model: a human, or a bot acting like one, asserted that the work is done and closed the record. The status is a <strong>claim about the world, not proof of it.</strong> If the script half-succeeded — added the group but missed a dependent entitlement — the record still reads Resolved, and the CMDB still shows whatever it last reconciled, which may be hours or days stale. The paperwork is immaculate. The access is wrong. The same story holds for "restart the service" or "push the config change": the fix lands in the target system, the record narrates it, and the gap between what the record says and what is true stays invisible until someone hits it.</p>
@@ -72,7 +72,7 @@
 </svg>
 </div>
 
-<div class="section-label fade-in">THE TICKET THAT EXECUTES ITSELF</div>
+<h2 class="section-label fade-in">The ticket that executes itself</h2>
 <div class="fade-in">
 <p>Now change the architecture, not the roadmap. On a composable process fabric, that same access request is not a record a human works beside the systems that matter — it <em>is</em> the running process. A Deterministic Workflow models the request end to end; Atomic Agents handle the judgment steps, with a human in the loop as a first-class step rather than a bolt-on; and the fulfillment itself executes on the fabric through governed Connectors, the only primitive permitted to touch an external system. The workflow does not narrate the group assignment. It performs it.</p>
 <p>Because the fix is a governed action inside one runtime, the controls live at the moment of action rather than in a policy document beside it. The approval gate, the segregation-of-duties check, the change-control window, the threshold that forces a human decision — these are enforced <strong>inline, at the instant the Connector is about to act,</strong> not asserted after the fact and hoped for. Every action writes an immutable, per-action record as a byproduct of executing, not as a note someone remembered to add. And the CMDB is not a periodically reconciled inventory; it is the live semantic ontology the workflow reads and writes, so configuration state reflects what just happened. In this model, <strong>"Resolved" means the action occurred and was governed</strong> — because closing the loop and doing the work are the same event.</p>
@@ -81,7 +81,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<div class="section-label fade-in">ORCHESTRATION IS NOT EXECUTION</div>
+<h2 class="section-label fade-in">Orchestration is not execution</h2>
 <div class="fade-in">
 <p>Be precise about the claim, because the honest version is stronger than the hyped one. This is not "no integration." The fabric runs over your existing estate — the identity system, the orchestrator, the cloud control plane are still where entitlements and services physically live, and the fabric reaches them through Connectors. The difference is not whether an external system is involved. The difference is <em>what the process is.</em></p>
 <p>A single unified platform is a real improvement over stitched tools, and its workflow engine is real. But a workflow that routes a ticket and an RPA bot that drives another product's screen are still orchestration <strong>across</strong> systems the platform does not own — the fulfillment is a last mile bolted to the side of a system of record. On the fabric, the fulfillment is a governed action <strong>inside</strong> the same runtime as the record, the model, and the audit, with the control enforced at the point of action. That line holds regardless of anyone's roadmap, because it is a statement about where execution lives, not about which features shipped this quarter. You can keep adding automation to a system of record forever, and it remains a system of record with more automation standing next to it.</p>
