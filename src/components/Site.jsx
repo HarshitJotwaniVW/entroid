@@ -3,12 +3,13 @@
 import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { brand, navCta, menu, hero, sections, finalSection, footer } from '../content'
+import { brand, navCta, menu, hero, heroProof, sections, finalSection, footer } from '../content'
 import { PlatformOrbit } from './PlatformOrbit'
 import { StackCards, TabsShowcase } from './Showcase'
 import {
-  ArrowRight, CheckCircle, Code, Compass, FacebookLogo, Gauge, InstagramLogo,
-  LinkedinLogo, PencilRuler, RocketLaunch, XLogo, YoutubeLogo,
+  ArrowRight, Brain, Buildings, CheckCircle, Code, Compass, FacebookLogo, Gauge,
+  Graph, InstagramLogo, Key, LinkedinLogo, PencilRuler, RocketLaunch, ShieldCheck,
+  SquaresFour, Stack, XLogo, YoutubeLogo,
 } from '@phosphor-icons/react'
 import { ChainFlow } from './ChainFlow'
 import { products, productHref, combinedGroups, slugify } from '../products'
@@ -43,22 +44,22 @@ const Icon = ({ i }) => (
   </svg>
 )
 
-/* TWO BRAND ASSETS, AND THE SPLIT IS FORCED BY THE FOOTER. The supplied
-   lockup (public/logos/entroid-logo.svg) sets the wordmark in near-black, which
-   reads on the nav's light bar and disappears on the footer's ink ground. So
-   the nav takes the lockup whole, and the footer composes the MARK — the same
-   file the favicon uses, which is the glyph alone on transparent — with the
-   name as live text it can colour itself.
+/* TWO LOCKUPS. The supplied one (public/logos/entroid-logo.svg) sets the
+   wordmark in near-black, which reads on the nav's light bar and disappears on
+   ink; entroid-logo-white.svg is the same artwork reversed out, used on the
+   footer's dark ground and by the nav while it sits over a hero photograph.
 
-   `alt` on the lockup rather than `aria-hidden`: it is the only thing naming
-   the site in the header, so it has to carry the name. The footer's mark is
-   decorative because the text beside it already says it. */
+   `alt` rather than `aria-hidden`: the lockup is the only thing naming the
+   site in the header, so it has to carry the name. */
+/* Both lockups ship, and the nav's `nav--onDark` class chooses between them.
+   Rendering both and cross-fading beats swapping `src`, which flashes the
+   first time the reversed file is fetched. Only one carries the alt text; the
+   other is decorative, or a screen reader would read the name twice. */
 const BrandLockup = ({ className = '' }) => (
-  <img className={`brandLockup ${className}`} src="/logos/entroid-logo.svg" alt={brand.name} />
-)
-
-const BrandMark = ({ className = '' }) => (
-  <img className={`brandmark ${className}`} src="/logos/entroid-favicon.png" alt="" aria-hidden="true" />
+  <span className={`brandLockup ${className}`}>
+    <img className="brandLockup__ink" src="/logos/entroid-logo.svg" alt={brand.name} />
+    <img className="brandLockup__white" src="/logos/entroid-logo-white.svg" alt="" aria-hidden="true" />
+  </span>
 )
 
 
@@ -210,13 +211,51 @@ const DropPanel = ({ items, menuLabel, onNavigate }) => (
    gain by hiding it, and hiding it there makes the first scroll feel twitchy. */
 const NAV_REVEAL_AT = 120
 
+/* Height of the nav bar, matching --nav-h in styles.css. Used to decide when a
+   hero has finished passing behind it. */
+const NAV_H = 76
+
 export const Nav = () => {
   const [open, setOpen] = useState(null)
   const [hidden, setHidden] = useState(false)
   // At the very top the bar is transparent over the hero; past that it takes
   // the white fade so it stays legible over whatever is behind it.
   const [scrolled, setScrolled] = useState(false)
+  /* True while a dark hero photograph is still passing behind the bar — the
+     industry pages. The ink lockup and the grey menu labels vanish against it,
+     so both are reversed out for as long as it is there. */
+  const [onDark, setOnDark] = useState(false)
+  const pathname = usePathname()
   const close = () => setOpen(null)
+
+  /* Measured from the page rather than passed down: the nav lives in the root
+     layout and has no way of being told what the page below it looks like.
+     Any hero that paints a photograph carries `.phero--image`, so asking the
+     document keeps the two decoupled — a new page type with a dark hero picks
+     this up for free. Re-runs on navigation, since the element changes. */
+  useEffect(() => {
+    const hero = document.querySelector('.phero--image')
+    if (!hero) { setOnDark(false); return undefined }
+
+    let queued = 0
+    const measure = () => {
+      // The bar is over the photograph until the hero's foot passes under it.
+      setOnDark(hero.getBoundingClientRect().bottom > NAV_H)
+    }
+    const onScroll = () => {
+      if (queued) return
+      queued = requestAnimationFrame(() => { queued = 0; measure() })
+    }
+
+    measure()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    return () => {
+      if (queued) cancelAnimationFrame(queued)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [pathname])
 
   /* Hide on the way down, show on the way up. Reads `window.scrollY` rather
      than Lenis's own value so it works identically before Lenis has started
@@ -253,7 +292,16 @@ export const Nav = () => {
   useEffect(() => { if (hidden) setOpen(null) }, [hidden])
 
   return (
-    <nav className={`nav ${hidden ? 'nav--hidden' : ''} ${scrolled ? 'nav--scrolled' : ''}`} onMouseLeave={close}>
+    <nav
+      className={[
+        'nav',
+        hidden && 'nav--hidden',
+        scrolled && 'nav--scrolled',
+        // The scrolled state paints the bar white, which wins over the hero.
+        onDark && !scrolled && 'nav--onDark',
+      ].filter(Boolean).join(' ')}
+      onMouseLeave={close}
+    >
       <div className="container nav__inner">
         <Link href="/" className="nav__brand" onClick={close} aria-label={`${brand.name} home`}>
           <BrandLockup className="nav__logo" />
@@ -276,7 +324,7 @@ export const Nav = () => {
             )
           })}
         </ul>
-        <button className="btn btn--primary btn--sm nav__cta">{navCta}</button>
+        <Link href="/#platform" className="btn btn--primary btn--sm nav__cta">{navCta}</Link>
       </div>
       {menu.map((item) => item.mega && open === item.label && <MegaPanel key={item.label} groups={item.mega} onNavigate={close} />)}
     </nav>
@@ -311,12 +359,24 @@ const Hero = () => (
   <header className="hero">
     <div className="container hero__inner">
       <div className="hero__lead">
-        <Reveal as="p" className="hero__eyebrow" variant="up">{hero.eyebrow}</Reveal>
-        <Reveal as="h1" className="hero__headline" variant="up" delay={140}>{hero.headline}</Reveal>
-        <Reveal as="p" className="hero__description" variant="up" delay={270}>{hero.description}</Reveal>
-        <Reveal className="hero__ctas" variant="up" delay={400}>
-          <button className="btn btn--primary btn--arrow">{hero.primaryCta}<CtaArrow /></button>
-          {/* <button className="btn btn--ghost">{hero.secondaryCta}</button> */}
+        <Reveal as="p" className="hero__eyebrow" variant="up" eager>{hero.eyebrow}</Reveal>
+        <Reveal as="h1" className="hero__headline" variant="up" delay={140} eager>
+          {/* Broken where the copy says to break, rather than wherever the
+              column happens to run out. */}
+          {(hero.headlineLines || [hero.headline]).map((line, i, all) => (
+            <Fragment key={line}>{line}{i < all.length - 1 && <br />}</Fragment>
+          ))}
+        </Reveal>
+        <Reveal as="p" className="hero__description" variant="up" delay={270} eager>{hero.description}</Reveal>
+        <Reveal className="hero__ctas" variant="up" delay={400} eager>
+          <Link href="/contact" className="btn btn--primary btn--arrow">{hero.primaryCta}<CtaArrow /></Link>
+        </Reveal>
+
+        {/* The proof points, as chips under the CTA. Headline claims only —
+            the supporting line each one carries in content.js is dropped here,
+            because a chip that needs a second line is not a chip. */}
+        <Reveal as="ul" className="herochips stagger" variant="up" delay={500} eager>
+          {heroProof.map((p) => <li key={p.title} className="herochips__item">{p.title}</li>)}
         </Reveal>
       </div>
       <Reveal className="hero__figure" variant="zoom" delay={240}><HeroMedia /></Reveal>
@@ -967,10 +1027,7 @@ const Final = () => (
       <Reveal>
         <p className="final__cta">{finalSection.cta}</p>
         <div className="final__actions">
-          <button className="btn btn--onDark btn--arrow" type="button">{finalSection.ctaButton}<CtaArrow /></button>
-          {finalSection.ctaSecondary && (
-            <button className="btn btn--ghostDark" type="button">{finalSection.ctaSecondary}</button>
-          )}
+          <Link href="/contact" className="btn btn--onDark btn--arrow">{finalSection.ctaButton}<CtaArrow /></Link>
         </div>
       </Reveal>
     </div>
@@ -994,7 +1051,7 @@ export const Footer = () => (
     <div className="container">
       <Reveal as="div" variant="fade" className="footer__top stagger">
         <div className="footer__brandCol">
-          <div className="footer__brand"><BrandMark className="footer__logo" />{brand.name}</div>
+          <div className="footer__brand"><img className="footer__logo" src="/logos/entroid-logo-white.svg" alt={brand.name} /></div>
           <p className="footer__tag">{footer.tagline}</p>
 
           <address className="footer__contact">
@@ -1162,6 +1219,16 @@ const ModuleScreen = ({ name, screen = {}, viz, caps = [] }) => {
   )
 }
 
+/* Icons for the "how it runs" steps, by position: these journeys read as one
+   progression — map it, build it, connect it, clear the blockers, go live —
+   and the step titles differ per industry, so the sequence is what carries the
+   meaning rather than any one title. The final step is always the launch mark,
+   whatever the count. */
+const JOURNEY_ICONS = [Compass, Stack, Graph, ShieldCheck, Gauge]
+
+const journeyIcon = (i, total) =>
+  (i === total - 1 ? RocketLaunch : JOURNEY_ICONS[i % JOURNEY_ICONS.length])
+
 /* Shared renderer for product and industry pages (same template).
    `journey` + `relatedItems` are optional (industry pages pass them).
 
@@ -1183,12 +1250,11 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
       >
         <div className="container phero__inner">
           <div className="phero__lead">
-            <Reveal as="p" className="phero__eyebrow">{p.category}</Reveal>
-            <Reveal as="h1" className="phero__headline" delay={120}>{p.headline}</Reveal>
-            <Reveal as="p" className="phero__intro" delay={220}>{p.intro}</Reveal>
-            <Reveal className="phero__ctas" delay={330}>
-              <button className="btn btn--primary btn--arrow" type="button">{p.primaryCta}<CtaArrow /></button>
-              <button className="btn btn--ghost" type="button">{p.secondaryCta}</button>
+            <Reveal as="p" className="phero__eyebrow" eager>{p.category}</Reveal>
+            <Reveal as="h1" className="phero__headline" delay={120} eager>{p.headline}</Reveal>
+            <Reveal as="p" className="phero__intro" delay={220} eager>{p.intro}</Reveal>
+            <Reveal className="phero__ctas" delay={330} eager>
+              <Link href="/contact" className="btn btn--primary btn--arrow">{p.primaryCta}<CtaArrow /></Link>
             </Reveal>
           </div>
 
@@ -1253,13 +1319,19 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
               </div>
             </Reveal>
             <Reveal as="ol" variant="fade" className="journeyx stagger">
-              {journey.map((s, i) => (
-                <li key={s.title} className="journeyx__step">
-                  <span className="journeyx__num">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="journeyx__title">{s.title}</h3>
-                  <p className="journeyx__text">{s.text}</p>
-                </li>
-              ))}
+              {journey.map((s, i) => {
+                const Ico = journeyIcon(i, journey.length)
+                // The last step is where the work lands, so it is the one
+                // filled in brand colour rather than outlined like the rest.
+                const last = i === journey.length - 1
+                return (
+                  <li key={s.title} className={`journeyx__step ${last ? 'is-final' : ''}`}>
+                    <span className="journeyx__icon"><Ico weight="regular" aria-hidden="true" /></span>
+                    <h3 className="journeyx__title">{s.title}</h3>
+                    <p className="journeyx__text">{s.text}</p>
+                  </li>
+                )
+              })}
             </Reveal>
           </div>
         </section>
@@ -1289,7 +1361,7 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
                 <h2 className="section__heading">More industries</h2>
               </div>
             </Reveal>
-            <Reveal as="div" variant="fade" className="uccards stagger">
+            <Reveal as="div" variant="fade" className="uccards uccards--three stagger">
               {relatedItems.map((r) => (
                 <Link href={`/industries/${r.slug}`} key={r.slug} className="uc uc--link">
                   <p className="uc__theme">Industry</p>
@@ -1310,7 +1382,7 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
               <h2 className="pcta__heading">{p.closing.heading}</h2>
               <p className="pcta__text">{p.closing.text}</p>
               <div className="pcta__actions">
-                <button className="btn btn--onDark btn--arrow" type="button">{p.closing.cta}<CtaArrow /></button>
+                <Link href="/contact" className="btn btn--onDark btn--arrow">{p.closing.cta}<CtaArrow /></Link>
               </div>
             </Reveal>
           </div>
@@ -1430,14 +1502,13 @@ const UseCaseChain = ({ chain, flow }) => (
 
 export const UseCases = () => (
   <>
-    <header className="phero phero--gradient">
+    <header className="phero phero--gradient phero--compact">
       <div className="container phero__inner">
-        <Reveal as="p" className="phero__eyebrow">{useCasesHero.eyebrow}</Reveal>
-        <Reveal as="h1" className="phero__headline" delay={120}>{useCasesHero.headline}</Reveal>
-        <Reveal as="p" className="phero__intro" delay={220}>{useCasesHero.intro}</Reveal>
+        <Reveal as="p" className="phero__eyebrow" eager>{useCasesHero.eyebrow}</Reveal>
+        <Reveal as="h1" className="phero__headline" delay={120} eager>{useCasesHero.headline}</Reveal>
+        <Reveal as="p" className="phero__intro" delay={220} eager>{useCasesHero.intro}</Reveal>
         <Reveal className="phero__ctas" delay={330}>
-          <button className="btn btn--primary">{useCasesHero.primaryCta}</button>
-          <button className="btn btn--ghost">{useCasesHero.secondaryCta}</button>
+          <Link href="/contact" className="btn btn--primary">{useCasesHero.primaryCta}</Link>
         </Reveal>
       </div>
     </header>
@@ -1450,7 +1521,7 @@ export const UseCases = () => (
     {useCaseGroups.map((g) => (
       <section key={g.tier} id={slugify(g.tier)} className="section">
         <div className="container">
-          <Reveal as="div" className="section__head" style={{ maxWidth: 820 }}>
+          <Reveal as="div" className="section__head section__head--split">
             <p className="section__label"><b>{g.tier}</b></p>
             <h2 className="section__heading">{g.tierNote}</h2>
           </Reveal>
@@ -1475,7 +1546,7 @@ export const UseCases = () => (
         <Reveal>
           <h2 className="pcta__heading">{useCasesClosing.heading}</h2>
           <p className="pcta__text">{useCasesClosing.text}</p>
-          <button className="btn btn--primary btn--lg">{useCasesClosing.cta}</button>
+          <Link href="/contact" className="btn btn--primary btn--lg">{useCasesClosing.cta}</Link>
         </Reveal>
       </div>
     </section>
@@ -1483,16 +1554,33 @@ export const UseCases = () => (
 )
 
 /* ── Why Us (/why-us): differentiators + founding team + beliefs ── */
+/* Icons for the Why Us cards, keyed by title so the content file stays free of
+   presentation, with a positional fallback for anything renamed. Drawn bare —
+   no tile, no tint — at the heading ink, matching the card icons elsewhere. */
+const WHY_ICONS = {
+  'One connected model': Graph,
+  'Governed AI, generated in': ShieldCheck,
+  'Engineered, not just configured': Stack,
+  'Every function, one platform': SquaresFour,
+  'Owned by the enterprise': Key,
+  'Built for production': RocketLaunch,
+  'Governed by default': ShieldCheck,
+  'AI generated in, not bolted on': Brain,
+  'Proven at enterprise scale': Buildings,
+}
+const WHY_FALLBACK = [Graph, ShieldCheck, Stack, SquaresFour, Key, RocketLaunch]
+
+const whyIcon = (title, i) => WHY_ICONS[title] || WHY_FALLBACK[i % WHY_FALLBACK.length]
+
 export const WhyUs = () => (
   <>
-    <header className="phero">
+    <header className="phero phero--gradient phero--compact">
       <div className="container phero__inner">
-        <Reveal as="p" className="phero__eyebrow">{whyUs.hero.eyebrow}</Reveal>
-        <Reveal as="h1" className="phero__headline" delay={120}>{whyUs.hero.headline}</Reveal>
-        <Reveal as="p" className="phero__intro" delay={220}>{whyUs.hero.intro}</Reveal>
+        <Reveal as="p" className="phero__eyebrow" eager>{whyUs.hero.eyebrow}</Reveal>
+        <Reveal as="h1" className="phero__headline" delay={120} eager>{whyUs.hero.headline}</Reveal>
+        <Reveal as="p" className="phero__intro" delay={220} eager>{whyUs.hero.intro}</Reveal>
         <Reveal className="phero__ctas" delay={330}>
-          <button className="btn btn--primary">{whyUs.hero.primaryCta}</button>
-          <button className="btn btn--ghost">{whyUs.hero.secondaryCta}</button>
+          <Link href="/contact" className="btn btn--primary">{whyUs.hero.primaryCta}</Link>
         </Reveal>
       </div>
     </header>
@@ -1506,12 +1594,16 @@ export const WhyUs = () => (
           <h2 className="whead__heading">{whyUs.pillarsHeading}</h2>
         </Reveal>
         <Reveal as="div" variant="fade" className="pillars stagger">
-          {whyUs.pillars.map((p) => (
-            <div key={p.title} className="pillar">
-              <div className="pillar__title">{p.title}</div>
-              <p className="pillar__text">{p.text}</p>
-            </div>
-          ))}
+          {whyUs.pillars.map((p, i) => {
+            const Ico = whyIcon(p.title, i)
+            return (
+              <div key={p.title} className="pillar">
+                <span className="pillar__icon"><Ico weight="regular" aria-hidden="true" /></span>
+                <div className="pillar__title">{p.title}</div>
+                <p className="pillar__text">{p.text}</p>
+              </div>
+            )
+          })}
         </Reveal>
       </div>
     </section>
@@ -1545,12 +1637,19 @@ export const WhyUs = () => (
           <h2 className="whead__heading">{whyUs.beliefsHeading}</h2>
         </Reveal>
         <Reveal as="div" variant="fade" className="beliefs stagger">
-          {whyUs.beliefs.map((b) => (
-            <div key={b.title} className="belief">
-              <div className="belief__title">{b.title}</div>
-              <p className="belief__text">{b.text}</p>
-            </div>
-          ))}
+          {whyUs.beliefs.map((b, i) => {
+            const Ico = whyIcon(b.title, i)
+            return (
+              /* Same `pillar` markup as "What sets it apart" above — the two
+                 sections are one set of cards, laid out two-up instead of
+                 three-up. */
+              <div key={b.title} className="pillar">
+                <span className="pillar__icon"><Ico weight="regular" aria-hidden="true" /></span>
+                <div className="pillar__title">{b.title}</div>
+                <p className="pillar__text">{b.text}</p>
+              </div>
+            )
+          })}
         </Reveal>
       </div>
     </section>
@@ -1560,7 +1659,7 @@ export const WhyUs = () => (
         <Reveal>
           <h2 className="pcta__heading">{whyUs.closing.heading}</h2>
           <p className="pcta__text">{whyUs.closing.text}</p>
-          <button className="btn btn--primary btn--lg">{whyUs.closing.cta}</button>
+          <Link href="/contact" className="btn btn--primary btn--lg">{whyUs.closing.cta}</Link>
         </Reveal>
       </div>
     </section>
@@ -1589,10 +1688,10 @@ export const UseCaseDetail = ({ slug }) => {
       <header className="phero phero--gradient">
         <div className="container phero__inner">
           <Reveal as="p" className="phero__eyebrow"><Link href="/use-cases">Use Cases</Link> · {u.theme}</Reveal>
-          <Reveal as="h1" className="phero__headline" delay={120}>{u.title}</Reveal>
-          <Reveal as="p" className="phero__intro" delay={220}>{u.scenario}</Reveal>
+          <Reveal as="h1" className="phero__headline" delay={120} eager>{u.title}</Reveal>
+          <Reveal as="p" className="phero__intro" delay={220} eager>{u.scenario}</Reveal>
           <Reveal className="phero__ctas" delay={330}>
-            <button className="btn btn--primary">Request a demo</button>
+            <Link href="/contact" className="btn btn--primary">Book a demo</Link>
             <Link href="/use-cases" className="btn btn--ghost">All use cases</Link>
           </Reveal>
         </div>
@@ -1666,7 +1765,7 @@ export const UseCaseDetail = ({ slug }) => {
           <Reveal>
             <h2 className="pcta__heading">{useCasesClosing.heading}</h2>
             <p className="pcta__text">{useCasesClosing.text}</p>
-            <button className="btn btn--primary btn--lg">{useCasesClosing.cta}</button>
+            <Link href="/contact" className="btn btn--primary btn--lg">{useCasesClosing.cta}</Link>
           </Reveal>
         </div>
       </section>
@@ -1678,8 +1777,8 @@ export const UseCaseDetail = ({ slug }) => {
 export const ComingSoon = ({ eyebrow, title, text }) => (
   <section className="soon">
     <div className="container">
-      <Reveal as="div" className="soon__inner">
-        <p className="soon__eyebrow">{eyebrow}</p>
+      <Reveal as="div" className="soon__inner" eager>
+        {/* <p className="soon__eyebrow">{eyebrow}</p> */}
         <span className="soon__badge">Coming soon</span>
         <h1 className="soon__title">{title}</h1>
         <p className="soon__text">{text}</p>
@@ -1695,11 +1794,11 @@ export const ComingSoon = ({ eyebrow, title, text }) => (
 /* ── FAQ (/resources/faq): categorised, accordion answers ─────── */
 export const Faq = () => (
   <>
-    <header className="phero">
+    <header className="phero phero--gradient phero--compact">
       <div className="container phero__inner">
-        <Reveal as="p" className="phero__eyebrow">Resources · FAQ</Reveal>
-        <Reveal as="h1" className="phero__headline" delay={120}>{faq.headline}</Reveal>
-        <Reveal as="p" className="phero__intro" delay={220}>{faq.intro}</Reveal>
+        <Reveal as="p" className="phero__eyebrow" eager>Resources · FAQ</Reveal>
+        <Reveal as="h1" className="phero__headline" delay={120} eager>{faq.headline}</Reveal>
+        <Reveal as="p" className="phero__intro" delay={220} eager>{faq.intro}</Reveal>
       </div>
     </header>
     <section className="faqwrap">
@@ -1724,7 +1823,7 @@ export const Faq = () => (
         <Reveal>
           <h2 className="pcta__heading">{faq.closing.heading}</h2>
           <p className="pcta__text">{faq.closing.text}</p>
-          <button className="btn btn--primary btn--lg">{faq.closing.cta}</button>
+          <Link href="/contact" className="btn btn--primary btn--lg">{faq.closing.cta}</Link>
         </Reveal>
       </div>
     </section>

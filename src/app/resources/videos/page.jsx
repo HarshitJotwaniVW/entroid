@@ -1,6 +1,14 @@
 import { ComingSoon } from '../../../components/Site'
 
-export const metadata = { title: 'Videos · Entroid' }
+/* A placeholder page with about forty words on it. Kept reachable, because the
+   nav links to it, but held out of the index and out of the sitemap until
+   there is something here — a thin page in the index is worth less than no
+   page at all. */
+export const metadata = {
+  title: 'Videos',
+  description: 'Product demos and platform walkthroughs, in production now.',
+  robots: { index: false, follow: true },
+}
 
 export default function VideosPage() {
   return (

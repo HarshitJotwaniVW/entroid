@@ -13,8 +13,7 @@ export const whyUs = {
     headline: 'One governed platform, owned by the enterprise.',
     intro:
       'Entroid unifies strategy, operations, finance, governance and AI on one connected model, built to run in production and owned by the enterprise that runs it. What sets it apart, and the team building it.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore the platform',
+    primaryCta: 'Book a demo',
   },
 
   pillarsLabel: 'What sets it apart',
@@ -69,6 +68,6 @@ export const whyUs = {
   closing: {
     heading: 'See the platform, and the team behind it.',
     text: 'A briefing walks through the connected model, the governed AI, and how Entroid is deployed and owned.',
-    cta: 'Request a demo',
+    cta: 'Book a demo',
   },
 }

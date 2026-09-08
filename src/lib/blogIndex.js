@@ -50,20 +50,29 @@ export const allPosts = [
 ]
 
 /* Everything a post page needs above its body — the same shape the old
-   router-side lookup produced, for either kind of post. */
+   router-side lookup produced, for either kind of post.
+
+   `publishDate` and `articleSection` are carried through for the primary
+   posts, which are the only ones that have them: the post page renders the
+   date in the byline and BlogPosting reads both. Topic posts have neither, and
+   the fields are left off rather than filled in — a date invented at build
+   time changes on every deploy and reads as manufactured freshness. */
 export const postMeta = (slug) => {
   const primary = blogPosts.find((p) => p.slug === slug)
   if (primary) {
     return {
       title: titleOverrides[slug] || primary.title, subtitle: primary.subtitle,
+      description: primary.description || primary.subtitle,
       category: primary.category, heroImage: primary.heroImage,
       heroImageAlt: primary.heroImageAlt, readTime: primary.readTime,
+      publishDate: primary.publishDate, articleSection: primary.articleSection,
     }
   }
   const topic = topicPosts.find((p) => p.slug === slug)
   if (topic) {
     return {
       title: titleOverrides[slug] || topic.title, subtitle: topic.subtitle,
+      description: topic.subtitle,
       category: topic.category, heroImage: topicImg[topic.slug] || DEFAULT_HERO,
       heroImageAlt: topic.title, readTime: topic.readTime,
     }

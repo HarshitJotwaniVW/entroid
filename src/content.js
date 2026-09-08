@@ -14,7 +14,7 @@
  */
 
 export const brand = { name: 'Entroid' }
-export const navCta = 'Contact Us'
+export const navCta = 'Watch the overview'
 
 export const menu = [
   { label: 'Home', href: '#top' },
@@ -121,14 +121,36 @@ export const megaRail = {
 export const hero = {
   // eyebrow: 'Entroid',
   headline: 'Unified Intelligence for Governed Autonomous Enterprises',
+  /* The same words, broken where they should break. Left to wrap on its own
+     the headline lands on four ragged lines; these two are balanced and hold
+     their shape as the column changes width. The single string above stays for
+     anywhere that needs the headline as plain text. */
+  headlineLines: ['Unified Intelligence for', 'Governed Autonomous Enterprises'],
   description:
     'Entroid unifies organisations, enterprise knowledge, and existing systems through a governed AI core, enabling autonomous operations while aligning strategy, accelerating innovation, modernising enterprise applications, and maintaining complete governance and control.',
-  primaryCta: 'Request a demo',
-  secondaryCta: 'Explore Platform',
+  primaryCta: 'Book a demo',
   image: '/illustration/ill-home-hero.png',
   imageAlt:
     'The Entroid platform stack: Governed Intelligence built on the AI Foundry and the Semantic Ontology, Domain Packs for vertical solutions, innovation and modernisation, Business Packs spanning every organisation function alongside Corporate Drivers and the Trust Fabric, and Technology Packs providing modeller studios, platform governance and cloud-native infrastructure.',
 }
+
+/* Three proof points, sitting directly under the hero: what the platform is
+   certified against, where it already runs, and who the company answers to.
+   Straight facts, no CTA — they are there to be believed, not clicked. */
+export const heroProof = [
+  {
+    title: 'SOC 2 Type II-aligned · ISO 27001 · GDPR',
+    text: 'Security and data protection frameworks',
+  },
+  {
+    title: '10+ enterprises in production',
+    text: 'Air-gapped, on-prem and cloud deployments',
+  },
+  {
+    title: 'Independent, profitable, engineering-led',
+    text: 'Our roadmap answers to customers, not investors.',
+  },
+]
 
 export const sections = [
   {
@@ -324,15 +346,14 @@ export const finalSection = {
     'Continuous Evolution',
   ],
   // cta: 'Start the journey towards a governed autonomous enterprise.',
-  ctaButton: 'Request a demo',
-  ctaSecondary: 'Explore the platform',
+  ctaButton: 'Book a demo',
 }
 
 export const footer = {
   tagline: 'Unified intelligence layer for governed autonomous enterprises.',
   address: ['C21 Business Park, Ring Road', 'Indore, MP 452010, India'],
   phone: '+91 94253 27013',
-  email: 'contact@enterprisesingularity.com',
+  email: 'contact@entroid.ai',
   social: [
     { name: 'LinkedIn', to: 'https://www.linkedin.com/company/entroid' },
     { name: 'X', to: 'https://x.com/entroid_ai' },

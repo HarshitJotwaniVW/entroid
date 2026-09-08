@@ -15,8 +15,7 @@ export const useCasesHero = {
   headline: 'What one connected enterprise makes possible.',
   intro:
     'These outcomes appear when strategy, operations, finance and governance run on one connected model. Each spans many functions and dozens of modules, working as a single motion rather than a set of separate systems.',
-  primaryCta: 'Request a demo',
-  secondaryCta: 'Explore the platform',
+  primaryCta: 'Book a demo',
 }
 
 export const useCasesLede =
@@ -270,5 +269,5 @@ export const useCaseGroups = [
 export const useCasesClosing = {
   heading: 'One model. Outcomes across the enterprise.',
   text: 'See how these use cases apply to a specific function, industry or transformation.',
-  cta: 'Request a demo',
+  cta: 'Book a demo',
 }

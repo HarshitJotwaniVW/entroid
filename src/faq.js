@@ -93,6 +93,6 @@ export const faq = {
   closing: {
     heading: 'Still have questions?',
     text: 'An executive briefing covers the platform, the governed AI and how it is deployed and owned, tailored to the enterprise.',
-    cta: 'Request a demo',
+    cta: 'Book a demo',
   },
 }

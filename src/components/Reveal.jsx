@@ -87,12 +87,26 @@ export const revealOnScroll = (el) => {
   return () => { pending.delete(show); io.disconnect() }
 }
 
-export const Reveal = ({ as: Tag = 'div', className = '', variant = '', delay = 0, style, children, ...rest }) => {
+/* `eager` is for content that is on screen at first paint — page headlines,
+   hero copy. Everything else starts at opacity 0 and is brought in by the
+   observer above, which cannot run until React has hydrated; for the element
+   that is the page's Largest Contentful Paint that means it is painted
+   invisible and does not count as a paint at all, so LCP ends up waiting on
+   hydration plus the entrance animation.
+
+   An eager element ships with `is-visible` already on it. The same animation
+   plays, driven by CSS alone from the first frame, and the observer is skipped
+   entirely — there is nothing for it to wait for. */
+export const Reveal = ({ as: Tag = 'div', className = '', variant = '', delay = 0, eager = false, style, children, ...rest }) => {
   const ref = useRef(null)
 
-  useEffect(() => revealOnScroll(ref.current), [])
+  useEffect(() => {
+    if (eager) return undefined
+    return revealOnScroll(ref.current)
+  }, [eager])
 
-  const cls = ['reveal', variant && `reveal--${variant}`, className].filter(Boolean).join(' ')
+  const cls = ['reveal', variant && `reveal--${variant}`, eager && 'is-visible', className]
+    .filter(Boolean).join(' ')
   const css = delay ? { ...style, '--reveal-delay': `${delay}ms` } : style
   return <Tag ref={ref} className={cls} style={css} {...rest}>{children}</Tag>
 }

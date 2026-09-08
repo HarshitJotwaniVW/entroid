@@ -20,11 +20,11 @@ export const Glossary = () => {
 
   return (
     <>
-      <header className="phero">
+      <header className="phero phero--gradient phero--compact">
         <div className="container phero__inner">
-          <Reveal as="p" className="phero__eyebrow">Resources · Glossary</Reveal>
-          <Reveal as="h1" className="phero__headline" delay={120}>Glossary</Reveal>
-          <Reveal as="p" className="phero__intro" delay={220}>{glossaryIntro}</Reveal>
+          <Reveal as="p" className="phero__eyebrow" eager>Resources · Glossary</Reveal>
+          <Reveal as="h1" className="phero__headline" delay={120} eager>Glossary</Reveal>
+          <Reveal as="p" className="phero__intro" delay={220} eager>{glossaryIntro}</Reveal>
         </div>
       </header>
 

@@ -27,8 +27,7 @@ export const industries = {
     headline: 'The whole oil and gas estate, on one command center.',
     intro:
       'Production, safety, asset integrity, permits and maintenance run on one platform across every site. Wells, pipelines and refineries share a single real-time view, with an asset-network map and a ranked attention list, so the estate is seen as a whole and the site that needs attention is surfaced first.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Oil and gas, area by area.',
 
@@ -81,7 +80,7 @@ export const industries = {
     closing: {
       heading: 'The estate, seen as a whole.',
       text: 'Entroid runs oil and gas operations as one command center, ranked by what needs attention.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 
@@ -93,8 +92,7 @@ export const industries = {
     headline: 'Every wind farm, from planning to on-grid, on one platform.',
     intro:
       'The wind fleet runs on one command center. Development pipeline, construction, commissioning and live operations share a single view across every plant, with SCADA monitoring, alarms, maintenance and a digital twin, so the fleet is seen and steered in real time.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Wind, area by area.',
 
@@ -147,7 +145,7 @@ export const industries = {
     closing: {
       heading: 'The wind fleet, in real time.',
       text: 'Entroid runs the wind fleet as one command center, from development pipeline to live generation.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 
@@ -159,8 +157,7 @@ export const industries = {
     headline: 'Every network site, from plan to on-air, on one command center.',
     intro:
       'The network build runs on one command center. Every macro, small-cell, DAS and C-RAN site shares a single geospatial view, with a Build, Integration and On-Air activation pipeline, RF coordination and geo-fenced permits, so the stalling stage is surfaced and sites reach on-air faster.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Telecom, area by area.',
     metrics: [
@@ -210,7 +207,7 @@ export const industries = {
     closing: {
       heading: 'The network build, steered to on-air.',
       text: 'Entroid runs the network rollout as one command center, from plan to on-air.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
   renewable: {
@@ -221,8 +218,7 @@ export const industries = {
     headline: 'Every renewable plant, from planning to on-grid, on one platform.',
     intro:
       'The renewable fleet runs on one platform, from planning and design through construction, commissioning and on-grid generation. A portfolio map shows every plant by region and capacity band, with live generation and performance ratio per plant, so each plant is traceable from planning to power and the whole portfolio is seen together.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Renewable, area by area.',
     metrics: [
@@ -240,7 +236,7 @@ export const industries = {
       { name: 'Live generation', tagline: 'SCADA output, plant by plant.', summary: 'SCADA generation streams live per plant, so output across the fleet is read in real time beside the build and plan.', capabilities: ['Live SCADA generation', 'Output per plant', 'Real-time refresh', 'Generation beside the plan'] },
       { name: 'Performance ratio', tagline: 'Performance seen early, plant by plant.', summary: 'Performance ratio per plant surfaces a plant running below its rating as it happens, so performance is addressed early.', capabilities: ['Performance ratio per plant', 'Rating tracked live', 'Shortfall surfaced early', 'Performance across the fleet'] },
     ],
-    closing: { heading: 'The renewable fleet, from planning to power.', text: 'Entroid runs the renewable fleet on one platform, from planning and construction to live generation.', cta: 'Request a demo' },
+    closing: { heading: 'The renewable fleet, from planning to power.', text: 'Entroid runs the renewable fleet on one platform, from planning and construction to live generation.', cta: 'Book a demo' },
   },
 
   solar: {
@@ -251,8 +247,7 @@ export const industries = {
     headline: 'Every solar park, from planning to on-grid, on one platform.',
     intro:
       'The solar fleet runs on one command center. Development pipeline, construction, commissioning and live generation share a single view across every park, with inverter and string monitoring, performance ratio, maintenance and a portfolio map, so the fleet is seen and steered from planning to power.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Solar, area by area.',
     metrics: [
@@ -269,7 +264,7 @@ export const industries = {
       { name: 'Maintenance', tagline: 'Work orders beside generation.', summary: 'Preventive and corrective work orders sit beside live generation, so maintenance on panels and inverters is managed in context.', capabilities: ['Work orders and scheduling', 'Preventive and corrective work', 'Panels and inverters', 'Backlog and status'] },
       { name: 'Sustainability', tagline: 'Generation and impact, reported.', summary: 'Generation, carbon and ESG metrics are reported fleet-wide, so impact is measured alongside solar output.', capabilities: ['Sustainability reporting', 'Generation and carbon', 'ESG metrics', 'Fleet-wide impact'] },
     ],
-    closing: { heading: 'The solar fleet, in real time.', text: 'Entroid runs the solar fleet as one command center, from development pipeline to live generation.', cta: 'Request a demo' },
+    closing: { heading: 'The solar fleet, in real time.', text: 'Entroid runs the solar fleet as one command center, from development pipeline to live generation.', cta: 'Book a demo' },
   },
 
   iot: {
@@ -280,8 +275,7 @@ export const industries = {
     headline: 'Every connected device and use case, on one platform.',
     intro:
       'The connected estate runs on one platform. OT data from any device type, from pressure gauges and temperature loggers to telecom radios, telematics and thermostats, is collected, parsed and processed into use-case dashboards, with config actions and over-the-air upgrades. Any device is onboarded once, its telemetry flows into cold-chain, fleet and telecom dashboards, and configuration and firmware are pushed from one place.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'IoT, area by area.',
     metrics: [
@@ -298,7 +292,7 @@ export const industries = {
       { name: 'OTA firmware upgrades', tagline: 'Firmware pushed over the air, at scale.', summary: 'Over-the-air upgrades push firmware to devices from the platform, so a fleet is updated centrally.', capabilities: ['OTA firmware upgrades', 'Pushed from the platform', 'Fleet updated centrally', 'At scale'] },
       { name: 'Processing queues & telemetry', tagline: 'Telemetry processed as it streams.', summary: 'Processing queues handle telemetry as it streams in, so device data is processed and dashboarded across use cases.', capabilities: ['Processing queues', 'Streaming telemetry', 'Processed across use cases', 'Correlated device data'] },
     ],
-    closing: { heading: 'The connected estate, on one platform.', text: 'Entroid runs the IoT estate as one platform, from device onboarding to dashboards, config and firmware over the air.', cta: 'Request a demo' },
+    closing: { heading: 'The connected estate, on one platform.', text: 'Entroid runs the IoT estate as one platform, from device onboarding to dashboards, config and firmware over the air.', cta: 'Book a demo' },
   },
 
   ev: {
@@ -309,8 +303,7 @@ export const industries = {
     headline: 'The EV charging network, planned, energized and operating, on one platform.',
     intro:
       'The EV charging network runs on one platform, from planned sites to live kilowatt-hours. AI-scored site planning, a rollout funnel from proposed to live, grid-interconnection and DISCOM SLA tracking, and live operations across throughput, energy and uptime share a single view. Sites are planned on evidence, the grid critical path is tracked from day one, and the live network is operated end to end.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'EV, area by area.',
     metrics: [
@@ -327,7 +320,7 @@ export const industries = {
       { name: 'Throughput, energy & uptime', tagline: 'A network that earns.', summary: 'Throughput, energy delivered and uptime stream live across the network, so a live network is operated for revenue.', capabilities: ['Throughput and energy delivered', 'Uptime tracked live', 'Performance across the network', 'Operated for revenue'] },
       { name: 'Charging network map', tagline: 'The whole network on one map.', summary: 'Planned, energizing and live stations show on one charging-network map, so the rollout funnel and the live network are seen together.', capabilities: ['Charging network map', 'Planned, energizing and live', 'Funnel and network together', 'Status across the network'] },
     ],
-    closing: { heading: 'The network, from plan to live kilowatt-hours.', text: 'Entroid runs the EV charging network as one platform, from AI-scored site planning to a live network that earns.', cta: 'Request a demo' },
+    closing: { heading: 'The network, from plan to live kilowatt-hours.', text: 'Entroid runs the EV charging network as one platform, from AI-scored site planning to a live network that earns.', cta: 'Book a demo' },
   },
 
   'atm-rollout': {
@@ -338,8 +331,7 @@ export const industries = {
     headline: 'Every ATM site, from survey to commissioning, tracked against plan.',
     intro:
       'ATM rollout at scale brings site surveys, civil works, installation, integration, testing and commissioning together across thousands of sites and dozens of vendors on one platform. The whole site-delivery lifecycle runs as tracked work orders, with planned-versus-actual execution over time by program, site type and project. Every ATM stays traceable through its delivery stages, delivery trends read month over month, and the rollout is steered on plan.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'ATM rollout, area by area.',
     metrics: [
@@ -356,7 +348,7 @@ export const industries = {
       { name: 'Delivery velocity', tagline: 'Rollout pace, measured across every site.', summary: 'Delivery velocity is measured across the rollout, so the pace of thousands of sites is tracked and kept on plan.', capabilities: ['Delivery velocity measured', 'Pace across the rollout', 'Trends surfaced early', 'Rollout kept on plan'] },
       { name: 'Milestones and completions', tagline: 'Every completion, rolled up.', summary: 'Milestones and completions are tracked and rolled up across programs and vendors, so the whole rollout reports as one execution view.', capabilities: ['Milestones and completions', 'Across programs and vendors', 'One execution rollup', 'Rollout status in view'] },
     ],
-    closing: { heading: 'The rollout, on plan.', text: 'Entroid runs ATM rollout from survey to commissioning as tracked work orders, planned versus actual, so a rollout of thousands stays on plan.', cta: 'Request a demo' },
+    closing: { heading: 'The rollout, on plan.', text: 'Entroid runs ATM rollout from survey to commissioning as tracked work orders, planned versus actual, so a rollout of thousands stays on plan.', cta: 'Book a demo' },
   },
 
   wealth: {
@@ -367,8 +359,7 @@ export const industries = {
     headline: 'The whole wealth business on one cockpit: AUM, flows, fees and clients.',
     intro:
       'The wealth business runs on one cockpit. AUM, net flows, fee economics, relationship-manager productivity and client health share a single live view, with net-flow intelligence across subscriptions and redemptions and revenue split by fee line, so the whole book is seen together and the board report is a click away.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Wealth, area by area.',
     metrics: [
@@ -385,7 +376,7 @@ export const industries = {
       { name: 'Client health', tagline: 'NPS and growth, in view.', summary: 'Client NPS and growth sit on the cockpit, so client health is read alongside AUM and flows.', capabilities: ['Client NPS', 'Client growth', 'Health beside AUM', 'Sentiment in view'] },
       { name: 'Compliance & board reporting', tagline: 'The board pack, generated from the cockpit.', summary: 'Compliance and the board report are generated from the same live cockpit, so the quarterly pack is a click away.', capabilities: ['Compliance in view', 'Board report generated', 'Live from the cockpit', 'Quarterly pack, a click'] },
     ],
-    closing: { heading: 'The whole book, on one cockpit.', text: 'Entroid runs the wealth business as one cockpit, with AUM, net flows, fee economics and client health live.', cta: 'Request a demo' },
+    closing: { heading: 'The whole book, on one cockpit.', text: 'Entroid runs the wealth business as one cockpit, with AUM, net flows, fee economics and client health live.', cta: 'Book a demo' },
   },
 
   construction: {
@@ -396,8 +387,7 @@ export const industries = {
     headline: 'The whole capital portfolio, on one command center.',
     intro:
       'Scheduling, cost, billing and claims run on one platform across every capital project. Earned value, critical-path risk, cashflow, contractual claims and HSE share a single live view, with a fleet of AI agents that flag the action ahead of a slip, so the whole portfolio runs on earned value and every project is governed to plan.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Construction, area by area.',
     metrics: [
@@ -414,7 +404,7 @@ export const industries = {
       { name: 'HSE, QA & physical progress', tagline: 'Assurance beside earned value.', summary: 'HSE, QA and physical progress sit beside cost and schedule, so assurance is read together with earned value.', capabilities: ['HSE and QA', 'Physical progress', 'Assurance in context', 'Beside cost and schedule'] },
       { name: 'AI agent fleet', tagline: 'The action flagged before the slip.', summary: 'A fleet of AI agents watches schedule, cost, cash and claims, so the action is flagged ahead of time across every project.', capabilities: ['Schedule, cost, cash, claims agents', 'Action flagged first', 'Portfolio-wide coverage', 'Ahead of the slip'] },
     ],
-    closing: { heading: 'Every project, governed to plan.', text: 'Entroid runs the whole capital portfolio as one command center, across earned value, cashflow and claims.', cta: 'Request a demo' },
+    closing: { heading: 'Every project, governed to plan.', text: 'Entroid runs the whole capital portfolio as one command center, across earned value, cashflow and claims.', cta: 'Book a demo' },
   },
 
   manufacturing: {
@@ -425,8 +415,7 @@ export const industries = {
     headline: 'The whole plant, planning through logistics, on one command dashboard.',
     intro:
       'The plant runs on one command dashboard, from planning through logistics. Live OEE and a line-by-line board, weekly production, scrap and first-pass quality, energy per tonne, stack emissions and OTIF share one screen, so every line, permit and tonne is seen as the shift happens.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Manufacturing, area by area.',
     metrics: [
@@ -443,7 +432,7 @@ export const industries = {
       { name: 'OTIF & logistics', tagline: 'Planning to delivery, on one screen.', summary: 'Planning, production and OTIF sit on one dashboard, so delivery performance is read against the orders it carries.', capabilities: ['OTIF tracking', 'Planning to delivery', 'Delivery beside production', 'Orders in view'] },
       { name: 'Shop-floor approvals & permits', tagline: 'Approvals cleared in one queue.', summary: 'PRO releases, permits and calibrations clear in one approval queue on the dashboard, so work moves in context.', capabilities: ['PRO releases and permits', 'Calibrations tracked', 'One approval queue', 'Approvals on the dashboard'] },
     ],
-    closing: { heading: 'The whole plant, run as one shift.', text: 'Entroid runs the plant as one command dashboard, from live OEE to OTIF.', cta: 'Request a demo' },
+    closing: { heading: 'The whole plant, run as one shift.', text: 'Entroid runs the plant as one command dashboard, from live OEE to OTIF.', cta: 'Book a demo' },
   },
 
   'data-center': {
@@ -454,8 +443,7 @@ export const industries = {
     headline: 'Plan, deliver and operate the data center estate, on one command center.',
     intro:
       'A unified operating system for the complete data center lifecycle. Capacity and connectivity planning, project delivery and live operations run across every site on one command center, with incidents, alarms, SLAs, power and efficiency in a single view, so the whole estate is seen, steered and kept resilient.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     sectionsLabel: 'Solution areas',
     sectionsHeading: 'Data Center, area by area.',
     metrics: [
@@ -505,7 +493,7 @@ export const industries = {
     closing: {
       heading: 'The estate, planned to operated.',
       text: 'Entroid runs the data center estate as one command center, from capacity planning to live operations.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 }

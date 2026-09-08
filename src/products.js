@@ -50,8 +50,7 @@ export const products = {
     headline: 'One connected truth, and the intelligence to act on it.',
     intro:
       'The Intelligence Hub is the semantic core of the enterprise and the AI that reasons on it. One connected model gives every module the same meaning, and closed-loop intelligence predicts, explains, decides and acts, so enterprise AI is grounded in trusted context.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
 
     metrics: [
       { value: 'One model', label: 'Beneath every module' },
@@ -108,7 +107,7 @@ export const products = {
     closing: {
       heading: 'One truth. Intelligence that acts.',
       text: 'The Intelligence Hub grounds enterprise AI in a connected model and closes the loop from insight to action.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 
@@ -122,8 +121,7 @@ export const products = {
     headline: 'Strategy, cascaded from the boardroom to the team.',
     intro:
       'Corporate Drivers connect enterprise strategy to the work that delivers it. Direction is set as themes and objectives, funded through planning and portfolios, cascaded into aligned objectives, and governed by the right decision bodies, so intent set at the top reaches execution on the ground and stays measurable throughout.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
 
     metrics: [
       { value: 'Board to team', label: 'One line of sight', text: 'Strategy cascades from board theme to team key result, aligned end to end.' },
@@ -188,7 +186,7 @@ export const products = {
     closing: {
       heading: 'Set the strategy. See it executed.',
       text: 'Corporate Drivers turn direction into aligned, governed execution across the enterprise.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 
@@ -202,8 +200,7 @@ export const products = {
     headline: 'Governed by design. Evidenced on demand.',
     intro:
       'Trust, Governance and Assurance establish control across the enterprise. Structure, ownership and frameworks are defined, risk and compliance are scored and evidenced, audit runs to closure, data is catalogued and traceable, and every decision is recorded and explainable, so assurance is built into the platform.',
-    primaryCta: 'Request a demo',
-    secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
 
     metrics: [
       { value: 'Every entity', label: 'Structure and ownership' },
@@ -262,7 +259,7 @@ export const products = {
     closing: {
       heading: 'Governed. Evidenced. Explainable.',
       text: 'Trust, Governance and Assurance build control and accountability into the enterprise platform.',
-      cta: 'Request a demo',
+      cta: 'Book a demo',
     },
   },
 
@@ -272,7 +269,7 @@ export const products = {
     headline: 'One source of financial truth, from ledger to statement.',
     intro:
       'Finance runs on one live ledger. Postings, payables, receivables, treasury, fixed assets and reconciliation draw from a single source, and statutory statements and management insight are produced on demand, so numbers stay trusted and close runs on schedule.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'One ledger', label: 'Source of financial truth' },
       { value: 'Live', label: 'Trial balance and positions' },
@@ -291,7 +288,7 @@ export const products = {
     flowHeading: 'Every number, off one ledger.',
     flowText: 'Transactions post to the general ledger, payables, receivables, treasury, assets and reconciliation all draw from that single source, and statements and reports are produced from the same live truth.',
     visual: { type: 'layers', base: 'General Ledger', stack: ['Statements and Reports', 'Treasury and Fixed Assets', 'Payables and Receivables'] },
-    closing: { heading: 'One ledger. Every number, trusted.', text: 'Finance runs from posting to statement on a single live source of financial truth.', cta: 'Request a demo' },
+    closing: { heading: 'One ledger. Every number, trusted.', text: 'Finance runs from posting to statement on a single live source of financial truth.', cta: 'Book a demo' },
   },
 
   customers: {
@@ -299,7 +296,7 @@ export const products = {
     headline: 'Every customer, from first touch to lasting loyalty.',
     intro:
       'Customers brings sales, orders, service, subscriptions and marketing onto one platform with a single customer view. Interactions are handled by AI and human agents together, and every stage from acquisition to care to renewal runs on shared context.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Customer 360', label: 'One view of every customer' },
       { value: 'AI and human', label: 'Every interaction' },
@@ -321,7 +318,7 @@ export const products = {
     flowHeading: 'One customer, one view.',
     flowText: 'Sales, orders, service, subscriptions and marketing share a single customer 360, so every team acts on the same context and every interaction builds on the last.',
     visual: { type: 'ecosystem', hub: 'Customer 360', nodes: ['CRM', 'Orders', 'Subscribers', 'Care', 'Campaigns', 'Partners'] },
-    closing: { heading: 'Every customer, one view.', text: 'Customers unifies acquisition, service and loyalty on one platform with a single view of every customer.', cta: 'Request a demo' },
+    closing: { heading: 'Every customer, one view.', text: 'Customers unifies acquisition, service and loyalty on one platform with a single view of every customer.', cta: 'Book a demo' },
   },
 
   people: {
@@ -329,7 +326,7 @@ export const products = {
     headline: 'The workforce, from hire to exit, on one platform.',
     intro:
       'People runs the employee lifecycle end to end. Workforce, recruitment, time and pay, growth and engagement share one employee master, so every stage from hire to exit runs on one clean record.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'One master', label: 'Hire to exit' },
       { value: 'Payroll-ready', label: 'Time and attendance' },
@@ -347,7 +344,7 @@ export const products = {
     flowHeading: 'One record, hire to exit.',
     flowText: 'Recruitment, workforce, time, pay, growth and engagement share one employee master, so the whole lifecycle runs on one clean record.',
     visual: { type: 'flow', steps: ['Hire', 'Onboard', 'Grow', 'Exit'] },
-    closing: { heading: 'The workforce, on one record.', text: 'People runs the full employee lifecycle on one shared master, from hire to exit.', cta: 'Request a demo' },
+    closing: { heading: 'The workforce, on one record.', text: 'People runs the full employee lifecycle on one shared master, from hire to exit.', cta: 'Book a demo' },
   },
 
   'supply-chain': {
@@ -355,7 +352,7 @@ export const products = {
     headline: 'From source to delivery, one connected chain.',
     intro:
       'Supply Chain connects procurement, materials, vendors, warehousing, logistics and field force on one platform. Requisition to payment, dock to dispatch and pickup to delivery run on shared masters, so the chain moves as one.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Requisition to pay', label: 'One procurement flow' },
       { value: 'One master', label: 'Materials and vendors' },
@@ -375,7 +372,7 @@ export const products = {
     flowHeading: 'One connected chain.',
     flowText: 'Procurement, materials, vendors, warehousing, logistics and field force run on shared masters, so demand flows to delivery without the handoffs between systems.',
     visual: { type: 'ecosystem', hub: 'One Supply Chain', nodes: ['Procurement', 'Materials', 'Vendors', 'Warehouses', 'Logistics', 'Field Force'] },
-    closing: { heading: 'Source to delivery, connected.', text: 'Supply Chain runs procurement, warehousing, logistics and field force on one connected platform.', cta: 'Request a demo' },
+    closing: { heading: 'Source to delivery, connected.', text: 'Supply Chain runs procurement, warehousing, logistics and field force on one connected platform.', cta: 'Book a demo' },
   },
 
   operations: {
@@ -383,7 +380,7 @@ export const products = {
     headline: 'Service and operations, from raised to resolved.',
     intro:
       'Operations runs the service and asset estate on one platform. Tickets, incidents, problems, change, configuration, assets, maintenance and knowledge share one view across IT and OT, so issues move from raised to resolved and recurring ones are engineered out.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Raised to resolved', label: 'On SLA' },
       { value: 'IT and OT', label: 'One view' },
@@ -404,7 +401,7 @@ export const products = {
     flowHeading: 'Raised to resolved, then engineered out.',
     flowText: 'Tickets and incidents are detected and triaged, resolved against SLA, and recurring ones become problems with permanent fixes, all on one configuration and asset map.',
     visual: { type: 'flow', steps: ['Detect', 'Triage', 'Resolve', 'Prevent'] },
-    closing: { heading: 'From raised to resolved.', text: 'Operations runs the service and asset estate on one platform across IT and OT.', cta: 'Request a demo' },
+    closing: { heading: 'From raised to resolved.', text: 'Operations runs the service and asset estate on one platform across IT and OT.', cta: 'Book a demo' },
   },
 
   pmo: {
@@ -412,7 +409,7 @@ export const products = {
     headline: 'Programs to tasks, tracked to done.',
     intro:
       'PMO turns strategy into delivery. Programs, projects, tasks, corrective actions and meetings run on one fabric with earned-value and planned-versus-actual tracking, so every commitment is followed through to done.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Earned value', label: 'Program health' },
       { value: 'Planned vs actual', label: 'Project delivery' },
@@ -429,7 +426,7 @@ export const products = {
     flowHeading: 'Strategy to done, tracked.',
     flowText: 'Programs govern the portfolio on earned value, projects track planned versus actual, tasks are AI-ranked and routed, and corrective actions and meetings close the loop to done.',
     visual: { type: 'cascade', top: 'Programs', topSub: 'Earned value and risk', stages: ['Projects', 'Tasks', 'Trackers'], bottom: 'Delivered', bottomSub: 'Tracked to done', loop: 'Performance & rollup' },
-    closing: { heading: 'Every commitment, tracked to done.', text: 'PMO turns programs and projects into tasks and follow-through on one delivery fabric.', cta: 'Request a demo' },
+    closing: { heading: 'Every commitment, tracked to done.', text: 'PMO turns programs and projects into tasks and follow-through on one delivery fabric.', cta: 'Book a demo' },
   },
 
   'it-cybersecurity': {
@@ -437,7 +434,7 @@ export const products = {
     headline: 'IT, plan to secure, on one platform.',
     intro:
       'IT and CyberSecurity runs the whole function on one platform. Investment and governance, build and delivery, infrastructure, service and security share one view, so IT is planned to ROI, delivered through CI/CD, run across clouds and secured in the loop.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Governed to ROI', label: 'IT investment' },
       { value: 'Plan to production', label: 'Build and delivery' },
@@ -454,7 +451,7 @@ export const products = {
     flowHeading: 'Plan to secure, in one loop.',
     flowText: 'IT investment is governed to ROI, delivery runs plan to production through CI/CD, infrastructure runs across clouds with FinOps, and security is in the loop from identity to the SOC.',
     visual: { type: 'shield', items: ['Strategy', 'Delivery', 'Infrastructure', 'Service', 'Identity', 'SOC'] },
-    closing: { heading: 'The whole of IT, on one platform.', text: 'IT and CyberSecurity runs investment, delivery, infrastructure, service and security on one platform.', cta: 'Request a demo' },
+    closing: { heading: 'The whole of IT, on one platform.', text: 'IT and CyberSecurity runs investment, delivery, infrastructure, service and security on one platform.', cta: 'Book a demo' },
   },
 
   // ── Engineering: one page per space ────────────────────────────────────────
@@ -463,7 +460,7 @@ export const products = {
     headline: 'Intelligent agents and models, built, run and governed.',
     intro:
       'AI Foundry is where enterprise AI is built and operated. Agents that decide and act, conversational and custom agents, ML and forecasting models, vision and orchestration are created, deployed and governed as one fleet, grounded in enterprise context.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Plain English', label: 'Describe it, it builds' },
       { value: 'One fleet', label: 'Agents built and governed' },
@@ -486,7 +483,7 @@ export const products = {
     flowHeading: 'From build to production, one fleet.',
     flowText: 'Agents and models are built from enterprise context, orchestrated into flows, deployed and governed from one console, and measured on success, cost and accuracy in production.',
     visual: { type: 'foundry', input: 'Enterprise context · data', core: 'AI Foundry', modules: ['Autonomous Agents', 'Conversational Agents', 'ML Studio', 'Forecaster', 'Vision AI', 'Flow Orchestrator'], output: 'Agents and models in production', outputSub: 'Built, run and governed as one fleet' },
-    closing: { heading: 'Enterprise AI, built to run.', text: 'AI Foundry builds, runs and governs the agents and models that make the enterprise intelligent.', cta: 'Request a demo' },
+    closing: { heading: 'Enterprise AI, built to run.', text: 'AI Foundry builds, runs and governs the agents and models that make the enterprise intelligent.', cta: 'Book a demo' },
   },
 
   'engineering-toolkits': {
@@ -494,7 +491,7 @@ export const products = {
     headline: 'Build new, modernise old, without leaving the platform.',
     intro:
       'Engineering Toolkits turn requirements into running systems. New applications are generated from an idea, legacy systems are modernised with their rules preserved, and builders, integration, data pipelines and analytics are all created on-platform and governed.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Idea to app', label: 'Complete and production-ready' },
       { value: 'Legacy to modern', label: 'Business rules preserved' },
@@ -517,7 +514,7 @@ export const products = {
     flowHeading: 'From requirement to running system.',
     flowText: 'New applications are generated from an idea, legacy systems are modernised with rules preserved, and integration, data pipelines and analytics are built on-platform and governed.',
     visual: { type: 'foundry', input: 'Idea · legacy · data', core: 'Engineering Toolkits', modules: ['Innovate', 'Modernize', 'Builders', 'Integration', 'Data Pipelines', 'BI'], output: 'Running, governed systems', outputSub: 'Built new, modernised, integrated and analysed' },
-    closing: { heading: 'Build anything, on one platform.', text: 'Engineering Toolkits build, modernise, integrate and analyse without leaving the platform.', cta: 'Request a demo' },
+    closing: { heading: 'Build anything, on one platform.', text: 'Engineering Toolkits build, modernise, integrate and analyse without leaving the platform.', cta: 'Book a demo' },
   },
 
   'operations-toolkits': {
@@ -525,7 +522,7 @@ export const products = {
     headline: 'Operate and secure the whole estate.',
     intro:
       'Operations Toolkits run and secure the platform estate. Cost, service, cluster and data operations, observability, security operations and DevSecOps share one control surface, so the estate is watched, optimised, secured and kept to SLA.',
-    primaryCta: 'Request a demo', secondaryCta: 'Explore Platform',
+    primaryCta: 'Book a demo',
     metrics: [
       { value: 'Before the invoice', label: 'Cloud cost intelligence' },
       { value: 'Petabyte scale', label: 'Observability' },
@@ -548,6 +545,6 @@ export const products = {
     flowHeading: 'Watched, optimised, secured.',
     flowText: 'Cost, service, cluster and data operations are observed and optimised, security operations and DevSecOps secure the estate, and alerts and incidents are resolved to SLA.',
     visual: { type: 'layers', base: 'One control surface', stack: ['Security and compliance ops', 'Service and cluster ops', 'Cost and data ops'] },
-    closing: { heading: 'The estate, operated and secured.', text: 'Operations Toolkits run, optimise and secure the whole platform estate from one control surface.', cta: 'Request a demo' },
+    closing: { heading: 'The estate, operated and secured.', text: 'Operations Toolkits run, optimise and secure the whole platform estate from one control surface.', cta: 'Book a demo' },
   },
 }
