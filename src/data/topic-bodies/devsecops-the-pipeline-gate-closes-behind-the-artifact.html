@@ -25,7 +25,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">Two serious objections</h2>
+<h2 class="section-label fade-in">Two positions deserve answering, not waving at</h2>
 <div class="fade-in">
 <p>Two positions in the category deserve to be answered rather than waved at.</p>
 <p>The first is the single-platform pitch: security and compliance enforced <em>as code, inside the delivery workflow</em> — one platform where policy gates the merge, the pipeline, and the deployment, so security is built in rather than bolted on. Concede it fully: within its scope, that governance is real. The pipeline is not advisory; it blocks. But state the scope precisely: it governs the <strong>delivery</strong> of code. The moment the artifact clears the final gate and deploys, the platform's writ ends. The promise of security built in rather than bolted on describes where the scanning lives — inside the developer workflow — not where action governance lives, because in this architecture action governance lives nowhere. The running application's business actions answer to nothing the platform shipped.</p>
@@ -41,7 +41,7 @@
 <p>Now watch the post-incident review. The pipeline's evidence is superb and beside the point: it proves, immutably, everything about how the software was <em>delivered</em>, and nothing about whether the action was <em>authorized</em>. The only "control" that touched the refund was the application's own authorization logic — ordinary application code, owned by the delivery team, versioned like a feature, invisible to the security organization. That is not a control your CISO operates. That is a hope your CISO inherits.</p>
 </div>
 
-<h2 class="section-label fade-in">Governed by construction</h2>
+<h2 class="section-label fade-in">Change what the application is</h2>
 <div class="fade-in">
 <p>The structural fix is not a better scanner or a later gate. It is moving where the control lives: off the artifact, onto the executing action. That is the architectural premise of Entroid's Composable Process Fabric — five primitives (Deterministic Workflows, Intelligence Orchestration, Atomic Agents, Functions, Connectors) composed on a shared semantic ontology, executing in one runtime with an immutable per-action audit trail.</p>
 <p>Three properties of that design answer the empty column directly. First, <strong>the gate is inline</strong>: in a Deterministic Workflow, the policy check is a step in the execution path of the action itself — the payment above threshold cannot proceed to release without passing it, because the gate is not <em>ahead of</em> the deployment, it is <em>inside</em> the act. Second, <strong>egress is architecturally singular</strong>: Connectors are the only primitive that touches external systems, so "which actions can reach the payment rail" is a property of the fabric — permissioned, policy-checked, enumerable — rather than a convention scattered through application code. Third, <strong>evidence is a byproduct</strong>: every action writes an immutable per-action audit record at the moment it executes, with a human-in-the-loop pause as a first-class step wherever an Atomic Agent or a threshold demands one. These are architectural properties of composition — a process assembled from governed primitives has no ungoverned path to act — not claims about any particular deployment.</p>

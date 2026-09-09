@@ -1,8 +1,8 @@
 import { ProductPage } from '../../../components/Site'
 import { JsonLd } from '../../../components/JsonLd'
 import { products } from '../../../products'
-import { clampDescription } from '../../../lib/seo'
-import { breadcrumbList, graph, webPage } from '../../../lib/schema'
+import { clampDescription, pageMeta } from '../../../lib/seo'
+import { breadcrumbList, graph, softwareApplication, webPage } from '../../../lib/schema'
 
 /* Every product/space page is known at build time, so prerender them all. */
 export const generateStaticParams = () => Object.keys(products).map((slug) => ({ slug }))
@@ -19,11 +19,11 @@ export const generateMetadata = async ({ params }) => {
   const { slug } = await params
   const p = products[slug]
   if (!p) return { title: 'Product', ...missing }
-  return {
+  return pageMeta({
     title: p.category,
     description: p.metaDescription || clampDescription(p.intro),
-    alternates: { canonical: `/product/${slug}` },
-  }
+    path: `/product/${slug}`,
+  })
 }
 
 export default async function Page({ params }) {
@@ -35,8 +35,15 @@ export default async function Page({ params }) {
   /* Home -> {category}, two levels. There is no /product index route in this
      app, so a middle crumb pointing at one would 404 and invalidate the whole
      BreadcrumbList. */
+  const description = p.metaDescription || clampDescription(p.intro)
+  /* `featureList` takes the module names the page is actually built from —
+     the capability bullets underneath them run to sixty-odd strings per page,
+     which is a keyword dump rather than a feature list. */
+  const features = (p.modules || []).map((m) => m.name).filter(Boolean)
+
   const jsonLd = graph(
-    webPage({ path, name: p.headline, description: p.metaDescription || clampDescription(p.intro), breadcrumb: true }),
+    webPage({ path, name: p.headline, description, breadcrumb: true }),
+    softwareApplication({ path, name: `Entroid ${p.category}`, description, features }),
     breadcrumbList({ path, items: [{ name: 'Home', path: '/' }, { name: p.category, path }] }),
   )
 

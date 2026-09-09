@@ -1,7 +1,7 @@
 import { UseCaseDetail } from '../../../components/Site'
 import { JsonLd } from '../../../components/JsonLd'
 import { useCaseGroups } from '../../../usecases'
-import { describe } from '../../../lib/seo'
+import { describe, pageMeta } from '../../../lib/seo'
 import { breadcrumbList, graph, webPage } from '../../../lib/schema'
 
 const allUseCases = useCaseGroups.flatMap((g) => g.items)
@@ -19,11 +19,11 @@ export const generateMetadata = async ({ params }) => {
   const { slug } = await params
   const u = allUseCases.find((x) => x.slug === slug)
   if (!u) return { title: 'Use Cases', ...missing }
-  return {
+  return pageMeta({
     title: u.title,
     description: descriptionFor(u),
-    alternates: { canonical: `/use-cases/${slug}` },
-  }
+    path: `/use-cases/${slug}`,
+  })
 }
 
 export default async function Page({ params }) {

@@ -839,6 +839,12 @@ a.navcard:hover .navcard__icon {
      photograph runs behind the header while the content still clears it. */
   margin-top: calc(-1 * var(--nav-h));
   padding-top: var(--nav-h);
+  /* Column, so the grid takes the free space and the proof cards sit beneath
+     it inside the same photograph. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 /* Horizontal hero: 40% text / 60% focal architecture image. The dark ground
@@ -853,8 +859,10 @@ a.navcard:hover .navcard__icon {
   grid-template-columns: minmax(0, 48fr) minmax(0, 52fr);
   gap: clamp(32px, 4vw, 64px);
   align-items: center;
-  min-height: calc(100vh - var(--nav-h));
-  padding: 40px clamp(22px, 2.2vw, 40px) 48px;
+  /* The cards below share the hero's height, so the minimum lives on `.hero`
+     now — keeping it here would push them past the fold on their own. */
+  flex: 1;
+  padding: 40px clamp(22px, 2.2vw, 40px) 24px;
 }
 
 .hero__lead {
@@ -935,7 +943,7 @@ a.navcard:hover .navcard__icon {
   max-height: min(64vh, 600px);
   max-width: min(100%, 620px);
   margin-inline: auto;
-  border-radius: 16px;
+  /* border-radius: 16px; */
 }
 
 @media (max-width: 960px) {
@@ -3444,7 +3452,9 @@ a.navcard:hover .navcard__icon {
 /* Cards, not cells: the same surface tokens the rest of the site's cards use. */
 .pstrip__item {
   padding: 20px;
-  background: #fff;
+
+  background: #fffffff1;
+  backdrop-filter: blur(8px);
   border: 1px solid var(--card-line);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
@@ -6497,41 +6507,6 @@ a.navcard:hover .navcard__icon {
   border: 0;
 }
 
-/* ── Hero proof chips (home) ─────────────────────────────────── */
-/* The three proof points, under the CTA. Claim only — the supporting line each
-   carries in content.js is left off, because a chip that wraps to a second
-   line stops being a chip. */
-.herochips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 26px;
-  list-style: none;
-}
-
-.herochips__item {
-  padding: 8px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -.005em;
-  color: var(--ink);
-  /* Translucent rather than solid: the hero sits on a photograph, and a white
-     plate would read as a card floating over it. */
-  background: rgba(255, 255, 255, .72);
-  border: 1px solid rgba(255, 255, 255, .9);
-  border-radius: 999px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 18px -12px rgba(10, 15, 31, .35);
-}
-
-@media (max-width: 560px) {
-  .herochips__item {
-    font-size: 12.5px;
-    padding: 7px 12px;
-  }
-}
-
 /* ── Value cards over a photographic hero (industry pages) ───── */
 /* The white plate that works on the gradient heroes reads as a hole punched in
    the picture. Over a photograph the cards take the ink ground instead, lifted
@@ -6569,4 +6544,114 @@ a.navcard:hover .navcard__icon {
   .uccards--three {
     grid-template-columns: 1fr;
   }
+}
+
+/* The anchor beside a glossary term. Present for anyone who wants to link to a
+   single definition, but out of the way until the entry is hovered. */
+.gloss__anchor {
+  margin-left: 8px;
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+.gloss__entry:hover .gloss__anchor,
+.gloss__anchor:focus-visible { opacity: 1; }
+
+/* So a linked term lands below the sticky nav rather than under it. */
+.gloss__entry { scroll-margin-top: 96px; }
+
+/* ── Hero proof cards (home) ─────────────────────────────────── */
+/* The three facts, inside the hero. Their own full-width row under the two
+   columns; the `pstrip` cards themselves are shared with the product heroes,
+   so only the placement and the column count belong here. */
+.hero__proof {
+  position: relative;
+  /* Above the photograph and the ::before wash, like .hero__inner. */
+  z-index: 1;
+  /* The card is the last thing in the first screen: `.hero` is a column of
+     100vh and `.hero__inner` takes the slack, so this sits on the fold. Just
+     enough inset that it does not touch the edge. */
+  padding-bottom: clamp(16px, 1.8vw, 24px);
+}
+
+/* One plate, divided — not three plates. Background and blur are the same
+   values `.pstrip__item` carries, so the treatment still matches the cards
+   used elsewhere; only the seams between them change. */
+.hero__proofCard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: #fffffff1;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  /* So the cells' own edges cannot square off the plate's corners. */
+  overflow: hidden;
+}
+
+.hero__proofCell {
+  padding: 20px;
+  min-width: 0;
+}
+
+/* The divider is drawn a shade darker than `--card-line`, which is near-white
+   and disappears once it is a seam inside the plate rather than its edge. */
+.hero__proofCell + .hero__proofCell {
+  border-left: 1px solid rgba(10, 15, 31, .09);
+}
+
+@media (max-width: 760px) {
+  .hero__proofCard { grid-template-columns: 1fr; }
+  /* Stacked, the seam runs the other way. */
+  .hero__proofCell + .hero__proofCell {
+    border-left: 0;
+    border-top: 1px solid rgba(10, 15, 31, .09);
+  }
+}
+
+@media (max-width: 620px) {
+  /* Below the fold is fine on a phone; forcing the card in makes the type tiny
+     and the photograph a sliver. */
+  .hero { min-height: 0; }
+}
+
+/* ── Hero tick points (home) ─────────────────────────────────── */
+/* Three claims under the CTA. A wrapping row rather than a stacked list: the
+   hero already has to fit the headline, the paragraph, the button and the
+   proof card inside one screen, and three stacked lines cost height the
+   layout does not have. */
+.heropoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 22px;
+  list-style: none;
+}
+
+.heropoints__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: var(--ink);
+}
+
+.heropoints__tick {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--brand);
+}
+
+@media (max-width: 560px) {
+  /* Stacked once there is no room for a row, which is when the extra height
+     is affordable anyway. */
+  .heropoints { gap: 8px; flex-direction: column; }
+  .heropoints__item { font-size: 14.5px; }
 }

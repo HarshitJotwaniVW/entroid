@@ -1,7 +1,7 @@
 import { IndustryPage } from '../../../components/Site'
 import { JsonLd } from '../../../components/JsonLd'
 import { industries } from '../../../industries'
-import { clampDescription } from '../../../lib/seo'
+import { clampDescription, pageMeta } from '../../../lib/seo'
 import { breadcrumbList, graph, webPage } from '../../../lib/schema'
 
 export const generateStaticParams = () => Object.keys(industries).map((slug) => ({ slug }))
@@ -14,11 +14,11 @@ export const generateMetadata = async ({ params }) => {
   const { slug } = await params
   const p = industries[slug]
   if (!p) return { title: 'Industry', ...missing }
-  return {
+  return pageMeta({
     title: p.category,
     description: p.metaDescription || clampDescription(p.intro),
-    alternates: { canonical: `/industries/${slug}` },
-  }
+    path: `/industries/${slug}`,
+  })
 }
 
 export default async function Page({ params }) {

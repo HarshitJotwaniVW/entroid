@@ -3,7 +3,16 @@
 import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { brand, navCta, menu, hero, heroProof, sections, finalSection, footer } from '../content'
+import {
+  brand,
+  finalSection,
+  footer,
+  hero,
+  heroProof,
+  menu,
+  navCta,
+  sections,
+} from '../content'
 import { PlatformOrbit } from './PlatformOrbit'
 import { StackCards, TabsShowcase } from './Showcase'
 import {
@@ -372,14 +381,34 @@ const Hero = () => (
           <Link href="/contact" className="btn btn--primary btn--arrow">{hero.primaryCta}<CtaArrow /></Link>
         </Reveal>
 
-        {/* The proof points, as chips under the CTA. Headline claims only —
-            the supporting line each one carries in content.js is dropped here,
-            because a chip that needs a second line is not a chip. */}
-        <Reveal as="ul" className="herochips stagger" variant="up" delay={500} eager>
-          {heroProof.map((p) => <li key={p.title} className="herochips__item">{p.title}</li>)}
+        {/* A real <ul>: three parallel claims are a list, and a screen reader
+            should announce them as one. The tick is decorative — the text says
+            everything, so it carries no label of its own. */}
+        <Reveal as="ul" className="heropoints" variant="up" delay={480} eager>
+          {hero.points.map((t) => (
+            <li key={t} className="heropoints__item">
+              <CheckCircle className="heropoints__tick" weight="fill" aria-hidden="true" />
+              {t}
+            </li>
+          ))}
         </Reveal>
       </div>
       <Reveal className="hero__figure" variant="zoom" delay={240}><HeroMedia /></Reveal>
+    </div>
+
+    {/* The three proof points, inside the hero. One plate divided into three
+        rather than three plates: at this width the gaps between separate cards
+        read as more of a break than the facts warrant. Full width under both
+        columns — squeezed into the text column they would wrap one per line. */}
+    <div className="container hero__proof">
+      <Reveal as="div" variant="fade" className="hero__proofCard stagger" delay={520}>
+        {heroProof.map((p) => (
+          <div key={p.title} className="hero__proofCell">
+            <p className="pstrip__value">{p.title}</p>
+            <p className="pstrip__label">{p.text}</p>
+          </div>
+        ))}
+      </Reveal>
     </div>
   </header>
 )
@@ -1806,7 +1835,7 @@ export const Faq = () => (
         <div className="faqgroups">
           {faq.groups.map((g) => (
             <Reveal as="div" key={g.title} variant="fade" className="faqgroup stagger">
-              <h2 className="faqgroup__title">{g.title}</h2>
+              <h2 className="tabsx__title">{g.title}</h2>
               {g.items.map((it) => (
                 <details key={it.q} className="faqitem">
                   <summary className="faqitem__q">{it.q}<span className="faqitem__icon" aria-hidden="true" /></summary>

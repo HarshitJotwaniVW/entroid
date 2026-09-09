@@ -7,7 +7,7 @@
 
 <div class="hook fade-in">90 minutes of driving. The right technician, the wrong parts. The work order was correct on paper. <strong>The systems just didn't know each other.</strong></div>
 
-  <h2 class="section-label fade-in">The scene</h2>
+  <h2 class="section-label fade-in">The technician drove 90 minutes with the wrong parts</h2>
   <div class="fade-in"><p>Monday, 7:15 AM. A maintenance work order is dispatched: "Replace filter assembly, Unit 7, Building C." The technician loads the parts listed on the work order, drives 90 minutes to the customer site, and opens the unit.</p>
 <p>Wrong filter. The unit was upgraded six months ago, and the new model uses a completely different filter assembly. The asset record in the CMDB still shows the old configuration. The parts catalog carries both SKUs. The work order system pulled the one linked to the outdated asset record, because that's all it had.</p>
 <p>The technician calls dispatch. Dispatch calls the warehouse. The warehouse ships the correct part. It arrives the next day. The technician drives 90 minutes back. The customer has been without the unit for 36 hours.</p>
@@ -17,7 +17,7 @@
     <img src="/blog-assets/1581092918056-0c4c3acd3789.jpg" alt="Technician at industrial site" loading="lazy">
   </div>
 
-  <h2 class="section-label fade-in">The cascade</h2>
+  <h2 class="section-label fade-in">The asset configuration and the parts catalog are not linked</h2>
   <div class="fade-in"><ul>
 <li><strong>The asset configuration and the parts catalog aren't linked.</strong> When the unit was upgraded, the CMDB wasn't updated to reflect the new part requirements.</li>
 <li><strong>The work order system can't verify parts against actual asset state.</strong> It trusts whatever the CMDB says, even when the CMDB is wrong.</li>
@@ -27,11 +27,11 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <h2 class="section-label fade-in">The shift</h2>
+  <h2 class="section-label fade-in">Work order, asset, catalog and inventory on one model</h2>
   <div class="fade-in"><p>What if the work order, the asset configuration, the parts catalog, and the warehouse inventory all lived on <strong>one connected data model</strong>?</p>
 <p>When a work order is created, the system cross-references the asset's current configuration, not the one from three years ago. It verifies part availability against the correct SKU. If the part isn't in stock, the work order holds until it is. The technician never leaves the warehouse with the wrong filter, because <strong>the system won't let the work order dispatch with a mismatch in the first place</strong>.</p></div>
 
-  <h2 class="section-label fade-in">The result</h2>
+  <h2 class="section-label fade-in">The 90-minute drive was not the failure</h2>
   <div class="fade-in"><p>The 90-minute drive wasn't the failure. The failure happened days earlier, when a work order got created against an asset record that no longer reflected reality. One connected model eliminates the gap, and the wasted trip along with it.</p></div>
 
   <div class="insight fade-in">

@@ -14,7 +14,7 @@
  */
 
 export const brand = { name: 'Entroid' }
-export const navCta = 'Watch the overview'
+export const navCta = 'Book a demo'
 
 export const menu = [
   { label: 'Home', href: '#top' },
@@ -120,15 +120,19 @@ export const megaRail = {
 
 export const hero = {
   // eyebrow: 'Entroid',
-  headline: 'Unified Intelligence for Governed Autonomous Enterprises',
+  headline: 'Unified Intelligence Fabric for Governed Autonomous Enterprises',
   /* The same words, broken where they should break. Left to wrap on its own
      the headline lands on four ragged lines; these two are balanced and hold
      their shape as the column changes width. The single string above stays for
      anywhere that needs the headline as plain text. */
-  headlineLines: ['Unified Intelligence for', 'Governed Autonomous Enterprises'],
+  headlineLines: ['Unified Intelligence Fabric for', 'Governed Autonomous Enterprises'],
   description:
-    'Entroid unifies organisations, enterprise knowledge, and existing systems through a governed AI core, enabling autonomous operations while aligning strategy, accelerating innovation, modernising enterprise applications, and maintaining complete governance and control.',
+    'Entroid unifies organisations, knowledge and systems through governed AI, thereby enabling autonomous operations. It empowers enterprises to align strategy with execution, accelerate innovation, and modernise applications while maintaining compliance, governance, and control.',
   primaryCta: 'Book a demo',
+  /* Three ticks under the CTA — the whole proposition in three words and a
+     short phrase. Kept to single terms so they sit on one line together; the
+     supporting detail lives in the cards at the foot of the hero. */
+  points: ['Unified.', 'Autonomous.', 'Governed and owned by you.'],
   image: '/illustration/ill-home-hero.png',
   imageAlt:
     'The Entroid platform stack: Governed Intelligence built on the AI Foundry and the Semantic Ontology, Domain Packs for vertical solutions, innovation and modernisation, Business Packs spanning every organisation function alongside Corporate Drivers and the Trust Fabric, and Technology Packs providing modeller studios, platform governance and cloud-native infrastructure.',
@@ -138,18 +142,19 @@ export const hero = {
    certified against, where it already runs, and who the company answers to.
    Straight facts, no CTA — they are there to be believed, not clicked. */
 export const heroProof = [
+
   {
-    title: 'SOC 2 Type II-aligned · ISO 27001 · GDPR',
-    text: 'Security and data protection frameworks',
+    title: 'AI that runs the work, and answers to you',
+    text: 'Autonomous agents, bounded and audited · explainable by design · air-gapped ready',
   },
   {
-    title: '10+ enterprises in production',
-    text: 'Air-gapped, on-prem and cloud deployments',
+    title: 'Model-Native Architecture',
+    text: 'Strategy · Operations · Finance · Governance · AI on one connected model',
   },
-  {
-    title: 'Independent, profitable, engineering-led',
-    text: 'Our roadmap answers to customers, not investors.',
-  },
+    {
+    title: 'Enterprise-Grade Security & Compliance',
+    text: 'SOC 2 · ISO 27001 · GDPR · Security and data-protection frameworks',
+  }
 ]
 
 export const sections = [

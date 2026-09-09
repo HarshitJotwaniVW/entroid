@@ -14,6 +14,7 @@
    ========================================================================== */
 
 import { abs, ORG, ORG_ID, SITE_URL, WEBSITE_ID } from './site'
+import { authorFor } from './authors'
 import { anchorSlug, clampDescription } from './seo'
 
 const CONTEXT = 'https://schema.org'
@@ -57,6 +58,13 @@ export const organization = () => clean({
     availableLanguage: 'English',
   }),
   sameAs: ORG.sameAs,
+  knowsAbout: ORG.knowsAbout,
+  /* Emitted only when a real value exists in ORG — `clean` drops them
+     otherwise, so an unknown founding date is absent rather than guessed. */
+  foundingDate: ORG.foundingDate,
+  numberOfEmployees: ORG.numberOfEmployees
+    ? clean({ '@type': 'QuantitativeValue', ...ORG.numberOfEmployees })
+    : undefined,
 })
 
 /* No SearchAction / sitelinks searchbox: there is no site-wide search
@@ -113,7 +121,34 @@ export const breadcrumbList = ({ path, items }) => clean({
    accurate type. Google retired the FAQ rich result in May 2026, so this earns
    no SERP decoration; it is here because it states the question and answer
    boundaries explicitly for the crawlers and answer engines that read them. */
-export const faqPage = ({ path, name, description, groups }) => clean({
+/* ── SoftwareApplication (product modules) ───────────────────────
+   Each product page describes a module of one platform, so it is a
+   SoftwareApplication rather than a Product: there is nothing here with a
+   price, a SKU or a shipping weight.
+
+   Deliberately WITHOUT `offers` and `aggregateRating`. Pricing is not
+   published, and a rating nobody left is fabricated review data — the kind
+   that earns a manual action rather than a rich result. An `offers` block
+   with no price is also what makes Search Console report "missing field
+   price" forever, so leaving it out is both honest and quieter. */
+export const softwareApplication = ({ path, name, description, features }) => clean({
+  '@type': 'SoftwareApplication',
+  '@id': `${abs(path)}#software`,
+  name,
+  description,
+  url: abs(path),
+  applicationCategory: 'BusinessApplication',
+  /* The platform runs air-gapped, on-prem and in cloud, so it is not tied to
+     one operating system. */
+  operatingSystem: 'Web-based, on-premise, air-gapped or cloud',
+  publisher: { '@id': ORG_ID },
+  provider: { '@id': ORG_ID },
+  isPartOf: { '@id': `${SITE_URL}/#platform` },
+  inLanguage: 'en',
+  featureList: features && features.length ? features : undefined,
+})
+
+export const faqPage = ({ path, name, description, groups, breadcrumb = false }) => clean({
   '@type': 'FAQPage',
   '@id': pageId(path),
   url: abs(path),
@@ -122,6 +157,7 @@ export const faqPage = ({ path, name, description, groups }) => clean({
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
+  breadcrumb: breadcrumb ? { '@id': crumbId(path) } : undefined,
   // Flattened across groups: schema.org has no construct for FAQ subsections.
   mainEntity: groups.flatMap((g) => g.items).map((it) => ({
     '@type': 'Question',
@@ -135,7 +171,8 @@ export const faqPage = ({ path, name, description, groups }) => clean({
 /* One set holding all 88 terms, rather than one set per section. The eight
    sections are page groupings, not eight separately published vocabularies,
    and DefinedTermSet has no property for nesting another set inside it.
-   Section membership survives in each term's url anchor. */
+   Section membership is lost in the flattening; each term instead carries its
+   own anchor, so a definition can be cited on its own. */
 export const definedTermSet = ({ path, name, description, sections }) => {
   const setId = `${abs(path)}#glossary`
   return [
@@ -152,7 +189,10 @@ export const definedTermSet = ({ path, name, description, sections }) => {
         name: t.term,
         description: t.def,
         inDefinedTermSet: { '@id': setId },
-        url: `${abs(path)}#${anchorSlug(s.section)}`,
+        /* The term's own anchor, not its section's — a definition that
+           resolves to a shared heading is not separately citable. Matches the
+           id Glossary.jsx puts on each entry. */
+        url: `${abs(path)}#${anchorSlug(t.term)}`,
       }))),
     }),
   ]
@@ -161,8 +201,9 @@ export const definedTermSet = ({ path, name, description, sections }) => {
 /* ── /resources/blogs/[slug] ─────────────────────────────────── */
 
 /* BlogPosting rather than Article: these live under /resources/blogs and read
-   as posts. `author` is the Organization — there is no per-post byline in the
-   data, and inventing a Person would be fabricated authorship.
+   as posts. `author` is the Person who wrote it, with their LinkedIn profile as
+   `url`, which is what lets a search engine tie the byline to a real identity
+   rather than to the company.
 
    Dates are emitted only where a real one exists (13 of the 180 posts carry a
    publishDate; the rest have none). A build-time date on the others would
@@ -179,7 +220,11 @@ export const blogPosting = ({ path, meta }) => clean({
   articleSection: meta.articleSection || meta.category,
   datePublished: meta.publishDate || undefined,
   dateModified: meta.publishDate || undefined,
-  author: { '@id': ORG_ID },
+  author: {
+    '@type': 'Person',
+    name: authorFor(meta.slug).name,
+    url: authorFor(meta.slug).url,
+  },
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',
 })

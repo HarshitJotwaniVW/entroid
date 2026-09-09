@@ -7,7 +7,7 @@
 
 <div class="hook fade-in">A P1 incident breached its 4-hour SLA at 2 AM. The on-call engineer never got paged, because routing was still manual. The customer escalated at 8 AM. IT leadership found out from an angry email, <mark class="hl"><strong>not from their own system</strong></mark>.</div>
 
-  <h2 class="section-label fade-in">The scene</h2>
+  <h2 class="section-label fade-in">The breach happened at 2:14 AM and nobody knew</h2>
   <div class="fade-in"><p>2:14 AM. A production database serving the customer portal hits 98% capacity. Automated monitoring fires an alert. A P1 incident ticket gets created in the ITSM system.</p>
 <p>The ticket sits in the general queue. Automated routing for P1s at night was supposed to be configured last quarter, but got deprioritized. The on-call engineer's phone doesn't ring.</p>
 <p>6:14 AM. The 4-hour SLA expires. The system logs the breach. Nobody is notified.</p>
@@ -18,7 +18,7 @@
     <img src="/blog-assets/1504328345606-18bbc8c9d7d1.jpg" alt="IT operations center with monitoring screens" loading="lazy">
   </div>
 
-  <h2 class="section-label fade-in">The cascade</h2>
+  <h2 class="section-label fade-in">P1 tickets wait in the same queue as password resets</h2>
   <div class="fade-in"><ul>
 <li><strong>Manual routing means P1 tickets wait in the same queue</strong> as password reset requests until a human triages them.</li>
 <li><strong>SLA timers tick in the background.</strong> The breach gets logged after it happens, with no proactive alerts when the window hits 50%, 75%, or 90%.</li>
@@ -28,12 +28,12 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <h2 class="section-label fade-in">The shift</h2>
+  <h2 class="section-label fade-in">An SLA countdown with teeth, not a log entry</h2>
   <div class="fade-in"><p>Now imagine a service layer where SLA enforcement isn't a log entry somewhere after the fact; <strong>it's a living countdown with teeth</strong>.</p>
 <p>The moment a P1 is created, automated routing sends it to the assigned on-call engineer based on skill, availability, and timezone. If there's no acknowledgment inside 15 minutes, it escalates to the backup. No response in 30 minutes, it escalates to the team lead as a push notification, not just an email.</p>
 <p>At 50% of the SLA window, a warning fires. At 75%, the service manager is alerted. <strong>The breach doesn't happen quietly. It's prevented loudly.</strong></p></div>
 
-  <h2 class="section-label fade-in">The result</h2>
+  <h2 class="section-label fade-in">The breach cost more than the penalty clause</h2>
   <div class="fade-in"><p>This SLA breach cost more than a penalty clause. It cost credibility. And it was entirely preventable, not by throwing more people at it, but by having a service layer that enforces SLAs the way they were written in the first place: proactively, automatically, and loud enough that silence is never an option.</p></div>
 
   <div class="insight fade-in">

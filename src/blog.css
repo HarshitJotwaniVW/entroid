@@ -690,3 +690,49 @@ html:not(.dark) .blog-article .scene-img-wrap img,
      side — keeps the narrow columns tidy without littering hyphens. */
   hyphenate-limit-chars: 10 5 4;
 }
+
+/* Bylines. Carried over with the author data — the name is the only part of a
+   card's meta line that is a person, so it carries the weight. */
+.blogcard__author { font-weight: 650; color: #232b3b; }
+.bpost__author {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .35);
+  transition: border-color .15s;
+}
+.bpost__author:hover { border-bottom-color: currentColor; }
+
+/* ── Short answer ────────────────────────────────────────────────
+   The post's claim, stated before the argument for it. Sits in the article
+   column so it lines up with the prose, and is marked rather than merely
+   emphasised so it reads as a distinct kind of sentence. */
+.bpost__answer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 0;
+}
+
+.bpost__answerLabel {
+  font-family: var(--font-caption);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 0.5rem;
+}
+
+.bpost__answerText {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--t1, #0a0f1f);
+  border-left: 3px solid var(--brand);
+  padding-left: 1.1rem;
+  margin: 0;
+}
+
+/* The block sits inside .blog-article, directly above <article>, so the
+   article's own top padding would double the gap beneath it. */
+.bpost__answer + article { padding-top: 1.6rem; }

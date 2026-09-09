@@ -2,7 +2,7 @@
 <p>Your software supply chain may now be the best-governed thing your enterprise builds. Every artifact signed, every build's provenance attested, every dependency inventoried in an SBOM, every package curated before it enters the building. And yet the incidents that end up in front of a regulator are rarely a forged binary. <strong>They are legitimate software doing an illegitimate thing</strong> — and nothing in that chain of custody was ever designed to notice.</p>
 </div>
 
-<h2 class="section-label fade-in">The right revolution</h2>
+<h2 class="section-label fade-in">Supply-chain security got a great deal right</h2>
 <div class="fade-in">
 <p>Be clear about what the supply-chain security movement got right, because it got a great deal right. The attacks are real: compromised build systems, poisoned open-source dependencies, tampered artifacts riding trusted update channels into thousands of environments at once. The response has been genuinely good engineering. Finding the vulnerable dependency in the pull request instead of in production is cheaper, faster, and real. Context-aware scanning across source, dependencies, containers, and infrastructure-as-code genuinely cuts the noise that drowns security teams. Signed artifacts, attested provenance, and SBOMs genuinely harden the path from commit to deploy against classes of attack that used to be invisible. Policy-as-code gates in the pipeline genuinely stop bad builds from shipping.</p>
 <p>None of what follows argues you should do less of this. The argument is about what this work can see — and about the one question it was never built to answer.</p>
@@ -23,7 +23,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">The runtime objection</h2>
+<h2 class="section-label fade-in">The strongest objection deserves a straight answer</h2>
 <div class="fade-in">
 <p>The strongest objection comes from the most runtime-oriented corner of the category, and it deserves a straight answer. Admission control that refuses a workload failing policy is enforcement, not posture. Immutability enforcement that pins a running workload to the exact image you built — and blocks anything that deviates — is enforcement at execution time, full stop. If your estate has neither, that is a genuine gap these platforms genuinely close.</p>
 <p>But be precise about the object of that enforcement. Admission control governs <em>which software is allowed to run</em>. Immutability enforcement governs <em>that it stays unmodified while running</em>. Both are statements about <strong>workload integrity</strong> — the actor's identity, extended into runtime. Neither is a statement about the actor's actions. A perfectly attested, drift-free, CVE-free workload remains fully capable of releasing the wrong payment, updating the wrong record, exporting the wrong dataset — through its own legitimate, unmodified code. Integrity of the actor is not governance of the action. Runtime enforcement of this kind extends the passport check to the moment of execution. It still never reads the transaction.</p>
@@ -109,7 +109,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">Two ledgers</h2>
+<h2 class="section-label fade-in">The question worth carrying into your architecture review</h2>
 <div class="fade-in">
 <p>Here is the question worth carrying into your next architecture review. For each materially risky business action your software can take — release a payment, change a customer record, export a regulated dataset — where does its authorization live at the moment of execution? If the honest answer is <em>"in the application code, we hope,"</em> then your supply-chain investment, however excellent, is guarding a different door than the one the next incident will walk through.</p>
 <p>An enterprise ultimately keeps two ledgers. One records what shipped: signatures, SBOMs, attestations — the identity of every actor. The other records what acted: every consequential business action and the authority under which it ran. The supply-chain stack has made the first ledger nearly unimpeachable. When the incident comes, the regulator reads the second — and in most enterprises today, the second ledger is whatever the application happened to log. That is the gap. Not a missing scanner. A missing object of governance.</p>

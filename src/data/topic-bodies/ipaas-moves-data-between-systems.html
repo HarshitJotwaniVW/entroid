@@ -108,7 +108,7 @@
 <p>The category is quietly candid about this once you read closely. One leading API-management platform concedes that its agentic model is built for tool invocation, not state persistence. A data-activation platform frames the agentic workflow as something that <em>emerges at runtime</em> as the agent gathers context. Strip the framing and both admit the same structural fact: the process has no durable home. It is assembled on the fly and discarded.</p>
 </div>
 
-<h2 class="section-label fade-in">Inverting the stack</h2>
+<h2 class="section-label fade-in">Entroid inverts the figure and the ground</h2>
 <div class="fade-in">
 <p>Entroid inverts the figure and the ground. On a Composable Process Fabric, the <strong>process instance itself is the first-class runtime object</strong> — with durable, governed state, on one runtime. It is built from five primitives: Deterministic Workflows that carry the durable state and enforce governance inline at each step; Intelligence Orchestration; Atomic Agents with human-in-the-loop as a first-class state rather than a bolted-on escape hatch; Functions; and Connectors — the only primitive that touches an external system.</p>
 <p>That last point is where honesty earns the argument: ES does not pretend the estate disappears. It runs over the same systems of record, through governed, typed, audited Connectors. The difference is architectural direction. The Connector is the <em>edge</em> of the process — its governed I/O boundary — not the place the business runs. The run happens in the process object, on the fabric, where state actually lives.</p>
@@ -117,13 +117,13 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">A live instance</h2>
+<h2 class="section-label fade-in">One flow, made concrete</h2>
 <div class="fade-in">
 <p>Make it concrete — and read this as an architectural illustration of how the fabric is designed to behave, not a claim about a delivered deployment. Picture an order-to-cash or a claims instance running as one object on the fabric. You query it and it answers directly: current step, amount held, which human it is waiting on, how long it has waited. It reaches an approval and <strong>pauses as a first-class human-in-the-loop state</strong> — not a stalled webhook praying someone retries it. A node crashes; the instance <strong>resumes from its own durable state</strong>, from exactly where it stopped, because that state was never scattered. You <strong>replay the full timeline as one object</strong>, because it always was one object.</p>
 <p>Now set that beside the alternative every integration-choreography architecture leaves you with: answering the same questions by reassembling state from N endpoint logs plus job history, after the fact, hoping the logs still agree with one another. Same business question. One architecture answers it by querying a live object; the other answers it with a forensic investigation.</p>
 </div>
 
-<h2 class="section-label fade-in">The procurement test</h2>
+<h2 class="section-label fade-in">Make those four questions a scoring criterion</h2>
 <div class="fade-in">
 <p>If you take one thing into your next evaluation, take those four questions and make them a scoring criterion — because their answers partition the market along an architectural line that no feature grid will surface. Can the platform name the current state of a single named process instance without a cross-system query? Can it pause that instance, resume it after a crash, and replay it as one object? Can it authorize and audit each <em>business action</em> inline, not merely each API call at the gateway? A platform built to move data between systems will answer by pointing at the systems. A platform built to run the process will answer by pointing at the process. That difference is the whole decision.</p>
 </div>

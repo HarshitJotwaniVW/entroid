@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Nearly every agent-governance story on the market is, underneath, a story about surveillance. A trust layer that scores intent. A guardrail model that sniffs each prompt for injection. An identity registry that stamps who the agent is. An observability trace that reconstructs, step by step, what it did. They differ in sophistication, but they share one property no incident review will forgive: <strong>each of them engages after the action has already committed.</strong></p></div>
 
-<h2 class="section-label fade-in">Detective by design</h2>
+<h2 class="section-label fade-in">The category settled on detection, by design</h2>
 <div class="fade-in">
 <p>The category has settled on a comfortable division of labor. The agent is <em>the hands</em> — it decides and it acts. A separate governance layer does the logging, the scoring, the catching. Call it <em>controlled agency</em>, call it a <em>trust layer</em>, call it <em>the governance plane</em>; the framing is the same. The actor runs; the wrapper watches.</p>
 <p>That is the textbook definition of a <strong>detective control</strong>. In security terms, a detective control tells you an event occurred; a <strong>preventive control</strong> stops it from occurring at all. Read the market's governance stack honestly and almost all of it is detective. The guardrail model classifies a prompt <em>as</em> the request flows through, but the consequential write still lands. The trace is assembled from what already ran. The anomaly score fires after the pattern exists. By the time any of them speaks, the API call has returned, the record has updated, the payment has moved. You are left with excellent documentation of the breach.</p>
@@ -95,7 +95,7 @@
 </svg>
 </div>
 
-<h2 class="section-label fade-in">Detective vs preventive</h2>
+<h2 class="section-label fade-in">The distinction is not rhetorical</h2>
 <div class="fade-in">
 <p>The distinction is not rhetorical. It changes what survives an incident review. A detective control produces a story about what happened. A preventive control changes what was possible. Line them up on the properties that matter to a CISO signing off on autonomy:</p>
 <table>
@@ -116,7 +116,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">Invert the hierarchy</h2>
+<h2 class="section-label fade-in">The fix is not a smarter wrapper</h2>
 <div class="fade-in">
 <p>The fix is not a smarter wrapper. Another layer of observation, however good, is still observation. The fix is a different hierarchy.</p>
 <p>Entroid does not make the autonomous agent the top-level actor with governance bolted around it. It makes the agent a <strong>governed primitive</strong>. On the ES Composable Process Fabric, an autonomous agent <em>is</em> an <strong>Atomic Agent</strong>: a permissioned, change-controlled unit of work executing <em>inside</em> a <strong>Deterministic Workflow</strong>, where governance is enforced inline. It reaches external systems only through <strong>Connectors</strong> — the single primitive in the runtime permitted to touch the outside — and every external action passes an inline permission gate <em>at the moment of action</em>, written to an immutable per-action audit. Governance is a property of the execution primitive, not a plane wrapped around it.</p>

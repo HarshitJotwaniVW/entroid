@@ -1,13 +1,13 @@
 <div class="hook fade-in">Most of data governance ships documentation. One architecture in the category ships enforcement: attribute-based policy, row- and column-level security, dynamic masking — applied at query time, inside the data platforms they front, with every query authorized and logged. That is real, and it deserves to be named as real. <strong>But every enforcement zone has an edge — and in the enterprise, the consequential things happen on the other side of it.</strong></div>
 
-<h2 class="section-label fade-in">Credit, precisely stated</h2>
+<h2 class="section-label fade-in">What query-time access control gets right</h2>
 <div class="fade-in">
 <p>Begin with what the query-time access-control vendors got right, because they got a great deal right. The data catalogs and governance suites that preceded them govern a <em>description</em> of data: an inventory of where it lives, a glossary of what it means, a tag declaring what policy <em>should</em> apply. The tag is advice. Whether the warehouse, the BI tool, or the pipeline honors that tag is someone else's integration problem. The query-time vendors saw this clearly and said so — in their telling, discovery is not delivery, and governance that stalls before enforcement is theater. That critique was correct.</p>
 <p>Their answer was serious engineering. Policy expressed once against attributes — of the user, the data, the purpose — instead of hand-maintained per-table grants; the category claims order-of-magnitude reductions in the number of policies an enterprise must maintain, and directionally that is plausible. Row-level filters and column masking compiled into the query path of the platforms they front, so the SQL that runs is the SQL that policy allows. A unified audit of who read what, when, under which rule. This is the one architecture in the category where policy is enforcement rather than advice. A CISO can stand in front of a regulator and say: <em>inside these platforms, no query runs unauthorized.</em> That sentence is earned, and nothing below takes it away.</p>
 <p>What follows is not a critique of the execution. It is a map of the perimeter.</p>
 </div>
 
-<h2 class="section-label fade-in">Walk the perimeter</h2>
+<h2 class="section-label fade-in">Query-time enforcement lives in the query path</h2>
 <div class="fade-in">
 <p>Query-time enforcement lives, by definition, in the query path of the platforms it integrates with. That gives it a precise perimeter: the enforcement zone is the set of fronted platforms, and the enforcement event is the read. Both boundaries are structural — no roadmap changes what "at query time" means.</p>
 <p>Start with the zone. Data does not stay in the warehouse; the entire point of reading it is to move it into the systems where work happens. Trace the exits:</p>

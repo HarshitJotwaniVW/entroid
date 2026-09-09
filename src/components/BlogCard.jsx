@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { authorFor } from '../lib/authors'
 import { Reveal } from './Reveal'
 
 /* Each card reveals on its own as it scrolls into view — the listing is long,
@@ -16,7 +17,10 @@ export const BlogCard = ({ p, featured }) => (
       <span className="blogcard__cat">{p.category}</span>
       <h3 className="blogcard__title">{p.title}</h3>
       {p.description && <p className="blogcard__excerpt">{p.description}</p>}
-      <span className="blogcard__meta">{p.readTime}</span>
+      <span className="blogcard__meta">
+        <span className="blogcard__author">{authorFor(p.slug).name}</span>
+        <span aria-hidden="true"> · </span>{p.readTime}
+      </span>
     </div>
   </Reveal>
 )

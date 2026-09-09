@@ -1,6 +1,6 @@
 <div class="hook fade-in"><p>Ask where your payroll numbers come from and you get a diagram, not an answer. Hours from one place. Comp changes from another. Benefits elections, leave accruals, garnishments — <strong>each a feed that has to land, reconcile, and be corrected before the run can close.</strong> Payroll doesn't have a data problem. It has a boundary problem: it computes from a picture assembled out of every other domain, right before the deadline.</p></div>
 
-<h2 class="section-label fade-in">The boundary problem</h2>
+<h2 class="section-label fade-in">A payroll platform is two things</h2>
 <div class="fade-in">
 <p>Strip a payroll platform down and it is two things: a calculation engine, and a system of record for what it paid. Everything the engine needs to calculate, though, is <em>produced somewhere else</em> — hours in time and attendance, a raise in compensation, a new deduction in benefits administration, an approved absence in leave management. Even inside the unified suites where those modules share one database, payroll still <strong>consumes</strong> them through defined interfaces and effective-dated snapshots: a feed, a load, an import, a pre-run validation. The engine calculates against whatever has landed by cutoff. Anything that lands late, or lands wrong, becomes a retro adjustment or an off-cycle correction next period.</p>
 <p>This is the shape every payroll architect knows in their bones. The run is a deadline, and the days before it are spent confirming that each upstream domain delivered a clean, complete, correctly-dated picture. The calculation is the easy part. Assembling the inputs is the job.</p>
@@ -28,13 +28,13 @@
 <p>Payroll, in this model, is not a downstream engine catching inputs. It is the Compensation and Time &amp; Leave modules composing a Deterministic Workflow that computes pay by reading live process state directly — not a snapshot of it. There is nothing to land, because nothing was ever detached. There is no reconciliation window, because there are not two copies to reconcile. The same workflow enforces entitlements, approvals, segregation of duties, and thresholds <strong>inline</strong> — the person who approves a comp change cannot also push the run past their own authority — and every action writes one immutable audit entry. Atomic Agents execute the steps; Connectors do any touching of external systems. That is the whole apparatus.</p>
 </div>
 
-<h2 class="section-label fade-in">The honest edge</h2>
+<h2 class="section-label fade-in">Pay still has to leave the building</h2>
 <div class="fade-in">
 <p>Don't mistake this for "payroll with no integration." Pay still has to leave the building: net pay to the bank over ACH, filings to tax authorities, contributions to carriers and pension providers. Those are genuinely external systems, and the fabric reaches them exactly one way — through governed Connectors, the only primitive allowed to touch anything outside. ES runs over your existing estate, not around it.</p>
 <p>What disappears is the <em>internal</em> feed: the time-to-payroll interface, the comp-to-payroll load, the leave-to-accrual sync, the benefits-eligibility import. Those were never integrations with the outside world. They were the seams between modules that a snapshot architecture forces you to keep re-stitching every cycle. Put every module on one fabric and the seams are gone; keep the real external edges as Connectors — governed and audited like any other action. The line is precise: unifying the record and automating a few point handoffs inside one suite's own domains is still records-plus-point-automations. Running the pay <strong>process</strong> as one governed workflow on the same fabric that runs finance, time, benefits, and every other function is a different thing entirely.</p>
 </div>
 
-<h2 class="section-label fade-in">What collapses</h2>
+<h2 class="section-label fade-in">Whole categories of work disappear</h2>
 <div class="fade-in">
 <p>For a payroll architect, the payoff is not "faster feeds." It is the disappearance of whole categories of work. These are architectural properties of the design — illustrative of how it would behave, not measured results from any deployment:</p>
 <ul>

@@ -16,7 +16,8 @@ export const topicImg = {}
 topicPosts.forEach((p, i) => { topicImg[p.slug] = POOL[i % POOL.length] })
 
 /* Strongest posts, surfaced at the top of the "All" view (in this order). */
-const FEATURED = [
+/* Exported so lib/authors.js can give these the senior byline set. */
+export const FEATURED = [
   'cfo-closes-books-in-5-days',
   'finops-you-were-allowed-to-overspend',
   'ppm-green-because-someone-typed-green',
@@ -61,6 +62,7 @@ export const postMeta = (slug) => {
   const primary = blogPosts.find((p) => p.slug === slug)
   if (primary) {
     return {
+      slug,
       title: titleOverrides[slug] || primary.title, subtitle: primary.subtitle,
       description: primary.description || primary.subtitle,
       category: primary.category, heroImage: primary.heroImage,
@@ -71,6 +73,7 @@ export const postMeta = (slug) => {
   const topic = topicPosts.find((p) => p.slug === slug)
   if (topic) {
     return {
+      slug,
       title: titleOverrides[slug] || topic.title, subtitle: topic.subtitle,
       description: topic.subtitle,
       category: topic.category, heroImage: topicImg[topic.slug] || DEFAULT_HERO,

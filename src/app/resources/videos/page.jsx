@@ -1,12 +1,19 @@
+import { pageMeta } from '../../../lib/seo'
 import { ComingSoon } from '../../../components/Site'
 
 /* A placeholder page with about forty words on it. Kept reachable, because the
    nav links to it, but held out of the index and out of the sitemap until
    there is something here — a thin page in the index is worth less than no
    page at all. */
+/* Noindexed until there is something here, but a link to it can still be
+   pasted into Slack or LinkedIn, so it gets the same share card as the rest. */
 export const metadata = {
-  title: 'Videos',
-  description: 'Product demos and platform walkthroughs, in production now.',
+  ...pageMeta({
+    title: 'Videos',
+    description: 'Product demos and platform walkthroughs, in production now.',
+    path: '/resources/videos',
+  }),
+  alternates: undefined,
   robots: { index: false, follow: true },
 }
 

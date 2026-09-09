@@ -50,8 +50,21 @@ export const Glossary = () => {
                 <Reveal as="h2" className="gloss__h">{s.section}</Reveal>
                 <Reveal as="dl" variant="fade" className="gloss__list stagger">
                   {s.terms.map((t) => (
-                    <div key={t.term} className="gloss__entry">
-                      <dt className="gloss__term">{t.term}</dt>
+                    /* Each definition is addressable on its own, so a single
+                       term can be linked to and cited rather than only the
+                       section it happens to sit in. The id is what
+                       `definedTermSet` points every DefinedTerm's url at, so
+                       the two must stay in step — both derive it from
+                       `anchorSlug`/`sslug` over the term name. */
+                    <div key={t.term} id={sslug(t.term)} className="gloss__entry">
+                      <dt className="gloss__term">
+                        {t.term}
+                        <a
+                          className="gloss__anchor"
+                          href={`#${sslug(t.term)}`}
+                          aria-label={`Link to the definition of ${t.term}`}
+                        >#</a>
+                      </dt>
                       <dd className="gloss__def">{t.def}</dd>
                     </div>
                   ))}

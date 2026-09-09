@@ -49,3 +49,60 @@ export const describe = (...parts) => clampDescription(parts.filter(Boolean).joi
    metadata; if either changes, change both. */
 export const anchorSlug = (s) =>
   String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+/* ============================================================================
+   Page metadata.
+
+   ONE builder for every route, because `og:url` and the canonical have to name
+   the same URL. Maintained by hand across a dozen route files they drift, and
+   an `og:url` that disagrees with the canonical is worse than shipping none —
+   it tells a crawler the page has two identities.
+
+   Deliberately NOT setting `openGraph.title`/`description` or their twitter
+   twins: Next derives those from the page's own `title` and `description`,
+   which means the ` · Entroid` title template is applied for free and there is
+   no second copy of the text to fall out of sync.
+   ========================================================================== */
+
+import { OG_IMAGE, OG_IMAGE_ALT, OG_IMAGE_H, OG_IMAGE_W, TWITTER_HANDLE } from './site'
+
+/* Next merges metadata shallowly per top-level key, so a page that sets
+   `openGraph` replaces the layout's wholesale — `siteName` and `locale` have
+   to be repeated here rather than inherited. */
+export const pageMeta = ({
+  title,
+  description,
+  path,
+  image,
+  imageAlt,
+  imageSize,
+  type = 'website',
+  openGraph: ogExtra,
+}) => {
+  const img = image
+    ? {
+        url: image,
+        alt: imageAlt || title || OG_IMAGE_ALT,
+        ...(imageSize ? { width: imageSize[0], height: imageSize[1] } : {}),
+      }
+    : { url: OG_IMAGE, width: OG_IMAGE_W, height: OG_IMAGE_H, alt: OG_IMAGE_ALT }
+
+  return {
+    ...(title ? { title } : {}),
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type,
+      url: path,
+      siteName: 'Entroid',
+      locale: 'en_US',
+      images: [img],
+      ...ogExtra,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      ...(TWITTER_HANDLE ? { site: TWITTER_HANDLE, creator: TWITTER_HANDLE } : {}),
+      images: [img.url],
+    },
+  }
+}

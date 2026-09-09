@@ -4,7 +4,7 @@ import '../blog.css'
 import { Nav, Footer, ScrollManager } from '../components/Site'
 import { SmoothScroll } from '../components/SmoothScroll'
 import { JsonLd } from '../components/JsonLd'
-import { IS_CANONICAL_HOST, SITE_URL } from '../lib/site'
+import { IS_CANONICAL_HOST, OG_IMAGE, OG_IMAGE_ALT, OG_IMAGE_H, OG_IMAGE_W, SITE_URL, TWITTER_HANDLE } from '../lib/site'
 import { graph, organization, website } from '../lib/schema'
 
 /* Favicons. One 1080px PNG, which the browser downscales for every slot.
@@ -32,6 +32,22 @@ export const metadata = {
   /* Preview and branch deployments carry the same content as production. They
      are kept out of the index so the two never compete for it. */
   robots: IS_CANONICAL_HOST ? undefined : { index: false, follow: false },
+
+  /* The fallback share card, for anything that does not build its own with
+     `pageMeta` — the 404 among them. Every real route overrides this whole key
+     (Next merges metadata shallowly, one top-level key at a time), which is
+     why `pageMeta` repeats siteName and locale rather than inheriting them. */
+  openGraph: {
+    type: 'website',
+    siteName: 'Entroid',
+    locale: 'en_US',
+    images: [{ url: OG_IMAGE, width: OG_IMAGE_W, height: OG_IMAGE_H, alt: OG_IMAGE_ALT }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    ...(TWITTER_HANDLE ? { site: TWITTER_HANDLE, creator: TWITTER_HANDLE } : {}),
+    images: [OG_IMAGE],
+  },
 }
 
 /* NOTE: no `alternates.canonical` here, ever. Next merges metadata shallowly
@@ -87,7 +103,17 @@ export default function RootLayout({ children }) {
           <style>{'.reveal,.stagger>*{opacity:1!important;animation:none!important}'}</style>
         </noscript>
       </head>
-      <body>
+      {/* Grammarly and similar extensions write their own attributes onto
+          <body> (`data-gr-ext-installed`, `data-new-gr-c-s-check-loaded`)
+          before React hydrates, which React then reports as a mismatch against
+          the server HTML. Nothing in this app renders those attributes, and we
+          cannot stop an extension writing them, so the warning is suppressed
+          for this one element.
+
+          Scope matters: suppressHydrationWarning silences attribute and text
+          differences on THIS element only — it does not extend to the tree
+          below, so a real mismatch inside the app is still reported. */}
+      <body suppressHydrationWarning>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"

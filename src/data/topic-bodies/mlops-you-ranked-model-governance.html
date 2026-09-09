@@ -14,7 +14,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">The prediction boundary</h2>
+<h2 class="section-label fade-in">There is a line audit programs rarely draw</h2>
 <div class="fade-in">
 <p>There is a line inside every ML architecture that audit programs rarely draw explicitly. Call it the <strong>prediction boundary</strong>. On one side, the model is trained, registered, deployed, served, and monitored — and, in the best designs, the inference request and any tool invocation are proxied through a gateway that rate-limits, guardrails, and captures the call. All of that is on the governed side. All of it is real.</p>
 <p>But that gateway, however advanced, is a governed <em>proxy in front of model-serving</em>. It governs the call and captures it. The business action the prediction drives — post the transaction, release the payment, freeze the account, deny the application — commits in a system of record the gateway sits <strong>beside, not inside</strong>. Between the served prediction and the committed action sits a seam: application code, a message queue, an RPA bot, a human clicking through a console. The model platform observes that seam at best; it does not govern it. And that seam is exactly where liability concentrates and where the decision-level audit trail goes quiet.</p>

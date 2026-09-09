@@ -14,7 +14,7 @@
 <p>And the question they ask has a specific shape. Not "which model version scored this applicant," but: <strong>what action was taken on that score, under which policy in force at that moment, by which identity — human or agent — and can it be reversed?</strong> A declined applicant is owed specific reasons for the <em>decision</em>, not a model card. An incident review needs to know which automated actions fired and on whose authority. Model lineage, however faithful, is the wrong shape for this question. It documents the input to the decision, not the decision.</p>
 </div>
 
-<h2 class="section-label fade-in">Two different records</h2>
+<h2 class="section-label fade-in">The gap is a schema gap</h2>
 <div class="fade-in">
 <p>The gap is a schema gap, and naming it makes it concrete. Per-model lineage is keyed on the model: version, training set, feature vector, score, drift over time. It is organized around the artifact. What an auditor needs is <strong>per-action provenance</strong>, keyed on the act: input, prediction, policy evaluated, action taken, actor, outcome, reversibility. One is a biography of the model; the other is a record of a thing that was done to a customer or to a ledger.</p>
 <p>You cannot derive the second from the first, because most of its columns — the policy that was in force, the identity that committed the act, the downstream state that changed — never enter the model's world at all. They live in whatever system actually took the action.</p>
@@ -66,7 +66,7 @@
 
 <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-<h2 class="section-label fade-in">The reconstruction problem</h2>
+<h2 class="section-label fade-in">The category’s answer is reconstruction</h2>
 <div class="fade-in">
 <p>The category's answer to this is reconstruction. The agent-governance vendors promise to rebuild the decision path from telemetry — every inference and tool call streamed into a central analytical store as queryable SQL tables, ready to be joined after the fact. It is genuinely useful engineering, and for the calls it observes, it is a real audit trail <em>of the call</em>. But three structural problems keep it from being a record of the action.</p>
 <ul>

@@ -7,7 +7,7 @@
 
 <div class="hook fade-in">The chatbot was confident. The pricing was wrong, and it wasn't off by a little: <mark class="hl"><strong>it was off by an entire quarter</strong></mark>. 47 customers locked in a rate that hadn't existed since October. Revenue impact: $340K. Nobody noticed for six weeks.</div>
 
-  <h2 class="section-label fade-in">The scene</h2>
+  <h2 class="section-label fade-in">The chatbot quoted a price nobody authorized</h2>
   <div class="fade-in"><p>The customer-facing chatbot was the pride of the digital transformation initiative. It could answer product questions, check order status, and quote pricing, all without a human in the loop.</p>
 <p>One problem: the pricing data was loaded from a CSV export. The export was created in October. The pricing update happened in January. Nobody refreshed the export.</p>
 <p>For six weeks, the chatbot cheerfully quoted October pricing to every customer who asked. 47 customers completed orders at the old rate. Some were 15 to 20% below current pricing. By the time the revenue team spotted the anomaly in the numbers, the customers had already received order confirmations at the quoted price.</p>
@@ -17,7 +17,7 @@
     <img src="/blog-assets/1531746790731-6c087fecd65a.jpg" alt="Chat interface on screen" loading="lazy">
   </div>
 
-  <h2 class="section-label fade-in">The cascade</h2>
+  <h2 class="section-label fade-in">The AI was trained on a snapshot, not the ledger</h2>
   <div class="fade-in"><ul>
 <li><strong>The AI was trained on a static export</strong>, a snapshot frozen in time. The moment the source data changed, the AI became wrong.</li>
 <li><strong>No feedback loop.</strong> The chatbot had no way to know its pricing data was outdated, because it wasn't connected to the live system.</li>
@@ -27,12 +27,12 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <h2 class="section-label fade-in">The shift</h2>
+  <h2 class="section-label fade-in">Agents that read live state, not exports</h2>
   <div class="fade-in"><p>Now imagine AI agents that don't consume exports at all. They <strong>query live enterprise data through a connected intelligence layer</strong>.</p>
 <p>When a customer asks for pricing, the agent doesn't check a cached file. It pulls the current, governed pricing from the same source the sales team uses. If pricing changes at 9 AM, the agent reflects the new number by 9:01 AM.</p>
 <p>Every model deployed has a registry entry: what data it accesses, when it was last validated, and who approved its deployment. <strong>Full audit trail, full transparency, no stale exports, no silent drift.</strong></p></div>
 
-  <h2 class="section-label fade-in">The result</h2>
+  <h2 class="section-label fade-in">Disconnected AI is not intelligence</h2>
   <div class="fade-in"><p>AI that isn't connected to live enterprise data isn't intelligent. It's confidently wrong. And confidently wrong at scale is how you lose $340K in six weeks without noticing.</p></div>
 
   <div class="insight fade-in">

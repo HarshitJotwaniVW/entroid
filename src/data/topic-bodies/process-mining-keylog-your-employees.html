@@ -1,6 +1,6 @@
 <div class="hook fade-in">To understand how work actually happens inside your company, some vendors will ask you to install software on your employees' machines that records their clicks, their keystrokes, and their screens. They call it task mining. <strong>It is the clearest possible admission that they don't own the work — only the ability to watch the people doing it.</strong></div>
 
-  <h2 class="section-label fade-in">The tell</h2>
+  <h2 class="section-label fade-in">The category sold completeness and trust</h2>
   <div class="fade-in"><p>Listen to how these products are sold, and the architecture gives itself away. One vendor pairs process mining with desktop task mining it describes as <em>"full-spectrum"</em> visibility, and frames its mission around connecting people to processes. Another offers desktop task and click discovery alongside its process graph. The rest of the category carries versions of the same capability.</p>
 <p>Now notice what always travels with it: a heavy wrapper of reassurance. Privacy-first. Anonymization. PII masking. You control what's collected. Configurable consent. Works-council-friendly deployment.</p>
 <p><strong>That reassurance is the tell.</strong> A product that measures machine-to-machine transactions doesn't need a privacy manifesto. A product that records what a named employee typed at 2:47pm does. The compliance scaffolding isn't a feature bolted on for trust — it's a confession about what the tool fundamentally <em>is</em>.</p></div>
@@ -52,7 +52,7 @@
 
   <div class="divider fade-in"><span class="divider-dot"></span></div>
 
-  <h2 class="section-label fade-in">Auditable by construction</h2>
+  <h2 class="section-label fade-in">Auditable without a camera on anyone</h2>
   <div class="fade-in"><p>There is a different answer to <em>"how does work actually happen here"</em> — and it requires a camera on no one. Run the work on governed rails.</p>
 <p>In Entroid a process isn't observed from the outside; it <strong>executes inside the fabric</strong> as a composition of five primitives. Deterministic Workflows sequence the steps and enforce the rules. Atomic Agents perform the bounded unit of work at each leaf. Functions expose the calculations and business logic. Connectors are the only primitive that touches an external system, and they do it under authentication, authorization, rate limits and audit. Intelligence Orchestration chooses the path at runtime and owns which agent is permitted to do what.</p>
 <p>Because the work runs <em>here</em>, structure isn't reconstructed after the fact — it is the native exhaust of execution. Every step is captured as authoritative execution data at the moment it happens and bound into an immutable, per-action audit trail. You don't infer who approved an exception from a screen recording; the approval was a governed gate in the workflow, and it either cleared inside its authority limit or it could not happen at all.</p>
