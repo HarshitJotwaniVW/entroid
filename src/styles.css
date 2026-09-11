@@ -6667,3 +6667,20 @@ a.navcard:hover .navcard__icon {
   .heropoints { gap: 8px; flex-direction: column; }
   .heropoints__item { font-size: 14.5px; }
 }
+
+/* The way out of the success state. */
+.dreq__sentActions {
+  margin-top: clamp(22px, 3vw, 34px);
+}
+
+.dreq__backArrow {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  /* Nudges left on hover, the mirror of the forward arrow on the CTAs. */
+  transition: transform .18s ease;
+}
+
+.dreq__sentActions .btn:hover .dreq__backArrow {
+  transform: translateX(-3px);
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { dialCodes } from '../data/countries'
 import { detectTimezone, FALLBACK_TIMEZONE, timezones } from '../data/timezones'
 
@@ -36,6 +37,13 @@ const EMPTY = {
   preferredDate: '', preferredTime: '', timezone: FALLBACK_TIMEZONE,
   company_website: '',
 }
+
+const BackArrow = () => (
+  <svg className="dreq__backArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M19 12H5M11 18l-6-6 6-6" />
+  </svg>
+)
 
 const Check = () => (
   <svg className="dreq__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -153,6 +161,17 @@ export const Contact = () => {
                 A specialist will follow up shortly. For anything urgent,{' '}
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> reaches the team directly.
               </p>
+
+              {/* The way out. Without it this state is a dead end — the form
+                  is gone and the only route on is the nav, well above the
+                  fold. A Link, not history.back(): someone who landed here
+                  from an email or a shared URL has nothing to go back to. */}
+              <div className="dreq__sentActions">
+                <Link href="/" className="btn btn--primary btn--lg">
+                  <BackArrow />
+                  Back to home
+                </Link>
+              </div>
             </div>
           ) : (
             <>

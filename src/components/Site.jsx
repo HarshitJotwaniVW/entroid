@@ -333,7 +333,10 @@ export const Nav = () => {
             )
           })}
         </ul>
-        <Link href="/#platform" className="btn btn--primary btn--sm nav__cta">{navCta}</Link>
+        {/* The label promises a demo, so it goes to the form. It pointed at
+            the homepage platform anchor, which scrolled somewhere unrelated
+            and — from any page but the homepage — navigated away entirely. */}
+        <Link href="/contact" className="btn btn--primary btn--sm nav__cta" onClick={close}>{navCta}</Link>
       </div>
       {menu.map((item) => item.mega && open === item.label && <MegaPanel key={item.label} groups={item.mega} onNavigate={close} />)}
     </nav>
