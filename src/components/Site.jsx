@@ -1376,7 +1376,13 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
                 <p className="section__para">{p.flowText}</p>
               </div>
             </Reveal>
-            <Reveal className="section__visual visual" variant="zoom" delay={140}><Visual v={p.visual} /></Reveal>
+            {/* Same rule as the section visuals: artwork carries its own frame,
+                so it skips the drawn-diagram panel rather than sitting in one. */}
+            <Reveal
+              className={`section__visual visual ${p.visual.type === 'image' ? 'section__visual--bare' : ''}`}
+              variant="zoom"
+              delay={140}
+            ><Visual v={p.visual} /></Reveal>
           </div>
         </section>
       )}

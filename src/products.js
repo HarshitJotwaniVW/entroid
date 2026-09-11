@@ -96,12 +96,10 @@ export const products = {
     flowText:
       'Enterprise objects, relationships and lifecycle are modelled once in the Semantic Ontology, intelligence reasons on that trusted context, and the loop closes from prediction to action across every domain.',
     visual: {
-      type: 'foundry',
-      input: 'Enterprise objects · relationships · lifecycle',
-      core: 'Semantic Ontology',
-      modules: ['Command Center', 'Predictive AI', 'Conversational AI', 'Sherlock', 'Sentinel', 'Marketplace'],
-      output: 'Grounded intelligence that acts',
-      outputSub: 'Predict, explain, decide, act, in a closed loop',
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-intelligence-hub.webp',
+      alt:
+        'The Semantic Ontology models enterprise objects, relationships and lifecycle once, and the Intelligence Hub reasons on that trusted context in a closed loop of predict, explain, decide and act.',
     },
 
     closing: {
@@ -174,13 +172,10 @@ export const products = {
     flowText:
       'Strategy set at the board becomes plans, portfolios and objectives, is delivered through governed execution, and returns as performance and insight that informs the next cycle.',
     visual: {
-      type: 'cascade',
-      top: 'Board strategy',
-      topSub: 'Themes and objectives',
-      stages: ['Business planning', 'Portfolios', 'OKRs', 'Committees'],
-      bottom: 'Team execution',
-      bottomSub: 'Aligned results',
-      loop: 'Performance & Insights',
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-corporate-drivers.webp',
+      alt:
+        'Strategy sets themes and corporate objectives, which break into business plans, portfolios and aligned objectives, pass through governed execution where the right decision bodies approve on the record, and arrive as a delivered solution, with performance and insights feeding back to strategy.',
     },
 
     closing: {
@@ -252,8 +247,10 @@ export const products = {
     flowText:
       'Structure and frameworks define what is governed, risk and compliance are scored and evidenced, audit assures the controls, data is catalogued and traced, and every decision is recorded and explainable.',
     visual: {
-      type: 'shield',
-      items: ['Governance', 'Risk', 'Compliance', 'Audit', 'Data', 'Explainability'],
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-trust-governance.webp',
+      alt:
+        'Govern, risk and compliance, audit, data lineage and explainability run in sequence, each feeding one outcome: trust evidenced end to end, where every control, data path and decision carries a visible evidence trail.',
     },
 
     closing: {
@@ -287,7 +284,12 @@ export const products = {
     ],
     flowHeading: 'Every number, off one ledger.',
     flowText: 'Transactions post to the general ledger, payables, receivables, treasury, assets and reconciliation all draw from that single source, and statements and reports are produced from the same live truth.',
-    visual: { type: 'layers', base: 'General Ledger', stack: ['Statements and Reports', 'Treasury and Fixed Assets', 'Payables and Receivables'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-finance.webp',
+      alt:
+        'The general ledger at the centre, with payables, receivables, treasury, reconciliation, assets and reports arranged around it, so every number comes off one ledger.',
+    },
     closing: { heading: 'One ledger. Every number, trusted.', text: 'Finance runs from posting to statement on a single live source of financial truth.', cta: 'Book a demo' },
   },
 
@@ -317,7 +319,12 @@ export const products = {
     ],
     flowHeading: 'One customer, one view.',
     flowText: 'Sales, orders, service, subscriptions and marketing share a single customer 360, so every team acts on the same context and every interaction builds on the last.',
-    visual: { type: 'ecosystem', hub: 'Customer 360', nodes: ['CRM', 'Orders', 'Subscribers', 'Care', 'Campaigns', 'Partners'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-customers.webp',
+      alt:
+        'Customer 360 at the centre, with sales, marketing, service, subscriptions and orders arranged around it over shared profile, preferences and history.',
+    },
     closing: { heading: 'Every customer, one view.', text: 'Customers unifies acquisition, service and loyalty on one platform with a single view of every customer.', cta: 'Book a demo' },
   },
 
@@ -343,7 +350,12 @@ export const products = {
     ],
     flowHeading: 'One record, hire to exit.',
     flowText: 'Recruitment, workforce, time, pay, growth and engagement share one employee master, so the whole lifecycle runs on one clean record.',
-    visual: { type: 'flow', steps: ['Hire', 'Onboard', 'Grow', 'Exit'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-people.webp',
+      alt:
+        'The employee master at the centre, with recruitment, workforce, time, pay, growth and engagement arranged around it as one record from hire to exit.',
+    },
     closing: { heading: 'The workforce, on one record.', text: 'People runs the full employee lifecycle on one shared master, from hire to exit.', cta: 'Book a demo' },
   },
 
@@ -371,7 +383,12 @@ export const products = {
     ],
     flowHeading: 'One connected chain.',
     flowText: 'Procurement, materials, vendors, warehousing, logistics and field force run on shared masters, so demand flows to delivery without the handoffs between systems.',
-    visual: { type: 'ecosystem', hub: 'One Supply Chain', nodes: ['Procurement', 'Materials', 'Vendors', 'Warehouses', 'Logistics', 'Field Force'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-supply-chain.webp',
+      alt:
+        'A shared master at the centre, with procurement, materials, vendors, warehousing, logistics and field force arranged around it as one connected chain.',
+    },
     closing: { heading: 'Source to delivery, connected.', text: 'Supply Chain runs procurement, warehousing, logistics and field force on one connected platform.', cta: 'Book a demo' },
   },
 
@@ -400,7 +417,12 @@ export const products = {
     ],
     flowHeading: 'Raised to resolved, then engineered out.',
     flowText: 'Tickets and incidents are detected and triaged, resolved against SLA, and recurring ones become problems with permanent fixes, all on one configuration and asset map.',
-    visual: { type: 'flow', steps: ['Detect', 'Triage', 'Resolve', 'Prevent'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-operations.webp',
+      alt:
+        'Detect, prevent, triage and resolve run left to right: tickets and incidents captured across every channel, recurring incidents turned into problems with permanent fixes, work categorised and routed to the right owner, and fixes closed against SLA on the record, every step grounded on one configuration and asset map of CIs, assets, dependencies, services and owners.',
+    },
     closing: { heading: 'From raised to resolved.', text: 'Operations runs the service and asset estate on one platform across IT and OT.', cta: 'Book a demo' },
   },
 
@@ -425,7 +447,12 @@ export const products = {
     ],
     flowHeading: 'Strategy to done, tracked.',
     flowText: 'Programs govern the portfolio on earned value, projects track planned versus actual, tasks are AI-ranked and routed, and corrective actions and meetings close the loop to done.',
-    visual: { type: 'cascade', top: 'Programs', topSub: 'Earned value and risk', stages: ['Projects', 'Tasks', 'Trackers'], bottom: 'Delivered', bottomSub: 'Tracked to done', loop: 'Performance & rollup' },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/pmo.webp',
+      alt:
+        'Strategy breaks into programs, projects and tasks, with earned value and planned versus actual tracked at each level; status rolls up into corrective actions and meetings that close the loop, and delivery ships outcomes measured against objectives.',
+    },
     closing: { heading: 'Every commitment, tracked to done.', text: 'PMO turns programs and projects into tasks and follow-through on one delivery fabric.', cta: 'Book a demo' },
   },
 
@@ -450,7 +477,12 @@ export const products = {
     ],
     flowHeading: 'Plan to secure, in one loop.',
     flowText: 'IT investment is governed to ROI, delivery runs plan to production through CI/CD, infrastructure runs across clouds with FinOps, and security is in the loop from identity to the SOC.',
-    visual: { type: 'shield', items: ['Strategy', 'Delivery', 'Infrastructure', 'Service', 'Identity', 'SOC'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-investment.webp',
+      alt:
+        'Invest, deliver and run across the top: IT investment governed to ROI from portfolio to business case, plan to production through CI/CD shipped continuously, and infrastructure across clouds with cost controlled through FinOps, all resolving to security in the loop end to end, from identity to SOC.',
+    },
     closing: { heading: 'The whole of IT, on one platform.', text: 'IT and CyberSecurity runs investment, delivery, infrastructure, service and security on one platform.', cta: 'Book a demo' },
   },
 
@@ -482,7 +514,12 @@ export const products = {
     ],
     flowHeading: 'From build to production, one fleet.',
     flowText: 'Agents and models are built from enterprise context, orchestrated into flows, deployed and governed from one console, and measured on success, cost and accuracy in production.',
-    visual: { type: 'foundry', input: 'Enterprise context · data', core: 'AI Foundry', modules: ['Autonomous Agents', 'Conversational Agents', 'ML Studio', 'Forecaster', 'Vision AI', 'Flow Orchestrator'], output: 'Agents and models in production', outputSub: 'Built, run and governed as one fleet' },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/hiw-ai-foundry.webp',
+      alt:
+        'The AI Foundry at the centre of a closed loop: agents and models built from enterprise context, orchestrated into multi-step flows that work together, deployed and governed from one console, and measured in production on success, cost and accuracy.',
+    },
     closing: { heading: 'Enterprise AI, built to run.', text: 'AI Foundry builds, runs and governs the agents and models that make the enterprise intelligent.', cta: 'Book a demo' },
   },
 
@@ -513,7 +550,12 @@ export const products = {
     ],
     flowHeading: 'From requirement to running system.',
     flowText: 'New applications are generated from an idea, legacy systems are modernised with rules preserved, and integration, data pipelines and analytics are built on-platform and governed.',
-    visual: { type: 'foundry', input: 'Idea · legacy · data', core: 'Engineering Toolkits', modules: ['Innovate', 'Modernize', 'Builders', 'Integration', 'Data Pipelines', 'BI'], output: 'Running, governed systems', outputSub: 'Built new, modernised, integrated and analysed' },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/engineering-toolkit.webp',
+      alt:
+        'Three ways in, an idea becoming a new application, legacy modernised with business rules preserved, and integration, data and analytics built on-platform, feed the Engineering Toolkits, where Innovate, Modernize, Builders, Integration, Data pipeline and BI produce a running system in production.',
+    },
     closing: { heading: 'Build anything, on one platform.', text: 'Engineering Toolkits build, modernise, integrate and analyse without leaving the platform.', cta: 'Book a demo' },
   },
 
@@ -544,7 +586,12 @@ export const products = {
     ],
     flowHeading: 'Watched, optimised, secured.',
     flowText: 'Cost, service, cluster and data operations are observed and optimised, security operations and DevSecOps secure the estate, and alerts and incidents are resolved to SLA.',
-    visual: { type: 'layers', base: 'One control surface', stack: ['Security and compliance ops', 'Service and cluster ops', 'Cost and data ops'] },
+    visual: {
+      type: 'image',
+      src: '/illustration/how-it-works/operation-toolkit.webp',
+      alt:
+        'Observe and optimise, secure, and resolve run side by side: cost, service, cluster and data operations watched continuously; security operations and DevSecOps securing the estate; alerts triaged and correlated and incidents resolved within target, adding up to one estate watched, optimised and secured with every domain resolved to SLA.',
+    },
     closing: { heading: 'The estate, operated and secured.', text: 'Operations Toolkits run, optimise and secure the whole platform estate from one control surface.', cta: 'Book a demo' },
   },
 }

@@ -1514,6 +1514,18 @@ a.navcard:hover .navcard__icon {
   margin-inline: auto;
 }
 
+/* The how-it-works artwork is a wide 2.1:1 diagram with fine labelling, so it
+   runs wider than the 860px the drawn diagrams were sized for. It also bleeds
+   its own background to the edge, so it drops the image border it would
+   otherwise get and keeps only the radius to clip its corners. */
+.pflow .section__visual--bare {
+  max-width: 1180px;
+}
+
+.pflow .section__visual--bare .section__img {
+  border: 0;
+}
+
 /* ── Callout ─────────────────────────────────────────────────── */
 .callout {
   margin-top: 34px;
