@@ -1,7 +1,7 @@
 import { pageMeta } from '../lib/seo'
 import { Home } from '../components/Site'
 import { JsonLd } from '../components/JsonLd'
-import { graph, webPage } from '../lib/schema'
+import { graph, platform, PLATFORM_ID, webPage } from '../lib/schema'
 
 /* Title comes from the root layout's `default`. The description is written for
    the search result rather than lifted from the hero paragraph, which is one
@@ -12,11 +12,15 @@ export const metadata = pageMeta({
   path: '/',
 })
 
-const jsonLd = graph(webPage({
-  path: '/',
-  name: 'Entroid — unified intelligence for governed autonomous enterprises',
-  description: metadata.description,
-}))
+const jsonLd = graph(
+  webPage({
+    path: '/',
+    name: 'Entroid — unified intelligence for governed autonomous enterprises',
+    description: metadata.description,
+    mainEntity: PLATFORM_ID,
+  }),
+  platform(),
+)
 
 export default function HomePage() {
   return (

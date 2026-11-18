@@ -15,7 +15,10 @@
 
 import { abs, ORG, ORG_ID, SITE_URL, WEBSITE_ID } from './site'
 import { authorFor } from './authors'
+import { LINKEDIN } from './people'
 import { anchorSlug, clampDescription } from './seo'
+import { whyUs } from '../whyus'
+import { glossary } from '../data/glossary'
 
 const CONTEXT = 'https://schema.org'
 
@@ -34,6 +37,31 @@ export const graph = (...nodes) => ({
    registry to keep in step. */
 const pageId = (path) => `${abs(path)}#webpage`
 const crumbId = (path) => `${abs(path)}#breadcrumb`
+
+/* ── People ──────────────────────────────────────────────────────
+
+   One stable @id per person, so a founder who also writes posts is ONE entity
+   across the whole site rather than a new anonymous Person on every page.
+   `sameAs` holds the person's confirmed LinkedIn profile (lib/people.js). That
+   is what lets a search engine tie the name to a real, verifiable identity.
+   Someone with no confirmed profile is still named, just without `sameAs`. */
+const personId = (name) => `${SITE_URL}/#person-${anchorSlug(name)}`
+
+export const person = ({ name, jobTitle }) => {
+  const profile = LINKEDIN[name]
+  return clean({
+    '@type': 'Person',
+    '@id': personId(name),
+    name,
+    jobTitle,
+    url: profile,
+    sameAs: profile ? [profile] : undefined,
+  })
+}
+
+/* Only those whose role says founder. The CEO is listed on /why-us too, but
+   is not described there as a founder. */
+const FOUNDERS = whyUs.team.founders.filter((f) => /founder/i.test(f.role))
 
 /* ── Sitewide (root layout only) ─────────────────────────────── */
 
@@ -58,6 +86,7 @@ export const organization = () => clean({
     availableLanguage: 'English',
   }),
   sameAs: ORG.sameAs,
+  founder: FOUNDERS.map((f) => person({ name: f.name, jobTitle: f.role })),
   knowsAbout: ORG.knowsAbout,
   /* Emitted only when a real value exists in ORG — `clean` drops them
      otherwise, so an unknown founding date is absent rather than guessed. */
@@ -82,7 +111,10 @@ export const website = () => clean({
 
 /* ── Per page ────────────────────────────────────────────────── */
 
-export const webPage = ({ path, name, description, breadcrumb = false, type = 'WebPage' }) => clean({
+/* `mainEntity` is the @id of the thing the page is principally about (a
+   product page's SoftwareApplication, for example), so the page and what it
+   describes are linked rather than sitting side by side in the graph. */
+export const webPage = ({ path, name, description, breadcrumb = false, type = 'WebPage', mainEntity }) => clean({
   '@type': type,
   '@id': pageId(path),
   url: abs(path),
@@ -90,6 +122,7 @@ export const webPage = ({ path, name, description, breadcrumb = false, type = 'W
   description,
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
+  mainEntity: mainEntity ? { '@id': mainEntity } : undefined,
   inLanguage: 'en',
   breadcrumb: breadcrumb ? { '@id': crumbId(path) } : undefined,
 })
@@ -131,21 +164,55 @@ export const breadcrumbList = ({ path, items }) => clean({
    that earns a manual action rather than a rich result. An `offers` block
    with no price is also what makes Search Console report "missing field
    price" forever, so leaving it out is both honest and quieter. */
+export const PLATFORM_ID = `${SITE_URL}/#platform`
+export const softwareId = (path) => `${abs(path)}#software`
+
+/* Where the platform runs, in the FAQ's own words ("Entroid deploys across
+   public cloud, private cloud, on-premise and air-gapped environments"). It is
+   not tied to one operating system. */
+const DEPLOYMENT = 'Public cloud, private cloud, on-premise or air-gapped'
+
 export const softwareApplication = ({ path, name, description, features }) => clean({
   '@type': 'SoftwareApplication',
-  '@id': `${abs(path)}#software`,
+  '@id': softwareId(path),
   name,
   description,
   url: abs(path),
   applicationCategory: 'BusinessApplication',
-  /* The platform runs air-gapped, on-prem and in cloud, so it is not tied to
-     one operating system. */
-  operatingSystem: 'Web-based, on-premise, air-gapped or cloud',
+  operatingSystem: DEPLOYMENT,
   publisher: { '@id': ORG_ID },
   provider: { '@id': ORG_ID },
-  isPartOf: { '@id': `${SITE_URL}/#platform` },
+  isPartOf: { '@id': PLATFORM_ID },
   inLanguage: 'en',
   featureList: features && features.length ? features : undefined,
+})
+
+/* ── The platform itself ─────────────────────────────────────────
+   Every product says it `isPartOf` this node, so it has to be defined. Before
+   this it never was, and every product pointed at an @id that described
+   nothing.
+
+   Emitted on the home page (as what the page is about) and on each product
+   page (so its `isPartOf` resolves on the same page). Deliberately NOT
+   sitewide: industry, use-case and blog pages are not software pages, and the
+   platform's relationship to its products is already stated by each
+   product's `isPartOf`.
+
+   The description is the glossary's own definition of Entroid. Same rule as
+   the products: no offers, prices or ratings, because none are published. */
+const PLATFORM_DESCRIPTION = glossary[0].terms.find((t) => t.term === ORG.name)?.def
+
+export const platform = () => clean({
+  '@type': 'SoftwareApplication',
+  '@id': PLATFORM_ID,
+  name: ORG.name,
+  description: PLATFORM_DESCRIPTION,
+  url: `${SITE_URL}/`,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: DEPLOYMENT,
+  publisher: { '@id': ORG_ID },
+  provider: { '@id': ORG_ID },
+  inLanguage: 'en',
 })
 
 export const faqPage = ({ path, name, description, groups, breadcrumb = false }) => clean({
@@ -205,9 +272,9 @@ export const definedTermSet = ({ path, name, description, sections }) => {
    `url`, which is what lets a search engine tie the byline to a real identity
    rather than to the company.
 
-   Dates are emitted only where a real one exists (13 of the 180 posts carry a
-   publishDate; the rest have none). A build-time date on the others would
-   change on every deploy and read as manufactured freshness. */
+   Dates come from each post's publishDate in the data files. They are never
+   filled in at build time, because a build-time date changes on every deploy
+   and reads as manufactured freshness. */
 export const blogPosting = ({ path, meta }) => clean({
   '@type': 'BlogPosting',
   '@id': `${abs(path)}#article`,
@@ -220,11 +287,7 @@ export const blogPosting = ({ path, meta }) => clean({
   articleSection: meta.articleSection || meta.category,
   datePublished: meta.publishDate || undefined,
   dateModified: meta.publishDate || undefined,
-  author: {
-    '@type': 'Person',
-    name: authorFor(meta.slug).name,
-    url: authorFor(meta.slug).url,
-  },
+  author: person({ name: authorFor(meta.slug).name }),
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',
 })

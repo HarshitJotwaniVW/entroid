@@ -1,6 +1,8 @@
 import Script from 'next/script'
 import '../styles.css'
 import '../blog.css'
+import '../homeV2.css'
+import '../theme.css'
 import { Nav, Footer, ScrollManager } from '../components/Site'
 import { SmoothScroll } from '../components/SmoothScroll'
 import { JsonLd } from '../components/JsonLd'
@@ -63,7 +65,7 @@ const siteGraph = graph(organization(), website())
 const GA_ID = 'G-3NQRFHK7PN'
 
 export const viewport = {
-  themeColor: '#5b46f0',
+  themeColor: '#1c56d8',
   width: 'device-width',
   initialScale: 1,
 }
@@ -72,28 +74,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Typefaces: Anta (headings), Geist (body), JetBrains Mono
-            (captions, eyebrows and meta). Keep this in sync with the --font,
-            --font-heading and --font-caption tokens in src/styles.css.
-            Notes: the css2 API needs the families in alphabetical order. Anta
-            ships a single 400 weight, so it takes no weight axis at all; Geist
-            is variable and takes the full `100..900` range. The preconnects let
-            the font CSS and the font files start downloading in parallel rather
-            than in a chain. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Anta&family=Geist:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* Barlow and the Material Symbols glyph set are used only by the hero
-            illustration (src/components/HeroIllustration.jsx), which was authored
-            against them. Keep in sync with src/heroIllustration.css. */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-          rel="stylesheet"
-        />
+        {/* Typefaces (V2 theme): Inter Tight (headings), Inter (body) and IBM
+            Plex Mono (captions), self-hosted from public/fonts and declared
+            with @font-face at the top of src/styles.css. The two used above
+            the fold are preloaded. */}
+        <link rel="preload" href="/fonts/inter-tight-500-700-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/inter-400-600-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
 
         {/* Reveal-on-scroll starts elements at opacity 0 and JS brings them
             in. With scripting off that never happens and the page renders

@@ -1,10 +1,10 @@
 # Enterprise Singularity — website-v3 Context & Handoff
 
-> Read this first. It gives another LLM session everything needed to work on **website-v3**
+> Read this first. It gives another LLM session everything needed to work on **website-v3** 
 > without re-deriving the project. Scope is website-v3 only (the full designed marketing site).
 > Sibling apps (`landing/` = v2, `documentation/` = docs microsite) are mentioned only where relevant.
 
----
+--- 
 
 ## 1. What this is
 

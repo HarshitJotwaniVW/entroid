@@ -1,0 +1,715 @@
+/* ============================================================================
+   V2 theme for every V1 page.
+   The tokens in styles.css already carry the V2 values; this file restyles the
+   shared V1 components whose shapes differ from V2 (type weights, nav, buttons,
+   cards, section heads, dark surfaces, footer). Loaded last, after
+   styles.css, blog.css and homeV2.css.
+   ========================================================================== */
+
+/* ── Type ─────────────────────────────────────────────────────── */
+body {
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+::selection { background: var(--blue-tint); color: var(--blue-deep); }
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Layout column ────────────────────────────────────────────
+   V2 keeps content in a 1160px column with a 24px gutter. */
+:root {
+  --gutter: 24px;
+  --nav-h: 68px;
+}
+
+.container {
+  max-width: calc(1160px + 2 * var(--gutter));
+}
+
+/* V2 sections were written for V2's fixed nav. Here the nav is sticky and in
+   flow, so they need no room reserved for it. */
+.v2home {
+  --nav-h: 0px;
+}
+
+/* V2's desktop hero rules also add a literal 68px for that nav, which here
+   left an empty band above the headline and pushed the trust strip below the
+   first screen on laptop heights. Same spacing, without the nav's share. */
+@media (min-width: 1061px) {
+  .v2home header.v2-hero {
+    padding-top: clamp(16px, 5.4vh, 60px);
+  }
+}
+
+/* The homepage hero fills the first screen below the sticky 68px nav on every
+   screen size (svh, so mobile browser bars don't push it past the fold), and
+   its trust strip sits at the very bottom. The content above the strip is
+   centred in whatever spare height is left, so tall screens get even space
+   above and below it rather than one big gap. When the content is taller than
+   the screen, the hero simply grows and the strip follows it. */
+.v2home header.v2-hero {
+  /* One gap for both ends: nav → headline, and diagram → trust strip. Any
+     spare height is then split evenly by .v2-hero-main's auto margins, so
+     the two stay equal on every screen. */
+  --hero-gap: clamp(28px, 5.4vh, 60px);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 68px);
+  min-height: calc(100svh - 68px);
+  padding-top: var(--hero-gap);
+}
+
+/* The trust strip's band spans the full screen width and carries the top
+   border; the strip itself drops its own border and gap. */
+.v2home .v2-hero-foot {
+  margin-top: var(--hero-gap);
+  border-top: 1px solid var(--line);
+}
+
+.v2home header.v2-hero .v6-trust {
+  margin-top: 0;
+  border-top: 0;
+}
+
+/* The dividers between the trust items run the band's full height: the
+   hero's bottom padding moves inside the items, so their borders reach from
+   the top rule to the very bottom of the hero. */
+.v2home header.v2-hero {
+  padding-bottom: 0;
+}
+
+.v2home header.v2-hero .v6-trust li {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Agent army: a wider card and bigger bubbles on desktop. The circles were
+   capped by the 318px card (three across), so the card grows to 360px and the
+   circles from 88px to 104px. --p is the row step, a little under the circle
+   size so the rows nest. The short-screen pill layout (max-height 680px) is
+   left as it was. */
+@media (min-width: 1061px) {
+  .v2home .v2-flow {
+    grid-template-columns: 300px minmax(44px, 1fr) 360px minmax(44px, 1fr) 300px;
+  }
+
+  .v2home .v2-flow .core-roster {
+    --d: 104px;
+    --p: 98px;
+    padding: 18px 12px calc(18px + var(--d) - var(--p));
+  }
+
+  .v2home .v2-flow .core-row .v6-ico {
+    width: 20px;
+    height: 20px;
+  }
+
+  .v2home .v2-flow .core-row b,
+  .v2home .v2-flow .core-row + .core-row b {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1061px) and (max-height: 820px) {
+  .v2home .v2-flow .core-roster {
+    --d: 96px;
+    --p: 90px;
+    padding: 14px 12px calc(14px + var(--d) - var(--p));
+  }
+
+  .v2home .v2-flow .core-row b,
+  .v2home .v2-flow .core-row + .core-row b {
+    font-size: 12.5px;
+  }
+}
+
+.v2home header.v2-hero > .v2-container {
+  flex: 1 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.v2home .v2-hero-main {
+  margin-block: auto;
+}
+
+/* ── Navigation ───────────────────────────────────────────────
+   V2's bar: full width, translucent white with a hairline, links set plainly
+   rather than grouped in a pill, and a blue CTA. V1's hide-on-scroll, mega
+   menu and dark-hero states stay. */
+.nav {
+  padding: 0;
+  height: var(--nav-h);
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav--scrolled {
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav__inner {
+  height: 100%;
+}
+
+.nav__logo {
+  height: 22px;
+}
+
+.nav__menu {
+  gap: 6px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.nav__top {
+  min-height: 44px;
+  padding: 0 13px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--body);
+  border-radius: var(--r-sm);
+}
+
+.nav__top:hover,
+.nav__top.is-open {
+  color: var(--ink);
+  background: var(--soft);
+  box-shadow: none;
+}
+
+.nav__cta {
+  min-height: 44px;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+.nav--onDark {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.nav--onDark .nav__menu {
+  background: transparent;
+  border: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────
+   V2's rectangle: 8px corners, blue primary, white ghost with a hairline. The
+   arrow badge V1 added inside its pill is not part of V2. */
+.btn {
+  font-family: var(--font);
+  font-size: 15px;
+  padding: 15px 26px;
+  border-radius: var(--r-sm);
+  transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+
+.btn--arrow {
+  padding: 15px 26px;
+  gap: 8px;
+}
+
+.btn__arrow {
+  display: none;
+}
+
+.btn--sm {
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.btn--primary,
+.nav__cta,
+.nav--onDark .nav__cta.btn--primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(20, 65, 159, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.btn--primary:hover,
+.nav__cta:hover {
+  background: var(--blue-deep);
+  box-shadow: 0 1px 2px rgba(20, 65, 159, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--line-2);
+}
+
+.btn--ghost:hover {
+  border-color: var(--dim);
+}
+
+.btn--onDark,
+.btn--dark--bg {
+  background: #fff;
+  color: var(--blue-deep);
+  box-shadow: none;
+}
+
+/* ── Homepage: the platform section ───────────────────────────
+   V1's hero markup (.hero), now the second section under the V2 hero. It
+   drops the hero's pull-up under the nav, full-viewport height and
+   photograph; a hairline separates it from the white hero above. */
+.hero {
+  margin-top: 0;
+  padding-top: 0;
+  min-height: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 76px;
+}
+
+/* Text 37.5%, the platform stack 62.5%. The text block is centred on the
+   stack's vertical midline. */
+.hero__inner {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  gap: 40px;
+  align-items: center;
+  padding: 104px var(--gutter);
+}
+
+.hero__lead {
+  text-align: left;
+}
+
+/* The size of the Enterprise AI, Governance and Ownership headings: the long
+   headline sets on three lines in the 40% column. */
+.hero__headline {
+  font-size: clamp(1.75rem, 2.4vw, 2.125rem);
+  font-weight: 650;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.hero__description {
+  font-size: 17px;
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.hero__figure {
+  display: block;
+}
+
+/* The three points: an icon tile beside each short title. */
+.heropoints {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.heropoints__item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: center;
+}
+
+.heropoints__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--blue-line);
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+.heropoints__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.heropoints__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ── Homepage: Impact ──────────────────────────────────────────
+   The four outcomes carry the section, so they lead: a 2 × 2 of large
+   statements divided by hairlines, under a smaller one-line heading. Scoped
+   to #impact so it outranks V2's layered band rules in homeV2.css. */
+.v2home #impact .sec-head {
+  margin-bottom: 40px;
+}
+
+.v2home #impact-h {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  margin-bottom: 0;
+}
+
+.v2home #impact .v6-band {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: none;
+  grid-auto-rows: 1fr;
+  width: auto;
+  max-width: 1040px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.v2home #impact .v6-band-item {
+  display: grid;
+  grid-row: auto;
+  grid-template-rows: none;
+  grid-template-columns: 64px minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: center;
+  padding: 32px 40px;
+  border: 0;
+}
+
+.v2home #impact .v6-band-item:nth-child(even) {
+  border-left: 1px solid var(--line-2);
+}
+
+.v2home #impact .v6-band-item:nth-child(n+3) {
+  border-top: 1px solid var(--line-2);
+}
+
+.v2home #impact .v6-band-item .v6-impact-ico {
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  border-radius: 16px;
+}
+
+.v2home #impact .v6-band-item .v6-impact-ico .v6-ico {
+  width: 32px;
+  height: 32px;
+}
+
+.v2home #impact .v6-band-h {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+/* ── Homepage: Deployment cards ──────────────────────────────────
+   The three assurances under the deployment spectrum, in the same card as
+   the Enterprise AI, Governance and Ownership benefits (showcase.css): the
+   title beside the icon, the mechanism as a quiet footer under a hairline,
+   white on the soft section, lifting on hover. */
+.v2home #deployment .v6-assure {
+  list-style: none;
+  gap: 20px;
+}
+
+.v2home #deployment .dep-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  gap: 0 16px;
+  align-items: start;
+  padding: 24px 24px 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.v2home #deployment .dep-card:hover {
+  border-color: var(--blue-line);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.v2home #deployment .dep-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border-color: var(--line);
+  background: var(--bg);
+  color: var(--blue);
+}
+
+.v2home #deployment .dep-card__icon .v6-ico {
+  width: 24px;
+  height: 24px;
+}
+
+.v2home #deployment .dep-card__title {
+  min-height: 2.5em;
+  padding-top: 1px;
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.v2home #deployment .dep-card__meta {
+  grid-column: 1 / -1;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2home #deployment .dep-card {
+    transition: none;
+  }
+
+  .v2home #deployment .dep-card:hover {
+    transform: none;
+  }
+}
+
+/* ── Footer ───────────────────────────────────────────────────
+   V2's light footer: white, a hairline above, mono column labels. */
+.footer {
+  background: var(--bg);
+  color: var(--body);
+  border-top: 1px solid var(--line-2);
+  border-radius: 0;
+  padding: 72px 0 32px;
+}
+
+.footer__top {
+  gap: 40px 32px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.footer__logo {
+  height: 22px;
+}
+
+.footer__tag,
+.footer__contact,
+.footer__contact a {
+  color: var(--dim);
+}
+
+.footer__contact a:hover,
+.footer__col a:hover {
+  color: var(--ink);
+}
+
+.footer__socialLink {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--soft);
+  color: var(--body);
+}
+
+.footer__socialLink:hover {
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+.footer__col h4 {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  padding-bottom: 0;
+  margin-bottom: 16px;
+  border-bottom: 0;
+}
+
+.footer__col a {
+  font-size: 14.5px;
+  color: var(--body);
+}
+
+.footer__bottom {
+  font-size: 13px;
+  color: var(--dim);
+}
+
+/* ── Closing CTA plates on inner pages ────────────────────────
+   The same V2 CTA panel as the homepage band, in place of the purple plate. */
+.pcta {
+  background:
+    var(--brand-grad) top / 100% 3px no-repeat,
+    radial-gradient(ellipse 60% 90% at 50% -20%, var(--blue-tint) 0%, transparent 70%),
+    var(--bg);
+  color: var(--body);
+  width: calc(100% - 2 * var(--gutter));
+  max-width: 1160px;
+  margin: 104px auto;
+  padding: 76px 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.pcta__heading {
+  font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+  font-weight: 650;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.pcta__text {
+  font-size: 1.07rem;
+  color: var(--body);
+}
+
+.pcta .btn--primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(20, 65, 159, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.pcta .btn--primary:hover {
+  background: var(--blue-deep);
+}
+
+
+/* ── Icon tiles ───────────────────────────────────────────────
+   V2 sets every card icon in a 40px blue-tinted tile. V1 drew bare ink
+   glyphs; these give its cards the V2 tile. */
+.card__icon,
+.modcard__icon,
+.modsec__icon,
+.pillar__icon,
+.journeyx__icon,
+.navcard__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--blue-line);
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+.card__icon svg,
+.modcard__icon svg,
+.modsec__icon svg,
+.pillar__icon svg,
+.journeyx__icon svg,
+.navcard__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8;
+}
+
+.navcard__icon {
+  width: 36px;
+  height: 36px;
+}
+
+/* ── Cards ────────────────────────────────────────────────────
+   V2 cards: white, one hairline, 16px corners, the faintest shadow. */
+.card,
+.modcard,
+.pillar,
+.uc,
+.journeyx__step {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Contact page ─────────────────────────────────────────────
+   The aside beside the form was an ink-and-violet panel; in V2 it is the soft
+   surface with a blue wash, and its text reads in ink. */
+.dreq__panel {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.dreq__aside {
+  color: var(--body);
+  background:
+    var(--brand-grad) top / 100% 3px no-repeat,
+    radial-gradient(ellipse 90% 60% at 0% 0%, var(--blue-tint) 0%, transparent 70%),
+    var(--soft);
+  border-right: 1px solid var(--line);
+}
+
+.dreq__brand img {
+  height: 22px;
+  width: auto;
+}
+
+.dreq__asideTitle {
+  color: var(--ink);
+}
+
+.dreq__asideText,
+.dreq__asideContact a {
+  color: var(--body);
+}
+
+.dreq__promises li {
+  color: var(--ink);
+}
+
+.dreq__check {
+  color: var(--blue);
+}
+
+.dreq__asideContact a:hover {
+  color: var(--blue);
+}
+
+/* ── Small screens ────────────────────────────────────────────
+   V2 was signed off at desktop only, so its narrow-width gaps are closed
+   here. */
+@media (max-width: 960px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 64px var(--gutter);
+  }
+
+  .hero__lead {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Heading phrases kept on one line at desktop may not fit a phone. */
+  .v2home .v6-nw {
+    white-space: normal;
+  }
+}

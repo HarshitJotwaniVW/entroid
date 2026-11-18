@@ -1,0 +1,259 @@
+/* ============================================================================
+   The platform stack (components/PlatformStack.jsx), in the V2 theme.
+
+   - Three pack tiers stacked top to bottom, shaded light to deep (domain,
+     business, technology), each the full width so card names and journeys
+     sit on one line.
+   - Governed intelligence: the solid blue base bar they all rest on, the
+     boldest element. A short connector joins each layer to the next; hovering
+     a tier lights the base.
+   - One grid for every tier: four equal columns, so card edges line up from
+     tier to tier.
+   ========================================================================== */
+
+.pstack {
+  --layer-gap: 10px;
+  display: grid;
+  gap: var(--layer-gap);
+  margin: 0;
+}
+
+/* ── Tiers ──────────────────────────────────────────────────── */
+.pstack__layer {
+  position: relative;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.pstack__layer--domain   { background: #fbfcfe; }
+.pstack__layer--business { background: var(--soft); border-color: var(--line-2); }
+.pstack__layer--tech     { background: var(--soft-2); border-color: var(--line-2); }
+
+/* Connector: from each tier's foot, across the gap, to the layer below. */
+.pstack__layer--domain::after,
+.pstack__layer--business::after,
+.pstack__layer--tech::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--layer-gap) - 1px);
+  width: 2px;
+  height: var(--layer-gap);
+  margin-left: -1px;
+  background: var(--blue-line);
+  transition: background 0.18s;
+}
+
+.pstack__layer--domain:hover,
+.pstack__layer--business:hover,
+.pstack__layer--tech:hover {
+  border-color: var(--blue-line);
+}
+
+.pstack__layer--domain:hover::after,
+.pstack__layer--business:hover::after,
+.pstack__layer--tech:hover::after {
+  background: var(--blue);
+}
+
+.pstack:has(.pstack__layer--domain:hover, .pstack__layer--business:hover, .pstack__layer--tech:hover) .pstack__layer--core {
+  box-shadow: 0 0 0 4px var(--blue-tint), var(--shadow-md);
+}
+
+.pstack__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  font-family: var(--font-caption);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+}
+
+.pstack__tierIcon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+/* ── One grid, one card ─────────────────────────────────────── */
+.pstack__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tiles in a row stretch to one height; the name sits at the top and the
+   journey at the bottom, so both line up across the row. */
+.pstack__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 7px 6px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  text-align: center;
+}
+
+.pstack__card:not(:has(.pstack__meta)) {
+  justify-content: center;
+}
+
+.pstack__card--wide { grid-column: 1 / -1; }
+
+/* Corporate drivers and the trust fabric: one slim row across the functions
+   they apply to, name and tags on one line. */
+.pstack__across {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+}
+
+.pstack__acrossItem {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--blue-tint);
+  border: 1px solid var(--blue-line);
+  border-radius: var(--r-sm);
+}
+
+.pstack__name {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* Secondary text: muted, so it never reads as a link; only the journey
+   arrow carries the accent. */
+.pstack__meta {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--body);
+}
+
+.pstack__arrow {
+  color: var(--blue);
+}
+
+/* ── The base: governed intelligence ────────────────────────── */
+.pstack__layer--core {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+  box-shadow: var(--shadow-md);
+}
+
+.pstack__layer--core .pstack__title {
+  justify-content: flex-start;
+  max-width: 9.5em;
+  margin: 0;
+  color: #fff;
+}
+
+.pstack__coreList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pstack__coreCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-md);
+}
+
+.pstack__coreIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.pstack__coreIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pstack__coreText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.pstack__coreCard .pstack__name {
+  font-size: 14px;
+  color: #fff;
+}
+
+.pstack__coreCard .pstack__meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.pstack__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Phones (not yet reviewed; desktop first): two cards to a row, the base's
+   title above its two components. */
+@media (max-width: 640px) {
+  .pstack__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pstack__across,
+  .pstack__layer--core,
+  .pstack__coreList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pstack__layer,
+  .pstack__layer::after {
+    transition: none;
+  }
+}

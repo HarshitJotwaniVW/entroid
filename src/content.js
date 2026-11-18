@@ -118,44 +118,76 @@ export const megaRail = {
   ],
 }
 
+/* The platform section, second on the homepage under the V2 hero. */
 export const hero = {
-  // eyebrow: 'Entroid',
   headline: 'Unified Intelligence Fabric for Governed Autonomous Enterprises',
-  /* The same words, broken where they should break. Left to wrap on its own
-     the headline lands on four ragged lines; these two are balanced and hold
-     their shape as the column changes width. The single string above stays for
-     anywhere that needs the headline as plain text. */
-  headlineLines: ['Unified Intelligence Fabric for', 'Governed Autonomous Enterprises'],
   description:
-    'Entroid unifies organisations, knowledge and systems through governed AI, thereby enabling autonomous operations. It empowers enterprises to align strategy with execution, accelerate innovation, and modernise applications while maintaining compliance, governance, and control.',
-  primaryCta: 'Book a demo',
-  /* Three ticks under the CTA — the whole proposition in three words and a
-     short phrase. Kept to single terms so they sit on one line together; the
-     supporting detail lives in the cards at the foot of the hero. */
-  points: ['Unified.', 'Autonomous.', 'Governed and owned by you.'],
-  image: '/illustration/ill-home-hero.png',
+    'Entroid unifies organisations, knowledge and systems through governed AI to enable autonomous operations.',
+  /* The whole proposition in three short points, each with its own icon
+     (HERO_POINT_ICONS in Site.jsx, keyed by this text). */
+  points: ['Unified', 'Autonomous', 'Governed and owned by you'],
+  /* The platform illustration shown beside the copy (replaces the HTML
+     PlatformStack diagram on the homepage; `stack` below is kept as data). */
+  image: '/illustration/unified-intelligence-fabric-for-governed-autonomous.webp',
   imageAlt:
-    'The Entroid platform stack: Governed Intelligence built on the AI Foundry and the Semantic Ontology, Domain Packs for vertical solutions, innovation and modernisation, Business Packs spanning every organisation function alongside Corporate Drivers and the Trust Fabric, and Technology Packs providing modeller studios, platform governance and cloud-native infrastructure.',
-}
-
-/* Three proof points, sitting directly under the hero: what the platform is
-   certified against, where it already runs, and who the company answers to.
-   Straight facts, no CTA — they are there to be believed, not clicked. */
-export const heroProof = [
-
-  {
-    title: 'AI that runs the work, and answers to you',
-    text: 'Autonomous agents, bounded and audited · explainable by design · air-gapped ready',
-  },
-  {
-    title: 'Model-Native Architecture',
-    text: 'Strategy · Operations · Finance · Governance · AI on one connected model',
-  },
+    'Entroid platform: domain, business and technology packs built on governed intelligence (AI Foundry and Semantic Ontology).',
+  /* The platform stack, drawn as HTML (components/PlatformStack.jsx): domain,
+     business and technology packs stacked top to bottom, from closest to the
+     business outcome to closest to the infrastructure, all resting on governed
+     intelligence, the base bar that applies to every pack. Cards are a name,
+     with a journey (`flow`, from → to) where there is one. `area` places the
+     layer in the stack. */
+  stack: [
     {
-    title: 'Enterprise-Grade Security & Compliance',
-    text: 'SOC 2 · ISO 27001 · GDPR · Security and data-protection frameworks',
-  }
-]
+      area: 'domain',
+      title: 'Domain packs',
+      items: [
+        { name: 'Vertical solutions', flow: ['Generic', 'specific'] },
+        { name: 'Innovate', flow: ['Concept', 'production'] },
+        { name: 'Modernise', flow: ['Legacy', 'latest'] },
+        { name: 'Bring your own code', flow: ['Monolith', 'integrated'] },
+      ],
+    },
+    {
+      area: 'business',
+      title: 'Business packs',
+      /* These apply to every function, so they run across the whole set. */
+      across: [
+        { name: 'Corporate drivers', tags: 'Strategy · OKR' },
+        { name: 'Trust fabric', tags: 'GRC · Audits' },
+      ],
+      items: [
+        { name: 'Revenue', flow: ['Lead', 'cash'] },
+        { name: 'Supply chain & legal', flow: ['Source', 'pay'] },
+        { name: 'IT & cyber security', flow: ['Idea', 'delivery'] },
+        { name: 'Marcom', flow: ['Concept', 'brand'] },
+        { name: 'People', flow: ['Hire', 'retire'] },
+        { name: 'Operations', flow: ['Request', 'resolve'] },
+        { name: 'Finance', flow: ['Record', 'report'] },
+        { name: 'PMO', flow: ['Plan', 'deliver'] },
+      ],
+    },
+    {
+      area: 'tech',
+      title: 'Technology packs',
+      items: [
+        { name: 'Modeller studios' },
+        { name: 'Platform governance' },
+        { name: 'Integrated tech-ops' },
+        { name: 'Carrier-grade security' },
+        { name: 'Kubernetes · cloud-native · microservices', wide: true },
+      ],
+    },
+    {
+      area: 'core',
+      title: 'Governed intelligence',
+      items: [
+        { name: 'AI Foundry', text: 'AI agents, ML studio, forecasting and vision AI' },
+        { name: 'Semantic Ontology', text: 'The enterprise model: classes, relationships and life cycle' },
+      ],
+    },
+  ],
+}
 
 export const sections = [
   {
@@ -228,17 +260,16 @@ export const sections = [
     number: '04',
     layout: 'stack',
     label: 'Enterprise AI',
-    heading: 'Enterprise AI that understands your business.',
-    paragraph:
-      'Entroid embeds AI into every business function through a governed enterprise AI platform. Built on enterprise context, knowledge and data, AI agents understand your organisation, collaborate across workflows, automate complex work and continuously improve decisions while remaining secure, explainable and under enterprise control.',
-    infographic: '/illustration/enterprise-ai.webp',
+    heading: 'Enterprise AI that understands your business',
+    /* Each card leads with the benefit (`headline`); the capability's name
+       (`title`) sits above it as a small label. */
     cards: [
-      { title: 'Intelligent Agents', text: 'Purpose-built AI agents understand enterprise context, reason across business processes and execute work with human oversight.' },
-      { title: 'Conversational Enterprise', text: 'Interact with enterprise knowledge, applications and workflows using natural language across every business function.' },
-      { title: 'Enterprise Automation', text: 'Automate repetitive and complex business processes through AI-driven workflows and intelligent orchestration.' },
-      { title: 'Multi-Agent Collaboration', text: 'Multiple specialised AI agents collaborate, coordinate decisions and complete end-to-end enterprise processes.' },
-      { title: 'Predictive Intelligence', text: 'Forecast business outcomes, detect risks and uncover opportunities using enterprise-wide data and AI models.' },
-      { title: 'Governed AI', text: 'Deploy AI securely with enterprise governance, explainability, permissions and complete operational control.' },
+      { title: 'Intelligent Agents', headline: 'Routine work handled by agents, with human sign-off' },
+      { title: 'Conversational Enterprise', headline: 'Ask the business anything, in plain language' },
+      { title: 'Enterprise Automation', headline: 'Repetitive processes run on their own' },
+      { title: 'Multi-Agent Collaboration', headline: 'Coordinated agents army for end to end work' },
+      { title: 'Predictive Intelligence', headline: 'Risks and opportunities spotted early' },
+      { title: 'Governed AI', headline: 'Every AI action permitted, explained and logged' },
     ],
     visual: {
       type: 'foundry',
@@ -253,18 +284,18 @@ export const sections = [
     id: 'governance',
     number: '05',
     layout: 'stack',
-    infographic: '/illustration/governance-security-%26-scale.webp',
     label: 'Governance, Security & Scale',
-    heading: 'Governed by design. Trusted at enterprise scale.',
-    paragraph:
-      'Entroid is engineered for enterprise trust. Governance, security and compliance are embedded into every application, workflow and AI interaction, while a resilient cloud-native architecture ensures the performance, scalability and operational continuity that mission-critical organisations depend on.',
+    heading: 'Governed by design. Trusted at enterprise scale',
+    /* Each card leads with the benefit (`headline`); the capability's name
+       (`title`) supports it underneath. Headlines restate the claims the
+       cards made before, shortened. */
     cards: [
-      { title: 'Governance by Design', text: 'Policies, approvals and delegated authority are enforced consistently across applications, workflows and AI.' },
-      { title: 'Enterprise Security', text: 'Protect enterprise data, users and AI interactions through built-in security, identity and access controls.' },
-      { title: 'Regulatory Compliance', text: 'Support regulatory obligations with configurable controls, evidence collection and compliance monitoring.' },
-      { title: 'Complete Auditability', text: 'Every decision, workflow and AI action is fully traceable with comprehensive audit history and operational transparency.' },
-      { title: 'Resilient Architecture', text: 'Cloud-native architecture designed for high availability, fault tolerance and continuous business operations.' },
-      { title: 'Enterprise Scale', text: 'Confidently support millions of transactions, thousands of users and global enterprise workloads.' },
+      { title: 'Policy Enforcement', headline: 'Policies and approvals enforced everywhere' },
+      { title: 'Enterprise Security', headline: 'Data, users and AI protected by design' },
+      { title: 'Regulatory Compliance', headline: 'Compliance evidence collected and monitored' },
+      { title: 'Complete Auditability', headline: 'Every decision traceable, with full audit history' },
+      { title: 'Resilient Architecture', headline: 'Built for continuous, fault-tolerant operation' },
+      { title: 'Enterprise Scale', headline: 'Sized for millions of transactions' },
     ],
   },
   {
@@ -272,17 +303,17 @@ export const sections = [
     number: '08',
     layout: 'stack',
     label: 'Ownership & Independence',
-    heading: 'Own your platform. Control your future.',
-    paragraph:
-      'Entroid gives organisations complete ownership of their enterprise solutions, intellectual property and future roadmap. Build, extend and evolve applications on an open, enterprise-grade platform without vendor lock-in, while retaining the freedom to innovate, customise and grow on your own terms.',
-    infographic: '/illustration/ownership-%26-independence.webp',
+    heading: 'Own your platform. Control your future',
+    /* Each card leads with the benefit (`headline`); the capability's name
+       (`title`) supports it underneath. Headlines restate the claims the
+       cards made before, shortened. */
     cards: [
-      { title: 'Enterprise Ownership', text: 'Own your applications, configurations, data models and enterprise solutions without dependency on proprietary platforms.' },
-      { title: 'Freedom from Vendor Lock-in', text: 'Open standards and portable architecture give your organisation the flexibility to evolve independently.' },
-      { title: 'Protected Intellectual Property', text: 'Your business logic, enterprise knowledge and intellectual property remain fully owned and controlled by your organisation.' },
-      { title: 'Unlimited Extensibility', text: 'Build, customise and extend enterprise capabilities without platform restrictions or closed ecosystems.' },
-      { title: 'Build on Your Terms', text: 'Empower internal teams and partners to develop, enhance and maintain enterprise solutions independently.' },
-      { title: 'Future-Proof Platform', text: 'Adopt new technologies, AI capabilities and business innovations without rebuilding or replacing your enterprise foundation.' },
+      { title: 'Applications & Data', headline: 'Apps, configurations and data models stay yours' },
+      { title: 'No Vendor Lock-in', headline: 'Portable architecture on open standards' },
+      { title: 'Protected Intellectual Property', headline: 'Business logic and IP stay with the enterprise' },
+      { title: 'Unlimited Extensibility', headline: 'Extend and customise without platform limits' },
+      { title: 'Build on Your Terms', headline: 'In-house teams and partners build independently' },
+      { title: 'Future-Proof Platform', headline: 'New technology adopted without rebuilding' },
     ],
     visual: {
       type: 'layers',
@@ -331,29 +362,6 @@ export const sections = [
   },
 ]
 
-export const finalSection = {
-  label: 'The Enterprise Journey',
-  heading: 'A foundation for autonomous enterprises.',
-  paragraph:
-    'One continuous journey of enterprise evolution, governed end to end.',
-  // The journey renders as one illustration; `journey` is the fallback the
-  // section falls back to (nine boxes and arrows) if the artwork is removed.
-  illustration: '/illustration/the-enterprise-journey.webp',
-  journey: [
-    'Innovation',
-    'Modernisation',
-    'Unified Platform',
-    'Strategy Execution',
-    'Enterprise AI',
-    'Governance',
-    'Deployment',
-    'Scale',
-    'Continuous Evolution',
-  ],
-  // cta: 'Start the journey towards a governed autonomous enterprise.',
-  ctaButton: 'Book a demo',
-}
-
 export const footer = {
   tagline: 'Unified intelligence layer for governed autonomous enterprises.',
   address: ['C21 Business Park, Ring Road', 'Indore, MP 452010, India'],
@@ -370,22 +378,23 @@ export const footer = {
   // product and industry routes, and the built resources.
   // The footer mirrors the header navigation, one column per top-level menu.
   // Platform entries are the homepage section anchors (their ids live in
-  // `sections` below); Products and Industries reuse the mega-menu / dropdown
+  // `sections` above and in components/HomeV2.jsx); Products and Industries reuse the mega-menu / dropdown
   // destinations; Use Cases and Why Us deep-link to their on-page subsections
   // (those ids are set in App.jsx — keep the two in sync).
   columns: [
     { title: 'Platform', links: [
-      { label: 'Innovation & Modernisation', to: '/#innovate' },
-      { label: 'Unified Enterprise Platform', to: '/#platform' },
-      { label: 'Strategy & Execution', to: '/#strategy' },
+      { label: 'The challenge', to: '/#problems' },
+      { label: 'How Entroid helps', to: '/#solution' },
+      { label: 'Impact', to: '/#impact' },
       { label: 'Enterprise AI', to: '/#ai' },
+      { label: 'Governance, Security & Scale', to: '/#governance' },
+      { label: 'Ownership & Independence', to: '/#ownership' },
+      { label: 'How it\u2019s built', to: '/#platform' },
+      { label: 'Enterprise Deployment', to: '/#deployment' },
+      { label: 'Pre-built modules', to: '/#modules' },
       // No homepage section for this yet, so it resolves to the product
       // placeholder the same way Functions and Engineering do.
       { label: 'Service as Software', to: '/product/service-as-software' },
-      { label: 'Governance, Security & Scale', to: '/#governance' },
-      { label: 'Enterprise Deployment', to: '/#deployment' },
-      { label: 'Enterprise Flexibility', to: '/#adapt' },
-      { label: 'Ownership & Independence', to: '/#ownership' },
     ] },
     { title: 'Products', links: [
       { label: 'Intelligence Hub', to: '/product/intelligence-hub' },

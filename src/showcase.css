@@ -217,10 +217,12 @@
 }
 
 /* ── The card sections ───────────────────────────────────────── */
-/* Plain white sections divided by a hairline, exactly like `.section` on the
-   homepage. (These used to be a sticky deck of cards; the wrapper and the
-   `stack` names are kept so the section data and the grouping in Home.jsx do
-   not have to change.) */
+/* Enterprise AI, Governance and Ownership in the V2 theme: the V2 section
+   column and heading, sections alternating white and soft, cards with a
+   tinted icon tile. (These used to be a sticky deck of cards; the wrapper and
+   the `stack` names are kept so the section data and the grouping in Home
+   do not have to change.) This file loads after theme.css, so these are the
+   values that apply. */
 .stackg {
   display: block;
   width: 100%;
@@ -229,155 +231,206 @@
 .stackx {
   background: var(--bg);
   border-top: 1px solid var(--line);
-  padding: clamp(72px, 9vw, 116px) 0;
-  scroll-margin-top: 84px;
+  padding: 104px 0;
+  scroll-margin-top: 76px;
 }
 
-/* The inner container: matches `.container` so these line up with every other
-   section. No border, radius or shadow — the section is the surface now. */
+.stackx:nth-child(even) {
+  background: var(--soft);
+}
+
+/* The inner container: the same 1160px column as every V2 section. */
 .stackx__card {
   width: 100%;
-  max-width: 1440px;
+  max-width: calc(1160px + 2 * var(--gutter));
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
 /* Centred head across the card. */
 .stackx__lead {
-  max-width: 860px;
-  margin: 0 auto clamp(24px, 2.8vw, 40px);
+  max-width: 780px;
+  margin: 0 auto 56px;
   text-align: center;
 }
 
-/* Accordion left, artwork right. Both take the same height from JS, so the
-   picture stands exactly as tall as the boxes beside it. */
-.stackx__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(24px, 3vw, 52px);
-  align-items: stretch;
-}
-
+/* The section's name stays in the markup but is not shown: V2 sections carry
+   no eyebrow. */
 .stackx__label {
-  font-family: var(--font-caption);
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--brand);
-  margin-bottom: 12px;
+  display: none;
 }
 
 .stackx__heading {
   font-family: var(--font-heading);
-  font-size: clamp(24px, 2.5vw, 34px);
-  line-height: 1.12;
-  letter-spacing: -.02em;
+  font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+  font-weight: 650;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
   color: var(--ink);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .stackx__para {
-  font-size: 15px;
-  line-height: 1.68;
-  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  text-wrap: balance;
 }
 
 /* ── The tile grid ───────────────────────────────────────────── */
-/* Two columns of cards in the left half, the artwork in the right. Six cards
-   make three rows, which is what lets the picture stand the same height. */
+/* Six cards, three to a row. */
 .stackx__cards {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 14px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
   margin: 0;
   padding: 0;
   align-content: start;
 }
 
 .stackx__tile {
-  padding: clamp(16px, 1.4vw, 20px);
-  background: #fff;
-  border: 1px solid var(--card-line);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Bare glyph in the heading ink, matching the cards on the homepage. */
 .stackx__tileIcon {
-  display: block;
-  color: var(--ink);
-  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--blue-line);
+  background: var(--blue-tint);
+  color: var(--blue);
 }
 
 .stackx__tileIcon svg {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .stackx__tileTitle {
   font-family: var(--font-heading);
-  font-size: clamp(14px, 1.05vw, 16px);
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 650;
   line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--ink);
   margin-bottom: 5px;
 }
 
 .stackx__tileText {
-  font-size: clamp(12.5px, .92vw, 13.5px);
-  line-height: 1.55;
-  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
 }
 
-/* ── Artwork ─────────────────────────────────────────────────── */
-.stackx__figure {
-  min-width: 0;
+/* ── Benefit-led cards (Enterprise AI) ──────────────────────────
+   The benefit is the card. A soft grey block with no outline on the white
+   section; the icon with the benefit as a large title beside it, and the
+   capability's name as a quiet footer under a hairline, read last. Titles are
+   held to two lines' height so footers line up across a row. On hover the
+   card lifts onto white with a blue edge. */
+.stackx__cards:has(.stackx__tile--headline) {
+  gap: 20px;
+}
+
+.stackx__tile--headline {
   display: grid;
-  align-content: stretch;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  gap: 0 16px;
+  align-items: start;
+  padding: 24px 24px 20px;
+  background: var(--soft);
+  border: 1px solid transparent;
+  border-radius: var(--r-xl);
+  box-shadow: none;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
-/* `contain` rather than `cover`: these are diagrams, and cropping one to fill
-   a box would cut labels off. */
-.stackx__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  /* border-radius: var(--radius-card); */
-  /* border: 1px solid var(--line); */
-  /* background: #fff; */
-  /* padding: clamp(10px, 1vw, 16px); */
+/* On the soft (grey) sections the cards reverse to white, or they vanish
+   into the ground. */
+.stackx:nth-child(even) .stackx__tile--headline {
+  background: var(--bg);
+  border-color: var(--line);
 }
 
-.stackx__ph {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  border-radius: var(--radius-card);
-  border: 1px dashed var(--line);
-  background: var(--bg-alt);
-  color: var(--faint);
-  font-family: var(--font-caption);
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  font-size: 12px;
+.stackx__tile--headline:hover,
+.stackx:nth-child(even) .stackx__tile--headline:hover {
+  background: var(--bg);
+  border-color: var(--blue-line);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.stackx__tile--headline .stackx__tileIcon {
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  border-radius: 12px;
+  border-color: var(--line);
+  background: var(--bg);
+}
+
+.stackx__tile--headline .stackx__tileIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.stackx__tileHeadline {
+  min-height: 2.5em;
+  padding-top: 1px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -.018em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.stackx__tileLabel {
+  grid-column: 1 / -1;
+  margin: 22px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stackx__tile--headline {
+    transition: none;
+  }
+
+  .stackx__tile--headline:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 900px) {
+  .stackx {
+    padding: 72px 0;
+  }
+
+  .stackx__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
   .stackx__cards {
     grid-template-columns: 1fr;
   }
-
-  .stackx__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stackx__figure {
-    order: -1;
-  }
-
 }
 
 @media (prefers-reduced-motion: reduce) {

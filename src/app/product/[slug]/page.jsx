@@ -2,7 +2,8 @@ import { ProductPage } from '../../../components/Site'
 import { JsonLd } from '../../../components/JsonLd'
 import { products } from '../../../products'
 import { clampDescription, pageMeta } from '../../../lib/seo'
-import { breadcrumbList, graph, softwareApplication, webPage } from '../../../lib/schema'
+import { breadcrumbList, graph, platform, softwareApplication, softwareId, webPage } from '../../../lib/schema'
+import { glossaryTermsIn } from '../../../lib/glossaryLinks'
 
 /* Every product/space page is known at build time, so prerender them all. */
 export const generateStaticParams = () => Object.keys(products).map((slug) => ({ slug }))
@@ -42,15 +43,21 @@ export default async function Page({ params }) {
   const features = (p.modules || []).map((m) => m.name).filter(Boolean)
 
   const jsonLd = graph(
-    webPage({ path, name: p.headline, description, breadcrumb: true }),
+    webPage({ path, name: p.headline, description, breadcrumb: true, mainEntity: softwareId(path) }),
     softwareApplication({ path, name: `Entroid ${p.category}`, description, features }),
+    platform(),
     breadcrumbList({ path, items: [{ name: 'Home', path: '/' }, { name: p.category, path }] }),
   )
+
+  /* Glossary terms the page's copy uses, worked out here on the server so the
+     glossary itself never ships to the browser. The page's own name is left
+     out: the AI Foundry page linking to "AI Foundry" adds nothing. */
+  const terms = glossaryTermsIn(p).filter((t) => t.term !== p.category)
 
   return (
     <>
       <JsonLd data={jsonLd} />
-      <ProductPage slug={slug} />
+      <ProductPage slug={slug} terms={terms} />
     </>
   )
 }

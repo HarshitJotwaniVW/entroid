@@ -26,6 +26,7 @@ import { industries } from '../industries'
 import { useCaseGroups } from '../usecases'
 import { allPosts } from '../lib/blogIndex'
 import { blogPosts } from '../data/blogPosts'
+import { topicPosts } from '../data/topicPosts'
 
 /* Hand-ordered rather than derived, because priority is an editorial judgement
    about what matters, not something the file tree knows. */
@@ -39,12 +40,11 @@ export const STATIC_ROUTES = [
   { path: '/resources/glossary', priority: 0.6, changeFrequency: 'monthly' },
 ]
 
-/* Only the 13 primary posts carry a date. Passing `undefined` for the rest
-   leaves lastModified off that entry entirely, which is the honest answer —
-   stamping the build time on all 180 would tell crawlers the whole archive
-   changed on every deploy. */
+/* Each post's lastModified is the date written in its data entry. A post with
+   no date gets no lastModified at all. Stamping the build time would tell
+   crawlers the whole archive changed on every deploy. */
 const publishedAt = Object.fromEntries(
-  blogPosts.filter((p) => p.publishDate).map((p) => [p.slug, p.publishDate]),
+  [...blogPosts, ...topicPosts].filter((p) => p.publishDate).map((p) => [p.slug, p.publishDate]),
 )
 
 export const allRoutes = () => [

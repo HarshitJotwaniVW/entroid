@@ -90,9 +90,9 @@
   inset: -16%;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%,
-      rgba(59, 64, 214, .10) 0%,
-      rgba(106, 92, 240, .06) 34%,
-      rgba(106, 92, 240, 0) 68%);
+      rgba(28, 86, 216, .10) 0%,
+      rgba(28, 86, 216, .06) 34%,
+      rgba(28, 86, 216, 0) 68%);
   pointer-events: none;
 }
 
@@ -145,7 +145,7 @@
   border-radius: 50%;
   background: #fff;
   border: 1px solid var(--line);
-  box-shadow: 0 2px 6px rgba(10, 15, 31, .05), 0 22px 48px rgba(10, 15, 31, .10);
+  box-shadow: 0 2px 6px rgba(12, 26, 44, .05), 0 22px 48px rgba(12, 26, 44, .10);
 }
 
 .porb__mark img {
@@ -173,7 +173,7 @@
   border-radius: 50%;
   background: #fff;
   border: 1px solid var(--line);
-  box-shadow: 0 1px 3px rgba(10, 15, 31, .05), 0 12px 26px rgba(10, 15, 31, .07);
+  box-shadow: 0 1px 3px rgba(12, 26, 44, .05), 0 12px 26px rgba(12, 26, 44, .07);
   color: var(--ink);
 }
 
@@ -201,7 +201,7 @@
 }
 
 .porb.is-ready .porb__node.is-active {
-  box-shadow: 0 2px 5px rgba(10, 15, 31, .06), 0 18px 38px rgba(10, 15, 31, .15);
+  box-shadow: 0 2px 5px rgba(12, 26, 44, .06), 0 18px 38px rgba(12, 26, 44, .15);
 }
 
 /* ── Cards ────────────────────────────────────────────────────── */

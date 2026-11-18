@@ -11,7 +11,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "aiops-context-is-half-a-moat",
@@ -20,7 +21,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "aiops-no-rollback-no-autonomy",
@@ -29,7 +31,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "aiops-safe-autonomy-is-architecture",
@@ -38,7 +41,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "aiops-wrong-half-of-mttr",
@@ -47,7 +51,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "aiops-diagnose-here-fix-there",
@@ -56,7 +61,8 @@ export const topicPosts = [
     "category": "AIOps",
     "categorySlug": "aiops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-governance-baked-around-the-app",
@@ -65,7 +71,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-generated-apps-talk-to-your-database",
@@ -74,7 +81,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-modernization-should-govern-the-rule",
@@ -83,7 +91,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-faster-you-generate-more-liability",
@@ -92,7 +101,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-you-generated-a-liability",
@@ -101,7 +111,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "app-gen-audit-trail-is-a-git-log",
@@ -110,7 +121,8 @@ export const topicPosts = [
     "category": "App Generation",
     "categorySlug": "app-gen",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "audits-catching-the-split-po-after-its-paid",
@@ -119,7 +131,8 @@ export const topicPosts = [
     "category": "Audits",
     "categorySlug": "audits",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "audits-full-population-by-construction",
@@ -128,7 +141,8 @@ export const topicPosts = [
     "category": "Audits",
     "categorySlug": "audits",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "audits-sox-without-the-season",
@@ -137,7 +151,8 @@ export const topicPosts = [
     "category": "Audits",
     "categorySlug": "audits",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "audits-the-self-writing-audit",
@@ -146,7 +161,8 @@ export const topicPosts = [
     "category": "Audits",
     "categorySlug": "audits",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "audits-who-audits-the-ai-auditor",
@@ -155,7 +171,8 @@ export const topicPosts = [
     "category": "Audits",
     "categorySlug": "audits",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-autonomy-your-auditor-can-sign",
@@ -164,7 +181,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-change-controlled-digital-workers",
@@ -173,7 +191,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "10 min read"
+    "readTime": "10 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-governed-before-it-acts",
@@ -182,7 +201,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-one-door-out",
@@ -191,7 +211,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-one-governed-runtime-not-a-swarm",
@@ -200,7 +221,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "autonomous-agents-why-agent-pilots-die",
@@ -209,7 +231,8 @@ export const topicPosts = [
     "category": "Autonomous Agents",
     "categorySlug": "autonomous-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-who-moves-the-money-when-the-chart-is-red",
@@ -218,7 +241,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-dashboard-is-a-recommendation",
@@ -227,7 +251,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-analytics-on-a-copy",
@@ -236,7 +261,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-last-mile-is-a-human",
@@ -245,7 +271,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-write-back-is-not-execution",
@@ -254,7 +281,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "business-intelligence-semantic-layer-cant-act",
@@ -263,7 +291,8 @@ export const topicPosts = [
     "category": "Business Intelligence",
     "categorySlug": "business-intelligence",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-a-safety-hold-should-stop-money",
@@ -272,7 +301,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-neutrality-is-a-concession",
@@ -281,7 +311,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-owner-visibility-is-not-owner-control",
@@ -290,7 +321,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-your-real-exposure-is-the-unapproved-change-order",
@@ -299,7 +331,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-stop-bringing-receipts",
@@ -308,7 +341,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-the-change-order-is-not-a-document",
@@ -317,7 +351,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "constructos-the-pay-application-is-a-transaction",
@@ -326,7 +361,8 @@ export const topicPosts = [
     "category": "ConstructOS",
     "categorySlug": "constructos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-authorized-to-whom",
@@ -335,7 +371,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-deflection-is-the-wrong-scoreboard",
@@ -344,7 +381,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-utterance-to-action-audit",
@@ -353,7 +391,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-hitl-is-not-an-escape-hatch",
@@ -362,7 +401,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-gate-at-the-speed-of-speech",
@@ -371,7 +411,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-who-guards-the-guardrail",
@@ -380,7 +421,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "conversational-agents-your-support-bot-cant-run-your-company",
@@ -389,7 +431,8 @@ export const topicPosts = [
     "category": "Conversational Agents",
     "categorySlug": "conversational-agents",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-customer-health-is-live-state",
@@ -398,7 +441,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-deflection-is-not-resolution",
@@ -407,7 +451,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-test-whether-agent-can-finish",
@@ -416,7 +461,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-the-closed-won-cliff",
@@ -425,7 +471,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-the-integration-tax",
@@ -434,7 +481,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "crm-record-is-not-the-runtime",
@@ -443,7 +491,8 @@ export const topicPosts = [
     "category": "CRM",
     "categorySlug": "crm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-a-policy-tag-is-a-suggestion",
@@ -452,7 +501,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "10 min read"
+    "readTime": "10 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-quality-that-flags-after-the-write",
@@ -461,7 +511,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-lineage-you-crawl-vs-lineage-you-emit",
@@ -470,7 +521,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-query-time-control-stops-at-the-warehouse-door",
@@ -479,7 +531,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-the-access-request-is-governance-theater",
@@ -488,7 +541,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "data-governance-your-ai-governance-is-a-catalog-entry",
@@ -497,7 +551,8 @@ export const topicPosts = [
     "category": "Data Governance",
     "categorySlug": "data-governance",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-a-clean-sbom-wont-stop-a-dirty-transaction",
@@ -506,7 +561,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-admission-control-admits-a-workload-not-its-actions",
@@ -515,7 +571,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-policy-as-code-guards-the-config-not-the-conduct",
@@ -524,7 +581,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-the-pipeline-gate-closes-behind-the-artifact",
@@ -533,7 +591,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-vulnerability-zero-is-the-wrong-north-star",
@@ -542,7 +601,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "devsecops-secure-software-ungoverned-process",
@@ -551,7 +611,8 @@ export const topicPosts = [
     "category": "DevSecOps",
     "categorySlug": "devsecops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-a-strategic-initiative-should-be-the-work",
@@ -560,7 +621,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-ai-that-writes-the-status-update",
@@ -569,7 +631,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-kill-the-check-in",
@@ -578,7 +641,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-strategy-execution-is-an-architecture-problem",
@@ -587,7 +651,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-the-cascade-diagram-changes-nothing",
@@ -596,7 +661,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "enterprise-strategy-value-realization-is-a-readout",
@@ -605,7 +671,8 @@ export const topicPosts = [
     "category": "Enterprise Strategy",
     "categorySlug": "enterprise-strategy",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-the-goal-is-no-close",
@@ -614,7 +681,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-dashboard-on-unreconciled-numbers",
@@ -623,7 +691,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-detect-and-correct-is-architecture",
@@ -632,7 +701,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-o2c-controls-belong-at-booking",
@@ -641,7 +711,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-reconciliation-is-a-symptom",
@@ -650,7 +721,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-treasury-control-is-a-dashboard",
@@ -659,7 +731,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finance-erp-who-governs-the-finance-agent",
@@ -668,7 +741,8 @@ export const topicPosts = [
     "category": "Finance & ERP",
     "categorySlug": "finance-erp",
     "heroImage": "",
-    "readTime": "10 min read"
+    "readTime": "10 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-governing-ai-spend-after-tokens-burn",
@@ -677,7 +751,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-if-cost-control-needs-a-committee",
@@ -686,7 +761,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-shift-left-governs-one-way-in",
@@ -695,7 +771,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-rightsizing-recommendation-rots-in-backlog",
@@ -704,7 +781,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-you-were-allowed-to-overspend",
@@ -713,7 +791,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "finops-budget-is-a-countdown-timer",
@@ -722,7 +801,8 @@ export const topicPosts = [
     "category": "FinOps",
     "categorySlug": "finops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "grc-collapsing-three-lines-of-defense",
@@ -731,7 +811,8 @@ export const topicPosts = [
     "category": "GRC",
     "categorySlug": "grc",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "grc-continuous-enforcement-not-monitoring",
@@ -740,7 +821,8 @@ export const topicPosts = [
     "category": "GRC",
     "categorySlug": "grc",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "grc-enforce-once-map-anywhere",
@@ -749,7 +831,8 @@ export const topicPosts = [
     "category": "GRC",
     "categorySlug": "grc",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "grc-the-evidence-collection-tax",
@@ -758,7 +841,8 @@ export const topicPosts = [
     "category": "GRC",
     "categorySlug": "grc",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "grc-risk-register-vs-live-readout",
@@ -767,7 +851,8 @@ export const topicPosts = [
     "category": "GRC",
     "categorySlug": "grc",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-more-connectivity-is-why-ai-stuck",
@@ -776,7 +861,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-cataloging-agent-sprawl",
@@ -785,7 +871,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-one-record-for-the-regulator",
@@ -794,7 +881,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-endpoint-as-agent-tool-is-not-governance",
@@ -803,7 +891,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-step-3-of-7-failed",
@@ -812,7 +901,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-moves-data-between-systems",
@@ -821,7 +911,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ipaas-integrations-run-as-service-account",
@@ -830,7 +921,8 @@ export const topicPosts = [
     "category": "iPaaS",
     "categorySlug": "ipaas",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-a-license-position-is-a-report",
@@ -839,7 +931,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-an-inventory-that-drifts-by-design",
@@ -848,7 +941,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-real-time-visibility-is-still-visibility",
@@ -857,7 +951,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-the-reclamation-backlog",
@@ -866,7 +961,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-the-workflow-closed-the-asset-didnt-change",
@@ -875,7 +971,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-asset-endpoint-you-budget-for-the-true-up",
@@ -884,7 +981,8 @@ export const topicPosts = [
     "category": "IT Asset & Endpoint",
     "categorySlug": "it-asset-endpoint",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-change-management-quietly-becomes-a-human",
@@ -893,7 +991,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-deflection-is-a-vanity-metric",
@@ -902,7 +1001,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-self-service-still-waiting-on-it",
@@ -911,7 +1011,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-the-agent-diagnosed-and-waited",
@@ -920,7 +1021,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-cmdb-is-a-photograph",
@@ -929,7 +1031,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "it-service-management-track-the-work-vs-do-the-work",
@@ -938,7 +1041,8 @@ export const topicPosts = [
     "category": "IT Service Management",
     "categorySlug": "it-service-management",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-genealogy-by-construction-not-by-join",
@@ -947,7 +1051,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "10 min read"
+    "readTime": "10 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-stop-measuring-oee-start-measuring-hold-to-release",
@@ -956,7 +1061,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-the-copilot-can-see-your-line",
@@ -965,7 +1071,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-the-hold-that-didnt-stop-anything",
@@ -974,7 +1081,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-the-seam-is-the-business-model",
@@ -983,7 +1091,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-work-order-closed-who-released-the-line",
@@ -992,7 +1101,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "manufacturing-you-composed-the-apps-the-seams-are-still-yours",
@@ -1001,7 +1111,8 @@ export const topicPosts = [
     "category": "Manufacturing",
     "categorySlug": "manufacturing",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-deployed-endpoint-is-not-production",
@@ -1010,7 +1121,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-drift-alerts-are-rear-view",
@@ -1019,7 +1131,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-govern-what-agent-can-reach",
@@ -1028,7 +1141,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-lineage-answers-which-model",
@@ -1037,7 +1151,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-the-endpoint-is-a-governance-cliff",
@@ -1046,7 +1161,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "mlops-you-ranked-model-governance",
@@ -1055,7 +1171,8 @@ export const topicPosts = [
     "category": "MLOps",
     "categorySlug": "mlops",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-audit-grade-by-construction",
@@ -1064,7 +1181,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-governance-you-cant-bypass",
@@ -1073,7 +1191,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-grounded-is-not-governed",
@@ -1082,7 +1201,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-dont-rebuild-your-enterprise-in-a-twin",
@@ -1091,7 +1211,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-the-accuracy-trap",
@@ -1100,7 +1221,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ontology-the-two-ontology-problem",
@@ -1109,7 +1231,8 @@ export const topicPosts = [
     "category": "Ontology",
     "categorySlug": "ontology",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-offboarding-is-a-security-incident",
@@ -1118,7 +1241,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-onboarding-is-a-checklist",
@@ -1127,7 +1251,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-payroll-runs-in-a-silo",
@@ -1136,7 +1261,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-skills-intelligence-doesnt-move-them",
@@ -1145,7 +1271,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-hr-agent-governs-inside-hr",
@@ -1154,7 +1281,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "people-hcm-unified-the-data-work-still-scattered",
@@ -1163,7 +1291,8 @@ export const topicPosts = [
     "category": "People & HCM",
     "categorySlug": "people-hcm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-a-roadmap-is-a-drawing",
@@ -1172,7 +1301,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-connecting-two-tools-is-still-two-tools",
@@ -1181,7 +1311,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-portfolio-value-is-a-spreadsheet",
@@ -1190,7 +1321,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-utilization-is-an-estimate",
@@ -1199,7 +1331,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-ai-summarizes-doesnt-do-the-work",
@@ -1208,7 +1341,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "ppm-green-because-someone-typed-green",
@@ -1217,7 +1351,8 @@ export const topicPosts = [
     "category": "PPM",
     "categorySlug": "ppm",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-context-is-not-a-control-system",
@@ -1226,7 +1361,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-the-agent-knew-the-policy",
@@ -1235,7 +1371,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-who-fires-the-agent",
@@ -1244,7 +1381,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-cant-mine-a-process-that-hasnt-run",
@@ -1253,7 +1391,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-keylog-your-employees",
@@ -1262,7 +1401,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-reasoning-over-last-quarters-process",
@@ -1271,7 +1411,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "6 min read"
+    "readTime": "6 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "process-mining-roi-still-in-the-sandbox",
@@ -1280,7 +1421,8 @@ export const topicPosts = [
     "category": "Process Mining",
     "categorySlug": "process-mining",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-spend-under-management-wrong-number",
@@ -1289,7 +1431,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-orchestration-routes-doesnt-run",
@@ -1298,7 +1441,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-supplier-risk-questionnaire-vs-readout",
@@ -1307,7 +1451,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-autonomous-agent-cant-buy",
@@ -1316,7 +1461,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-contract-signed-pos-dont-know",
@@ -1325,7 +1471,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "procurement-savings-identified-not-enforced",
@@ -1334,7 +1481,8 @@ export const topicPosts = [
     "category": "Procurement",
     "categorySlug": "procurement",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-agentic-soc-human-approves",
@@ -1343,7 +1491,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-detection-content-is-not-a-control",
@@ -1352,7 +1501,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-one-console-over-many-tools",
@@ -1361,7 +1511,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-who-authorized-the-playbook-action",
@@ -1370,7 +1521,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-mttr-to-alert-not-to-contained",
@@ -1379,7 +1531,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "siem-soar-soar-asks-300-other-tools",
@@ -1388,7 +1541,8 @@ export const topicPosts = [
     "category": "SIEM & SOAR",
     "categorySlug": "siem-soar",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-closing-the-loop-runs-in-your-plc",
@@ -1397,7 +1551,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-we-alerted-someone-is-not-an-osha-defense",
@@ -1406,7 +1561,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-a-confidence-score-is-not-a-control",
@@ -1415,7 +1571,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-agentic-vision-without-deterministic-rails",
@@ -1424,7 +1581,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-extraction-accuracy-invoice-posts-wrong",
@@ -1433,7 +1591,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "vision-ai-prove-what-it-saw-vs-what-it-did",
@@ -1442,7 +1601,8 @@ export const topicPosts = [
     "category": "Vision AI",
     "categorySlug": "vision-ai",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-ai-is-only-as-safe-as-its-execution-path",
@@ -1451,7 +1611,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-a-fee-change-is-a-money-movement",
@@ -1460,7 +1621,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "7 min read"
+    "readTime": "7 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-a-screening-feed-can-flag-only-a-gate-can-block",
@@ -1469,7 +1631,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-extracting-the-capital-call-is-not-paying-it",
@@ -1478,7 +1641,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-reporting-on-the-book-is-not-governing-it",
@@ -1487,7 +1651,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-what-the-examiner-actually-asks",
@@ -1496,7 +1661,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "8 min read"
+    "readTime": "8 min read",
+    "publishDate": "2026-11-17"
   },
   {
     "slug": "wealthos-integrations-read-path-risk-write-path",
@@ -1505,7 +1671,8 @@ export const topicPosts = [
     "category": "Wealthos",
     "categorySlug": "wealthos",
     "heroImage": "",
-    "readTime": "9 min read"
+    "readTime": "9 min read",
+    "publishDate": "2026-11-17"
   }
 ]
 

@@ -31,14 +31,14 @@ const STACK_ICONS = {
   'Multi-Agent Collaboration': UsersThree,
   'Predictive Intelligence': ChartLineUp,
   'Governed AI': ShieldCheck,
-  'Governance by Design': Gavel,
+  'Policy Enforcement': Gavel,
   'Enterprise Security': Lock,
   'Regulatory Compliance': SealCheck,
   'Complete Auditability': ClipboardText,
   'Resilient Architecture': Cloud,
   'Enterprise Scale': Stack,
-  'Enterprise Ownership': Key,
-  'Freedom from Vendor Lock-in': LockOpen,
+  'Applications & Data': Key,
+  'No Vendor Lock-in': LockOpen,
   'Protected Intellectual Property': Vault,
   'Unlimited Extensibility': PuzzlePiece,
   'Build on Your Terms': Wrench,
@@ -124,34 +124,36 @@ const StackCard = ({ s }) => {
   return (
     <section id={s.id} className="stackx">
       <div className="stackx__card">
-        {/* Centred head across the card; the grid of cards and the artwork
-            sit side by side beneath it. */}
+        {/* Centred head across the card, the six cards beneath it. */}
         <div className="stackx__lead">
           <p className="stackx__label">{s.label}</p>
           <h2 className="stackx__heading">{s.heading}</h2>
-          <p className="stackx__para">{s.paragraph}</p>
+          {s.paragraph && <p className="stackx__para">{s.paragraph}</p>}
         </div>
 
-        <div className="stackx__grid">
-          <ul className="stackx__cards">
-            {items.map((c, n) => {
-              const Ico = STACK_ICONS[c.title] || STACK_FALLBACK[n % STACK_FALLBACK.length]
-              return (
-                <li key={c.title} className="stackx__tile">
-                  <span className="stackx__tileIcon"><Ico weight="regular" aria-hidden="true" /></span>
-                  <h3 className="stackx__tileTitle">{c.title}</h3>
-                  <p className="stackx__tileText">{c.text}</p>
-                </li>
-              )
-            })}
-          </ul>
-
-          <div className="stackx__figure">
-            {s.infographic
-              ? <img className="stackx__img" src={s.infographic} alt={s.heading} loading="lazy" />
-              : <div className="stackx__ph" aria-hidden="true"><span>Image</span></div>}
-          </div>
-        </div>
+        <ul className="stackx__cards">
+          {items.map((c, n) => {
+            const Ico = STACK_ICONS[c.title] || STACK_FALLBACK[n % STACK_FALLBACK.length]
+            return (
+              <li key={c.title} className={`stackx__tile ${c.headline ? 'stackx__tile--headline' : ''}`}>
+                <span className="stackx__tileIcon"><Ico weight="regular" aria-hidden="true" /></span>
+                {c.headline ? (
+                  /* Benefit-led card: the benefit is the title, beside the
+                     icon; the capability's name supports it underneath. */
+                  <>
+                    <h3 className="stackx__tileHeadline">{c.headline}</h3>
+                    <p className="stackx__tileLabel">{c.title}</p>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="stackx__tileTitle">{c.title}</h3>
+                    <p className="stackx__tileText">{c.text}</p>
+                  </>
+                )}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )

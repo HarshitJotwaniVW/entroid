@@ -5,45 +5,95 @@
    subtle reveal animations. Design-forward but restrained.
    ========================================================================== */
 
+/* Self-hosted V2 typefaces (latin subset), served from public/fonts. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/inter-400-600-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/fonts/inter-tight-500-700-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-500-latin.woff2") format("woff2");
+}
+
+/* Tokens take the V2 theme's values (../entroid_v2/css/styles.css, section 01):
+   a single light theme, blue accent from the logo mark, hairline borders,
+   tighter corners. The V1 token names stay so every page picks the theme up. */
 :root {
-  --ink: #0a0f1f;
+  --ink: #0c1a2c;
   /* near-black headings */
-  --text: #232b3b;
+  --text: #46586e;
   /* body */
-  --muted: #5b6576;
+  --muted: #46586e;
   /* secondary */
-  --faint: #8a93a3;
+  --faint: #7d8ba0;
   /* tertiary / labels */
-  --line: #e7e9f0;
+  --line: #e5eaf1;
   /* borders */
   --bg: #ffffff;
-  --bg-alt: #f6f7f9;
+  --bg-alt: #f6f8fb;
   /* alternating section */
-  --bg-ink: #0a0f1f;
-  /* dark sections (hero, final) */
-  --brand: #3b40d6;
+  --bg-ink: #0c1a2c;
+  /* dark surfaces (footer) */
+  --brand: #1c56d8;
   /* single accent */
-  --brand-2: #6a5cf0;
-  --brand-soft: #eef0fe;
-  --radius: 16px;
-  --radius-sm: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 24px;
-  /* Cards take a deeper corner than panels do, plus their own hairline and a
-     soft, tightly-inset drop shadow. */
-  --radius-card: 18px;
-  --card-line: #f1f1f5;
-  --shadow-card: 0 12px 30px -16px rgba(35, 36, 38, .12);
-  --container: 1200px;
-  --shadow: 0 1px 2px rgba(10, 15, 31, .04), 0 8px 30px rgba(10, 15, 31, .05);
-  --shadow-lg: 0 20px 60px rgba(10, 15, 31, .12);
-  --font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  /* Type roles. Whatever you put first here must also be added to the Google
-     Fonts <link> in index.html, or it silently falls back.
-     The generic family goes last — it always matches, so anything listed after
-     it can never be reached. */
-  --font-heading: 'Anta', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-caption: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --brand-2: #7138f8;
+  --brand-soft: #edf3fe;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-card: 16px;
+  --card-line: #e5eaf1;
+  --shadow-card: 0 1px 2px rgba(12, 26, 44, 0.06);
+  --container: 1160px;
+  --shadow: 0 2px 6px rgba(12, 26, 44, 0.05), 0 12px 28px rgba(12, 26, 44, 0.06);
+  --shadow-lg: 0 4px 10px rgba(12, 26, 44, 0.05), 0 24px 48px rgba(12, 26, 44, 0.09);
+
+  /* V2 names, for styles written against the V2 theme. */
+  --soft: #f6f8fb;
+  --soft-2: #eef2f7;
+  --body: #46586e;
+  --dim: #7d8ba0;
+  --line-2: #d7dfea;
+  --blue: #1c56d8;
+  --blue-deep: #14419f;
+  --blue-tint: #edf3fe;
+  --blue-line: #d4e2fb;
+  --violet: #7138f8;
+  --blue-bright: #4a91fa;
+  --brand-grad: linear-gradient(90deg, var(--violet), var(--blue-bright));
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --shadow-sm: 0 1px 2px rgba(12, 26, 44, 0.06);
+  --shadow-md: 0 2px 6px rgba(12, 26, 44, 0.05), 0 12px 28px rgba(12, 26, 44, 0.06);
+
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Type roles. The generic family goes last — it always matches, so anything
+     listed after it can never be reached. */
+  --font-heading: "Inter Tight", "Inter", -apple-system, "Segoe UI", sans-serif;
+  --font-caption: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 * {
@@ -267,7 +317,7 @@ textarea {
    with it. The two have to move together: white labels on the light capsule
    would be unreadable, and so would ink labels on a dark one. */
 .nav--onDark .nav__menu {
-  background: rgba(10, 15, 31, .58);
+  background: rgba(12, 26, 44, .58);
   border: 1px solid rgba(255, 255, 255, .14);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -286,7 +336,7 @@ textarea {
 .nav--onDark .nav__cta.btn--primary {
   background: #fff;
   color: var(--ink);
-  box-shadow: 0 6px 20px rgba(10, 15, 31, .28);
+  box-shadow: 0 6px 20px rgba(12, 26, 44, .28);
 }
 
 .nav__brand:hover .nav__logo {
@@ -318,11 +368,11 @@ textarea {
   padding: 10px 18px;
   white-space: nowrap;
   background: var(--brand);
-  box-shadow: 0 6px 20px rgba(59, 64, 214, .28);
+  box-shadow: 0 6px 20px rgba(28, 86, 216, .28);
 }
 
 .nav__cta:hover {
-  box-shadow: 0 10px 26px rgba(59, 64, 214, .36);
+  box-shadow: 0 10px 26px rgba(28, 86, 216, .36);
 }
 
 /* Menu bar */
@@ -373,7 +423,7 @@ textarea {
 .nav__top.is-open {
   color: var(--ink);
   background: #fff;
-  box-shadow: 0 1px 2px rgba(10, 15, 31, .06), 0 4px 10px rgba(10, 15, 31, .05);
+  box-shadow: 0 1px 2px rgba(12, 26, 44, .06), 0 4px 10px rgba(12, 26, 44, .05);
 }
 
 .nav__caret {
@@ -583,7 +633,7 @@ a.navcard:hover .navcard__icon {
 }
 
 .mega__navItem.is-active {
-  background: #f0f0fb;
+  background: var(--blue-tint);
   color: var(--brand);
 }
 
@@ -666,7 +716,7 @@ a.navcard:hover .navcard__icon {
   align-content: start;
   padding: 16px 18px;
   border-radius: 14px;
-  background: #fcf6f4;
+  background: var(--soft);
 }
 
 .mega__asideCol {
@@ -773,19 +823,19 @@ a.navcard:hover .navcard__icon {
 .btn--primary {
   background: var(--ink);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(10, 15, 31, .16);
+  box-shadow: 0 6px 20px rgba(12, 26, 44, .16);
 }
 
 .btn--dark--bg {
   background: #fff;
   color: var(--brand);
-  box-shadow: 0 6px 20px rgba(59, 64, 214, .28);
+  box-shadow: 0 6px 20px rgba(28, 86, 216, .28);
 }
 
 .btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 26px rgba(10, 15, 31, .22);
-  background-color: #5f49e6;
+  box-shadow: 0 10px 26px rgba(12, 26, 44, .22);
+  background-color: #14419f;
 }
 
 /* The secondary CTA: white, not transparent. On the white pages that reads the
@@ -893,7 +943,6 @@ a.navcard:hover .navcard__icon {
   color: var(--muted);
   margin: 0 0 28px;
   font-weight: 400;
-  text-align: justify;
 }
 
 .hero__ctas {
@@ -946,6 +995,14 @@ a.navcard:hover .navcard__icon {
   /* border-radius: 16px; */
 }
 
+/* The platform illustration: a wide image, so it fills the column width and
+   keeps its own proportions. */
+.hero__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (max-width: 960px) {
 
   /* Keep the shared horizontal padding when the hero stacks, so the copy stays
@@ -988,7 +1045,7 @@ a.navcard:hover .navcard__icon {
    carries a bottom rule of its own: the shared divider sits on `.section`'s
    top edge, which would leave the tint's lower edge undivided. */
 .section--warm {
-  background: #fcf6f4;
+  background: var(--soft);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1042,7 +1099,7 @@ a.navcard:hover .navcard__icon {
   /* font-size: clamp(27px, 3.2vw, 40px); */
   font-size: clamp(32px, 3.2vw, 56px) !important;
   line-height: 1.1;
-  font-weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
   margin-bottom: 18px;
@@ -1389,7 +1446,7 @@ a.navcard:hover .navcard__icon {
   border: 1px solid var(--card-line);
   border-radius: var(--radius-card);
   background:
-    radial-gradient(120% 140% at 50% 0%, rgba(59, 64, 214, .06), transparent 62%),
+    radial-gradient(120% 140% at 50% 0%, rgba(28, 86, 216, .06), transparent 62%),
     #fff;
   box-shadow: var(--shadow-card);
 }
@@ -1401,7 +1458,7 @@ a.navcard:hover .navcard__icon {
   right: clamp(52px, 12vw, 150px);
   top: 84px;
   height: 2px;
-  background: linear-gradient(90deg, rgba(59, 64, 214, .18), var(--brand) 50%, rgba(59, 64, 214, .18));
+  background: linear-gradient(90deg, rgba(28, 86, 216, .18), var(--brand) 50%, rgba(28, 86, 216, .18));
 }
 
 .dpath__steps {
@@ -1574,7 +1631,7 @@ a.navcard:hover .navcard__icon {
   display: grid;
   place-items: center;
   font-size: 12px;
-  font-Weight: 500;
+  font-weight: 650;
   flex: none;
 }
 
@@ -1730,7 +1787,7 @@ a.navcard:hover .navcard__icon {
 .imf__kicker b {
   display: block;
   font-size: 13px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
 }
@@ -1901,13 +1958,13 @@ a.navcard:hover .navcard__icon {
   border-radius: 50%;
   margin: 0 auto 12px;
   background: radial-gradient(circle at 50% 38%, var(--brand-2), var(--brand));
-  box-shadow: 0 8px 22px rgba(59, 64, 214, .32);
+  box-shadow: 0 8px 22px rgba(28, 86, 216, .32);
 }
 
 .imf__coreTitle {
   display: block;
   font-size: clamp(19px, 1.9vw, 26px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
 }
@@ -1915,7 +1972,7 @@ a.navcard:hover .navcard__icon {
 .imf__coreSub {
   display: block;
   font-size: 11.5px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--brand);
@@ -2029,7 +2086,7 @@ a.navcard:hover .navcard__icon {
 .imf__outTitle {
   text-align: center;
   font-size: 13px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--brand);
@@ -2088,7 +2145,7 @@ a.navcard:hover .navcard__icon {
   text-align: center;
   margin-top: 22px;
   font-size: 13px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .16em;
   color: var(--brand);
@@ -2153,7 +2210,7 @@ a.navcard:hover .navcard__icon {
   font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: .14em;
-  font-Weight: 500;
+  font-weight: 650;
   padding: 4px 11px;
   border-radius: 999px;
 }
@@ -2196,7 +2253,7 @@ a.navcard:hover .navcard__icon {
   display: block;
   color: #fff;
   font-size: 16px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
 }
 
@@ -2237,7 +2294,7 @@ a.navcard:hover .navcard__icon {
   display: block;
   color: #fff;
   font-size: 17px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
   margin-bottom: 12px;
 }
@@ -2251,7 +2308,7 @@ a.navcard:hover .navcard__icon {
 .converge__chip {
   background: rgba(255, 255, 255, .12);
   border: 1px solid rgba(255, 255, 255, .22);
-  color: #eef1ff;
+  color: #edf3fe;
   border-radius: 8px;
   padding: 6px 10px;
   font-size: 11.5px;
@@ -2401,7 +2458,7 @@ a.navcard:hover .navcard__icon {
 
 .foundation__band--mid {
   background: var(--brand-soft);
-  border: 1px solid #d9dcfb;
+  border: 1px solid #d4e2fb;
 }
 
 .foundation__band--base {
@@ -2412,7 +2469,7 @@ a.navcard:hover .navcard__icon {
 .foundation__bandTitle {
   display: block;
   font-size: 14px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
   color: var(--ink);
 }
@@ -2443,7 +2500,7 @@ a.navcard:hover .navcard__icon {
   font-weight: 600;
   color: var(--brand);
   background: #fff;
-  border: 1px solid #d9dcfb;
+  border: 1px solid #d4e2fb;
   border-radius: 999px;
   padding: 3px 11px;
 }
@@ -2488,7 +2545,7 @@ a.navcard:hover .navcard__icon {
 .beam__poleLabel {
   display: block;
   font-size: 16px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
 }
 
@@ -2590,7 +2647,7 @@ a.navcard:hover .navcard__icon {
 .foundry__outTitle {
   display: block;
   font-size: 16px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
 }
 
@@ -2633,7 +2690,7 @@ a.navcard:hover .navcard__icon {
   display: block;
   color: #fff;
   font-size: 17px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
   margin-bottom: 14px;
 }
@@ -2817,7 +2874,7 @@ a.navcard:hover .navcard__icon {
 
 .kpi__value {
   font-size: clamp(34px, 3.6vw, 46px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.03em;
   line-height: 1;
   margin-bottom: 12px;
@@ -2874,7 +2931,7 @@ a.navcard:hover .navcard__icon {
 
 .layers__row--top {
   background: var(--brand-soft);
-  border-color: #d9dcfb;
+  border-color: #d4e2fb;
 }
 
 .layers__base {
@@ -2914,7 +2971,7 @@ a.navcard:hover .navcard__icon {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(60% 80% at 50% 0%, rgba(106, 92, 240, .26), transparent 60%);
+  background: radial-gradient(60% 80% at 50% 0%, rgba(28, 86, 216, .26), transparent 60%);
 }
 
 .final .container {
@@ -2932,7 +2989,7 @@ a.navcard:hover .navcard__icon {
 
 .final__heading {
   font-size: clamp(28px, 3.6vw, 46px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   margin-bottom: 18px;
 }
@@ -3005,7 +3062,7 @@ a.navcard:hover .navcard__icon {
   font-size: 15px;
   font-weight: 600;
   line-height: 1.25;
-  color: #eef1ff;
+  color: #edf3fe;
 }
 
 .journey__arrow {
@@ -3372,7 +3429,7 @@ a.navcard:hover .navcard__icon {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 15, 31, .58) 0%, rgba(10, 15, 31, .42) 45%, rgba(10, 15, 31, .55) 100%);
+  background: linear-gradient(180deg, rgba(12, 26, 44, .58) 0%, rgba(12, 26, 44, .42) 45%, rgba(12, 26, 44, .55) 100%);
   pointer-events: none;
 }
 
@@ -3382,23 +3439,23 @@ a.navcard:hover .navcard__icon {
 .phero--image .phero__eyebrow,
 .phero--image .phero__headline {
   color: #fff;
-  text-shadow: 0 2px 24px rgba(10, 15, 31, .45);
+  text-shadow: 0 2px 24px rgba(12, 26, 44, .45);
 }
 
 .phero--image .phero__intro {
   color: rgba(255, 255, 255, .88);
-  text-shadow: 0 2px 18px rgba(10, 15, 31, .45);
+  text-shadow: 0 2px 18px rgba(12, 26, 44, .45);
 }
 
 /* White at the top, settling into the brand at the foot. Kept faint: this is a
    ground for the copy, not a panel in its own right. */
 .phero--gradient {
   background-image: linear-gradient(180deg,
-      rgba(59, 64, 214, 0) 0%,
-      rgba(59, 64, 214, 0) 34%,
-      rgba(59, 64, 214, .022) 64%,
-      rgba(59, 64, 214, .05) 86%,
-      rgba(59, 64, 214, .075) 100%);
+      rgba(28, 86, 216, 0) 0%,
+      rgba(28, 86, 216, 0) 34%,
+      rgba(28, 86, 216, .022) 64%,
+      rgba(28, 86, 216, .05) 86%,
+      rgba(28, 86, 216, .075) 100%);
 }
 
 /* The infinity motif rises out of the foot of the gradient: a tiled band along
@@ -3480,7 +3537,7 @@ a.navcard:hover .navcard__icon {
 
 .pstrip__value {
   font-size: 18px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
   color: var(--brand);
   margin-bottom: 5px;
@@ -3524,7 +3581,7 @@ a.navcard:hover .navcard__icon {
 .phero__headline {
   font-size: clamp(32px, 4.6vw, 54px);
   line-height: 1.05;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.03em;
   color: var(--ink);
   margin-bottom: 20px;
@@ -3698,7 +3755,7 @@ a.navcard:hover .navcard__icon {
 
 .modsec__title {
   font-size: clamp(26px, 3vw, 38px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
   margin-bottom: 12px;
@@ -3742,7 +3799,7 @@ a.navcard:hover .navcard__icon {
 
 .modsec__panelLabel {
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--brand);
@@ -3814,7 +3871,7 @@ a.navcard:hover .navcard__icon {
 
 .mviz__arrow {
   color: var(--brand);
-  font-Weight: 500;
+  font-weight: 650;
 }
 
 .mviz--match {
@@ -3843,7 +3900,7 @@ a.navcard:hover .navcard__icon {
 
 .mviz__matchTo {
   color: var(--brand);
-  font-Weight: 500;
+  font-weight: 650;
   font-size: 18px;
 }
 
@@ -3901,7 +3958,7 @@ a.navcard:hover .navcard__icon {
 
 .mviz--stat .mviz__statVal {
   font-size: 30px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--brand);
   line-height: 1;
@@ -4085,7 +4142,7 @@ a.navcard:hover .navcard__icon {
 .mscreen__kpiV {
   display: block;
   font-size: 18px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
   color: var(--ink);
   line-height: 1.1;
@@ -4183,7 +4240,7 @@ a.navcard:hover .navcard__icon {
 }
 
 .wsec--alt {
-  background: #FCF6F4;
+  background: var(--soft);
 }
 
 /* Centred, matching the section heads on every other page type. */
@@ -4205,7 +4262,7 @@ a.navcard:hover .navcard__icon {
 
 .whead__heading {
   font-size: clamp(26px, 3vw, 40px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
   line-height: 1.12;
@@ -4288,7 +4345,7 @@ a.navcard:hover .navcard__icon {
 
 .wstat__v {
   font-size: clamp(24px, 2.4vw, 32px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--brand);
   line-height: 1;
@@ -4337,7 +4394,7 @@ a.navcard:hover .navcard__icon {
   font-size: 17px;
   letter-spacing: .02em;
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
-  box-shadow: 0 8px 20px rgba(59, 64, 214, .22);
+  box-shadow: 0 8px 20px rgba(28, 86, 216, .22);
 }
 
 .founder__body {
@@ -4350,6 +4407,14 @@ a.navcard:hover .navcard__icon {
   color: var(--ink);
   letter-spacing: -.01em;
 }
+.founder__name a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 4px;
+}
+.founder__name a:hover,
+.founder__name a:focus-visible { color: var(--brand); text-decoration-color: currentColor; }
 
 .founder__role {
   font-size: 12.5px;
@@ -4416,7 +4481,7 @@ a.navcard:hover .navcard__icon {
 
 .soon__title {
   font-size: clamp(30px, 4vw, 46px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
   line-height: 1.1;
@@ -4460,7 +4525,7 @@ a.navcard:hover .navcard__icon {
 
 .faqgroup__title {
   font-size: 13px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .12em;
   color: var(--brand);
@@ -4578,7 +4643,7 @@ a.navcard:hover .navcard__icon {
 
 .pcta__heading {
   font-size: clamp(26px, 3.2vw, 40px);
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: #fff;
   margin-bottom: 16px;
@@ -4629,7 +4694,7 @@ a.navcard:hover .navcard__icon {
 
 .uc__theme {
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .12em;
   color: var(--brand);
@@ -4638,7 +4703,7 @@ a.navcard:hover .navcard__icon {
 
 .uc__title {
   font-size: 20px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.02em;
   color: var(--ink);
   margin-bottom: 10px;
@@ -4679,7 +4744,7 @@ a.navcard:hover .navcard__icon {
 
 .uc__arrow {
   color: var(--brand);
-  font-Weight: 500;
+  font-weight: 650;
   font-size: 12px;
 }
 
@@ -4774,7 +4839,7 @@ a.navcard:hover .navcard__icon {
 
 .ucd__stepNum {
   font-size: 13px;
-  font-Weight: 500;
+  font-weight: 650;
   color: var(--brand);
   padding-top: 2px;
 }
@@ -4803,7 +4868,7 @@ a.navcard:hover .navcard__icon {
 .ucd__outcomeLabel {
   display: block;
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--brand);
@@ -4841,7 +4906,7 @@ a.navcard:hover .navcard__icon {
 
 .ucd__sideLabel {
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--muted);
@@ -4895,7 +4960,7 @@ a.navcard:hover .navcard__icon {
 
 .ucd__chip--link:hover {
   background: var(--brand-soft);
-  border-color: #d9dcfb;
+  border-color: #d4e2fb;
   color: var(--brand);
   transform: translateY(-1px);
 }
@@ -4982,7 +5047,7 @@ a.navcard:hover .navcard__icon {
 .journeyx__step.is-final {
   background: var(--brand);
   border-color: var(--brand);
-  box-shadow: 0 18px 40px -22px rgba(59, 64, 214, .7);
+  box-shadow: 0 18px 40px -22px rgba(28, 86, 216, .7);
 }
 
 .journeyx__step.is-final .journeyx__icon {
@@ -5236,7 +5301,7 @@ a.navcard:hover .navcard__icon {
   inset: 0;
   z-index: 0;
   border-radius: inherit;
-  background-image: radial-gradient(rgba(59, 64, 214, .06) 1.1px, transparent 1.1px);
+  background-image: radial-gradient(rgba(28, 86, 216, .06) 1.1px, transparent 1.1px);
   background-size: 24px 24px;
   -webkit-mask-image: radial-gradient(140% 108% at 50% -8%, #000 40%, transparent 100%);
   mask-image: radial-gradient(140% 108% at 50% -8%, #000 40%, transparent 100%);
@@ -5324,7 +5389,7 @@ a.navcard:hover .navcard__icon {
   position: absolute;
   inset: -20px;
   border-radius: 30px;
-  background: radial-gradient(circle at 50% 50%, rgba(59, 64, 214, .22), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(28, 86, 216, .22), transparent 70%);
   z-index: -1;
 }
 
@@ -5373,7 +5438,7 @@ a.navcard:hover .navcard__icon {
 .beam__loop {
   border-left: none;
   background: var(--brand-soft);
-  border: 1px solid #d9dcfb;
+  border: 1px solid #d4e2fb;
   border-radius: 14px;
   padding: 16px 12px;
 }
@@ -5400,7 +5465,7 @@ a.navcard:hover .navcard__icon {
 
 /* Element-level depth across the visuals. */
 .foundation__tile {
-  background: linear-gradient(180deg, #fff, #f7f8fe);
+  background: linear-gradient(180deg, #fff, var(--soft));
 }
 
 .eco__node {
@@ -5466,8 +5531,8 @@ a.navcard:hover .navcard__icon {
 .beam__pole--top,
 .eco__hub {
   background: var(--brand-soft);
-  border: 1px solid #d9dcfb;
-  box-shadow: 0 16px 38px -26px rgba(59, 64, 214, .40);
+  border: 1px solid #d4e2fb;
+  box-shadow: 0 16px 38px -26px rgba(28, 86, 216, .40);
 }
 
 .converge__engineTitle,
@@ -5492,7 +5557,7 @@ a.navcard:hover .navcard__icon {
 }
 
 .converge__engine::after {
-  background: radial-gradient(circle at 50% 50%, rgba(59, 64, 214, .14), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(28, 86, 216, .14), transparent 70%);
 }
 
 .converge__out,
@@ -5770,7 +5835,7 @@ a.navcard:hover .navcard__icon {
   display: block;
   text-align: center;
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--muted);
@@ -5817,7 +5882,7 @@ a.navcard:hover .navcard__icon {
 
 .pig__sideTitle {
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: .09em;
   text-transform: uppercase;
   color: var(--brand);
@@ -5842,11 +5907,11 @@ a.navcard:hover .navcard__icon {
 }
 
 .pig__slab {
-  border: 1px solid #d9dcfb;
+  border: 1px solid #d4e2fb;
   border-radius: 18px;
-  background: linear-gradient(180deg, #f3f4ff, #eceefe);
+  background: var(--blue-tint);
   padding: 14px;
-  box-shadow: 0 34px 80px -46px rgba(59, 64, 214, .55);
+  box-shadow: 0 34px 80px -46px rgba(28, 86, 216, .55);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -5872,7 +5937,7 @@ a.navcard:hover .navcard__icon {
 
 .pig__slabName {
   font-size: 16.5px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: -.01em;
 }
 
@@ -5900,7 +5965,7 @@ a.navcard:hover .navcard__icon {
 .pig__panelLabel {
   text-align: center;
   font-size: 11px;
-  font-Weight: 500;
+  font-weight: 650;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--brand);
@@ -5935,7 +6000,7 @@ a.navcard:hover .navcard__icon {
 
 .pig__knowTitle {
   font-size: 14.5px;
-  font-Weight: 500;
+  font-weight: 650;
   color: var(--brand);
   letter-spacing: .01em;
 }
@@ -6038,16 +6103,14 @@ a.navcard:hover .navcard__icon {
 }
 
 /* ============================================================================
-   Justified body copy, site-wide.
+   Body copy, site-wide.
 
-   Most descriptive paragraphs (as opposed to headings, labels, eyebrows,
-   buttons and chips, which stay as they are) are justified. Automatic
-   hyphenation is on so the narrower columns — KPI text, sidebar definitions —
-   don't open up rivers of whitespace.
+   Descriptive paragraphs (as opposed to headings, labels, eyebrows, buttons
+   and chips, which stay as they are) read ragged-right with balanced last
+   lines, as in the V2 theme. They were justified and hyphenated before.
 
-   Two deliberate exceptions, set below this block: a section's own subtext is
-   centred under its heading, and card text reads ragged-right. Both sit in
-   columns narrow enough that justifying them only opened up rivers.
+   One exception, set below this block: a section's own subtext is centred
+   under its heading.
    ========================================================================== */
 .hero__description,
 .kpi__text,
@@ -6067,13 +6130,7 @@ a.navcard:hover .navcard__icon {
 /* Note: the footer tagline is deliberately NOT justified — it's a two-line
    fragment in a narrow column, where justification only opens up rivers. */
 .blogcard__excerpt {
-  text-align: justify;
-  text-justify: inter-word;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-  /* Only break genuinely long words, and never leave a stub on either
-     side — keeps the narrow columns tidy without littering hyphens. */
-  hyphenate-limit-chars: 10 5 4;
+  text-wrap: pretty;
 }
 
 /* A section's subtext is centred beneath its heading — the hero is not a
@@ -6094,19 +6151,12 @@ a.navcard:hover .navcard__icon {
   text-align: center;
 }
 
-/* Centred blocks: justify the body of the paragraph but keep the final line
-   centred, so the block still reads as a centred composition. */
+/* Centred blocks read centred, with balanced lines. */
 .final__para,
 .pcta__text,
 .soon__text {
-  text-align: justify;
-  text-justify: inter-word;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-  /* Only break genuinely long words, and never leave a stub on either
-     side — keeps the narrow columns tidy without littering hyphens. */
-  hyphenate-limit-chars: 10 5 4;
-  text-align-last: center;
+  text-align: center;
+  text-wrap: balance;
 }
 /* ── Demo request (/contact) ─────────────────────────────────── */
 /* Two panels on one card, no page hero: the dark side says what a demo is,
@@ -6297,7 +6347,7 @@ a.navcard:hover .navcard__icon {
 .dreq__input:focus-visible {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(59, 64, 214, .12);
+  box-shadow: 0 0 0 3px rgba(28, 86, 216, .12);
 }
 
 .dreq__input.is-invalid {
@@ -6392,7 +6442,7 @@ a.navcard:hover .navcard__icon {
 .dreq__choice.is-on {
   color: var(--brand);
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(59, 64, 214, .1);
+  box-shadow: 0 0 0 3px rgba(28, 86, 216, .1);
 }
 
 .dreq__choice:focus-within {
@@ -6437,7 +6487,7 @@ a.navcard:hover .navcard__icon {
 .phero--image .phero__ctas .btn--primary {
   background: #fff;
   color: var(--ink);
-  box-shadow: 0 10px 30px rgba(10, 15, 31, .3);
+  box-shadow: 0 10px 30px rgba(12, 26, 44, .3);
 }
 
 .phero--image .phero__ctas .btn--primary:hover {
@@ -6524,7 +6574,7 @@ a.navcard:hover .navcard__icon {
    the picture. Over a photograph the cards take the ink ground instead, lifted
    just enough off the image behind them to hold their shape. */
 .phero--image .pstrip__item {
-  background: rgba(10, 15, 31, .62);
+  background: rgba(12, 26, 44, .62);
   border-color: rgba(255, 255, 255, .16);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -6575,6 +6625,40 @@ a.navcard:hover .navcard__icon {
 /* So a linked term lands below the sticky nav rather than under it. */
 .gloss__entry { scroll-margin-top: 96px; }
 
+/* ── Product pages: key glossary terms ───────────────────────── */
+.pterms__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 0 40px;
+  margin: 0;
+}
+.pterms__item {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.pterms__item dt { margin: 0 0 6px; }
+.pterms__term {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline dotted;
+  text-decoration-color: var(--brand);
+  text-underline-offset: 3px;
+}
+.pterms__term:hover,
+.pterms__term:focus-visible { color: var(--brand); text-decoration-style: solid; }
+.pterms__def {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.pterms__all {
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.pterms__all a { color: var(--brand); }
+
 /* ── Hero proof cards (home) ─────────────────────────────────── */
 /* The three facts, inside the hero. Their own full-width row under the two
    columns; the `pstrip` cards themselves are shared with the product heroes,
@@ -6613,7 +6697,7 @@ a.navcard:hover .navcard__icon {
 /* The divider is drawn a shade darker than `--card-line`, which is near-white
    and disappears once it is a seam inside the plate rather than its edge. */
 .hero__proofCell + .hero__proofCell {
-  border-left: 1px solid rgba(10, 15, 31, .09);
+  border-left: 1px solid rgba(12, 26, 44, .09);
 }
 
 @media (max-width: 760px) {
@@ -6621,7 +6705,7 @@ a.navcard:hover .navcard__icon {
   /* Stacked, the seam runs the other way. */
   .hero__proofCell + .hero__proofCell {
     border-left: 0;
-    border-top: 1px solid rgba(10, 15, 31, .09);
+    border-top: 1px solid rgba(12, 26, 44, .09);
   }
 }
 

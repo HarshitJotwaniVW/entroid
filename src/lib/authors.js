@@ -8,19 +8,17 @@
    ========================================================================== */
 
 import { FEATURED } from './blogIndex'
+import { LINKEDIN } from './people'
 
-export const AUTHORS = [
-  { name: 'Prateek Chouhan', url: 'https://www.linkedin.com/in/prateek-chouhan25/' },
-  { name: 'Pintu Sahu', url: 'https://www.linkedin.com/in/sahupintu/' },
-  { name: 'Rohit Saraf', url: 'https://www.linkedin.com/in/rohiit-saraf/' },
-  { name: 'Vipul Choure', url: 'https://www.linkedin.com/in/vipulchoure/' },
-  { name: 'Amber Jain', url: 'https://www.linkedin.com/in/amber-jain-cofounder/' },
-  { name: 'Shubham Rathore', url: 'https://www.linkedin.com/in/shubham-rathore-aibuilder/' },
-  { name: 'Atul Singh Rajpoot', url: 'https://www.linkedin.com/in/atulsinghrajpoot/' },
-  { name: 'Mohak Soni', url: 'https://www.linkedin.com/in/mohaksoni/' },
-  { name: 'Mohammed Azim', url: 'https://www.linkedin.com/in/mohammed-azim-622ba28b/' },
-  { name: 'Rohit Gupta', url: 'https://www.linkedin.com/in/rohit-gupta-92803384/' },
+/* The ORDER of this list decides which post gets which author (see the hash
+   below). Don't reorder or insert names in the middle: add new authors at the
+   end, or published posts will change author. Profile URLs live in people.js. */
+const AUTHOR_NAMES = [
+  'Prateek Chouhan', 'Pintu Sahu', 'Rohit Saraf', 'Vipul Choure', 'Amber Jain',
+  'Shubham Rathore', 'Atul Singh Rajpoot', 'Mohak Soni', 'Mohammed Azim', 'Rohit Gupta',
 ]
+
+export const AUTHORS = AUTHOR_NAMES.map((name) => ({ name, url: LINKEDIN[name] }))
 
 /* The featured posts — the ones surfaced at the top of the listing — carry the
    senior set, in featured order. Everything else is spread across the full

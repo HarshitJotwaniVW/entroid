@@ -1,14 +1,12 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   brand,
-  finalSection,
   footer,
   hero,
-  heroProof,
   menu,
   navCta,
   sections,
@@ -16,8 +14,8 @@ import {
 import { PlatformOrbit } from './PlatformOrbit'
 import { StackCards, TabsShowcase } from './Showcase'
 import {
-  ArrowRight, Brain, Buildings, CheckCircle, Code, Compass, FacebookLogo, Gauge,
-  Graph, InstagramLogo, Key, LinkedinLogo, PencilRuler, RocketLaunch, ShieldCheck,
+  Brain, Buildings, CheckCircle, Code, Compass, FacebookLogo, Gauge,
+  Graph, InstagramLogo, Key, LinkedinLogo, PencilRuler, Robot, RocketLaunch, ShieldCheck,
   SquaresFour, Stack, XLogo, YoutubeLogo,
 } from '@phosphor-icons/react'
 import { ChainFlow } from './ChainFlow'
@@ -28,7 +26,9 @@ import { industryJourneys } from '../industryJourneys'
 import { moduleScreens } from '../screens'
 import { whyUs } from '../whyus'
 import { faq } from '../faq'
+import { LINKEDIN } from '../lib/people'
 import { Reveal } from './Reveal'
+import { V2, V2Sprite, V2Hero, V2Problems, V2Solution, V2Impact, V2Deployment, V2Modules } from './HomeV2'
 import { NavIcon } from './navIcons'
 
 /* ============================================================================
@@ -222,7 +222,7 @@ const NAV_REVEAL_AT = 120
 
 /* Height of the nav bar, matching --nav-h in styles.css. Used to decide when a
    hero has finished passing behind it. */
-const NAV_H = 76
+const NAV_H = 68
 
 export const Nav = () => {
   const [open, setOpen] = useState(null)
@@ -354,66 +354,51 @@ const CtaArrow = () => (
   </span>
 )
 
-/* The hero's right-hand visual. Until `hero.image` is set in content.js this
-   holds the space at the final aspect ratio, so dropping the artwork in later
-   changes no layout. */
-const HeroMedia = () => (
-  hero.image
-    ? <img className="heromedia__img" src={hero.image} alt={hero.imageAlt || ''} />
-    : (
-      <div className="heromedia" aria-hidden="true">
-        <span className="heromedia__label">Image</span>
-      </div>
-    )
-)
+/* One glyph per platform point, keyed by its text so the copy in content.js
+   stays free of presentation. */
+const HERO_POINT_ICONS = {
+  Unified: Graph,
+  Autonomous: Robot,
+  'Governed and owned by you': ShieldCheck,
+}
 
+/* The platform section: what the platform is, beside the stack it is built
+   from. The page's second section, directly under the V2 hero. */
 const Hero = () => (
-  <header className="hero">
+  <section id="platform" className="hero" aria-labelledby="platform-h">
     <div className="container hero__inner">
       <div className="hero__lead">
-        <Reveal as="p" className="hero__eyebrow" variant="up" eager>{hero.eyebrow}</Reveal>
-        <Reveal as="h1" className="hero__headline" variant="up" delay={140} eager>
-          {/* Broken where the copy says to break, rather than wherever the
-              column happens to run out. */}
-          {(hero.headlineLines || [hero.headline]).map((line, i, all) => (
-            <Fragment key={line}>{line}{i < all.length - 1 && <br />}</Fragment>
-          ))}
-        </Reveal>
-        <Reveal as="p" className="hero__description" variant="up" delay={270} eager>{hero.description}</Reveal>
-        <Reveal className="hero__ctas" variant="up" delay={400} eager>
-          <Link href="/contact" className="btn btn--primary btn--arrow">{hero.primaryCta}<CtaArrow /></Link>
-        </Reveal>
+        <Reveal as="h2" className="hero__headline" id="platform-h" variant="up">{hero.headline}</Reveal>
+        <Reveal as="p" className="hero__description" variant="up" delay={120}>{hero.description}</Reveal>
 
         {/* A real <ul>: three parallel claims are a list, and a screen reader
-            should announce them as one. The tick is decorative — the text says
+            should announce them as one. The icon is decorative — the text says
             everything, so it carries no label of its own. */}
-        <Reveal as="ul" className="heropoints" variant="up" delay={480} eager>
-          {hero.points.map((t) => (
-            <li key={t} className="heropoints__item">
-              <CheckCircle className="heropoints__tick" weight="fill" aria-hidden="true" />
-              {t}
-            </li>
-          ))}
+        <Reveal as="ul" className="heropoints" variant="up" delay={220}>
+          {hero.points.map((t) => {
+            const Glyph = HERO_POINT_ICONS[t] || CheckCircle
+            return (
+              <li key={t} className="heropoints__item">
+                <span className="heropoints__icon"><Glyph weight="bold" aria-hidden="true" /></span>
+                <span className="heropoints__title">{t}</span>
+              </li>
+            )
+          })}
         </Reveal>
-      </div>
-      <Reveal className="hero__figure" variant="zoom" delay={240}><HeroMedia /></Reveal>
-    </div>
 
-    {/* The three proof points, inside the hero. One plate divided into three
-        rather than three plates: at this width the gaps between separate cards
-        read as more of a break than the facts warrant. Full width under both
-        columns — squeezed into the text column they would wrap one per line. */}
-    <div className="container hero__proof">
-      <Reveal as="div" variant="fade" className="hero__proofCard stagger" delay={520}>
-        {heroProof.map((p) => (
-          <div key={p.title} className="hero__proofCell">
-            <p className="pstrip__value">{p.title}</p>
-            <p className="pstrip__label">{p.text}</p>
-          </div>
-        ))}
+      </div>
+      <Reveal className="hero__figure" variant="fade" delay={160}>
+        <img
+          className="hero__img"
+          src={hero.image}
+          alt={hero.imageAlt}
+          width="1703"
+          height="925"
+          decoding="async"
+        />
       </Reveal>
     </div>
-  </header>
+  </section>
 )
 
 /* ── Visuals ────────────────────────────────────────────────── */
@@ -1012,60 +997,6 @@ const Section = ({ s, index }) => {
   )
 }
 
-/* ── Final journey ──────────────────────────────────────────── */
-/* Fixed steps per row, so the arrows can be placed between boxes and never
-   left dangling at a wrap — which is exactly what the old free-flowing
-   flex-wrap version did. */
-const JOURNEY_PER_ROW = 3
-
-const chunk = (list, size) => list.reduce((out, item, i) => {
-  if (i % size === 0) out.push([])
-  out[out.length - 1].push(item)
-  return out
-}, [])
-
-
-const Final = () => (
-  <section className="section final">
-    <div className="container">
-      <Reveal as="p" className="final__label">{finalSection.label}</Reveal>
-      <Reveal as="h2" className="final__heading" delay={120}>{finalSection.heading}</Reveal>
-      <Reveal as="p" className="final__para" delay={210}>{finalSection.paragraph}</Reveal>
-      {/* One illustration, or the drawn boxes if the artwork is removed. */}
-      {finalSection.illustration ? (
-        <Reveal variant="fade" className="journeyFig">
-          <img src={finalSection.illustration} alt={finalSection.journey.join(' → ')} loading="lazy" />
-        </Reveal>
-      ) : (
-        <Reveal as="div" variant="fade" className="journey stagger">
-          {chunk(finalSection.journey, JOURNEY_PER_ROW).map((row, r) => (
-            <div className="journey__row" key={row[0]}>
-              {row.map((j, i) => (
-                <Fragment key={j}>
-                  <span className="journey__step">
-                    <span className="journey__num">{String(r * JOURNEY_PER_ROW + i + 1).padStart(2, '0')}</span>
-                    <span className="journey__label">{j}</span>
-                  </span>
-                  {/* Arrows sit between boxes only, never trailing a row. */}
-                  {i < row.length - 1 && (
-                    <span className="journey__arrow" aria-hidden="true"><ArrowRight weight="bold" /></span>
-                  )}
-                </Fragment>
-              ))}
-            </div>
-          ))}
-        </Reveal>
-      )}
-      <Reveal>
-        <p className="final__cta">{finalSection.cta}</p>
-        <div className="final__actions">
-          <Link href="/contact" className="btn btn--onDark btn--arrow">{finalSection.ctaButton}<CtaArrow /></Link>
-        </div>
-      </Reveal>
-    </div>
-  </section>
-)
-
 /* ── Footer ─────────────────────────────────────────────────── */
 /* Keyed by the `name` in footer.social, so the copy stays free of presentation.
    `Compass` is the fallback, so a new network renders sensibly before it is
@@ -1083,7 +1014,7 @@ export const Footer = () => (
     <div className="container">
       <Reveal as="div" variant="fade" className="footer__top stagger">
         <div className="footer__brandCol">
-          <div className="footer__brand"><img className="footer__logo" src="/logos/entroid-logo-white.svg" alt={brand.name} /></div>
+          <div className="footer__brand"><img className="footer__logo" src="/logos/entroid-logo.svg" alt={brand.name} /></div>
           <p className="footer__tag">{footer.tagline}</p>
 
           <address className="footer__contact">
@@ -1268,7 +1199,7 @@ const journeyIcon = (i, total) =>
    `heroImage` (a path under /public — the industry pages) runs that photograph
    raw behind the copy; every other page, product pages included, takes the
    brand gradient with the infinity pattern rising out of the foot of it. */
-const SolutionPage = ({ p, journey, relatedItems }) => (
+const SolutionPage = ({ p, journey, relatedItems, terms }) => (
     <div className="solpage">
       <header
         className={[
@@ -1413,6 +1344,30 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
         </section>
       )}
 
+      {/* Glossary terms this page uses, each linked to its definition. The
+          list is worked out on the server (lib/glossaryLinks.js). */}
+      {terms && terms.length > 0 && (
+        <section className="section pterms">
+          <div className="container">
+            <Reveal as="div" className="section__head section__head--split">
+              <p className="section__label">Glossary</p>
+              <div className="section__headRow">
+                <h2 className="section__heading">Key terms on this page</h2>
+              </div>
+            </Reveal>
+            <Reveal as="dl" variant="fade" className="pterms__list">
+              {terms.map((t) => (
+                <div key={t.term} className="pterms__item">
+                  <dt><Link href={t.href} className="pterms__term">{t.term}</Link></dt>
+                  <dd className="pterms__def">{t.def}</dd>
+                </div>
+              ))}
+            </Reveal>
+            <p className="pterms__all"><Link href="/resources/glossary">See the full glossary →</Link></p>
+          </div>
+        </section>
+      )}
+
       {p.closing && (
         <section className="section pcta">
           <div className="container">
@@ -1420,7 +1375,7 @@ const SolutionPage = ({ p, journey, relatedItems }) => (
               <h2 className="pcta__heading">{p.closing.heading}</h2>
               <p className="pcta__text">{p.closing.text}</p>
               <div className="pcta__actions">
-                <Link href="/contact" className="btn btn--onDark btn--arrow">{p.closing.cta}<CtaArrow /></Link>
+                <Link href="/contact" className="btn btn--primary btn--arrow">{p.closing.cta}<CtaArrow /></Link>
               </div>
             </Reveal>
           </div>
@@ -1440,9 +1395,9 @@ const InProgress = ({ slug, kind }) => (
   </section>
 )
 
-export const ProductPage = ({ slug }) => {
+export const ProductPage = ({ slug, terms }) => {
   const p = products[slug]
-  return p ? <SolutionPage p={p} /> : <InProgress slug={slug} kind="Product" />
+  return p ? <SolutionPage p={p} terms={terms} /> : <InProgress slug={slug} kind="Product" />
 }
 
 // Wind and Solar are covered by the Renewable page, not peer industries.
@@ -1460,28 +1415,27 @@ export const IndustryPage = ({ slug }) => {
 }
 
 /* ── Home page ──────────────────────────────────────────────── */
-/* Consecutive `layout: 'stack'` sections are handed to one <StackCards> so they
-   can stack against each other; everything else renders as a normal section. */
-const groupSections = (list) => list.reduce((out, s, i) => {
-  const prev = out[out.length - 1]
-  if (s.layout === 'stack') {
-    if (prev && prev.type === 'stack') prev.items.push(s)
-    else out.push({ type: 'stack', items: [s] })
-  } else {
-    out.push({ type: 'section', s, i })
-  }
-  return out
-}, [])
+/* The merged homepage: V2's sections in the V2 theme, with V1's platform
+   section second and its Enterprise AI, Governance and Ownership cards after
+   Impact. */
+const HOME_STACK = ['ai', 'governance', 'ownership']
+const homeStack = HOME_STACK.map((id) => sections.find((s) => s.id === id)).filter(Boolean)
 
 export const Home = () => (
   <div className="home">
+    <V2Sprite />
+    <V2><V2Hero /></V2>
     <Hero />
-    {groupSections(sections).map((b, k) => (
-      b.type === 'stack'
-        ? <StackCards key={`stack-${b.items[0].id}`} group={b.items} />
-        : <Section key={b.s.id} s={b.s} index={b.i} />
-    ))}
-    <Final />
+    <V2>
+      <V2Problems />
+      <V2Solution />
+      <V2Impact />
+    </V2>
+    <StackCards group={homeStack} />
+    <V2>
+      <V2Deployment />
+      <V2Modules />
+    </V2>
   </div>
 )
 
@@ -1494,7 +1448,7 @@ export const Home = () => (
    would jump rather than glide; its own `scrollTo` is what animates. The
    native calls stay as the fallback for before hydration and for anyone whose
    reduced-motion setting has turned Lenis off. */
-const NAV_OFFSET = 84
+const NAV_OFFSET = 76
 
 export const ScrollManager = () => {
   const pathname = usePathname()
@@ -1658,7 +1612,14 @@ export const WhyUs = () => (
             <div key={f.name} className="founder">
               <div className="founder__avatar">{f.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</div>
               <div className="founder__body">
-                <div className="founder__name">{f.name}</div>
+                {/* Linked to the same LinkedIn profile the Organization's
+                    `founder` structured data names, so the markup describes
+                    something visitors can see and follow. */}
+                <div className="founder__name">
+                  {LINKEDIN[f.name]
+                    ? <a href={LINKEDIN[f.name]} target="_blank" rel="noopener noreferrer">{f.name}</a>
+                    : f.name}
+                </div>
                 <div className="founder__role">{f.role}</div>
                 <p className="founder__bio">{f.bio}</p>
               </div>

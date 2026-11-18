@@ -53,11 +53,11 @@ export const allPosts = [
 /* Everything a post page needs above its body — the same shape the old
    router-side lookup produced, for either kind of post.
 
-   `publishDate` and `articleSection` are carried through for the primary
-   posts, which are the only ones that have them: the post page renders the
-   date in the byline and BlogPosting reads both. Topic posts have neither, and
-   the fields are left off rather than filled in — a date invented at build
-   time changes on every deploy and reads as manufactured freshness. */
+   `publishDate` is passed through for every post. The post page shows it in
+   the byline and BlogPosting reads it. Topic posts have their date written
+   into the data file. It is never generated at build time, because a build
+   date changes on every deploy and reads as manufactured freshness.
+   `articleSection` exists on the primary posts only. */
 export const postMeta = (slug) => {
   const primary = blogPosts.find((p) => p.slug === slug)
   if (primary) {
@@ -78,6 +78,7 @@ export const postMeta = (slug) => {
       description: topic.subtitle,
       category: topic.category, heroImage: topicImg[topic.slug] || DEFAULT_HERO,
       heroImageAlt: topic.title, readTime: topic.readTime,
+      publishDate: topic.publishDate,
     }
   }
   return null

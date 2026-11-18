@@ -132,10 +132,9 @@ export const Contact = () => {
       <div className="dreq__panel">
 
         <aside className="dreq__aside">
-          {/* The reversed lockup, not the mark plus live text — the panel is
-              ink, and the supplied lockup sets its wordmark in near-black. */}
+          {/* The ink lockup: the panel is the V2 soft surface. */}
           <div className="dreq__brand">
-            <img src="/logos/entroid-logo-white.svg" alt="Entroid" />
+            <img src="/logos/entroid-logo.svg" alt="Entroid" />
           </div>
 
           <h1 className="dreq__asideTitle">See the platform in action.</h1>

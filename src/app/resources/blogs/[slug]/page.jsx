@@ -7,6 +7,7 @@ import { clampDescription, pageMeta } from '../../../../lib/seo'
 import { blogImageSize, ogSafe } from '../../../../data/blogImageSizes'
 import { authorFor } from '../../../../lib/authors'
 import { blogPosting, breadcrumbList, graph, webPage } from '../../../../lib/schema'
+import { linkGlossaryTerms } from '../../../../lib/glossaryLinks'
 
 /* All 180 posts are known at build time, so each one is prerendered with its
    body already inlined — the article HTML never ships as JS. */
@@ -67,7 +68,8 @@ export default async function BlogPostPage({ params }) {
     }),
   )
 
-  const body = await postBody(slug)
+  /* The first use of each glossary term in the body links to its definition. */
+  const body = linkGlossaryTerms(await postBody(slug))
   return (
     <>
       <JsonLd data={jsonLd} />

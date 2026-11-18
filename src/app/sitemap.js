@@ -6,8 +6,8 @@ import { allRoutes } from '../lib/routes'
    225 URLs, well inside the 50,000-URL limit, so one flat sitemap rather than
    a sitemap index.
 
-   `lastModified` is set only where a real date exists (the 13 posts that carry
-   one). A build timestamp on every entry would tell crawlers the entire site
+   `lastModified` is set only for blog posts, from the date in each post's data
+   entry. A build timestamp on every entry would tell crawlers the entire site
    changed on every deploy, which is a freshness signal they learn to discount.
 
    Preview deployments emit nothing: their content is production's, and a
