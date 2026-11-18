@@ -392,19 +392,28 @@ export const footer = {
       { label: 'How it\u2019s built', to: '/#platform' },
       { label: 'Enterprise Deployment', to: '/#deployment' },
       { label: 'Pre-built modules', to: '/#modules' },
-      // No homepage section for this yet, so it resolves to the product
-      // placeholder the same way Functions and Engineering do.
+      // No homepage section or page for this yet, so it resolves to the
+      // in-progress product placeholder (noindexed, kept out of the sitemap).
       { label: 'Service as Software', to: '/product/service-as-software' },
     ] },
     { title: 'Products', links: [
       { label: 'Intelligence Hub', to: '/product/intelligence-hub' },
       { label: 'Corporate Drivers', to: '/product/corporate-drivers' },
       { label: 'Trust, Governance & Assurance', to: '/product/trust-governance-assurance' },
-      // Functions and Engineering are per-space groups: each menu item is its
-      // own page and the group itself has no landing page yet, so these two
-      // currently resolve to the "in progress" placeholder.
-      { label: 'Functions', to: '/product/functions' },
-      { label: 'Engineering', to: '/product/engineering' },
+      // Functions and Engineering are menu groups with no landing page of their
+      // own, so the footer links each of their products directly instead.
+      // These links are also the only ones crawlers can see: the header's
+      // mega-menu only renders its links once someone opens it.
+      { label: 'Customers', to: '/product/customers' },
+      { label: 'People', to: '/product/people' },
+      { label: 'Supply Chain', to: '/product/supply-chain' },
+      { label: 'Operations', to: '/product/operations' },
+      { label: 'Finance', to: '/product/finance' },
+      { label: 'PMO', to: '/product/pmo' },
+      { label: 'IT & CyberSecurity', to: '/product/it-cybersecurity' },
+      { label: 'AI Foundry', to: '/product/ai-foundry' },
+      { label: 'Engineering Toolkits', to: '/product/engineering-toolkits' },
+      { label: 'Operations Toolkits', to: '/product/operations-toolkits' },
     ] },
     { title: 'Industries', links: [
       { label: 'Telecom', to: '/industries/telecom' },

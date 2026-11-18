@@ -10,7 +10,8 @@
      /resources/videos   a placeholder with about forty words on it, noindexed
                          until there is something there
      /product/functions, /product/engineering, /product/service-as-software
-                         linked from the footer but not real pages yet; they
+                         not real pages yet (the footer still links the last
+                         one); they
                          render the in-progress placeholder at HTTP 200, so
                          they are noindexed and excluded rather than offered
                          to crawlers as content
@@ -24,7 +25,7 @@
 import { products } from '../products'
 import { industries } from '../industries'
 import { useCaseGroups } from '../usecases'
-import { allPosts } from '../lib/blogIndex'
+import { allPosts, lastUpdated } from '../lib/blogIndex'
 import { blogPosts } from '../data/blogPosts'
 import { topicPosts } from '../data/topicPosts'
 
@@ -40,11 +41,13 @@ export const STATIC_ROUTES = [
   { path: '/resources/glossary', priority: 0.6, changeFrequency: 'monthly' },
 ]
 
-/* Each post's lastModified is the date written in its data entry. A post with
-   no date gets no lastModified at all. Stamping the build time would tell
+/* Each post's lastModified is its modifiedDate, or its publishDate if it has
+   never been revised (the shared `lastUpdated` rule, so the sitemap always
+   agrees with the page's dateModified). A post with no date gets no
+   lastModified at all. Stamping the build time would tell
    crawlers the whole archive changed on every deploy. */
 const publishedAt = Object.fromEntries(
-  [...blogPosts, ...topicPosts].filter((p) => p.publishDate).map((p) => [p.slug, p.publishDate]),
+  [...blogPosts, ...topicPosts].filter(lastUpdated).map((p) => [p.slug, lastUpdated(p)]),
 )
 
 export const allRoutes = () => [

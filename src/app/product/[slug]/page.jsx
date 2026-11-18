@@ -8,12 +8,13 @@ import { glossaryTermsIn } from '../../../lib/glossaryLinks'
 /* Every product/space page is known at build time, so prerender them all. */
 export const generateStaticParams = () => Object.keys(products).map((slug) => ({ slug }))
 
-/* The footer links three product slugs that have no page yet — functions,
-   engineering and service-as-software. They render the in-progress placeholder
-   at HTTP 200, which is a soft 404: near-identical thin pages, linked from
-   every page on the site. `dynamicParams` stays on (turning them into hard
-   404s would break a sitewide footer link), so instead they are held out of
-   the index and given no canonical, and the sitemap skips them. */
+/* Three product slugs have no page yet: functions, engineering and
+   service-as-software. The footer still links service-as-software, and the
+   other two may be linked from elsewhere on the web. They render the
+   in-progress placeholder at HTTP 200, which is a soft 404 (a thin page that
+   says "not here yet"). `dynamicParams` stays on, because turning them into
+   hard 404s would break those links, so instead they are held out of the
+   index and given no canonical, and the sitemap skips them. */
 const missing = { robots: { index: false, follow: true } }
 
 export const generateMetadata = async ({ params }) => {

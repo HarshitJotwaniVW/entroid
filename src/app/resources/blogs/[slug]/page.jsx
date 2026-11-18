@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { BlogPostView } from '../../../../components/BlogPostView'
 import { JsonLd } from '../../../../components/JsonLd'
-import { allPosts, postMeta, relatedPosts } from '../../../../lib/blogIndex'
+import { allPosts, lastUpdated, postMeta, relatedPosts } from '../../../../lib/blogIndex'
 import { postBody } from '../../../../lib/blogBodies'
 import { clampDescription, pageMeta } from '../../../../lib/seo'
 import { blogImageSize, ogSafe } from '../../../../data/blogImageSizes'
@@ -38,6 +38,7 @@ export const generateMetadata = async ({ params }) => {
     type: 'article',
     openGraph: {
       ...(meta.publishDate ? { publishedTime: meta.publishDate } : {}),
+      ...(lastUpdated(meta) ? { modifiedTime: lastUpdated(meta) } : {}),
       authors: [author.url],
       ...(meta.category ? { section: meta.category } : {}),
     },

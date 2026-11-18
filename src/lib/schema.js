@@ -15,6 +15,7 @@
 
 import { abs, ORG, ORG_ID, SITE_URL, WEBSITE_ID } from './site'
 import { authorFor } from './authors'
+import { lastUpdated } from './blogIndex'
 import { LINKEDIN } from './people'
 import { anchorSlug, clampDescription } from './seo'
 import { whyUs } from '../whyus'
@@ -59,9 +60,11 @@ export const person = ({ name, jobTitle }) => {
   })
 }
 
-/* Only those whose role says founder. The CEO is listed on /why-us too, but
-   is not described there as a founder. */
+/* The /why-us team, split by what the page says they are. Only those whose
+   role says founder go in `founder`. Everyone else on that team (today, the
+   CEO) goes in `employee`, so they still get a Person with a `sameAs`. */
 const FOUNDERS = whyUs.team.founders.filter((f) => /founder/i.test(f.role))
+const LEADERSHIP = whyUs.team.founders.filter((f) => !/founder/i.test(f.role))
 
 /* ── Sitewide (root layout only) ─────────────────────────────── */
 
@@ -87,6 +90,7 @@ export const organization = () => clean({
   }),
   sameAs: ORG.sameAs,
   founder: FOUNDERS.map((f) => person({ name: f.name, jobTitle: f.role })),
+  employee: LEADERSHIP.length ? LEADERSHIP.map((f) => person({ name: f.name, jobTitle: f.role })) : undefined,
   knowsAbout: ORG.knowsAbout,
   /* Emitted only when a real value exists in ORG — `clean` drops them
      otherwise, so an unknown founding date is absent rather than guessed. */
@@ -286,7 +290,7 @@ export const blogPosting = ({ path, meta }) => clean({
   image: meta.heroImage ? abs(meta.heroImage) : undefined,
   articleSection: meta.articleSection || meta.category,
   datePublished: meta.publishDate || undefined,
-  dateModified: meta.publishDate || undefined,
+  dateModified: lastUpdated(meta) || undefined,
   author: person({ name: authorFor(meta.slug).name }),
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',

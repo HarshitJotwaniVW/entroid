@@ -11,7 +11,7 @@
    person. Anyone without an entry is still named, just without a profile link.
 
    Confirmed by the team on 2026-11-18: Rohit Saraf, Prateek Chouhan,
-   Pintu Sahu, Rohit Gupta, Vipul Choure.
+   Pintu Sahu, Rohit Gupta, Vipul Choure. Sandeep Neema and Rajeev Gupta on 2026-11-18.
    ========================================================================== */
 
 export const LINKEDIN = {
@@ -25,4 +25,6 @@ export const LINKEDIN = {
   'Mohak Soni': 'https://www.linkedin.com/in/mohaksoni/',
   'Mohammed Azim': 'https://www.linkedin.com/in/mohammed-azim-622ba28b/',
   'Rohit Gupta': 'https://www.linkedin.com/in/rohit-gupta-92803384/',
+  'Sandeep Neema': 'https://www.linkedin.com/in/sandeepneema/',
+  'Rajeev Gupta': 'https://www.linkedin.com/in/yayrajeev/',
 }

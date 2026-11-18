@@ -20,6 +20,9 @@ export default function sitemap() {
     url: abs(r.path),
     changeFrequency: r.changeFrequency,
     priority: r.priority,
-    ...(r.lastModified ? { lastModified: new Date(r.lastModified) } : {}),
+    /* Passed through as the plain YYYY-MM-DD from the data, a valid sitemap
+       date, so <lastmod> reads exactly like the page's own dates. Wrapping it
+       in a Date would add a midnight-UTC time the source never had. */
+    ...(r.lastModified ? { lastModified: r.lastModified } : {}),
   }))
 }

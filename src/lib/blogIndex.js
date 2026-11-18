@@ -54,7 +54,10 @@ export const allPosts = [
    router-side lookup produced, for either kind of post.
 
    `publishDate` is passed through for every post. The post page shows it in
-   the byline and BlogPosting reads it. Topic posts have their date written
+   the byline and BlogPosting reads it. `modifiedDate` is optional: set it in
+   the data file (YYYY-MM-DD) only when a post is substantially revised. Until
+   then the post counts as last modified on its publish date (see
+   `lastUpdated`). Topic posts have their date written
    into the data file. It is never generated at build time, because a build
    date changes on every deploy and reads as manufactured freshness.
    `articleSection` exists on the primary posts only. */
@@ -67,7 +70,8 @@ export const postMeta = (slug) => {
       description: primary.description || primary.subtitle,
       category: primary.category, heroImage: primary.heroImage,
       heroImageAlt: primary.heroImageAlt, readTime: primary.readTime,
-      publishDate: primary.publishDate, articleSection: primary.articleSection,
+      publishDate: primary.publishDate, modifiedDate: primary.modifiedDate,
+      articleSection: primary.articleSection,
     }
   }
   const topic = topicPosts.find((p) => p.slug === slug)
@@ -78,11 +82,16 @@ export const postMeta = (slug) => {
       description: topic.subtitle,
       category: topic.category, heroImage: topicImg[topic.slug] || DEFAULT_HERO,
       heroImageAlt: topic.title, readTime: topic.readTime,
-      publishDate: topic.publishDate,
+      publishDate: topic.publishDate, modifiedDate: topic.modifiedDate,
     }
   }
   return null
 }
 
-export const relatedPosts = (slug, category) =>
+/* The one rule for "when was this post last changed", used by the
+   BlogPosting dateModified, the article:modified_time tag and the sitemap's
+   <lastmod>, so the three can never disagree. */
+export const lastUpdated = (p) => p.modifiedDate || p.publishDate
+
+export const relatedPosts =(slug, category) =>
   allPosts.filter((p) => p.slug !== slug && p.category === category).slice(0, 2)

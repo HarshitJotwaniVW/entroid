@@ -1408,9 +1408,14 @@ export const IndustryPage = ({ slug }) => {
   if (!p) return <InProgress slug={slug} kind="Industry" />
   const peers = Object.keys(industries).filter((k) => !renewableSubs.includes(k))
   const idx = peers.indexOf(slug)
-  const relatedItems = idx === -1
-    ? peers.slice(0, 3).map((k) => industries[k])
-    : [1, 2, 3].map((k) => industries[peers[(idx + k) % peers.length]])
+  /* Renewable's related cards are its own Wind and Solar pages, plus the next
+     peer. Nothing else links to those two, and this section is where a reader
+     (or a crawler) on the Renewable page would look for them. */
+  const relatedItems = slug === 'renewable'
+    ? [...renewableSubs.filter((k) => industries[k]), peers[(idx + 1) % peers.length]].map((k) => industries[k])
+    : idx === -1
+      ? peers.slice(0, 3).map((k) => industries[k])
+      : [1, 2, 3].map((k) => industries[peers[(idx + k) % peers.length]])
   return <SolutionPage p={p} journey={industryJourneys[slug]} relatedItems={relatedItems} />
 }
 
